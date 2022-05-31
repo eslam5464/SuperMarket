@@ -45,9 +45,7 @@ namespace SuperMarket.UserControls
         private void btn_saveChanges_Click(object sender, EventArgs e)
         {
             if (txt_color.SelectedIndex != -1)
-            {
                 Properties.Settings.Default.AppColor = ColorsDict[txt_color.SelectedIndex];
-            }
         }
     }
 }

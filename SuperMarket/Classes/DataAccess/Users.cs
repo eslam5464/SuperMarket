@@ -88,7 +88,7 @@ namespace SuperMarket.Classes.DataAccess
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 cnn.Execute($"UPDATE Users SET Username = @Username, Password = @Password, ModifyDate = '{DateTimeNow}'," +
-                    $"FullName = @FullName, 'Phone' = @Phone WHERE Id = @Id", User);
+                    $"FullName = @FullName, 'Phone' = @Phone, 'UserLevel' = @UserLevel WHERE Id = @Id", User);
             }
         }
 

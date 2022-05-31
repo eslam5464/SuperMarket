@@ -140,7 +140,7 @@ namespace SuperMarket.Forms
 
             lbl_welcomeName.Text = LoggedUser;
 
-            Classes.DataAccess.Backup.AllWeekly(DayOfWeek.Tuesday, ".", "Default");
+            Classes.DataAccess.Backup.AllDaily();
 
             UserSession.Start();
         }
@@ -247,10 +247,6 @@ namespace SuperMarket.Forms
                     }
                 }
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
         }
 
         private void UserSession_Tick(object sender, EventArgs e)

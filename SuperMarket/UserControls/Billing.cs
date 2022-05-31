@@ -211,6 +211,7 @@ namespace SuperMarket.UserControls
             db_procardsDataGridView.Columns["ProductQuantity"].HeaderText = "كميه المنتج";
             db_procardsDataGridView.Columns["ProductPrice"].HeaderText = "سعر المنتج";
             db_procardsDataGridView.Columns["PriceTotal"].HeaderText = "السعر الكلي";
+            db_procardsDataGridView.Columns["InvoiceNumber"].HeaderText = "رقم الفاتورة";
 
             db_procardsDataGridView.Columns["Id"].Visible = false;
             db_procardsDataGridView.Columns["ProductID"].Visible = false;
@@ -433,27 +434,39 @@ namespace SuperMarket.UserControls
             {
                 if (datasource.Count != 0)
                 {
-                    foreach (InvoiceModel Product in datasource)
-                        Classes.DataAccess.Invoices.AddToInvoice(Product);
-
-                    OrderModel order = new OrderModel
+                    if (MessageBox.Show($"هل تريد انت تحذف من السله {ProductName}", "انتظر",
+                           MessageBoxButtons.YesNo,
+                           MessageBoxIcon.Information) == DialogResult.Yes)
                     {
-                        InvoiceDate = dtp_invoicedate.Value.ToString("hh:mm:ss tt dd/MM/yyyy", new System.Globalization.CultureInfo("ar-AE")),
-                        InvoiceId = datasource[0].InvoiceNumber,
-                        CustomerId = datasource[0].CustomerId,
-                        CustomerName = datasource[0].CustomerName,
-                        ContactNumber = datasource[0].CustomerContact,
-                        Address = datasource[0].CustomerAddress,
-                        GrandTotal = txt_grandtotal.Text
-                    };
-                    Classes.DataAccess.Orders.AddOrder(order);
+                        foreach (InvoiceModel invoice in datasource)
+                        {
+                            Classes.DataAccess.Invoices.AddToInvoice(invoice);
+                            ProductModel ProductSearch = Classes.DataAccess.Products.GetProductParameter("Id", "" + invoice.ProductID).FirstOrDefault();
+                            ProductSearch.Quantity = "" + (double.Parse(ProductSearch.Quantity) - double.Parse(invoice.ProductQuantity));
+                            Classes.DataAccess.Products.UpdateProduct(ProductSearch);
+                        }
 
-                    db_procardsDataGridView.DataSource = null;
+                        OrderModel order = new OrderModel
+                        {
+                            InvoiceDate = dtp_invoicedate.Value.ToString("hh:mm:ss tt dd/MM/yyyy", new System.Globalization.CultureInfo("ar-AE")),
+                            InvoiceId = datasource[0].InvoiceNumber,
+                            CustomerId = datasource[0].CustomerId,
+                            CustomerName = datasource[0].CustomerName,
+                            ContactNumber = datasource[0].CustomerContact,
+                            Address = datasource[0].CustomerAddress,
+                            GrandTotal = txt_grandtotal.Text
+                        };
+                        Classes.DataAccess.Orders.AddOrder(order);
 
-                    ResetTextBoxes();
+                        db_procardsDataGridView.DataSource = null;
 
-                    GetUniqueInvoiceID(9);
+                        ResetTextBoxes();
+
+                        txt_invoiceno.Text = GetUniqueInvoiceID(9);
+                    }
                 }
+                else
+                    MessageBox.Show("لا يوجدأي اشياء في السله", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
                 MessageBox.Show("لا يوجد بيانات للحفظ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);

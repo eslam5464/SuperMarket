@@ -33,6 +33,15 @@ namespace SuperMarket.Classes.DataAccess
             }
         }
 
+        internal static List<InvoiceModel> GetAllInvoices()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<InvoiceModel>($"SELECT * FROM 'Invoices'", new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
         internal static List<InvoiceModel> LoadAllInvoices()
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))

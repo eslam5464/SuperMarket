@@ -32,39 +32,39 @@ namespace SuperMarket.UserControls
             this.label9 = new System.Windows.Forms.Label();
             this.lbl_user_count = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
+            this.pan_user_count = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label12 = new System.Windows.Forms.Label();
             this.lbl_customer_count = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
+            this.pan_customer_count = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.lbl_orders_count = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
-            this.lbl_total_amount = new System.Windows.Forms.Label();
+            this.lbl_orders_sum = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.pan_orders_sum = new System.Windows.Forms.Panel();
             this.label15 = new System.Windows.Forms.Label();
             this.lbl_product_count = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pan_product_count = new System.Windows.Forms.Panel();
+            this.pan_orders_count = new System.Windows.Forms.Panel();
             this.btn_refresh = new System.Windows.Forms.Button();
-            this.panel5.SuspendLayout();
+            this.pan_user_count.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel8.SuspendLayout();
-            this.panel7.SuspendLayout();
+            this.pan_customer_count.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.pan_orders_sum.SuspendLayout();
             this.panel10.SuspendLayout();
-            this.panel9.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.pan_product_count.SuspendLayout();
+            this.pan_orders_count.SuspendLayout();
             this.SuspendLayout();
             // 
             // label9
@@ -72,7 +72,7 @@ namespace SuperMarket.UserControls
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Gray;
-            this.label9.Location = new System.Drawing.Point(56, 8);
+            this.label9.Location = new System.Drawing.Point(62, 8);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(128, 25);
             this.label9.TabIndex = 22;
@@ -100,16 +100,16 @@ namespace SuperMarket.UserControls
             this.label8.TabIndex = 22;
             this.label8.Text = ":عدد بائعين";
             // 
-            // panel5
+            // pan_user_count
             // 
-            this.panel5.BackColor = System.Drawing.Color.Purple;
-            this.panel5.Controls.Add(this.lbl_user_count);
-            this.panel5.Controls.Add(this.label8);
-            this.panel5.Controls.Add(this.panel6);
-            this.panel5.Location = new System.Drawing.Point(692, 410);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(258, 148);
-            this.panel5.TabIndex = 37;
+            this.pan_user_count.BackColor = System.Drawing.Color.Purple;
+            this.pan_user_count.Controls.Add(this.lbl_user_count);
+            this.pan_user_count.Controls.Add(this.label8);
+            this.pan_user_count.Controls.Add(this.panel6);
+            this.pan_user_count.Location = new System.Drawing.Point(692, 410);
+            this.pan_user_count.Name = "pan_user_count";
+            this.pan_user_count.Size = new System.Drawing.Size(258, 148);
+            this.pan_user_count.TabIndex = 37;
             // 
             // panel6
             // 
@@ -125,7 +125,7 @@ namespace SuperMarket.UserControls
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Gray;
-            this.label12.Location = new System.Drawing.Point(58, 8);
+            this.label12.Location = new System.Drawing.Point(64, 8);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(125, 25);
             this.label12.TabIndex = 22;
@@ -162,23 +162,23 @@ namespace SuperMarket.UserControls
             this.panel8.Size = new System.Drawing.Size(252, 40);
             this.panel8.TabIndex = 19;
             // 
-            // panel7
+            // pan_customer_count
             // 
-            this.panel7.BackColor = System.Drawing.Color.Purple;
-            this.panel7.Controls.Add(this.lbl_customer_count);
-            this.panel7.Controls.Add(this.label11);
-            this.panel7.Controls.Add(this.panel8);
-            this.panel7.Location = new System.Drawing.Point(88, 410);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(258, 148);
-            this.panel7.TabIndex = 38;
+            this.pan_customer_count.BackColor = System.Drawing.Color.Purple;
+            this.pan_customer_count.Controls.Add(this.lbl_customer_count);
+            this.pan_customer_count.Controls.Add(this.label11);
+            this.pan_customer_count.Controls.Add(this.panel8);
+            this.pan_customer_count.Location = new System.Drawing.Point(88, 410);
+            this.pan_customer_count.Name = "pan_customer_count";
+            this.pan_customer_count.Size = new System.Drawing.Size(258, 148);
+            this.pan_customer_count.TabIndex = 38;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(56, 8);
+            this.label1.Location = new System.Drawing.Point(61, 8);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(130, 25);
             this.label1.TabIndex = 22;
@@ -220,33 +220,33 @@ namespace SuperMarket.UserControls
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Gray;
-            this.label6.Location = new System.Drawing.Point(38, 8);
+            this.label6.Location = new System.Drawing.Point(30, 8);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(177, 25);
+            this.label6.Size = new System.Drawing.Size(192, 25);
             this.label6.TabIndex = 22;
-            this.label6.Text = "اجمالي كميه الطلبات ";
+            this.label6.Text = "اجمالي حساب الطلبات ";
             // 
-            // lbl_total_amount
+            // lbl_orders_sum
             // 
-            this.lbl_total_amount.AutoSize = true;
-            this.lbl_total_amount.Font = new System.Drawing.Font("Palatino Linotype", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_total_amount.ForeColor = System.Drawing.Color.White;
-            this.lbl_total_amount.Location = new System.Drawing.Point(99, 49);
-            this.lbl_total_amount.Name = "lbl_total_amount";
-            this.lbl_total_amount.Size = new System.Drawing.Size(48, 41);
-            this.lbl_total_amount.TabIndex = 23;
-            this.lbl_total_amount.Text = "00";
+            this.lbl_orders_sum.AutoSize = true;
+            this.lbl_orders_sum.Font = new System.Drawing.Font("Palatino Linotype", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_orders_sum.ForeColor = System.Drawing.Color.White;
+            this.lbl_orders_sum.Location = new System.Drawing.Point(99, 49);
+            this.lbl_orders_sum.Name = "lbl_orders_sum";
+            this.lbl_orders_sum.Size = new System.Drawing.Size(48, 41);
+            this.lbl_orders_sum.TabIndex = 23;
+            this.lbl_orders_sum.Text = "00";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(128, 11);
+            this.label5.Location = new System.Drawing.Point(110, 11);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(118, 25);
+            this.label5.Size = new System.Drawing.Size(133, 25);
             this.label5.TabIndex = 22;
-            this.label5.Text = ":كمية الطلبات";
+            this.label5.Text = ":حساب الطلبات";
             // 
             // panel4
             // 
@@ -257,23 +257,23 @@ namespace SuperMarket.UserControls
             this.panel4.Size = new System.Drawing.Size(252, 40);
             this.panel4.TabIndex = 19;
             // 
-            // panel3
+            // pan_orders_sum
             // 
-            this.panel3.BackColor = System.Drawing.Color.Purple;
-            this.panel3.Controls.Add(this.lbl_total_amount);
-            this.panel3.Controls.Add(this.label5);
-            this.panel3.Controls.Add(this.panel4);
-            this.panel3.Location = new System.Drawing.Point(389, 256);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(258, 148);
-            this.panel3.TabIndex = 36;
+            this.pan_orders_sum.BackColor = System.Drawing.Color.Purple;
+            this.pan_orders_sum.Controls.Add(this.lbl_orders_sum);
+            this.pan_orders_sum.Controls.Add(this.label5);
+            this.pan_orders_sum.Controls.Add(this.panel4);
+            this.pan_orders_sum.Location = new System.Drawing.Point(389, 256);
+            this.pan_orders_sum.Name = "pan_orders_sum";
+            this.pan_orders_sum.Size = new System.Drawing.Size(258, 148);
+            this.pan_orders_sum.TabIndex = 36;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Gray;
-            this.label15.Location = new System.Drawing.Point(53, 8);
+            this.label15.Location = new System.Drawing.Point(57, 8);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(138, 25);
             this.label15.TabIndex = 22;
@@ -310,27 +310,27 @@ namespace SuperMarket.UserControls
             this.panel10.Size = new System.Drawing.Size(252, 40);
             this.panel10.TabIndex = 19;
             // 
-            // panel9
+            // pan_product_count
             // 
-            this.panel9.BackColor = System.Drawing.Color.Purple;
-            this.panel9.Controls.Add(this.lbl_product_count);
-            this.panel9.Controls.Add(this.label14);
-            this.panel9.Controls.Add(this.panel10);
-            this.panel9.Location = new System.Drawing.Point(692, 103);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(258, 148);
-            this.panel9.TabIndex = 39;
+            this.pan_product_count.BackColor = System.Drawing.Color.Purple;
+            this.pan_product_count.Controls.Add(this.lbl_product_count);
+            this.pan_product_count.Controls.Add(this.label14);
+            this.pan_product_count.Controls.Add(this.panel10);
+            this.pan_product_count.Location = new System.Drawing.Point(692, 103);
+            this.pan_product_count.Name = "pan_product_count";
+            this.pan_product_count.Size = new System.Drawing.Size(258, 148);
+            this.pan_product_count.TabIndex = 39;
             // 
-            // panel1
+            // pan_orders_count
             // 
-            this.panel1.BackColor = System.Drawing.Color.Purple;
-            this.panel1.Controls.Add(this.lbl_orders_count);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.panel2);
-            this.panel1.Location = new System.Drawing.Point(88, 103);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(258, 148);
-            this.panel1.TabIndex = 35;
+            this.pan_orders_count.BackColor = System.Drawing.Color.Purple;
+            this.pan_orders_count.Controls.Add(this.lbl_orders_count);
+            this.pan_orders_count.Controls.Add(this.label3);
+            this.pan_orders_count.Controls.Add(this.panel2);
+            this.pan_orders_count.Location = new System.Drawing.Point(88, 103);
+            this.pan_orders_count.Name = "pan_orders_count";
+            this.pan_orders_count.Size = new System.Drawing.Size(258, 148);
+            this.pan_orders_count.TabIndex = 35;
             // 
             // btn_refresh
             // 
@@ -352,35 +352,35 @@ namespace SuperMarket.UserControls
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btn_refresh);
-            this.Controls.Add(this.panel5);
-            this.Controls.Add(this.panel7);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel9);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pan_user_count);
+            this.Controls.Add(this.pan_customer_count);
+            this.Controls.Add(this.pan_orders_sum);
+            this.Controls.Add(this.pan_product_count);
+            this.Controls.Add(this.pan_orders_count);
             this.MinimumSize = new System.Drawing.Size(1038, 660);
             this.Name = "Dashboard";
             this.Size = new System.Drawing.Size(1038, 660);
             this.Load += new System.EventHandler(this.Dashboard_Load);
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
+            this.pan_user_count.ResumeLayout(false);
+            this.pan_user_count.PerformLayout();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
+            this.pan_customer_count.ResumeLayout(false);
+            this.pan_customer_count.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
+            this.pan_orders_sum.ResumeLayout(false);
+            this.pan_orders_sum.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
-            this.panel9.ResumeLayout(false);
-            this.panel9.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pan_product_count.ResumeLayout(false);
+            this.pan_product_count.PerformLayout();
+            this.pan_orders_count.ResumeLayout(false);
+            this.pan_orders_count.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -390,28 +390,28 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lbl_user_count;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel pan_user_count;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label lbl_customer_count;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel pan_customer_count;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbl_orders_count;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label lbl_total_amount;
+        private System.Windows.Forms.Label lbl_orders_sum;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel pan_orders_sum;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lbl_product_count;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pan_product_count;
+        private System.Windows.Forms.Panel pan_orders_count;
         private System.Windows.Forms.Button btn_refresh;
     }
 }

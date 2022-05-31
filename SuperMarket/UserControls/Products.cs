@@ -225,27 +225,37 @@ namespace SuperMarket.UserControls
 
         private void btn_edit_Click(object sender, EventArgs e)
         {
-            int RowIndex = db_productDataGridView.CurrentCell.RowIndex;
+            if (db_productDataGridView != null)
+            {
+                if (db_productDataGridView.CurrentCell != null)
+                {
+                    int RowIndex = db_productDataGridView.CurrentCell.RowIndex;
 
-            int ProductID = int.Parse(db_productDataGridView.Rows[RowIndex].Cells["Id"].Value.ToString()),
-                CategoryID = int.Parse(db_productDataGridView.Rows[RowIndex].Cells["CategoryId"].Value.ToString());
+                    int ProductID = int.Parse(db_productDataGridView.Rows[RowIndex].Cells["Id"].Value.ToString()),
+                        CategoryID = int.Parse(db_productDataGridView.Rows[RowIndex].Cells["CategoryId"].Value.ToString());
 
-            string ProductName = db_productDataGridView.Rows[RowIndex].Cells["Name"].Value.ToString(),
-                ProductPrice = db_productDataGridView.Rows[RowIndex].Cells["Price"].Value.ToString(),
-                ProductQuantity = db_productDataGridView.Rows[RowIndex].Cells["Quantity"].Value.ToString(),
-                ProductDescription = db_productDataGridView.Rows[RowIndex].Cells["Description"].Value.ToString(),
-                ProductBarcode = db_productDataGridView.Rows[RowIndex].Cells["BarCode"].Value.ToString(),
-                CategoryName = db_productDataGridView.Rows[RowIndex].Cells["CategoryName"].Value.ToString();
+                    string ProductName = db_productDataGridView.Rows[RowIndex].Cells["Name"].Value.ToString(),
+                        ProductPrice = db_productDataGridView.Rows[RowIndex].Cells["Price"].Value.ToString(),
+                        ProductQuantity = db_productDataGridView.Rows[RowIndex].Cells["Quantity"].Value.ToString(),
+                        ProductDescription = db_productDataGridView.Rows[RowIndex].Cells["Description"].Value.ToString(),
+                        ProductBarcode = db_productDataGridView.Rows[RowIndex].Cells["BarCode"].Value.ToString(),
+                        CategoryName = db_productDataGridView.Rows[RowIndex].Cells["CategoryName"].Value.ToString();
 
-            txt_productid.Text = "" + ProductID;
-            txt_productname.Text = ProductName;
-            txt_productprice.Text = ProductPrice;
-            txt_productquantity.Text = ProductQuantity;
-            txt_description.Text = ProductDescription;
-            txt_productBarCode.Text = ProductBarcode;
-            txt_categoriename.Text = CategoryName;
+                    txt_productid.Text = "" + ProductID;
+                    txt_productname.Text = ProductName;
+                    txt_productprice.Text = ProductPrice;
+                    txt_productquantity.Text = ProductQuantity;
+                    txt_description.Text = ProductDescription;
+                    txt_productBarCode.Text = ProductBarcode;
+                    txt_categoriename.Text = CategoryName;
 
-            SetEditMode(true);
+                    SetEditMode(true);
+                }
+                else
+                {
+                    MessageBox.Show("يجب أن تختار منتج للتعديل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void SetEditMode(bool State)

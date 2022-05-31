@@ -16,6 +16,16 @@ namespace SuperMarket.Classes.DataAccess
             if (DateTime.Now.DayOfWeek == Day)
                 All(strDestination, Id, false);
         }
+
+        public static void AllDaily(int NumOfMaxBackup = 10, string strDestination = ".", string Id = "Default")
+        {
+            string Date = DateTime.Now.ToString("yyyy-MM-dd "),
+                BackupLocation = Security.GetDirecotryLocation() + @"\Backup",
+                FileName = $@"\{Date} LocalBackup.db";
+
+            foreach (var BackupFiles in new DirectoryInfo(BackupLocation).GetFiles().OrderByDescending(x => x.LastWriteTime).Skip(NumOfMaxBackup))
+                BackupFiles.Delete();
+        }
         public static void All(string strDestination = ".", string Id = "Default", bool Overwrite = false)
         {
             string Date = DateTime.Now.ToString("yyyy-MM-dd "),

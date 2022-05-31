@@ -59,6 +59,7 @@ namespace SuperMarket.Forms
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 //MessageBox.Show(ex.Message);
             }
 
@@ -83,7 +84,7 @@ namespace SuperMarket.Forms
             else
             {
                 if (progressBar.Value == 75 && FoundTimeOnline)
-                    progressBar.Value += 25;
+                    progressBar.Value += 25;// TO DO: finish fidning time online
 
                 else
                 {

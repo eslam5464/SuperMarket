@@ -303,10 +303,6 @@ namespace SuperMarket.UserControls
             this.txt_userLevel.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_userLevel.FormattingEnabled = true;
             this.txt_userLevel.IntegralHeight = false;
-            this.txt_userLevel.Items.AddRange(new object[] {
-            "مدير",
-            "مشرف",
-            "موظف"});
             this.txt_userLevel.Location = new System.Drawing.Point(461, 138);
             this.txt_userLevel.Name = "txt_userLevel";
             this.txt_userLevel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
