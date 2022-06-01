@@ -119,6 +119,12 @@
     <Compile Include="UserControls\Billing.Designer.cs">
       <DependentUpon>Billing.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\BillsEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\BillsEdit.Designer.cs">
+      <DependentUpon>BillsEdit.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Categories.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -163,6 +169,10 @@
     <Compile Include="UserControls\Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
+    <None Include="Resources\icons8-edit-property-48.png" />
+    <EmbeddedResource Include="UserControls\BillsEdit.resx">
+      <DependentUpon>BillsEdit.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>

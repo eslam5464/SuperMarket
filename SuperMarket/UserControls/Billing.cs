@@ -19,13 +19,22 @@ namespace SuperMarket.UserControls
         {
             InitializeComponent();
         }
+        //private ContextMenu contextMenu = new ContextMenu();
+        //private static int EditedRowID = -1;
 
         private void ub_billing_Load(object sender, EventArgs e)
         {
             SetColors(Properties.Settings.Default.AppColor);
 
             txt_invoiceno.Text = GetUniqueInvoiceID(9);
+
+            //SetupContextMenu();
         }
+
+        //private void SetupContextMenu()
+        //{
+        //    contextMenu.MenuItems.Add(new MenuItem("تعديل", MenuItemEdit_Click));
+        //}
 
         private string GetUniqueInvoiceID(int MaxSize)
         {
@@ -59,30 +68,12 @@ namespace SuperMarket.UserControls
             label11.ForeColor = appColor;
             label12.ForeColor = appColor;
             label13.ForeColor = appColor;
-            btn_addtocard.BackColor = appColor;
+            btn_addToCart.BackColor = appColor;
             btn_print.BackColor = appColor;
-            btn_remove.BackColor = appColor;
-            btn_remove_.BackColor = appColor;
+            btn_removeFromCart.BackColor = appColor;
+            btn_removeOrder.BackColor = appColor;
             btn_save.BackColor = appColor;
-            btn_update.BackColor = appColor;
             db_procardsDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
-        }
-
-        private void pcb_search_Click(object sender, EventArgs e)
-        {
-            if (txt_invoiceno.Text == "")
-                MessageBox.Show("برجاء كتابه رقم الفاتورة أو الضغط على زر عمل رقم جديد", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            else if (txt_invoiceno.Enabled)
-            {
-                List<InvoiceModel> InvoiceSearch = Classes.DataAccess.Invoices.GetInvoice(int.Parse(txt_invoiceno.Text));
-
-                if (InvoiceSearch.Count != 0)
-                    LoadDataGrid(InvoiceSearch);
-
-                else
-                    MessageBox.Show("برجاء التأكد من رقم الفاتورة", "حاول مره أخرى", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
         }
 
         private void btn_print_Click(object sender, EventArgs e)
@@ -302,6 +293,7 @@ namespace SuperMarket.UserControls
 
             txt_invoiceno.Text = UniqueInvoiceID;
             db_procardsDataGridView.DataSource = null;
+
         }
 
         private void btn_remove_Click(object sender, EventArgs e)
@@ -321,10 +313,9 @@ namespace SuperMarket.UserControls
                 {
                     List<InvoiceModel> datasource = (List<InvoiceModel>)db_procardsDataGridView.DataSource;
                     db_procardsDataGridView.DataSource = null;
-                    datasource.Remove(datasource.Find(User => User.CreationDate == DateCreated));
+                    datasource.Remove(datasource.Find(invoice => invoice.CreationDate == DateCreated));
                     db_procardsDataGridView.DataSource = datasource;
                     ResizeAndRenameCoulmns();
-
                 }
             }
             else
@@ -406,7 +397,32 @@ namespace SuperMarket.UserControls
 
         private void SetEditMode(bool State)
         {
-            btn_update.Enabled = !State;
+            Button[] buttons = {
+                btn_print,
+                btn_removeOrder
+            };
+
+            TextBox[] textBoxes =
+            {
+                txt_invoiceno
+            };
+
+            if (State)
+            {
+                foreach (Button button in buttons)
+                    button.BackColor = Color.Silver;
+            }
+            else
+            {
+                foreach (Button button in buttons)
+                    button.BackColor = Properties.Settings.Default.AppColor;
+            }
+
+            foreach (Button button in buttons)
+                button.Enabled = !State;
+
+            foreach (TextBox textBox in textBoxes)
+                textBox.Enabled = !State;
         }
 
         private void pcb_searchCstID_Click(object sender, EventArgs e)
@@ -434,7 +450,18 @@ namespace SuperMarket.UserControls
             {
                 if (datasource.Count != 0)
                 {
-                    if (MessageBox.Show($"هل تريد انت تحذف من السله {ProductName}", "انتظر",
+                    //if (!btn_updateOrder.Enabled)
+                    //{
+                    //    SetEditMode(false);
+
+                    //    foreach (InvoiceModel invoice in datasource)
+                    //    {
+                    //        invoice.CustomerName = txt_cstName.Text;
+                    //        invoice.CustomerContact = txt_cstContact.Text;
+                    //        invoice.CustomerAddress = txt_cstAddress.Text;
+                    //    }
+                    //}
+                    if (MessageBox.Show($"هل انت متأكد من انتهائك من العربه؟", "انتظر",
                            MessageBoxButtons.YesNo,
                            MessageBoxIcon.Information) == DialogResult.Yes)
                     {
@@ -464,6 +491,7 @@ namespace SuperMarket.UserControls
 
                         txt_invoiceno.Text = GetUniqueInvoiceID(9);
                     }
+
                 }
                 else
                     MessageBox.Show("لا يوجدأي اشياء في السله", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -471,5 +499,37 @@ namespace SuperMarket.UserControls
             else
                 MessageBox.Show("لا يوجد بيانات للحفظ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void db_procardsDataGridView_MouseClick(object sender, MouseEventArgs e)
+        {
+            //if (e.Button == MouseButtons.Right && !btn_updateOrder.Enabled)
+            //{
+            //    int currentMouseOverRow = db_procardsDataGridView.HitTest(e.X, e.Y).RowIndex;
+
+            //    if (currentMouseOverRow >= 0)
+            //    {
+            //        contextMenu.Show(db_procardsDataGridView, new Point(e.X, e.Y));
+            //        EditedRowID = currentMouseOverRow;
+            //    }
+            //}
+        }
+
+        //private void MenuItemEdit_Click(Object sender, System.EventArgs e)
+        //{
+        //    txt_productName.Text = db_procardsDataGridView.Rows[EditedRowID].Cells["ProductName"].Value.ToString();
+        //    //MessageBox.Show("invoice: " + InvoiceID); // TO DO: finish editing
+        //    txt_productBarCode.Text = db_procardsDataGridView.Rows[EditedRowID].Cells["ProductBarCode"].Value.ToString();
+        //    txt_productquantity.Text = db_procardsDataGridView.Rows[EditedRowID].Cells["ProductQuantity"].Value.ToString();
+        //    txt_productprice.Text = db_procardsDataGridView.Rows[EditedRowID].Cells["ProductPrice"].Value.ToString();
+        //    txt_totalprice.Text = db_procardsDataGridView.Rows[EditedRowID].Cells["PriceTotal"].Value.ToString();
+        //    contextMenu.MenuItems.Add(new MenuItem("حفظ التعديل", MenuItemSaveEdit_Click));
+        //}
+
+        //private void MenuItemSaveEdit_Click(Object sender, System.EventArgs e)
+        //{
+        //    db_procardsDataGridView.Rows[EditedRowID].Cells["ProductPrice"].Value = txt_productprice.Text;
+
+        //    contextMenu.MenuItems.RemoveAt(1);
+        //}
     }
 }

@@ -35,6 +35,7 @@ namespace SuperMarket.Forms
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_logout = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.btn_editBills = new System.Windows.Forms.Button();
             this.btn_sellers = new System.Windows.Forms.Button();
             this.btn_billing = new System.Windows.Forms.Button();
             this.btn_settings = new System.Windows.Forms.Button();
@@ -70,9 +71,9 @@ namespace SuperMarket.Forms
             this.pan_controls.AutoScroll = true;
             this.pan_controls.BackColor = System.Drawing.Color.White;
             this.pan_controls.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pan_controls.Location = new System.Drawing.Point(271, 65);
+            this.pan_controls.Location = new System.Drawing.Point(258, 65);
             this.pan_controls.Name = "pan_controls";
-            this.pan_controls.Size = new System.Drawing.Size(983, 657);
+            this.pan_controls.Size = new System.Drawing.Size(996, 657);
             this.pan_controls.TabIndex = 27;
             this.pan_controls.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panels_MouseMove);
             // 
@@ -88,7 +89,7 @@ namespace SuperMarket.Forms
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(271, 722);
+            this.panel1.Size = new System.Drawing.Size(258, 722);
             this.panel1.TabIndex = 23;
             // 
             // btn_logout
@@ -103,7 +104,7 @@ namespace SuperMarket.Forms
             this.btn_logout.Location = new System.Drawing.Point(0, 672);
             this.btn_logout.Margin = new System.Windows.Forms.Padding(4);
             this.btn_logout.Name = "btn_logout";
-            this.btn_logout.Size = new System.Drawing.Size(271, 50);
+            this.btn_logout.Size = new System.Drawing.Size(258, 50);
             this.btn_logout.TabIndex = 12;
             this.btn_logout.Text = "الخروج";
             this.btn_logout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -113,6 +114,7 @@ namespace SuperMarket.Forms
             // panel7
             // 
             this.panel7.AutoScroll = true;
+            this.panel7.Controls.Add(this.btn_editBills);
             this.panel7.Controls.Add(this.btn_sellers);
             this.panel7.Controls.Add(this.btn_billing);
             this.panel7.Controls.Add(this.btn_settings);
@@ -125,9 +127,28 @@ namespace SuperMarket.Forms
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(0, 66);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(271, 656);
+            this.panel7.Size = new System.Drawing.Size(258, 656);
             this.panel7.TabIndex = 8;
             this.panel7.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panels_MouseMove);
+            // 
+            // btn_editBills
+            // 
+            this.btn_editBills.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_editBills.FlatAppearance.BorderSize = 0;
+            this.btn_editBills.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_editBills.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_editBills.ForeColor = System.Drawing.Color.White;
+            this.btn_editBills.Image = global::SuperMarket.Properties.Resources.icons8_edit_property_48;
+            this.btn_editBills.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_editBills.Location = new System.Drawing.Point(16, 365);
+            this.btn_editBills.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_editBills.Name = "btn_editBills";
+            this.btn_editBills.Size = new System.Drawing.Size(211, 50);
+            this.btn_editBills.TabIndex = 23;
+            this.btn_editBills.Text = "   تعديل الفواتير";
+            this.btn_editBills.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_editBills.UseVisualStyleBackColor = true;
+            this.btn_editBills.Click += new System.EventHandler(this.btn_editBills_Click);
             // 
             // btn_sellers
             // 
@@ -137,14 +158,13 @@ namespace SuperMarket.Forms
             this.btn_sellers.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_sellers.ForeColor = System.Drawing.Color.White;
             this.btn_sellers.Image = ((System.Drawing.Image)(resources.GetObject("btn_sellers.Image")));
-            this.btn_sellers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_sellers.Location = new System.Drawing.Point(16, 365);
+            this.btn_sellers.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_sellers.Location = new System.Drawing.Point(16, 425);
             this.btn_sellers.Margin = new System.Windows.Forms.Padding(4);
             this.btn_sellers.Name = "btn_sellers";
-            this.btn_sellers.Size = new System.Drawing.Size(251, 50);
+            this.btn_sellers.Size = new System.Drawing.Size(211, 50);
             this.btn_sellers.TabIndex = 21;
             this.btn_sellers.Text = "   البائعين";
-            this.btn_sellers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_sellers.UseVisualStyleBackColor = true;
             this.btn_sellers.Click += new System.EventHandler(this.btn_sellers_Click);
             // 
@@ -156,14 +176,13 @@ namespace SuperMarket.Forms
             this.btn_billing.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_billing.ForeColor = System.Drawing.Color.White;
             this.btn_billing.Image = ((System.Drawing.Image)(resources.GetObject("btn_billing.Image")));
-            this.btn_billing.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_billing.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_billing.Location = new System.Drawing.Point(16, 307);
             this.btn_billing.Margin = new System.Windows.Forms.Padding(4);
             this.btn_billing.Name = "btn_billing";
-            this.btn_billing.Size = new System.Drawing.Size(251, 50);
+            this.btn_billing.Size = new System.Drawing.Size(211, 50);
             this.btn_billing.TabIndex = 20;
             this.btn_billing.Text = "   الفواتير";
-            this.btn_billing.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_billing.UseVisualStyleBackColor = true;
             this.btn_billing.Click += new System.EventHandler(this.btn_billing_Click);
             // 
@@ -175,14 +194,13 @@ namespace SuperMarket.Forms
             this.btn_settings.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_settings.ForeColor = System.Drawing.Color.White;
             this.btn_settings.Image = ((System.Drawing.Image)(resources.GetObject("btn_settings.Image")));
-            this.btn_settings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_settings.Location = new System.Drawing.Point(16, 423);
+            this.btn_settings.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_settings.Location = new System.Drawing.Point(16, 483);
             this.btn_settings.Margin = new System.Windows.Forms.Padding(4);
             this.btn_settings.Name = "btn_settings";
-            this.btn_settings.Size = new System.Drawing.Size(251, 50);
+            this.btn_settings.Size = new System.Drawing.Size(211, 50);
             this.btn_settings.TabIndex = 22;
             this.btn_settings.Text = "   الاعدادات";
-            this.btn_settings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_settings.UseVisualStyleBackColor = true;
             this.btn_settings.Click += new System.EventHandler(this.btn_settings_Click);
             // 
@@ -194,14 +212,13 @@ namespace SuperMarket.Forms
             this.btn_Orders.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Orders.ForeColor = System.Drawing.Color.White;
             this.btn_Orders.Image = ((System.Drawing.Image)(resources.GetObject("btn_Orders.Image")));
-            this.btn_Orders.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Orders.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Orders.Location = new System.Drawing.Point(16, 249);
             this.btn_Orders.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Orders.Name = "btn_Orders";
-            this.btn_Orders.Size = new System.Drawing.Size(251, 50);
+            this.btn_Orders.Size = new System.Drawing.Size(211, 50);
             this.btn_Orders.TabIndex = 19;
             this.btn_Orders.Text = "   الطلبات";
-            this.btn_Orders.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_Orders.UseVisualStyleBackColor = true;
             this.btn_Orders.Click += new System.EventHandler(this.btn_Orders_Click);
             // 
@@ -213,14 +230,13 @@ namespace SuperMarket.Forms
             this.btn_dashborad.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_dashborad.ForeColor = System.Drawing.Color.White;
             this.btn_dashborad.Image = ((System.Drawing.Image)(resources.GetObject("btn_dashborad.Image")));
-            this.btn_dashborad.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_dashborad.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_dashborad.Location = new System.Drawing.Point(16, 17);
             this.btn_dashborad.Margin = new System.Windows.Forms.Padding(4);
             this.btn_dashborad.Name = "btn_dashborad";
-            this.btn_dashborad.Size = new System.Drawing.Size(251, 50);
+            this.btn_dashborad.Size = new System.Drawing.Size(211, 50);
             this.btn_dashborad.TabIndex = 11;
             this.btn_dashborad.Text = "   الرئيسية";
-            this.btn_dashborad.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_dashborad.UseVisualStyleBackColor = true;
             this.btn_dashborad.Click += new System.EventHandler(this.btn_dashborad_Click);
             // 
@@ -232,14 +248,13 @@ namespace SuperMarket.Forms
             this.btn_Customers.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Customers.ForeColor = System.Drawing.Color.White;
             this.btn_Customers.Image = ((System.Drawing.Image)(resources.GetObject("btn_Customers.Image")));
-            this.btn_Customers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Customers.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Customers.Location = new System.Drawing.Point(16, 191);
             this.btn_Customers.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Customers.Name = "btn_Customers";
-            this.btn_Customers.Size = new System.Drawing.Size(251, 50);
+            this.btn_Customers.Size = new System.Drawing.Size(211, 50);
             this.btn_Customers.TabIndex = 18;
             this.btn_Customers.Text = "   العملاء";
-            this.btn_Customers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_Customers.UseVisualStyleBackColor = true;
             this.btn_Customers.Click += new System.EventHandler(this.btn_Customers_Click);
             // 
@@ -260,14 +275,13 @@ namespace SuperMarket.Forms
             this.btn_Products.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Products.ForeColor = System.Drawing.Color.White;
             this.btn_Products.Image = ((System.Drawing.Image)(resources.GetObject("btn_Products.Image")));
-            this.btn_Products.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Products.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Products.Location = new System.Drawing.Point(16, 133);
             this.btn_Products.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Products.Name = "btn_Products";
-            this.btn_Products.Size = new System.Drawing.Size(251, 50);
+            this.btn_Products.Size = new System.Drawing.Size(211, 50);
             this.btn_Products.TabIndex = 17;
             this.btn_Products.Text = "   المنتجات";
-            this.btn_Products.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_Products.UseVisualStyleBackColor = true;
             this.btn_Products.Click += new System.EventHandler(this.btn_Products_Click);
             // 
@@ -279,14 +293,13 @@ namespace SuperMarket.Forms
             this.btn_Categories.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Categories.ForeColor = System.Drawing.Color.White;
             this.btn_Categories.Image = ((System.Drawing.Image)(resources.GetObject("btn_Categories.Image")));
-            this.btn_Categories.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Categories.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Categories.Location = new System.Drawing.Point(16, 75);
             this.btn_Categories.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Categories.Name = "btn_Categories";
-            this.btn_Categories.Size = new System.Drawing.Size(251, 50);
+            this.btn_Categories.Size = new System.Drawing.Size(211, 50);
             this.btn_Categories.TabIndex = 16;
             this.btn_Categories.Text = "   الاصناف";
-            this.btn_Categories.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btn_Categories.UseVisualStyleBackColor = true;
             this.btn_Categories.Click += new System.EventHandler(this.btn_Categories_Click);
             // 
@@ -297,7 +310,7 @@ namespace SuperMarket.Forms
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(271, 66);
+            this.panel3.Size = new System.Drawing.Size(258, 66);
             this.panel3.TabIndex = 7;
             this.panel3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panels_MouseMove);
             // 
@@ -367,10 +380,10 @@ namespace SuperMarket.Forms
             this.panel2.Controls.Add(this.panel6);
             this.panel2.Controls.Add(this.pic_help);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(271, 0);
+            this.panel2.Location = new System.Drawing.Point(258, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(983, 65);
+            this.panel2.Size = new System.Drawing.Size(996, 65);
             this.panel2.TabIndex = 24;
             this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panels_MouseMove);
             // 
@@ -401,7 +414,7 @@ namespace SuperMarket.Forms
             this.pic_help.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pic_help.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pic_help.Image = global::SuperMarket.Properties.Resources.icons8_help_48;
-            this.pic_help.Location = new System.Drawing.Point(909, 12);
+            this.pic_help.Location = new System.Drawing.Point(1144, 12);
             this.pic_help.Name = "pic_help";
             this.pic_help.Size = new System.Drawing.Size(50, 41);
             this.pic_help.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -481,5 +494,6 @@ namespace SuperMarket.Forms
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Timer UserSession;
         public System.Windows.Forms.Button btn_settings;
+        private System.Windows.Forms.Button btn_editBills;
     }
 }

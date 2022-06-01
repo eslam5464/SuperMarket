@@ -26,6 +26,7 @@ namespace SuperMarket.Forms
         private readonly Orders uc_orders = new Orders();
         private readonly Billing uc_billing = new Billing();
         private readonly Sellers uc_sellers = new Sellers();
+        private readonly BillsEdit uc_billsEdit = new BillsEdit();
         private readonly UserControls.Settings uc_settings = new UserControls.Settings();
 
         public Main()
@@ -127,14 +128,22 @@ namespace SuperMarket.Forms
                 this.Location = new Point(10, 10);
             }
 
-            pan_controls.Controls.Add(uc_dashboard);
-            pan_controls.Controls.Add(uc_categories);
-            pan_controls.Controls.Add(uc_products);
-            pan_controls.Controls.Add(uc_customers);
-            pan_controls.Controls.Add(uc_orders);
-            pan_controls.Controls.Add(uc_billing);
-            pan_controls.Controls.Add(uc_sellers);
-            pan_controls.Controls.Add(uc_settings);
+            UserControl[] AllUserControls = {
+                uc_dashboard,
+                uc_categories,
+                uc_products,
+                uc_customers,
+                uc_orders,
+                uc_billing,
+                uc_sellers,
+                uc_settings,
+                uc_billsEdit
+            };
+
+            foreach (UserControl userControl in AllUserControls)
+            {
+                pan_controls.Controls.Add(userControl);
+            }
 
             uc_dashboard.BringToFront();
 
@@ -199,6 +208,14 @@ namespace SuperMarket.Forms
             SidePanel.Top = btn_sellers.Top;
 
             uc_sellers.BringToFront();
+        }
+
+        private void btn_editBills_Click(object sender, EventArgs e)
+        {
+            SidePanel.Height = btn_editBills.Height;
+            SidePanel.Top = btn_editBills.Top;
+
+            uc_billsEdit.BringToFront();
         }
 
         private void btn_settings_Click(object sender, EventArgs e)
