@@ -1,4 +1,5 @@
-﻿using SuperMarket.Classes.Models;
+﻿using SuperMarket.Classes;
+using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -80,6 +81,9 @@ namespace SuperMarket.UserControls
                             LoadDataGrid(Classes.DataAccess.Products.GetProductParameter("Id", "" + product.Id));
 
                             ResetTextBoxes();
+
+                            Logger.Log($"user is editing product: {categoryName} with id: {categoryId}",
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
                         }
                         SetEditMode(false);
                     }
@@ -104,6 +108,7 @@ namespace SuperMarket.UserControls
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Information) == DialogResult.Yes)
                         {
+
                             int categoryId = int.Parse(txt_categoriename.SelectedValue.ToString());
                             string categoryName = Classes.DataAccess.Categories.GetCategoryParameter
                                 ("Id", "" + categoryId).FirstOrDefault().Name;
@@ -121,6 +126,9 @@ namespace SuperMarket.UserControls
                             LoadDataGrid(Classes.DataAccess.Products.LoadProducts());
 
                             ResetTextBoxes();
+
+                            Logger.Log($"user added product: {product.Name}",
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
                         }
                     }
                     else
@@ -193,6 +201,9 @@ namespace SuperMarket.UserControls
 
             else
             {
+                Logger.Log($"user is searching by name for product: {txt_productname.Text}",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
                 List<ProductModel> productSearch = Classes.DataAccess.Products.GetProductParameter("Name", txt_productname.Text);
                 LoadDataGrid(productSearch);
             }
@@ -205,6 +216,9 @@ namespace SuperMarket.UserControls
 
             else
             {
+                Logger.Log($"user is searching by id for product: {txt_productid.Text}",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
                 List<ProductModel> productSearch = Classes.DataAccess.Products.GetProductParameter("Id", txt_productid.Text);
                 LoadDataGrid(productSearch);
             }
@@ -240,6 +254,9 @@ namespace SuperMarket.UserControls
                         ProductDescription = db_productDataGridView.Rows[RowIndex].Cells["Description"].Value.ToString(),
                         ProductBarcode = db_productDataGridView.Rows[RowIndex].Cells["BarCode"].Value.ToString(),
                         CategoryName = db_productDataGridView.Rows[RowIndex].Cells["CategoryName"].Value.ToString();
+
+                    Logger.Log($"user removed product: {ProductName} with id: {ProductID}",
+                        System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                     txt_productid.Text = "" + ProductID;
                     txt_productname.Text = ProductName;
@@ -280,16 +297,31 @@ namespace SuperMarket.UserControls
 
         private void btn_remove_Click(object sender, EventArgs e)
         {
-            int rowindex = db_productDataGridView.CurrentCell.RowIndex;
-            int ProductID = int.Parse(db_productDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
-            string ProductName = db_productDataGridView.Rows[rowindex].Cells["Name"].Value.ToString();
-
-            if (MessageBox.Show($"هل تريد ان تمسح {ProductName}", "انتظر",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Information) == DialogResult.Yes)
+            if (db_productDataGridView != null)
             {
-                Classes.DataAccess.Products.RemoveProduct(ProductID);
-                LoadDataGrid(Classes.DataAccess.Products.LoadProducts());
+                if (db_productDataGridView.CurrentCell != null)
+                {
+                    int rowindex = db_productDataGridView.CurrentCell.RowIndex;
+                    int ProductID = int.Parse(db_productDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
+                    string ProductName = db_productDataGridView.Rows[rowindex].Cells["Name"].Value.ToString();
+
+                    Logger.Log($"user is trying to remove product: {ProductName}", 
+                        System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+                    if (MessageBox.Show($"هل تريد ان تمسح {ProductName}", "انتظر",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+                        Classes.DataAccess.Products.RemoveProduct(ProductID);
+                        LoadDataGrid(Classes.DataAccess.Products.LoadProducts());
+
+                        Logger.Log($"user removed product: {ProductName} with id: {ProductID}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                    }
+                    else
+                        Logger.Log($"user didnt remove product: {ProductName}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                }
             }
         }
 

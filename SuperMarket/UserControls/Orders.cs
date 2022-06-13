@@ -1,4 +1,5 @@
-﻿using SuperMarket.Classes.Models;
+﻿using SuperMarket.Classes;
+using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,9 @@ namespace SuperMarket.UserControls
         private void btn_refresh_Click(object sender, EventArgs e)
         {
             LoadDataGrid(Classes.DataAccess.Orders.GetAllOrders());
+
+            Logger.Log($"user clicked on refresh",
+                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
         }
 
         private void pcb_search_by_customer_name_Click(object sender, EventArgs e)

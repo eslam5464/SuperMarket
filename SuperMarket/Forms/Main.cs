@@ -156,6 +156,9 @@ namespace SuperMarket.Forms
 
         private void btn_dashborad_Click(object sender, EventArgs e)
         {
+            Logger.Log("user clicked on dashboard button",
+                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
             SidePanel.Height = btn_dashborad.Height;
             SidePanel.Top = btn_dashborad.Top;
 
@@ -164,6 +167,9 @@ namespace SuperMarket.Forms
 
         private void btn_Categories_Click(object sender, EventArgs e)
         {
+            Logger.Log("user clicked on categories button",
+                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
             SidePanel.Height = btn_Categories.Height;
             SidePanel.Top = btn_Categories.Top;
 
@@ -172,6 +178,9 @@ namespace SuperMarket.Forms
 
         private void btn_Products_Click(object sender, EventArgs e)
         {
+            Logger.Log("user clicked on products button",
+                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
             SidePanel.Height = btn_Products.Height;
             SidePanel.Top = btn_Products.Top;
 
@@ -180,6 +189,9 @@ namespace SuperMarket.Forms
 
         private void btn_Customers_Click(object sender, EventArgs e)
         {
+            Logger.Log("user clicked on customers button",
+                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
             SidePanel.Height = btn_Customers.Height;
             SidePanel.Top = btn_Customers.Top;
 
@@ -188,6 +200,9 @@ namespace SuperMarket.Forms
 
         private void btn_Orders_Click(object sender, EventArgs e)
         {
+            Logger.Log("user clicked on orders button",
+                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
             SidePanel.Height = btn_Orders.Height;
             SidePanel.Top = btn_Orders.Top;
 
@@ -196,6 +211,9 @@ namespace SuperMarket.Forms
 
         private void btn_billing_Click(object sender, EventArgs e)
         {
+            Logger.Log("user clicked on billing button",
+                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
             SidePanel.Height = btn_billing.Height;
             SidePanel.Top = btn_billing.Top;
 
@@ -204,6 +222,9 @@ namespace SuperMarket.Forms
 
         private void btn_sellers_Click(object sender, EventArgs e)
         {
+            Logger.Log("user clicked on sellers button",
+                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
             SidePanel.Height = btn_sellers.Height;
             SidePanel.Top = btn_sellers.Top;
 
@@ -212,6 +233,9 @@ namespace SuperMarket.Forms
 
         private void btn_editBills_Click(object sender, EventArgs e)
         {
+            Logger.Log("user clicked on edit bill button",
+                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
             SidePanel.Height = btn_editBills.Height;
             SidePanel.Top = btn_editBills.Top;
 
@@ -220,6 +244,9 @@ namespace SuperMarket.Forms
 
         private void btn_settings_Click(object sender, EventArgs e)
         {
+            Logger.Log("user clicked on settings button",
+                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
             SidePanel.Height = btn_settings.Height;
             SidePanel.Top = btn_settings.Top;
 
@@ -235,6 +262,8 @@ namespace SuperMarket.Forms
         {
             if (LoggedUser != "")
             {
+                Logger.Log("user is attempting to exit the application",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
                 if (!SessionState)
                     this.Close();
                 else
@@ -244,9 +273,15 @@ namespace SuperMarket.Forms
                         MessageBoxIcon.Information) == DialogResult.No)
                     {
                         e.Cancel = true;
+
+                        Logger.Log("user canceled the closing of the application",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
                     }
                     else
                     {
+                        Logger.Log("user confirmed closing of the application",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
                         if (this.WindowState == FormWindowState.Normal)
                         {
                             Properties.Settings.Default.WindowSize = this.Size;
@@ -287,6 +322,9 @@ namespace SuperMarket.Forms
 
         private void pic_help_Click(object sender, EventArgs e)
         {
+            Logger.Log("user clicked on help button",
+                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
             new About().ShowDialog();
         }
 

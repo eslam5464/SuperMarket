@@ -39,26 +39,30 @@ namespace SuperMarket.Classes
             if (new FileInfo(SerialKeyFile).Length == 0)
 
             {
-                Logger.Log("serial file exists with no serial in it", "CheckSerialKeyOnApp", "LoginMethods", Logger.CRITICAL);
+                Logger.Log("serial file exists with no serial in it",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, "Security", Logger.CRITICAL);
                 return "404";
             }
 
             if (Properties.Settings.Default.LicenseKey == Security.Decrypt(File.ReadAllText(SerialKeyFile), CPUID + MOBOID))
             {
-                Logger.Log("serial key matched on system", "CheckSerialKeyOnApp", "LoginMethods", Logger.INFO);
+                Logger.Log("serial key matched on system",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.INFO);
                 return "200";
             }
 
             else
             {
-                Logger.Log("wrong serial on app", "CheckSerialKeyOnApp", "LoginMethods", Logger.ERROR);
+                Logger.Log("wrong serial on app",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.ERROR);
                 return "400";
             }
         }
 
         public static void SaveLicenseKeyInApp(string LicenseKey)
         {
-            Logger.Log("Entered the serial key & saved it in the app", "EnterSerialKey", "LoginMethods", Logger.INFO);
+            Logger.Log("Entered the serial key & saved it in the app",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.INFO);
             Properties.Settings.Default.LicenseKey = LicenseKey;
             Properties.Settings.Default.Save();
         }
@@ -75,19 +79,22 @@ namespace SuperMarket.Classes
 
             if (new FileInfo(SerialKeyFile).Length == 0)
             {
-                Logger.Log("serial file exists with no serial in it", "CheckSerialKeyOnApp", "LoginMethods", Logger.CRITICAL);
+                Logger.Log("serial file exists with no serial in it",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.CRITICAL);
                 return "404";
             }
 
             if (LicenseKey == Security.Decrypt(File.ReadAllText(SerialKeyFile), CPUID + MOBOID))
             {
-                Logger.Log("serial key matched on system", "CheckSerialKeyOnApp", "LoginMethods", Logger.INFO);
+                Logger.Log("serial key matched on system",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.INFO);
                 return "200";
             }
 
             else
             {
-                Logger.Log("wrong serial on app", "CheckSerialKeyOnApp", "LoginMethods", Logger.ERROR);
+                Logger.Log("wrong serial on app",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.ERROR);
                 return "400";
             }
         }
@@ -99,12 +106,14 @@ namespace SuperMarket.Classes
             if (!Directory.Exists(DirectoryLocation))
             {
                 Directory.CreateDirectory(DirectoryLocation);
-                Logger.Log("created the directory for the serial", "SerialKeyFileExists", "LoginMethods", Logger.CRITICAL);
+                Logger.Log("created the directory for the serial",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.CRITICAL);
             }
 
             if (!File.Exists(DirectoryLocation + SerialKeyFileName + FileExtention))
             {
-                Logger.Log("serial key file doesnt exist & created a new one", "LoginMethods", "SerialKeyFileExists", Logger.CRITICAL);
+                Logger.Log("serial key file doesnt exist & created a new one",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.CRITICAL);
                 state = false;
                 //File.Create(DirectoryLocation + SerialKeyFileName + FileExtention).Close();
             }

@@ -118,6 +118,9 @@ namespace SuperMarket.UserControls
                 {
                     if (!btn_edit.Enabled)
                     {
+                        Logger.Log($"user is trying to edit seller with id: {EditedUserId}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
                         if (MessageBox.Show($"هل تريد تأكيد هذا التعديل", "انتظر",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Information) == DialogResult.Yes)
@@ -138,6 +141,9 @@ namespace SuperMarket.UserControls
                             Users.UpdateUser(user);
 
                             RefreshDataGrid();
+
+                            Logger.Log($"user has edited seller: {txt_Username.Text} with id: {user.Id}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                             ResetTextBoxes();
                         }
@@ -173,6 +179,9 @@ namespace SuperMarket.UserControls
                                     Users.SaveUser(user);
 
                                     RefreshDataGrid();
+
+                                    Logger.Log($"user has added seller: {txt_Username.Text} with user level: {user.UserLevel}",
+                                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                                     ResetTextBoxes();
                                 }
@@ -259,8 +268,12 @@ namespace SuperMarket.UserControls
             {
                 RefreshDataGrid();
             }
+
             else
             {
+                Logger.Log($"user is trying to search for seller by username: {txt_Username.Text}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
                 List<UserModel> AllUsers = Users.LoadAtiveUsersNonAdmin();
                 db_userDataGridView.DataSource = null;
 
@@ -279,8 +292,10 @@ namespace SuperMarket.UserControls
             }
             else
             {
+                Logger.Log($"user is trying to search by full name for seller: {txt_fullname.Text}",
+                               System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
                 db_userDataGridView.DataSource = null;
-                //db_userDataGridView.DataSource = DecryptUsers(Users.LoadUsersWithParamNonAdmin("FullName", txt_fullname.Text));
 
                 List<UserModel> AllUsers = Users.LoadAtiveUsersNonAdmin();
                 var user = AllUsers.FindAll(User => Security.Decrypt(User.FullName, Security.CPUID + Security.MOBOID) == txt_fullname.Text);
@@ -301,60 +316,19 @@ namespace SuperMarket.UserControls
                     int UserId = int.Parse(db_userDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
                     string UserName = db_userDataGridView.Rows[rowindex].Cells["UserName"].Value.ToString();
 
+                    Logger.Log($"user is trying to remove seller: {UserName}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
                     if (MessageBox.Show($"هل تريد ان تمسح {UserName}", "انتظر",
                                 MessageBoxButtons.YesNo,
                                 MessageBoxIcon.Information) == DialogResult.Yes)
                     {
+                        Logger.Log($"user has removed seller: {UserName} with id: {UserId}",
+                               System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
                         Users.StopUser(UserId);
                         RefreshDataGrid();
                     }
-
-                    //if (txt_Username.Text == "" || txt_Password.Text == "" || txt_fullname.Text == "" || txt_mobailno.Text == "")
-                    //{
-                    //    MessageBox.Show("برجاء ادخال جميع البيانات", "حاول مره أخرى", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //}
-                    //else
-                    //{
-                    //    string CPUID = Security.CPUID, MOBOID = Security.MOBOID;
-
-                    //    List<UserModel> AllUsers = Users.LoadAtiveUsersNonAdmin();
-
-                    //    var userFind = AllUsers.FindAll(User => Security.Decrypt(User.Username, Security.CPUID + Security.MOBOID) == txt_Username.Text);
-
-
-                    //    if (userFind.Count != 0)
-                    //    {
-                    //        try
-                    //        {
-                    //            UserModel user = new UserModel
-                    //            {
-                    //                Id = userFind[0].Id,
-                    //                Username = Security.Encrypt(txt_Username.Text, CPUID + MOBOID),
-                    //                Password = Security.Encrypt(txt_Password.Text, CPUID + MOBOID),
-                    //                FullName = Security.Encrypt(txt_fullname.Text, CPUID + MOBOID),
-                    //                Phone = Security.Encrypt(txt_mobailno.Text, CPUID + MOBOID),
-                    //                ModifyDate = DateTime.Now.ToString()
-                    //            };
-                    //            Users.UpdateUser(user);
-
-                    //            db_userDataGridView.DataSource = null;
-                    //            AllUsers = Users.LoadAtiveUsersNonAdmin();
-                    //            userFind = AllUsers.FindAll(User => Security.Decrypt(User.Username, Security.CPUID + Security.MOBOID) == txt_Username.Text);
-                    //            db_userDataGridView.DataSource = DecryptUsers(userFind);
-                    //            HideAndTranslateColums();
-                    //        }
-                    //        catch (Exception ex)
-                    //        {
-                    //            MessageBox.Show(ex.Message);
-                    //        }
-                    //    }
-                    //    else
-                    //    {
-                    //        MessageBox.Show("لا يوجد مستخدم بهذه البيانات برجاء التأكد من اسم المستخدم",
-                    //            "حاول مره أخرى", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //    }
-                    //}
-
                 }
             }
         }
@@ -372,10 +346,13 @@ namespace SuperMarket.UserControls
             }
             else
             {
+                Logger.Log($"user is trying to search by phone for seller: {txt_mobailno.Text}",
+                               System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
                 db_userDataGridView.DataSource = null;
 
                 List<UserModel> AllUsers = Users.LoadAtiveUsersNonAdmin();
-                var user = AllUsers.FindAll(User => Security.Decrypt(User.Phone, Security.CPUID + Security.MOBOID) == txt_fullname.Text);
+                var user = AllUsers.FindAll(User => Security.Decrypt(User.Phone, Security.CPUID + Security.MOBOID) == txt_mobailno.Text);
 
                 db_userDataGridView.DataSource = DecryptUsers(user);
 

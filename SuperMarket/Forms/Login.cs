@@ -22,7 +22,8 @@ namespace SuperMarket.Forms
             txt_Username.Text = "admin";
             txt_Password.Text = "passnot100%Safe";
 
-            Logger.Log("user clicked on login button", "btn_login_Click", "Login", Logger.INFO);
+            Logger.Log("user clicked on login button",
+                        System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
             try
             {
@@ -51,7 +52,8 @@ namespace SuperMarket.Forms
                     {
                         Main.LoggedUser = fullname;
                         Main.UserLevel = user[0].UserLevel;
-                        Logger.Log($"user entered the correct credentials. accessing the application now", "btn_login_Click", "Login", Logger.INFO);
+                        Logger.Log($"user entered the correct credentials. accessing the application now",
+                                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
                         Close();
                     }
                     else

@@ -98,12 +98,14 @@ namespace SuperMarket.Forms
 
                         if (SerialKeyCheckOutput == "404")
                         {
-                            Logger.Log("cant find serial key file", "LoadingScreen_Load", "LoadingScreen", Logger.CRITICAL);
+                            Logger.Log("cant find serial key file",
+                                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
                             Security.OpenFormMain = false;
                         }
                         else if (SerialKeyCheckOutput == "200")
                         {
-                            Logger.Log("serial key validated", "LoadingScreen_Load", "LoadingScreen", Logger.INFO);
+                            Logger.Log("serial key validated",
+                                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                             this.Hide();
 
@@ -122,7 +124,8 @@ namespace SuperMarket.Forms
                         }
                         else if (SerialKeyCheckOutput == "400")
                         {
-                            Logger.Log("wrong serial key in the system", "Dashboard_Load", "Dashboard", Logger.ERROR);
+                            Logger.Log("wrong serial key in the system",
+                                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.ERROR);
 
                             this.Hide();
                             LicenseKeyValidator frm_license = new LicenseKeyValidator();
@@ -132,14 +135,16 @@ namespace SuperMarket.Forms
                         }
                         else
                         {
-                            Logger.Log("unknown error", "Dashboard_Load", "Dashboard", Logger.CRITICAL);
+                            Logger.Log("unknown error",
+                                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
                             Security.OpenFormMain = false;
                         }
                     }
 
                     else
                     {
-                        Logger.Log("serial key isnt available prompting the user to add it", "LoadingScreen_Load", "LoadingScreen", Logger.INFO);
+                        Logger.Log("serial key isnt available prompting the user to add it",
+                                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                         if (Security.SerialKeyFileExists())
                         {

@@ -1,4 +1,5 @@
-﻿using SuperMarket.Classes.Models;
+﻿using SuperMarket.Classes;
+using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,11 +48,13 @@ namespace SuperMarket.UserControls
 
                     if (!txt_customerid.Enabled)
                     {
+                        Logger.Log($"user is trying to edit {txt_customername.Text}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
                         if (MessageBox.Show($"هل تريد ان تعدل {txt_customername.Text} ", "انتظر",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Information) == DialogResult.Yes)
                         {
-
                             CustomerModel customer = new CustomerModel
                             {
                                 Id = int.Parse(txt_customerid.Text),
@@ -64,6 +67,9 @@ namespace SuperMarket.UserControls
                             LoadDataGrid(Classes.DataAccess.Customers.GetCustomerParameter("Id", "" + customer.Id));
 
                             ResetTextBoxes();
+
+                            Logger.Log($"user has edited customer with id: {customer.Id}",
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
                         }
 
                         SetEditMode(false);
@@ -92,6 +98,9 @@ namespace SuperMarket.UserControls
                             LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers());
 
                             ResetTextBoxes();
+
+                            Logger.Log($"user has added customer: {customer.Name}",
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
                         }
                     }
                 }
@@ -116,6 +125,9 @@ namespace SuperMarket.UserControls
 
             else
             {
+                Logger.Log($"user is trying to search for customer with name {txt_contact.Text}",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
                 List<CustomerModel> customerSearch = Classes.DataAccess.Customers.GetCustomerParameter("Name", txt_customername.Text);
                 LoadDataGrid(customerSearch);
             }
@@ -128,6 +140,9 @@ namespace SuperMarket.UserControls
 
             else
             {
+                Logger.Log($"user is trying to search for customer with phone {txt_contact.Text}",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
                 List<CustomerModel> customerSearch = Classes.DataAccess.Customers.GetCustomerParameter("ContactNo", txt_contact.Text);
                 LoadDataGrid(customerSearch);
             }
@@ -154,19 +169,25 @@ namespace SuperMarket.UserControls
 
         private void btn_edit_Click(object sender, EventArgs e)
         {
-            int rowindex = db_customersDataGridView.CurrentCell.RowIndex;
+            if (db_customersDataGridView != null)
+            {
+                if (db_customersDataGridView.CurrentCell != null)
+                {
+                    int rowindex = db_customersDataGridView.CurrentCell.RowIndex;
 
-            int CustomerID = int.Parse(db_customersDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
-            string CustomerName = db_customersDataGridView.Rows[rowindex].Cells["Name"].Value.ToString(),
-             CustomerAddress = db_customersDataGridView.Rows[rowindex].Cells["Address"].Value.ToString(),
-             CustomerContactNo = db_customersDataGridView.Rows[rowindex].Cells["ContactNo"].Value.ToString();
+                    int CustomerID = int.Parse(db_customersDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
+                    string CustomerName = db_customersDataGridView.Rows[rowindex].Cells["Name"].Value.ToString(),
+                     CustomerAddress = db_customersDataGridView.Rows[rowindex].Cells["Address"].Value.ToString(),
+                     CustomerContactNo = db_customersDataGridView.Rows[rowindex].Cells["ContactNo"].Value.ToString();
 
-            txt_customerid.Text = "" + CustomerID;
-            txt_customername.Text = CustomerName;
-            txt_contact.Text = CustomerContactNo;
-            txt_address.Text = CustomerAddress;
+                    txt_customerid.Text = "" + CustomerID;
+                    txt_customername.Text = CustomerName;
+                    txt_contact.Text = CustomerContactNo;
+                    txt_address.Text = CustomerAddress;
 
-            SetEditMode(true);
+                    SetEditMode(true);
+                }
+            }
         }
 
         private void SetEditMode(bool State)
@@ -189,17 +210,34 @@ namespace SuperMarket.UserControls
 
         private void btn_remove_Click(object sender, EventArgs e)
         {
-            int rowindex = db_customersDataGridView.CurrentCell.RowIndex;
-            int CustomerID = int.Parse(db_customersDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
-            string CustomerName = db_customersDataGridView.Rows[rowindex].Cells["Name"].Value.ToString();
 
-            if (MessageBox.Show($"هل تريد ان تمسح {CustomerName}", "انتظر",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Information) == DialogResult.Yes)
+            if (db_customersDataGridView != null)
             {
-                Classes.DataAccess.Customers.RemoveCustomer(CustomerID);
-                LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers());
+                if (db_customersDataGridView.CurrentCell != null)
+                {
+                    int rowindex = db_customersDataGridView.CurrentCell.RowIndex;
+                    int CustomerID = int.Parse(db_customersDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
+                    string CustomerName = db_customersDataGridView.Rows[rowindex].Cells["Name"].Value.ToString();
+
+                    Logger.Log($"user is trying to remove {CustomerName}",
+                        System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+                    if (MessageBox.Show($"هل تريد ان تمسح {CustomerName}", "انتظر",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+                        Classes.DataAccess.Customers.RemoveCustomer(CustomerID);
+                        LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers());
+
+                        Logger.Log($"user removed {CustomerName} with id: {CustomerID}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                    }
+                    else
+                        Logger.Log($"user didnt remove {CustomerName}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                }
             }
+
         }
 
         private void pcb_search_DoubleClick(object sender, EventArgs e)

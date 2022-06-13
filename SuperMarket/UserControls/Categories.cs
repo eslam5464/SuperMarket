@@ -1,4 +1,5 @@
-﻿using SuperMarket.Classes.Models;
+﻿using SuperMarket.Classes;
+using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -15,6 +16,11 @@ namespace SuperMarket.UserControls
 
         private void btn_save_Click(object sender, EventArgs e)
         {
+            Control FocusedObject = (Control)sender;
+
+            Logger.Log("user is trying to save  a category",
+                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
             if (txt_categoriename.Text != "")
             {
                 if (!txt_categorieid.Enabled)
@@ -23,6 +29,8 @@ namespace SuperMarket.UserControls
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Information) == DialogResult.Yes)
                     {
+                        Logger.Log($"user is trying to edit category: {txt_categoriename.Text}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                         CategoryModel category = new CategoryModel
                         {
@@ -40,6 +48,9 @@ namespace SuperMarket.UserControls
                 }
                 else
                 {
+                    Logger.Log($"user is trying to add category: {txt_categoriename.Text}",
+                        System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
                     string MsgResponse = $"هل تريد ان تحفظ {txt_categoriename.Text} ";
 
                     var CategoryResult = Classes.DataAccess.Categories.GetCategoryParameter("Name", txt_categoriename.Text);
@@ -60,7 +71,13 @@ namespace SuperMarket.UserControls
                         LoadDataGrid(Classes.DataAccess.Categories.LoadCategories());
 
                         ResetTextBoxes();
+
+                        Logger.Log($"user added category: {category.Name}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
                     }
+                    else
+                        Logger.Log($"user didnt add category: {txt_categoriename.Text}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
                 }
             }
             else
@@ -101,7 +118,7 @@ namespace SuperMarket.UserControls
             btn_edit.BackColor = appColor;
             btn_remove.BackColor = appColor;
             btn_save.BackColor = appColor;
-            db_categoriesDataGridView.ColumnHeadersDefaultCellStyle.BackColor= appColor;
+            db_categoriesDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
         }
 
         private void pcb_searchID_Click(object sender, EventArgs e)
@@ -111,6 +128,8 @@ namespace SuperMarket.UserControls
 
             else
             {
+                Logger.Log($"user is searching for category id: {txt_categorieid.Text}",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
                 List<CategoryModel> categorySearch = Classes.DataAccess.Categories.GetCategoryParameter("Id", txt_categorieid.Text);
                 LoadDataGrid(categorySearch);
             }
@@ -123,6 +142,8 @@ namespace SuperMarket.UserControls
 
             else
             {
+                Logger.Log($"user is searching for category name: {txt_categoriename.Text}",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
                 List<CategoryModel> categorySearch = Classes.DataAccess.Categories.GetCategoryParameter("Name", txt_categoriename.Text);
                 LoadDataGrid(categorySearch);
             }
@@ -130,22 +151,40 @@ namespace SuperMarket.UserControls
 
         private void btn_remove_Click(object sender, EventArgs e)
         {
-            int rowindex = db_categoriesDataGridView.CurrentCell.RowIndex;
-
-            int CategoryID = int.Parse(db_categoriesDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
-            string CategoryName = db_categoriesDataGridView.Rows[rowindex].Cells["Name"].Value.ToString();
-
-            if (MessageBox.Show($"هل تريد ان تمسح {CategoryName}", "انتظر",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Information) == DialogResult.Yes)
+            if (db_categoriesDataGridView != null)
             {
-                Classes.DataAccess.Categories.RemoveCategory(CategoryID);
-                LoadDataGrid(Classes.DataAccess.Categories.LoadCategories());
+                if (db_categoriesDataGridView.CurrentCell != null)
+                {
+                    int rowindex = db_categoriesDataGridView.CurrentCell.RowIndex;
+
+                    int CategoryID = int.Parse(db_categoriesDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
+                    string CategoryName = db_categoriesDataGridView.Rows[rowindex].Cells["Name"].Value.ToString();
+
+                    Logger.Log($"user is trying to remove {CategoryName}",
+                        System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+                    if (MessageBox.Show($"هل تريد ان تمسح {CategoryName}", "انتظر",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+                        Classes.DataAccess.Categories.RemoveCategory(CategoryID);
+                        LoadDataGrid(Classes.DataAccess.Categories.LoadCategories());
+
+                        Logger.Log($"user has removed {CategoryName} with id: {CategoryID}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                    }
+                    else
+                        Logger.Log($"user didnt remove {CategoryName}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                }
             }
         }
 
         private void btn_edit_Click(object sender, EventArgs e)
         {
+            Logger.Log($"user clicked in edit button",
+                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
             int rowindex = db_categoriesDataGridView.CurrentCell.RowIndex;
 
             int CategoryID = int.Parse(db_categoriesDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());

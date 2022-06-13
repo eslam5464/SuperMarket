@@ -33,9 +33,10 @@ namespace SuperMarket.Classes
         private static void LogString(string logMessage, string MethodName, string Location, string LogLevel, TextWriter Writer)
         {
             LoggedUser = Main.LoggedUser;
+            string DateTimeNow = DateTime.Now.ToString("yyyy/MM/dd hh:mm:ss tt");
             Writer.Write("Log Entry : ");
-            Writer.WriteLine($"{DateTime.Now.ToLongTimeString()} - Method: {MethodName} - Location: {Location} - User: {LoggedUser} - Log level: {LogLevel}");
-            Writer.WriteLine($"  :{logMessage}");
+            Writer.WriteLine($"{DateTimeNow} - Method: {MethodName} - Location: {Location} - User: {LoggedUser} - Log level: {LogLevel}");
+            Writer.WriteLine($"  #{logMessage}");
             Writer.WriteLine("--------------------------------------------------------------");
         }
 
