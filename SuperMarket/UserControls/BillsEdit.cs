@@ -66,5 +66,15 @@ namespace SuperMarket.UserControls
 
             db_probillsDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
         }
+
+        private void btn_removeFromBill_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_addToBill_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

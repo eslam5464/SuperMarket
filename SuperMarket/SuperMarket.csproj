@@ -42,7 +42,11 @@
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.2.0.123\lib\net461\Dapper.dll</HintPath>
     </Reference>
+    <Reference Include="FluentValidation, Version=11.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.11.0.3\lib\netstandard2.0\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite, Version=1.0.115.5, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
@@ -74,6 +78,7 @@
     <Compile Include="Classes\Models\OrderModel.cs" />
     <Compile Include="Classes\Models\ProductModel.cs" />
     <Compile Include="Classes\Models\UserModel.cs" />
+    <Compile Include="Classes\Models\Validators\UserValidator.cs" />
     <Compile Include="Classes\Security.cs" />
     <Compile Include="Classes\SignIn.cs" />
     <Compile Include="Classes\SignUp.cs" />

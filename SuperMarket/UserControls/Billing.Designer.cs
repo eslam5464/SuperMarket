@@ -29,7 +29,7 @@ namespace SuperMarket.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_print = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
             this.txt_grandtotal = new System.Windows.Forms.TextBox();
@@ -97,7 +97,7 @@ namespace SuperMarket.UserControls
             this.btn_print.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_print.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
             this.btn_print.ForeColor = System.Drawing.Color.White;
-            this.btn_print.Location = new System.Drawing.Point(793, 15);
+            this.btn_print.Location = new System.Drawing.Point(429, 16);
             this.btn_print.Name = "btn_print";
             this.btn_print.Size = new System.Drawing.Size(200, 50);
             this.btn_print.TabIndex = 209;
@@ -112,7 +112,7 @@ namespace SuperMarket.UserControls
             this.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_save.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
             this.btn_save.ForeColor = System.Drawing.Color.White;
-            this.btn_save.Location = new System.Drawing.Point(25, 15);
+            this.btn_save.Location = new System.Drawing.Point(17, 16);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(200, 50);
             this.btn_save.TabIndex = 205;
@@ -127,7 +127,7 @@ namespace SuperMarket.UserControls
             this.txt_grandtotal.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txt_grandtotal.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_grandtotal.ForeColor = System.Drawing.Color.Black;
-            this.txt_grandtotal.Location = new System.Drawing.Point(720, 504);
+            this.txt_grandtotal.Location = new System.Drawing.Point(36, 586);
             this.txt_grandtotal.Multiline = true;
             this.txt_grandtotal.Name = "txt_grandtotal";
             this.txt_grandtotal.Size = new System.Drawing.Size(303, 45);
@@ -143,7 +143,7 @@ namespace SuperMarket.UserControls
             this.btn_removeOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_removeOrder.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
             this.btn_removeOrder.ForeColor = System.Drawing.Color.White;
-            this.btn_removeOrder.Location = new System.Drawing.Point(537, 15);
+            this.btn_removeOrder.Location = new System.Drawing.Point(223, 16);
             this.btn_removeOrder.Name = "btn_removeOrder";
             this.btn_removeOrder.Size = new System.Drawing.Size(200, 50);
             this.btn_removeOrder.TabIndex = 207;
@@ -157,7 +157,7 @@ namespace SuperMarket.UserControls
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Purple;
-            this.label4.Location = new System.Drawing.Point(794, 473);
+            this.label4.Location = new System.Drawing.Point(109, 554);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(133, 25);
             this.label4.TabIndex = 218;
@@ -170,10 +170,10 @@ namespace SuperMarket.UserControls
             this.txt_totalprice.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txt_totalprice.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_totalprice.ForeColor = System.Drawing.Color.Black;
-            this.txt_totalprice.Location = new System.Drawing.Point(22, 504);
+            this.txt_totalprice.Location = new System.Drawing.Point(245, 230);
             this.txt_totalprice.Multiline = true;
             this.txt_totalprice.Name = "txt_totalprice";
-            this.txt_totalprice.Size = new System.Drawing.Size(303, 45);
+            this.txt_totalprice.Size = new System.Drawing.Size(247, 45);
             this.txt_totalprice.TabIndex = 221;
             this.txt_totalprice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txt_totalprice.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_billing_KeyDown);
@@ -186,7 +186,7 @@ namespace SuperMarket.UserControls
             this.txt_productquantity.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txt_productquantity.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_productquantity.ForeColor = System.Drawing.Color.Black;
-            this.txt_productquantity.Location = new System.Drawing.Point(372, 148);
+            this.txt_productquantity.Location = new System.Drawing.Point(372, 156);
             this.txt_productquantity.Multiline = true;
             this.txt_productquantity.Name = "txt_productquantity";
             this.txt_productquantity.Size = new System.Drawing.Size(120, 45);
@@ -201,7 +201,7 @@ namespace SuperMarket.UserControls
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Purple;
-            this.label3.Location = new System.Drawing.Point(91, 473);
+            this.label3.Location = new System.Drawing.Point(297, 204);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(163, 25);
             this.label3.TabIndex = 220;
@@ -214,7 +214,7 @@ namespace SuperMarket.UserControls
             this.label2.BackColor = System.Drawing.Color.Gainsboro;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Purple;
-            this.label2.Location = new System.Drawing.Point(383, 119);
+            this.label2.Location = new System.Drawing.Point(383, 123);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 25);
             this.label2.TabIndex = 213;
@@ -227,7 +227,7 @@ namespace SuperMarket.UserControls
             this.btn_removeFromCart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_removeFromCart.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_removeFromCart.ForeColor = System.Drawing.Color.White;
-            this.btn_removeFromCart.Location = new System.Drawing.Point(520, 487);
+            this.btn_removeFromCart.Location = new System.Drawing.Point(797, 463);
             this.btn_removeFromCart.Name = "btn_removeFromCart";
             this.btn_removeFromCart.Size = new System.Drawing.Size(150, 50);
             this.btn_removeFromCart.TabIndex = 217;
@@ -242,7 +242,7 @@ namespace SuperMarket.UserControls
             this.btn_addToCart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_addToCart.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
             this.btn_addToCart.ForeColor = System.Drawing.Color.White;
-            this.btn_addToCart.Location = new System.Drawing.Point(361, 487);
+            this.btn_addToCart.Location = new System.Drawing.Point(561, 463);
             this.btn_addToCart.Name = "btn_addToCart";
             this.btn_addToCart.Size = new System.Drawing.Size(150, 50);
             this.btn_addToCart.TabIndex = 216;
@@ -289,14 +289,14 @@ namespace SuperMarket.UserControls
             this.db_procardsDataGridView.AllowUserToResizeColumns = false;
             this.db_procardsDataGridView.AllowUserToResizeRows = false;
             this.db_procardsDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.db_procardsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.db_procardsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.db_procardsDataGridView.ColumnHeadersHeight = 40;
             this.db_procardsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.db_procardsDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -403,7 +403,7 @@ namespace SuperMarket.UserControls
             this.label5.BackColor = System.Drawing.Color.Gainsboro;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Purple;
-            this.label5.Location = new System.Drawing.Point(385, 18);
+            this.label5.Location = new System.Drawing.Point(383, 18);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(98, 25);
             this.label5.TabIndex = 210;
@@ -416,7 +416,7 @@ namespace SuperMarket.UserControls
             this.label1.BackColor = System.Drawing.Color.Gainsboro;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Purple;
-            this.label1.Location = new System.Drawing.Point(261, 119);
+            this.label1.Location = new System.Drawing.Point(261, 122);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(104, 25);
             this.label1.TabIndex = 212;
@@ -439,7 +439,7 @@ namespace SuperMarket.UserControls
             this.txt_productprice.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txt_productprice.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_productprice.ForeColor = System.Drawing.Color.Black;
-            this.txt_productprice.Location = new System.Drawing.Point(245, 148);
+            this.txt_productprice.Location = new System.Drawing.Point(245, 156);
             this.txt_productprice.Multiline = true;
             this.txt_productprice.Name = "txt_productprice";
             this.txt_productprice.Size = new System.Drawing.Size(120, 45);
@@ -629,7 +629,9 @@ namespace SuperMarket.UserControls
             // 
             this.panel5.BackColor = System.Drawing.Color.Gainsboro;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.txt_totalprice);
             this.panel5.Controls.Add(this.label12);
+            this.panel5.Controls.Add(this.label3);
             this.panel5.Controls.Add(this.pcb_searchProdBarCode);
             this.panel5.Controls.Add(this.label11);
             this.panel5.Controls.Add(this.txt_productprice);
@@ -642,7 +644,7 @@ namespace SuperMarket.UserControls
             this.panel5.Controls.Add(this.label5);
             this.panel5.Location = new System.Drawing.Point(14, 239);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(497, 218);
+            this.panel5.Size = new System.Drawing.Size(497, 282);
             this.panel5.TabIndex = 225;
             // 
             // label12
@@ -652,7 +654,7 @@ namespace SuperMarket.UserControls
             this.label12.BackColor = System.Drawing.Color.Gainsboro;
             this.label12.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Purple;
-            this.label12.Location = new System.Drawing.Point(383, 79);
+            this.label12.Location = new System.Drawing.Point(392, 79);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(68, 25);
             this.label12.TabIndex = 219;
@@ -679,7 +681,7 @@ namespace SuperMarket.UserControls
             this.label11.BackColor = System.Drawing.Color.Gainsboro;
             this.label11.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.Purple;
-            this.label11.Location = new System.Drawing.Point(80, 119);
+            this.label11.Location = new System.Drawing.Point(67, 123);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(101, 25);
             this.label11.TabIndex = 217;
@@ -721,9 +723,9 @@ namespace SuperMarket.UserControls
             this.panel7.Controls.Add(this.btn_save);
             this.panel7.Controls.Add(this.btn_print);
             this.panel7.Controls.Add(this.btn_removeOrder);
-            this.panel7.Location = new System.Drawing.Point(14, 569);
+            this.panel7.Location = new System.Drawing.Point(387, 569);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1021, 83);
+            this.panel7.Size = new System.Drawing.Size(648, 83);
             this.panel7.TabIndex = 226;
             // 
             // pcb_searchProdName
@@ -750,8 +752,6 @@ namespace SuperMarket.UserControls
             this.Controls.Add(this.pcb_searchProdName);
             this.Controls.Add(this.txt_grandtotal);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txt_totalprice);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.btn_removeFromCart);
             this.Controls.Add(this.btn_addToCart);
             this.Controls.Add(this.panel3);

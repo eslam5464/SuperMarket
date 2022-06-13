@@ -377,8 +377,8 @@ namespace SuperMarket.Forms
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Purple;
-            this.panel2.Controls.Add(this.panel6);
             this.panel2.Controls.Add(this.pic_help);
+            this.panel2.Controls.Add(this.panel6);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(258, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(4);
@@ -414,7 +414,7 @@ namespace SuperMarket.Forms
             this.pic_help.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pic_help.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pic_help.Image = global::SuperMarket.Properties.Resources.icons8_help_48;
-            this.pic_help.Location = new System.Drawing.Point(1144, 12);
+            this.pic_help.Location = new System.Drawing.Point(940, 10);
             this.pic_help.Name = "pic_help";
             this.pic_help.Size = new System.Drawing.Size(50, 41);
             this.pic_help.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
