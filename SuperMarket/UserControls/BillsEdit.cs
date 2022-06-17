@@ -17,6 +17,11 @@ namespace SuperMarket.UserControls
             InitializeComponent();
         }
 
+        public void SetFocusOnBarCode()
+        {
+            txt_productBarCode.Focus();
+        }
+
         private void pcb_search_MouseEnter(object sender, EventArgs e)
         {
             Control FocusedObject = (Control)sender;

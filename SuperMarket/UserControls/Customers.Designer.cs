@@ -141,6 +141,7 @@ namespace SuperMarket.UserControls
             this.txt_contact.Name = "txt_contact";
             this.txt_contact.Size = new System.Drawing.Size(341, 45);
             this.txt_contact.TabIndex = 158;
+            this.txt_contact.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_customers_KeyDown);
             // 
             // label1
             // 
@@ -178,6 +179,7 @@ namespace SuperMarket.UserControls
             this.txt_address.Name = "txt_address";
             this.txt_address.Size = new System.Drawing.Size(341, 45);
             this.txt_address.TabIndex = 157;
+            this.txt_address.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_customers_KeyDown);
             // 
             // label3
             // 
@@ -203,6 +205,7 @@ namespace SuperMarket.UserControls
             this.txt_customername.Name = "txt_customername";
             this.txt_customername.Size = new System.Drawing.Size(341, 45);
             this.txt_customername.TabIndex = 153;
+            this.txt_customername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_customers_KeyDown);
             // 
             // label2
             // 
@@ -228,6 +231,7 @@ namespace SuperMarket.UserControls
             this.txt_customerid.Name = "txt_customerid";
             this.txt_customerid.Size = new System.Drawing.Size(341, 45);
             this.txt_customerid.TabIndex = 154;
+            this.txt_customerid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_customers_KeyDown);
             // 
             // panel1
             // 

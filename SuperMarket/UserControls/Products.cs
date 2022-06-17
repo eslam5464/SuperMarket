@@ -176,7 +176,10 @@ namespace SuperMarket.UserControls
         private void txt_products_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
+            {
                 e.SuppressKeyPress = true;
+                btn_save.PerformClick();
+            }
         }
 
         private void pcb_refresh_MouseEnter(object sender, EventArgs e)

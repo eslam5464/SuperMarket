@@ -219,7 +219,10 @@ namespace SuperMarket.UserControls
         private void txt_category_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
+            {
                 e.SuppressKeyPress = true;
+                btn_save.PerformClick();
+            }
         }
 
         private void pcb_search_DoubleClick(object sender, EventArgs e)

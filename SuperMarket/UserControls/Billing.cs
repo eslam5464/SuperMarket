@@ -27,14 +27,17 @@ namespace SuperMarket.UserControls
             SetColors(Properties.Settings.Default.AppColor);
 
             txt_invoiceno.Text = GetUniqueInvoiceID(9);
-
-            //SetupContextMenu();
         }
 
         //private void SetupContextMenu()
         //{
         //    contextMenu.MenuItems.Add(new MenuItem("تعديل", MenuItemEdit_Click));
         //}
+
+        public void setFocusForBarcode()
+        {
+            txt_productBarCode.Focus();
+        }
 
         private string GetUniqueInvoiceID(int MaxSize)
         {
@@ -55,24 +58,36 @@ namespace SuperMarket.UserControls
 
         private void SetColors(Color appColor)
         {
-            label1.ForeColor = appColor;
-            label2.ForeColor = appColor;
-            label3.ForeColor = appColor;
-            label4.ForeColor = appColor;
-            label5.ForeColor = appColor;
-            label6.ForeColor = appColor;
-            label7.ForeColor = appColor;
-            label8.ForeColor = appColor;
-            label9.ForeColor = appColor;
-            label10.ForeColor = appColor;
-            label11.ForeColor = appColor;
-            label12.ForeColor = appColor;
-            label13.ForeColor = appColor;
-            btn_addToCart.BackColor = appColor;
-            btn_print.BackColor = appColor;
-            btn_removeFromCart.BackColor = appColor;
-            btn_removeOrder.BackColor = appColor;
-            btn_save.BackColor = appColor;
+            Label[] AllLabels = {
+                label1,
+                label2,
+                label3,
+                label4,
+                label5,
+                label6,
+                label7,
+                label8,
+                label9,
+                label10,
+                label11,
+                label12,
+                label13,
+            };
+
+            Button[] AllButtons =
+            {
+                btn_addToCart,
+                btn_removeFromCart,
+                btn_removeOrder,
+                btn_save,
+            };
+
+            foreach (Label label in AllLabels)
+                label.ForeColor = appColor;
+
+            foreach (Button button in AllButtons)
+                button.BackColor = appColor;
+
             db_procardsDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
         }
 

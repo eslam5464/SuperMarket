@@ -29,7 +29,7 @@ namespace SuperMarket.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_print = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
             this.txt_grandtotal = new System.Windows.Forms.TextBox();
@@ -76,6 +76,7 @@ namespace SuperMarket.UserControls
             this.txt_prodSearch = new System.Windows.Forms.ComboBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.pcb_searchProdName = new System.Windows.Forms.PictureBox();
+            this.cb_defaultCST = new System.Windows.Forms.CheckBox();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_procardsDataGridView)).BeginInit();
             this.panel3.SuspendLayout();
@@ -289,14 +290,14 @@ namespace SuperMarket.UserControls
             this.db_procardsDataGridView.AllowUserToResizeColumns = false;
             this.db_procardsDataGridView.AllowUserToResizeRows = false;
             this.db_procardsDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.db_procardsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.db_procardsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.db_procardsDataGridView.ColumnHeadersHeight = 40;
             this.db_procardsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.db_procardsDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -324,6 +325,7 @@ namespace SuperMarket.UserControls
             this.txt_cstAddress.Location = new System.Drawing.Point(260, 148);
             this.txt_cstAddress.Multiline = true;
             this.txt_cstAddress.Name = "txt_cstAddress";
+            this.txt_cstAddress.ReadOnly = true;
             this.txt_cstAddress.Size = new System.Drawing.Size(250, 45);
             this.txt_cstAddress.TabIndex = 204;
             this.txt_cstAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_billing_KeyDown);
@@ -338,6 +340,7 @@ namespace SuperMarket.UserControls
             this.txt_cstContact.Location = new System.Drawing.Point(3, 148);
             this.txt_cstContact.Multiline = true;
             this.txt_cstContact.Name = "txt_cstContact";
+            this.txt_cstContact.ReadOnly = true;
             this.txt_cstContact.Size = new System.Drawing.Size(250, 45);
             this.txt_cstContact.TabIndex = 202;
             this.txt_cstContact.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_billing_KeyDown);
@@ -424,7 +427,7 @@ namespace SuperMarket.UserControls
             // 
             // dtp_invoicedate
             // 
-            this.dtp_invoicedate.CustomFormat = "dd-MM-yyyy hh:mm tt";
+            this.dtp_invoicedate.CustomFormat = "dd/MM/yyyy";
             this.dtp_invoicedate.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtp_invoicedate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtp_invoicedate.Location = new System.Drawing.Point(72, 58);
@@ -554,6 +557,7 @@ namespace SuperMarket.UserControls
             // 
             this.panel4.BackColor = System.Drawing.Color.Gainsboro;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.cb_defaultCST);
             this.panel4.Controls.Add(this.pcb_searchCstID);
             this.panel4.Controls.Add(this.pcb_searchCstName);
             this.panel4.Controls.Add(this.label13);
@@ -624,6 +628,7 @@ namespace SuperMarket.UserControls
             this.txt_cstID.Name = "txt_cstID";
             this.txt_cstID.Size = new System.Drawing.Size(148, 45);
             this.txt_cstID.TabIndex = 205;
+            this.txt_cstID.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_billing_KeyDown);
             // 
             // panel5
             // 
@@ -715,6 +720,7 @@ namespace SuperMarket.UserControls
             this.txt_prodSearch.Sorted = true;
             this.txt_prodSearch.TabIndex = 216;
             this.txt_prodSearch.SelectedIndexChanged += new System.EventHandler(this.txt_prodSearch_SelectedIndexChanged);
+            this.txt_prodSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_billing_KeyDown);
             // 
             // panel7
             // 
@@ -742,6 +748,19 @@ namespace SuperMarket.UserControls
             this.pcb_searchProdName.Click += new System.EventHandler(this.pcb_searchProdName_Click);
             this.pcb_searchProdName.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
             this.pcb_searchProdName.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
+            // 
+            // cb_defaultCST
+            // 
+            this.cb_defaultCST.AutoSize = true;
+            this.cb_defaultCST.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cb_defaultCST.ForeColor = System.Drawing.Color.Purple;
+            this.cb_defaultCST.Location = new System.Drawing.Point(194, 3);
+            this.cb_defaultCST.Name = "cb_defaultCST";
+            this.cb_defaultCST.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.cb_defaultCST.Size = new System.Drawing.Size(131, 23);
+            this.cb_defaultCST.TabIndex = 208;
+            this.cb_defaultCST.Text = "العميل الافتراضي";
+            this.cb_defaultCST.UseVisualStyleBackColor = true;
             // 
             // Billing
             // 
@@ -832,5 +851,6 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.PictureBox pcb_searchCstID;
         private System.Windows.Forms.PictureBox pcb_searchProdBarCode;
         private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.CheckBox cb_defaultCST;
     }
 }

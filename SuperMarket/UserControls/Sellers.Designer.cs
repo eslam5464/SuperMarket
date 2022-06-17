@@ -69,6 +69,7 @@ namespace SuperMarket.UserControls
             this.txt_Password.Name = "txt_Password";
             this.txt_Password.Size = new System.Drawing.Size(341, 45);
             this.txt_Password.TabIndex = 119;
+            this.txt_Password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Password_KeyDown);
             // 
             // label1
             // 
@@ -106,6 +107,7 @@ namespace SuperMarket.UserControls
             this.txt_mobailno.Name = "txt_mobailno";
             this.txt_mobailno.Size = new System.Drawing.Size(341, 45);
             this.txt_mobailno.TabIndex = 118;
+            this.txt_mobailno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Password_KeyDown);
             // 
             // txt_Username
             // 
@@ -119,6 +121,7 @@ namespace SuperMarket.UserControls
             this.txt_Username.Name = "txt_Username";
             this.txt_Username.Size = new System.Drawing.Size(341, 45);
             this.txt_Username.TabIndex = 115;
+            this.txt_Username.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Password_KeyDown);
             // 
             // label3
             // 
@@ -156,6 +159,7 @@ namespace SuperMarket.UserControls
             this.txt_fullname.Name = "txt_fullname";
             this.txt_fullname.Size = new System.Drawing.Size(341, 45);
             this.txt_fullname.TabIndex = 114;
+            this.txt_fullname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Password_KeyDown);
             // 
             // btn_remove
             // 
@@ -309,6 +313,7 @@ namespace SuperMarket.UserControls
             this.txt_userLevel.Size = new System.Drawing.Size(341, 40);
             this.txt_userLevel.Sorted = true;
             this.txt_userLevel.TabIndex = 203;
+            this.txt_userLevel.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Password_KeyDown);
             // 
             // pcb_serchbyPhone
             // 

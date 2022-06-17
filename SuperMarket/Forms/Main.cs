@@ -218,6 +218,7 @@ namespace SuperMarket.Forms
             SidePanel.Top = btn_billing.Top;
 
             uc_billing.BringToFront();
+            uc_billing.setFocusForBarcode();
         }
 
         private void btn_sellers_Click(object sender, EventArgs e)
@@ -240,6 +241,7 @@ namespace SuperMarket.Forms
             SidePanel.Top = btn_editBills.Top;
 
             uc_billsEdit.BringToFront();
+            uc_billsEdit.SetFocusOnBarCode();
         }
 
         private void btn_settings_Click(object sender, EventArgs e)
@@ -336,6 +338,11 @@ namespace SuperMarket.Forms
         private void pic_help_MouseLeave(object sender, EventArgs e)
         {
             pic_help.BackColor = Properties.Settings.Default.AppColor;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //new RibbonForm1().Show();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

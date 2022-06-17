@@ -256,5 +256,14 @@ namespace SuperMarket.UserControls
             Control FocusedObject = (Control)sender;
             FocusedObject.BackColor = Color.Transparent;
         }
+
+        private void txt_customers_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                btn_save.PerformClick();
+            }
+        }
     }
 }
