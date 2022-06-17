@@ -2,12 +2,8 @@
 using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarket.UserControls
@@ -308,7 +304,7 @@ namespace SuperMarket.UserControls
                     int ProductID = int.Parse(db_productDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
                     string ProductName = db_productDataGridView.Rows[rowindex].Cells["Name"].Value.ToString();
 
-                    Logger.Log($"user is trying to remove product: {ProductName}", 
+                    Logger.Log($"user is trying to remove product: {ProductName}",
                         System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                     if (MessageBox.Show($"هل تريد ان تمسح {ProductName}", "انتظر",

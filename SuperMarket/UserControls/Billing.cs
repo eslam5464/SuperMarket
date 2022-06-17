@@ -2,13 +2,10 @@
 using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarket.UserControls
@@ -527,6 +524,63 @@ namespace SuperMarket.UserControls
             //        EditedRowID = currentMouseOverRow;
             //    }
             //}
+        }
+
+        private void cb_defaultCST_CheckedChanged(object sender, EventArgs e)
+        {
+            TextBox[] AllTextBoxes =
+            {
+                txt_cstContact,
+                txt_cstAddress,
+                txt_cstID,
+                txt_cstName
+            };
+
+            if (cb_defaultCST.Checked)
+            {
+                List<CustomerModel> CustomerSearch = Classes.DataAccess.Customers.GetCustomerParameter("Name", "عميل افتراضي");
+
+                if (CustomerSearch.Count == 0)
+                {
+                    CustomerModel customer = new CustomerModel()
+                    {
+                        Address = "لا يوجد",
+                        ContactNo = "000000000",
+                        Name = "عميل افتراضي"
+                    };
+                    Classes.DataAccess.Customers.SaveCustomer(customer);
+
+                    CustomerSearch = Classes.DataAccess.Customers.GetCustomerParameter("Name", "عميل افتراضي");
+                    if (CustomerSearch.Count != 0)
+                    {
+                        txt_cstAddress.Text = CustomerSearch[0].Address;
+                        txt_cstContact.Text = CustomerSearch[0].ContactNo;
+                        txt_cstID.Text = CustomerSearch[0].Id.ToString();
+                        txt_cstName.Text = CustomerSearch[0].Name;
+
+                        foreach (TextBox textBox in AllTextBoxes)
+                            textBox.Enabled = false;
+                    }
+                }
+                else
+                {
+                    txt_cstAddress.Text = CustomerSearch[0].Address;
+                    txt_cstContact.Text = CustomerSearch[0].ContactNo;
+                    txt_cstID.Text = CustomerSearch[0].Id.ToString();
+                    txt_cstName.Text = CustomerSearch[0].Name;
+
+                    foreach (TextBox textBox in AllTextBoxes)
+                        textBox.Enabled = false;
+                }
+            }
+            else
+            {
+                foreach (TextBox textBox in AllTextBoxes)
+                {
+                    textBox.Text = "";
+                    textBox.Enabled = true;
+                }
+            }
         }
 
         //private void MenuItemEdit_Click(Object sender, System.EventArgs e)

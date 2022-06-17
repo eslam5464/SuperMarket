@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace SuperMarket.Classes.Models
+﻿namespace SuperMarket.Classes.Models
 {
     internal class ProductModel
     {

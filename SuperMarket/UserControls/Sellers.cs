@@ -3,7 +3,6 @@ using SuperMarket.Classes.DataAccess;
 using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Data;
 using System.Drawing;
 using System.Linq;

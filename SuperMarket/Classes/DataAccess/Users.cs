@@ -7,8 +7,6 @@ using System.Data;
 using System.Data.SQLite;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SuperMarket.Classes.DataAccess
 {

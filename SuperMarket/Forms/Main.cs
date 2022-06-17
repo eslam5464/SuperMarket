@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Net.Cache;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using SuperMarket.Classes;
+﻿using SuperMarket.Classes;
 using SuperMarket.UserControls;
+using System;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace SuperMarket.Forms
 {
@@ -301,6 +290,9 @@ namespace SuperMarket.Forms
                     }
                 }
             }
+            else
+                Logger.Log("no user has accessed the application.. closing now",
+                           System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
         }
 
         private void UserSession_Tick(object sender, EventArgs e)
