@@ -111,7 +111,7 @@ namespace SuperMarket.Forms
 
                             Security.OpenFormMain = true;
 
-                            if (Main.LoggedUser == "")
+                            if (Main.LoggedUser.Username == "" || Main.LoggedUser == null)
                                 Security.OpenFormMain = false;
 
                             this.Close();

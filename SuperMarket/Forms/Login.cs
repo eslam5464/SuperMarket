@@ -41,7 +41,7 @@ namespace SuperMarket.Forms
 
                 else if (user.Count == 0)
                 {
-                    MessageBox.Show("البيانات المدخله غير صحيحة برجاء التأكد من اسم المستخدم وكلمه المرور", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("البيانات المدخله غير صحيحة برجاء التأكد من اسم المستخدم و كلمه المرور", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
@@ -50,8 +50,21 @@ namespace SuperMarket.Forms
                         fullname = Security.Decrypt(user[0].FullName, Security.CPUID + Security.MOBOID);
                     if (username == txt_Username.Text && password == txt_Password.Text)
                     {
-                        Main.LoggedUser = fullname;
-                        Main.UserLevel = user[0].UserLevel;
+                        Classes.Models.UserModel LoggedUser = new Classes.Models.UserModel()
+                        {
+                            Username = user[0].FullName,
+                            UserLevel = user[0].UserLevel,
+                            ActiveState = user[0].ActiveState,
+                            CreationDate = user[0].CreationDate,
+                            Email = user[0].Email,
+                            FullName = user[0].FullName,
+                            Id = user[0].Id,
+                            ModifyDate = user[0].ModifyDate,
+                            Password = user[0].Password,
+                            Phone = user[0].Phone
+                        };
+
+                        Main.LoggedUser = LoggedUser;
                         Logger.Log($"user entered the correct credentials. accessing the application now",
                                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
                         Close();

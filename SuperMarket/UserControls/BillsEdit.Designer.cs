@@ -141,6 +141,7 @@ namespace SuperMarket.UserControls
             this.db_probillsDataGridView.Location = new System.Drawing.Point(0, 0);
             this.db_probillsDataGridView.MultiSelect = false;
             this.db_probillsDataGridView.Name = "db_probillsDataGridView";
+            this.db_probillsDataGridView.ReadOnly = true;
             this.db_probillsDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.db_probillsDataGridView.RowHeadersVisible = false;
             this.db_probillsDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;

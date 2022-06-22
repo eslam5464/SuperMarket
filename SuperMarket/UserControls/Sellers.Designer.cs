@@ -213,6 +213,7 @@ namespace SuperMarket.UserControls
             this.db_userDataGridView.Location = new System.Drawing.Point(0, 0);
             this.db_userDataGridView.MultiSelect = false;
             this.db_userDataGridView.Name = "db_userDataGridView";
+            this.db_userDataGridView.ReadOnly = true;
             this.db_userDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.db_userDataGridView.RowHeadersVisible = false;
             this.db_userDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;

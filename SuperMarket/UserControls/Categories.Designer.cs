@@ -109,6 +109,7 @@ namespace SuperMarket.UserControls
             this.db_categoriesDataGridView.Location = new System.Drawing.Point(0, 0);
             this.db_categoriesDataGridView.MultiSelect = false;
             this.db_categoriesDataGridView.Name = "db_categoriesDataGridView";
+            this.db_categoriesDataGridView.ReadOnly = true;
             this.db_categoriesDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.db_categoriesDataGridView.RowHeadersVisible = false;
             this.db_categoriesDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;

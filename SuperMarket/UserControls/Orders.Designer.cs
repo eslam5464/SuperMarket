@@ -34,20 +34,20 @@ namespace SuperMarket.UserControls
             this.panel3 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pcb_search_by_customer_name = new System.Windows.Forms.PictureBox();
             this.txt_customername = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txt_invoiceno = new System.Windows.Forms.TextBox();
             this.btn_refresh = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pcb_search_by_customer_name = new System.Windows.Forms.PictureBox();
             this.pcb_search_by_invoiceno = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.db_ordersDataGridView)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_customer_name)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_customer_name)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_invoiceno)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,6 +73,7 @@ namespace SuperMarket.UserControls
             this.db_ordersDataGridView.Location = new System.Drawing.Point(0, 0);
             this.db_ordersDataGridView.MultiSelect = false;
             this.db_ordersDataGridView.Name = "db_ordersDataGridView";
+            this.db_ordersDataGridView.ReadOnly = true;
             this.db_ordersDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.db_ordersDataGridView.RowHeadersVisible = false;
             this.db_ordersDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -113,6 +114,20 @@ namespace SuperMarket.UserControls
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(396, 100);
             this.panel2.TabIndex = 19;
+            // 
+            // pcb_search_by_customer_name
+            // 
+            this.pcb_search_by_customer_name.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_search_by_customer_name.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_search_by_customer_name.Location = new System.Drawing.Point(346, 42);
+            this.pcb_search_by_customer_name.Name = "pcb_search_by_customer_name";
+            this.pcb_search_by_customer_name.Size = new System.Drawing.Size(45, 45);
+            this.pcb_search_by_customer_name.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_search_by_customer_name.TabIndex = 138;
+            this.pcb_search_by_customer_name.TabStop = false;
+            this.pcb_search_by_customer_name.Click += new System.EventHandler(this.pcb_search_by_customer_name_Click);
+            this.pcb_search_by_customer_name.MouseEnter += new System.EventHandler(this.pcb_search_by_MouseEnter);
+            this.pcb_search_by_customer_name.MouseLeave += new System.EventHandler(this.pcb_search_by_MouseLeave);
             // 
             // txt_customername
             // 
@@ -186,20 +201,6 @@ namespace SuperMarket.UserControls
             this.panel1.Size = new System.Drawing.Size(396, 100);
             this.panel1.TabIndex = 18;
             // 
-            // pcb_search_by_customer_name
-            // 
-            this.pcb_search_by_customer_name.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_search_by_customer_name.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_search_by_customer_name.Location = new System.Drawing.Point(346, 42);
-            this.pcb_search_by_customer_name.Name = "pcb_search_by_customer_name";
-            this.pcb_search_by_customer_name.Size = new System.Drawing.Size(45, 45);
-            this.pcb_search_by_customer_name.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_search_by_customer_name.TabIndex = 138;
-            this.pcb_search_by_customer_name.TabStop = false;
-            this.pcb_search_by_customer_name.Click += new System.EventHandler(this.pcb_search_by_customer_name_Click);
-            this.pcb_search_by_customer_name.MouseEnter += new System.EventHandler(this.pcb_search_by_MouseEnter);
-            this.pcb_search_by_customer_name.MouseLeave += new System.EventHandler(this.pcb_search_by_MouseLeave);
-            // 
             // pcb_search_by_invoiceno
             // 
             this.pcb_search_by_invoiceno.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -230,10 +231,10 @@ namespace SuperMarket.UserControls
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_customer_name)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_customer_name)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_invoiceno)).EndInit();
             this.ResumeLayout(false);
 

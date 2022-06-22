@@ -29,7 +29,7 @@ namespace SuperMarket.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_print = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
             this.txt_grandtotal = new System.Windows.Forms.TextBox();
@@ -131,6 +131,7 @@ namespace SuperMarket.UserControls
             this.txt_grandtotal.Location = new System.Drawing.Point(36, 586);
             this.txt_grandtotal.Multiline = true;
             this.txt_grandtotal.Name = "txt_grandtotal";
+            this.txt_grandtotal.ReadOnly = true;
             this.txt_grandtotal.Size = new System.Drawing.Size(303, 45);
             this.txt_grandtotal.TabIndex = 219;
             this.txt_grandtotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -290,14 +291,14 @@ namespace SuperMarket.UserControls
             this.db_procardsDataGridView.AllowUserToResizeColumns = false;
             this.db_procardsDataGridView.AllowUserToResizeRows = false;
             this.db_procardsDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.db_procardsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.db_procardsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.db_procardsDataGridView.ColumnHeadersHeight = 40;
             this.db_procardsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.db_procardsDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -306,6 +307,7 @@ namespace SuperMarket.UserControls
             this.db_procardsDataGridView.Location = new System.Drawing.Point(0, 0);
             this.db_procardsDataGridView.MultiSelect = false;
             this.db_procardsDataGridView.Name = "db_procardsDataGridView";
+            this.db_procardsDataGridView.ReadOnly = true;
             this.db_procardsDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.db_procardsDataGridView.RowHeadersVisible = false;
             this.db_procardsDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -313,7 +315,6 @@ namespace SuperMarket.UserControls
             this.db_procardsDataGridView.RowTemplate.Height = 24;
             this.db_procardsDataGridView.Size = new System.Drawing.Size(620, 201);
             this.db_procardsDataGridView.TabIndex = 1;
-            this.db_procardsDataGridView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.db_procardsDataGridView_MouseClick);
             // 
             // txt_cstAddress
             // 
@@ -690,6 +691,7 @@ namespace SuperMarket.UserControls
             this.pcb_searchProdBarCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcb_searchProdBarCode.TabIndex = 218;
             this.pcb_searchProdBarCode.TabStop = false;
+            this.pcb_searchProdBarCode.Click += new System.EventHandler(this.pcb_searchProdBarCode_Click);
             this.pcb_searchProdBarCode.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
             this.pcb_searchProdBarCode.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
             // 

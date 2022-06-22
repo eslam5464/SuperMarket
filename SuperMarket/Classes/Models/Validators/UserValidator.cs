@@ -16,7 +16,7 @@ namespace SuperMarket.Classes.Models.Validators
             RuleFor(u => u.CreationDate);
         }
 
-        //useage
+        //usage
 
         //UserValidator validator = new UserValidator();
         //var results = validator.Validate(user);

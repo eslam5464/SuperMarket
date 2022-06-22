@@ -23,7 +23,7 @@ namespace SuperMarket.Forms
             InitializeComponent();
         }
 
-        public static string LoggedUser = "", UserLevel = "";
+        internal static Classes.Models.UserModel LoggedUser;
         private int SessionTimer = 0;
         private bool SessionState = true;
 
@@ -31,70 +31,29 @@ namespace SuperMarket.Forms
         {
             SetColors(Properties.Settings.Default.AppColor);
 
-            if (!Security.OpenFormMain || LoggedUser == "")
+            if (!Security.OpenFormMain || LoggedUser.Username == "" || Main.LoggedUser == null)
                 Close();
 
             FormInitialSetup();
-
-            //string LicenseKey = Properties.Settings.Default.LicenseKey;
-
-            //if (LicenseKey != "")
-            //{
-            //    string SerialKeyCheckOutput = Security.CheckLicenseKeyValidity(LicenseKey);
-
-            //    if (SerialKeyCheckOutput == "404")
-            //    {
-            //        Logger.Log("cant find serial key file", "Dashboard_Load", "Dashboard", Logger.CRITICAL);
-            //        Close();
-            //    }
-            //    else if (SerialKeyCheckOutput == "200")
-            //    {
-            //        Logger.Log("serial key validated", "Dashboard_Load", "Dashboard", Logger.INFO);
-
-            //        Login login = new Login();
-            //        login.TopMost = true;
-            //        login.ShowDialog();
-
-            //        if (LoggedUser == "")
-            //            Close();
-
-            //        FormInitialSetup();
-            //    }
-            //    else if (SerialKeyCheckOutput == "400")
-            //    {
-            //        Logger.Log("wrong serial key in the system", "Dashboard_Load", "Dashboard", Logger.ERROR);
-
-            //        LicenseKeyValidator frm_license = new LicenseKeyValidator();
-            //        frm_license.TopMost = true;
-            //        frm_license.ShowDialog();
-            //        Close();
-            //    }
-            //    else
-            //    {
-            //        Logger.Log("unknown error", "Dashboard_Load", "Dashboard", Logger.CRITICAL);
-            //        Close();
-            //    }
-            //}
-
-            //else
-            //{
-            //    Logger.Log("serial key isnt available prompting the user to add it", "Dashboard_Load", "Dashboard", Logger.INFO);
-            //    new LicenseKeyValidator().ShowDialog();
-            //    Close();
-            //}
         }
 
         public void SetColors(Color color)
         {
-            panel1.BackColor = color;
-            panel2.BackColor = color;
-            panel3.BackColor = color;
-            panel4.BackColor = color;
-            panel5.BackColor = color;
-            panel6.BackColor = color;
-            panel7.BackColor = color;
-            //panel8.BackColor = Classes.Settings.AppColor;
-            //panel9.BackColor = Classes.Settings.AppColor;
+            Panel[] AllPanels =
+            {
+                panel1,
+                panel2,
+                panel3,
+                panel4,
+                panel5,
+                panel6,
+                panel7,
+            };
+
+            foreach (Panel panel in AllPanels)
+            {
+                panel.BackColor = color;
+            }
         }
 
         private void FormInitialSetup()
@@ -136,7 +95,7 @@ namespace SuperMarket.Forms
 
             uc_dashboard.BringToFront();
 
-            lbl_welcomeName.Text = LoggedUser;
+            lbl_welcomeName.Text = LoggedUser.FullName;
 
             Classes.DataAccess.Backup.AllDaily();
 
@@ -251,7 +210,7 @@ namespace SuperMarket.Forms
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (LoggedUser != "")
+            if (LoggedUser.Username != "")
             {
                 Logger.Log("user is attempting to exit the application",
                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
@@ -330,11 +289,6 @@ namespace SuperMarket.Forms
         private void pic_help_MouseLeave(object sender, EventArgs e)
         {
             pic_help.BackColor = Properties.Settings.Default.AppColor;
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //new RibbonForm1().Show();
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)

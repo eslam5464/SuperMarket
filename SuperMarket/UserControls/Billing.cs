@@ -17,13 +17,15 @@ namespace SuperMarket.UserControls
             InitializeComponent();
         }
         //private ContextMenu contextMenu = new ContextMenu();
-        //private static int EditedRowID = -1;
+        private static bool UsedBarCodeSearch = false;
 
         private void ub_billing_Load(object sender, EventArgs e)
         {
             SetColors(Properties.Settings.Default.AppColor);
 
             txt_invoiceno.Text = GetUniqueInvoiceID(9);
+
+            cb_defaultCST.Checked = true;
         }
 
         //private void SetupContextMenu()
@@ -39,7 +41,7 @@ namespace SuperMarket.UserControls
         private string GetUniqueInvoiceID(int MaxSize)
         {
             char[] chars = new char[62];
-            chars = "123456789".ToCharArray();
+            chars = "0123456789".ToCharArray();
             byte[] data = new byte[1];
             RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider();
             crypto.GetNonZeroBytes(data);
@@ -95,8 +97,48 @@ namespace SuperMarket.UserControls
 
         private void txt_billing_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Return)
+            {
                 e.SuppressKeyPress = true;
+
+                if ((Control)sender == txt_productBarCode && txt_productBarCode.Text != "")
+                {
+                    if (UsedBarCodeSearch)
+                    {
+                        btn_addToCart.PerformClick();
+                        UsedBarCodeSearch = false;
+
+                        txt_productBarCode.Focus();
+
+                        ResetTextBoxes(false, false, false, false);
+                    }
+
+                    else
+                    {
+                        txt_prodSearch.DataSource = null;
+                        txt_prodSearch.Items.Clear();
+
+                        List<ProductModel> productSearch =
+                            Classes.DataAccess.Products.GetProductLikeParameter("BarCode", txt_productBarCode.Text);
+
+                        txt_prodSearch.DataSource = productSearch;
+                        txt_prodSearch.ValueMember = "Id";
+                        txt_prodSearch.DisplayMember = "Name";
+
+                        UsedBarCodeSearch = true;
+                    }
+
+                }
+                if ((Control)sender == txt_productprice || (Control)sender == txt_productquantity || (Control)sender == txt_totalprice)
+                {
+                    btn_addToCart.PerformClick();
+
+                    txt_productBarCode.Focus();
+
+                    UsedBarCodeSearch = false;
+                    ResetTextBoxes(false, false, false, false);
+                }
+            }
         }
 
         private void pcb_search_MouseEnter(object sender, EventArgs e)
@@ -345,31 +387,47 @@ namespace SuperMarket.UserControls
 
         private void btn_remove__Click(object sender, EventArgs e)
         {
-            ResetTextBoxes();
+            ResetTextBoxes(true, true, true, true);
             db_procardsDataGridView.DataSource = null;
             txt_invoiceno.Enabled = true;
         }
 
-        private void ResetTextBoxes()
+        private void ResetTextBoxes(bool ResetDate, bool ResetCST, bool ResetInvoice, bool ResetGrandTotal)
         {
-            txt_cstAddress.Text = "";
-            txt_cstContact.Text = "";
-            txt_cstID.Text = "";
-            txt_cstName.Text = "";
-            txt_grandtotal.Text = "";
-            txt_invoiceno.Text = "";
+            if (ResetCST)
+            {
+                txt_cstAddress.Text = "";
+                txt_cstContact.Text = "";
+                txt_cstID.Text = "";
+                txt_cstName.Text = "";
+            }
+
+            if (ResetGrandTotal)
+                txt_grandtotal.Text = "";
+
+            if (ResetInvoice)
+                txt_invoiceno.Text = "";
+
             txt_prodSearch.Text = "";
             txt_productBarCode.Text = "";
             txt_productName.Text = "";
             txt_productprice.Text = "";
             txt_productquantity.Text = "";
+
             txt_totalprice.Text = "";
 
             txt_prodSearch.SelectedIndex = -1;
 
+            if (txt_prodSearch.Items.Count > 0)
+            {
+                txt_prodSearch.DataSource = null;
+                txt_prodSearch.Items.Clear();
+            }
+
             txt_invoiceno.Enabled = true;
 
-            dtp_invoicedate.Refresh();
+            if (ResetDate)
+                dtp_invoicedate.Refresh();
         }
 
         private void pcb_searchCstName_Click(object sender, EventArgs e)
@@ -499,7 +557,7 @@ namespace SuperMarket.UserControls
 
                         db_procardsDataGridView.DataSource = null;
 
-                        ResetTextBoxes();
+                        ResetTextBoxes(true, false, true, true);
 
                         txt_invoiceno.Text = GetUniqueInvoiceID(9);
                     }
@@ -510,20 +568,6 @@ namespace SuperMarket.UserControls
             }
             else
                 MessageBox.Show("لا يوجد بيانات للحفظ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void db_procardsDataGridView_MouseClick(object sender, MouseEventArgs e)
-        {
-            //if (e.Button == MouseButtons.Right && !btn_updateOrder.Enabled)
-            //{
-            //    int currentMouseOverRow = db_procardsDataGridView.HitTest(e.X, e.Y).RowIndex;
-
-            //    if (currentMouseOverRow >= 0)
-            //    {
-            //        contextMenu.Show(db_procardsDataGridView, new Point(e.X, e.Y));
-            //        EditedRowID = currentMouseOverRow;
-            //    }
-            //}
         }
 
         private void cb_defaultCST_CheckedChanged(object sender, EventArgs e)
@@ -580,6 +624,24 @@ namespace SuperMarket.UserControls
                     textBox.Text = "";
                     textBox.Enabled = true;
                 }
+            }
+        }
+
+        private void pcb_searchProdBarCode_Click(object sender, EventArgs e)
+        {
+            if (txt_productBarCode.Text == "")
+                MessageBox.Show("برجاء كتابه باركود المنتج قبل البحث", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            else
+            {
+                txt_prodSearch.DataSource = null;
+                txt_prodSearch.Items.Clear();
+
+                List<ProductModel> productSearch = Classes.DataAccess.Products.GetProductLikeParameter("BarCode", txt_productBarCode.Text);
+
+                txt_prodSearch.DataSource = productSearch;
+                txt_prodSearch.ValueMember = "Id";
+                txt_prodSearch.DisplayMember = "Name";
             }
         }
 

@@ -88,8 +88,6 @@
     <Compile Include="Classes\Models\UserModel.cs" />
     <Compile Include="Classes\Models\Validators\UserValidator.cs" />
     <Compile Include="Classes\Security.cs" />
-    <Compile Include="Classes\SignIn.cs" />
-    <Compile Include="Classes\SignUp.cs" />
     <Compile Include="Forms\About.cs">
       <SubType>Form</SubType>
     </Compile>

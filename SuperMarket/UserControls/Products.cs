@@ -174,7 +174,18 @@ namespace SuperMarket.UserControls
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true;
-                btn_save.PerformClick();
+
+                if (txt_productBarCode.Text != "")
+                {
+                    Logger.Log($"user is searching for product by barcode: {txt_productBarCode.Text}",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+                    List<ProductModel> productSearch = Classes.DataAccess.Products.GetProductParameter("BarCode", txt_productBarCode.Text);
+                    LoadDataGrid(productSearch);
+
+                    txt_productBarCode.Text = "";
+                }
+                //btn_save.PerformClick();
             }
         }
 
@@ -341,9 +352,19 @@ namespace SuperMarket.UserControls
             FocusedObject.BackColor = Color.Transparent;
         }
 
-        private void label10_Click(object sender, EventArgs e)
+        private void pcb_searchBarCode_Click(object sender, EventArgs e)
         {
+            if (txt_productBarCode.Text == "")
+                LoadDataGrid(Classes.DataAccess.Products.LoadProducts());
 
+            else
+            {
+                Logger.Log($"user is searching for product by barcode: {txt_productBarCode.Text}",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+                List<ProductModel> productSearch = Classes.DataAccess.Products.GetProductParameter("BarCode", txt_productBarCode.Text);
+                LoadDataGrid(productSearch);
+            }
         }
     }
 }
