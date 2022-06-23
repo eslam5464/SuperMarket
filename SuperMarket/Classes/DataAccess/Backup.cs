@@ -20,6 +20,13 @@ namespace SuperMarket.Classes.DataAccess
                 BackupLocation = Security.GetDirecotryLocation() + @"\Backup",
                 FileName = $@"\{Date} LocalBackup.db";
 
+            if (strDestination != ".")
+            {
+                BackupLocation = strDestination;
+            }
+
+            All(strDestination, Id, false);
+
             foreach (var BackupFiles in new DirectoryInfo(BackupLocation).GetFiles().OrderByDescending(x => x.LastWriteTime).Skip(NumOfMaxBackup))
                 BackupFiles.Delete();
         }

@@ -48,7 +48,7 @@ namespace SuperMarket.UserControls
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            if (txt_productname.Text != "" && txt_productprice.Text != "" && txt_productquantity.Text != "" && txt_productBarCode.Text != "")
+            if (txt_productname.Text.Trim() != "" && txt_productprice.Text.Trim() != "" && txt_productquantity.Text.Trim() != "" && txt_productBarCode.Text.Trim() != "")
             {
                 if (!txt_productid.Enabled)
                 {
@@ -175,7 +175,7 @@ namespace SuperMarket.UserControls
             {
                 e.SuppressKeyPress = true;
 
-                if (txt_productBarCode.Text != "")
+                if (txt_productBarCode.Text.Trim() != "")
                 {
                     Logger.Log($"user is searching for product by barcode: {txt_productBarCode.Text}",
                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
@@ -206,7 +206,7 @@ namespace SuperMarket.UserControls
 
         private void pcb_searchName_Click(object sender, EventArgs e)
         {
-            if (txt_productname.Text == "")
+            if (txt_productname.Text.Trim() == "")
                 LoadDataGrid(Classes.DataAccess.Products.LoadProducts());
 
             else
@@ -221,7 +221,7 @@ namespace SuperMarket.UserControls
 
         private void pcb_searchID_Click(object sender, EventArgs e)
         {
-            if (txt_productid.Text == "")
+            if (txt_productid.Text.Trim() == "")
                 LoadDataGrid(Classes.DataAccess.Products.LoadProducts());
 
             else
@@ -354,7 +354,7 @@ namespace SuperMarket.UserControls
 
         private void pcb_searchBarCode_Click(object sender, EventArgs e)
         {
-            if (txt_productBarCode.Text == "")
+            if (txt_productBarCode.Text.Trim() == "")
                 LoadDataGrid(Classes.DataAccess.Products.LoadProducts());
 
             else

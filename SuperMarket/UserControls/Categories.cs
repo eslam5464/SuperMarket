@@ -21,7 +21,7 @@ namespace SuperMarket.UserControls
             Logger.Log("user is trying to save  a category",
                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-            if (txt_categoriename.Text != "")
+            if (txt_categoriename.Text.Trim() != "")
             {
                 if (!txt_categorieid.Enabled)
                 {
@@ -123,7 +123,7 @@ namespace SuperMarket.UserControls
 
         private void pcb_searchID_Click(object sender, EventArgs e)
         {
-            if (txt_categorieid.Text == "")
+            if (txt_categorieid.Text.Trim() == "")
                 LoadDataGrid(Classes.DataAccess.Categories.LoadCategories());
 
             else
@@ -137,7 +137,7 @@ namespace SuperMarket.UserControls
 
         private void pcb_searchName_Click(object sender, EventArgs e)
         {
-            if (txt_categoriename.Text == "")
+            if (txt_categoriename.Text.Trim() == "")
                 LoadDataGrid(Classes.DataAccess.Categories.LoadCategories());
 
             else

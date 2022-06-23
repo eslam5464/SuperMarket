@@ -110,7 +110,7 @@ namespace SuperMarket.UserControls
         {
             try
             {
-                if (txt_Username.Text == "" || txt_Password.Text == "")
+                if (txt_Username.Text.Trim() == "" || txt_Password.Text.Trim() == "")
                     MessageBox.Show("برجاء ادخال البيانات من اسم المستخدم وكلمه المرور", "حاول مره أخرى", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 else
@@ -263,7 +263,7 @@ namespace SuperMarket.UserControls
 
         private void pcb_serchbyname_Click(object sender, EventArgs e)
         {
-            if (txt_Username.Text == "")
+            if (txt_Username.Text.Trim() == "")
             {
                 RefreshDataGrid();
             }
@@ -285,7 +285,7 @@ namespace SuperMarket.UserControls
 
         private void pcb_serchbyfullname_Click(object sender, EventArgs e)
         {
-            if (txt_Username.Text == "")
+            if (txt_Username.Text.Trim() == "")
             {
                 RefreshDataGrid();
             }
@@ -339,7 +339,7 @@ namespace SuperMarket.UserControls
 
         private void pcb_serchbyPhone_Click(object sender, EventArgs e)
         {
-            if (txt_Username.Text == "")
+            if (txt_Username.Text.Trim() == "")
             {
                 RefreshDataGrid();
             }

@@ -24,7 +24,7 @@ namespace SuperMarket.UserControls
 
         private void pcb_search_by_customer_name_Click(object sender, EventArgs e)
         {
-            //if (txt_customername.Text == "")
+            //if (txt_customername.Text.Trim() == "")
             //    LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers());
 
             //else
@@ -36,7 +36,7 @@ namespace SuperMarket.UserControls
 
         private void pcb_search_by_invoiceno_Click(object sender, EventArgs e)
         {
-            //if (txt_customername.Text == "")
+            //if (txt_customername.Text.Trim() == "")
             //    LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers());
 
             //else

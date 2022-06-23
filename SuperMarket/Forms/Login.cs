@@ -36,7 +36,7 @@ namespace SuperMarket.Forms
                 //    Main.UserLevel = txt_Username.Text;
                 //    Close();
                 //}
-                if (txt_Username.Text == "" || txt_Password.Text == "")
+                if (txt_Username.Text.Trim() == "" || txt_Password.Text.Trim() == "")
                     MessageBox.Show("برجاء ادخال اسم المستخدم وكلمه السر معا", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 else if (user.Count == 0)
@@ -47,21 +47,24 @@ namespace SuperMarket.Forms
                 {
                     string username = Security.Decrypt(user[0].Username, Security.CPUID + Security.MOBOID),
                         password = Security.Decrypt(user[0].Password, Security.CPUID + Security.MOBOID),
-                        fullname = Security.Decrypt(user[0].FullName, Security.CPUID + Security.MOBOID);
+                        fullname = Security.Decrypt(user[0].FullName, Security.CPUID + Security.MOBOID),
+                        email = Security.Decrypt(user[0].Email, Security.CPUID + Security.MOBOID),
+                        phone = Security.Decrypt(user[0].Phone, Security.CPUID + Security.MOBOID);
+
                     if (username == txt_Username.Text && password == txt_Password.Text)
                     {
                         Classes.Models.UserModel LoggedUser = new Classes.Models.UserModel()
                         {
-                            Username = user[0].FullName,
-                            UserLevel = user[0].UserLevel,
-                            ActiveState = user[0].ActiveState,
-                            CreationDate = user[0].CreationDate,
-                            Email = user[0].Email,
-                            FullName = user[0].FullName,
                             Id = user[0].Id,
                             ModifyDate = user[0].ModifyDate,
-                            Password = user[0].Password,
-                            Phone = user[0].Phone
+                            CreationDate = user[0].CreationDate,
+                            UserLevel = user[0].UserLevel,
+                            ActiveState = user[0].ActiveState,
+                            Username = username,
+                            Password = password,
+                            FullName = fullname,
+                            Email = email,
+                            Phone = phone
                         };
 
                         Main.LoggedUser = LoggedUser;

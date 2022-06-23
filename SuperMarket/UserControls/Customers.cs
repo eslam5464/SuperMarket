@@ -33,7 +33,7 @@ namespace SuperMarket.UserControls
         {
             try
             {
-                if (txt_customername.Text == "" && txt_contact.Text == "" && txt_address.Text == "")
+                if (txt_customername.Text.Trim() == "" && txt_contact.Text.Trim() == "" && txt_address.Text.Trim() == "")
                 {
                     MessageBox.Show("برجاء ادخال جميع بيانات العميل من الاسم ورقم التواصل والعنوان", "حاو مره أخرى", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
@@ -115,7 +115,7 @@ namespace SuperMarket.UserControls
 
         private void pcb_searchName_Click(object sender, EventArgs e)
         {
-            if (txt_customername.Text == "")
+            if (txt_customername.Text.Trim() == "")
                 LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers());
 
             else
@@ -130,7 +130,7 @@ namespace SuperMarket.UserControls
 
         private void pcb_searchPhone_Click(object sender, EventArgs e)
         {
-            if (txt_contact.Text == "")
+            if (txt_contact.Text.Trim() == "")
                 LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers());
 
             else

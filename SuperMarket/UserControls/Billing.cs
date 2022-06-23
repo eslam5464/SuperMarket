@@ -101,7 +101,7 @@ namespace SuperMarket.UserControls
             {
                 e.SuppressKeyPress = true;
 
-                if ((Control)sender == txt_productBarCode && txt_productBarCode.Text != "")
+                if ((Control)sender == txt_productBarCode && txt_productBarCode.Text.Trim() != "")
                 {
                     if (UsedBarCodeSearch)
                     {
@@ -155,8 +155,8 @@ namespace SuperMarket.UserControls
 
         private void btn_addtocard_Click(object sender, EventArgs e)
         {
-            if (txt_invoiceno.Text == "" || txt_cstID.Text == "" || txt_cstID.Text == "" || txt_cstID.Text == "" ||
-                txt_cstID.Text == "" || txt_cstID.Text == "" || txt_cstID.Text == "" || txt_cstID.Text == "" || txt_cstID.Text == "")
+            if (txt_invoiceno.Text.Trim() == "" || txt_cstID.Text.Trim() == "" || txt_cstID.Text.Trim() == "" || txt_cstID.Text.Trim() == "" ||
+                txt_cstID.Text.Trim() == "" || txt_cstID.Text.Trim() == "" || txt_cstID.Text.Trim() == "" || txt_cstID.Text.Trim() == "" || txt_cstID.Text.Trim() == "")
             {
                 MessageBox.Show("اكمال البيانات لادخال المنتج إلى السله", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -204,6 +204,10 @@ namespace SuperMarket.UserControls
                     UpdateDataGrid(invoice);
 
                     CalculateGrandTotal();
+
+                    ResetTextBoxes(false, false, false, false);
+
+                    txt_productBarCode.Focus();
                 }
             }
         }
@@ -244,7 +248,6 @@ namespace SuperMarket.UserControls
                 db_procardsDataGridView.DataSource = InvoiceList;
                 ResizeAndRenameCoulmns();
             }
-
         }
 
         private void ResizeAndRenameCoulmns()
@@ -270,7 +273,7 @@ namespace SuperMarket.UserControls
 
         private void pcb_searchProdName_Click(object sender, EventArgs e)
         {
-            if (txt_productName.Text == "")
+            if (txt_productName.Text.Trim() == "")
                 MessageBox.Show("برجاء كتابه اسم المنتج قبل البحث", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             else
@@ -304,7 +307,7 @@ namespace SuperMarket.UserControls
 
         private void txt_productprice_TextChanged(object sender, EventArgs e)
         {
-            if (txt_productquantity.Text != "" && txt_productprice.Text != "")
+            if (txt_productquantity.Text.Trim() != "" && txt_productprice.Text.Trim() != "")
             {
                 double total_price = double.Parse(txt_productquantity.Text) * double.Parse(txt_productprice.Text);
                 txt_totalprice.Text = "" + Math.Round(total_price + 0.005, 2);
@@ -313,7 +316,7 @@ namespace SuperMarket.UserControls
 
         private void txt_productquantity_TextChanged(object sender, EventArgs e)
         {
-            if (txt_productquantity.Text != "" && txt_productprice.Text != "")
+            if (txt_productquantity.Text.Trim() != "" && txt_productprice.Text.Trim() != "")
             {
                 double total_price = double.Parse(txt_productquantity.Text) * double.Parse(txt_productprice.Text);
                 txt_totalprice.Text = "" + Math.Round(total_price + 0.005, 2);
@@ -432,7 +435,7 @@ namespace SuperMarket.UserControls
 
         private void pcb_searchCstName_Click(object sender, EventArgs e)
         {
-            if (txt_invoiceno.Text == "")
+            if (txt_invoiceno.Text.Trim() == "")
                 MessageBox.Show("برجاء كتابه اسم العميل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
@@ -497,7 +500,7 @@ namespace SuperMarket.UserControls
 
         private void pcb_searchCstID_Click(object sender, EventArgs e)
         {
-            if (txt_cstID.Text == "")
+            if (txt_cstID.Text.Trim() == "")
                 MessageBox.Show("برجاء كتابه اسم العميل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
             {
@@ -629,7 +632,7 @@ namespace SuperMarket.UserControls
 
         private void pcb_searchProdBarCode_Click(object sender, EventArgs e)
         {
-            if (txt_productBarCode.Text == "")
+            if (txt_productBarCode.Text.Trim() == "")
                 MessageBox.Show("برجاء كتابه باركود المنتج قبل البحث", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             else
