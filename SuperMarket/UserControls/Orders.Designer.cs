@@ -82,6 +82,8 @@ namespace SuperMarket.UserControls
             this.db_ordersDataGridView.RowTemplate.Height = 30;
             this.db_ordersDataGridView.Size = new System.Drawing.Size(1032, 531);
             this.db_ordersDataGridView.TabIndex = 1;
+            this.db_ordersDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_ordersDataGridView_ColumnHeaderMouseClick);
+            this.db_ordersDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_ordersDataGridView_ColumnHeaderMouseDoubleClick);
             // 
             // panel3
             // 

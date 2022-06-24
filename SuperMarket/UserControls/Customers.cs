@@ -2,6 +2,8 @@
 using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -259,6 +261,40 @@ namespace SuperMarket.UserControls
                 e.SuppressKeyPress = true;
                 btn_save.PerformClick();
             }
+        }
+
+        private DataTable TransformDataToDataTable(DataGridView dataGridView)
+        {
+            DataTable dataTable = new DataTable();
+
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                dataTable.Columns.Add(column.Name, column.ValueType);
+            }
+
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                dataTable.Rows.Add();
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
+                }
+            }
+            return dataTable;
+        }
+
+        private void db_customersDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            db_customersDataGridView.DataSource = TransformDataToDataTable(db_customersDataGridView);
+
+            db_customersDataGridView.Sort(db_customersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+        }
+
+        private void db_customersDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            db_customersDataGridView.DataSource = TransformDataToDataTable(db_customersDataGridView);
+
+            db_customersDataGridView.Sort(db_customersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
         }
     }
 }

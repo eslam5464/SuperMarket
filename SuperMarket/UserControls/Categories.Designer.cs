@@ -42,6 +42,8 @@ namespace SuperMarket.UserControls
             this.label1 = new System.Windows.Forms.Label();
             this.pcb_searchID = new System.Windows.Forms.PictureBox();
             this.pcb_searchName = new System.Windows.Forms.PictureBox();
+            this.txt_sort = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_categoriesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).BeginInit();
@@ -55,7 +57,7 @@ namespace SuperMarket.UserControls
             this.btn_remove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_remove.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
             this.btn_remove.ForeColor = System.Drawing.Color.White;
-            this.btn_remove.Location = new System.Drawing.Point(622, 126);
+            this.btn_remove.Location = new System.Drawing.Point(519, 121);
             this.btn_remove.Name = "btn_remove";
             this.btn_remove.Size = new System.Drawing.Size(154, 50);
             this.btn_remove.TabIndex = 137;
@@ -70,7 +72,7 @@ namespace SuperMarket.UserControls
             this.btn_edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_edit.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
             this.btn_edit.ForeColor = System.Drawing.Color.White;
-            this.btn_edit.Location = new System.Drawing.Point(441, 126);
+            this.btn_edit.Location = new System.Drawing.Point(338, 121);
             this.btn_edit.Name = "btn_edit";
             this.btn_edit.Size = new System.Drawing.Size(154, 50);
             this.btn_edit.TabIndex = 136;
@@ -117,6 +119,8 @@ namespace SuperMarket.UserControls
             this.db_categoriesDataGridView.RowTemplate.Height = 35;
             this.db_categoriesDataGridView.Size = new System.Drawing.Size(1035, 449);
             this.db_categoriesDataGridView.TabIndex = 1;
+            this.db_categoriesDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_categoriesDataGridView_ColumnHeaderMouseClick);
+            this.db_categoriesDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_categoriesDataGridView_ColumnHeaderMouseDoubleClick);
             // 
             // btn_save
             // 
@@ -125,7 +129,7 @@ namespace SuperMarket.UserControls
             this.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_save.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_save.ForeColor = System.Drawing.Color.White;
-            this.btn_save.Location = new System.Drawing.Point(263, 126);
+            this.btn_save.Location = new System.Drawing.Point(160, 121);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(154, 50);
             this.btn_save.TabIndex = 135;
@@ -227,10 +231,39 @@ namespace SuperMarket.UserControls
             this.pcb_searchName.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
             this.pcb_searchName.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
             // 
+            // txt_sort
+            // 
+            this.txt_sort.DropDownHeight = 200;
+            this.txt_sort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txt_sort.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_sort.FormattingEnabled = true;
+            this.txt_sort.IntegralHeight = false;
+            this.txt_sort.Location = new System.Drawing.Point(763, 141);
+            this.txt_sort.MaxDropDownItems = 10;
+            this.txt_sort.Name = "txt_sort";
+            this.txt_sort.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txt_sort.Size = new System.Drawing.Size(232, 40);
+            this.txt_sort.TabIndex = 217;
+            this.txt_sort.SelectedIndexChanged += new System.EventHandler(this.txt_sort_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Purple;
+            this.label4.Location = new System.Drawing.Point(857, 110);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(101, 28);
+            this.label4.TabIndex = 218;
+            this.label4.Text = ":فرز حسب";
+            // 
             // Categories
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txt_sort);
             this.Controls.Add(this.txt_categoriename);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_remove);
@@ -269,5 +302,7 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txt_categoriename;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ComboBox txt_sort;
+        private System.Windows.Forms.Label label4;
     }
 }

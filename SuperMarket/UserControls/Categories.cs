@@ -2,6 +2,8 @@
 using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -13,6 +15,7 @@ namespace SuperMarket.UserControls
         {
             InitializeComponent();
         }
+        private bool AddingToCB = false;
 
         private void btn_save_Click(object sender, EventArgs e)
         {
@@ -108,6 +111,30 @@ namespace SuperMarket.UserControls
             SetColors(Properties.Settings.Default.AppColor);
 
             LoadDataGrid(Classes.DataAccess.Categories.LoadCategories());
+
+            AddColumsNameToCB(txt_sort, db_categoriesDataGridView);
+        }
+
+        private void AddColumsNameToCB(ComboBox comboBox, DataGridView dataGridView)
+        {
+            if (!AddingToCB)
+                AddingToCB = true;
+
+            SortedDictionary<string, string> userCache = new SortedDictionary<string, string>();
+
+            for (int i = 0; i < dataGridView.Columns.Count; i++)
+            {
+                userCache.Add(dataGridView.Columns[i].HeaderText,
+                    dataGridView.Columns[i].Name);
+            }
+
+            comboBox.DataSource = new BindingSource(userCache, null);
+            comboBox.DisplayMember = "Key";
+            comboBox.ValueMember = "Value";
+            comboBox.SelectedIndex = -1;
+
+            if (AddingToCB)
+                AddingToCB = false;
         }
 
         private void SetColors(Color appColor)
@@ -240,6 +267,52 @@ namespace SuperMarket.UserControls
         {
             Control FocusedObject = (Control)sender;
             FocusedObject.BackColor = Color.Transparent;
+        }
+
+        private void txt_sort_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (txt_sort.SelectedIndex != -1 && txt_sort.DataSource != null)
+            {
+                if (db_categoriesDataGridView != null && !AddingToCB)
+                {
+                    db_categoriesDataGridView.Sort(db_categoriesDataGridView.Columns[txt_sort.SelectedValue.ToString()],
+                        System.ComponentModel.ListSortDirection.Ascending);
+                }
+            }
+        }
+
+        private DataTable TransformDataToDataTable(DataGridView dataGridView)
+        {
+            DataTable dataTable = new DataTable();
+
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                dataTable.Columns.Add(column.Name, column.ValueType);
+            }
+
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                dataTable.Rows.Add();
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
+                }
+            }
+            return dataTable;
+        }
+
+        private void db_categoriesDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            db_categoriesDataGridView.DataSource = TransformDataToDataTable(db_categoriesDataGridView);
+
+            db_categoriesDataGridView.Sort(db_categoriesDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+        }
+
+        private void db_categoriesDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            db_categoriesDataGridView.DataSource = TransformDataToDataTable(db_categoriesDataGridView);
+
+            db_categoriesDataGridView.Sort(db_categoriesDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
         }
     }
 }

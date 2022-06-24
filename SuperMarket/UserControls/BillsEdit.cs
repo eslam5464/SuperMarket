@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -74,6 +76,40 @@ namespace SuperMarket.UserControls
         private void btn_addToBill_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private DataTable TransformDataToDataTable(DataGridView dataGridView)
+        {
+            DataTable dataTable = new DataTable();
+
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                dataTable.Columns.Add(column.Name, column.ValueType);
+            }
+
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                dataTable.Rows.Add();
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
+                }
+            }
+            return dataTable;
+        }
+
+        private void db_probillsDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            db_probillsDataGridView.DataSource = TransformDataToDataTable(db_probillsDataGridView);
+
+            db_probillsDataGridView.Sort(db_probillsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+        }
+
+        private void db_probillsDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            db_probillsDataGridView.DataSource = TransformDataToDataTable(db_probillsDataGridView);
+
+            db_probillsDataGridView.Sort(db_probillsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
         }
     }
 }

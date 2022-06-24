@@ -2,6 +2,8 @@
 using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -89,6 +91,40 @@ namespace SuperMarket.UserControls
             label2.ForeColor = appColor;
             btn_refresh.BackColor = appColor;
             db_ordersDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
+        }
+
+        private DataTable TransformDataToDataTable(DataGridView dataGridView)
+        {
+            DataTable dataTable = new DataTable();
+
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                dataTable.Columns.Add(column.Name, column.ValueType);
+            }
+
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                dataTable.Rows.Add();
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
+                }
+            }
+            return dataTable;
+        }
+
+        private void db_ordersDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            db_ordersDataGridView.DataSource = TransformDataToDataTable(db_ordersDataGridView);
+
+            db_ordersDataGridView.Sort(db_ordersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+        }
+
+        private void db_ordersDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            db_ordersDataGridView.DataSource = TransformDataToDataTable(db_ordersDataGridView);
+
+            db_ordersDataGridView.Sort(db_ordersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
         }
     }
 }

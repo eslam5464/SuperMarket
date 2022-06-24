@@ -31,10 +31,12 @@ namespace SuperMarket.Forms
         {
             SetColors(Properties.Settings.Default.AppColor);
 
-            if (!Security.OpenFormMain || LoggedUser.Username == "" || Main.LoggedUser == null)
+            if (LoggedUser == null)
                 Close();
-
-            FormInitialSetup();
+            else if (!Security.OpenFormMain || LoggedUser.Username == "")
+                Close();
+            else
+                FormInitialSetup();
         }
 
         public void SetColors(Color color)
@@ -210,42 +212,45 @@ namespace SuperMarket.Forms
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (LoggedUser.Username != "")
+            if (LoggedUser != null)
             {
-                Logger.Log("user is attempting to exit the application",
-                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
-                if (!SessionState)
-                    this.Close();
-                else
+                if (LoggedUser.Username != "")
                 {
-                    if (MessageBox.Show("هل تريد ان تغلق البرنامج؟", "انتظر",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Information) == DialogResult.No)
-                    {
-                        e.Cancel = true;
-
-                        Logger.Log("user canceled the closing of the application",
-                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
-                    }
+                    Logger.Log("user is attempting to exit the application",
+                        System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                    if (!SessionState)
+                        this.Close();
                     else
                     {
-                        Logger.Log("user confirmed closing of the application",
-                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
-
-                        if (this.WindowState == FormWindowState.Normal)
+                        if (MessageBox.Show("هل تريد ان تغلق البرنامج؟", "انتظر",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Information) == DialogResult.No)
                         {
-                            Properties.Settings.Default.WindowSize = this.Size;
-                            Properties.Settings.Default.WindowLocation = this.Location;
+                            e.Cancel = true;
+
+                            Logger.Log("user canceled the closing of the application",
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
                         }
                         else
                         {
-                            Properties.Settings.Default.WindowLocation = this.RestoreBounds.Location;
-                            this.WindowState = FormWindowState.Normal;
+                            Logger.Log("user confirmed closing of the application",
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+                            if (this.WindowState == FormWindowState.Normal)
+                            {
+                                Properties.Settings.Default.WindowSize = this.Size;
+                                Properties.Settings.Default.WindowLocation = this.Location;
+                            }
+                            else
+                            {
+                                Properties.Settings.Default.WindowLocation = this.RestoreBounds.Location;
+                                this.WindowState = FormWindowState.Normal;
+                            }
+                            Properties.Settings.Default.WindowSize = this.Size;
+                            Properties.Settings.Default.WindowLocation = this.Location;
+                            Properties.Settings.Default.WindowState = this.WindowState;
+                            Properties.Settings.Default.Save();
                         }
-                        Properties.Settings.Default.WindowSize = this.Size;
-                        Properties.Settings.Default.WindowLocation = this.Location;
-                        Properties.Settings.Default.WindowState = this.WindowState;
-                        Properties.Settings.Default.Save();
                     }
                 }
             }
@@ -261,6 +266,10 @@ namespace SuperMarket.Forms
             {
                 SessionState = false;
                 UserSession.Stop();
+
+                Logger.Log($"Session timeout user exceeded {Properties.Settings.Default.SessionTime} Seconds",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
                 MessageBox.Show("لقد تم انتهاء المده المسموحه لفتح البرنامج بدون حركه برجاء فتح البرنامج مره أخرى!",
                     "انتبه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.Dispose();

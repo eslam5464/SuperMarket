@@ -222,6 +222,8 @@ namespace SuperMarket.UserControls
             this.db_userDataGridView.RowTemplate.Height = 35;
             this.db_userDataGridView.Size = new System.Drawing.Size(1032, 354);
             this.db_userDataGridView.TabIndex = 1;
+            this.db_userDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_userDataGridView_ColumnHeaderMouseClick);
+            this.db_userDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_userDataGridView_ColumnHeaderMouseDoubleClick);
             // 
             // pcb_serchbyname
             // 

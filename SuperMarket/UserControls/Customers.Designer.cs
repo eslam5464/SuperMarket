@@ -99,6 +99,8 @@ namespace SuperMarket.UserControls
             this.db_customersDataGridView.RowTemplate.Height = 30;
             this.db_customersDataGridView.Size = new System.Drawing.Size(1032, 447);
             this.db_customersDataGridView.TabIndex = 1;
+            this.db_customersDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_customersDataGridView_ColumnHeaderMouseClick);
+            this.db_customersDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_customersDataGridView_ColumnHeaderMouseDoubleClick);
             // 
             // btn_edit
             // 

@@ -182,10 +182,7 @@ namespace SuperMarket.UserControls
 
                     List<ProductModel> productSearch = Classes.DataAccess.Products.GetProductParameter("BarCode", txt_productBarCode.Text);
                     LoadDataGrid(productSearch);
-
-                    txt_productBarCode.Text = "";
                 }
-                //btn_save.PerformClick();
             }
         }
 

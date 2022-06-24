@@ -2,6 +2,8 @@
 using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
@@ -201,13 +203,39 @@ namespace SuperMarket.UserControls
                         CreationDate = DateTimeNow
                     };
 
-                    UpdateDataGrid(invoice);
+                    List<ProductModel> ProductSearch = Classes.DataAccess.Products.GetProductParameter("Id", product_id);
 
-                    CalculateGrandTotal();
+                    if (ProductSearch.Count != 0)
+                    {
+                        double QuantityDiff = double.Parse(ProductSearch[0].Quantity) - double.Parse(product_quantity);
+                        Console.WriteLine("" + QuantityDiff);
 
-                    ResetTextBoxes(false, false, false, false);
+                        if (QuantityDiff <= 0)
+                        {
+                            if (MessageBox.Show($"لا يوجد كمية كافيه من هذا المنتج .. هل تريد الاستمرار؟", "انتظر",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Information) == DialogResult.Yes)
+                            {
+                                UpdateDataGrid(invoice);
 
-                    txt_productBarCode.Focus();
+                                CalculateGrandTotal();
+
+                                ResetTextBoxes(false, false, false, false);
+
+                                txt_productBarCode.Focus();
+                            }
+                        }
+                        else
+                        {
+                            UpdateDataGrid(invoice);
+
+                            CalculateGrandTotal();
+
+                            ResetTextBoxes(false, false, false, false);
+
+                            txt_productBarCode.Focus();
+                        }
+                    }
                 }
             }
         }
@@ -646,6 +674,40 @@ namespace SuperMarket.UserControls
                 txt_prodSearch.ValueMember = "Id";
                 txt_prodSearch.DisplayMember = "Name";
             }
+        }
+
+        private DataTable TransformDataToDataTable(DataGridView dataGridView)
+        {
+            DataTable dataTable = new DataTable();
+
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                dataTable.Columns.Add(column.Name, column.ValueType);
+            }
+
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                dataTable.Rows.Add();
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
+                }
+            }
+            return dataTable;
+        }
+
+        private void db_procardsDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            db_procardsDataGridView.DataSource = TransformDataToDataTable(db_procardsDataGridView);
+
+            db_procardsDataGridView.Sort(db_procardsDataGridView.Columns[e.ColumnIndex], direction: ListSortDirection.Ascending);
+        }
+
+        private void db_procardsDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            db_procardsDataGridView.DataSource = TransformDataToDataTable(db_procardsDataGridView);
+
+            db_procardsDataGridView.Sort(db_procardsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
         }
 
         //private void MenuItemEdit_Click(Object sender, System.EventArgs e)
