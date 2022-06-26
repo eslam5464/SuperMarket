@@ -1,14 +1,17 @@
-﻿namespace SuperMarket.Classes.Models
+﻿using System;
+
+namespace SuperMarket.Classes.Models
 {
     internal class OrderModel
     {
-        public int Id { get; set; }
-        public string InvoiceDate { get; set; }
-        public int InvoiceId { get; set; }
-        public int CustomerId { get; set; }
+        public long Id { get; set; }
+        public DateTime InvoiceDate { get; set; }
+        public long InvoiceId { get; set; }
+        public long CustomerId { get; set; }
         public string CustomerName { get; set; }
         public string ContactNumber { get; set; }
         public string Address { get; set; }
-        public string GrandTotal { get; set; }
+        public long CreatedByUserId { get; set; }
+        public Decimal GrandTotal { get; set; }
     }
 }

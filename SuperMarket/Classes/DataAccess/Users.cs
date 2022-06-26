@@ -4,8 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SQLite;
-using System.Globalization;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace SuperMarket.Classes.DataAccess
@@ -14,9 +13,9 @@ namespace SuperMarket.Classes.DataAccess
     {
         public static List<UserModel> LoadUsersWithParamNonAdmin(string Parameter, string Condition)
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-            {//{Parameter} LIKE '%{Condition}%' OR
-                string query = $"SELECT * FROM 'Users' WHERE {Parameter} = '{Condition}' " +
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            {
+                string query = $"SELECT * FROM Users WHERE {Parameter} = N'{Condition}' " +
                     $"AND ActiveState = 1 AND UserLevel != 'admin'";
                 var output = cnn.Query<UserModel>(query, new DynamicParameters());
                 return output.ToList();
@@ -25,35 +24,35 @@ namespace SuperMarket.Classes.DataAccess
 
         internal static List<UserModel> LoadAllUsers()
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<UserModel>("SELECT * FROM 'Users'", new DynamicParameters());
+                var output = cnn.Query<UserModel>("SELECT * FROM Users", new DynamicParameters());
                 return output.ToList();
             }
         }
 
         public static List<UserModel> LoadAtiveUsers()
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<UserModel>("SELECT * FROM 'Users' WHERE ActiveState = 1", new DynamicParameters());
+                var output = cnn.Query<UserModel>("SELECT * FROM Users WHERE ActiveState = 1", new DynamicParameters());
                 return output.ToList();
             }
         }
 
         public static List<UserModel> LoadAtiveUsersAdmin()
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<UserModel>("SELECT * FROM Users WHERE ActiveState = 1 AND " +
-                    "UserLevel == 'admin'", new DynamicParameters());
+                    "UserLevel = 'admin'", new DynamicParameters());
                 return output.ToList();
             }
         }
 
         public static List<UserModel> LoadAtiveUsersNonAdmin()
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<UserModel>("SELECT * FROM Users WHERE ActiveState = 1 AND " +
                     "UserLevel != 'admin'", new DynamicParameters());
@@ -63,39 +62,36 @@ namespace SuperMarket.Classes.DataAccess
 
         public static List<UserModel> LoadNonAtiveUsers()
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<UserModel>("SELECT * FROM 'Users' WHERE ActiveState = 0", new DynamicParameters());
+                var output = cnn.Query<UserModel>("SELECT * FROM Users WHERE ActiveState = 0", new DynamicParameters());
                 return output.ToList();
             }
         }
 
         public static void SaveUser(UserModel User)
         {
-            string DateTimeNow = DateTime.Now.ToString("hh:mm:ss tt dd/MM/yyyy", new CultureInfo("ar-AE"));
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                cnn.Execute("INSERT INTO Users ('Username', 'Password', 'FullName', 'UserLevel', 'Email', 'Phone', 'CreationDate', 'ModifyDate', 'ActiveState') " +
-                    $"VALUES (@Username, @Password, @FullName, @UserLevel, @Email, @Phone, '{DateTimeNow}', '{DateTimeNow}', 1)", User);
+                cnn.Execute("INSERT INTO Users (Username, Password, FullName, UserLevel, Email, Phone, CreationDate, ModifyDate, ActiveState) " +
+                    $"VALUES (@Username, @Password, @FullName, @UserLevel, @Email, @Phone, @'{DateTime.Now}', @'{DateTime.Now}', 1)", User);
             }
         }
 
         public static void UpdateUser(UserModel User)
         {
-            string DateTimeNow = DateTime.Now.ToString("hh:mm:ss tt dd/MM/yyyy", new CultureInfo("ar-AE"));
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                cnn.Execute($"UPDATE Users SET Username = @Username, Password = @Password, ModifyDate = '{DateTimeNow}'," +
-                    $"FullName = @FullName, 'Phone' = @Phone, 'UserLevel' = @UserLevel WHERE Id = @Id", User);
+                cnn.Execute($"UPDATE Users SET Username = @Username, Password = @Password, ModifyDate = {DateTime.Now}," +
+                    $"FullName = @FullName, Phone = @Phone, UserLevel = @UserLevel WHERE Id = @Id", User);
             }
         }
 
-        public static void StopUser(int UserID)
+        public static void StopUser(long UserID)
         {
-            string DateTimeNow = DateTime.Now.ToString("hh:mm:ss tt dd/MM/yyyy", new CultureInfo("ar-AE"));
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                cnn.Execute($"UPDATE Users SET ActiveState = 0, ModifyDate = '{DateTimeNow}' WHERE Id = '{UserID}'");
+                cnn.Execute($"UPDATE Users SET ActiveState = 0, ModifyDate = {DateTime.Now} WHERE Id = {UserID}");
             }
         }
 

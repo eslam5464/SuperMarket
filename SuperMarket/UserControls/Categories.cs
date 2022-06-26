@@ -37,7 +37,7 @@ namespace SuperMarket.UserControls
 
                         CategoryModel category = new CategoryModel
                         {
-                            Id = int.Parse(txt_categorieid.Text),
+                            Id = long.Parse(txt_categorieid.Text),
                             Name = txt_categoriename.Text
                         };
                         Classes.DataAccess.Categories.UpdateCategory(category);
@@ -95,15 +95,16 @@ namespace SuperMarket.UserControls
 
         private void LoadDataGrid(List<CategoryModel> Categories)
         {
-            db_categoriesDataGridView.DataSource = null;
-            db_categoriesDataGridView.DataSource = Categories;
+            categoriesDataGridView.DataSource = null;
+            categoriesDataGridView.DataSource = Categories;
 
-            db_categoriesDataGridView.Columns["Id"].HeaderText = "رقم الصنف";
-            db_categoriesDataGridView.Columns["Name"].HeaderText = "اسم الصنف";
-            db_categoriesDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه الصنف";
+            categoriesDataGridView.Columns["Id"].HeaderText = "رقم الصنف";
+            categoriesDataGridView.Columns["CategoryName"].HeaderText = "اسم الصنف";
+            categoriesDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه الصنف";
+            categoriesDataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
 
-            db_categoriesDataGridView.AutoResizeColumns();
-            db_categoriesDataGridView.Columns["CreationDate"].Width += 5;
+            categoriesDataGridView.AutoResizeColumns();
+            categoriesDataGridView.Columns["CreationDate"].Width += 5;
         }
 
         private void Categories_Load(object sender, EventArgs e)
@@ -111,8 +112,6 @@ namespace SuperMarket.UserControls
             SetColors(Properties.Settings.Default.AppColor);
 
             LoadDataGrid(Classes.DataAccess.Categories.LoadCategories());
-
-            AddColumsNameToCB(txt_sort, db_categoriesDataGridView);
         }
 
         private void AddColumsNameToCB(ComboBox comboBox, DataGridView dataGridView)
@@ -139,13 +138,13 @@ namespace SuperMarket.UserControls
 
         private void SetColors(Color appColor)
         {
-            label1.ForeColor = appColor;
             label2.ForeColor = appColor;
             label3.ForeColor = appColor;
             btn_edit.BackColor = appColor;
             btn_remove.BackColor = appColor;
             btn_save.BackColor = appColor;
-            db_categoriesDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
+            //db_categoriesDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
+            categoriesDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
         }
 
         private void pcb_searchID_Click(object sender, EventArgs e)
@@ -178,14 +177,14 @@ namespace SuperMarket.UserControls
 
         private void btn_remove_Click(object sender, EventArgs e)
         {
-            if (db_categoriesDataGridView != null)
+            if (categoriesDataGridView != null)
             {
-                if (db_categoriesDataGridView.CurrentCell != null)
+                if (categoriesDataGridView.CurrentCell != null)
                 {
-                    int rowindex = db_categoriesDataGridView.CurrentCell.RowIndex;
+                    int rowindex = categoriesDataGridView.CurrentCell.RowIndex;
 
-                    int CategoryID = int.Parse(db_categoriesDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
-                    string CategoryName = db_categoriesDataGridView.Rows[rowindex].Cells["Name"].Value.ToString();
+                    long CategoryID = long.Parse(categoriesDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
+                    string CategoryName = categoriesDataGridView.Rows[rowindex].Cells["CategoryName"].Value.ToString();
 
                     Logger.Log($"user is trying to remove {CategoryName}",
                         System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
@@ -212,10 +211,10 @@ namespace SuperMarket.UserControls
             Logger.Log($"user clicked in edit button",
                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-            int rowindex = db_categoriesDataGridView.CurrentCell.RowIndex;
+            int rowindex = categoriesDataGridView.CurrentCell.RowIndex;
 
-            int CategoryID = int.Parse(db_categoriesDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
-            string CategoryName = db_categoriesDataGridView.Rows[rowindex].Cells["Name"].Value.ToString();
+            long CategoryID = long.Parse(categoriesDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
+            string CategoryName = categoriesDataGridView.Rows[rowindex].Cells["CategoryName"].Value.ToString();
 
             txt_categorieid.Text = "" + CategoryID;
             txt_categoriename.Text = CategoryName;
@@ -269,18 +268,6 @@ namespace SuperMarket.UserControls
             FocusedObject.BackColor = Color.Transparent;
         }
 
-        private void txt_sort_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (txt_sort.SelectedIndex != -1 && txt_sort.DataSource != null)
-            {
-                if (db_categoriesDataGridView != null && !AddingToCB)
-                {
-                    db_categoriesDataGridView.Sort(db_categoriesDataGridView.Columns[txt_sort.SelectedValue.ToString()],
-                        System.ComponentModel.ListSortDirection.Ascending);
-                }
-            }
-        }
-
         private DataTable TransformDataToDataTable(DataGridView dataGridView)
         {
             DataTable dataTable = new DataTable();
@@ -303,16 +290,29 @@ namespace SuperMarket.UserControls
 
         private void db_categoriesDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            db_categoriesDataGridView.DataSource = TransformDataToDataTable(db_categoriesDataGridView);
+            categoriesDataGridView.DataSource = TransformDataToDataTable(categoriesDataGridView);
 
-            db_categoriesDataGridView.Sort(db_categoriesDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+            categoriesDataGridView.Sort(categoriesDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
         }
 
         private void db_categoriesDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            db_categoriesDataGridView.DataSource = TransformDataToDataTable(db_categoriesDataGridView);
+            categoriesDataGridView.DataSource = TransformDataToDataTable(categoriesDataGridView);
 
-            db_categoriesDataGridView.Sort(db_categoriesDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+            categoriesDataGridView.Sort(categoriesDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //categoriesDataGridView.DataSource = null;
+            //categoriesDataGridView.DataSource = Categories;
+
+            categoriesDataGridView.Columns["Id"].HeaderText = "رقم الصنف";
+            categoriesDataGridView.Columns["CategoryName"].HeaderText = "اسم الصنف";
+            categoriesDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه الصنف";
+
+            categoriesDataGridView.AutoResizeColumns();
+            categoriesDataGridView.Columns["CreationDate"].Width += 5;
         }
     }
 }

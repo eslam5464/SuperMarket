@@ -2,6 +2,8 @@
 using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -34,7 +36,7 @@ namespace SuperMarket.UserControls
             btn_edit.BackColor = appColor;
             btn_remove.BackColor = appColor;
             btn_save.BackColor = appColor;
-            db_productDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
+            productsDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
         }
 
         public void LoadCategories()
@@ -58,17 +60,17 @@ namespace SuperMarket.UserControls
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Information) == DialogResult.Yes)
                         {
-                            int categoryId = int.Parse(txt_categoriename.SelectedValue.ToString());
+                            long categoryId = long.Parse(txt_categoriename.SelectedValue.ToString());
                             string categoryName = Classes.DataAccess.Categories.GetCategoryParameter
                                     ("Id", "" + categoryId).FirstOrDefault().Name;
                             ProductModel product = new ProductModel
                             {
-                                Id = int.Parse(txt_productid.Text),
+                                Id = long.Parse(txt_productid.Text),
                                 Name = txt_productname.Text,
-                                Quantity = txt_productquantity.Text,
-                                Price = txt_productprice.Text,
+                                Quantity = double.Parse(txt_productquantity.Text),
+                                Price = decimal.Parse(txt_productprice.Text),
                                 Description = txt_description.Text,
-                                BarCode = txt_productBarCode.Text,
+                                BarCode = long.Parse(txt_productBarCode.Text),
                                 CategoryID = categoryId,
                                 CategoryName = categoryName
                             };
@@ -105,16 +107,16 @@ namespace SuperMarket.UserControls
                         MessageBoxIcon.Information) == DialogResult.Yes)
                         {
 
-                            int categoryId = int.Parse(txt_categoriename.SelectedValue.ToString());
+                            long categoryId = long.Parse(txt_categoriename.SelectedValue.ToString());
                             string categoryName = Classes.DataAccess.Categories.GetCategoryParameter
                                 ("Id", "" + categoryId).FirstOrDefault().Name;
                             ProductModel product = new ProductModel
                             {
-                                BarCode = txt_productBarCode.Text,
+                                BarCode = long.Parse(txt_productBarCode.Text),
                                 Name = txt_productname.Text,
-                                Price = txt_productprice.Text,
+                                Price = decimal.Parse(txt_productprice.Text),
                                 Description = txt_description.Text,
-                                Quantity = txt_productquantity.Text,
+                                Quantity = double.Parse(txt_productquantity.Text),
                                 CategoryID = categoryId,
                                 CategoryName = categoryName
                             };
@@ -152,21 +154,22 @@ namespace SuperMarket.UserControls
 
         private void LoadDataGrid(List<ProductModel> Products)
         {
-            db_productDataGridView.DataSource = null;
-            db_productDataGridView.DataSource = Products;
+            productsDataGridView.DataSource = null;
+            productsDataGridView.DataSource = Products;
 
-            db_productDataGridView.Columns["Id"].HeaderText = "رقم المنتج";
-            db_productDataGridView.Columns["BarCode"].HeaderText = "باركود";
-            db_productDataGridView.Columns["Name"].HeaderText = "اسم المنتج";
-            db_productDataGridView.Columns["Price"].HeaderText = "سعر المنتج";
-            db_productDataGridView.Columns["Description"].HeaderText = "وصف المتج";
-            db_productDataGridView.Columns["Quantity"].HeaderText = "كميه المنتج";
-            db_productDataGridView.Columns["CategoryID"].HeaderText = "رقم الصنف";
-            db_productDataGridView.Columns["CategoryName"].HeaderText = "اسم الصنف";
-            db_productDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه المنتج";
+            productsDataGridView.Columns["Id"].HeaderText = "رقم المنتج";
+            productsDataGridView.Columns["BarCode"].HeaderText = "باركود";
+            productsDataGridView.Columns["ProductName_"].HeaderText = "اسم المنتج";
+            productsDataGridView.Columns["Price"].HeaderText = "سعر المنتج";
+            productsDataGridView.Columns["Description"].HeaderText = "وصف المتج";
+            productsDataGridView.Columns["Quantity"].HeaderText = "كميه المنتج";
+            productsDataGridView.Columns["CategoryID"].HeaderText = "رقم الصنف";
+            productsDataGridView.Columns["CategoryName"].HeaderText = "اسم الصنف";
+            productsDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه المنتج";
+            productsDataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
 
-            db_productDataGridView.AutoResizeColumns();
-            db_productDataGridView.Columns["CreationDate"].Width += 5;
+            productsDataGridView.AutoResizeColumns();
+            productsDataGridView.Columns["CreationDate"].Width += 5;
         }
 
         private void txt_products_KeyDown(object sender, KeyEventArgs e)
@@ -246,21 +249,21 @@ namespace SuperMarket.UserControls
 
         private void btn_edit_Click(object sender, EventArgs e)
         {
-            if (db_productDataGridView != null)
+            if (productsDataGridView != null)
             {
-                if (db_productDataGridView.CurrentCell != null)
+                if (productsDataGridView.CurrentCell != null)
                 {
-                    int RowIndex = db_productDataGridView.CurrentCell.RowIndex;
+                    int RowIndex = productsDataGridView.CurrentCell.RowIndex;
 
-                    int ProductID = int.Parse(db_productDataGridView.Rows[RowIndex].Cells["Id"].Value.ToString()),
-                        CategoryID = int.Parse(db_productDataGridView.Rows[RowIndex].Cells["CategoryId"].Value.ToString());
+                    long ProductID = long.Parse(productsDataGridView.Rows[RowIndex].Cells["Id"].Value.ToString()),
+                        CategoryID = long.Parse(productsDataGridView.Rows[RowIndex].Cells["CategoryId"].Value.ToString());
 
-                    string ProductName = db_productDataGridView.Rows[RowIndex].Cells["Name"].Value.ToString(),
-                        ProductPrice = db_productDataGridView.Rows[RowIndex].Cells["Price"].Value.ToString(),
-                        ProductQuantity = db_productDataGridView.Rows[RowIndex].Cells["Quantity"].Value.ToString(),
-                        ProductDescription = db_productDataGridView.Rows[RowIndex].Cells["Description"].Value.ToString(),
-                        ProductBarcode = db_productDataGridView.Rows[RowIndex].Cells["BarCode"].Value.ToString(),
-                        CategoryName = db_productDataGridView.Rows[RowIndex].Cells["CategoryName"].Value.ToString();
+                    string ProductName = productsDataGridView.Rows[RowIndex].Cells["ProductName_"].Value.ToString(),
+                        ProductPrice = productsDataGridView.Rows[RowIndex].Cells["Price"].Value.ToString(),
+                        ProductQuantity = productsDataGridView.Rows[RowIndex].Cells["Quantity"].Value.ToString(),
+                        ProductDescription = productsDataGridView.Rows[RowIndex].Cells["Description"].Value.ToString(),
+                        ProductBarcode = productsDataGridView.Rows[RowIndex].Cells["BarCode"].Value.ToString(),
+                        CategoryName = productsDataGridView.Rows[RowIndex].Cells["CategoryName"].Value.ToString();
 
                     Logger.Log($"user removed product: {ProductName} with id: {ProductID}",
                         System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
@@ -304,13 +307,13 @@ namespace SuperMarket.UserControls
 
         private void btn_remove_Click(object sender, EventArgs e)
         {
-            if (db_productDataGridView != null)
+            if (productsDataGridView != null)
             {
-                if (db_productDataGridView.CurrentCell != null)
+                if (productsDataGridView.CurrentCell != null)
                 {
-                    int rowindex = db_productDataGridView.CurrentCell.RowIndex;
-                    int ProductID = int.Parse(db_productDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
-                    string ProductName = db_productDataGridView.Rows[rowindex].Cells["Name"].Value.ToString();
+                    int rowindex = productsDataGridView.CurrentCell.RowIndex;
+                    long ProductID = long.Parse(productsDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
+                    string ProductName = productsDataGridView.Rows[rowindex].Cells["Name"].Value.ToString();
 
                     Logger.Log($"user is trying to remove product: {ProductName}",
                         System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
@@ -362,6 +365,56 @@ namespace SuperMarket.UserControls
                 List<ProductModel> productSearch = Classes.DataAccess.Products.GetProductParameter("BarCode", txt_productBarCode.Text);
                 LoadDataGrid(productSearch);
             }
+        }
+
+        private DataTable TransformDataToDataTable(DataGridView dataGridView)
+        {
+            DataTable dataTable = new DataTable();
+
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                dataTable.Columns.Add(column.Name, column.ValueType);
+            }
+
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                dataTable.Rows.Add();
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
+                }
+            }
+            return dataTable;
+        }
+
+        private void db_productDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            productsDataGridView.DataSource = TransformDataToDataTable(productsDataGridView);
+
+            productsDataGridView.Sort(productsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+        }
+
+        private void db_productDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            productsDataGridView.DataSource = TransformDataToDataTable(productsDataGridView);
+
+            productsDataGridView.Sort(productsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+        }
+
+        private void productsBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.productsBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.superMarketDataSet);
+
+        }
+
+        private void productsBindingNavigatorSaveItem_Click_1(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.productsBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.superMarketDataSet);
+
         }
     }
 }

@@ -25,7 +25,7 @@ namespace SuperMarket.UserControls
         {
             SetColors(Properties.Settings.Default.AppColor);
 
-            txt_invoiceno.Text = GetUniqueInvoiceID(9);
+            txt_invoiceno.Text = GetUniqueInvoiceID(9).ToString();
 
             cb_defaultCST.Checked = true;
         }
@@ -40,7 +40,7 @@ namespace SuperMarket.UserControls
             txt_productBarCode.Focus();
         }
 
-        private string GetUniqueInvoiceID(int MaxSize)
+        private long GetUniqueInvoiceID(int MaxSize)
         {
             char[] chars = new char[62];
             chars = "0123456789".ToCharArray();
@@ -54,7 +54,7 @@ namespace SuperMarket.UserControls
             {
                 result.Append(chars[b % (chars.Length)]);
             }
-            return result.ToString();
+            return long.Parse(result.ToString());
         }
 
         private void SetColors(Color appColor)
@@ -140,6 +140,15 @@ namespace SuperMarket.UserControls
                     UsedBarCodeSearch = false;
                     ResetTextBoxes(false, false, false, false);
                 }
+
+                if (txt_prodSearch.SelectedIndex != -1 && txt_productBarCode.Text.Trim() != "")
+                {
+                    //List<ProductModel> productSearch = Classes.DataAccess.Products.GetProductParameter("Id", txt_prodSearch.SelectedValue.ToString());
+
+                    UsedBarCodeSearch = true;
+
+                    btn_addToCart.PerformClick();
+                }
             }
         }
 
@@ -164,7 +173,7 @@ namespace SuperMarket.UserControls
             }
             else
             {
-                List<CustomerModel> CstSearch = Classes.DataAccess.Customers.GetCustomerWithID(txt_cstID.Text);
+                List<CustomerModel> CstSearch = Classes.DataAccess.Customers.GetCustomerWithID(int.Parse(txt_cstID.Text));
                 if (CstSearch.Count == 0)
                 {
                     MessageBox.Show("لا يوجد عميل بهذه البيانات", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -181,34 +190,34 @@ namespace SuperMarket.UserControls
                     string cst_id = txt_cstID.Text, cst_name = txt_cstName.Text, cst_address = txt_cstAddress.Text,
                         cst_contact = txt_cstContact.Text;
 
-                    string product_id = txt_prodSearch.SelectedValue.ToString(), product_name = txt_productName.Text, product_barCode = txt_productBarCode.Text,
-                        product_quantity = txt_productquantity.Text, product_price = txt_productprice.Text;
+                    string product_id = txt_prodSearch.SelectedValue.ToString(), product_name = txt_productName.Text,
+                        product_barCode = txt_productBarCode.Text, product_quantity = txt_productquantity.Text,
+                        product_price = txt_productprice.Text;
 
                     string priceTotal = txt_totalprice.Text;
 
-                    string DateTimeNow = DateTime.Now.ToString("hh:mm:ss tt dd/MM/yyyy", new System.Globalization.CultureInfo("ar-AE"));
+                    string DateTimeNow = DateTime.Now.ToString();
                     InvoiceModel invoice = new InvoiceModel
                     {
-                        InvoiceNumber = int.Parse(txt_invoiceno.Text),
-                        CustomerId = int.Parse(cst_id),
+                        InvoiceNumber = long.Parse(txt_invoiceno.Text),
+                        CustomerId = long.Parse(cst_id),
                         CustomerName = cst_name,
                         CustomerContact = cst_contact,
                         CustomerAddress = cst_address,
-                        ProductID = int.Parse(product_id),
-                        ProductBarCode = product_barCode,
+                        ProductID = long.Parse(product_id),
+                        ProductBarCode = long.Parse(product_barCode),
                         ProductName = product_name,
-                        ProductQuantity = product_quantity,
-                        ProductPrice = product_price,
-                        PriceTotal = priceTotal,
-                        CreationDate = DateTimeNow
+                        ProductQuantity = double.Parse(product_quantity),
+                        ProductPrice = decimal.Parse(product_price),
+                        PriceTotal = decimal.Parse(priceTotal),
+                        CreationDate = DateTime.Parse(DateTimeNow)
                     };
 
                     List<ProductModel> ProductSearch = Classes.DataAccess.Products.GetProductParameter("Id", product_id);
 
                     if (ProductSearch.Count != 0)
                     {
-                        double QuantityDiff = double.Parse(ProductSearch[0].Quantity) - double.Parse(product_quantity);
-                        Console.WriteLine("" + QuantityDiff);
+                        double QuantityDiff = ProductSearch[0].Quantity - double.Parse(product_quantity);
 
                         if (QuantityDiff <= 0)
                         {
@@ -224,6 +233,8 @@ namespace SuperMarket.UserControls
 
                                 txt_productBarCode.Focus();
                             }
+                            else
+                                Console.WriteLine("test");
                         }
                         else
                         {
@@ -246,10 +257,10 @@ namespace SuperMarket.UserControls
             {
                 List<InvoiceModel> CartDataSource = (List<InvoiceModel>)db_procardsDataGridView.DataSource;
 
-                double sum = 0.0;
+                decimal sum = 0;
                 foreach (InvoiceModel product in CartDataSource)
                 {
-                    sum += double.Parse(product.PriceTotal);
+                    sum += decimal.Parse("" + product.PriceTotal);
                 }
 
                 txt_grandtotal.Text = "" + sum;
@@ -311,10 +322,32 @@ namespace SuperMarket.UserControls
 
                 List<ProductModel> productSearch = Classes.DataAccess.Products.GetProductLikeParameter("Name", txt_productName.Text);
 
-                txt_prodSearch.DataSource = productSearch;
+                DataTable dataProductSearch = ToDataTable(productSearch);
+
+                txt_prodSearch.DataSource = dataProductSearch;
                 txt_prodSearch.ValueMember = "Id";
                 txt_prodSearch.DisplayMember = "Name";
             }
+        }
+
+        private DataTable TransformDataToDataTable(DataGridView dataGridView)
+        {
+            DataTable dataTable = new DataTable();
+
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                dataTable.Columns.Add(column.Name, column.ValueType);
+            }
+
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                dataTable.Rows.Add();
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
+                }
+            }
+            return dataTable;
         }
 
         private void txt_prodSearch_SelectedIndexChanged(object sender, EventArgs e)
@@ -325,17 +358,20 @@ namespace SuperMarket.UserControls
 
                 if (productSearch.Count != 0)
                 {
-                    txt_productprice.Text = productSearch[0].Price;
-                    txt_productBarCode.Text = productSearch[0].BarCode;
+                    txt_productprice.Text = "" + productSearch[0].Price;
+                    txt_productBarCode.Text = "" + productSearch[0].BarCode;
                     txt_productName.Text = productSearch[0].Name;
                     txt_productquantity.Text = "" + 1;
+
+                    UsedBarCodeSearch = true;
                 }
             }
         }
 
         private void txt_productprice_TextChanged(object sender, EventArgs e)
         {
-            if (txt_productquantity.Text.Trim() != "" && txt_productprice.Text.Trim() != "")
+            if (txt_productquantity.Text.Trim() != "" && txt_productquantity.Text.Trim() != "." &&
+                txt_productprice.Text.Trim() != "" && txt_productprice.Text.Trim() != ".")
             {
                 double total_price = double.Parse(txt_productquantity.Text) * double.Parse(txt_productprice.Text);
                 txt_totalprice.Text = "" + Math.Round(total_price + 0.005, 2);
@@ -344,7 +380,8 @@ namespace SuperMarket.UserControls
 
         private void txt_productquantity_TextChanged(object sender, EventArgs e)
         {
-            if (txt_productquantity.Text.Trim() != "" && txt_productprice.Text.Trim() != "")
+            if (txt_productquantity.Text.Trim() != "" && txt_productquantity.Text.Trim() != "." &&
+                txt_productprice.Text.Trim() != "" && txt_productprice.Text.Trim() != ".")
             {
                 double total_price = double.Parse(txt_productquantity.Text) * double.Parse(txt_productprice.Text);
                 txt_totalprice.Text = "" + Math.Round(total_price + 0.005, 2);
@@ -366,17 +403,17 @@ namespace SuperMarket.UserControls
 
         private void pcb_getInvoiceID_Click(object sender, EventArgs e)
         {
-            string UniqueInvoiceID = GetUniqueInvoiceID(9);
+            long UniqueInvoiceID = GetUniqueInvoiceID(9);
 
-            List<InvoiceModel> InvoiceSearch = Classes.DataAccess.Invoices.LoadInvoice(int.Parse(UniqueInvoiceID));
+            List<InvoiceModel> InvoiceSearch = Classes.DataAccess.Invoices.LoadInvoice(UniqueInvoiceID);
 
             while (InvoiceSearch.Count != 0)
             {
                 UniqueInvoiceID = GetUniqueInvoiceID(9);
-                InvoiceSearch = Classes.DataAccess.Invoices.LoadInvoice(int.Parse(UniqueInvoiceID));
+                InvoiceSearch = Classes.DataAccess.Invoices.LoadInvoice(UniqueInvoiceID);
             }
 
-            txt_invoiceno.Text = UniqueInvoiceID;
+            txt_invoiceno.Text = "" + UniqueInvoiceID;
             db_procardsDataGridView.DataSource = null;
 
         }
@@ -387,8 +424,8 @@ namespace SuperMarket.UserControls
             if (db_procardsDataGridView.DataSource != null && db_procardsDataGridView.CurrentCell != null)
             {
                 int rowindex = db_procardsDataGridView.CurrentCell.RowIndex;
-                int InvoiceID = int.Parse(db_procardsDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
-                int ProductId = int.Parse(db_procardsDataGridView.Rows[rowindex].Cells["ProductId"].Value.ToString());
+                long InvoiceID = long.Parse(db_procardsDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
+                long ProductId = long.Parse(db_procardsDataGridView.Rows[rowindex].Cells["ProductId"].Value.ToString());
                 string ProductName = db_procardsDataGridView.Rows[rowindex].Cells["ProductName"].Value.ToString();
                 string DateCreated = db_procardsDataGridView.Rows[rowindex].Cells["CreationDate"].Value.ToString();
 
@@ -398,7 +435,7 @@ namespace SuperMarket.UserControls
                 {
                     List<InvoiceModel> datasource = (List<InvoiceModel>)db_procardsDataGridView.DataSource;
                     db_procardsDataGridView.DataSource = null;
-                    datasource.Remove(datasource.Find(invoice => invoice.CreationDate == DateCreated));
+                    datasource.Remove(datasource.Find(invoice => invoice.CreationDate == DateTime.Parse(DateCreated)));
                     db_procardsDataGridView.DataSource = datasource;
                     ResizeAndRenameCoulmns();
                 }
@@ -418,9 +455,14 @@ namespace SuperMarket.UserControls
 
         private void btn_remove__Click(object sender, EventArgs e)
         {
-            ResetTextBoxes(true, true, true, true);
-            db_procardsDataGridView.DataSource = null;
-            txt_invoiceno.Enabled = true;
+            if (MessageBox.Show($"هل انت متأكد من ازالتك لجميع ما في العربه؟", "انتظر",
+                           MessageBoxButtons.YesNo,
+                           MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                ResetTextBoxes(true, true, true, true);
+                db_procardsDataGridView.DataSource = null;
+                txt_invoiceno.Enabled = true;
+            }
         }
 
         private void ResetTextBoxes(bool ResetDate, bool ResetCST, bool ResetInvoice, bool ResetGrandTotal)
@@ -551,17 +593,6 @@ namespace SuperMarket.UserControls
             {
                 if (datasource.Count != 0)
                 {
-                    //if (!btn_updateOrder.Enabled)
-                    //{
-                    //    SetEditMode(false);
-
-                    //    foreach (InvoiceModel invoice in datasource)
-                    //    {
-                    //        invoice.CustomerName = txt_cstName.Text;
-                    //        invoice.CustomerContact = txt_cstContact.Text;
-                    //        invoice.CustomerAddress = txt_cstAddress.Text;
-                    //    }
-                    //}
                     if (MessageBox.Show($"هل انت متأكد من انتهائك من العربه؟", "انتظر",
                            MessageBoxButtons.YesNo,
                            MessageBoxIcon.Information) == DialogResult.Yes)
@@ -570,19 +601,20 @@ namespace SuperMarket.UserControls
                         {
                             Classes.DataAccess.Invoices.AddToInvoice(invoice);
                             ProductModel ProductSearch = Classes.DataAccess.Products.GetProductParameter("Id", "" + invoice.ProductID).FirstOrDefault();
-                            ProductSearch.Quantity = "" + (double.Parse(ProductSearch.Quantity) - double.Parse(invoice.ProductQuantity));
+                            ProductSearch.Quantity -= invoice.ProductQuantity;
                             Classes.DataAccess.Products.UpdateProduct(ProductSearch);
                         }
 
                         OrderModel order = new OrderModel
                         {
-                            InvoiceDate = dtp_invoicedate.Value.ToString("hh:mm:ss tt dd/MM/yyyy", new System.Globalization.CultureInfo("ar-AE")),
+                            InvoiceDate = dtp_invoicedate.Value,
                             InvoiceId = datasource[0].InvoiceNumber,
                             CustomerId = datasource[0].CustomerId,
                             CustomerName = datasource[0].CustomerName,
                             ContactNumber = datasource[0].CustomerContact,
                             Address = datasource[0].CustomerAddress,
-                            GrandTotal = txt_grandtotal.Text
+                            GrandTotal = decimal.Parse(txt_grandtotal.Text),
+                            CreatedByUserId = Main.LoggedUser.Id
                         };
                         Classes.DataAccess.Orders.AddOrder(order);
 
@@ -590,7 +622,7 @@ namespace SuperMarket.UserControls
 
                         ResetTextBoxes(true, false, true, true);
 
-                        txt_invoiceno.Text = GetUniqueInvoiceID(9);
+                        txt_invoiceno.Text = GetUniqueInvoiceID(9).ToString();
                     }
 
                 }
@@ -668,7 +700,9 @@ namespace SuperMarket.UserControls
                 txt_prodSearch.DataSource = null;
                 txt_prodSearch.Items.Clear();
 
-                List<ProductModel> productSearch = Classes.DataAccess.Products.GetProductLikeParameter("BarCode", txt_productBarCode.Text);
+                List<ProductModel> productSearch = Classes.DataAccess.Products.GetProductParameter("BarCode", txt_productBarCode.Text);
+
+                //DataTable dataProductSearch = ToDataTable(productSearch);
 
                 txt_prodSearch.DataSource = productSearch;
                 txt_prodSearch.ValueMember = "Id";
@@ -676,23 +710,27 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private DataTable TransformDataToDataTable(DataGridView dataGridView)
+        public DataTable ToDataTable<T>(List<T> items)
         {
-            DataTable dataTable = new DataTable();
-
-            foreach (DataGridViewColumn column in dataGridView.Columns)
+            DataTable dataTable = new DataTable(typeof(T).Name);
+            //Get all the properties
+            System.Reflection.PropertyInfo[] Props = typeof(T).GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+            foreach (System.Reflection.PropertyInfo prop in Props)
             {
-                dataTable.Columns.Add(column.Name, column.ValueType);
+                //Setting column names as Property names
+                dataTable.Columns.Add(prop.Name);
             }
-
-            foreach (DataGridViewRow row in dataGridView.Rows)
+            foreach (T item in items)
             {
-                dataTable.Rows.Add();
-                foreach (DataGridViewCell cell in row.Cells)
+                var values = new object[Props.Length];
+                for (int i = 0; i < Props.Length; i++)
                 {
-                    dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
+                    //inserting property values to datatable rows
+                    values[i] = Props[i].GetValue(item, null);
                 }
+                dataTable.Rows.Add(values);
             }
+            //put a breakpoint here and check datatable
             return dataTable;
         }
 

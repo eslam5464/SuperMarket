@@ -33,7 +33,7 @@ namespace SuperMarket.UserControls
         private void BillsEdit_Load(object sender, EventArgs e)
         {
             SetColors(Properties.Settings.Default.AppColor);
-            //dtp_invoicedate.Text = DateTime.Now.ToString("hh:mm:ss tt dd/MM/yyyy", new System.Globalization.CultureInfo("ar-AE"));
+            //dtp_invoicedate.Text = DateTime.Now.ToString();
             //dtp_invoicedate.CustomFormat = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt", new System.Globalization.CultureInfo("ar-AE"));
         }
 

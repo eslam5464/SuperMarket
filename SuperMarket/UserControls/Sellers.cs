@@ -18,32 +18,34 @@ namespace SuperMarket.UserControls
             InitializeComponent();
         }
 
-        private static int EditedUserId = -1;
+        private static long EditedUserId = -1;
         private readonly IDictionary<int, string> UserLevelDict = new Dictionary<int, string>();
 
         private void HideAndTranslateColums()
         {
-            db_userDataGridView.Columns["FullName"].HeaderText = "الاسم بالكامل";
-            db_userDataGridView.Columns["UserName"].HeaderText = "اسم المستخدم";
-            db_userDataGridView.Columns["Phone"].HeaderText = "رقم الهاتف";
-            db_userDataGridView.Columns["CreationDate"].HeaderText = "يوم الاضافه";
-            db_userDataGridView.Columns["ModifyDate"].HeaderText = "يوم التعديل";
-            db_userDataGridView.Columns["UserLevel"].HeaderText = "مكانه المستخدم";
+            usersDataGridView.Columns["FullName"].HeaderText = "الاسم بالكامل";
+            usersDataGridView.Columns["UserName"].HeaderText = "اسم المستخدم";
+            usersDataGridView.Columns["Phone"].HeaderText = "رقم الهاتف";
+            usersDataGridView.Columns["CreationDate"].HeaderText = "يوم الاضافه";
+            usersDataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
+            usersDataGridView.Columns["ModifyDate"].HeaderText = "يوم التعديل";
+            usersDataGridView.Columns["ModifyDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
+            usersDataGridView.Columns["UserLevel"].HeaderText = "مكانه المستخدم";
 
-            db_userDataGridView.Columns["Id"].Visible = false;
-            db_userDataGridView.Columns["Password"].Visible = false;
-            db_userDataGridView.Columns["Email"].Visible = false;
-            db_userDataGridView.Columns["ActiveState"].Visible = false;
+            usersDataGridView.Columns["Id"].Visible = false;
+            usersDataGridView.Columns["Password"].Visible = false;
+            usersDataGridView.Columns["Email"].Visible = false;
+            usersDataGridView.Columns["ActiveState"].Visible = false;
 
-            db_userDataGridView.AutoResizeColumns();
+            usersDataGridView.AutoResizeColumns();
 
-            db_userDataGridView.Columns["CreationDate"].Width += 5;
-            db_userDataGridView.Columns["ModifyDate"].Width += 5;
+            usersDataGridView.Columns["CreationDate"].Width += 5;
+            usersDataGridView.Columns["ModifyDate"].Width += 5;
         }
 
         private void RefreshDataGrid()
         {
-            db_userDataGridView.DataSource = null;
+            usersDataGridView.DataSource = null;
             List<UserModel> AllUsers = DecryptUsers(Users.LoadAtiveUsersNonAdmin());
 
             foreach (UserModel user in AllUsers)
@@ -51,7 +53,7 @@ namespace SuperMarket.UserControls
                 user.UserLevel = UserLevelDict[int.Parse(user.UserLevel)];
             }
 
-            db_userDataGridView.DataSource = AllUsers;
+            usersDataGridView.DataSource = AllUsers;
             HideAndTranslateColums();
         }
 
@@ -104,7 +106,7 @@ namespace SuperMarket.UserControls
             btn_edit.BackColor = appColor;
             btn_remove.BackColor = appColor;
             btn_save.BackColor = appColor;
-            db_userDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
+            usersDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -125,7 +127,7 @@ namespace SuperMarket.UserControls
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Information) == DialogResult.Yes)
                         {
-                            int UseriD = EditedUserId;
+                            long UseriD = EditedUserId;
                             string CPUID = Security.CPUID, MOBOID = Security.MOBOID;
 
                             UserModel user = new UserModel
@@ -174,7 +176,7 @@ namespace SuperMarket.UserControls
                                         Phone = Security.Encrypt(txt_mobailno.Text, CPUID + MOBOID),
                                         Email = Security.Encrypt("NA", CPUID + MOBOID),
                                         UserLevel = txt_userLevel.SelectedValue.ToString(),
-                                        ActiveState = 1
+                                        ActiveState = true
                                     };
                                     Users.SaveUser(user);
 
@@ -217,19 +219,19 @@ namespace SuperMarket.UserControls
 
         private void btn_edit_Click(object sender, EventArgs e)
         {
-            if (db_userDataGridView != null)
+            if (usersDataGridView != null)
             {
-                if (db_userDataGridView.CurrentCell != null)
+                if (usersDataGridView.CurrentCell != null)
                 {
-                    int RowIndex = db_userDataGridView.CurrentCell.RowIndex;
+                    int RowIndex = usersDataGridView.CurrentCell.RowIndex;
 
-                    string UserName = db_userDataGridView.Rows[RowIndex].Cells["UserName"].Value.ToString(),
-                        Password = db_userDataGridView.Rows[RowIndex].Cells["Password"].Value.ToString(),
-                        FullName = db_userDataGridView.Rows[RowIndex].Cells["FullName"].Value.ToString(),
-                        UserLevel = db_userDataGridView.Rows[RowIndex].Cells["UserLevel"].Value.ToString(),
-                        Phone = db_userDataGridView.Rows[RowIndex].Cells["Phone"].Value.ToString();
+                    string UserName = usersDataGridView.Rows[RowIndex].Cells["UserName"].Value.ToString(),
+                        Password = usersDataGridView.Rows[RowIndex].Cells["Password"].Value.ToString(),
+                        FullName = usersDataGridView.Rows[RowIndex].Cells["FullName"].Value.ToString(),
+                        UserLevel = usersDataGridView.Rows[RowIndex].Cells["UserLevel"].Value.ToString(),
+                        Phone = usersDataGridView.Rows[RowIndex].Cells["Phone"].Value.ToString();
 
-                    EditedUserId = int.Parse(db_userDataGridView.Rows[RowIndex].Cells["Id"].Value.ToString());
+                    EditedUserId = long.Parse(usersDataGridView.Rows[RowIndex].Cells["Id"].Value.ToString());
 
                     txt_userLevel.Text = UserLevel;
                     txt_Username.Text = UserName;
@@ -275,11 +277,11 @@ namespace SuperMarket.UserControls
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                 List<UserModel> AllUsers = Users.LoadAtiveUsersNonAdmin();
-                db_userDataGridView.DataSource = null;
+                usersDataGridView.DataSource = null;
 
                 var user = AllUsers.FindAll(User => Security.Decrypt(User.Username, Security.CPUID + Security.MOBOID) == txt_Username.Text);
 
-                db_userDataGridView.DataSource = DecryptUsers(user);
+                usersDataGridView.DataSource = DecryptUsers(user);
                 HideAndTranslateColums();
             }
         }
@@ -295,12 +297,12 @@ namespace SuperMarket.UserControls
                 Logger.Log($"user is trying to search by full name for seller: {txt_fullname.Text}",
                                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-                db_userDataGridView.DataSource = null;
+                usersDataGridView.DataSource = null;
 
                 List<UserModel> AllUsers = Users.LoadAtiveUsersNonAdmin();
                 var user = AllUsers.FindAll(User => Security.Decrypt(User.FullName, Security.CPUID + Security.MOBOID) == txt_fullname.Text);
 
-                db_userDataGridView.DataSource = DecryptUsers(user);
+                usersDataGridView.DataSource = DecryptUsers(user);
 
                 HideAndTranslateColums();
             }
@@ -308,13 +310,13 @@ namespace SuperMarket.UserControls
 
         private void btn_remove_Click(object sender, EventArgs e)
         {
-            if (db_userDataGridView != null)
+            if (usersDataGridView != null)
             {
-                if (db_userDataGridView.CurrentCell != null)
+                if (usersDataGridView.CurrentCell != null)
                 {
-                    int rowindex = db_userDataGridView.CurrentCell.RowIndex;
-                    int UserId = int.Parse(db_userDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
-                    string UserName = db_userDataGridView.Rows[rowindex].Cells["UserName"].Value.ToString();
+                    int rowindex = usersDataGridView.CurrentCell.RowIndex;
+                    long UserId = long.Parse(usersDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
+                    string UserName = usersDataGridView.Rows[rowindex].Cells["UserName"].Value.ToString();
 
                     Logger.Log($"user is trying to remove seller: {UserName}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
@@ -349,12 +351,12 @@ namespace SuperMarket.UserControls
                 Logger.Log($"user is trying to search by phone for seller: {txt_mobailno.Text}",
                                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-                db_userDataGridView.DataSource = null;
+                usersDataGridView.DataSource = null;
 
                 List<UserModel> AllUsers = Users.LoadAtiveUsersNonAdmin();
                 var user = AllUsers.FindAll(User => Security.Decrypt(User.Phone, Security.CPUID + Security.MOBOID) == txt_mobailno.Text);
 
-                db_userDataGridView.DataSource = DecryptUsers(user);
+                usersDataGridView.DataSource = DecryptUsers(user);
 
                 HideAndTranslateColums();
             }
@@ -408,16 +410,21 @@ namespace SuperMarket.UserControls
 
         private void db_userDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            db_userDataGridView.DataSource = TransformDataToDataTable(db_userDataGridView);
+            usersDataGridView.DataSource = TransformDataToDataTable(usersDataGridView);
 
-            db_userDataGridView.Sort(db_userDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+            usersDataGridView.Sort(usersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
         }
 
         private void db_userDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            db_userDataGridView.DataSource = TransformDataToDataTable(db_userDataGridView);
+            usersDataGridView.DataSource = TransformDataToDataTable(usersDataGridView);
 
-            db_userDataGridView.Sort(db_userDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+            usersDataGridView.Sort(usersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+        }
+
+        private void usersDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

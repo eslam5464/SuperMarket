@@ -36,17 +36,17 @@ namespace SuperMarket.UserControls
 
         private void CalculateAll()
         {
-            double OrderSum = 0;
+            decimal OrderSum = 0;
             foreach (OrderModel order in Classes.DataAccess.Orders.GetAllOrders())
             {
-                OrderSum += double.Parse(order.GrandTotal);
+                OrderSum += order.GrandTotal;
             }
 
             lbl_orders_sum.Text = "" + OrderSum;
             lbl_orders_count.Text = "" + Classes.DataAccess.Orders.GetAllOrders().Count;
             lbl_product_count.Text = "" + Classes.DataAccess.Products.LoadProducts().Count;
             lbl_customer_count.Text = "" + Classes.DataAccess.Customers.LoadCustomers().Count;
-            lbl_user_count.Text = "" + Classes.DataAccess.Users.LoadAtiveUsers().Count;
+            lbl_user_count.Text = "" + Classes.DataAccess.Users.LoadAtiveUsersNonAdmin().Count;
 
             CenterLabels();
         }

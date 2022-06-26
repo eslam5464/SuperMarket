@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SQLite;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace SuperMarket.Classes.DataAccess
@@ -13,31 +13,25 @@ namespace SuperMarket.Classes.DataAccess
     {
         public static List<CustomerModel> LoadCustomers()
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<CustomerModel>($"SELECT * FROM 'Customers'", new DynamicParameters());
+                var output = cnn.Query<CustomerModel>($"SELECT * FROM Customers", new DynamicParameters());
                 return output.ToList();
             }
         }
 
-        private static string LoadConnectionString(string id = "Default")
-        {
-            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
-        }
-
         internal static void SaveCustomer(CustomerModel customer)
         {
-            string DateTimeNow = DateTime.Now.ToString("hh:mm:ss tt dd/MM/yyyy", new System.Globalization.CultureInfo("ar-AE"));
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                cnn.Execute($"INSERT INTO Customers ('Name', 'ContactNo', 'Address', 'CreationDate') VALUES " +
-                    $"(@Name, @ContactNo, @Address,'{DateTimeNow}')", customer);
+                cnn.Execute($"INSERT INTO Customers (Name, ContactNo, Address, CreationDate) VALUES " +
+                    $"(@Name, @ContactNo, @Address, '{DateTime.Now}')", customer);
             }
         }
 
         internal static void UpdateCustomer(CustomerModel customer)
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
                 cnn.Execute($"UPDATE Customers SET Name = @Name, ContactNo = @ContactNo, Address = @Address WHERE Id = @Id", customer);
             }
@@ -45,28 +39,33 @@ namespace SuperMarket.Classes.DataAccess
 
         internal static List<CustomerModel> GetCustomerParameter(string Parameter, string Condition)
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<CustomerModel>($"SELECT * FROM 'Customers' WHERE {Parameter} = '{Condition}'", new DynamicParameters());
+                var output = cnn.Query<CustomerModel>($"SELECT * FROM Customers WHERE {Parameter} = N'{Condition}'", new DynamicParameters());
                 return output.ToList();
             }
         }
 
-        internal static List<CustomerModel> GetCustomerWithID(string CustomerID)
+        internal static List<CustomerModel> GetCustomerWithID(long CustomerID)
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<CustomerModel>($"SELECT * FROM 'Customers' WHERE Id = {CustomerID}", new DynamicParameters());
+                var output = cnn.Query<CustomerModel>($"SELECT * FROM Customers WHERE Id = {CustomerID}", new DynamicParameters());
                 return output.ToList();
             }
         }
 
-        internal static void RemoveCustomer(int customerID)
+        internal static void RemoveCustomer(long customerID)
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
                 cnn.Execute($"DELETE FROM Customers WHERE Id= {customerID}");
             }
+        }
+
+        private static string LoadConnectionString(string id = "Default")
+        {
+            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
     }
 }

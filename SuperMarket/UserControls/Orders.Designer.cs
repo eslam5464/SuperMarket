@@ -29,9 +29,22 @@ namespace SuperMarket.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.db_ordersDataGridView = new System.Windows.Forms.DataGridView();
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.ordersDataGridView = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvoiceId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ContactNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GrandTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreatedByUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ordersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.superMarketDataSet = new SuperMarket.SuperMarketDataSet();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pcb_search_by_customer_name = new System.Windows.Forms.PictureBox();
@@ -42,8 +55,12 @@ namespace SuperMarket.UserControls
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pcb_search_by_invoiceno = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.db_ordersDataGridView)).BeginInit();
+            this.ordersTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.OrdersTableAdapter();
+            this.tableAdapterManager = new SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_customer_name)).BeginInit();
             this.panel4.SuspendLayout();
@@ -51,48 +68,135 @@ namespace SuperMarket.UserControls
             ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_invoiceno)).BeginInit();
             this.SuspendLayout();
             // 
-            // db_ordersDataGridView
-            // 
-            this.db_ordersDataGridView.AllowUserToAddRows = false;
-            this.db_ordersDataGridView.AllowUserToDeleteRows = false;
-            this.db_ordersDataGridView.AllowUserToResizeColumns = false;
-            this.db_ordersDataGridView.AllowUserToResizeRows = false;
-            this.db_ordersDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.db_ordersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.db_ordersDataGridView.ColumnHeadersHeight = 35;
-            this.db_ordersDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.db_ordersDataGridView.EnableHeadersVisualStyles = false;
-            this.db_ordersDataGridView.GridColor = System.Drawing.Color.Silver;
-            this.db_ordersDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.db_ordersDataGridView.MultiSelect = false;
-            this.db_ordersDataGridView.Name = "db_ordersDataGridView";
-            this.db_ordersDataGridView.ReadOnly = true;
-            this.db_ordersDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.db_ordersDataGridView.RowHeadersVisible = false;
-            this.db_ordersDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.db_ordersDataGridView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Palatino Linotype", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.db_ordersDataGridView.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
-            this.db_ordersDataGridView.RowTemplate.Height = 30;
-            this.db_ordersDataGridView.Size = new System.Drawing.Size(1032, 531);
-            this.db_ordersDataGridView.TabIndex = 1;
-            this.db_ordersDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_ordersDataGridView_ColumnHeaderMouseClick);
-            this.db_ordersDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_ordersDataGridView_ColumnHeaderMouseDoubleClick);
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Gray;
-            this.panel3.Controls.Add(this.db_ordersDataGridView);
+            this.panel3.Controls.Add(this.ordersDataGridView);
             this.panel3.Location = new System.Drawing.Point(3, 121);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1032, 531);
+            this.panel3.Size = new System.Drawing.Size(1032, 536);
             this.panel3.TabIndex = 17;
+            // 
+            // ordersDataGridView
+            // 
+            this.ordersDataGridView.AllowUserToAddRows = false;
+            this.ordersDataGridView.AllowUserToDeleteRows = false;
+            this.ordersDataGridView.AllowUserToResizeColumns = false;
+            this.ordersDataGridView.AllowUserToResizeRows = false;
+            this.ordersDataGridView.AutoGenerateColumns = false;
+            this.ordersDataGridView.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ordersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.ordersDataGridView.ColumnHeadersHeight = 40;
+            this.ordersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.InvoiceDate,
+            this.InvoiceId,
+            this.CustomerId,
+            this.CustomerName,
+            this.ContactNumber,
+            this.Address,
+            this.GrandTotal,
+            this.CreatedByUserId});
+            this.ordersDataGridView.DataSource = this.ordersBindingSource;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ordersDataGridView.DefaultCellStyle = dataGridViewCellStyle6;
+            this.ordersDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ordersDataGridView.EnableHeadersVisualStyles = false;
+            this.ordersDataGridView.GridColor = System.Drawing.Color.Silver;
+            this.ordersDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.ordersDataGridView.MultiSelect = false;
+            this.ordersDataGridView.Name = "ordersDataGridView";
+            this.ordersDataGridView.ReadOnly = true;
+            this.ordersDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.ordersDataGridView.RowHeadersVisible = false;
+            this.ordersDataGridView.Size = new System.Drawing.Size(1032, 536);
+            this.ordersDataGridView.TabIndex = 1;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            // 
+            // InvoiceDate
+            // 
+            this.InvoiceDate.DataPropertyName = "InvoiceDate";
+            this.InvoiceDate.HeaderText = "InvoiceDate";
+            this.InvoiceDate.Name = "InvoiceDate";
+            this.InvoiceDate.ReadOnly = true;
+            // 
+            // InvoiceId
+            // 
+            this.InvoiceId.DataPropertyName = "InvoiceId";
+            this.InvoiceId.HeaderText = "InvoiceId";
+            this.InvoiceId.Name = "InvoiceId";
+            this.InvoiceId.ReadOnly = true;
+            // 
+            // CustomerId
+            // 
+            this.CustomerId.DataPropertyName = "CustomerId";
+            this.CustomerId.HeaderText = "CustomerId";
+            this.CustomerId.Name = "CustomerId";
+            this.CustomerId.ReadOnly = true;
+            // 
+            // CustomerName
+            // 
+            this.CustomerName.DataPropertyName = "CustomerName";
+            this.CustomerName.HeaderText = "CustomerName";
+            this.CustomerName.Name = "CustomerName";
+            this.CustomerName.ReadOnly = true;
+            // 
+            // ContactNumber
+            // 
+            this.ContactNumber.DataPropertyName = "ContactNumber";
+            this.ContactNumber.HeaderText = "ContactNumber";
+            this.ContactNumber.Name = "ContactNumber";
+            this.ContactNumber.ReadOnly = true;
+            // 
+            // Address
+            // 
+            this.Address.DataPropertyName = "Address";
+            this.Address.HeaderText = "Address";
+            this.Address.Name = "Address";
+            this.Address.ReadOnly = true;
+            // 
+            // GrandTotal
+            // 
+            this.GrandTotal.DataPropertyName = "GrandTotal";
+            this.GrandTotal.HeaderText = "GrandTotal";
+            this.GrandTotal.Name = "GrandTotal";
+            this.GrandTotal.ReadOnly = true;
+            // 
+            // CreatedByUserId
+            // 
+            this.CreatedByUserId.DataPropertyName = "CreatedByUserId";
+            this.CreatedByUserId.HeaderText = "CreatedByUserId";
+            this.CreatedByUserId.Name = "CreatedByUserId";
+            this.CreatedByUserId.ReadOnly = true;
+            // 
+            // ordersBindingSource
+            // 
+            this.ordersBindingSource.DataMember = "Orders";
+            this.ordersBindingSource.DataSource = this.superMarketDataSet;
+            // 
+            // superMarketDataSet
+            // 
+            this.superMarketDataSet.DataSetName = "SuperMarketDataSet";
+            this.superMarketDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label2
             // 
@@ -128,6 +232,7 @@ namespace SuperMarket.UserControls
             this.pcb_search_by_customer_name.TabIndex = 138;
             this.pcb_search_by_customer_name.TabStop = false;
             this.pcb_search_by_customer_name.Click += new System.EventHandler(this.pcb_search_by_customer_name_Click);
+            this.pcb_search_by_customer_name.DoubleClick += new System.EventHandler(this.pcb_search_by_customer_name_DoubleClick);
             this.pcb_search_by_customer_name.MouseEnter += new System.EventHandler(this.pcb_search_by_MouseEnter);
             this.pcb_search_by_customer_name.MouseLeave += new System.EventHandler(this.pcb_search_by_MouseLeave);
             // 
@@ -143,6 +248,7 @@ namespace SuperMarket.UserControls
             this.txt_customername.Name = "txt_customername";
             this.txt_customername.Size = new System.Drawing.Size(304, 45);
             this.txt_customername.TabIndex = 48;
+            this.txt_customername.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_order_KeyDown);
             // 
             // label1
             // 
@@ -168,6 +274,8 @@ namespace SuperMarket.UserControls
             this.txt_invoiceno.Name = "txt_invoiceno";
             this.txt_invoiceno.Size = new System.Drawing.Size(304, 45);
             this.txt_invoiceno.TabIndex = 47;
+            this.txt_invoiceno.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_order_KeyDown);
+            this.txt_invoiceno.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_invoiceno_KeyPress);
             // 
             // btn_refresh
             // 
@@ -214,8 +322,24 @@ namespace SuperMarket.UserControls
             this.pcb_search_by_invoiceno.TabIndex = 138;
             this.pcb_search_by_invoiceno.TabStop = false;
             this.pcb_search_by_invoiceno.Click += new System.EventHandler(this.pcb_search_by_invoiceno_Click);
+            this.pcb_search_by_invoiceno.DoubleClick += new System.EventHandler(this.pcb_search_by_invoiceno_DoubleClick);
             this.pcb_search_by_invoiceno.MouseEnter += new System.EventHandler(this.pcb_search_by_MouseEnter);
             this.pcb_search_by_invoiceno.MouseLeave += new System.EventHandler(this.pcb_search_by_MouseLeave);
+            // 
+            // ordersTableAdapter
+            // 
+            this.ordersTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CategoriesTableAdapter = null;
+            this.tableAdapterManager.CustomersTableAdapter = null;
+            this.tableAdapterManager.InvoicesTableAdapter = null;
+            this.tableAdapterManager.OrdersTableAdapter = this.ordersTableAdapter;
+            this.tableAdapterManager.ProductsTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UsersTableAdapter = null;
             // 
             // Orders
             // 
@@ -229,8 +353,10 @@ namespace SuperMarket.UserControls
             this.Name = "Orders";
             this.Size = new System.Drawing.Size(1038, 660);
             this.Load += new System.EventHandler(this.Orders_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.db_ordersDataGridView)).EndInit();
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_customer_name)).EndInit();
@@ -243,8 +369,6 @@ namespace SuperMarket.UserControls
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView db_ordersDataGridView;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.PictureBox pcb_search_by_invoiceno;
         private System.Windows.Forms.Label label2;
@@ -256,5 +380,19 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.Button btn_refresh;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel1;
+        private SuperMarketDataSet superMarketDataSet;
+        private System.Windows.Forms.BindingSource ordersBindingSource;
+        private SuperMarketDataSetTableAdapters.OrdersTableAdapter ordersTableAdapter;
+        private SuperMarketDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.DataGridView ordersDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ContactNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GrandTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CreatedByUserId;
     }
 }

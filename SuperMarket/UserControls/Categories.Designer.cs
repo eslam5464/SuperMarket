@@ -1,5 +1,4 @@
-﻿
-namespace SuperMarket.UserControls
+﻿namespace SuperMarket.UserControls
 {
     partial class Categories
     {
@@ -29,11 +28,18 @@ namespace SuperMarket.UserControls
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_remove = new System.Windows.Forms.Button();
             this.btn_edit = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.db_categoriesDataGridView = new System.Windows.Forms.DataGridView();
+            this.categoriesDataGridView = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.superMarketDataSet = new SuperMarket.SuperMarketDataSet();
             this.btn_save = new System.Windows.Forms.Button();
             this.txt_categorieid = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -42,10 +48,12 @@ namespace SuperMarket.UserControls
             this.label1 = new System.Windows.Forms.Label();
             this.pcb_searchID = new System.Windows.Forms.PictureBox();
             this.pcb_searchName = new System.Windows.Forms.PictureBox();
-            this.txt_sort = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.categoriesTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.CategoriesTableAdapter();
+            this.tableAdapterManager = new SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.db_categoriesDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).BeginInit();
             this.SuspendLayout();
@@ -57,7 +65,7 @@ namespace SuperMarket.UserControls
             this.btn_remove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_remove.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
             this.btn_remove.ForeColor = System.Drawing.Color.White;
-            this.btn_remove.Location = new System.Drawing.Point(519, 121);
+            this.btn_remove.Location = new System.Drawing.Point(728, 121);
             this.btn_remove.Name = "btn_remove";
             this.btn_remove.Size = new System.Drawing.Size(154, 50);
             this.btn_remove.TabIndex = 137;
@@ -72,7 +80,7 @@ namespace SuperMarket.UserControls
             this.btn_edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_edit.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
             this.btn_edit.ForeColor = System.Drawing.Color.White;
-            this.btn_edit.Location = new System.Drawing.Point(338, 121);
+            this.btn_edit.Location = new System.Drawing.Point(454, 121);
             this.btn_edit.Name = "btn_edit";
             this.btn_edit.Size = new System.Drawing.Size(154, 50);
             this.btn_edit.TabIndex = 136;
@@ -83,44 +91,84 @@ namespace SuperMarket.UserControls
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Gray;
-            this.panel1.Controls.Add(this.db_categoriesDataGridView);
+            this.panel1.Controls.Add(this.categoriesDataGridView);
             this.panel1.Location = new System.Drawing.Point(2, 196);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1035, 449);
             this.panel1.TabIndex = 138;
             // 
-            // db_categoriesDataGridView
+            // categoriesDataGridView
             // 
-            this.db_categoriesDataGridView.AllowUserToAddRows = false;
-            this.db_categoriesDataGridView.AllowUserToDeleteRows = false;
-            this.db_categoriesDataGridView.AllowUserToResizeColumns = false;
-            this.db_categoriesDataGridView.AllowUserToResizeRows = false;
-            this.db_categoriesDataGridView.BackgroundColor = System.Drawing.Color.White;
+            this.categoriesDataGridView.AllowUserToAddRows = false;
+            this.categoriesDataGridView.AllowUserToDeleteRows = false;
+            this.categoriesDataGridView.AllowUserToResizeColumns = false;
+            this.categoriesDataGridView.AllowUserToResizeRows = false;
+            this.categoriesDataGridView.AutoGenerateColumns = false;
+            this.categoriesDataGridView.BackgroundColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.db_categoriesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.db_categoriesDataGridView.ColumnHeadersHeight = 40;
-            this.db_categoriesDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.db_categoriesDataGridView.EnableHeadersVisualStyles = false;
-            this.db_categoriesDataGridView.GridColor = System.Drawing.Color.Silver;
-            this.db_categoriesDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.db_categoriesDataGridView.MultiSelect = false;
-            this.db_categoriesDataGridView.Name = "db_categoriesDataGridView";
-            this.db_categoriesDataGridView.ReadOnly = true;
-            this.db_categoriesDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.db_categoriesDataGridView.RowHeadersVisible = false;
-            this.db_categoriesDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.db_categoriesDataGridView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Palatino Linotype", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.db_categoriesDataGridView.RowTemplate.Height = 35;
-            this.db_categoriesDataGridView.Size = new System.Drawing.Size(1035, 449);
-            this.db_categoriesDataGridView.TabIndex = 1;
-            this.db_categoriesDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_categoriesDataGridView_ColumnHeaderMouseClick);
-            this.db_categoriesDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_categoriesDataGridView_ColumnHeaderMouseDoubleClick);
+            this.categoriesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.categoriesDataGridView.ColumnHeadersHeight = 40;
+            this.categoriesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.CategoryName,
+            this.CreationDate});
+            this.categoriesDataGridView.DataSource = this.categoriesBindingSource;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.categoriesDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            this.categoriesDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.categoriesDataGridView.EnableHeadersVisualStyles = false;
+            this.categoriesDataGridView.GridColor = System.Drawing.Color.Silver;
+            this.categoriesDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.categoriesDataGridView.MultiSelect = false;
+            this.categoriesDataGridView.Name = "categoriesDataGridView";
+            this.categoriesDataGridView.ReadOnly = true;
+            this.categoriesDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.categoriesDataGridView.RowHeadersVisible = false;
+            this.categoriesDataGridView.Size = new System.Drawing.Size(1035, 449);
+            this.categoriesDataGridView.TabIndex = 0;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            // 
+            // CategoryName
+            // 
+            this.CategoryName.DataPropertyName = "Name";
+            this.CategoryName.HeaderText = "Name";
+            this.CategoryName.Name = "CategoryName";
+            this.CategoryName.ReadOnly = true;
+            // 
+            // CreationDate
+            // 
+            this.CreationDate.DataPropertyName = "CreationDate";
+            this.CreationDate.HeaderText = "CreationDate";
+            this.CreationDate.Name = "CreationDate";
+            this.CreationDate.ReadOnly = true;
+            // 
+            // categoriesBindingSource
+            // 
+            this.categoriesBindingSource.DataMember = "Categories";
+            this.categoriesBindingSource.DataSource = this.superMarketDataSet;
+            // 
+            // superMarketDataSet
+            // 
+            this.superMarketDataSet.DataSetName = "SuperMarketDataSet";
+            this.superMarketDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btn_save
             // 
@@ -129,7 +177,7 @@ namespace SuperMarket.UserControls
             this.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_save.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_save.ForeColor = System.Drawing.Color.White;
-            this.btn_save.Location = new System.Drawing.Point(160, 121);
+            this.btn_save.Location = new System.Drawing.Point(180, 121);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(154, 50);
             this.btn_save.TabIndex = 135;
@@ -231,39 +279,25 @@ namespace SuperMarket.UserControls
             this.pcb_searchName.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
             this.pcb_searchName.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
             // 
-            // txt_sort
+            // categoriesTableAdapter
             // 
-            this.txt_sort.DropDownHeight = 200;
-            this.txt_sort.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.txt_sort.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_sort.FormattingEnabled = true;
-            this.txt_sort.IntegralHeight = false;
-            this.txt_sort.Location = new System.Drawing.Point(763, 141);
-            this.txt_sort.MaxDropDownItems = 10;
-            this.txt_sort.Name = "txt_sort";
-            this.txt_sort.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txt_sort.Size = new System.Drawing.Size(232, 40);
-            this.txt_sort.TabIndex = 217;
-            this.txt_sort.SelectedIndexChanged += new System.EventHandler(this.txt_sort_SelectedIndexChanged);
+            this.categoriesTableAdapter.ClearBeforeFill = true;
             // 
-            // label4
+            // tableAdapterManager
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Purple;
-            this.label4.Location = new System.Drawing.Point(857, 110);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(101, 28);
-            this.label4.TabIndex = 218;
-            this.label4.Text = ":فرز حسب";
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CategoriesTableAdapter = this.categoriesTableAdapter;
+            this.tableAdapterManager.CustomersTableAdapter = null;
+            this.tableAdapterManager.InvoicesTableAdapter = null;
+            this.tableAdapterManager.OrdersTableAdapter = null;
+            this.tableAdapterManager.ProductsTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UsersTableAdapter = null;
             // 
             // Categories
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.txt_sort);
             this.Controls.Add(this.txt_categoriename);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_remove);
@@ -280,7 +314,9 @@ namespace SuperMarket.UserControls
             this.Size = new System.Drawing.Size(1038, 660);
             this.Load += new System.EventHandler(this.Categories_Load);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.db_categoriesDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).EndInit();
             this.ResumeLayout(false);
@@ -293,7 +329,6 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.Button btn_remove;
         private System.Windows.Forms.Button btn_edit;
         private System.Windows.Forms.Panel panel1;
-        public System.Windows.Forms.DataGridView db_categoriesDataGridView;
         private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.PictureBox pcb_searchID;
         private System.Windows.Forms.PictureBox pcb_searchName;
@@ -302,7 +337,13 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txt_categoriename;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox txt_sort;
-        private System.Windows.Forms.Label label4;
+        private SuperMarketDataSet superMarketDataSet;
+        private System.Windows.Forms.BindingSource categoriesBindingSource;
+        private SuperMarketDataSetTableAdapters.CategoriesTableAdapter categoriesTableAdapter;
+        private SuperMarketDataSetTableAdapters.TableAdapterManager tableAdapterManager;
+        private System.Windows.Forms.DataGridView categoriesDataGridView;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CategoryName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CreationDate;
     }
 }

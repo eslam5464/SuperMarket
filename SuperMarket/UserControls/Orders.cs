@@ -24,30 +24,6 @@ namespace SuperMarket.UserControls
                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
         }
 
-        private void pcb_search_by_customer_name_Click(object sender, EventArgs e)
-        {
-            //if (txt_customername.Text.Trim() == "")
-            //    LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers());
-
-            //else
-            //{
-            //    List<CustomerModel> customerSearch = Classes.DataAccess.Customers.GetCustomerParameter("Name", txt_customername.Text);
-            //    LoadDataGrid(customerSearch);
-            //}
-        }
-
-        private void pcb_search_by_invoiceno_Click(object sender, EventArgs e)
-        {
-            //if (txt_customername.Text.Trim() == "")
-            //    LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers());
-
-            //else
-            //{
-            //    List<CustomerModel> customerSearch = Classes.DataAccess.Customers.GetCustomerParameter("Name", txt_customername.Text);
-            //    LoadDataGrid(customerSearch);
-            //}
-        }
-
         private void pcb_search_by_MouseEnter(object sender, EventArgs e)
         {
             Control FocusedObject = (Control)sender;
@@ -68,21 +44,28 @@ namespace SuperMarket.UserControls
 
         private void LoadDataGrid(List<OrderModel> Orders)
         {
-            db_ordersDataGridView.DataSource = null;
-            db_ordersDataGridView.DataSource = Orders;
+            ordersDataGridView.DataSource = null;
+            ordersDataGridView.DataSource = Orders;
 
-            db_ordersDataGridView.Columns["InvoiceDate"].HeaderText = "تاريخ الطلب";
-            db_ordersDataGridView.Columns["InvoiceId"].HeaderText = "رقم الفاتورة";
-            db_ordersDataGridView.Columns["CustomerId"].HeaderText = "الرقم التعريفي للعميل";
-            db_ordersDataGridView.Columns["CustomerName"].HeaderText = "اسم العميل";
-            db_ordersDataGridView.Columns["ContactNumber"].HeaderText = "رقم الإتصال";
-            db_ordersDataGridView.Columns["Address"].HeaderText = "العنوان";
-            db_ordersDataGridView.Columns["GrandTotal"].HeaderText = "المجموع الكلي للفاتورة";
+            HideAndTranslateColums();
+        }
 
-            db_ordersDataGridView.Columns["Id"].Visible = false;
+        private void HideAndTranslateColums()
+        {
+            ordersDataGridView.Columns["InvoiceDate"].HeaderText = "تاريخ الطلب";
+            ordersDataGridView.Columns["InvoiceDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
+            ordersDataGridView.Columns["InvoiceId"].HeaderText = "رقم الفاتورة";
+            ordersDataGridView.Columns["CustomerId"].HeaderText = "الرقم التعريفي للعميل";
+            ordersDataGridView.Columns["CustomerName"].HeaderText = "اسم العميل";
+            ordersDataGridView.Columns["ContactNumber"].HeaderText = "رقم الإتصال";
+            ordersDataGridView.Columns["Address"].HeaderText = "العنوان";
+            ordersDataGridView.Columns["GrandTotal"].HeaderText = "المجموع الكلي للفاتورة";
+            ordersDataGridView.Columns["CreatedByUserId"].HeaderText = "الرقم التعريفي للموظف";
 
-            db_ordersDataGridView.AutoResizeColumns();
-            db_ordersDataGridView.Columns["InvoiceDate"].Width += 5;
+            ordersDataGridView.Columns["Id"].Visible = false;
+
+            ordersDataGridView.AutoResizeColumns();
+            ordersDataGridView.Columns["InvoiceDate"].Width += 5;
         }
 
         private void SetColors(Color appColor)
@@ -90,7 +73,7 @@ namespace SuperMarket.UserControls
             label1.ForeColor = appColor;
             label2.ForeColor = appColor;
             btn_refresh.BackColor = appColor;
-            db_ordersDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
+            ordersDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
         }
 
         private DataTable TransformDataToDataTable(DataGridView dataGridView)
@@ -115,16 +98,88 @@ namespace SuperMarket.UserControls
 
         private void db_ordersDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            db_ordersDataGridView.DataSource = TransformDataToDataTable(db_ordersDataGridView);
+            ordersDataGridView.DataSource = TransformDataToDataTable(ordersDataGridView);
 
-            db_ordersDataGridView.Sort(db_ordersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+            ordersDataGridView.Sort(ordersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
         }
 
         private void db_ordersDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            db_ordersDataGridView.DataSource = TransformDataToDataTable(db_ordersDataGridView);
+            ordersDataGridView.DataSource = TransformDataToDataTable(ordersDataGridView);
 
-            db_ordersDataGridView.Sort(db_ordersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+            ordersDataGridView.Sort(ordersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+        }
+
+        private void ordersBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.ordersBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.superMarketDataSet);
+
+        }
+
+        private void ordersBindingNavigatorSaveItem_Click_1(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.ordersBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.superMarketDataSet);
+
+        }
+
+        private void txt_order_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void pcb_search_by_customer_name_DoubleClick(object sender, EventArgs e)
+        {
+            LoadDataGrid(Classes.DataAccess.Orders.GetAllOrders());
+        }
+
+        private void pcb_search_by_invoiceno_DoubleClick(object sender, EventArgs e)
+        {
+            LoadDataGrid(Classes.DataAccess.Orders.GetAllOrders());
+        }
+
+        private void pcb_search_by_customer_name_Click(object sender, EventArgs e)
+        {
+            if (txt_customername.Text.Trim() != "")
+            {
+                Logger.Log($"user is trying to search by customer name for order: {txt_customername.Text}",
+                               System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+                List<OrderModel> productSearch = Classes.DataAccess.Orders.GetOrderParameter("CustomerName", txt_customername.Text);
+
+                LoadDataGrid(productSearch);
+
+                HideAndTranslateColums();
+            }
+        }
+
+        private void pcb_search_by_invoiceno_Click(object sender, EventArgs e)
+        {
+            if (txt_invoiceno.Text.Trim() != "")
+            {
+                Logger.Log($"user is trying to search by invoice number for order: {txt_invoiceno.Text}",
+                               System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+                List<OrderModel> productSearch = Classes.DataAccess.Orders.GetOrderParameter("InvoiceId", txt_invoiceno.Text);
+
+                LoadDataGrid(productSearch);
+
+                HideAndTranslateColums();
+            }
+        }
+
+        private void txt_invoiceno_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

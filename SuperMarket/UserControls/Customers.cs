@@ -18,17 +18,18 @@ namespace SuperMarket.UserControls
 
         private void LoadDataGrid(List<CustomerModel> Customers)
         {
-            db_customersDataGridView.DataSource = null;
-            db_customersDataGridView.DataSource = Customers;
+            customersDataGridView.DataSource = null;
+            customersDataGridView.DataSource = Customers;
 
-            db_customersDataGridView.Columns["Id"].HeaderText = "الرقم التعريفي للعميل";
-            db_customersDataGridView.Columns["Name"].HeaderText = "اسم العميل";
-            db_customersDataGridView.Columns["ContactNo"].HeaderText = "رقم الاتصال";
-            db_customersDataGridView.Columns["Address"].HeaderText = "العنوان";
-            db_customersDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه العميل";
+            customersDataGridView.Columns["Id"].HeaderText = "الرقم التعريفي للعميل";
+            customersDataGridView.Columns["CustomerName"].HeaderText = "اسم العميل";
+            customersDataGridView.Columns["ContactNo"].HeaderText = "رقم الاتصال";
+            customersDataGridView.Columns["Address"].HeaderText = "العنوان";
+            customersDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه العميل";
+            customersDataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
 
-            db_customersDataGridView.AutoResizeColumns();
-            db_customersDataGridView.Columns["CreationDate"].Width += 5;
+            customersDataGridView.AutoResizeColumns();
+            customersDataGridView.Columns["CreationDate"].Width += 5;
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -54,7 +55,7 @@ namespace SuperMarket.UserControls
                         {
                             CustomerModel customer = new CustomerModel
                             {
-                                Id = int.Parse(txt_customerid.Text),
+                                Id = long.Parse(txt_customerid.Text),
                                 Name = txt_customername.Text,
                                 Address = txt_address.Text,
                                 ContactNo = txt_contact.Text
@@ -161,21 +162,21 @@ namespace SuperMarket.UserControls
             btn_save.BackColor = appColor;
             btn_remove.BackColor = appColor;
             btn_edit.BackColor = appColor;
-            db_customersDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
+            customersDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
         }
 
         private void btn_edit_Click(object sender, EventArgs e)
         {
-            if (db_customersDataGridView != null)
+            if (customersDataGridView != null)
             {
-                if (db_customersDataGridView.CurrentCell != null)
+                if (customersDataGridView.CurrentCell != null)
                 {
-                    int rowindex = db_customersDataGridView.CurrentCell.RowIndex;
+                    int rowindex = customersDataGridView.CurrentCell.RowIndex;
 
-                    int CustomerID = int.Parse(db_customersDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
-                    string CustomerName = db_customersDataGridView.Rows[rowindex].Cells["Name"].Value.ToString(),
-                     CustomerAddress = db_customersDataGridView.Rows[rowindex].Cells["Address"].Value.ToString(),
-                     CustomerContactNo = db_customersDataGridView.Rows[rowindex].Cells["ContactNo"].Value.ToString();
+                    long CustomerID = long.Parse(customersDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
+                    string CustomerName = customersDataGridView.Rows[rowindex].Cells["CustomerName"].Value.ToString(),
+                     CustomerAddress = customersDataGridView.Rows[rowindex].Cells["Address"].Value.ToString(),
+                     CustomerContactNo = customersDataGridView.Rows[rowindex].Cells["ContactNo"].Value.ToString();
 
                     txt_customerid.Text = "" + CustomerID;
                     txt_customername.Text = CustomerName;
@@ -208,13 +209,13 @@ namespace SuperMarket.UserControls
         private void btn_remove_Click(object sender, EventArgs e)
         {
 
-            if (db_customersDataGridView != null)
+            if (customersDataGridView != null)
             {
-                if (db_customersDataGridView.CurrentCell != null)
+                if (customersDataGridView.CurrentCell != null)
                 {
-                    int rowindex = db_customersDataGridView.CurrentCell.RowIndex;
-                    int CustomerID = int.Parse(db_customersDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
-                    string CustomerName = db_customersDataGridView.Rows[rowindex].Cells["Name"].Value.ToString();
+                    int rowindex = customersDataGridView.CurrentCell.RowIndex;
+                    long CustomerID = long.Parse(customersDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
+                    string CustomerName = customersDataGridView.Rows[rowindex].Cells["CustomerName"].Value.ToString();
 
                     Logger.Log($"user is trying to remove {CustomerName}",
                         System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
@@ -283,18 +284,26 @@ namespace SuperMarket.UserControls
             return dataTable;
         }
 
-        private void db_customersDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void customersDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            db_customersDataGridView.DataSource = TransformDataToDataTable(db_customersDataGridView);
+            customersDataGridView.DataSource = TransformDataToDataTable(customersDataGridView);
 
-            db_customersDataGridView.Sort(db_customersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+            customersDataGridView.Sort(customersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
         }
 
-        private void db_customersDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void customersDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            db_customersDataGridView.DataSource = TransformDataToDataTable(db_customersDataGridView);
+            customersDataGridView.DataSource = TransformDataToDataTable(customersDataGridView);
 
-            db_customersDataGridView.Sort(db_customersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+            customersDataGridView.Sort(customersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+        }
+
+        private void customersBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.customersBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.superMarketDataSet);
+
         }
     }
 }

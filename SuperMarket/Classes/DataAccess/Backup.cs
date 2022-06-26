@@ -1,6 +1,7 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Configuration;
-using System.Data.SQLite;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 
@@ -49,24 +50,31 @@ namespace SuperMarket.Classes.DataAccess
 
             if (Overwrite)
             {
-                using (var location = new SQLiteConnection(LoadConnectionString(Id)))
-                using (var destination = new SQLiteConnection($@"Data Source={strDestination}\{FileName}; Version=3;"))
+                using (var location = new SqlConnection(LoadConnectionString(Id)))
+                //using (var destination = new SqlConnection($@"Data Source={strDestination}\{FileName}; Version=3;"))
                 {
-                    location.Open();
-                    destination.Open();
-                    location.BackupDatabase(destination, "main", "main", -1, null, 0);
+                    location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{FileName}'", new DynamicParameters());
+                    /*
+                     * BACKUP DATABASE testDB
+                        TO DISK = 'D:\backups\testDB.bak'
+                        WITH DIFFERENTIAL;
+                     */
+                    //location.Open();
+                    //destination.Open();
+                    //location.BackupDatabase(destination, "main", "main", -1, null, 0);
                 }
                 Logger.Log("created backup and orverwrited the file",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.WARNING);
             }
             if (!Overwrite && !File.Exists(strDestination + FileName))
             {
-                using (var location = new SQLiteConnection(LoadConnectionString(Id)))
-                using (var destination = new SQLiteConnection($@"Data Source={strDestination}\{FileName}; Version=3;"))
+                using (var location = new SqlConnection(LoadConnectionString(Id)))
+                //using (var destination = new SqlConnection($@"Data Source={strDestination}\{FileName}; Version=3;"))
                 {
-                    location.Open();
-                    destination.Open();
-                    location.BackupDatabase(destination, "main", "main", -1, null, 0);
+                    location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{FileName}'", new DynamicParameters());
+                    //location.Open();
+                    //destination.Open();
+                    //location.BackupDatabase(destination, "main", "main", -1, null, 0);
                 }
 
                 Logger.Log("created backup without overwriting the file",

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SQLite;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace SuperMarket.Classes.DataAccess
@@ -13,59 +13,58 @@ namespace SuperMarket.Classes.DataAccess
     {
         public static List<CategoryModel> GetCategoryParameter(string Parameter, string Condition)
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<CategoryModel>($"SELECT * FROM 'Categories' WHERE {Parameter} = '{Condition}'", new DynamicParameters());
+                var output = cnn.Query<CategoryModel>($"SELECT * FROM Categories WHERE {Parameter} = N'{Condition}'", new DynamicParameters());
                 return output.ToList();
             }
         }
 
         public static List<CategoryModel> LoadCategoryNames()
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<CategoryModel>("SELECT Name FROM 'Categories'", new DynamicParameters());
+                var output = cnn.Query<CategoryModel>("SELECT Name FROM Categories", new DynamicParameters());
                 return output.ToList();
             }
         }
 
         public static List<CategoryModel> LoadCategories()
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<CategoryModel>("SELECT * FROM 'Categories'", new DynamicParameters());
+                var output = cnn.Query<CategoryModel>("SELECT * FROM Categories", new DynamicParameters());
                 return output.ToList();
             }
         }
 
         public static void SaveCategory(CategoryModel Category)
         {
-            string DateTimeNow = DateTime.Now.ToString("hh:mm:ss tt dd/MM/yyyy", new System.Globalization.CultureInfo("ar-AE"));
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                cnn.Execute($"INSERT INTO Categories ('Name', 'CreationDate') VALUES (@Name, '{DateTimeNow}')", Category);
+                cnn.Execute($"INSERT INTO Categories (Name, CreationDate) VALUES (@Name, '{DateTime.Now}')", Category);
             }
         }
 
         public static void UpdateCategory(CategoryModel Category)
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
                 cnn.Execute($"UPDATE Categories SET Name = @Name WHERE Id = @Id", Category);
+            }
+        }
+
+        internal static void RemoveCategory(long categoryID)
+        {
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            {
+                cnn.Execute($"DELETE FROM Categories WHERE Id = {categoryID}");
             }
         }
 
         private static string LoadConnectionString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
-        }
-
-        internal static void RemoveCategory(int categoryID)
-        {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-            {
-                cnn.Execute($"DELETE FROM Categories WHERE Id= {categoryID}");
-            }
         }
     }
 }

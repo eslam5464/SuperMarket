@@ -111,7 +111,7 @@ namespace SuperMarket.Forms
                     Phone = Security.Encrypt("01100308506", CPUID + MOBOID),
                     Email = Security.Encrypt("NA", CPUID + MOBOID),
                     UserLevel = "admin",
-                    ActiveState = 1
+                    ActiveState = true
                 };
                 Classes.DataAccess.Users.SaveUser(user);
             }

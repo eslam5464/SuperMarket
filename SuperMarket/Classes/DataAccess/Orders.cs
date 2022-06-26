@@ -3,35 +3,44 @@ using SuperMarket.Classes.Models;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Data.SQLite;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace SuperMarket.Classes.DataAccess
 {
     internal class Orders
     {
-        internal static void AddOrder(OrderModel order)
+        internal static List<OrderModel> GetOrderParameter(string Parameter, string Condition)
         {
-            //string DateTimeNow = DateTime.Now.ToString("hh:mm:ss tt dd/MM/yyyy", new System.Globalization.CultureInfo("ar-AE"));
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                cnn.Execute($"INSERT INTO Orders ('InvoiceDate', 'InvoiceId', 'CustomerId', 'CustomerName', " +
-                    $"'ContactNumber','Address', 'GrandTotal') VALUES (@InvoiceDate, @InvoiceId, @CustomerId, @CustomerName, " +
-                    $"@ContactNumber, @Address, @GrandTotal)", order);
+                var output = cnn.Query<OrderModel>($"SELECT * FROM Orders WHERE {Parameter} = N'{Condition}'", new DynamicParameters());
+                return output.ToList();
             }
         }
-        private static string LoadConnectionString(string id = "Default")
+
+        internal static void AddOrder(OrderModel order)
         {
-            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            {
+                cnn.Execute($"INSERT INTO Orders (InvoiceDate, InvoiceId, CustomerId, CustomerName, " +
+                    $"ContactNumber, Address, GrandTotal, CreatedByUserId) VALUES (@InvoiceDate, @InvoiceId, @CustomerId, @CustomerName, " +
+                    $"@ContactNumber, @Address, @GrandTotal, @CreatedByUserId)", order);
+            }
         }
 
         internal static List<OrderModel> GetAllOrders()
         {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<OrderModel>($"SELECT * FROM 'Orders'", new DynamicParameters());
+                var output = cnn.Query<OrderModel>($"SELECT * FROM Orders", new DynamicParameters());
                 return output.ToList();
             }
+        }
+
+        private static string LoadConnectionString(string id = "Default")
+        {
+            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
     }
 }

@@ -1,15 +1,17 @@
-﻿namespace SuperMarket.Classes.Models
+﻿using System;
+
+namespace SuperMarket.Classes.Models
 {
     internal class ProductModel
     {
-        public int Id { get; set; }
-        public string BarCode { get; set; }
+        public long Id { get; set; }
+        public long BarCode { get; set; }
         public string Name { get; set; }
-        public string Quantity { get; set; }
-        public string Price { get; set; }
+        public double Quantity { get; set; }
+        public decimal Price { get; set; }
         public string Description { get; set; }
-        public int CategoryID { get; set; }
+        public long CategoryID { get; set; }
         public string CategoryName { get; set; }
-        public string CreationDate { get; set; }
+        public DateTime CreationDate { get; set; }
     }
 }

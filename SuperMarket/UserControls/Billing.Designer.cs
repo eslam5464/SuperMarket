@@ -29,7 +29,7 @@ namespace SuperMarket.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_print = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
             this.txt_grandtotal = new System.Windows.Forms.TextBox();
@@ -44,7 +44,6 @@ namespace SuperMarket.UserControls
             this.panel6 = new System.Windows.Forms.Panel();
             this.lbl_productid = new System.Windows.Forms.Label();
             this.lbl_customerid = new System.Windows.Forms.Label();
-            this.db_procardsDataGridView = new System.Windows.Forms.DataGridView();
             this.txt_cstAddress = new System.Windows.Forms.TextBox();
             this.txt_cstContact = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -59,6 +58,7 @@ namespace SuperMarket.UserControls
             this.label9 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.db_procardsDataGridView = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -78,8 +78,8 @@ namespace SuperMarket.UserControls
             this.txt_prodSearch = new System.Windows.Forms.ComboBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.db_procardsDataGridView)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.db_procardsDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_getInvoiceID)).BeginInit();
@@ -285,40 +285,6 @@ namespace SuperMarket.UserControls
             this.lbl_customerid.Size = new System.Drawing.Size(0, 23);
             this.lbl_customerid.TabIndex = 132;
             // 
-            // db_procardsDataGridView
-            // 
-            this.db_procardsDataGridView.AllowUserToAddRows = false;
-            this.db_procardsDataGridView.AllowUserToDeleteRows = false;
-            this.db_procardsDataGridView.AllowUserToResizeColumns = false;
-            this.db_procardsDataGridView.AllowUserToResizeRows = false;
-            this.db_procardsDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.db_procardsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.db_procardsDataGridView.ColumnHeadersHeight = 40;
-            this.db_procardsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.db_procardsDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.db_procardsDataGridView.EnableHeadersVisualStyles = false;
-            this.db_procardsDataGridView.GridColor = System.Drawing.Color.Silver;
-            this.db_procardsDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.db_procardsDataGridView.MultiSelect = false;
-            this.db_procardsDataGridView.Name = "db_procardsDataGridView";
-            this.db_procardsDataGridView.ReadOnly = true;
-            this.db_procardsDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.db_procardsDataGridView.RowHeadersVisible = false;
-            this.db_procardsDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.db_procardsDataGridView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Palatino Linotype", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.db_procardsDataGridView.RowTemplate.Height = 24;
-            this.db_procardsDataGridView.Size = new System.Drawing.Size(998, 201);
-            this.db_procardsDataGridView.TabIndex = 1;
-            this.db_procardsDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_procardsDataGridView_ColumnHeaderMouseClick);
-            this.db_procardsDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_procardsDataGridView_ColumnHeaderMouseDoubleClick);
-            // 
             // txt_cstAddress
             // 
             this.txt_cstAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -506,6 +472,39 @@ namespace SuperMarket.UserControls
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1000, 203);
             this.panel3.TabIndex = 208;
+            // 
+            // db_procardsDataGridView
+            // 
+            this.db_procardsDataGridView.AllowUserToAddRows = false;
+            this.db_procardsDataGridView.AllowUserToDeleteRows = false;
+            this.db_procardsDataGridView.AllowUserToResizeColumns = false;
+            this.db_procardsDataGridView.AllowUserToResizeRows = false;
+            this.db_procardsDataGridView.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.db_procardsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.db_procardsDataGridView.ColumnHeadersHeight = 40;
+            this.db_procardsDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.db_procardsDataGridView.EnableHeadersVisualStyles = false;
+            this.db_procardsDataGridView.GridColor = System.Drawing.Color.Silver;
+            this.db_procardsDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.db_procardsDataGridView.MultiSelect = false;
+            this.db_procardsDataGridView.Name = "db_procardsDataGridView";
+            this.db_procardsDataGridView.ReadOnly = true;
+            this.db_procardsDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.db_procardsDataGridView.RowHeadersVisible = false;
+            this.db_procardsDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.db_procardsDataGridView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Palatino Linotype", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.db_procardsDataGridView.RowTemplate.Height = 24;
+            this.db_procardsDataGridView.Size = new System.Drawing.Size(998, 201);
+            this.db_procardsDataGridView.TabIndex = 1;
+            this.db_procardsDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_procardsDataGridView_ColumnHeaderMouseClick);
+            this.db_procardsDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_procardsDataGridView_ColumnHeaderMouseDoubleClick);
             // 
             // label7
             // 
@@ -791,8 +790,8 @@ namespace SuperMarket.UserControls
             this.Load += new System.EventHandler(this.ub_billing_Load);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.db_procardsDataGridView)).EndInit();
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.db_procardsDataGridView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -827,7 +826,6 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label lbl_productid;
         private System.Windows.Forms.Label lbl_customerid;
-        private System.Windows.Forms.DataGridView db_procardsDataGridView;
         private System.Windows.Forms.TextBox txt_cstAddress;
         private System.Windows.Forms.TextBox txt_cstContact;
         private System.Windows.Forms.Label label10;
@@ -860,5 +858,6 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.PictureBox pcb_searchProdBarCode;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.CheckBox cb_defaultCST;
+        private System.Windows.Forms.DataGridView db_procardsDataGridView;
     }
 }
