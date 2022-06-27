@@ -23,11 +23,9 @@ namespace SuperMarket.UserControls
         {
             SetColors(Properties.Settings.Default.AppColor);
 
-
             txt_invoiceno.Text = Methods.GetUniqueInvoiceID().ToString();
 
-            pic_barcode.BackgroundImage = new Methods().CreateBarcodeImage(txt_invoiceno.Text);
-
+            pic_barcode.BackgroundImage = new Methods().CreateBarcodeImage(txt_invoiceno.Text, pic_barcode.Width, pic_barcode.Height);
             cb_defaultCST.Checked = true;
         }
 
@@ -378,7 +376,7 @@ namespace SuperMarket.UserControls
 
                 txt_invoiceno.Text = "" + UniqueInvoiceID;
 
-                pic_barcode.BackgroundImage = new Methods().CreateBarcodeImage(UniqueInvoiceID);
+                pic_barcode.BackgroundImage = new Methods().CreateBarcodeImage(UniqueInvoiceID, pic_barcode.Width, pic_barcode.Height);
             }
         }
 

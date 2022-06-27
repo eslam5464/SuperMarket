@@ -2,6 +2,8 @@
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
+using BarcodeLib;
+using QRCoder;
 
 namespace SuperMarket.Classes
 {
@@ -49,7 +51,7 @@ namespace SuperMarket.Classes
             return dataTable;
         }
 
-        internal static string GetUniqueInvoiceID(int Length = 12)
+        internal static string GetUniqueInvoiceID(int Length = 10)
         {
             char[] chars = new char[62];
             chars = "0123456789".ToCharArray();
@@ -64,29 +66,39 @@ namespace SuperMarket.Classes
             {
                 result.Append(chars[b % (chars.Length)]);
             }
-            result[0] = '6';
-            result[1] = '2';
-            result[2] = '2';
-            result[3] = '2';
-            result[4] = '2';
-            result[5] = '2';
             return result.ToString();
         }
 
         internal virtual Image CreateBarcodeImage(string Barcode)
         {
-            //var barcode = new Barcode("543534"); // default: Code128
-
-            BarcodeLib.Barcode b = new BarcodeLib.Barcode();
-            Image img = b.Encode(BarcodeLib.TYPE.UPCA, Barcode, Color.Black, Color.White, 290, 120);
+            Barcode b = new Barcode();
+            Image img = b.Encode(TYPE.Interleaved2of5, Barcode, Color.Black, Color.White, 290, 120);
             return img;
         }
 
         internal virtual Image CreateBarcodeImage(string Barcode, int Width, int Height)
         {
-            BarcodeLib.Barcode b = new BarcodeLib.Barcode();
-            Image img = b.Encode(BarcodeLib.TYPE.UPCA, Barcode, Color.Black, Color.White, Width, Height);
+            Barcode b = new Barcode();
+            Image img = b.Encode(TYPE.Interleaved2of5, Barcode, Color.Black, Color.White, Width, Height);
             return img;
+        }
+
+        internal virtual Image CreateQRCodeImage(string Text)
+        {
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode("The text which should be encoded.", QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+            Bitmap qrCodeImage = qrCode.GetGraphic(20);
+            return qrCodeImage;
+        }
+
+        internal virtual Image CreateQRCodeImage(string Text, Color DarkColor, Color LightColor)
+        {
+            QRCodeGenerator qrGenerator = new QRCodeGenerator();
+            QRCodeData qrCodeData = qrGenerator.CreateQrCode("The text which should be encoded.", QRCodeGenerator.ECCLevel.Q);
+            QRCode qrCode = new QRCode(qrCodeData);
+            Bitmap qrCodeImage = qrCode.GetGraphic(20, Color.DarkRed, Color.PaleGreen, true);
+            return qrCodeImage;
         }
 
         //private ContextMenu contextMenu = new ContextMenu();

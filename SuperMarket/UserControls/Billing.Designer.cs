@@ -29,7 +29,7 @@ namespace SuperMarket.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_print = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
             this.txt_grandtotal = new System.Windows.Forms.TextBox();
@@ -55,11 +55,11 @@ namespace SuperMarket.UserControls
             this.label9 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.pic_barcode = new System.Windows.Forms.PictureBox();
             this.db_procardsDataGridView = new System.Windows.Forms.DataGridView();
             this.label7 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pic_barcode = new System.Windows.Forms.PictureBox();
             this.pcb_getInvoiceID = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.cb_defaultCST = new System.Windows.Forms.CheckBox();
@@ -76,10 +76,10 @@ namespace SuperMarket.UserControls
             this.txt_prodSearch = new System.Windows.Forms.ComboBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_barcode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.db_procardsDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_barcode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_getInvoiceID)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchCstID)).BeginInit();
@@ -288,7 +288,7 @@ namespace SuperMarket.UserControls
             this.label10.BackColor = System.Drawing.Color.Gainsboro;
             this.label10.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Purple;
-            this.label10.Location = new System.Drawing.Point(18, 27);
+            this.label10.Location = new System.Drawing.Point(47, 27);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(126, 25);
             this.label10.TabIndex = 193;
@@ -433,12 +433,22 @@ namespace SuperMarket.UserControls
             // 
             this.panel3.BackColor = System.Drawing.Color.Gray;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.pic_barcode);
             this.panel3.Controls.Add(this.db_procardsDataGridView);
             this.panel3.Location = new System.Drawing.Point(9, 6);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1000, 203);
             this.panel3.TabIndex = 208;
+            // 
+            // pic_barcode
+            // 
+            this.pic_barcode.BackColor = System.Drawing.Color.White;
+            this.pic_barcode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pic_barcode.Location = new System.Drawing.Point(227, 3);
+            this.pic_barcode.Name = "pic_barcode";
+            this.pic_barcode.Padding = new System.Windows.Forms.Padding(1);
+            this.pic_barcode.Size = new System.Drawing.Size(159, 49);
+            this.pic_barcode.TabIndex = 204;
+            this.pic_barcode.TabStop = false;
             // 
             // db_procardsDataGridView
             // 
@@ -447,14 +457,14 @@ namespace SuperMarket.UserControls
             this.db_procardsDataGridView.AllowUserToResizeColumns = false;
             this.db_procardsDataGridView.AllowUserToResizeRows = false;
             this.db_procardsDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.db_procardsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.db_procardsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.db_procardsDataGridView.ColumnHeadersHeight = 40;
             this.db_procardsDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.db_procardsDataGridView.EnableHeadersVisualStyles = false;
@@ -498,8 +508,9 @@ namespace SuperMarket.UserControls
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.White;
+            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.pic_barcode);
             this.panel2.Controls.Add(this.pcb_getInvoiceID);
             this.panel2.Controls.Add(this.txt_invoiceno);
             this.panel2.Controls.Add(this.label9);
@@ -509,17 +520,6 @@ namespace SuperMarket.UserControls
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(515, 113);
             this.panel2.TabIndex = 223;
-            // 
-            // pic_barcode
-            // 
-            this.pic_barcode.BackColor = System.Drawing.Color.White;
-            this.pic_barcode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pic_barcode.Location = new System.Drawing.Point(69, 20);
-            this.pic_barcode.Name = "pic_barcode";
-            this.pic_barcode.Padding = new System.Windows.Forms.Padding(10);
-            this.pic_barcode.Size = new System.Drawing.Size(436, 178);
-            this.pic_barcode.TabIndex = 204;
-            this.pic_barcode.TabStop = false;
             // 
             // pcb_getInvoiceID
             // 
@@ -767,11 +767,11 @@ namespace SuperMarket.UserControls
             this.Size = new System.Drawing.Size(1038, 660);
             this.Load += new System.EventHandler(this.ub_billing_Load);
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pic_barcode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.db_procardsDataGridView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_barcode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_getInvoiceID)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
