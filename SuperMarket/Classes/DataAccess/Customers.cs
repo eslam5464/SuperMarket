@@ -11,11 +11,12 @@ namespace SuperMarket.Classes.DataAccess
 {
     class Customers
     {
+        private static readonly int MaxRows = 100;
         public static List<CustomerModel> LoadCustomers()
         {
             using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<CustomerModel>($"SELECT * FROM Customers", new DynamicParameters());
+                var output = cnn.Query<CustomerModel>($"SELECT * FROM Customers LIMIT {MaxRows}", new DynamicParameters());
                 return output.ToList();
             }
         }
@@ -41,7 +42,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<CustomerModel>($"SELECT * FROM Customers WHERE {Parameter} = N'{Condition}'", new DynamicParameters());
+                var output = cnn.Query<CustomerModel>($"SELECT * FROM Customers WHERE {Parameter} = N'{Condition}' LIMIT {MaxRows}", new DynamicParameters());
                 return output.ToList();
             }
         }
@@ -50,7 +51,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<CustomerModel>($"SELECT * FROM Customers WHERE Id = {CustomerID}", new DynamicParameters());
+                var output = cnn.Query<CustomerModel>($"SELECT * FROM Customers WHERE Id = {CustomerID} LIMIT {MaxRows}", new DynamicParameters());
                 return output.ToList();
             }
         }

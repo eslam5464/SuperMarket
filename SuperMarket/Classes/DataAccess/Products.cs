@@ -11,6 +11,7 @@ namespace SuperMarket.Classes.DataAccess
 {
     class Products
     {
+        private static readonly int MaxRows = 100;
         public static void UpdateProduct(ProductModel Product)
         {
             using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
@@ -24,7 +25,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<ProductModel>("SELECT * FROM Products", new DynamicParameters());
+                var output = cnn.Query<ProductModel>("SELECT * FROM Products LIMIT {MaxRows}", new DynamicParameters());
                 return output.ToList();
             }
         }
@@ -33,7 +34,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<ProductModel>($"SELECT * FROM Products WHERE {Parameter} LIKE N'%{Condition}%'", new DynamicParameters());
+                var output = cnn.Query<ProductModel>($"SELECT * FROM Products WHERE {Parameter} LIKE N'%{Condition}%' LIMIT {MaxRows}", new DynamicParameters());
                 return output.ToList();
             }
         }
@@ -42,7 +43,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                string query = $"SELECT * FROM Products WHERE {Parameter} = N'{Condition}'";
+                string query = $"SELECT * FROM Products WHERE {Parameter} = N'{Condition}' LIMIT {MaxRows}";
 
                 List<ProductModel> output = new List<ProductModel>();
 

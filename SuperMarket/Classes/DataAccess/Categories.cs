@@ -11,11 +11,12 @@ namespace SuperMarket.Classes.DataAccess
 {
     class Categories
     {
+        private static readonly int MaxRows = 100;
         public static List<CategoryModel> GetCategoryParameter(string Parameter, string Condition)
         {
             using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<CategoryModel>($"SELECT * FROM Categories WHERE {Parameter} = N'{Condition}'", new DynamicParameters());
+                var output = cnn.Query<CategoryModel>($"SELECT * FROM Categories WHERE {Parameter} = N'{Condition}' LIMIT {MaxRows}", new DynamicParameters());
                 return output.ToList();
             }
         }
@@ -24,7 +25,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<CategoryModel>("SELECT Name FROM Categories", new DynamicParameters());
+                var output = cnn.Query<CategoryModel>("SELECT Name FROM Categories LIMIT {MaxRows}", new DynamicParameters());
                 return output.ToList();
             }
         }
@@ -33,7 +34,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<CategoryModel>("SELECT * FROM Categories", new DynamicParameters());
+                var output = cnn.Query<CategoryModel>("SELECT * FROM Categories LIMIT {MaxRows}", new DynamicParameters());
                 return output.ToList();
             }
         }

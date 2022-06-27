@@ -10,11 +10,12 @@ namespace SuperMarket.Classes.DataAccess
 {
     internal class Orders
     {
+        private static readonly int MaxRows = 100;
         internal static List<OrderModel> GetOrderParameter(string Parameter, string Condition)
         {
             using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<OrderModel>($"SELECT * FROM Orders WHERE {Parameter} = N'{Condition}'", new DynamicParameters());
+                var output = cnn.Query<OrderModel>($"SELECT * FROM Orders WHERE {Parameter} = N'{Condition}' LIMIT {MaxRows}", new DynamicParameters());
                 return output.ToList();
             }
         }
@@ -33,7 +34,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<OrderModel>($"SELECT * FROM Orders", new DynamicParameters());
+                var output = cnn.Query<OrderModel>($"SELECT * FROM Orders LIMIT {MaxRows}", new DynamicParameters());
                 return output.ToList();
             }
         }

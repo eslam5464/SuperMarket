@@ -11,11 +11,12 @@ namespace SuperMarket.Classes.DataAccess
 {
     internal class Invoices
     {
+        private static readonly int MaxRows = 100;
         internal static List<InvoiceModel> GetInvoiceParameter(string Parameter, string Condition)
         {
             using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<InvoiceModel>($"SELECT * FROM Invoices WHERE {Parameter} = N'{Condition}'", new DynamicParameters());
+                var output = cnn.Query<InvoiceModel>($"SELECT * FROM Invoices WHERE {Parameter} = N'{Condition}' LIMIT {MaxRows}", new DynamicParameters());
                 return output.ToList();
             }
         }
@@ -36,7 +37,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<InvoiceModel>($"SELECT * FROM Invoices WHERE InvoiceNumber = {InvoiceNumber}", new DynamicParameters());
+                var output = cnn.Query<InvoiceModel>($"SELECT * FROM Invoices WHERE InvoiceNumber = {InvoiceNumber} LIMIT {MaxRows}", new DynamicParameters());
                 return output.ToList();
             }
         }
@@ -45,7 +46,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<InvoiceModel>($"SELECT * FROM Invoices", new DynamicParameters());
+                var output = cnn.Query<InvoiceModel>($"SELECT * FROM Invoices LIMIT {MaxRows}", new DynamicParameters());
                 return output.ToList();
             }
         }
@@ -54,7 +55,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<InvoiceModel>($"SELECT * FROM Invoices", new DynamicParameters());
+                var output = cnn.Query<InvoiceModel>($"SELECT * FROM Invoices LIMIT {MaxRows}", new DynamicParameters());
                 return output.ToList();
             }
         }
@@ -71,7 +72,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<InvoiceModel>($"SELECT * FROM Invoices WHERE InvoiceNumber = {InvoiceNumber}", new DynamicParameters());
+                var output = cnn.Query<InvoiceModel>($"SELECT * FROM Invoices WHERE InvoiceNumber = {InvoiceNumber} LIMIT {MaxRows}", new DynamicParameters());
                 return output.ToList();
             }
         }
