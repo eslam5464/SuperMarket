@@ -1,4 +1,5 @@
-﻿using SuperMarket.Classes.Models;
+﻿using SuperMarket.Classes;
+using SuperMarket.Classes.Models;
 using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
@@ -6,8 +7,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Windows.Forms;
 
 namespace SuperMarket.UserControls
@@ -18,44 +17,26 @@ namespace SuperMarket.UserControls
         {
             InitializeComponent();
         }
-        //private ContextMenu contextMenu = new ContextMenu();
         private static bool UsedBarCodeSearch = false;
 
         private void ub_billing_Load(object sender, EventArgs e)
         {
             SetColors(Properties.Settings.Default.AppColor);
 
-            txt_invoiceno.Text = GetUniqueInvoiceID(9).ToString();
+
+            txt_invoiceno.Text = Methods.GetUniqueInvoiceID().ToString();
+
+            pic_barcode.BackgroundImage = new Methods().CreateBarcodeImage(txt_invoiceno.Text);
 
             cb_defaultCST.Checked = true;
         }
-
-        //private void SetupContextMenu()
-        //{
-        //    contextMenu.MenuItems.Add(new MenuItem("تعديل", MenuItemEdit_Click));
-        //}
 
         public void setFocusForBarcode()
         {
             txt_productBarCode.Focus();
         }
 
-        private long GetUniqueInvoiceID(int MaxSize)
-        {
-            char[] chars = new char[62];
-            chars = "0123456789".ToCharArray();
-            byte[] data = new byte[1];
-            RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider();
-            crypto.GetNonZeroBytes(data);
-            data = new byte[MaxSize];
-            crypto.GetNonZeroBytes(data);
-            StringBuilder result = new StringBuilder(MaxSize);
-            foreach (byte b in data)
-            {
-                result.Append(chars[b % (chars.Length)]);
-            }
-            return long.Parse(result.ToString());
-        }
+
 
         private void SetColors(Color appColor)
         {
@@ -147,7 +128,7 @@ namespace SuperMarket.UserControls
 
                     UsedBarCodeSearch = true;
 
-                    btn_addToCart.PerformClick();
+                    //btn_addToCart.PerformClick();
                 }
             }
         }
@@ -322,32 +303,12 @@ namespace SuperMarket.UserControls
 
                 List<ProductModel> productSearch = Classes.DataAccess.Products.GetProductLikeParameter("Name", txt_productName.Text);
 
-                DataTable dataProductSearch = ToDataTable(productSearch);
+                DataTable dataProductSearch = Methods.ListToDataTable(productSearch);
 
                 txt_prodSearch.DataSource = dataProductSearch;
                 txt_prodSearch.ValueMember = "Id";
                 txt_prodSearch.DisplayMember = "Name";
             }
-        }
-
-        private DataTable TransformDataToDataTable(DataGridView dataGridView)
-        {
-            DataTable dataTable = new DataTable();
-
-            foreach (DataGridViewColumn column in dataGridView.Columns)
-            {
-                dataTable.Columns.Add(column.Name, column.ValueType);
-            }
-
-            foreach (DataGridViewRow row in dataGridView.Rows)
-            {
-                dataTable.Rows.Add();
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
-                }
-            }
-            return dataTable;
         }
 
         private void txt_prodSearch_SelectedIndexChanged(object sender, EventArgs e)
@@ -403,19 +364,22 @@ namespace SuperMarket.UserControls
 
         private void pcb_getInvoiceID_Click(object sender, EventArgs e)
         {
-            long UniqueInvoiceID = GetUniqueInvoiceID(9);
-
-            List<InvoiceModel> InvoiceSearch = Classes.DataAccess.Invoices.LoadInvoice(UniqueInvoiceID);
-
-            while (InvoiceSearch.Count != 0)
+            if (db_procardsDataGridView.DataSource == null)
             {
-                UniqueInvoiceID = GetUniqueInvoiceID(9);
-                InvoiceSearch = Classes.DataAccess.Invoices.LoadInvoice(UniqueInvoiceID);
+                string UniqueInvoiceID = Methods.GetUniqueInvoiceID();
+
+                List<InvoiceModel> InvoiceSearch = Classes.DataAccess.Invoices.LoadInvoice(UniqueInvoiceID);
+
+                while (InvoiceSearch.Count != 0)
+                {
+                    UniqueInvoiceID = Methods.GetUniqueInvoiceID();
+                    InvoiceSearch = Classes.DataAccess.Invoices.LoadInvoice(UniqueInvoiceID);
+                }
+
+                txt_invoiceno.Text = "" + UniqueInvoiceID;
+
+                pic_barcode.BackgroundImage = new Methods().CreateBarcodeImage(UniqueInvoiceID);
             }
-
-            txt_invoiceno.Text = "" + UniqueInvoiceID;
-            db_procardsDataGridView.DataSource = null;
-
         }
 
         private void btn_remove_Click(object sender, EventArgs e)
@@ -622,7 +586,7 @@ namespace SuperMarket.UserControls
 
                         ResetTextBoxes(true, false, true, true);
 
-                        txt_invoiceno.Text = GetUniqueInvoiceID(9).ToString();
+                        txt_invoiceno.Text = Methods.GetUniqueInvoiceID().ToString();
                     }
 
                 }
@@ -710,60 +674,18 @@ namespace SuperMarket.UserControls
             }
         }
 
-        public DataTable ToDataTable<T>(List<T> items)
-        {
-            DataTable dataTable = new DataTable(typeof(T).Name);
-            //Get all the properties
-            System.Reflection.PropertyInfo[] Props = typeof(T).GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
-            foreach (System.Reflection.PropertyInfo prop in Props)
-            {
-                //Setting column names as Property names
-                dataTable.Columns.Add(prop.Name);
-            }
-            foreach (T item in items)
-            {
-                var values = new object[Props.Length];
-                for (int i = 0; i < Props.Length; i++)
-                {
-                    //inserting property values to datatable rows
-                    values[i] = Props[i].GetValue(item, null);
-                }
-                dataTable.Rows.Add(values);
-            }
-            //put a breakpoint here and check datatable
-            return dataTable;
-        }
-
         private void db_procardsDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            db_procardsDataGridView.DataSource = TransformDataToDataTable(db_procardsDataGridView);
+            db_procardsDataGridView.DataSource = new Methods().DataGridToDataTable(db_procardsDataGridView);
 
             db_procardsDataGridView.Sort(db_procardsDataGridView.Columns[e.ColumnIndex], direction: ListSortDirection.Ascending);
         }
 
         private void db_procardsDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            db_procardsDataGridView.DataSource = TransformDataToDataTable(db_procardsDataGridView);
+            db_procardsDataGridView.DataSource = new Methods().DataGridToDataTable(db_procardsDataGridView);
 
             db_procardsDataGridView.Sort(db_procardsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
         }
-
-        //private void MenuItemEdit_Click(Object sender, System.EventArgs e)
-        //{
-        //    txt_productName.Text = db_procardsDataGridView.Rows[EditedRowID].Cells["ProductName"].Value.ToString();
-        //    //MessageBox.Show("invoice: " + InvoiceID); // TO DO: finish editing
-        //    txt_productBarCode.Text = db_procardsDataGridView.Rows[EditedRowID].Cells["ProductBarCode"].Value.ToString();
-        //    txt_productquantity.Text = db_procardsDataGridView.Rows[EditedRowID].Cells["ProductQuantity"].Value.ToString();
-        //    txt_productprice.Text = db_procardsDataGridView.Rows[EditedRowID].Cells["ProductPrice"].Value.ToString();
-        //    txt_totalprice.Text = db_procardsDataGridView.Rows[EditedRowID].Cells["PriceTotal"].Value.ToString();
-        //    contextMenu.MenuItems.Add(new MenuItem("حفظ التعديل", MenuItemSaveEdit_Click));
-        //}
-
-        //private void MenuItemSaveEdit_Click(Object sender, System.EventArgs e)
-        //{
-        //    db_procardsDataGridView.Rows[EditedRowID].Cells["ProductPrice"].Value = txt_productprice.Text;
-
-        //    contextMenu.MenuItems.RemoveAt(1);
-        //}
     }
 }

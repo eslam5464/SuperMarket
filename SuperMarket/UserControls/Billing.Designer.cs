@@ -29,7 +29,7 @@ namespace SuperMarket.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_print = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
             this.txt_grandtotal = new System.Windows.Forms.TextBox();
@@ -41,9 +41,6 @@ namespace SuperMarket.UserControls
             this.label2 = new System.Windows.Forms.Label();
             this.btn_removeFromCart = new System.Windows.Forms.Button();
             this.btn_addToCart = new System.Windows.Forms.Button();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.lbl_productid = new System.Windows.Forms.Label();
-            this.lbl_customerid = new System.Windows.Forms.Label();
             this.txt_cstAddress = new System.Windows.Forms.TextBox();
             this.txt_cstContact = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -62,6 +59,7 @@ namespace SuperMarket.UserControls
             this.label7 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pic_barcode = new System.Windows.Forms.PictureBox();
             this.pcb_getInvoiceID = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.cb_defaultCST = new System.Windows.Forms.CheckBox();
@@ -77,11 +75,11 @@ namespace SuperMarket.UserControls
             this.txt_productBarCode = new System.Windows.Forms.TextBox();
             this.txt_prodSearch = new System.Windows.Forms.ComboBox();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.panel6.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_procardsDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_barcode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_getInvoiceID)).BeginInit();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchCstID)).BeginInit();
@@ -253,38 +251,6 @@ namespace SuperMarket.UserControls
             this.btn_addToCart.UseVisualStyleBackColor = false;
             this.btn_addToCart.Click += new System.EventHandler(this.btn_addtocard_Click);
             // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.lbl_productid);
-            this.panel6.Controls.Add(this.lbl_customerid);
-            this.panel6.Location = new System.Drawing.Point(4, 3);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(80, 47);
-            this.panel6.TabIndex = 203;
-            this.panel6.Visible = false;
-            // 
-            // lbl_productid
-            // 
-            this.lbl_productid.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lbl_productid.AutoSize = true;
-            this.lbl_productid.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_productid.ForeColor = System.Drawing.Color.Indigo;
-            this.lbl_productid.Location = new System.Drawing.Point(61, 9);
-            this.lbl_productid.Name = "lbl_productid";
-            this.lbl_productid.Size = new System.Drawing.Size(0, 23);
-            this.lbl_productid.TabIndex = 133;
-            // 
-            // lbl_customerid
-            // 
-            this.lbl_customerid.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lbl_customerid.AutoSize = true;
-            this.lbl_customerid.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_customerid.ForeColor = System.Drawing.Color.Indigo;
-            this.lbl_customerid.Location = new System.Drawing.Point(20, 9);
-            this.lbl_customerid.Name = "lbl_customerid";
-            this.lbl_customerid.Size = new System.Drawing.Size(0, 23);
-            this.lbl_customerid.TabIndex = 132;
-            // 
             // txt_cstAddress
             // 
             this.txt_cstAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -322,7 +288,7 @@ namespace SuperMarket.UserControls
             this.label10.BackColor = System.Drawing.Color.Gainsboro;
             this.label10.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.Purple;
-            this.label10.Location = new System.Drawing.Point(98, 25);
+            this.label10.Location = new System.Drawing.Point(18, 27);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(126, 25);
             this.label10.TabIndex = 193;
@@ -467,6 +433,7 @@ namespace SuperMarket.UserControls
             // 
             this.panel3.BackColor = System.Drawing.Color.Gray;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.pic_barcode);
             this.panel3.Controls.Add(this.db_procardsDataGridView);
             this.panel3.Location = new System.Drawing.Point(9, 6);
             this.panel3.Name = "panel3";
@@ -480,14 +447,14 @@ namespace SuperMarket.UserControls
             this.db_procardsDataGridView.AllowUserToResizeColumns = false;
             this.db_procardsDataGridView.AllowUserToResizeRows = false;
             this.db_procardsDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.db_procardsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.db_procardsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.db_procardsDataGridView.ColumnHeadersHeight = 40;
             this.db_procardsDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.db_procardsDataGridView.EnableHeadersVisualStyles = false;
@@ -531,18 +498,28 @@ namespace SuperMarket.UserControls
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.pcb_getInvoiceID);
             this.panel2.Controls.Add(this.txt_invoiceno);
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.dtp_invoicedate);
             this.panel2.Controls.Add(this.label10);
-            this.panel2.Controls.Add(this.panel6);
             this.panel2.Location = new System.Drawing.Point(520, 231);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(515, 113);
             this.panel2.TabIndex = 223;
+            // 
+            // pic_barcode
+            // 
+            this.pic_barcode.BackColor = System.Drawing.Color.White;
+            this.pic_barcode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pic_barcode.Location = new System.Drawing.Point(69, 20);
+            this.pic_barcode.Name = "pic_barcode";
+            this.pic_barcode.Padding = new System.Windows.Forms.Padding(10);
+            this.pic_barcode.Size = new System.Drawing.Size(436, 178);
+            this.pic_barcode.TabIndex = 204;
+            this.pic_barcode.TabStop = false;
             // 
             // pcb_getInvoiceID
             // 
@@ -736,6 +713,7 @@ namespace SuperMarket.UserControls
             this.txt_productBarCode.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_productBarCode.ForeColor = System.Drawing.Color.Black;
             this.txt_productBarCode.Location = new System.Drawing.Point(72, 71);
+            this.txt_productBarCode.MaxLength = 20;
             this.txt_productBarCode.Multiline = true;
             this.txt_productBarCode.Name = "txt_productBarCode";
             this.txt_productBarCode.Size = new System.Drawing.Size(303, 45);
@@ -788,13 +766,12 @@ namespace SuperMarket.UserControls
             this.Name = "Billing";
             this.Size = new System.Drawing.Size(1038, 660);
             this.Load += new System.EventHandler(this.ub_billing_Load);
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.db_procardsDataGridView)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_barcode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_getInvoiceID)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
@@ -823,9 +800,6 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btn_removeFromCart;
         private System.Windows.Forms.Button btn_addToCart;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label lbl_productid;
-        private System.Windows.Forms.Label lbl_customerid;
         private System.Windows.Forms.TextBox txt_cstAddress;
         private System.Windows.Forms.TextBox txt_cstContact;
         private System.Windows.Forms.Label label10;
@@ -859,5 +833,6 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.CheckBox cb_defaultCST;
         private System.Windows.Forms.DataGridView db_procardsDataGridView;
+        private System.Windows.Forms.PictureBox pic_barcode;
     }
 }

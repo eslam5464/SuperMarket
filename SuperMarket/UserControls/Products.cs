@@ -70,7 +70,7 @@ namespace SuperMarket.UserControls
                                 Quantity = double.Parse(txt_productquantity.Text),
                                 Price = decimal.Parse(txt_productprice.Text),
                                 Description = txt_description.Text,
-                                BarCode = long.Parse(txt_productBarCode.Text),
+                                BarCode = txt_productBarCode.Text,
                                 CategoryID = categoryId,
                                 CategoryName = categoryName
                             };
@@ -112,7 +112,7 @@ namespace SuperMarket.UserControls
                                 ("Id", "" + categoryId).FirstOrDefault().Name;
                             ProductModel product = new ProductModel
                             {
-                                BarCode = long.Parse(txt_productBarCode.Text),
+                                BarCode = txt_productBarCode.Text,
                                 Name = txt_productname.Text,
                                 Price = decimal.Parse(txt_productprice.Text),
                                 Description = txt_description.Text,
@@ -313,7 +313,7 @@ namespace SuperMarket.UserControls
                 {
                     int rowindex = productsDataGridView.CurrentCell.RowIndex;
                     long ProductID = long.Parse(productsDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
-                    string ProductName = productsDataGridView.Rows[rowindex].Cells["Name"].Value.ToString();
+                    string ProductName = productsDataGridView.Rows[rowindex].Cells["ProductName_"].Value.ToString();
 
                     Logger.Log($"user is trying to remove product: {ProductName}",
                         System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
@@ -367,7 +367,23 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private DataTable TransformDataToDataTable(DataGridView dataGridView)
+        private void db_productDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            productsDataGridView.DataSource = DataGridToDataTable(productsDataGridView);
+
+            productsDataGridView.Sort(productsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+
+
+        }
+
+        private void db_productDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            productsDataGridView.DataSource = DataGridToDataTable(productsDataGridView);
+
+            productsDataGridView.Sort(productsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+        }
+
+        private DataTable DataGridToDataTable(DataGridView dataGridView)
         {
             DataTable dataTable = new DataTable();
 
@@ -381,24 +397,16 @@ namespace SuperMarket.UserControls
                 dataTable.Rows.Add();
                 foreach (DataGridViewCell cell in row.Cells)
                 {
+                    Console.WriteLine($"cell [r,c]: [{cell.RowIndex}, {cell.ColumnIndex}]");
+                    Console.WriteLine("cell column: " + cell.OwningColumn.Name);
+                    Console.WriteLine("cell value: " + cell.Value.ToString());
+                    Console.WriteLine();
                     dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
                 }
+
             }
+            Console.WriteLine($"\n{DateTime.Now}");
             return dataTable;
-        }
-
-        private void db_productDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            productsDataGridView.DataSource = TransformDataToDataTable(productsDataGridView);
-
-            productsDataGridView.Sort(productsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
-        }
-
-        private void db_productDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            productsDataGridView.DataSource = TransformDataToDataTable(productsDataGridView);
-
-            productsDataGridView.Sort(productsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
         }
 
         private void productsBindingNavigatorSaveItem_Click(object sender, EventArgs e)

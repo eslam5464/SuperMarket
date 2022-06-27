@@ -138,6 +138,8 @@
             this.categoriesDataGridView.RowHeadersVisible = false;
             this.categoriesDataGridView.Size = new System.Drawing.Size(1035, 449);
             this.categoriesDataGridView.TabIndex = 0;
+            this.categoriesDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_categoriesDataGridView_ColumnHeaderMouseClick);
+            this.categoriesDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_categoriesDataGridView_ColumnHeaderMouseDoubleClick);
             // 
             // Id
             // 

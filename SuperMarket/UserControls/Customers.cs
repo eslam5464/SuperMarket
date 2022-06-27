@@ -3,7 +3,6 @@ using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -264,36 +263,16 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private DataTable TransformDataToDataTable(DataGridView dataGridView)
-        {
-            DataTable dataTable = new DataTable();
-
-            foreach (DataGridViewColumn column in dataGridView.Columns)
-            {
-                dataTable.Columns.Add(column.Name, column.ValueType);
-            }
-
-            foreach (DataGridViewRow row in dataGridView.Rows)
-            {
-                dataTable.Rows.Add();
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
-                }
-            }
-            return dataTable;
-        }
-
         private void customersDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            customersDataGridView.DataSource = TransformDataToDataTable(customersDataGridView);
+            customersDataGridView.DataSource = new Methods().DataGridToDataTable(customersDataGridView);
 
             customersDataGridView.Sort(customersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
         }
 
         private void customersDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            customersDataGridView.DataSource = TransformDataToDataTable(customersDataGridView);
+            customersDataGridView.DataSource = new Methods().DataGridToDataTable(customersDataGridView);
 
             customersDataGridView.Sort(customersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
         }

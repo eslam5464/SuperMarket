@@ -93,7 +93,6 @@ namespace SuperMarket.UserControls
             this.txt_categoriename.Location = new System.Drawing.Point(482, 215);
             this.txt_categoriename.Name = "txt_categoriename";
             this.txt_categoriename.Size = new System.Drawing.Size(341, 40);
-            this.txt_categoriename.Sorted = true;
             this.txt_categoriename.TabIndex = 196;
             this.txt_categoriename.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_products_KeyDown);
             // 
@@ -342,6 +341,8 @@ namespace SuperMarket.UserControls
             this.productsDataGridView.RowHeadersVisible = false;
             this.productsDataGridView.Size = new System.Drawing.Size(1032, 331);
             this.productsDataGridView.TabIndex = 1;
+            this.productsDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_productDataGridView_ColumnHeaderMouseClick);
+            this.productsDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_productDataGridView_ColumnHeaderMouseDoubleClick);
             // 
             // Id
             // 

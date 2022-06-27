@@ -296,7 +296,8 @@ namespace SuperMarket.UserControls
             this.usersDataGridView.RowHeadersVisible = false;
             this.usersDataGridView.Size = new System.Drawing.Size(1032, 364);
             this.usersDataGridView.TabIndex = 206;
-            this.usersDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.usersDataGridView_CellContentClick);
+            this.usersDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_userDataGridView_ColumnHeaderMouseClick);
+            this.usersDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_userDataGridView_ColumnHeaderMouseDoubleClick);
             // 
             // Id
             // 

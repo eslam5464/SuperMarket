@@ -388,43 +388,18 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private DataTable TransformDataToDataTable(DataGridView dataGridView)
-        {
-            DataTable dataTable = new DataTable();
-
-            foreach (DataGridViewColumn column in dataGridView.Columns)
-            {
-                dataTable.Columns.Add(column.Name, column.ValueType);
-            }
-
-            foreach (DataGridViewRow row in dataGridView.Rows)
-            {
-                dataTable.Rows.Add();
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
-                }
-            }
-            return dataTable;
-        }
-
         private void db_userDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            usersDataGridView.DataSource = TransformDataToDataTable(usersDataGridView);
+            usersDataGridView.DataSource = new Methods().DataGridToDataTable(usersDataGridView);
 
             usersDataGridView.Sort(usersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
         }
 
         private void db_userDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            usersDataGridView.DataSource = TransformDataToDataTable(usersDataGridView);
+            usersDataGridView.DataSource = new Methods().DataGridToDataTable(usersDataGridView);
 
             usersDataGridView.Sort(usersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
-        }
-
-        private void usersDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }

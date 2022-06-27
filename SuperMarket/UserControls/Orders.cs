@@ -3,7 +3,6 @@ using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -76,49 +75,21 @@ namespace SuperMarket.UserControls
             ordersDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
         }
 
-        private DataTable TransformDataToDataTable(DataGridView dataGridView)
-        {
-            DataTable dataTable = new DataTable();
-
-            foreach (DataGridViewColumn column in dataGridView.Columns)
-            {
-                dataTable.Columns.Add(column.Name, column.ValueType);
-            }
-
-            foreach (DataGridViewRow row in dataGridView.Rows)
-            {
-                dataTable.Rows.Add();
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
-                }
-            }
-            return dataTable;
-        }
-
         private void db_ordersDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            ordersDataGridView.DataSource = TransformDataToDataTable(ordersDataGridView);
+            ordersDataGridView.DataSource = new Methods().DataGridToDataTable(ordersDataGridView);
 
             ordersDataGridView.Sort(ordersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
         }
 
         private void db_ordersDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            ordersDataGridView.DataSource = TransformDataToDataTable(ordersDataGridView);
+            ordersDataGridView.DataSource = new Methods().DataGridToDataTable(ordersDataGridView);
 
             ordersDataGridView.Sort(ordersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
         }
 
         private void ordersBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.ordersBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.superMarketDataSet);
-
-        }
-
-        private void ordersBindingNavigatorSaveItem_Click_1(object sender, EventArgs e)
         {
             this.Validate();
             this.ordersBindingSource.EndEdit();

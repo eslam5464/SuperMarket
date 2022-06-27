@@ -67,7 +67,7 @@ namespace SuperMarket.Classes.DataAccess
             }
         }
 
-        internal static List<InvoiceModel> LoadInvoice(long InvoiceNumber)
+        internal static List<InvoiceModel> LoadInvoice(string InvoiceNumber)
         {
             using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
             {

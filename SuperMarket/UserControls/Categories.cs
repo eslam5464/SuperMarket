@@ -3,7 +3,6 @@ using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -43,6 +42,8 @@ namespace SuperMarket.UserControls
                         Classes.DataAccess.Categories.UpdateCategory(category);
 
                         LoadDataGrid(Classes.DataAccess.Categories.GetCategoryParameter("Id", "" + category.Id));
+
+
 
                         ResetTextBoxes();
                     }
@@ -268,36 +269,16 @@ namespace SuperMarket.UserControls
             FocusedObject.BackColor = Color.Transparent;
         }
 
-        private DataTable TransformDataToDataTable(DataGridView dataGridView)
-        {
-            DataTable dataTable = new DataTable();
-
-            foreach (DataGridViewColumn column in dataGridView.Columns)
-            {
-                dataTable.Columns.Add(column.Name, column.ValueType);
-            }
-
-            foreach (DataGridViewRow row in dataGridView.Rows)
-            {
-                dataTable.Rows.Add();
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
-                }
-            }
-            return dataTable;
-        }
-
         private void db_categoriesDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            categoriesDataGridView.DataSource = TransformDataToDataTable(categoriesDataGridView);
+            categoriesDataGridView.DataSource = new Methods().DataGridToDataTable(categoriesDataGridView);
 
             categoriesDataGridView.Sort(categoriesDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
         }
 
         private void db_categoriesDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            categoriesDataGridView.DataSource = TransformDataToDataTable(categoriesDataGridView);
+            categoriesDataGridView.DataSource = new Methods().DataGridToDataTable(categoriesDataGridView);
 
             categoriesDataGridView.Sort(categoriesDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
         }
