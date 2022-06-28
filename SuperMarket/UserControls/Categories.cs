@@ -305,7 +305,7 @@ namespace SuperMarket.UserControls
                 int CellY = categoriesDataGridView.GetCellDisplayRectangle(cellColumnIndex, cellRowIndex, false).Top;
 
                 ContextMenuSelectedCell = (sender as DataGridView).Rows[cellRowIndex].Cells[cellColumnIndex];
-                
+
                 if (ContextMenuSelectedCell != null)
                 {
                     contextMenu.Show(categoriesDataGridView, new Point(CellX, CellY));

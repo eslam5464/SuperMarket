@@ -409,15 +409,13 @@ namespace SuperMarket.UserControls
                 dataTable.Rows.Add();
                 foreach (DataGridViewCell cell in row.Cells)
                 {
-                    Console.WriteLine($"cell [r,c]: [{cell.RowIndex}, {cell.ColumnIndex}]");
-                    Console.WriteLine("cell column: " + cell.OwningColumn.Name);
-                    Console.WriteLine("cell value: " + cell.Value.ToString());
-                    Console.WriteLine();
-                    dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
-                }
+                    if (cell.Value == null)
+                        dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = "NULL";
 
+                    else
+                        dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
+                }
             }
-            Console.WriteLine($"\n{DateTime.Now}");
             return dataTable;
         }
 
