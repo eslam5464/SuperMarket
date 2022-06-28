@@ -15,6 +15,9 @@ namespace SuperMarket.UserControls
             InitializeComponent();
         }
 
+        private ContextMenu contextMenu = new ContextMenu();
+        private DataGridViewCell ContextMenuSelectedCell;
+
         private void btn_refresh_Click(object sender, EventArgs e)
         {
             LoadDataGrid(Classes.DataAccess.Orders.GetAllOrders());
@@ -39,6 +42,15 @@ namespace SuperMarket.UserControls
         {
             SetColors(Properties.Settings.Default.AppColor);
             LoadDataGrid(Classes.DataAccess.Orders.GetAllOrders());
+
+            contextMenu = Methods.SetupContextMenuCopy(contextMenu, MenuItemCopyOption_Click);
+        }
+
+        private void MenuItemCopyOption_Click(Object sender, EventArgs e)
+        {
+            string CellText = ordersDataGridView.Rows[ContextMenuSelectedCell.RowIndex].
+                Cells[ContextMenuSelectedCell.ColumnIndex].Value.ToString();
+            Clipboard.SetText(CellText);
         }
 
         private void LoadDataGrid(List<OrderModel> Orders)
@@ -150,6 +162,25 @@ namespace SuperMarket.UserControls
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void ordersDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                int cellColumnIndex = ordersDataGridView.CurrentCell.ColumnIndex;
+                int cellRowIndex = ordersDataGridView.CurrentCell.RowIndex;
+
+                int CellX = ordersDataGridView.GetCellDisplayRectangle(cellColumnIndex, cellRowIndex, false).Left;
+                int CellY = ordersDataGridView.GetCellDisplayRectangle(cellColumnIndex, cellRowIndex, false).Top;
+
+                ContextMenuSelectedCell = (sender as DataGridView).Rows[cellRowIndex].Cells[cellColumnIndex];
+
+                if (ContextMenuSelectedCell != null)
+                {
+                    contextMenu.Show(ordersDataGridView, new Point(CellX, CellY));
+                }
             }
         }
     }

@@ -149,6 +149,7 @@ namespace SuperMarket.UserControls
             this.db_probillsDataGridView.RowTemplate.Height = 24;
             this.db_probillsDataGridView.Size = new System.Drawing.Size(996, 201);
             this.db_probillsDataGridView.TabIndex = 1;
+            this.db_probillsDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_probillsDataGridView_CellMouseClick);
             this.db_probillsDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_probillsDataGridView_ColumnHeaderMouseClick);
             this.db_probillsDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_probillsDataGridView_ColumnHeaderMouseDoubleClick);
             // 

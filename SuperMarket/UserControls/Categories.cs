@@ -15,6 +15,8 @@ namespace SuperMarket.UserControls
             InitializeComponent();
         }
         private bool AddingToCB = false;
+        private ContextMenu contextMenu = new ContextMenu();
+        private DataGridViewCell ContextMenuSelectedCell;
 
         private void btn_save_Click(object sender, EventArgs e)
         {
@@ -113,6 +115,15 @@ namespace SuperMarket.UserControls
             SetColors(Properties.Settings.Default.AppColor);
 
             LoadDataGrid(Classes.DataAccess.Categories.LoadCategories());
+
+            contextMenu = Methods.SetupContextMenuCopy(contextMenu, MenuItemCopyOption_Click);
+        }
+
+        private void MenuItemCopyOption_Click(Object sender, EventArgs e)
+        {
+            string CellText = categoriesDataGridView.Rows[ContextMenuSelectedCell.RowIndex].
+                Cells[ContextMenuSelectedCell.ColumnIndex].Value.ToString();
+            Clipboard.SetText(CellText);
         }
 
         private void AddColumsNameToCB(ComboBox comboBox, DataGridView dataGridView)
@@ -283,17 +294,23 @@ namespace SuperMarket.UserControls
             categoriesDataGridView.Sort(categoriesDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void categoriesDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //categoriesDataGridView.DataSource = null;
-            //categoriesDataGridView.DataSource = Categories;
+            if (e.Button == MouseButtons.Right)
+            {
+                int cellColumnIndex = categoriesDataGridView.CurrentCell.ColumnIndex;
+                int cellRowIndex = categoriesDataGridView.CurrentCell.RowIndex;
 
-            categoriesDataGridView.Columns["Id"].HeaderText = "رقم الصنف";
-            categoriesDataGridView.Columns["CategoryName"].HeaderText = "اسم الصنف";
-            categoriesDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه الصنف";
+                int CellX = categoriesDataGridView.GetCellDisplayRectangle(cellColumnIndex, cellRowIndex, false).Left;
+                int CellY = categoriesDataGridView.GetCellDisplayRectangle(cellColumnIndex, cellRowIndex, false).Top;
 
-            categoriesDataGridView.AutoResizeColumns();
-            categoriesDataGridView.Columns["CreationDate"].Width += 5;
+                ContextMenuSelectedCell = (sender as DataGridView).Rows[cellRowIndex].Cells[cellColumnIndex];
+                
+                if (ContextMenuSelectedCell != null)
+                {
+                    contextMenu.Show(categoriesDataGridView, new Point(CellX, CellY));
+                }
+            }
         }
     }
 }

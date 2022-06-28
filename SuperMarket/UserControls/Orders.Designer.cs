@@ -124,6 +124,7 @@ namespace SuperMarket.UserControls
             this.ordersDataGridView.RowHeadersVisible = false;
             this.ordersDataGridView.Size = new System.Drawing.Size(1032, 536);
             this.ordersDataGridView.TabIndex = 1;
+            this.ordersDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ordersDataGridView_CellMouseClick);
             this.ordersDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_ordersDataGridView_ColumnHeaderMouseClick);
             this.ordersDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_ordersDataGridView_ColumnHeaderMouseDoubleClick);
             // 

@@ -13,6 +13,16 @@ namespace SuperMarket.UserControls
             InitializeComponent();
         }
 
+        private ContextMenu contextMenu = new ContextMenu();
+        private DataGridViewCell ContextMenuSelectedCell;
+
+        private void MenuItemCopyOption_Click(Object sender, EventArgs e)
+        {
+            string CellText = db_probillsDataGridView.Rows[ContextMenuSelectedCell.RowIndex].
+                Cells[ContextMenuSelectedCell.ColumnIndex].Value.ToString();
+            Clipboard.SetText(CellText);
+        }
+
         public void SetFocusOnBarCode()
         {
             txt_productBarCode.Focus();
@@ -35,6 +45,8 @@ namespace SuperMarket.UserControls
             SetColors(Properties.Settings.Default.AppColor);
             //dtp_invoicedate.Text = DateTime.Now.ToString();
             //dtp_invoicedate.CustomFormat = DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss tt", new System.Globalization.CultureInfo("ar-AE"));
+
+            contextMenu = Methods.SetupContextMenuCopy(contextMenu, MenuItemCopyOption_Click);
         }
 
         private void SetColors(Color appColor)
@@ -90,6 +102,25 @@ namespace SuperMarket.UserControls
             db_probillsDataGridView.DataSource = new Methods().DataGridToDataTable(db_probillsDataGridView);
 
             db_probillsDataGridView.Sort(db_probillsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+        }
+
+        private void db_probillsDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                int cellColumnIndex = db_probillsDataGridView.CurrentCell.ColumnIndex;
+                int cellRowIndex = db_probillsDataGridView.CurrentCell.RowIndex;
+
+                int CellX = db_probillsDataGridView.GetCellDisplayRectangle(cellColumnIndex, cellRowIndex, false).Left;
+                int CellY = db_probillsDataGridView.GetCellDisplayRectangle(cellColumnIndex, cellRowIndex, false).Top;
+
+                ContextMenuSelectedCell = (sender as DataGridView).Rows[cellRowIndex].Cells[cellColumnIndex];
+
+                if (ContextMenuSelectedCell != null)
+                {
+                    contextMenu.Show(db_probillsDataGridView, new Point(CellX, CellY));
+                }
+            }
         }
     }
 }

@@ -101,9 +101,9 @@ namespace SuperMarket.Classes
             return qrCodeImage;
         }
 
-        internal static ContextMenu SetupContextMenu(ContextMenu contextMenu, EventHandler Event)
+        internal static ContextMenu SetupContextMenuCopy(ContextMenu contextMenu, EventHandler Event)
         {
-            contextMenu.MenuItems.Add(new MenuItem("تعديل", Event));
+            contextMenu.MenuItems.Add(new MenuItem("نسخ الخانه", Event));
             return contextMenu;
         }
 

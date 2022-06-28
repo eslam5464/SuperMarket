@@ -19,11 +19,11 @@ namespace SuperMarket.UserControls
         }
         private static bool UsedBarCodeSearch = false;
         private ContextMenu contextMenu = new ContextMenu();
+        private DataGridViewCell ContextMenuSelectedCell;
 
         private void ub_billing_Load(object sender, EventArgs e)
         {
             SetColors(Properties.Settings.Default.AppColor);
-
 
             txt_invoiceno.Text = Methods.GetUniqueInvoiceID().ToString();
 
@@ -31,21 +31,21 @@ namespace SuperMarket.UserControls
 
             cb_defaultCST.Checked = true;
 
-            contextMenu = Methods.SetupContextMenu(contextMenu, MenuItemOptions_Click);
+            contextMenu = Methods.SetupContextMenuCopy(contextMenu, MenuItemCopyOption_Click);
         }
 
-        private void MenuItemOptions_Click(Object sender, EventArgs e)
+        private void MenuItemCopyOption_Click(Object sender, EventArgs e)
         {
-            int SelectedRow = db_procardsDataGridView.CurrentCell.RowIndex;
-            int SelectedColumn = db_procardsDataGridView.CurrentCell.ColumnIndex;
-            string txt = db_procardsDataGridView.Rows[SelectedRow].Cells[SelectedColumn].Value.ToString();
-            MessageBox.Show(txt);
+            string CellText = db_procardsDataGridView.Rows[ContextMenuSelectedCell.RowIndex].
+                Cells[ContextMenuSelectedCell.ColumnIndex].Value.ToString();
+            Clipboard.SetText(CellText);
         }
 
         public void setFocusForBarcode()
         {
             txt_productBarCode.Focus();
         }
+
         private void SetColors(Color appColor)
         {
             Label[] AllLabels = {
@@ -696,6 +696,25 @@ namespace SuperMarket.UserControls
             db_procardsDataGridView.DataSource = new Methods().DataGridToDataTable(db_procardsDataGridView);
 
             db_procardsDataGridView.Sort(db_procardsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+        }
+
+        private void db_procardsDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                int cellColumnIndex = db_procardsDataGridView.CurrentCell.ColumnIndex;
+                int cellRowIndex = db_procardsDataGridView.CurrentCell.RowIndex;
+
+                int CellX = db_procardsDataGridView.GetCellDisplayRectangle(cellColumnIndex, cellRowIndex, false).Left;
+                int CellY = db_procardsDataGridView.GetCellDisplayRectangle(cellColumnIndex, cellRowIndex, false).Top;
+
+                ContextMenuSelectedCell = (sender as DataGridView).Rows[cellRowIndex].Cells[cellColumnIndex];
+
+                if (ContextMenuSelectedCell != null)
+                {
+                    contextMenu.Show(db_procardsDataGridView, new Point(CellX, CellY));
+                }
+            }
         }
     }
 }

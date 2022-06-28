@@ -29,7 +29,7 @@ namespace SuperMarket.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle41 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_print = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
             this.txt_grandtotal = new System.Windows.Forms.TextBox();
@@ -55,8 +55,8 @@ namespace SuperMarket.UserControls
             this.label9 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.pic_barcode = new System.Windows.Forms.PictureBox();
             this.db_procardsDataGridView = new System.Windows.Forms.DataGridView();
+            this.pic_barcode = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -76,8 +76,8 @@ namespace SuperMarket.UserControls
             this.txt_prodSearch = new System.Windows.Forms.ComboBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_barcode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.db_procardsDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_barcode)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_getInvoiceID)).BeginInit();
@@ -439,16 +439,6 @@ namespace SuperMarket.UserControls
             this.panel3.Size = new System.Drawing.Size(1000, 203);
             this.panel3.TabIndex = 208;
             // 
-            // pic_barcode
-            // 
-            this.pic_barcode.BackColor = System.Drawing.Color.Gainsboro;
-            this.pic_barcode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pic_barcode.Location = new System.Drawing.Point(130, 3);
-            this.pic_barcode.Name = "pic_barcode";
-            this.pic_barcode.Size = new System.Drawing.Size(225, 70);
-            this.pic_barcode.TabIndex = 204;
-            this.pic_barcode.TabStop = false;
-            // 
             // db_procardsDataGridView
             // 
             this.db_procardsDataGridView.AllowUserToAddRows = false;
@@ -456,14 +446,14 @@ namespace SuperMarket.UserControls
             this.db_procardsDataGridView.AllowUserToResizeColumns = false;
             this.db_procardsDataGridView.AllowUserToResizeRows = false;
             this.db_procardsDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle41.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle41.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle41.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle41.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle41.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle41.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle41.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.db_procardsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle41;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.db_procardsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.db_procardsDataGridView.ColumnHeadersHeight = 40;
             this.db_procardsDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.db_procardsDataGridView.EnableHeadersVisualStyles = false;
@@ -479,8 +469,19 @@ namespace SuperMarket.UserControls
             this.db_procardsDataGridView.RowTemplate.Height = 24;
             this.db_procardsDataGridView.Size = new System.Drawing.Size(998, 201);
             this.db_procardsDataGridView.TabIndex = 1;
+            this.db_procardsDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_procardsDataGridView_CellMouseClick);
             this.db_procardsDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_procardsDataGridView_ColumnHeaderMouseClick);
             this.db_procardsDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_procardsDataGridView_ColumnHeaderMouseDoubleClick);
+            // 
+            // pic_barcode
+            // 
+            this.pic_barcode.BackColor = System.Drawing.Color.Gainsboro;
+            this.pic_barcode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pic_barcode.Location = new System.Drawing.Point(130, 3);
+            this.pic_barcode.Name = "pic_barcode";
+            this.pic_barcode.Size = new System.Drawing.Size(225, 70);
+            this.pic_barcode.TabIndex = 204;
+            this.pic_barcode.TabStop = false;
             // 
             // label7
             // 
@@ -767,8 +768,8 @@ namespace SuperMarket.UserControls
             this.Size = new System.Drawing.Size(1038, 660);
             this.Load += new System.EventHandler(this.ub_billing_Load);
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pic_barcode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.db_procardsDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_barcode)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

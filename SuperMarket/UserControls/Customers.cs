@@ -15,6 +15,9 @@ namespace SuperMarket.UserControls
             InitializeComponent();
         }
 
+        private ContextMenu contextMenu = new ContextMenu();
+        private DataGridViewCell ContextMenuSelectedCell;
+
         private void LoadDataGrid(List<CustomerModel> Customers)
         {
             customersDataGridView.DataSource = null;
@@ -150,6 +153,15 @@ namespace SuperMarket.UserControls
             SetColors(Properties.Settings.Default.AppColor);
 
             LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers());
+
+            contextMenu = Methods.SetupContextMenuCopy(contextMenu, MenuItemCopyOption_Click);
+        }
+
+        private void MenuItemCopyOption_Click(Object sender, EventArgs e)
+        {
+            string CellText = customersDataGridView.Rows[ContextMenuSelectedCell.RowIndex].
+                Cells[ContextMenuSelectedCell.ColumnIndex].Value.ToString();
+            Clipboard.SetText(CellText);
         }
 
         private void SetColors(Color appColor)
@@ -283,6 +295,25 @@ namespace SuperMarket.UserControls
             this.customersBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.superMarketDataSet);
 
+        }
+
+        private void customersDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                int cellColumnIndex = customersDataGridView.CurrentCell.ColumnIndex;
+                int cellRowIndex = customersDataGridView.CurrentCell.RowIndex;
+
+                int CellX = customersDataGridView.GetCellDisplayRectangle(cellColumnIndex, cellRowIndex, false).Left;
+                int CellY = customersDataGridView.GetCellDisplayRectangle(cellColumnIndex, cellRowIndex, false).Top;
+
+                ContextMenuSelectedCell = (sender as DataGridView).Rows[cellRowIndex].Cells[cellColumnIndex];
+
+                if (ContextMenuSelectedCell != null)
+                {
+                    contextMenu.Show(customersDataGridView, new Point(CellX, CellY));
+                }
+            }
         }
     }
 }

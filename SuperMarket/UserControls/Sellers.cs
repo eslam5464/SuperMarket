@@ -20,6 +20,8 @@ namespace SuperMarket.UserControls
 
         private static long EditedUserId = -1;
         private readonly IDictionary<int, string> UserLevelDict = new Dictionary<int, string>();
+        private ContextMenu contextMenu = new ContextMenu();
+        private DataGridViewCell ContextMenuSelectedCell;
 
         private void HideAndTranslateColums()
         {
@@ -80,6 +82,15 @@ namespace SuperMarket.UserControls
             SetColors(Properties.Settings.Default.AppColor);
             SetUserLevel();
             RefreshDataGrid();
+
+            contextMenu = Methods.SetupContextMenuCopy(contextMenu, MenuItemCopyOption_Click);
+        }
+
+        private void MenuItemCopyOption_Click(Object sender, EventArgs e)
+        {
+            string CellText = usersDataGridView.Rows[ContextMenuSelectedCell.RowIndex].
+                Cells[ContextMenuSelectedCell.ColumnIndex].Value.ToString();
+            Clipboard.SetText(CellText);
         }
 
         private void SetUserLevel()
@@ -400,6 +411,25 @@ namespace SuperMarket.UserControls
             usersDataGridView.DataSource = new Methods().DataGridToDataTable(usersDataGridView);
 
             usersDataGridView.Sort(usersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+        }
+
+        private void usersDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                int cellColumnIndex = usersDataGridView.CurrentCell.ColumnIndex;
+                int cellRowIndex = usersDataGridView.CurrentCell.RowIndex;
+
+                int CellX = usersDataGridView.GetCellDisplayRectangle(cellColumnIndex, cellRowIndex, false).Left;
+                int CellY = usersDataGridView.GetCellDisplayRectangle(cellColumnIndex, cellRowIndex, false).Top;
+
+                ContextMenuSelectedCell = (sender as DataGridView).Rows[cellRowIndex].Cells[cellColumnIndex];
+
+                if (ContextMenuSelectedCell != null)
+                {
+                    contextMenu.Show(usersDataGridView, new Point(CellX, CellY));
+                }
+            }
         }
     }
 }

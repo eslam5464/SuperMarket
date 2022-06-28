@@ -17,11 +17,23 @@ namespace SuperMarket.UserControls
             InitializeComponent();
         }
 
+        private ContextMenu contextMenu = new ContextMenu();
+        private DataGridViewCell ContextMenuSelectedCell;
+
         private void Products_Load(object sender, EventArgs e)
         {
             SetColors(Properties.Settings.Default.AppColor);
             LoadCategories();
             LoadDataGrid(Classes.DataAccess.Products.LoadProducts());
+
+            contextMenu = Methods.SetupContextMenuCopy(contextMenu, MenuItemCopyOption_Click);
+        }
+
+        private void MenuItemCopyOption_Click(Object sender, EventArgs e)
+        {
+            string CellText = productsDataGridView.Rows[ContextMenuSelectedCell.RowIndex].
+                Cells[ContextMenuSelectedCell.ColumnIndex].Value.ToString();
+            Clipboard.SetText(CellText);
         }
 
         private void SetColors(Color appColor)
@@ -423,6 +435,25 @@ namespace SuperMarket.UserControls
             this.productsBindingSource.EndEdit();
             this.tableAdapterManager.UpdateAll(this.superMarketDataSet);
 
+        }
+
+        private void productsDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                int cellColumnIndex = productsDataGridView.CurrentCell.ColumnIndex;
+                int cellRowIndex = productsDataGridView.CurrentCell.RowIndex;
+
+                int CellX = productsDataGridView.GetCellDisplayRectangle(cellColumnIndex, cellRowIndex, false).Left;
+                int CellY = productsDataGridView.GetCellDisplayRectangle(cellColumnIndex, cellRowIndex, false).Top;
+
+                ContextMenuSelectedCell = (sender as DataGridView).Rows[cellRowIndex].Cells[cellColumnIndex];
+
+                if (ContextMenuSelectedCell != null)
+                {
+                    contextMenu.Show(productsDataGridView, new Point(CellX, CellY));
+                }
+            }
         }
     }
 }

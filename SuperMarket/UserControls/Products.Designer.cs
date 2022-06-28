@@ -341,6 +341,7 @@ namespace SuperMarket.UserControls
             this.productsDataGridView.RowHeadersVisible = false;
             this.productsDataGridView.Size = new System.Drawing.Size(1032, 331);
             this.productsDataGridView.TabIndex = 1;
+            this.productsDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.productsDataGridView_CellMouseClick);
             this.productsDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_productDataGridView_ColumnHeaderMouseClick);
             this.productsDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_productDataGridView_ColumnHeaderMouseDoubleClick);
             // 
