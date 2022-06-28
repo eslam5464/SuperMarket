@@ -1,11 +1,11 @@
-﻿using SuperMarket.Forms;
+﻿using Dapper;
+using SuperMarket.Classes.Models;
+using SuperMarket.Forms;
 using System;
-using System.IO;
-using System.Data.SQLite;
 using System.Configuration;
 using System.Data;
-using Dapper;
-using SuperMarket.Classes.Models;
+using System.Data.SQLite;
+using System.IO;
 
 namespace SuperMarket.Classes
 {
