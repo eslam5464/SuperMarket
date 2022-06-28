@@ -1,4 +1,5 @@
 ﻿using QRCoder;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
@@ -98,6 +99,12 @@ namespace SuperMarket.Classes
             QRCode qrCode = new QRCode(qrCodeData);
             Bitmap qrCodeImage = qrCode.GetGraphic(20, DarkColor, LightColor, true);
             return qrCodeImage;
+        }
+
+        internal static ContextMenu SetupContextMenu(ContextMenu contextMenu, EventHandler Event)
+        {
+            contextMenu.MenuItems.Add(new MenuItem("تعديل", Event));
+            return contextMenu;
         }
 
         //private ContextMenu contextMenu = new ContextMenu();

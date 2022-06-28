@@ -14,70 +14,109 @@ namespace SuperMarket.Classes.DataAccess
         private static readonly int MaxRows = 100;
         public static void UpdateProduct(ProductModel Product)
         {
-            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            try
             {
-                cnn.Execute($"UPDATE Products SET BarCode = @BarCode, Name = @Name, Quantity = @Quantity, Price = @Price, " +
-                    $"Description = @Description, CategoryID = @CategoryID, CategoryName = @CategoryName WHERE Id = @Id", Product);
+                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                {
+                    cnn.Execute($"UPDATE Products SET BarCode = @BarCode, Name = @Name, Quantity = @Quantity, Price = @Price, " +
+                        $"Description = @Description, CategoryID = @CategoryID, CategoryName = @CategoryName WHERE Id = @Id", Product);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"while updating product with id = {Product.Id} & error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Products", Logger.ERROR);
             }
         }
 
         public static List<ProductModel> LoadProducts()
         {
-            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            try
             {
-                var output = cnn.Query<ProductModel>("SELECT * FROM Products LIMIT {MaxRows}", new DynamicParameters());
-                return output.ToList();
+                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                {
+                    var output = cnn.Query<ProductModel>($"SELECT TOP {MaxRows} * FROM Products", new DynamicParameters());
+                    return output.ToList();
+                }
             }
+            catch (Exception ex)
+            {
+                Logger.Log($"while getting all products & error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Products", Logger.ERROR);
+            }
+            return new List<ProductModel>();
         }
 
         public static List<ProductModel> GetProductLikeParameter(string Parameter, string Condition)
         {
-            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            try
             {
-                var output = cnn.Query<ProductModel>($"SELECT * FROM Products WHERE {Parameter} LIKE N'%{Condition}%' LIMIT {MaxRows}", new DynamicParameters());
-                return output.ToList();
+                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                {
+                    var output = cnn.Query<ProductModel>($"SELECT TOP {MaxRows} * FROM Products WHERE {Parameter} LIKE N'%{Condition}%'", new DynamicParameters());
+                    return output.ToList();
+                }
             }
+            catch (Exception ex)
+            {
+                Logger.Log($"while getting a product LIKE param = {Parameter} & condition = {Condition} & error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Products", Logger.ERROR);
+            }
+            return new List<ProductModel>();
         }
 
         public static List<ProductModel> GetProductParameter(string Parameter, string Condition)
         {
-            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            try
             {
-                string query = $"SELECT * FROM Products WHERE {Parameter} = N'{Condition}' LIMIT {MaxRows}";
-
-                List<ProductModel> output = new List<ProductModel>();
-
-                try
+                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
                 {
-                    output = cnn.Query<ProductModel>(query, new DynamicParameters()).ToList();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("message: " + ex.Message);
-                    Console.WriteLine("output: " + output);
-                    Console.WriteLine("query: " + query);
-                }
+                    string query = $"SELECT TOP {MaxRows} * FROM Products WHERE {Parameter} = N'{Condition}'";
 
-                return output;
+                    var output = cnn.Query<ProductModel>(query, new DynamicParameters());
+
+                    return output.ToList();
+                }
             }
+            catch (Exception ex)
+            {
+                Logger.Log($"while getting product EQUAL param = {Parameter} & condition = {Condition} & error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Products", Logger.ERROR);
+            }
+            return new List<ProductModel>();
         }
 
         public static void SaveProduct(ProductModel Product)
         {
-            string DateTimeNow = DateTime.Now.ToString();
-            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            try
             {
-                cnn.Execute($"INSERT INTO Products (BarCode, Name, Quantity, Price, " +
-                    $"Description, CategoryID, CategoryName, CreationDate) VALUES " +
-                    $"(@BarCode, @Name, @Quantity, @Price, @Description, @CategoryID, @CategoryName, '{DateTimeNow}')", Product);
+                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                {
+                    cnn.Execute($"INSERT INTO Products (BarCode, Name, Quantity, Price, " +
+                        $"Description, CategoryID, CategoryName, CreationDate) VALUES " +
+                        $"(@BarCode, @Name, @Quantity, @Price, @Description, @CategoryID, @CategoryName, '{DateTime.Now}')", Product);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"while saving product with name = {Product.Name} & error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Products", Logger.ERROR);
             }
         }
 
         public static void RemoveProduct(long ProductID)
         {
-            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            try
             {
-                cnn.Execute($"DELETE FROM Products WHERE Id = {ProductID}");
+                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                {
+                    cnn.Execute($"DELETE FROM Products WHERE Id = {ProductID}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"while removing prodict with id = {ProductID} & error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Products", Logger.ERROR);
             }
         }
 

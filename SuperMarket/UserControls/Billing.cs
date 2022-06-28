@@ -18,6 +18,7 @@ namespace SuperMarket.UserControls
             InitializeComponent();
         }
         private static bool UsedBarCodeSearch = false;
+        private ContextMenu contextMenu = new ContextMenu();
 
         private void ub_billing_Load(object sender, EventArgs e)
         {
@@ -29,15 +30,22 @@ namespace SuperMarket.UserControls
             pic_barcode.BackgroundImage = new Methods().CreateBarcodeImage(txt_invoiceno.Text, pic_barcode.Width, pic_barcode.Height);
 
             cb_defaultCST.Checked = true;
+
+            contextMenu = Methods.SetupContextMenu(contextMenu, MenuItemOptions_Click);
+        }
+
+        private void MenuItemOptions_Click(Object sender, EventArgs e)
+        {
+            int SelectedRow = db_procardsDataGridView.CurrentCell.RowIndex;
+            int SelectedColumn = db_procardsDataGridView.CurrentCell.ColumnIndex;
+            string txt = db_procardsDataGridView.Rows[SelectedRow].Cells[SelectedColumn].Value.ToString();
+            MessageBox.Show(txt);
         }
 
         public void setFocusForBarcode()
         {
             txt_productBarCode.Focus();
         }
-
-
-
         private void SetColors(Color appColor)
         {
             Label[] AllLabels = {
@@ -178,6 +186,7 @@ namespace SuperMarket.UserControls
                     string priceTotal = txt_totalprice.Text;
 
                     string DateTimeNow = DateTime.Now.ToString();
+
                     InvoiceModel invoice = new InvoiceModel
                     {
                         InvoiceNumber = long.Parse(txt_invoiceno.Text),
@@ -313,7 +322,8 @@ namespace SuperMarket.UserControls
 
         private void txt_prodSearch_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (txt_prodSearch.SelectedIndex != -1 && txt_prodSearch.DataSource != null)
+            if (txt_prodSearch.SelectedIndex != -1 && txt_prodSearch.DataSource != null &&
+                txt_prodSearch.SelectedValue.GetType() == typeof(string))
             {
                 List<ProductModel> productSearch = Classes.DataAccess.Products.GetProductParameter("Id", txt_prodSearch.SelectedValue.ToString());
 

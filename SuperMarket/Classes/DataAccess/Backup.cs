@@ -19,7 +19,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             string Date = DateTime.Now.ToString("yyyy-MM-dd "),
                 BackupLocation = Security.GetDirecotryLocation() + @"\Backup",
-                FileName = $@"\{Date} LocalBackup.db";
+                FileName = $@"\{Date} LocalBackup.bak";
 
             if (strDestination != ".")
             {
@@ -36,7 +36,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             string Date = DateTime.Now.ToString("yyyy-MM-dd "),
                 BackupLocation = Security.GetDirecotryLocation() + @"\Backup",
-                FileName = $@"\{Date} LocalBackup.db";
+                FileName = $@"\{Date} LocalBackup.bak";
 
             if (!Directory.Exists(BackupLocation))
             {
@@ -50,35 +50,53 @@ namespace SuperMarket.Classes.DataAccess
 
             if (Overwrite)
             {
-                using (var location = new SqlConnection(LoadConnectionString(Id)))
-                //using (var destination = new SqlConnection($@"Data Source={strDestination}\{FileName}; Version=3;"))
+
+                try
                 {
-                    location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{FileName}'", new DynamicParameters());
-                    /*
-                     * BACKUP DATABASE testDB
-                        TO DISK = 'D:\backups\testDB.bak'
-                        WITH DIFFERENTIAL;
-                     */
-                    //location.Open();
-                    //destination.Open();
-                    //location.BackupDatabase(destination, "main", "main", -1, null, 0);
+                    using (var location = new SqlConnection(LoadConnectionString(Id)))
+                    //using (var destination = new SqlConnection($@"Data Source={strDestination}\{FileName}; Version=3;"))
+                    {
+                        location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{FileName}'", new DynamicParameters());
+                        /*
+                         * BACKUP DATABASE testDB
+                            TO DISK = 'D:\backups\testDB.bak'
+                            WITH DIFFERENTIAL;
+                         */
+                        //location.Open();
+                        //destination.Open();
+                        //location.BackupDatabase(destination, "main", "main", -1, null, 0);
+                    }
+                    Logger.Log("created backup and orverwrited the file",
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.WARNING);
                 }
-                Logger.Log("created backup and orverwrited the file",
-                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.WARNING);
+                catch (Exception ex)
+                {
+                    Logger.Log("Error when creating backup: " + ex.Message,
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.INFO);
+                }
+
             }
             if (!Overwrite && !File.Exists(strDestination + FileName))
             {
-                using (var location = new SqlConnection(LoadConnectionString(Id)))
-                //using (var destination = new SqlConnection($@"Data Source={strDestination}\{FileName}; Version=3;"))
+                try
                 {
-                    location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{FileName}'", new DynamicParameters());
-                    //location.Open();
-                    //destination.Open();
-                    //location.BackupDatabase(destination, "main", "main", -1, null, 0);
-                }
+                    using (var location = new SqlConnection(LoadConnectionString(Id)))
+                    //using (var destination = new SqlConnection($@"Data Source={strDestination}\{FileName}; Version=3;"))
+                    {
+                        location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{FileName}'", new DynamicParameters());
+                        //location.Open();
+                        //destination.Open();
+                        //location.BackupDatabase(destination, "main", "main", -1, null, 0);
+                    }
 
-                Logger.Log("created backup without overwriting the file",
-                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.INFO);
+                    Logger.Log("created backup without overwriting the file",
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.INFO);
+                }
+                catch (Exception ex)
+                {
+                    Logger.Log("Error when creating backup: " + ex.Message,
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.INFO);
+                }
             }
             else
             {

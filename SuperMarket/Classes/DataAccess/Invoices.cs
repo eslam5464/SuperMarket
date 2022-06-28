@@ -14,67 +14,110 @@ namespace SuperMarket.Classes.DataAccess
         private static readonly int MaxRows = 100;
         internal static List<InvoiceModel> GetInvoiceParameter(string Parameter, string Condition)
         {
-            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            try
             {
-                var output = cnn.Query<InvoiceModel>($"SELECT * FROM Invoices WHERE {Parameter} = N'{Condition}' LIMIT {MaxRows}", new DynamicParameters());
-                return output.ToList();
+                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                {
+                    var output = cnn.Query<InvoiceModel>($"SELECT TOP {MaxRows} * FROM Invoices WHERE {Parameter} = N'{Condition}'", new DynamicParameters());
+                    return output.ToList();
+                }
             }
+            catch (Exception ex)
+            {
+                Logger.Log($"while getting an invoicewith param = {Parameter} & codition = {Condition} & error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Invoices", Logger.ERROR);
+            }
+            return new List<InvoiceModel>();
         }
 
         internal static void AddToInvoice(InvoiceModel invoice)
         {
-            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            try
             {
-                string query = "INSERT INTO Invoices (InvoiceNumber, CreationDate, CustomerID, CustomerName, CustomerContact, CustomerAddress," +
-                    " ProductID, ProductBarCode, ProductName, ProductQuantity, ProductPrice, PriceTotal) VALUES " +
-                    $"(@InvoiceNumber, '{DateTime.Now}', @CustomerID, @CustomerName, @CustomerContact, @CustomerAddress, @ProductID," +
-                    " @ProductBarCode, @ProductName, @ProductQuantity, @ProductPrice, @PriceTotal)";
-                cnn.Execute(query, invoice);
+                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                {
+                    string query = "INSERT INTO Invoices (InvoiceNumber, CreationDate, CustomerID, CustomerName, CustomerContact, CustomerAddress," +
+                        " ProductID, ProductBarCode, ProductName, ProductQuantity, ProductPrice, PriceTotal) VALUES " +
+                        $"(@InvoiceNumber, '{DateTime.Now}', @CustomerID, @CustomerName, @CustomerContact, @CustomerAddress, @ProductID," +
+                        " @ProductBarCode, @ProductName, @ProductQuantity, @ProductPrice, @PriceTotal)";
+                    cnn.Execute(query, invoice);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"while adding an invoice with id = {invoice.Id} error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Invoices", Logger.ERROR);
             }
         }
 
         internal static List<InvoiceModel> GetInvoice(long InvoiceNumber)
         {
-            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            try
             {
-                var output = cnn.Query<InvoiceModel>($"SELECT * FROM Invoices WHERE InvoiceNumber = {InvoiceNumber} LIMIT {MaxRows}", new DynamicParameters());
-                return output.ToList();
+                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                {
+                    var output = cnn.Query<InvoiceModel>($"SELECT TOP {MaxRows} * FROM Invoices WHERE InvoiceNumber = {InvoiceNumber}", new DynamicParameters());
+                    return output.ToList();
+                }
             }
+            catch (Exception ex)
+            {
+                Logger.Log($"while removing an invoice with id = {InvoiceNumber} error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Invoices", Logger.ERROR);
+            }
+            return new List<InvoiceModel>();
         }
 
         internal static List<InvoiceModel> GetAllInvoices()
         {
-            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            try
             {
-                var output = cnn.Query<InvoiceModel>($"SELECT * FROM Invoices LIMIT {MaxRows}", new DynamicParameters());
-                return output.ToList();
+                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                {
+                    var output = cnn.Query<InvoiceModel>($"SELECT TOP {MaxRows} * FROM Invoices", new DynamicParameters());
+                    return output.ToList();
+                }
             }
+            catch (Exception ex)
+            {
+                Logger.Log($"while getting all invoices error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Invoices", Logger.ERROR);
+            }
+            return new List<InvoiceModel>();
         }
 
-        internal static List<InvoiceModel> LoadAllInvoices()
+        internal static void RemoveProductFromInvoice(long ProductID, long InvoiceNumber)
         {
-            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            try
             {
-                var output = cnn.Query<InvoiceModel>($"SELECT * FROM Invoices LIMIT {MaxRows}", new DynamicParameters());
-                return output.ToList();
+                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                {
+                    cnn.Execute($"DELETE FROM Invoices WHERE Id = {InvoiceNumber} AND ProductID = {ProductID}");
+                }
             }
-        }
-
-        internal static void RemoveProductFromInvoice(long ProductID, long InvoiceID, DateTime CreationDate)
-        {
-            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            catch (Exception ex)
             {
-                cnn.Execute($"DELETE FROM Invoices WHERE Id = {InvoiceID} AND ProductID = {ProductID} AND CreationDate = N'{CreationDate}'");
+                Logger.Log($"while removing product from invoice with Pid = {ProductID} & Iid = {InvoiceNumber} & error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Invoices", Logger.ERROR);
             }
         }
 
         internal static List<InvoiceModel> LoadInvoice(string InvoiceNumber)
         {
-            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            try
             {
-                var output = cnn.Query<InvoiceModel>($"SELECT * FROM Invoices WHERE InvoiceNumber = {InvoiceNumber} LIMIT {MaxRows}", new DynamicParameters());
-                return output.ToList();
+                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                {
+                    var output = cnn.Query<InvoiceModel>($"SELECT TOP {MaxRows} * FROM Invoices WHERE InvoiceNumber = {InvoiceNumber}", new DynamicParameters());
+                    return output.ToList();
+                }
             }
+            catch (Exception ex)
+            {
+                Logger.Log($"while loading invoice with number = {InvoiceNumber} & error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Invoices", Logger.ERROR);
+            }
+            return new List<InvoiceModel>();
         }
 
         private static string LoadConnectionString(string id = "Default")

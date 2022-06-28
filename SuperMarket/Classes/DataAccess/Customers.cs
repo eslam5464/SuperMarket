@@ -14,53 +14,104 @@ namespace SuperMarket.Classes.DataAccess
         private static readonly int MaxRows = 100;
         public static List<CustomerModel> LoadCustomers()
         {
-            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            try
             {
-                var output = cnn.Query<CustomerModel>($"SELECT * FROM Customers LIMIT {MaxRows}", new DynamicParameters());
-                return output.ToList();
+                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                {
+                    var output = cnn.Query<CustomerModel>($"SELECT TOP {MaxRows} * FROM Customers", new DynamicParameters());
+                    return output.ToList();
+                }
             }
+            catch (Exception ex)
+            {
+                Logger.Log($"while loading all customers error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Customers", Logger.ERROR);
+            }
+            return new List<CustomerModel>();
         }
 
         internal static void SaveCustomer(CustomerModel customer)
         {
-            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            try
             {
-                cnn.Execute($"INSERT INTO Customers (Name, ContactNo, Address, CreationDate) VALUES " +
-                    $"(@Name, @ContactNo, @Address, '{DateTime.Now}')", customer);
+                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                {
+                    cnn.Execute($"INSERT INTO Customers (Name, ContactNo, Address, CreationDate) VALUES " +
+                        $"(@Name, @ContactNo, @Address, '{DateTime.Now}')", customer);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"while saving a customer with id = {customer.Name} error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Customers", Logger.ERROR);
             }
         }
 
         internal static void UpdateCustomer(CustomerModel customer)
         {
-            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            try
             {
-                cnn.Execute($"UPDATE Customers SET Name = @Name, ContactNo = @ContactNo, Address = @Address WHERE Id = @Id", customer);
+                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                {
+                    cnn.Execute($"UPDATE Customers SET Name = @Name, ContactNo = @ContactNo, Address = @Address WHERE Id = @Id", customer);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"while updating a customer with id = {customer.Id} error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Customers", Logger.ERROR);
             }
         }
 
         internal static List<CustomerModel> GetCustomerParameter(string Parameter, string Condition)
         {
-            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            try
             {
-                var output = cnn.Query<CustomerModel>($"SELECT * FROM Customers WHERE {Parameter} = N'{Condition}' LIMIT {MaxRows}", new DynamicParameters());
-                return output.ToList();
+                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                {
+                    var output = cnn.Query<CustomerModel>($"SELECT TOP {MaxRows} * FROM Customers WHERE {Parameter} = N'{Condition}'", new DynamicParameters());
+                    return output.ToList();
+                }
             }
+            catch (Exception ex)
+            {
+                Logger.Log($"while getting a customer with param = {Parameter} & condition = {Condition} error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Customers", Logger.ERROR);
+            }
+            return new List<CustomerModel>();
         }
 
         internal static List<CustomerModel> GetCustomerWithID(long CustomerID)
         {
-            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            try
             {
-                var output = cnn.Query<CustomerModel>($"SELECT * FROM Customers WHERE Id = {CustomerID} LIMIT {MaxRows}", new DynamicParameters());
-                return output.ToList();
+                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                {
+                    var output = cnn.Query<CustomerModel>($"SELECT TOP {MaxRows} * FROM Customers WHERE Id = {CustomerID}", new DynamicParameters());
+                    return output.ToList();
+                }
             }
+            catch (Exception ex)
+            {
+                Logger.Log($"while getting a customer with id = {CustomerID} error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Customers", Logger.ERROR);
+            }
+            return new List<CustomerModel>();
         }
 
         internal static void RemoveCustomer(long customerID)
         {
-            using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+            try
             {
-                cnn.Execute($"DELETE FROM Customers WHERE Id= {customerID}");
+                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                {
+                    cnn.Execute($"DELETE FROM Customers WHERE Id= {customerID}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"while removing a customer with id = {customerID} error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Customers", Logger.ERROR);
             }
         }
 
