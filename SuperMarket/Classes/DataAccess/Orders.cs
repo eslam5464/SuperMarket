@@ -37,8 +37,8 @@ namespace SuperMarket.Classes.DataAccess
                 using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
                 {
                     cnn.Execute($"INSERT INTO Orders (InvoiceDate, InvoiceId, CustomerId, CustomerName, " +
-                        $"ContactNumber, Address, GrandTotal, CreatedByUserId) VALUES (@InvoiceDate, @InvoiceId, @CustomerId, @CustomerName, " +
-                        $"@ContactNumber, @Address, @GrandTotal, @CreatedByUserId)", order);
+                        $"ContactNumber, Address, GrandTotal, CreatedByUserId, CreatedByUserFullName) VALUES (@InvoiceDate, @InvoiceId, @CustomerId, @CustomerName, " +
+                        $"@ContactNumber, @Address, @GrandTotal, @CreatedByUserId, @CreatedByUserFullName)", order);
                 }
             }
             catch (Exception ex)

@@ -9,6 +9,10 @@ namespace SuperMarket.Classes.DataAccess
 {
     class Backup
     {
+        private static string Date = DateTime.Now.ToString("yyyy-MM-dd "),
+                BackupLocation = Security.GetDirecotryLocation() + @"\Backup",
+                FileName = $@"\{Date} LocalBackup.bak";
+
         public static void AllWeekly(DayOfWeek Day, string strDestination = ".", string Id = "Default")
         {
             if (DateTime.Now.DayOfWeek == Day)
@@ -17,10 +21,6 @@ namespace SuperMarket.Classes.DataAccess
 
         public static void AllDaily(int NumOfMaxBackup = 10, string strDestination = ".", string Id = "Default")
         {
-            string Date = DateTime.Now.ToString("yyyy-MM-dd "),
-                BackupLocation = Security.GetDirecotryLocation() + @"\Backup",
-                FileName = $@"\{Date} LocalBackup.bak";
-
             if (strDestination != ".")
             {
                 BackupLocation = strDestination;
@@ -34,10 +34,6 @@ namespace SuperMarket.Classes.DataAccess
 
         public static void All(string strDestination = ".", string Id = "Default", bool Overwrite = false)
         {
-            string Date = DateTime.Now.ToString("yyyy-MM-dd "),
-                BackupLocation = Security.GetDirecotryLocation() + @"\Backup",
-                FileName = $@"\{Date} LocalBackup.bak";
-
             if (!Directory.Exists(BackupLocation))
             {
                 Directory.CreateDirectory(BackupLocation);
@@ -54,27 +50,32 @@ namespace SuperMarket.Classes.DataAccess
                 try
                 {
                     using (var location = new SqlConnection(LoadConnectionString(Id)))
-                    //using (var destination = new SqlConnection($@"Data Source={strDestination}\{FileName}; Version=3;"))
                     {
-                        location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{FileName}'", new DynamicParameters());
-                        /*
-                         * BACKUP DATABASE testDB
-                            TO DISK = 'D:\backups\testDB.bak'
-                            WITH DIFFERENTIAL;
-                         */
-                        //location.Open();
-                        //destination.Open();
-                        //location.BackupDatabase(destination, "main", "main", -1, null, 0);
+                        location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{FileName}' WITH DIFFERENTIAL", new DynamicParameters());
                     }
                     Logger.Log("created backup and orverwrited the file",
                                 System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.WARNING);
                 }
                 catch (Exception ex)
                 {
-                    Logger.Log("Error when creating backup: " + ex.Message,
+                    Logger.Log("Error when creating backup with diferential trying without it & error: " + ex.Message,
                                 System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.INFO);
-                }
 
+                    try
+                    {
+                        using (var location = new SqlConnection(LoadConnectionString(Id)))
+                        {
+                            location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{FileName}' WITH DIFFERENTIAL", new DynamicParameters());
+                        }
+                        Logger.Log("created backup and orverwrited the file",
+                                    System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.WARNING);
+                    }
+                    catch (Exception ex2)
+                    {
+                        Logger.Log("Error again when creating backup with and without diferential & error: " + ex2.Message,
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.INFO);
+                    }
+                }
             }
             if (!Overwrite && !File.Exists(strDestination + FileName))
             {

@@ -35,6 +35,7 @@ namespace SuperMarket.Forms
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_logout = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.btn_reports = new System.Windows.Forms.Button();
             this.btn_editBills = new System.Windows.Forms.Button();
             this.btn_sellers = new System.Windows.Forms.Button();
             this.btn_billing = new System.Windows.Forms.Button();
@@ -114,6 +115,7 @@ namespace SuperMarket.Forms
             // panel7
             // 
             this.panel7.AutoScroll = true;
+            this.panel7.Controls.Add(this.btn_reports);
             this.panel7.Controls.Add(this.btn_editBills);
             this.panel7.Controls.Add(this.btn_sellers);
             this.panel7.Controls.Add(this.btn_billing);
@@ -130,6 +132,26 @@ namespace SuperMarket.Forms
             this.panel7.Size = new System.Drawing.Size(258, 656);
             this.panel7.TabIndex = 8;
             this.panel7.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panels_MouseMove);
+            // 
+            // btn_reports
+            // 
+            this.btn_reports.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_reports.FlatAppearance.BorderSize = 0;
+            this.btn_reports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_reports.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_reports.ForeColor = System.Drawing.Color.White;
+            this.btn_reports.Image = ((System.Drawing.Image)(resources.GetObject("btn_reports.Image")));
+            this.btn_reports.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_reports.Location = new System.Drawing.Point(16, 423);
+            this.btn_reports.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_reports.Name = "btn_reports";
+            this.btn_reports.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btn_reports.Size = new System.Drawing.Size(211, 50);
+            this.btn_reports.TabIndex = 24;
+            this.btn_reports.Text = "   التقارير";
+            this.btn_reports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_reports.UseVisualStyleBackColor = true;
+            this.btn_reports.Click += new System.EventHandler(this.btn_reports_Click);
             // 
             // btn_editBills
             // 
@@ -160,7 +182,7 @@ namespace SuperMarket.Forms
             this.btn_sellers.ForeColor = System.Drawing.Color.White;
             this.btn_sellers.Image = ((System.Drawing.Image)(resources.GetObject("btn_sellers.Image")));
             this.btn_sellers.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_sellers.Location = new System.Drawing.Point(16, 425);
+            this.btn_sellers.Location = new System.Drawing.Point(16, 481);
             this.btn_sellers.Margin = new System.Windows.Forms.Padding(4);
             this.btn_sellers.Name = "btn_sellers";
             this.btn_sellers.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -200,7 +222,7 @@ namespace SuperMarket.Forms
             this.btn_settings.ForeColor = System.Drawing.Color.White;
             this.btn_settings.Image = ((System.Drawing.Image)(resources.GetObject("btn_settings.Image")));
             this.btn_settings.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_settings.Location = new System.Drawing.Point(16, 483);
+            this.btn_settings.Location = new System.Drawing.Point(16, 539);
             this.btn_settings.Margin = new System.Windows.Forms.Padding(4);
             this.btn_settings.Name = "btn_settings";
             this.btn_settings.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -489,7 +511,6 @@ namespace SuperMarket.Forms
         private System.Windows.Forms.Panel pan_controls;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btn_logout;
-        public System.Windows.Forms.Button btn_sellers;
         private System.Windows.Forms.Button btn_billing;
         private System.Windows.Forms.Button btn_Orders;
         private System.Windows.Forms.Button btn_Customers;
@@ -512,5 +533,7 @@ namespace SuperMarket.Forms
         private System.Windows.Forms.Timer UserSession;
         public System.Windows.Forms.Button btn_settings;
         private System.Windows.Forms.Button btn_editBills;
+        private System.Windows.Forms.Button btn_reports;
+        private System.Windows.Forms.Button btn_sellers;
     }
 }

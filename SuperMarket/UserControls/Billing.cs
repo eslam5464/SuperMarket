@@ -269,7 +269,6 @@ namespace SuperMarket.UserControls
             }
             else
             {
-                dtp_invoicedate.Value = DateTime.Now;
                 List<InvoiceModel> InvoiceList = new List<InvoiceModel>
                 {
                     invoice
@@ -588,7 +587,8 @@ namespace SuperMarket.UserControls
                             ContactNumber = datasource[0].CustomerContact,
                             Address = datasource[0].CustomerAddress,
                             GrandTotal = decimal.Parse(txt_grandtotal.Text),
-                            CreatedByUserId = Main.LoggedUser.Id
+                            CreatedByUserId = Main.LoggedUser.Id,
+                            CreatedByUserFullName = Main.LoggedUser.FullName
                         };
                         Classes.DataAccess.Orders.AddOrder(order);
 
@@ -715,6 +715,11 @@ namespace SuperMarket.UserControls
                     contextMenu.Show(db_procardsDataGridView, new Point(CellX, CellY));
                 }
             }
+        }
+
+        private void dtp_invoicedate_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

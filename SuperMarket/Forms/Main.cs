@@ -16,6 +16,7 @@ namespace SuperMarket.Forms
         private readonly Billing uc_billing = new Billing();
         private readonly Sellers uc_sellers = new Sellers();
         private readonly BillsEdit uc_billsEdit = new BillsEdit();
+        private readonly UserControls.Reports uc_reports = new UserControls.Reports();
         private readonly UserControls.Settings uc_settings = new UserControls.Settings();
 
         public Main()
@@ -87,7 +88,8 @@ namespace SuperMarket.Forms
                 uc_billing,
                 uc_sellers,
                 uc_settings,
-                uc_billsEdit
+                uc_billsEdit,
+                uc_reports
             };
 
             foreach (UserControl userControl in AllUserControls)
@@ -203,6 +205,17 @@ namespace SuperMarket.Forms
             SidePanel.Top = btn_settings.Top;
 
             uc_settings.BringToFront();
+        }
+
+        private void btn_reports_Click(object sender, EventArgs e)
+        {
+            Logger.Log("user clicked on reports button",
+                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+            SidePanel.Height = btn_reports.Height;
+            SidePanel.Top = btn_reports.Top;
+
+            uc_reports.BringToFront();
         }
 
         private void btn_logout_Click(object sender, EventArgs e)

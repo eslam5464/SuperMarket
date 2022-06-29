@@ -71,9 +71,10 @@ namespace SuperMarket.UserControls
             ordersDataGridView.Columns["ContactNumber"].HeaderText = "رقم الإتصال";
             ordersDataGridView.Columns["Address"].HeaderText = "العنوان";
             ordersDataGridView.Columns["GrandTotal"].HeaderText = "المجموع الكلي للفاتورة";
-            ordersDataGridView.Columns["CreatedByUserId"].HeaderText = "الرقم التعريفي للموظف";
+            ordersDataGridView.Columns["CreatedByUserFullName"].HeaderText = "اسم الموظف";
 
             ordersDataGridView.Columns["Id"].Visible = false;
+            ordersDataGridView.Columns["CreatedByUserId"].Visible = false;
 
             ordersDataGridView.AutoResizeColumns();
             ordersDataGridView.Columns["InvoiceDate"].Width += 5;

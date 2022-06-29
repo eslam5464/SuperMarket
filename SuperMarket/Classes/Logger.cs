@@ -67,7 +67,6 @@ namespace SuperMarket.Classes
                         $"'{logModel.LoggedUserName}', '{logModel.LogLevel}', '{logModel.LogMessage}'); ";
 
                     var output = cnn.Query<LogModel>(query, new DynamicParameters());
-
                 }
             }
             catch (Exception ex)

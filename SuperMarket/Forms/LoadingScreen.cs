@@ -17,7 +17,7 @@ namespace SuperMarket.Forms
 
         private bool FoundTimeOnline = false;
         private DateTime OnlineTimeNow;
-
+        private Login login = new Login();
         private void LoadingScreen_Load(object sender, EventArgs e)
         {
             timer_loading.Start();
@@ -53,8 +53,8 @@ namespace SuperMarket.Forms
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                //MessageBox.Show(ex.Message);
+                Logger.Log($"Error while fetching the online date now & error: {ex.Message}",
+                           System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.ERROR);
             }
 
         }
@@ -78,7 +78,7 @@ namespace SuperMarket.Forms
             else
             {
                 if (progressBar.Value == 75 && FoundTimeOnline)
-                    progressBar.Value += 25;// TO DO: finish fidning time online
+                    progressBar.Value += 25;// TO DO: finish finding time online
 
                 else
                 {
@@ -101,10 +101,11 @@ namespace SuperMarket.Forms
                             Logger.Log("serial key validated",
                                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
+                            this.TopMost = false;
                             this.Hide();
 
-                            Login login = new Login();
                             login.TopMost = true;
+
                             login.ShowDialog();
 
                             this.Show();
@@ -170,17 +171,6 @@ namespace SuperMarket.Forms
                     }
                 }
             }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            progressBar.Value += 10;
-            //progressBar.
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Close();
         }
 
         private void timer_loading_Tick(object sender, EventArgs e)
