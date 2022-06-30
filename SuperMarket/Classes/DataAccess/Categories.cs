@@ -30,14 +30,22 @@ namespace SuperMarket.Classes.DataAccess
             return new List<CategoryModel>();
         }
 
-        public static List<CategoryModel> LoadCategoryNames()
+        public static List<CategoryModel> LoadCategoryNames(bool LimitRows)
         {
             try
             {
                 using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
                 {
-                    var output = cnn.Query<CategoryModel>($"SELECT TOP {MaxRows} Name FROM Categories", new DynamicParameters());
-                    return output.ToList();
+                    if (LimitRows)
+                    {
+                        var output = cnn.Query<CategoryModel>($"SELECT TOP {MaxRows} Name FROM Categories", new DynamicParameters());
+                        return output.ToList();
+                    }
+                    else
+                    {
+                        var output = cnn.Query<CategoryModel>($"SELECT Name FROM Categories", new DynamicParameters());
+                        return output.ToList();
+                    }
                 }
             }
             catch (Exception ex)

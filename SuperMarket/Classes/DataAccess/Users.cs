@@ -32,14 +32,23 @@ namespace SuperMarket.Classes.DataAccess
             return new List<UserModel>();
         }
 
-        internal static List<UserModel> LoadAllUsers()
+        internal static List<UserModel> LoadAllUsers(bool LimitRows)
         {
             try
             {
                 using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
                 {
-                    var output = cnn.Query<UserModel>($"SELECT TOP {MaxRows} * FROM Users", new DynamicParameters());
-                    return output.ToList();
+                    if (LimitRows)
+                    {
+                        var output = cnn.Query<UserModel>($"SELECT TOP {MaxRows} * FROM Users", new DynamicParameters());
+                        return output.ToList();
+                    }
+                    else
+                    {
+                        var output = cnn.Query<UserModel>($"SELECT * FROM Users", new DynamicParameters());
+                        return output.ToList();
+                    }
+                    
                 }
             }
             catch (Exception ex)

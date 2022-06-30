@@ -29,14 +29,23 @@ namespace SuperMarket.Classes.DataAccess
             }
         }
 
-        public static List<ProductModel> LoadProducts()
+        public static List<ProductModel> LoadProducts(bool LimitRows)
         {
             try
             {
                 using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
                 {
-                    var output = cnn.Query<ProductModel>($"SELECT TOP {MaxRows} * FROM Products", new DynamicParameters());
-                    return output.ToList();
+                    if (LimitRows)
+                    {
+                        var output = cnn.Query<ProductModel>($"SELECT TOP {MaxRows} * FROM Products", new DynamicParameters());
+                        return output.ToList();
+                    }
+                    else
+                    {
+                        var output = cnn.Query<ProductModel>($"SELECT * FROM Products", new DynamicParameters());
+                        return output.ToList();
+                    }
+
                 }
             }
             catch (Exception ex)

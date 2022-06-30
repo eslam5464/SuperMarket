@@ -37,15 +37,15 @@ namespace SuperMarket.UserControls
         private void CalculateAll()
         {
             decimal OrderSum = 0;
-            foreach (OrderModel order in Classes.DataAccess.Orders.GetAllOrders())
+            foreach (OrderModel order in Classes.DataAccess.Orders.GetAllOrders(true))
             {
                 OrderSum += order.GrandTotal;
             }
 
             lbl_orders_sum.Text = "" + OrderSum;
-            lbl_orders_count.Text = "" + Classes.DataAccess.Orders.GetAllOrders().Count;
-            lbl_product_count.Text = "" + Classes.DataAccess.Products.LoadProducts().Count;
-            lbl_customer_count.Text = "" + Classes.DataAccess.Customers.LoadCustomers().Count;
+            lbl_orders_count.Text = "" + Classes.DataAccess.Orders.GetAllOrders(true).Count;
+            lbl_product_count.Text = "" + Classes.DataAccess.Products.LoadProducts(true).Count;
+            lbl_customer_count.Text = "" + Classes.DataAccess.Customers.LoadCustomers(true).Count;
             lbl_user_count.Text = "" + Classes.DataAccess.Users.LoadAtiveUsersNonAdmin().Count;
 
             CenterLabels();

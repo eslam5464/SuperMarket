@@ -166,7 +166,7 @@ namespace SuperMarket.UserControls
                     {
                         if (txt_userLevel.SelectedIndex != -1)
                         {
-                            List<UserModel> AllUsers = Users.LoadAllUsers();
+                            List<UserModel> AllUsers = Users.LoadAllUsers(true);
 
                             var UserResult = AllUsers.FindAll(User => Security.Decrypt(User.Username,
                                 Security.CPUID + Security.MOBOID) == txt_Username.Text);
@@ -430,6 +430,11 @@ namespace SuperMarket.UserControls
                     contextMenu.Show(usersDataGridView, new Point(CellX, CellY));
                 }
             }
+        }
+
+        private void btn_exportPDF_Click(object sender, EventArgs e)
+        {
+            Methods.ExportDGVtoPDF(usersDataGridView, this.Name);
         }
     }
 }

@@ -435,6 +435,21 @@ namespace SuperMarket.UserControls
                 ResetTextBoxes(true, true, true, true);
                 db_procardsDataGridView.DataSource = null;
                 txt_invoiceno.Enabled = true;
+
+                string UniqueInvoiceID = Methods.GetUniqueInvoiceID();
+
+                List<InvoiceModel> InvoiceSearch = Classes.DataAccess.Invoices.LoadInvoice(UniqueInvoiceID);
+
+                while (InvoiceSearch.Count != 0)
+                {
+                    UniqueInvoiceID = Methods.GetUniqueInvoiceID();
+                    InvoiceSearch = Classes.DataAccess.Invoices.LoadInvoice(UniqueInvoiceID);
+                }
+
+                txt_invoiceno.Text = "" + UniqueInvoiceID;
+
+                pic_barcode.BackgroundImage = new Methods().CreateBarcodeImage(UniqueInvoiceID, pic_barcode.Width, pic_barcode.Height);
+
             }
         }
 
@@ -446,6 +461,8 @@ namespace SuperMarket.UserControls
                 txt_cstContact.Text = "";
                 txt_cstID.Text = "";
                 txt_cstName.Text = "";
+                cb_defaultCST.Checked = false;
+                cb_defaultCST.Checked = true;
             }
 
             if (ResetGrandTotal)

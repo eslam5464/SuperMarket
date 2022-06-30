@@ -12,14 +12,23 @@ namespace SuperMarket.Classes.DataAccess
     class Customers
     {
         private static readonly int MaxRows = 100;
-        public static List<CustomerModel> LoadCustomers()
+        public static List<CustomerModel> LoadCustomers(bool LimitRows)
         {
             try
             {
                 using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
                 {
-                    var output = cnn.Query<CustomerModel>($"SELECT TOP {MaxRows} * FROM Customers", new DynamicParameters());
-                    return output.ToList();
+                    if (LimitRows)
+                    {
+                        var output = cnn.Query<CustomerModel>($"SELECT TOP {MaxRows} * FROM Customers", new DynamicParameters());
+                        return output.ToList();
+                    }
+                        
+                    else
+                    {
+                        var output = cnn.Query<CustomerModel>($"SELECT * FROM Customers", new DynamicParameters());
+                        return output.ToList();
+                    }
                 }
             }
             catch (Exception ex)

@@ -1,8 +1,11 @@
 ﻿using QRCoder;
+using SuperMarket.Classes.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SuperMarket.Classes
@@ -23,7 +26,11 @@ namespace SuperMarket.Classes
                 dataTable.Rows.Add();
                 foreach (DataGridViewCell cell in row.Cells)
                 {
-                    dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
+                    if (cell.Value == null)
+                        dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = "";
+
+                    else
+                        dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
                 }
 
             }
@@ -106,6 +113,27 @@ namespace SuperMarket.Classes
             contextMenu.MenuItems.Add(new MenuItem("نسخ الخانه", Event));
             return contextMenu;
         }
+
+        internal static void ExportDGVtoPDF(DataGridView categoriesDataGridView, string TitleName)
+        {
+            DGVPrinter dGVPrinter = new DGVPrinter
+            {
+                Title = TitleName,
+                //SubTitle = "1234",
+                SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip,
+                PageNumbers = true,
+                PageNumberInHeader = false,
+                PorportionalColumns = true,
+                HeaderCellAlignment = StringAlignment.Near,
+                //Footer = "111223344",
+                FooterSpacing = 15,
+            };
+
+            dGVPrinter.PrintDataGridView(categoriesDataGridView);
+        }
+
+        //---------------------------------------------------------------
+
 
         //private ContextMenu contextMenu = new ContextMenu();
 

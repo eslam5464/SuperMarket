@@ -24,7 +24,7 @@ namespace SuperMarket.UserControls
         {
             SetColors(Properties.Settings.Default.AppColor);
             LoadCategories();
-            LoadDataGrid(Classes.DataAccess.Products.LoadProducts());
+            LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
 
             contextMenu = Methods.SetupContextMenuCopy(contextMenu, MenuItemCopyOption_Click);
         }
@@ -133,7 +133,7 @@ namespace SuperMarket.UserControls
                                 CategoryName = categoryName
                             };
                             Classes.DataAccess.Products.SaveProduct(product);
-                            LoadDataGrid(Classes.DataAccess.Products.LoadProducts());
+                            LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
 
                             ResetTextBoxes();
 
@@ -219,7 +219,7 @@ namespace SuperMarket.UserControls
         private void pcb_searchName_Click(object sender, EventArgs e)
         {
             if (txt_productname.Text.Trim() == "")
-                LoadDataGrid(Classes.DataAccess.Products.LoadProducts());
+                LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
 
             else
             {
@@ -234,7 +234,7 @@ namespace SuperMarket.UserControls
         private void pcb_searchID_Click(object sender, EventArgs e)
         {
             if (txt_productid.Text.Trim() == "")
-                LoadDataGrid(Classes.DataAccess.Products.LoadProducts());
+                LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
 
             else
             {
@@ -335,7 +335,7 @@ namespace SuperMarket.UserControls
                                 MessageBoxIcon.Information) == DialogResult.Yes)
                     {
                         Classes.DataAccess.Products.RemoveProduct(ProductID);
-                        LoadDataGrid(Classes.DataAccess.Products.LoadProducts());
+                        LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
 
                         Logger.Log($"user removed product: {ProductName} with id: {ProductID}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
@@ -349,7 +349,7 @@ namespace SuperMarket.UserControls
 
         private void pcb_search_DoubleClick(object sender, EventArgs e)
         {
-            LoadDataGrid(Classes.DataAccess.Products.LoadProducts());
+            LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
         }
 
         private void pcb_search_MouseEnter(object sender, EventArgs e)
@@ -367,7 +367,7 @@ namespace SuperMarket.UserControls
         private void pcb_searchBarCode_Click(object sender, EventArgs e)
         {
             if (txt_productBarCode.Text.Trim() == "")
-                LoadDataGrid(Classes.DataAccess.Products.LoadProducts());
+                LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
 
             else
             {
@@ -452,6 +452,11 @@ namespace SuperMarket.UserControls
                     contextMenu.Show(productsDataGridView, new Point(CellX, CellY));
                 }
             }
+        }
+
+        private void btn_exportPDF_Click(object sender, EventArgs e)
+        {
+            Methods.ExportDGVtoPDF(productsDataGridView, this.Name);
         }
     }
 }

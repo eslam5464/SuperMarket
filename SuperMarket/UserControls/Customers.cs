@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace SuperMarket.UserControls
@@ -18,20 +19,20 @@ namespace SuperMarket.UserControls
         private ContextMenu contextMenu = new ContextMenu();
         private DataGridViewCell ContextMenuSelectedCell;
 
-        private void LoadDataGrid(List<CustomerModel> Customers)
+        internal void LoadDataGrid(List<CustomerModel> Customers, DataGridView dataGridView)
         {
-            customersDataGridView.DataSource = null;
-            customersDataGridView.DataSource = Customers;
+            dataGridView.DataSource = null;
+            dataGridView.DataSource = Customers;
 
-            customersDataGridView.Columns["Id"].HeaderText = "الرقم التعريفي للعميل";
-            customersDataGridView.Columns["CustomerName"].HeaderText = "اسم العميل";
-            customersDataGridView.Columns["ContactNo"].HeaderText = "رقم الاتصال";
-            customersDataGridView.Columns["Address"].HeaderText = "العنوان";
-            customersDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه العميل";
-            customersDataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
+            dataGridView.Columns["Id"].HeaderText = "الرقم التعريفي للعميل";
+            dataGridView.Columns["CustomerName"].HeaderText = "اسم العميل";
+            dataGridView.Columns["ContactNo"].HeaderText = "رقم الاتصال";
+            dataGridView.Columns["Address"].HeaderText = "العنوان";
+            dataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه العميل";
+            dataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
 
-            customersDataGridView.AutoResizeColumns();
-            customersDataGridView.Columns["CreationDate"].Width += 5;
+            dataGridView.AutoResizeColumns();
+            dataGridView.Columns["CreationDate"].Width += 5;
         }
 
         private void btn_save_Click(object sender, EventArgs e)
@@ -64,7 +65,7 @@ namespace SuperMarket.UserControls
                             };
                             Classes.DataAccess.Customers.UpdateCustomer(customer);
 
-                            LoadDataGrid(Classes.DataAccess.Customers.GetCustomerParameter("Id", "" + customer.Id));
+                            LoadDataGrid(Classes.DataAccess.Customers.GetCustomerParameter("Id", "" + customer.Id), customersDataGridView);
 
                             ResetTextBoxes();
 
@@ -95,7 +96,7 @@ namespace SuperMarket.UserControls
                             };
                             Classes.DataAccess.Customers.SaveCustomer(customer);
 
-                            LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers());
+                            LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers(true), customersDataGridView);
 
                             ResetTextBoxes();
 
@@ -121,7 +122,7 @@ namespace SuperMarket.UserControls
         private void pcb_searchName_Click(object sender, EventArgs e)
         {
             if (txt_customername.Text.Trim() == "")
-                LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers());
+                LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers(true), customersDataGridView);
 
             else
             {
@@ -129,14 +130,14 @@ namespace SuperMarket.UserControls
                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                 List<CustomerModel> customerSearch = Classes.DataAccess.Customers.GetCustomerParameter("Name", txt_customername.Text);
-                LoadDataGrid(customerSearch);
+                LoadDataGrid(customerSearch, customersDataGridView);
             }
         }
 
         private void pcb_searchPhone_Click(object sender, EventArgs e)
         {
             if (txt_contact.Text.Trim() == "")
-                LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers());
+                LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers(true), customersDataGridView);
 
             else
             {
@@ -144,7 +145,7 @@ namespace SuperMarket.UserControls
                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                 List<CustomerModel> customerSearch = Classes.DataAccess.Customers.GetCustomerParameter("ContactNo", txt_contact.Text);
-                LoadDataGrid(customerSearch);
+                LoadDataGrid(customerSearch, customersDataGridView);
             }
         }
 
@@ -152,7 +153,7 @@ namespace SuperMarket.UserControls
         {
             SetColors(Properties.Settings.Default.AppColor);
 
-            LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers());
+            LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers(true), customersDataGridView);
 
             contextMenu = Methods.SetupContextMenuCopy(contextMenu, MenuItemCopyOption_Click);
         }
@@ -236,7 +237,7 @@ namespace SuperMarket.UserControls
                                 MessageBoxIcon.Information) == DialogResult.Yes)
                     {
                         Classes.DataAccess.Customers.RemoveCustomer(CustomerID);
-                        LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers());
+                        LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers(true), customersDataGridView);
 
                         Logger.Log($"user removed {CustomerName} with id: {CustomerID}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
@@ -251,7 +252,7 @@ namespace SuperMarket.UserControls
 
         private void pcb_search_DoubleClick(object sender, EventArgs e)
         {
-            LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers());
+            LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers(true), customersDataGridView);
         }
 
         private void pcb_search_MouseEnter(object sender, EventArgs e)
@@ -314,6 +315,11 @@ namespace SuperMarket.UserControls
                     contextMenu.Show(customersDataGridView, new Point(CellX, CellY));
                 }
             }
+        }
+
+        private void btn_exportPDF_Click(object sender, EventArgs e)
+        {
+            Methods.ExportDGVtoPDF(customersDataGridView, this.Name);
         }
     }
 }

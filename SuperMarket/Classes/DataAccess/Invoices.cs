@@ -68,14 +68,23 @@ namespace SuperMarket.Classes.DataAccess
             return new List<InvoiceModel>();
         }
 
-        internal static List<InvoiceModel> GetAllInvoices()
+        internal static List<InvoiceModel> GetAllInvoices(bool LimitRows)
         {
             try
             {
                 using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
                 {
-                    var output = cnn.Query<InvoiceModel>($"SELECT TOP {MaxRows} * FROM Invoices", new DynamicParameters());
-                    return output.ToList();
+                    if (LimitRows)
+                    {
+                        var output = cnn.Query<InvoiceModel>($"SELECT TOP {MaxRows} * FROM Invoices", new DynamicParameters());
+                        return output.ToList();
+                    }
+                    else
+                    {
+                        var output = cnn.Query<InvoiceModel>($"SELECT * FROM Invoices", new DynamicParameters());
+                        return output.ToList();
+                    }
+                       
                 }
             }
             catch (Exception ex)

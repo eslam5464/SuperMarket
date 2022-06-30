@@ -20,7 +20,7 @@ namespace SuperMarket.UserControls
 
         private void btn_refresh_Click(object sender, EventArgs e)
         {
-            LoadDataGrid(Classes.DataAccess.Orders.GetAllOrders());
+            LoadDataGrid(Classes.DataAccess.Orders.GetAllOrders(true));
 
             Logger.Log($"user clicked on refresh",
                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
@@ -41,7 +41,7 @@ namespace SuperMarket.UserControls
         private void Orders_Load(object sender, EventArgs e)
         {
             SetColors(Properties.Settings.Default.AppColor);
-            LoadDataGrid(Classes.DataAccess.Orders.GetAllOrders());
+            LoadDataGrid(Classes.DataAccess.Orders.GetAllOrders(true));
 
             contextMenu = Methods.SetupContextMenuCopy(contextMenu, MenuItemCopyOption_Click);
         }
@@ -120,12 +120,12 @@ namespace SuperMarket.UserControls
 
         private void pcb_search_by_customer_name_DoubleClick(object sender, EventArgs e)
         {
-            LoadDataGrid(Classes.DataAccess.Orders.GetAllOrders());
+            LoadDataGrid(Classes.DataAccess.Orders.GetAllOrders(true));
         }
 
         private void pcb_search_by_invoiceno_DoubleClick(object sender, EventArgs e)
         {
-            LoadDataGrid(Classes.DataAccess.Orders.GetAllOrders());
+            LoadDataGrid(Classes.DataAccess.Orders.GetAllOrders(true));
         }
 
         private void pcb_search_by_customer_name_Click(object sender, EventArgs e)
@@ -183,6 +183,11 @@ namespace SuperMarket.UserControls
                     contextMenu.Show(ordersDataGridView, new Point(CellX, CellY));
                 }
             }
+        }
+
+        private void btn_exportPDF_Click(object sender, EventArgs e)
+        {
+            Methods.ExportDGVtoPDF(ordersDataGridView, this.Name);
         }
     }
 }

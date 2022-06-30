@@ -59,6 +59,7 @@ namespace SuperMarket.UserControls
             this.label7 = new System.Windows.Forms.Label();
             this.customersTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.CustomersTableAdapter();
             this.tableAdapterManager = new SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager();
+            this.btn_exportPDF = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
@@ -74,7 +75,7 @@ namespace SuperMarket.UserControls
             this.btn_remove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_remove.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_remove.ForeColor = System.Drawing.Color.White;
-            this.btn_remove.Location = new System.Drawing.Point(853, 134);
+            this.btn_remove.Location = new System.Drawing.Point(853, 107);
             this.btn_remove.Name = "btn_remove";
             this.btn_remove.Size = new System.Drawing.Size(154, 50);
             this.btn_remove.TabIndex = 163;
@@ -89,7 +90,7 @@ namespace SuperMarket.UserControls
             this.btn_edit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_edit.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_edit.ForeColor = System.Drawing.Color.White;
-            this.btn_edit.Location = new System.Drawing.Point(853, 78);
+            this.btn_edit.Location = new System.Drawing.Point(853, 55);
             this.btn_edit.Name = "btn_edit";
             this.btn_edit.Size = new System.Drawing.Size(154, 50);
             this.btn_edit.TabIndex = 160;
@@ -104,7 +105,7 @@ namespace SuperMarket.UserControls
             this.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_save.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_save.ForeColor = System.Drawing.Color.White;
-            this.btn_save.Location = new System.Drawing.Point(853, 22);
+            this.btn_save.Location = new System.Drawing.Point(853, 3);
             this.btn_save.Name = "btn_save";
             this.btn_save.Size = new System.Drawing.Size(154, 50);
             this.btn_save.TabIndex = 159;
@@ -220,9 +221,9 @@ namespace SuperMarket.UserControls
             // 
             this.panel1.BackColor = System.Drawing.Color.Gray;
             this.panel1.Controls.Add(this.customersDataGridView);
-            this.panel1.Location = new System.Drawing.Point(3, 201);
+            this.panel1.Location = new System.Drawing.Point(3, 215);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1032, 447);
+            this.panel1.Size = new System.Drawing.Size(1032, 433);
             this.panel1.TabIndex = 150;
             // 
             // customersDataGridView
@@ -267,7 +268,7 @@ namespace SuperMarket.UserControls
             this.customersDataGridView.ReadOnly = true;
             this.customersDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.customersDataGridView.RowHeadersVisible = false;
-            this.customersDataGridView.Size = new System.Drawing.Size(1032, 447);
+            this.customersDataGridView.Size = new System.Drawing.Size(1032, 433);
             this.customersDataGridView.TabIndex = 1;
             this.customersDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.customersDataGridView_CellMouseClick);
             this.customersDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.customersDataGridView_ColumnHeaderMouseClick);
@@ -399,10 +400,26 @@ namespace SuperMarket.UserControls
             this.tableAdapterManager.UpdateOrder = SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UsersTableAdapter = null;
             // 
+            // btn_exportPDF
+            // 
+            this.btn_exportPDF.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_exportPDF.BackColor = System.Drawing.Color.Purple;
+            this.btn_exportPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_exportPDF.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_exportPDF.ForeColor = System.Drawing.Color.White;
+            this.btn_exportPDF.Location = new System.Drawing.Point(853, 159);
+            this.btn_exportPDF.Name = "btn_exportPDF";
+            this.btn_exportPDF.Size = new System.Drawing.Size(154, 50);
+            this.btn_exportPDF.TabIndex = 167;
+            this.btn_exportPDF.Text = "طباعه الجدول";
+            this.btn_exportPDF.UseVisualStyleBackColor = false;
+            this.btn_exportPDF.Click += new System.EventHandler(this.btn_exportPDF_Click);
+            // 
             // Customers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btn_exportPDF);
             this.Controls.Add(this.txt_address);
             this.Controls.Add(this.txt_contact);
             this.Controls.Add(this.label7);
@@ -458,11 +475,12 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.BindingSource customersBindingSource;
         private SuperMarketDataSetTableAdapters.CustomersTableAdapter customersTableAdapter;
         private SuperMarketDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.DataGridView customersDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ContactNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreationDate;
+        private System.Windows.Forms.DataGridView customersDataGridView;
+        private System.Windows.Forms.Button btn_exportPDF;
     }
 }

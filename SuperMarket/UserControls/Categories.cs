@@ -1,4 +1,5 @@
 ﻿using SuperMarket.Classes;
+using SuperMarket.Classes.Helpers;
 using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
@@ -311,6 +312,11 @@ namespace SuperMarket.UserControls
                     contextMenu.Show(categoriesDataGridView, new Point(CellX, CellY));
                 }
             }
+        }
+
+        private void btn_exportPDF_Click(object sender, EventArgs e)
+        {
+            Methods.ExportDGVtoPDF(categoriesDataGridView, this.Name);
         }
     }
 }
