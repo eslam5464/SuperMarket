@@ -84,7 +84,7 @@ namespace SuperMarket.Classes.DataAccess
                         var output = cnn.Query<InvoiceModel>($"SELECT * FROM Invoices", new DynamicParameters());
                         return output.ToList();
                     }
-                       
+
                 }
             }
             catch (Exception ex)

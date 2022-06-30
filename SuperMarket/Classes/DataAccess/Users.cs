@@ -48,7 +48,7 @@ namespace SuperMarket.Classes.DataAccess
                         var output = cnn.Query<UserModel>($"SELECT * FROM Users", new DynamicParameters());
                         return output.ToList();
                     }
-                    
+
                 }
             }
             catch (Exception ex)

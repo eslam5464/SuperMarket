@@ -23,7 +23,7 @@ namespace SuperMarket.Classes.DataAccess
                         var output = cnn.Query<CustomerModel>($"SELECT TOP {MaxRows} * FROM Customers", new DynamicParameters());
                         return output.ToList();
                     }
-                        
+
                     else
                     {
                         var output = cnn.Query<CustomerModel>($"SELECT * FROM Customers", new DynamicParameters());
