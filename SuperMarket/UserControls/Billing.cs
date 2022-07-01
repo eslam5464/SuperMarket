@@ -83,7 +83,19 @@ namespace SuperMarket.UserControls
 
         private void btn_print_Click(object sender, EventArgs e)
         {
-            new Invoice().ShowDialog();
+            if (db_procardsDataGridView.DataSource != null)
+            {
+                Invoice invoice = new Invoice
+                {
+                    invoiceID = txt_invoiceno.Text,
+                    DGVtoPrint= db_procardsDataGridView
+                };
+                invoice.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("لا يوجد بيانات للطباعه", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void txt_billing_KeyDown(object sender, KeyEventArgs e)
@@ -112,7 +124,9 @@ namespace SuperMarket.UserControls
                         List<ProductModel> productSearch =
                             Classes.DataAccess.Products.GetProductLikeParameter("BarCode", txt_productBarCode.Text);
 
-                        txt_prodSearch.DataSource = productSearch;
+                        DataTable dataProductSearch = Methods.ListToDataTable(productSearch);
+
+                        txt_prodSearch.DataSource = dataProductSearch;
                         txt_prodSearch.ValueMember = "Id";
                         txt_prodSearch.DisplayMember = "Name";
 
@@ -223,8 +237,6 @@ namespace SuperMarket.UserControls
 
                                 txt_productBarCode.Focus();
                             }
-                            else
-                                Console.WriteLine("test");
                         }
                         else
                         {
@@ -577,51 +589,60 @@ namespace SuperMarket.UserControls
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            List<InvoiceModel> datasource = (List<InvoiceModel>)db_procardsDataGridView.DataSource;
-
-            if (db_procardsDataGridView.DataSource != null)
+            List<InvoiceModel> datasource = new List<InvoiceModel>();
+            try
             {
-                if (datasource.Count != 0)
+                datasource = (List<InvoiceModel>)db_procardsDataGridView.DataSource;
+
+                if (db_procardsDataGridView.DataSource != null)
                 {
-                    if (MessageBox.Show($"هل انت متأكد من انتهائك من العربه؟", "انتظر",
-                           MessageBoxButtons.YesNo,
-                           MessageBoxIcon.Information) == DialogResult.Yes)
+                    if (datasource.Count != 0)
                     {
-                        foreach (InvoiceModel invoice in datasource)
+                        if (MessageBox.Show($"هل انت متأكد من انتهائك من العربه؟", "انتظر",
+                               MessageBoxButtons.YesNo,
+                               MessageBoxIcon.Information) == DialogResult.Yes)
                         {
-                            Classes.DataAccess.Invoices.AddToInvoice(invoice);
-                            ProductModel ProductSearch = Classes.DataAccess.Products.GetProductParameter("Id", "" + invoice.ProductID).FirstOrDefault();
-                            ProductSearch.Quantity -= invoice.ProductQuantity;
-                            Classes.DataAccess.Products.UpdateProduct(ProductSearch);
+                            foreach (InvoiceModel invoice in datasource)
+                            {
+                                Classes.DataAccess.Invoices.AddToInvoice(invoice);
+                                ProductModel ProductSearch = Classes.DataAccess.Products.GetProductParameter("Id", "" + invoice.ProductID).FirstOrDefault();
+                                ProductSearch.Quantity -= invoice.ProductQuantity;
+                                Classes.DataAccess.Products.UpdateProduct(ProductSearch);
+                            }
+
+                            OrderModel order = new OrderModel
+                            {
+                                InvoiceDate = dtp_invoicedate.Value,
+                                InvoiceId = datasource[0].InvoiceNumber,
+                                CustomerId = datasource[0].CustomerId,
+                                CustomerName = datasource[0].CustomerName,
+                                ContactNumber = datasource[0].CustomerContact,
+                                Address = datasource[0].CustomerAddress,
+                                GrandTotal = decimal.Parse(txt_grandtotal.Text),
+                                CreatedByUserId = Main.LoggedUser.Id,
+                                CreatedByUserFullName = Main.LoggedUser.FullName
+                            };
+                            Classes.DataAccess.Orders.AddOrder(order);
+
+                            db_procardsDataGridView.DataSource = null;
+
+                            ResetTextBoxes(true, false, true, true);
+
+                            txt_invoiceno.Text = Methods.GetUniqueInvoiceID().ToString();
                         }
-
-                        OrderModel order = new OrderModel
-                        {
-                            InvoiceDate = dtp_invoicedate.Value,
-                            InvoiceId = datasource[0].InvoiceNumber,
-                            CustomerId = datasource[0].CustomerId,
-                            CustomerName = datasource[0].CustomerName,
-                            ContactNumber = datasource[0].CustomerContact,
-                            Address = datasource[0].CustomerAddress,
-                            GrandTotal = decimal.Parse(txt_grandtotal.Text),
-                            CreatedByUserId = Main.LoggedUser.Id,
-                            CreatedByUserFullName = Main.LoggedUser.FullName
-                        };
-                        Classes.DataAccess.Orders.AddOrder(order);
-
-                        db_procardsDataGridView.DataSource = null;
-
-                        ResetTextBoxes(true, false, true, true);
-
-                        txt_invoiceno.Text = Methods.GetUniqueInvoiceID().ToString();
                     }
-
+                    else
+                        MessageBox.Show("لا يوجدأي اشياء في السله", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
-                    MessageBox.Show("لا يوجدأي اشياء في السله", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("لا يوجد بيانات للحفظ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
-                MessageBox.Show("لا يوجد بيانات للحفظ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            catch (Exception ex)
+            {
+                Logger.Log("Error when converting datagrid to list of models & error: " + ex.Message,
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.ERROR);
+                MessageBox.Show("حدث خطأ أثناء حفظ الطلب", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void cb_defaultCST_CheckedChanged(object sender, EventArgs e)

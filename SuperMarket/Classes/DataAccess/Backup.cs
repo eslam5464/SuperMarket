@@ -54,12 +54,12 @@ namespace SuperMarket.Classes.DataAccess
                         location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{FileName}' WITH DIFFERENTIAL", new DynamicParameters());
                     }
                     Logger.Log("created backup and orverwrited the file",
-                                System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.WARNING);
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.INFO);
                 }
                 catch (Exception ex)
                 {
                     Logger.Log("Error when creating backup with diferential trying without it & error: " + ex.Message,
-                                System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.INFO);
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.ERROR);
 
                     try
                     {
@@ -73,7 +73,7 @@ namespace SuperMarket.Classes.DataAccess
                     catch (Exception ex2)
                     {
                         Logger.Log("Error again when creating backup with and without diferential & error: " + ex2.Message,
-                                System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.INFO);
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.WARNING);
                     }
                 }
             }
@@ -96,7 +96,7 @@ namespace SuperMarket.Classes.DataAccess
                 catch (Exception ex)
                 {
                     Logger.Log("Error when creating backup: " + ex.Message,
-                                System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.INFO);
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.ERROR);
                 }
             }
             else

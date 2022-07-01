@@ -30,8 +30,8 @@ namespace SuperMarket.UserControls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.ordersDataGridView = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,11 +54,11 @@ namespace SuperMarket.UserControls
             this.txt_invoiceno = new System.Windows.Forms.TextBox();
             this.btn_refresh = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btn_exportPDF = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pcb_search_by_invoiceno = new System.Windows.Forms.PictureBox();
             this.ordersTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.OrdersTableAdapter();
             this.tableAdapterManager = new SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager();
-            this.btn_exportPDF = new System.Windows.Forms.Button();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
@@ -87,14 +87,14 @@ namespace SuperMarket.UserControls
             this.ordersDataGridView.AllowUserToResizeRows = false;
             this.ordersDataGridView.AutoGenerateColumns = false;
             this.ordersDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ordersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ordersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.ordersDataGridView.ColumnHeadersHeight = 40;
             this.ordersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -108,14 +108,14 @@ namespace SuperMarket.UserControls
             this.CreatedByUserId,
             this.CreatedByUserFullName});
             this.ordersDataGridView.DataSource = this.ordersBindingSource;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ordersDataGridView.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ordersDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.ordersDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ordersDataGridView.EnableHeadersVisualStyles = false;
             this.ordersDataGridView.GridColor = System.Drawing.Color.Silver;
@@ -295,7 +295,7 @@ namespace SuperMarket.UserControls
             this.btn_refresh.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_refresh.BackColor = System.Drawing.Color.Purple;
             this.btn_refresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_refresh.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_refresh.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
             this.btn_refresh.ForeColor = System.Drawing.Color.White;
             this.btn_refresh.Location = new System.Drawing.Point(182, 24);
             this.btn_refresh.Name = "btn_refresh";
@@ -313,6 +313,21 @@ namespace SuperMarket.UserControls
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(359, 100);
             this.panel4.TabIndex = 20;
+            // 
+            // btn_exportPDF
+            // 
+            this.btn_exportPDF.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_exportPDF.BackColor = System.Drawing.Color.Purple;
+            this.btn_exportPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_exportPDF.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_exportPDF.ForeColor = System.Drawing.Color.White;
+            this.btn_exportPDF.Location = new System.Drawing.Point(14, 24);
+            this.btn_exportPDF.Name = "btn_exportPDF";
+            this.btn_exportPDF.Size = new System.Drawing.Size(162, 50);
+            this.btn_exportPDF.TabIndex = 168;
+            this.btn_exportPDF.Text = "طباعه الجدول";
+            this.btn_exportPDF.UseVisualStyleBackColor = false;
+            this.btn_exportPDF.Click += new System.EventHandler(this.btn_exportPDF_Click);
             // 
             // panel1
             // 
@@ -354,21 +369,6 @@ namespace SuperMarket.UserControls
             this.tableAdapterManager.ProductsTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UsersTableAdapter = null;
-            // 
-            // btn_exportPDF
-            // 
-            this.btn_exportPDF.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_exportPDF.BackColor = System.Drawing.Color.Purple;
-            this.btn_exportPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_exportPDF.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_exportPDF.ForeColor = System.Drawing.Color.White;
-            this.btn_exportPDF.Location = new System.Drawing.Point(14, 24);
-            this.btn_exportPDF.Name = "btn_exportPDF";
-            this.btn_exportPDF.Size = new System.Drawing.Size(162, 50);
-            this.btn_exportPDF.TabIndex = 168;
-            this.btn_exportPDF.Text = "طباعه الجدول";
-            this.btn_exportPDF.UseVisualStyleBackColor = false;
-            this.btn_exportPDF.Click += new System.EventHandler(this.btn_exportPDF_Click);
             // 
             // Orders
             // 

@@ -140,7 +140,7 @@ namespace SuperMarket.Classes.DataAccess
                 using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
                 {
                     cnn.Execute("INSERT INTO Users (Username, Password, FullName, UserLevel, Email, Phone, CreationDate, ModifyDate, ActiveState) " +
-                        $"VALUES (@Username, @Password, @FullName, @UserLevel, @Email, @Phone, @'{DateTime.Now}', @'{DateTime.Now}', 1)", User);
+                        $"VALUES (@Username, @Password, @FullName, @UserLevel, @Email, @Phone, '{DateTime.Now}', '{DateTime.Now}', 1)", User);
                 }
             }
             catch (Exception ex)

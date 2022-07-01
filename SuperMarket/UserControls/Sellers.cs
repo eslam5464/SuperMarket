@@ -124,8 +124,8 @@ namespace SuperMarket.UserControls
         {
             try
             {
-                if (txt_Username.Text.Trim() == "" || txt_Password.Text.Trim() == "")
-                    MessageBox.Show("برجاء ادخال البيانات من اسم المستخدم وكلمه المرور", "حاول مره أخرى", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (txt_Username.Text.Trim() == "" || txt_Password.Text.Trim() == "" || txt_fullname.Text.Trim() == "")
+                    MessageBox.Show("برجاء ادخال البيانات من اسم المستخدم وكلمه المروروالاسم بالكامل", "حاول مره أخرى", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 else
                 {
