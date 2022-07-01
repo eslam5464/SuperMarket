@@ -11,14 +11,13 @@ namespace SuperMarket.Classes.DataAccess
 {
     class Users
     {
-        private static readonly int MaxRows = 100;
         public static List<UserModel> LoadUsersWithParamNonAdmin(string Parameter, string Condition)
         {
             try
             {
                 using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
                 {
-                    string query = $"SELECT TOP {MaxRows} * FROM Users WHERE {Parameter} = N'{Condition}' " +
+                    string query = $"SELECT * FROM Users WHERE {Parameter} = N'{Condition}' " +
                         $"AND ActiveState = 1 AND UserLevel != 'admin'";
                     var output = cnn.Query<UserModel>(query, new DynamicParameters());
                     return output.ToList();
@@ -40,7 +39,7 @@ namespace SuperMarket.Classes.DataAccess
                 {
                     if (LimitRows)
                     {
-                        var output = cnn.Query<UserModel>($"SELECT TOP {MaxRows} * FROM Users", new DynamicParameters());
+                        var output = cnn.Query<UserModel>($"SELECT * FROM Users", new DynamicParameters());
                         return output.ToList();
                     }
                     else
@@ -65,7 +64,7 @@ namespace SuperMarket.Classes.DataAccess
             {
                 using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
                 {
-                    var output = cnn.Query<UserModel>($"SELECT TOP {MaxRows} * FROM Users WHERE ActiveState = 1", new DynamicParameters());
+                    var output = cnn.Query<UserModel>($"SELECT * FROM Users WHERE ActiveState = 1", new DynamicParameters());
                     return output.ToList();
                 }
             }
@@ -83,7 +82,7 @@ namespace SuperMarket.Classes.DataAccess
             {
                 using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
                 {
-                    var output = cnn.Query<UserModel>($"SELECT TOP {MaxRows} * FROM Users WHERE ActiveState = 1 AND " +
+                    var output = cnn.Query<UserModel>($"SELECT * FROM Users WHERE ActiveState = 1 AND " +
                         "UserLevel = 'admin'", new DynamicParameters());
                     return output.ToList();
                 }
@@ -102,7 +101,7 @@ namespace SuperMarket.Classes.DataAccess
             {
                 using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
                 {
-                    var output = cnn.Query<UserModel>($"SELECT TOP {MaxRows} * FROM Users WHERE ActiveState = 1 AND " +
+                    var output = cnn.Query<UserModel>($"SELECT * FROM Users WHERE ActiveState = 1 AND " +
                         "UserLevel != 'admin'", new DynamicParameters());
                     return output.ToList();
                 }
@@ -121,7 +120,7 @@ namespace SuperMarket.Classes.DataAccess
             {
                 using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
                 {
-                    var output = cnn.Query<UserModel>($"SELECT TOP {MaxRows} * FROM Users WHERE ActiveState = 0", new DynamicParameters());
+                    var output = cnn.Query<UserModel>($"SELECT * FROM Users WHERE ActiveState = 0", new DynamicParameters());
                     return output.ToList();
                 }
             }

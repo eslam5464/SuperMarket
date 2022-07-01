@@ -11,7 +11,7 @@ namespace SuperMarket.Classes.DataAccess
 {
     class Products
     {
-        private static readonly int MaxRows = 100;
+        private static readonly int MaxRows = GlobalVars.MaxQueryRows;
         public static void UpdateProduct(ProductModel Product)
         {
             try

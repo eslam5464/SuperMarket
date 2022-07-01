@@ -11,7 +11,7 @@ namespace SuperMarket.Classes.DataAccess
 {
     class Categories
     {
-        private static readonly int MaxRows = 100;
+        private static readonly int MaxRows = GlobalVars.MaxQueryRows;
         public static List<CategoryModel> GetCategoryParameter(string Parameter, string Condition)
         {
             try

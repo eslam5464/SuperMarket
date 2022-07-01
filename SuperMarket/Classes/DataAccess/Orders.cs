@@ -11,7 +11,7 @@ namespace SuperMarket.Classes.DataAccess
 {
     internal class Orders
     {
-        private static readonly int MaxRows = 100;
+        private static readonly int MaxRows = GlobalVars.MaxQueryRows;
         internal static List<OrderModel> GetOrderParameter(string Parameter, string Condition)
         {
             try

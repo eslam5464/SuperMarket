@@ -1,10 +1,9 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using SuperMarket.Classes;
+using System;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using Microsoft.Reporting.WinForms;
-using SuperMarket.Classes;
-using System.Data;
 
 namespace SuperMarket.Forms
 {

@@ -66,7 +66,7 @@ namespace SuperMarket.Forms
                             Email = email,
                             Phone = phone
                         };
-
+                        
                         Main.LoggedUser = LoggedUser;
                         Logger.Log($"user entered the correct credentials. accessing the application now",
                                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);

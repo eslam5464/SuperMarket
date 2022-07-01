@@ -11,7 +11,7 @@ namespace SuperMarket.Classes.DataAccess
 {
     class Customers
     {
-        private static readonly int MaxRows = 100;
+        private static readonly int MaxRows = GlobalVars.MaxQueryRows;
         public static List<CustomerModel> LoadCustomers(bool LimitRows)
         {
             try

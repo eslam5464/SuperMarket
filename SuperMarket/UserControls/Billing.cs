@@ -88,7 +88,7 @@ namespace SuperMarket.UserControls
                 Invoice invoice = new Invoice
                 {
                     invoiceID = txt_invoiceno.Text,
-                    DGVtoPrint= db_procardsDataGridView
+                    DGVtoPrint = db_procardsDataGridView
                 };
                 invoice.ShowDialog();
             }

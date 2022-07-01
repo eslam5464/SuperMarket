@@ -458,5 +458,38 @@ namespace SuperMarket.UserControls
         {
             Methods.ExportDGVtoPDF(productsDataGridView, this.Name);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Random r = new Random();
+            int categoryId, barcode, quantity;
+            decimal productPirce;
+
+            for (int i = 0; i < 100; i++)
+            {
+                categoryId = r.Next(9, 15);
+                barcode = r.Next(10000, 999999);
+                productPirce = (decimal)r.NextDouble() * 100;
+                quantity = r.Next(20, 100);
+
+                Math.Round(productPirce * 100, 2);
+                ProductModel product = new ProductModel();
+
+                product.BarCode = "" + barcode;
+                product.Name = "random " + categoryId;
+                product.Price = productPirce;
+                product.Description = "";
+                product.Quantity = quantity;
+                product.CategoryID = categoryId;
+                product.CategoryName = "test " + categoryId;
+
+                Classes.DataAccess.Products.SaveProduct(product);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
+        }
     }
 }
