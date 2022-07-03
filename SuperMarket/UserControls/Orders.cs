@@ -187,7 +187,7 @@ namespace SuperMarket.UserControls
 
         private void btn_exportPDF_Click(object sender, EventArgs e)
         {
-            Methods.ExportDGVtoPDF(ordersDataGridView, this.Name);
+            Methods.ExportDGVtoPDF(ordersDataGridView, "الطلبات");
         }
     }
 }

@@ -30,7 +30,9 @@ namespace SuperMarket.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource9 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            this.invoicesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.superMarketDataSet = new SuperMarket.SuperMarketDataSet();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txt_invoiceid = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -39,20 +41,32 @@ namespace SuperMarket.Forms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.superMarketDataSet = new SuperMarket.SuperMarketDataSet();
-            this.invoicesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.invoicesTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.InvoicesTableAdapter();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).BeginInit();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.invoicesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // invoicesBindingSource
+            // 
+            this.invoicesBindingSource.DataMember = "Invoices";
+            this.invoicesBindingSource.DataSource = this.superMarketDataSet;
+            // 
+            // superMarketDataSet
+            // 
+            this.superMarketDataSet.DataSetName = "SuperMarketDataSet";
+            this.superMarketDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Purple;
             this.panel1.Controls.Add(this.txt_invoiceid);
-            this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.btn_close);
+            this.panel1.Controls.Add(this.label9);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(8, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(2);
@@ -77,7 +91,7 @@ namespace SuperMarket.Forms
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Palatino Linotype", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(297, 9);
+            this.label9.Location = new System.Drawing.Point(301, 9);
             this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(96, 44);
@@ -91,7 +105,7 @@ namespace SuperMarket.Forms
             this.btn_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_close.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_close.ForeColor = System.Drawing.Color.White;
-            this.btn_close.Location = new System.Drawing.Point(654, 9);
+            this.btn_close.Location = new System.Drawing.Point(653, 11);
             this.btn_close.Margin = new System.Windows.Forms.Padding(2);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(34, 34);
@@ -133,29 +147,59 @@ namespace SuperMarket.Forms
             // reportViewer1
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource9.Name = "Invoice";
-            reportDataSource9.Value = this.invoicesBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource9);
+            reportDataSource1.Name = "Invoice";
+            reportDataSource1.Value = this.invoicesBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "SuperMarket.Reports.Invoice.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(8, 58);
+            this.reportViewer1.Location = new System.Drawing.Point(16, 66);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(690, 530);
+            this.reportViewer1.Size = new System.Drawing.Size(674, 514);
             this.reportViewer1.TabIndex = 12;
-            // 
-            // superMarketDataSet
-            // 
-            this.superMarketDataSet.DataSetName = "SuperMarketDataSet";
-            this.superMarketDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // invoicesBindingSource
-            // 
-            this.invoicesBindingSource.DataMember = "Invoices";
-            this.invoicesBindingSource.DataSource = this.superMarketDataSet;
             // 
             // invoicesTableAdapter
             // 
             this.invoicesTableAdapter.ClearBeforeFill = true;
+            // 
+            // panel5
+            // 
+            this.panel5.BackColor = System.Drawing.Color.White;
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel5.Location = new System.Drawing.Point(8, 580);
+            this.panel5.Margin = new System.Windows.Forms.Padding(2);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(690, 8);
+            this.panel5.TabIndex = 13;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel6.Location = new System.Drawing.Point(690, 58);
+            this.panel6.Margin = new System.Windows.Forms.Padding(2);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(8, 522);
+            this.panel6.TabIndex = 14;
+            // 
+            // panel7
+            // 
+            this.panel7.BackColor = System.Drawing.Color.White;
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel7.Location = new System.Drawing.Point(8, 58);
+            this.panel7.Margin = new System.Windows.Forms.Padding(2);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(8, 522);
+            this.panel7.TabIndex = 14;
+            // 
+            // panel8
+            // 
+            this.panel8.BackColor = System.Drawing.Color.White;
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(16, 58);
+            this.panel8.Margin = new System.Windows.Forms.Padding(2);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(674, 8);
+            this.panel8.TabIndex = 14;
             // 
             // Invoice
             // 
@@ -164,6 +208,10 @@ namespace SuperMarket.Forms
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(706, 596);
             this.Controls.Add(this.reportViewer1);
+            this.Controls.Add(this.panel8);
+            this.Controls.Add(this.panel7);
+            this.Controls.Add(this.panel6);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
@@ -177,12 +225,11 @@ namespace SuperMarket.Forms
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Invoice";
             this.TopMost = true;
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Invoice_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.invoicesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.invoicesBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -200,5 +247,9 @@ namespace SuperMarket.Forms
         private SuperMarketDataSet superMarketDataSet;
         private System.Windows.Forms.BindingSource invoicesBindingSource;
         private SuperMarketDataSetTableAdapters.InvoicesTableAdapter invoicesTableAdapter;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Panel panel8;
     }
 }

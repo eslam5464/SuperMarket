@@ -8,14 +8,15 @@ namespace SuperMarket.Forms
 {
     public partial class Main : Form
     {
-        private readonly Dashboard uc_dashboard = new Dashboard();
-        private readonly Categories uc_categories = new Categories();
-        private readonly Products uc_products = new Products();
-        private readonly Customers uc_customers = new Customers();
-        private readonly Orders uc_orders = new Orders();
-        private readonly Billing uc_billing = new Billing();
-        private readonly Sellers uc_sellers = new Sellers();
-        private readonly BillsEdit uc_billsEdit = new BillsEdit();
+        private readonly UserControls.Dashboard uc_dashboard = new UserControls.Dashboard();
+        private readonly UserControls.Categories uc_categories = new UserControls.Categories();
+        private readonly UserControls.Products uc_products = new UserControls.Products();
+        private readonly UserControls.Customers uc_customers = new UserControls.Customers();
+        private readonly UserControls.Orders uc_orders = new UserControls.Orders();
+        private readonly UserControls.Billing uc_billing = new UserControls.Billing();
+        private readonly UserControls.Sellers uc_sellers = new UserControls.Sellers();
+        private readonly UserControls.BillsEdit uc_billsEdit = new UserControls.BillsEdit();
+        private readonly UserControls.AdvancedSearch uc_advancedSearch = new UserControls.AdvancedSearch();
         private readonly UserControls.Reports uc_reports = new UserControls.Reports();
         private readonly UserControls.Settings uc_settings = new UserControls.Settings();
 
@@ -51,6 +52,7 @@ namespace SuperMarket.Forms
                 panel5,
                 panel6,
                 panel7,
+                panel8,
             };
 
             foreach (Panel panel in AllPanels)
@@ -89,7 +91,8 @@ namespace SuperMarket.Forms
                 uc_sellers,
                 uc_settings,
                 uc_billsEdit,
-                uc_reports
+                uc_reports,
+                uc_advancedSearch
             };
 
             foreach (UserControl userControl in AllUserControls)
@@ -216,6 +219,17 @@ namespace SuperMarket.Forms
             SidePanel.Top = btn_reports.Top;
 
             uc_reports.BringToFront();
+        }
+
+        private void btn_advancedSearch_Click(object sender, EventArgs e)
+        {
+            Logger.Log("user clicked on advanced search button",
+                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+            SidePanel.Height = btn_advancedSearch.Height;
+            SidePanel.Top = btn_advancedSearch.Top;
+
+            uc_advancedSearch.BringToFront();
         }
 
         private void btn_logout_Click(object sender, EventArgs e)

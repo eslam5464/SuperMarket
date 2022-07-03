@@ -149,6 +149,12 @@
     <Compile Include="Forms\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Customers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Customers.Designer.cs">
+      <DependentUpon>Customers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Invoice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -184,6 +190,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>SuperMarketDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\AdvancedSearch.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\AdvancedSearch.Designer.cs">
+      <DependentUpon>AdvancedSearch.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Billing.cs">
       <SubType>UserControl</SubType>
@@ -249,7 +261,14 @@
     </Compile>
     <None Include="Properties\app.manifest" />
     <None Include="Resources\icons8-edit-property-48.png" />
+    <EmbeddedResource Include="Forms\Customers.resx">
+      <DependentUpon>Customers.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Invoice.rdlc" />
+    <EmbeddedResource Include="Reports\Customers.rdlc" />
+    <EmbeddedResource Include="UserControls\AdvancedSearch.resx">
+      <DependentUpon>AdvancedSearch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\BillsEdit.resx">
       <DependentUpon>BillsEdit.cs</DependentUpon>
     </EmbeddedResource>

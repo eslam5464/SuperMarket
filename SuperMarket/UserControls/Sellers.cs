@@ -95,10 +95,9 @@ namespace SuperMarket.UserControls
 
         private void SetUserLevel()
         {
-            string[] UserLevels = { "مدير", "مشرف", "موظف" };
 
-            for (int i = 0; i < UserLevels.Length; i++)
-                UserLevelDict.Add(i, UserLevels[i]);
+            for (int i = 0; i < GlobalVars.UserLevels.Length; i++)
+                UserLevelDict.Add(i, GlobalVars.UserLevels[i]);
 
             txt_userLevel.DataSource = new BindingSource(UserLevelDict, null);
             txt_userLevel.DisplayMember = "Value";
@@ -434,7 +433,7 @@ namespace SuperMarket.UserControls
 
         private void btn_exportPDF_Click(object sender, EventArgs e)
         {
-            Methods.ExportDGVtoPDF(usersDataGridView, this.Name);
+            Methods.ExportDGVtoPDF(usersDataGridView, "الموظفين");
         }
     }
 }

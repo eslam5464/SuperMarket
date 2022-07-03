@@ -46,7 +46,7 @@ namespace SuperMarket.UserControls
                 if (control.GetType() == typeof(Button))
                     control.BackColor = appColor;
 
-                if (control.GetType() == typeof(Label))
+                else if (control.GetType() == typeof(Label))
                     control.ForeColor = appColor;
             }
             //db_procardsDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;

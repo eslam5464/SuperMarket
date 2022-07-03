@@ -1,18 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SuperMarket.Classes
+﻿namespace SuperMarket.Classes
 {
     class GlobalVars
     {
-        private static int maxQueryRows = 100;
+        private static readonly int maxQueryRows = 500;
+        private static readonly string[] userLevels = { "مدير", "مشرف", "موظف" };
+
+        public static string[] UserLevels
+        {
+            get { return userLevels; }
+        }
+
         public static int MaxQueryRows
         {
             get { return maxQueryRows; }
-            set { }
         }
     }
 }
