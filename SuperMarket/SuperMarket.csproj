@@ -149,11 +149,11 @@
     <Compile Include="Forms\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Customers.cs">
+    <Compile Include="Forms\ReportViewer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Customers.Designer.cs">
-      <DependentUpon>Customers.cs</DependentUpon>
+    <Compile Include="Forms\ReportViewer.Designer.cs">
+      <DependentUpon>ReportViewer.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\Invoice.cs">
       <SubType>Form</SubType>
@@ -261,11 +261,12 @@
     </Compile>
     <None Include="Properties\app.manifest" />
     <None Include="Resources\icons8-edit-property-48.png" />
-    <EmbeddedResource Include="Forms\Customers.resx">
-      <DependentUpon>Customers.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ReportViewer.resx">
+      <DependentUpon>ReportViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Invoice.rdlc" />
     <EmbeddedResource Include="Reports\Customers.rdlc" />
+    <EmbeddedResource Include="Reports\Products.rdlc" />
     <EmbeddedResource Include="UserControls\AdvancedSearch.resx">
       <DependentUpon>AdvancedSearch.cs</DependentUpon>
     </EmbeddedResource>

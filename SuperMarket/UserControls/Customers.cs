@@ -319,8 +319,9 @@ namespace SuperMarket.UserControls
         private void btn_exportPDF_Click(object sender, EventArgs e)
         {
             //Methods.ExportDGVtoPDF(customersDataGridView, "العملاء");
-            Forms.Customers.DGVtoPrint = customersDataGridView;
-            new Forms.Customers().ShowDialog();
+            Forms.ReportViewer.DGVtoPrint = customersDataGridView;
+            Forms.ReportViewer.SelectedReport = (int)Forms.ReportViewer.ShownReport.Customers;
+            new Forms.ReportViewer().ShowDialog();
         }
     }
 }

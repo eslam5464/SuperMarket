@@ -124,7 +124,7 @@ namespace SuperMarket.UserControls
                         List<ProductModel> productSearch =
                             Classes.DataAccess.Products.GetProductLikeParameter("BarCode", txt_productBarCode.Text);
 
-                        DataTable dataProductSearch = Methods.ListToDataTable(productSearch);
+                        DataTable dataProductSearch = new Methods().ListToDataTable(productSearch);
 
                         txt_prodSearch.DataSource = dataProductSearch;
                         txt_prodSearch.ValueMember = "Id";
@@ -323,7 +323,7 @@ namespace SuperMarket.UserControls
 
                 List<ProductModel> productSearch = Classes.DataAccess.Products.GetProductLikeParameter("Name", txt_productName.Text);
 
-                DataTable dataProductSearch = Methods.ListToDataTable(productSearch);
+                DataTable dataProductSearch = new Methods().ListToDataTable(productSearch);
 
                 txt_prodSearch.DataSource = dataProductSearch;
                 txt_prodSearch.ValueMember = "Id";
@@ -334,7 +334,7 @@ namespace SuperMarket.UserControls
         private void txt_prodSearch_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (txt_prodSearch.SelectedIndex != -1 && txt_prodSearch.DataSource != null &&
-                txt_prodSearch.SelectedValue.GetType() == typeof(string))
+                txt_prodSearch.SelectedValue.GetType() == typeof(Int64))
             {
                 List<ProductModel> productSearch = Classes.DataAccess.Products.GetProductParameter("Id", txt_prodSearch.SelectedValue.ToString());
 

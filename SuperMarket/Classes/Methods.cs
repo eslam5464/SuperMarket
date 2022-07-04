@@ -35,14 +35,14 @@ namespace SuperMarket.Classes
             return dataTable;
         }
 
-        internal static DataTable ListToDataTable<T>(List<T> items)
+        internal virtual DataTable ListToDataTable<T>(List<T> items)
         {
             DataTable dataTable = new DataTable(typeof(T).Name);
 
             System.Reflection.PropertyInfo[] Props = typeof(T).GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
             foreach (System.Reflection.PropertyInfo prop in Props)
             {
-                dataTable.Columns.Add(prop.Name);
+                dataTable.Columns.Add(prop.Name, prop.PropertyType);
             }
             foreach (T item in items)
             {

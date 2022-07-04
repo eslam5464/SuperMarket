@@ -854,7 +854,8 @@
                 <Value>=First(Fields!CreationDate.Value, "Invoice")</Value>
                 <Style>
                   <FontWeight>Bold</FontWeight>
-                  <Format>f</Format>
+                  <Format>g</Format>
+                  <Language>ar-001</Language>
                 </Style>
               </TextRun>
             </TextRuns>
@@ -878,6 +879,7 @@
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
+          <Direction>LTR</Direction>
         </Style>
       </Textbox>
       <Textbox Name="grandtotal">

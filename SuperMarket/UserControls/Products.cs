@@ -456,7 +456,8 @@ namespace SuperMarket.UserControls
 
         private void btn_exportPDF_Click(object sender, EventArgs e)
         {
-            Methods.ExportDGVtoPDF(productsDataGridView, "المنتجات");
+            Forms.ReportViewer.SelectedReport = Forms.ReportViewer.ShownReport.Products;
+            new Forms.ReportViewer().ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)

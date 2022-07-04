@@ -35,7 +35,12 @@
                           <TextRuns>
                             <TextRun>
                               <Value>الرقم التعريفي</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Century Gothic</FontFamily>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -56,6 +61,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -68,7 +74,12 @@
                           <TextRuns>
                             <TextRun>
                               <Value>الاسم</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Century Gothic</FontFamily>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -89,6 +100,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -101,7 +113,12 @@
                           <TextRuns>
                             <TextRun>
                               <Value>رقم الاتصال</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Century Gothic</FontFamily>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -122,6 +139,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -134,7 +152,12 @@
                           <TextRuns>
                             <TextRun>
                               <Value>العنوان</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Century Gothic</FontFamily>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -155,6 +178,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
                 <TablixCell>
@@ -167,7 +191,12 @@
                           <TextRuns>
                             <TextRun>
                               <Value>تاريخ الانشاء</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Century Gothic</FontFamily>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                                <Color>White</Color>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -188,6 +217,7 @@
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                     </Textbox>
+                    <rd:Selected>true</rd:Selected>
                   </CellContents>
                 </TablixCell>
               </TablixCells>
@@ -205,7 +235,11 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Id.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Century Gothic</FontFamily>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -237,7 +271,11 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Name.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Century Gothic</FontFamily>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -269,7 +307,11 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!ContactNo.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Century Gothic</FontFamily>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -301,7 +343,11 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Address.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Century Gothic</FontFamily>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -333,7 +379,11 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!CreationDate.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontFamily>Century Gothic</FontFamily>
+                                <FontSize>12pt</FontSize>
+                                <FontWeight>Bold</FontWeight>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style>
@@ -379,6 +429,7 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>Customers</DataSetName>
+        <Top>0.76042in</Top>
         <Height>1.02083in</Height>
         <Width>5.5625in</Width>
         <Style>
@@ -390,8 +441,45 @@
         </Style>
         <cl:ComponentMetadata xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" />
       </Tablix>
+      <Textbox Name="Textbox17">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>العملاء</Value>
+                <Style>
+                  <FontFamily>Century Gothic</FontFamily>
+                  <FontSize>20pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>Underline</TextDecoration>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox17</rd:DefaultName>
+        <Top>0.20139in</Top>
+        <Left>1.99875in</Left>
+        <Height>0.48958in</Height>
+        <Width>1.6875in</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>1.02083in</Height>
+    <Height>1.78125in</Height>
     <Style />
   </Body>
   <Width>5.5625in</Width>
