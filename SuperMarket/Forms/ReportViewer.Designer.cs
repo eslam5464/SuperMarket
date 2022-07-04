@@ -29,6 +29,7 @@ namespace SuperMarket.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportViewer));
             this.rv_customers = new Microsoft.Reporting.WinForms.ReportViewer();
             this.rv_orders = new Microsoft.Reporting.WinForms.ReportViewer();
             this.rv_products = new Microsoft.Reporting.WinForms.ReportViewer();
@@ -84,8 +85,9 @@ namespace SuperMarket.Forms
             this.Controls.Add(this.rv_products);
             this.Controls.Add(this.rv_orders);
             this.Controls.Add(this.rv_customers);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimizeBox = false;
             this.Name = "ReportViewer";
-            this.Text = "Customers";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Customers_Load);
             this.ResumeLayout(false);

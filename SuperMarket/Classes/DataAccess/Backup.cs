@@ -29,7 +29,11 @@ namespace SuperMarket.Classes.DataAccess
             All(strDestination, Id, false);
 
             foreach (var BackupFiles in new DirectoryInfo(BackupLocation).GetFiles().OrderByDescending(x => x.LastWriteTime).Skip(NumOfMaxBackup))
+            {
                 BackupFiles.Delete();
+                Logger.Log($"Deleted file: '{BackupFiles.Name}' for reaching maximum backup of {NumOfMaxBackup}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.INFO);
+            }
         }
 
         public static void All(string strDestination = ".", string Id = "Default", bool Overwrite = false)

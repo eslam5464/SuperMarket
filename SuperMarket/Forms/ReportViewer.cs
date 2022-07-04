@@ -15,46 +15,61 @@ namespace SuperMarket.Forms
         }
         public static DataGridView DGVtoPrint;
         public static ShownReport SelectedReport;
+        private DataTable dtp = null;
 
-        public enum ShownReport { Customers, Products, Orders, Users }
+        public enum ShownReport { Customers, Products, Orders, Users, Suppliers }
 
         private void Customers_Load(object sender, EventArgs e)
         {
-            if (SelectedReport == ShownReport.Customers)
+            CheckReport(SelectedReport);
+        }
+
+        private void CheckReport(ShownReport selectedReport)
+        {
+            if (selectedReport == ShownReport.Customers)
             {
                 Methods methods = new Methods();
-                DataTable dtp = methods.DataGridToDataTable(DGVtoPrint);
-                dtp.TableName = "العملاء";
+                using (dtp = methods.DataGridToDataTable(DGVtoPrint))
+                {
+                    dtp.TableName = "العملاء";
 
-                ReportDataSource datasource = new ReportDataSource("Customers", dtp);
+                    ReportDataSource datasource = new ReportDataSource("Customers", dtp);
 
-                rv_customers.LocalReport.DataSources.Clear();
-                rv_customers.LocalReport.DataSources.Add(datasource);
-                rv_customers.RefreshReport();
+                    rv_customers.LocalReport.DataSources.Clear();
+                    rv_customers.LocalReport.DataSources.Add(datasource);
+                    rv_customers.RefreshReport();
 
-                rv_customers.Visible = true;
-                rv_customers.Dock = DockStyle.Fill;
+                    rv_customers.Visible = true;
+                    rv_customers.Dock = DockStyle.Fill;
+                }
             }
-            else if (SelectedReport == ShownReport.Products)
+            else if (selectedReport == ShownReport.Products)
             {
                 List<Classes.Models.ProductModel> AllProducts = Classes.DataAccess.Products.LoadProducts(false);
 
-                DataTable dtp = new Methods().ListToDataTable(AllProducts);
+                using (dtp = new Methods().ListToDataTable(AllProducts))
+                {
+                    dtp.TableName = "المنتجات";
 
-                dtp.TableName = "Products";
+                    ReportDataSource datasource = new ReportDataSource("Products", dtp);
 
-                ReportDataSource datasource = new ReportDataSource("Products", dtp);
+                    rv_products.LocalReport.DataSources.Clear();
+                    rv_products.LocalReport.DataSources.Add(datasource);
 
-                rv_products.LocalReport.DataSources.Clear();
-                rv_products.LocalReport.DataSources.Add(datasource);
-                var p = new ReportParameter("RenderDateTime", DateTime.Now.ToString());
-                rv_products.LocalReport.SetParameters(p);
-                rv_products.RefreshReport();
+                    var p = new ReportParameter("RenderDateTime", DateTime.Now.ToString());
+                    rv_products.LocalReport.SetParameters(p);
 
-                rv_products.Visible = true;
-                rv_products.Dock = DockStyle.Fill;
+                    rv_products.RefreshReport();
+
+                    ShowReportViewer(rv_products);
+                }
             }
+        }
 
+        private void ShowReportViewer(Microsoft.Reporting.WinForms.ReportViewer SelectedReportViewer)
+        {
+            SelectedReportViewer.Visible = true;
+            SelectedReportViewer.Dock = DockStyle.Fill;
         }
     }
 }

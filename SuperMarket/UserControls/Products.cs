@@ -381,42 +381,16 @@ namespace SuperMarket.UserControls
 
         private void db_productDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            productsDataGridView.DataSource = DataGridToDataTable(productsDataGridView);
+            productsDataGridView.DataSource = new Methods().DataGridToDataTable(productsDataGridView);
 
             productsDataGridView.Sort(productsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
-
-
         }
 
         private void db_productDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            productsDataGridView.DataSource = DataGridToDataTable(productsDataGridView);
+            productsDataGridView.DataSource = new Methods().DataGridToDataTable(productsDataGridView);
 
             productsDataGridView.Sort(productsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
-        }
-
-        private DataTable DataGridToDataTable(DataGridView dataGridView)
-        {
-            DataTable dataTable = new DataTable();
-
-            foreach (DataGridViewColumn column in dataGridView.Columns)
-            {
-                dataTable.Columns.Add(column.Name, column.ValueType);
-            }
-
-            foreach (DataGridViewRow row in dataGridView.Rows)
-            {
-                dataTable.Rows.Add();
-                foreach (DataGridViewCell cell in row.Cells)
-                {
-                    if (cell.Value == null)
-                        dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = "NULL";
-
-                    else
-                        dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
-                }
-            }
-            return dataTable;
         }
 
         private void productsBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -457,7 +431,13 @@ namespace SuperMarket.UserControls
         private void btn_exportPDF_Click(object sender, EventArgs e)
         {
             Forms.ReportViewer.SelectedReport = Forms.ReportViewer.ShownReport.Products;
-            new Forms.ReportViewer().ShowDialog();
+
+            using (Forms.ReportViewer reportViewer = new Forms.ReportViewer())
+            {
+                reportViewer.ShowDialog();
+                reportViewer.Dispose();
+                reportViewer.Close();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

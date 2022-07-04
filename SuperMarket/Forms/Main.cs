@@ -16,6 +16,7 @@ namespace SuperMarket.Forms
         private readonly UserControls.Sellers uc_sellers = new UserControls.Sellers();
         private readonly UserControls.BillsEdit uc_billsEdit = new UserControls.BillsEdit();
         private readonly UserControls.AdvancedSearch uc_advancedSearch = new UserControls.AdvancedSearch();
+        private readonly UserControls.Suppliers uc_suppliers = new UserControls.Suppliers();
         private readonly UserControls.Reports uc_reports = new UserControls.Reports();
         private readonly UserControls.Settings uc_settings = new UserControls.Settings();
 
@@ -25,7 +26,7 @@ namespace SuperMarket.Forms
         }
 
         internal static Classes.Models.UserModel LoggedUser;
-        private int SessionTimer = 0;
+        private int SessionTimer = 0, HourlyTimer = 0;
         private bool SessionState = true;
 
         private void Main_Load(object sender, EventArgs e)
@@ -91,7 +92,8 @@ namespace SuperMarket.Forms
                 uc_settings,
                 uc_billsEdit,
                 uc_reports,
-                uc_advancedSearch
+                uc_advancedSearch,
+                uc_suppliers
             };
 
             foreach (UserControl userControl in AllUserControls)
@@ -106,6 +108,7 @@ namespace SuperMarket.Forms
             Classes.DataAccess.Backup.AllDaily();
 
             UserSession.Start();
+            HourlyChecker.Start();
         }
 
         private void btn_dashborad_Click(object sender, EventArgs e)
@@ -300,6 +303,16 @@ namespace SuperMarket.Forms
                     "انتبه", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.Dispose();
                 this.Close();
+            }
+        }
+
+        private void HourlyChecker_Tick(object sender, EventArgs e)
+        {
+            HourlyTimer += 1;
+            if (HourlyTimer >= 3600)
+            {
+                Classes.DataAccess.Backup.AllDaily();
+                HourlyTimer = 0;
             }
         }
 

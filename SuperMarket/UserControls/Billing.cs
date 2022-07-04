@@ -91,6 +91,8 @@ namespace SuperMarket.UserControls
                     DGVtoPrint = db_procardsDataGridView
                 };
                 invoice.ShowDialog();
+                invoice.Dispose();
+                invoice.Close();
             }
             else
             {

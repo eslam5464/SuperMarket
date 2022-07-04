@@ -129,6 +129,7 @@
     <Compile Include="Classes\DataAccess\Invoices.cs" />
     <Compile Include="Classes\DataAccess\Orders.cs" />
     <Compile Include="Classes\DataAccess\Products.cs" />
+    <Compile Include="Classes\DataAccess\Suppliers.cs" />
     <Compile Include="Classes\DataAccess\Users.cs" />
     <Compile Include="Classes\GlobalVars.cs" />
     <Compile Include="Classes\Helpers\DGVPrinter.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="Classes\Models\LogModel.cs" />
     <Compile Include="Classes\Models\OrderModel.cs" />
     <Compile Include="Classes\Models\ProductModel.cs" />
+    <Compile Include="Classes\Models\SupplierModel.cs" />
     <Compile Include="Classes\Models\UserModel.cs" />
     <Compile Include="Classes\Models\Validators\UserValidator.cs" />
     <Compile Include="Classes\Security.cs" />
@@ -259,6 +261,15 @@
     <Compile Include="UserControls\Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Suppliers.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Suppliers.Designer.cs">
+      <DependentUpon>Suppliers.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="UserControls\Suppliers.resx">
+      <DependentUpon>Suppliers.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\app.manifest" />
     <None Include="Resources\icons8-edit-property-48.png" />
     <EmbeddedResource Include="Forms\ReportViewer.resx">

@@ -681,6 +681,7 @@
                     <TablixCell>
                       <CellContents>
                         <Textbox Name="CreationDate">
+                          <CanGrow>true</CanGrow>
                           <CanShrink>true</CanShrink>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>

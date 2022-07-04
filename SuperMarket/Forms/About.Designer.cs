@@ -184,6 +184,7 @@ namespace SuperMarket.Forms
             this.BackColor = System.Drawing.Color.Purple;
             this.ClientSize = new System.Drawing.Size(475, 270);
             this.Controls.Add(this.tableLayoutPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "About";
