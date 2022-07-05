@@ -295,7 +295,6 @@ namespace SuperMarket.UserControls
             this.usersDataGridView.Name = "usersDataGridView";
             this.usersDataGridView.ReadOnly = true;
             this.usersDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.usersDataGridView.RowHeadersVisible = false;
             this.usersDataGridView.Size = new System.Drawing.Size(1032, 364);
             this.usersDataGridView.TabIndex = 206;
             this.usersDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.usersDataGridView_CellMouseClick);
@@ -475,7 +474,11 @@ namespace SuperMarket.UserControls
             this.tableAdapterManager.InvoicesTableAdapter = null;
             this.tableAdapterManager.OrdersTableAdapter = null;
             this.tableAdapterManager.ProductsTableAdapter = null;
+            this.tableAdapterManager.SupplierInvoiceProductTableAdapter = null;
+            this.tableAdapterManager.SupplierInvoicesTableAdapter = null;
+            this.tableAdapterManager.SuppliersTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserLevelAccessTableAdapter = null;
             this.tableAdapterManager.UsersTableAdapter = this.usersTableAdapter;
             // 
             // btn_exportPDF

@@ -30,7 +30,6 @@ namespace SuperMarket.Classes
                     else
                         dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
                 }
-
             }
             return dataTable;
         }

@@ -124,7 +124,6 @@ namespace SuperMarket.UserControls
             this.ordersDataGridView.Name = "ordersDataGridView";
             this.ordersDataGridView.ReadOnly = true;
             this.ordersDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ordersDataGridView.RowHeadersVisible = false;
             this.ordersDataGridView.Size = new System.Drawing.Size(1032, 536);
             this.ordersDataGridView.TabIndex = 1;
             this.ordersDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ordersDataGridView_CellMouseClick);
@@ -367,7 +366,11 @@ namespace SuperMarket.UserControls
             this.tableAdapterManager.InvoicesTableAdapter = null;
             this.tableAdapterManager.OrdersTableAdapter = this.ordersTableAdapter;
             this.tableAdapterManager.ProductsTableAdapter = null;
+            this.tableAdapterManager.SupplierInvoiceProductTableAdapter = null;
+            this.tableAdapterManager.SupplierInvoicesTableAdapter = null;
+            this.tableAdapterManager.SuppliersTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserLevelAccessTableAdapter = null;
             this.tableAdapterManager.UsersTableAdapter = null;
             // 
             // Orders

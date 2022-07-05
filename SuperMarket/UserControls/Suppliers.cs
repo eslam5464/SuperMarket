@@ -3,11 +3,8 @@ using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarket.UserControls
@@ -21,11 +18,12 @@ namespace SuperMarket.UserControls
 
         private ContextMenu contextMenu = new ContextMenu();
         private DataGridViewCell ContextMenuSelectedCell;
+        private int EditedSupplierId = -1;
 
         private void Suppliers_Load(object sender, EventArgs e)
         {
             SetColors(Properties.Settings.Default.AppColor);
-            LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
+            LoadDataGrid(Classes.DataAccess.Suppliers.LoadSuppliers(true));
 
             contextMenu = Methods.SetupContextMenuCopy(contextMenu, MenuItemCopyOption_Click);
         }
@@ -62,14 +60,16 @@ namespace SuperMarket.UserControls
             suppliersDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
         }
 
-        private void LoadDataGrid(List<ProductModel> productModels)
+        private void LoadDataGrid(List<SupplierModel> supplierModels)
         {
             suppliersDataGridView.DataSource = null;
-            suppliersDataGridView.DataSource = productModels;
+            suppliersDataGridView.DataSource = supplierModels;
 
             suppliersDataGridView.Columns["Id"].HeaderText = "رقم التعريفي للمورد";
             suppliersDataGridView.Columns["SupplierName"].HeaderText = "اسم المورد";
+            suppliersDataGridView.Columns["Contact"].HeaderText = "الاتصال";
             suppliersDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه المورد";
+            suppliersDataGridView.Columns["Address"].HeaderText = "العنوان";
             suppliersDataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
 
             suppliersDataGridView.AutoResizeColumns();
@@ -94,17 +94,150 @@ namespace SuperMarket.UserControls
 
         private void btn_save_Click(object sender, EventArgs e)
         {
+            if (txt_fullname.Text.Trim() != "" && txt_phone.Text.Trim() != "")
+            {
+                if (!btn_edit.Enabled)
+                {
+                    if (MessageBox.Show($"هل تريد ان تعدل {txt_fullname.Text} ", "انتظر",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+                        int supplierId = EditedSupplierId;
+                        string SupplierName = Classes.DataAccess.Suppliers.GetSupplierParameter
+                                ("Id", "" + supplierId).FirstOrDefault().Name;
+                        SupplierModel supplier = new SupplierModel
+                        {
+                            Id = supplierId,
+                            Name = txt_fullname.Text,
+                            Address = txt_address.Text,
+                            Contact = txt_phone.Text
+                        };
+                        Classes.DataAccess.Suppliers.UpdateSupplier(supplier);
 
+                        LoadDataGrid(Classes.DataAccess.Suppliers.GetSupplierParameter("Id", "" + supplier.Id));
+
+                        ResetTextBoxes();
+
+                        Logger.Log($"user has edited product: {SupplierName} with id: {supplierId}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                    }
+                    SetEditMode(false);
+                }
+                else
+                {
+                    string MsgResponse = $"هل تريد ان تحفظ {txt_fullname.Text} ";
+
+                    var SupplierResult = Classes.DataAccess.Suppliers.GetSupplierParameter("Name", txt_fullname.Text);
+
+                    if (SupplierResult.Count > 0)
+                        MsgResponse += "لانه يوجد مورد بهذا الاسم";
+
+                    if (MessageBox.Show(MsgResponse, "انتظر",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+                        SupplierModel supplier = new SupplierModel
+                        {
+                            Name = "" + txt_fullname.Text,
+                            Address = "" + txt_address.Text,
+                            Contact = "" + txt_phone.Text
+                        };
+                        Classes.DataAccess.Suppliers.SaveSupplier(supplier);
+
+                        LoadDataGrid(Classes.DataAccess.Suppliers.LoadSuppliers(true));
+
+                        ResetTextBoxes();
+
+                        Logger.Log($"user added supplier: {supplier.Name}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                    }
+                }
+            }
+            else
+                MessageBox.Show("برجاء ادخال بيانات المورد من الاسم والعنوان وبيانات الاتصال", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void SetEditMode(bool State)
+        {
+            if (State)
+            {
+                btn_edit.BackColor = Color.Silver;
+                btn_remove.BackColor = Color.Silver;
+            }
+            else
+            {
+                btn_edit.BackColor = Properties.Settings.Default.AppColor;
+                btn_remove.BackColor = Properties.Settings.Default.AppColor;
+            }
+
+            btn_edit.Enabled = !State;
+            btn_remove.Enabled = !State;
+            pcb_searchName.Enabled = !State;
+        }
+
+        private void ResetTextBoxes()
+        {
+            txt_phone.Text = "";
+            txt_address.Text = "";
+            txt_fullname.Text = "";
         }
 
         private void btn_edit_Click(object sender, EventArgs e)
         {
+            if (suppliersDataGridView != null)
+            {
+                if (suppliersDataGridView.CurrentCell != null)
+                {
+                    int RowIndex = suppliersDataGridView.CurrentCell.RowIndex;
 
+                    EditedSupplierId = int.Parse(suppliersDataGridView.Rows[RowIndex].Cells["Id"].Value.ToString());
+
+                    string SupplierName = suppliersDataGridView.Rows[RowIndex].Cells["SupplierName"].Value.ToString(),
+                        SupplierAddress = suppliersDataGridView.Rows[RowIndex].Cells["Address"].Value.ToString(),
+                        SupplierContact = suppliersDataGridView.Rows[RowIndex].Cells["Contact"].Value.ToString();
+
+                    Logger.Log($"user is editing supplier: {SupplierName} with id: {EditedSupplierId}",
+                        System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+                    txt_fullname.Text = SupplierName;
+                    txt_address.Text = SupplierAddress;
+                    txt_phone.Text = SupplierContact;
+
+                    SetEditMode(true);
+                }
+                else
+                {
+                    MessageBox.Show("يجب أن تختار منتج للتعديل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void btn_remove_Click(object sender, EventArgs e)
         {
+            if (suppliersDataGridView != null)
+            {
+                if (suppliersDataGridView.CurrentCell != null)
+                {
+                    int rowindex = suppliersDataGridView.CurrentCell.RowIndex;
+                    int SupplierId = int.Parse(suppliersDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
+                    string SupplierName = suppliersDataGridView.Rows[rowindex].Cells["SupplierName"].Value.ToString();
 
+                    Logger.Log($"user is trying to remove supplier: {SupplierName}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+                    if (MessageBox.Show($"هل تريد ان تمسح {SupplierName}", "انتظر",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Information) == DialogResult.Yes)
+                    {
+                        Logger.Log($"user has removed supplier: {SupplierName} with id: {SupplierId}",
+                               System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+                        Classes.DataAccess.Suppliers.RemoveSupplier(SupplierId);
+
+                        LoadDataGrid(Classes.DataAccess.Suppliers.LoadSuppliers(true));
+                    }
+                }
+            }
         }
 
         private void btn_exportPDF_Click(object sender, EventArgs e)
@@ -121,30 +254,51 @@ namespace SuperMarket.UserControls
 
         private void txt_suppliers_KeyDown(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                btn_save.PerformClick();
+            }
         }
 
         private void pcb_searchName_Click(object sender, EventArgs e)
         {
+            if (txt_fullname.Text.Trim() == "")
+                LoadDataGrid(Classes.DataAccess.Suppliers.LoadSuppliers(true));
 
-        }
+            else
+            {
+                Logger.Log($"user is searching for supplier name: {txt_fullname.Text}",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-        private void pcb_searchName_DoubleClick(object sender, EventArgs e)
-        {
-
+                List<SupplierModel> supplierSearch =
+                    Classes.DataAccess.Suppliers.GetSupplierParameter("Name", txt_fullname.Text);
+                LoadDataGrid(supplierSearch);
+            }
         }
 
         private void pcb_serchbyPhone_Click(object sender, EventArgs e)
         {
+            if (txt_phone.Text.Trim() == "")
+                LoadDataGrid(Classes.DataAccess.Suppliers.LoadSuppliers(true));
 
+            else
+            {
+                Logger.Log($"user is searching for supplier contact: {txt_phone.Text}",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+                List<SupplierModel> supplierSearch =
+                    Classes.DataAccess.Suppliers.GetSupplierParameter("Contact", txt_phone.Text);
+                LoadDataGrid(supplierSearch);
+            }
         }
 
-        private void pcb_serchbyPhone_DoubleClick(object sender, EventArgs e)
+        private void pcb_suppliers_DoubleClick(object sender, EventArgs e)
         {
-
+            LoadDataGrid(Classes.DataAccess.Suppliers.LoadSuppliers(true));
         }
 
-        private void productsDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void suppliersDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -163,18 +317,30 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void productsDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void suppliersDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            productsDataGridView.DataSource = new Methods().DataGridToDataTable(productsDataGridView);
+            //suppliersDataGridView.DataSource = new Methods().DataGridToDataTable(suppliersDataGridView);
 
-            productsDataGridView.Sort(productsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+            //suppliersDataGridView.Sort(suppliersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
         }
 
-        private void productsDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        private void suppliersDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            productsDataGridView.DataSource = new Methods().DataGridToDataTable(productsDataGridView);
+            //suppliersDataGridView.DataSource = new Methods().DataGridToDataTable(suppliersDataGridView);
 
-            productsDataGridView.Sort(productsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+            ////suppliersDataGridView.Sort(suppliersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+        }
+
+        private void pcb_suppliers_MouseEnter(object sender, EventArgs e)
+        {
+            Control FocusedObject = (Control)sender;
+            FocusedObject.BackColor = Properties.Settings.Default.AppColor;
+        }
+
+        private void pcb_suppliers_MouseLeave(object sender, EventArgs e)
+        {
+            Control FocusedObject = (Control)sender;
+            FocusedObject.BackColor = Color.Transparent;
         }
     }
 }

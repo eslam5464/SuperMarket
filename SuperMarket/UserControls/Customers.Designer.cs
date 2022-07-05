@@ -267,7 +267,6 @@ namespace SuperMarket.UserControls
             this.customersDataGridView.Name = "customersDataGridView";
             this.customersDataGridView.ReadOnly = true;
             this.customersDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.customersDataGridView.RowHeadersVisible = false;
             this.customersDataGridView.Size = new System.Drawing.Size(1032, 433);
             this.customersDataGridView.TabIndex = 1;
             this.customersDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.customersDataGridView_CellMouseClick);
@@ -397,7 +396,11 @@ namespace SuperMarket.UserControls
             this.tableAdapterManager.InvoicesTableAdapter = null;
             this.tableAdapterManager.OrdersTableAdapter = null;
             this.tableAdapterManager.ProductsTableAdapter = null;
+            this.tableAdapterManager.SupplierInvoiceProductTableAdapter = null;
+            this.tableAdapterManager.SupplierInvoicesTableAdapter = null;
+            this.tableAdapterManager.SuppliersTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserLevelAccessTableAdapter = null;
             this.tableAdapterManager.UsersTableAdapter = null;
             // 
             // btn_exportPDF

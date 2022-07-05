@@ -143,7 +143,6 @@ namespace SuperMarket.UserControls
             this.db_probillsDataGridView.Name = "db_probillsDataGridView";
             this.db_probillsDataGridView.ReadOnly = true;
             this.db_probillsDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.db_probillsDataGridView.RowHeadersVisible = false;
             this.db_probillsDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.db_probillsDataGridView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Palatino Linotype", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.db_probillsDataGridView.RowTemplate.Height = 24;

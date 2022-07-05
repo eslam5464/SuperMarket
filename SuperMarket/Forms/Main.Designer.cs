@@ -36,6 +36,7 @@ namespace SuperMarket.Forms
             this.btn_logout = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.btn_settings = new System.Windows.Forms.Button();
+            this.btn_suppliers = new System.Windows.Forms.Button();
             this.btn_sellers = new System.Windows.Forms.Button();
             this.btn_advancedSearch = new System.Windows.Forms.Button();
             this.btn_reports = new System.Windows.Forms.Button();
@@ -61,7 +62,6 @@ namespace SuperMarket.Forms
             this.panel4 = new System.Windows.Forms.Panel();
             this.UserSession = new System.Windows.Forms.Timer(this.components);
             this.HourlyChecker = new System.Windows.Forms.Timer(this.components);
-            this.btn_suppliers = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -150,16 +150,37 @@ namespace SuperMarket.Forms
             this.btn_settings.ForeColor = System.Drawing.Color.White;
             this.btn_settings.Image = ((System.Drawing.Image)(resources.GetObject("btn_settings.Image")));
             this.btn_settings.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_settings.Location = new System.Drawing.Point(13, 440);
+            this.btn_settings.Location = new System.Drawing.Point(13, 495);
             this.btn_settings.Margin = new System.Windows.Forms.Padding(4);
             this.btn_settings.Name = "btn_settings";
             this.btn_settings.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_settings.Size = new System.Drawing.Size(245, 40);
+            this.btn_settings.Size = new System.Drawing.Size(245, 45);
             this.btn_settings.TabIndex = 22;
             this.btn_settings.Text = "   الاعدادات";
             this.btn_settings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_settings.UseVisualStyleBackColor = true;
             this.btn_settings.Click += new System.EventHandler(this.btn_settings_Click);
+            // 
+            // btn_suppliers
+            // 
+            this.btn_suppliers.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_suppliers.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_suppliers.FlatAppearance.BorderSize = 0;
+            this.btn_suppliers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_suppliers.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_suppliers.ForeColor = System.Drawing.Color.White;
+            this.btn_suppliers.Image = ((System.Drawing.Image)(resources.GetObject("btn_suppliers.Image")));
+            this.btn_suppliers.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_suppliers.Location = new System.Drawing.Point(13, 450);
+            this.btn_suppliers.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_suppliers.Name = "btn_suppliers";
+            this.btn_suppliers.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btn_suppliers.Size = new System.Drawing.Size(245, 45);
+            this.btn_suppliers.TabIndex = 28;
+            this.btn_suppliers.Text = "   الموردين";
+            this.btn_suppliers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_suppliers.UseVisualStyleBackColor = true;
+            this.btn_suppliers.Click += new System.EventHandler(this.btn_suppliers_Click);
             // 
             // btn_sellers
             // 
@@ -171,11 +192,11 @@ namespace SuperMarket.Forms
             this.btn_sellers.ForeColor = System.Drawing.Color.White;
             this.btn_sellers.Image = ((System.Drawing.Image)(resources.GetObject("btn_sellers.Image")));
             this.btn_sellers.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_sellers.Location = new System.Drawing.Point(13, 360);
+            this.btn_sellers.Location = new System.Drawing.Point(13, 405);
             this.btn_sellers.Margin = new System.Windows.Forms.Padding(4);
             this.btn_sellers.Name = "btn_sellers";
             this.btn_sellers.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_sellers.Size = new System.Drawing.Size(245, 40);
+            this.btn_sellers.Size = new System.Drawing.Size(245, 45);
             this.btn_sellers.TabIndex = 21;
             this.btn_sellers.Text = "   البائعين";
             this.btn_sellers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -192,11 +213,11 @@ namespace SuperMarket.Forms
             this.btn_advancedSearch.ForeColor = System.Drawing.Color.White;
             this.btn_advancedSearch.Image = ((System.Drawing.Image)(resources.GetObject("btn_advancedSearch.Image")));
             this.btn_advancedSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_advancedSearch.Location = new System.Drawing.Point(13, 320);
+            this.btn_advancedSearch.Location = new System.Drawing.Point(13, 360);
             this.btn_advancedSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btn_advancedSearch.Name = "btn_advancedSearch";
             this.btn_advancedSearch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_advancedSearch.Size = new System.Drawing.Size(245, 40);
+            this.btn_advancedSearch.Size = new System.Drawing.Size(245, 45);
             this.btn_advancedSearch.TabIndex = 27;
             this.btn_advancedSearch.Text = "   بحث متقدم";
             this.btn_advancedSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -213,11 +234,11 @@ namespace SuperMarket.Forms
             this.btn_reports.ForeColor = System.Drawing.Color.White;
             this.btn_reports.Image = ((System.Drawing.Image)(resources.GetObject("btn_reports.Image")));
             this.btn_reports.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_reports.Location = new System.Drawing.Point(13, 280);
+            this.btn_reports.Location = new System.Drawing.Point(13, 315);
             this.btn_reports.Margin = new System.Windows.Forms.Padding(4);
             this.btn_reports.Name = "btn_reports";
             this.btn_reports.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_reports.Size = new System.Drawing.Size(245, 40);
+            this.btn_reports.Size = new System.Drawing.Size(245, 45);
             this.btn_reports.TabIndex = 24;
             this.btn_reports.Text = "   التقارير";
             this.btn_reports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -234,11 +255,11 @@ namespace SuperMarket.Forms
             this.btn_editBills.ForeColor = System.Drawing.Color.White;
             this.btn_editBills.Image = global::SuperMarket.Properties.Resources.icons8_edit_property_48;
             this.btn_editBills.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_editBills.Location = new System.Drawing.Point(13, 240);
+            this.btn_editBills.Location = new System.Drawing.Point(13, 270);
             this.btn_editBills.Margin = new System.Windows.Forms.Padding(4);
             this.btn_editBills.Name = "btn_editBills";
             this.btn_editBills.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_editBills.Size = new System.Drawing.Size(245, 40);
+            this.btn_editBills.Size = new System.Drawing.Size(245, 45);
             this.btn_editBills.TabIndex = 23;
             this.btn_editBills.Text = "   تعديل الفواتير";
             this.btn_editBills.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -255,11 +276,11 @@ namespace SuperMarket.Forms
             this.btn_billing.ForeColor = System.Drawing.Color.White;
             this.btn_billing.Image = ((System.Drawing.Image)(resources.GetObject("btn_billing.Image")));
             this.btn_billing.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_billing.Location = new System.Drawing.Point(13, 200);
+            this.btn_billing.Location = new System.Drawing.Point(13, 225);
             this.btn_billing.Margin = new System.Windows.Forms.Padding(4);
             this.btn_billing.Name = "btn_billing";
             this.btn_billing.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_billing.Size = new System.Drawing.Size(245, 40);
+            this.btn_billing.Size = new System.Drawing.Size(245, 45);
             this.btn_billing.TabIndex = 20;
             this.btn_billing.Text = "   الفواتير";
             this.btn_billing.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -276,11 +297,11 @@ namespace SuperMarket.Forms
             this.btn_Orders.ForeColor = System.Drawing.Color.White;
             this.btn_Orders.Image = ((System.Drawing.Image)(resources.GetObject("btn_Orders.Image")));
             this.btn_Orders.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_Orders.Location = new System.Drawing.Point(13, 160);
+            this.btn_Orders.Location = new System.Drawing.Point(13, 180);
             this.btn_Orders.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Orders.Name = "btn_Orders";
             this.btn_Orders.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_Orders.Size = new System.Drawing.Size(245, 40);
+            this.btn_Orders.Size = new System.Drawing.Size(245, 45);
             this.btn_Orders.TabIndex = 19;
             this.btn_Orders.Text = "   الطلبات";
             this.btn_Orders.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -297,11 +318,11 @@ namespace SuperMarket.Forms
             this.btn_Customers.ForeColor = System.Drawing.Color.White;
             this.btn_Customers.Image = ((System.Drawing.Image)(resources.GetObject("btn_Customers.Image")));
             this.btn_Customers.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_Customers.Location = new System.Drawing.Point(13, 120);
+            this.btn_Customers.Location = new System.Drawing.Point(13, 135);
             this.btn_Customers.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Customers.Name = "btn_Customers";
             this.btn_Customers.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_Customers.Size = new System.Drawing.Size(245, 40);
+            this.btn_Customers.Size = new System.Drawing.Size(245, 45);
             this.btn_Customers.TabIndex = 18;
             this.btn_Customers.Text = "   العملاء";
             this.btn_Customers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -318,11 +339,11 @@ namespace SuperMarket.Forms
             this.btn_Products.ForeColor = System.Drawing.Color.White;
             this.btn_Products.Image = ((System.Drawing.Image)(resources.GetObject("btn_Products.Image")));
             this.btn_Products.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_Products.Location = new System.Drawing.Point(13, 80);
+            this.btn_Products.Location = new System.Drawing.Point(13, 90);
             this.btn_Products.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Products.Name = "btn_Products";
             this.btn_Products.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_Products.Size = new System.Drawing.Size(245, 40);
+            this.btn_Products.Size = new System.Drawing.Size(245, 45);
             this.btn_Products.TabIndex = 17;
             this.btn_Products.Text = "   المنتجات";
             this.btn_Products.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -339,11 +360,11 @@ namespace SuperMarket.Forms
             this.btn_Categories.ForeColor = System.Drawing.Color.White;
             this.btn_Categories.Image = ((System.Drawing.Image)(resources.GetObject("btn_Categories.Image")));
             this.btn_Categories.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_Categories.Location = new System.Drawing.Point(13, 40);
+            this.btn_Categories.Location = new System.Drawing.Point(13, 45);
             this.btn_Categories.Margin = new System.Windows.Forms.Padding(4);
             this.btn_Categories.Name = "btn_Categories";
             this.btn_Categories.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_Categories.Size = new System.Drawing.Size(245, 40);
+            this.btn_Categories.Size = new System.Drawing.Size(245, 45);
             this.btn_Categories.TabIndex = 16;
             this.btn_Categories.Text = "   الاصناف";
             this.btn_Categories.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -364,7 +385,7 @@ namespace SuperMarket.Forms
             this.btn_dashborad.Margin = new System.Windows.Forms.Padding(4);
             this.btn_dashborad.Name = "btn_dashborad";
             this.btn_dashborad.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_dashborad.Size = new System.Drawing.Size(245, 40);
+            this.btn_dashborad.Size = new System.Drawing.Size(245, 45);
             this.btn_dashborad.TabIndex = 11;
             this.btn_dashborad.Text = "   الرئيسية";
             this.btn_dashborad.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -529,26 +550,6 @@ namespace SuperMarket.Forms
             // 
             this.HourlyChecker.Interval = 1000;
             this.HourlyChecker.Tick += new System.EventHandler(this.HourlyChecker_Tick);
-            // 
-            // btn_suppliers
-            // 
-            this.btn_suppliers.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_suppliers.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_suppliers.FlatAppearance.BorderSize = 0;
-            this.btn_suppliers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_suppliers.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_suppliers.ForeColor = System.Drawing.Color.White;
-            this.btn_suppliers.Image = ((System.Drawing.Image)(resources.GetObject("btn_suppliers.Image")));
-            this.btn_suppliers.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_suppliers.Location = new System.Drawing.Point(13, 400);
-            this.btn_suppliers.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_suppliers.Name = "btn_suppliers";
-            this.btn_suppliers.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_suppliers.Size = new System.Drawing.Size(245, 40);
-            this.btn_suppliers.TabIndex = 28;
-            this.btn_suppliers.Text = "   الموردين";
-            this.btn_suppliers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_suppliers.UseVisualStyleBackColor = true;
             // 
             // Main
             // 

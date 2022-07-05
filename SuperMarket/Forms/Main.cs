@@ -234,6 +234,17 @@ namespace SuperMarket.Forms
             uc_advancedSearch.BringToFront();
         }
 
+        private void btn_suppliers_Click(object sender, EventArgs e)
+        {
+            Logger.Log("user clicked on suppliers button",
+                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+            SidePanel.Height = btn_suppliers.Height;
+            SidePanel.Top = btn_suppliers.Top;
+
+            uc_suppliers.BringToFront();
+        }
+
         private void btn_logout_Click(object sender, EventArgs e)
         {
             Close();
