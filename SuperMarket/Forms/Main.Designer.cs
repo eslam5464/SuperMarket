@@ -62,6 +62,7 @@ namespace SuperMarket.Forms
             this.panel4 = new System.Windows.Forms.Panel();
             this.UserSession = new System.Windows.Forms.Timer(this.components);
             this.HourlyChecker = new System.Windows.Forms.Timer(this.components);
+            this.btn_supplierInvoices = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -121,9 +122,10 @@ namespace SuperMarket.Forms
             // 
             this.panel7.AutoScroll = true;
             this.panel7.Controls.Add(this.btn_settings);
+            this.panel7.Controls.Add(this.btn_advancedSearch);
+            this.panel7.Controls.Add(this.btn_supplierInvoices);
             this.panel7.Controls.Add(this.btn_suppliers);
             this.panel7.Controls.Add(this.btn_sellers);
-            this.panel7.Controls.Add(this.btn_advancedSearch);
             this.panel7.Controls.Add(this.btn_reports);
             this.panel7.Controls.Add(this.btn_editBills);
             this.panel7.Controls.Add(this.btn_billing);
@@ -150,7 +152,7 @@ namespace SuperMarket.Forms
             this.btn_settings.ForeColor = System.Drawing.Color.White;
             this.btn_settings.Image = ((System.Drawing.Image)(resources.GetObject("btn_settings.Image")));
             this.btn_settings.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_settings.Location = new System.Drawing.Point(13, 495);
+            this.btn_settings.Location = new System.Drawing.Point(13, 540);
             this.btn_settings.Margin = new System.Windows.Forms.Padding(4);
             this.btn_settings.Name = "btn_settings";
             this.btn_settings.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -171,7 +173,7 @@ namespace SuperMarket.Forms
             this.btn_suppliers.ForeColor = System.Drawing.Color.White;
             this.btn_suppliers.Image = ((System.Drawing.Image)(resources.GetObject("btn_suppliers.Image")));
             this.btn_suppliers.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_suppliers.Location = new System.Drawing.Point(13, 450);
+            this.btn_suppliers.Location = new System.Drawing.Point(13, 405);
             this.btn_suppliers.Margin = new System.Windows.Forms.Padding(4);
             this.btn_suppliers.Name = "btn_suppliers";
             this.btn_suppliers.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -192,7 +194,7 @@ namespace SuperMarket.Forms
             this.btn_sellers.ForeColor = System.Drawing.Color.White;
             this.btn_sellers.Image = ((System.Drawing.Image)(resources.GetObject("btn_sellers.Image")));
             this.btn_sellers.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_sellers.Location = new System.Drawing.Point(13, 405);
+            this.btn_sellers.Location = new System.Drawing.Point(13, 360);
             this.btn_sellers.Margin = new System.Windows.Forms.Padding(4);
             this.btn_sellers.Name = "btn_sellers";
             this.btn_sellers.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -213,7 +215,7 @@ namespace SuperMarket.Forms
             this.btn_advancedSearch.ForeColor = System.Drawing.Color.White;
             this.btn_advancedSearch.Image = ((System.Drawing.Image)(resources.GetObject("btn_advancedSearch.Image")));
             this.btn_advancedSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_advancedSearch.Location = new System.Drawing.Point(13, 360);
+            this.btn_advancedSearch.Location = new System.Drawing.Point(13, 495);
             this.btn_advancedSearch.Margin = new System.Windows.Forms.Padding(4);
             this.btn_advancedSearch.Name = "btn_advancedSearch";
             this.btn_advancedSearch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -551,6 +553,27 @@ namespace SuperMarket.Forms
             this.HourlyChecker.Interval = 1000;
             this.HourlyChecker.Tick += new System.EventHandler(this.HourlyChecker_Tick);
             // 
+            // btn_supplierInvoices
+            // 
+            this.btn_supplierInvoices.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_supplierInvoices.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_supplierInvoices.FlatAppearance.BorderSize = 0;
+            this.btn_supplierInvoices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_supplierInvoices.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_supplierInvoices.ForeColor = System.Drawing.Color.White;
+            this.btn_supplierInvoices.Image = ((System.Drawing.Image)(resources.GetObject("btn_supplierInvoices.Image")));
+            this.btn_supplierInvoices.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_supplierInvoices.Location = new System.Drawing.Point(13, 450);
+            this.btn_supplierInvoices.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_supplierInvoices.Name = "btn_supplierInvoices";
+            this.btn_supplierInvoices.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btn_supplierInvoices.Size = new System.Drawing.Size(245, 45);
+            this.btn_supplierInvoices.TabIndex = 29;
+            this.btn_supplierInvoices.Text = "   فواتير الموردين";
+            this.btn_supplierInvoices.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_supplierInvoices.UseVisualStyleBackColor = true;
+            this.btn_supplierInvoices.Click += new System.EventHandler(this.btn_supplierInvoices_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -614,5 +637,6 @@ namespace SuperMarket.Forms
         private System.Windows.Forms.Button btn_advancedSearch;
         private System.Windows.Forms.Timer HourlyChecker;
         public System.Windows.Forms.Button btn_suppliers;
+        public System.Windows.Forms.Button btn_supplierInvoices;
     }
 }

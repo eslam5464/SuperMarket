@@ -31,6 +31,24 @@ namespace SuperMarket.Classes.DataAccess
             return new List<SupplierModel>();
         }
 
+        internal static List<SupplierModel> GetSupplierParameterLike(string Parameter, string Condition)
+        {
+            try
+            {
+                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                {
+                    var output = cnn.Query<SupplierModel>($"SELECT TOP {GlobalVars.MaxQueryRows} * FROM {TableName} WHERE {Parameter} Like N'%{Condition}%'", new DynamicParameters());
+                    return output.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"while getting a supplier & parameter = {Parameter} & condition = {Condition} with error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
+            }
+            return new List<SupplierModel>();
+        }
+
         internal static List<SupplierModel> LoadSuppliers(bool LimitRows)
         {
             try

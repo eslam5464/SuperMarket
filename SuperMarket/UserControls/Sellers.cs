@@ -95,7 +95,6 @@ namespace SuperMarket.UserControls
 
         private void SetUserLevel()
         {
-
             for (int i = 0; i < GlobalVars.UserLevels.Length; i++)
                 UserLevelDict.Add(i, GlobalVars.UserLevels[i]);
 

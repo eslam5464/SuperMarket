@@ -2,7 +2,6 @@
 using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -168,6 +167,7 @@ namespace SuperMarket.UserControls
             {
                 btn_edit.BackColor = Properties.Settings.Default.AppColor;
                 btn_remove.BackColor = Properties.Settings.Default.AppColor;
+                EditedSupplierId = -1;
             }
 
             btn_edit.Enabled = !State;
@@ -321,7 +321,14 @@ namespace SuperMarket.UserControls
         {
             //suppliersDataGridView.DataSource = new Methods().DataGridToDataTable(suppliersDataGridView);
 
+            //suppliersDataGridView.Columns[e.ColumnIndex]
+
             //suppliersDataGridView.Sort(suppliersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+            //suppliersDataGridView.DataSource = Classes.DataAccess.Suppliers.LoadSuppliers(true).OrderBy(o => o.Address).ToList();
+
+
+            suppliersDataGridView.DataSource =
+                Classes.DataAccess.Suppliers.LoadSuppliers(true).OrderBy(o => suppliersDataGridView.Columns[e.ColumnIndex].Name).ToList();
         }
 
         private void suppliersDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -329,6 +336,10 @@ namespace SuperMarket.UserControls
             //suppliersDataGridView.DataSource = new Methods().DataGridToDataTable(suppliersDataGridView);
 
             ////suppliersDataGridView.Sort(suppliersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+
+
+            suppliersDataGridView.DataSource =
+                Classes.DataAccess.Suppliers.LoadSuppliers(true).OrderBy(o => (suppliersDataGridView.Columns[e.ColumnIndex].Name)).ToList();
         }
 
         private void pcb_suppliers_MouseEnter(object sender, EventArgs e)

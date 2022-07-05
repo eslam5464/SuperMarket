@@ -17,6 +17,7 @@ namespace SuperMarket.Forms
         private readonly UserControls.BillsEdit uc_billsEdit = new UserControls.BillsEdit();
         private readonly UserControls.AdvancedSearch uc_advancedSearch = new UserControls.AdvancedSearch();
         private readonly UserControls.Suppliers uc_suppliers = new UserControls.Suppliers();
+        private readonly UserControls.SupplierInvoices uc_supplierInvoices = new UserControls.SupplierInvoices();
         private readonly UserControls.Reports uc_reports = new UserControls.Reports();
         private readonly UserControls.Settings uc_settings = new UserControls.Settings();
 
@@ -93,7 +94,8 @@ namespace SuperMarket.Forms
                 uc_billsEdit,
                 uc_reports,
                 uc_advancedSearch,
-                uc_suppliers
+                uc_suppliers,
+                uc_supplierInvoices
             };
 
             foreach (UserControl userControl in AllUserControls)
@@ -243,6 +245,17 @@ namespace SuperMarket.Forms
             SidePanel.Top = btn_suppliers.Top;
 
             uc_suppliers.BringToFront();
+        }
+
+        private void btn_supplierInvoices_Click(object sender, EventArgs e)
+        {
+            Logger.Log("user clicked on supplier invoices button",
+                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+            SidePanel.Height = btn_supplierInvoices.Height;
+            SidePanel.Top = btn_supplierInvoices.Top;
+
+            uc_supplierInvoices.BringToFront();
         }
 
         private void btn_logout_Click(object sender, EventArgs e)

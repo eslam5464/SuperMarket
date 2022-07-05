@@ -62,7 +62,7 @@ namespace SuperMarket.UserControls
                     var CategoryResult = Classes.DataAccess.Categories.GetCategoryParameter("Name", txt_categoriename.Text);
 
                     if (CategoryResult.Count > 0)
-                        MsgResponse += "لانه يوجد صنف بهذا الاسم";
+                        MsgResponse += "لانه يوجد تصنيف بهذا الاسم";
 
                     if (MessageBox.Show(MsgResponse, "انتظر",
                         MessageBoxButtons.YesNo,
@@ -87,7 +87,7 @@ namespace SuperMarket.UserControls
                 }
             }
             else
-                MessageBox.Show("برجاء ادخال اسم الصنف", "حاول مره أخرى", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("برجاء ادخال اسم التصنيف", "حاول مره أخرى", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void ResetTextBoxes()
@@ -101,9 +101,9 @@ namespace SuperMarket.UserControls
             categoriesDataGridView.DataSource = null;
             categoriesDataGridView.DataSource = Categories;
 
-            categoriesDataGridView.Columns["Id"].HeaderText = "رقم الصنف";
-            categoriesDataGridView.Columns["CategoryName"].HeaderText = "اسم الصنف";
-            categoriesDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه الصنف";
+            categoriesDataGridView.Columns["Id"].HeaderText = "رقم التصنيف";
+            categoriesDataGridView.Columns["CategoryName"].HeaderText = "اسم التصنيف";
+            categoriesDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه التصنيف";
             categoriesDataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
 
             categoriesDataGridView.AutoResizeColumns();
