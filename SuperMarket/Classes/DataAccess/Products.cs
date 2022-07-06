@@ -18,8 +18,9 @@ namespace SuperMarket.Classes.DataAccess
             {
                 using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
                 {
-                    cnn.Execute($"UPDATE Products SET BarCode = @BarCode, Name = @Name, Quantity = @Quantity, Price = @Price, " +
-                        $"Description = @Description, CategoryID = @CategoryID, CategoryName = @CategoryName WHERE Id = @Id", Product);
+                    cnn.Execute($"UPDATE Products SET BarCode = @BarCode, Name = @Name, Quantity = @Quantity," +
+                        $" QuantityMinimum = @QuantityMinimum, Price = @Price, Description = @Description," +
+                        $" CategoryID = @CategoryID, CategoryName = @CategoryName WHERE Id = @Id", Product);
                 }
             }
             catch (Exception ex)
@@ -101,9 +102,9 @@ namespace SuperMarket.Classes.DataAccess
             {
                 using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
                 {
-                    cnn.Execute($"INSERT INTO Products (BarCode, Name, Quantity, Price, " +
+                    cnn.Execute($"INSERT INTO Products (BarCode, Name, Quantity, QuantityMinimum, Price, " +
                         $"Description, CategoryID, CategoryName, CreationDate) VALUES " +
-                        $"(@BarCode, @Name, @Quantity, @Price, @Description, @CategoryID, @CategoryName, '{DateTime.Now}')", Product);
+                        $"(@BarCode, @Name, @Quantity, @QuantityMinimum, @Price, @Description, @CategoryID, @CategoryName, '{DateTime.Now}')", Product);
                 }
             }
             catch (Exception ex)

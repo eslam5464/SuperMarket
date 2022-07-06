@@ -2166,6 +2166,8 @@ namespace SuperMarket {
             
             private global::System.Data.DataColumn columnCreationDate;
             
+            private global::System.Data.DataColumn columnQuantityMinimum;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public ProductsDataTable() {
@@ -2273,6 +2275,14 @@ namespace SuperMarket {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn QuantityMinimumColumn {
+                get {
+                    return this.columnQuantityMinimum;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -2308,7 +2318,7 @@ namespace SuperMarket {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public ProductsRow AddProductsRow(string BarCode, string Name, double Quantity, decimal Price, string Description, CategoriesRow parentCategoriesRowByFK_Products_Categories, string CategoryName, System.DateTime CreationDate) {
+            public ProductsRow AddProductsRow(string BarCode, string Name, double Quantity, decimal Price, string Description, CategoriesRow parentCategoriesRowByFK_Products_Categories, string CategoryName, System.DateTime CreationDate, double QuantityMinimum) {
                 ProductsRow rowProductsRow = ((ProductsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -2319,7 +2329,8 @@ namespace SuperMarket {
                         Description,
                         null,
                         CategoryName,
-                        CreationDate};
+                        CreationDate,
+                        QuantityMinimum};
                 if ((parentCategoriesRowByFK_Products_Categories != null)) {
                     columnValuesArray[6] = parentCategoriesRowByFK_Products_Categories[0];
                 }
@@ -2361,6 +2372,7 @@ namespace SuperMarket {
                 this.columnCategoryID = base.Columns["CategoryID"];
                 this.columnCategoryName = base.Columns["CategoryName"];
                 this.columnCreationDate = base.Columns["CreationDate"];
+                this.columnQuantityMinimum = base.Columns["QuantityMinimum"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2384,6 +2396,8 @@ namespace SuperMarket {
                 base.Columns.Add(this.columnCategoryName);
                 this.columnCreationDate = new global::System.Data.DataColumn("CreationDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreationDate);
+                this.columnQuantityMinimum = new global::System.Data.DataColumn("QuantityMinimum", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnQuantityMinimum);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AutoIncrement = true;
@@ -5241,6 +5255,22 @@ namespace SuperMarket {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public double QuantityMinimum {
+                get {
+                    try {
+                        return ((double)(this[this.tableProducts.QuantityMinimumColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'QuantityMinimum\' in table \'Products\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableProducts.QuantityMinimumColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public CategoriesRow CategoriesRow {
                 get {
                     return ((CategoriesRow)(this.GetParentRow(this.Table.ParentRelations["FK_Products_Categories"])));
@@ -5283,6 +5313,18 @@ namespace SuperMarket {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetCategoryIDNull() {
                 this[this.tableProducts.CategoryIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsQuantityMinimumNull() {
+                return this.IsNull(this.tableProducts.QuantityMinimumColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetQuantityMinimumNull() {
+                this[this.tableProducts.QuantityMinimumColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8308,10 +8350,11 @@ SELECT Id, InvoiceDate, InvoiceId, CustomerId, CustomerName, ContactNumber, Addr
             tableMapping.ColumnMappings.Add("CategoryID", "CategoryID");
             tableMapping.ColumnMappings.Add("CategoryName", "CategoryName");
             tableMapping.ColumnMappings.Add("CreationDate", "CreationDate");
+            tableMapping.ColumnMappings.Add("QuantityMinimum", "QuantityMinimum");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[Products] WHERE (([Id] = @Original_Id) AND ([BarCode] = @Original_BarCode) AND ([Name] = @Original_Name) AND ([Quantity] = @Original_Quantity) AND ([Price] = @Original_Price) AND ((@IsNull_Description = 1 AND [Description] IS NULL) OR ([Description] = @Original_Description)) AND ((@IsNull_CategoryID = 1 AND [CategoryID] IS NULL) OR ([CategoryID] = @Original_CategoryID)) AND ([CategoryName] = @Original_CategoryName) AND ([CreationDate] = @Original_CreationDate))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Products] WHERE (([Id] = @Original_Id) AND ([BarCode] = @Original_BarCode) AND ([Name] = @Original_Name) AND ([Quantity] = @Original_Quantity) AND ([Price] = @Original_Price) AND ((@IsNull_Description = 1 AND [Description] IS NULL) OR ([Description] = @Original_Description)) AND ((@IsNull_CategoryID = 1 AND [CategoryID] IS NULL) OR ([CategoryID] = @Original_CategoryID)) AND ([CategoryName] = @Original_CategoryName) AND ([CreationDate] = @Original_CreationDate) AND ((@IsNull_QuantityMinimum = 1 AND [QuantityMinimum] IS NULL) OR ([QuantityMinimum] = @Original_QuantityMinimum)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BarCode", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BarCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -8324,10 +8367,12 @@ SELECT Id, InvoiceDate, InvoiceId, CustomerId, CustomerName, ContactNumber, Addr
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CategoryID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CategoryID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CategoryName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CategoryName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CreationDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreationDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_QuantityMinimum", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuantityMinimum", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_QuantityMinimum", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuantityMinimum", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Products] ([BarCode], [Name], [Quantity], [Price], [Description], [CategoryID], [CategoryName], [CreationDate]) VALUES (@BarCode, @Name, @Quantity, @Price, @Description, @CategoryID, @CategoryName, @CreationDate);
-SELECT Id, BarCode, Name, Quantity, Price, Description, CategoryID, CategoryName, CreationDate FROM Products WHERE (Id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Products] ([BarCode], [Name], [Quantity], [Price], [Description], [CategoryID], [CategoryName], [CreationDate], [QuantityMinimum]) VALUES (@BarCode, @Name, @Quantity, @Price, @Description, @CategoryID, @CategoryName, @CreationDate, @QuantityMinimum);
+SELECT Id, BarCode, Name, Quantity, Price, Description, CategoryID, CategoryName, CreationDate, QuantityMinimum FROM Products WHERE (Id = SCOPE_IDENTITY()) AND (Name = @Name)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BarCode", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BarCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -8337,10 +8382,11 @@ SELECT Id, BarCode, Name, Quantity, Price, Description, CategoryID, CategoryName
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CategoryID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CategoryID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CategoryName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CategoryName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreationDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreationDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@QuantityMinimum", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuantityMinimum", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Products] SET [BarCode] = @BarCode, [Name] = @Name, [Quantity] = @Quantity, [Price] = @Price, [Description] = @Description, [CategoryID] = @CategoryID, [CategoryName] = @CategoryName, [CreationDate] = @CreationDate WHERE (([Id] = @Original_Id) AND ([BarCode] = @Original_BarCode) AND ([Name] = @Original_Name) AND ([Quantity] = @Original_Quantity) AND ([Price] = @Original_Price) AND ((@IsNull_Description = 1 AND [Description] IS NULL) OR ([Description] = @Original_Description)) AND ((@IsNull_CategoryID = 1 AND [CategoryID] IS NULL) OR ([CategoryID] = @Original_CategoryID)) AND ([CategoryName] = @Original_CategoryName) AND ([CreationDate] = @Original_CreationDate));
-SELECT Id, BarCode, Name, Quantity, Price, Description, CategoryID, CategoryName, CreationDate FROM Products WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Products] SET [BarCode] = @BarCode, [Name] = @Name, [Quantity] = @Quantity, [Price] = @Price, [Description] = @Description, [CategoryID] = @CategoryID, [CategoryName] = @CategoryName, [CreationDate] = @CreationDate, [QuantityMinimum] = @QuantityMinimum WHERE (([Id] = @Original_Id) AND ([BarCode] = @Original_BarCode) AND ([Name] = @Original_Name) AND ([Quantity] = @Original_Quantity) AND ([Price] = @Original_Price) AND ((@IsNull_Description = 1 AND [Description] IS NULL) OR ([Description] = @Original_Description)) AND ((@IsNull_CategoryID = 1 AND [CategoryID] IS NULL) OR ([CategoryID] = @Original_CategoryID)) AND ([CategoryName] = @Original_CategoryName) AND ([CreationDate] = @Original_CreationDate) AND ((@IsNull_QuantityMinimum = 1 AND [QuantityMinimum] IS NULL) OR ([QuantityMinimum] = @Original_QuantityMinimum)));
+SELECT Id, BarCode, Name, Quantity, Price, Description, CategoryID, CategoryName, CreationDate, QuantityMinimum FROM Products WHERE (Id = @Id) AND (Name = @Name)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@BarCode", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BarCode", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -8350,6 +8396,7 @@ SELECT Id, BarCode, Name, Quantity, Price, Description, CategoryID, CategoryName
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CategoryID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CategoryID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CategoryName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CategoryName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreationDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreationDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@QuantityMinimum", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuantityMinimum", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_BarCode", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "BarCode", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -8361,6 +8408,8 @@ SELECT Id, BarCode, Name, Quantity, Price, Description, CategoryID, CategoryName
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CategoryID", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CategoryID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CategoryName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CategoryName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CreationDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreationDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_QuantityMinimum", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuantityMinimum", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_QuantityMinimum", global::System.Data.SqlDbType.Float, 0, global::System.Data.ParameterDirection.Input, 0, 0, "QuantityMinimum", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -8378,7 +8427,7 @@ SELECT Id, BarCode, Name, Quantity, Price, Description, CategoryID, CategoryName
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT Id, BarCode, Name, Quantity, Price, Description, CategoryID, CategoryName," +
-                " CreationDate FROM dbo.Products";
+                " CreationDate, QuantityMinimum FROM Products";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -8439,7 +8488,7 @@ SELECT Id, BarCode, Name, Quantity, Price, Description, CategoryID, CategoryName
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(long Original_Id, string Original_BarCode, string Original_Name, double Original_Quantity, decimal Original_Price, string Original_Description, global::System.Nullable<long> Original_CategoryID, string Original_CategoryName, System.DateTime Original_CreationDate) {
+        public virtual int Delete(long Original_Id, string Original_BarCode, string Original_Name, double Original_Quantity, decimal Original_Price, string Original_Description, global::System.Nullable<long> Original_CategoryID, string Original_CategoryName, System.DateTime Original_CreationDate, global::System.Nullable<double> Original_QuantityMinimum) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((long)(Original_Id));
             if ((Original_BarCode == null)) {
                 throw new global::System.ArgumentNullException("Original_BarCode");
@@ -8478,6 +8527,14 @@ SELECT Id, BarCode, Name, Quantity, Price, Description, CategoryID, CategoryName
                 this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_CategoryName));
             }
             this.Adapter.DeleteCommand.Parameters[10].Value = ((System.DateTime)(Original_CreationDate));
+            if ((Original_QuantityMinimum.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((double)(Original_QuantityMinimum.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -8498,7 +8555,7 @@ SELECT Id, BarCode, Name, Quantity, Price, Description, CategoryID, CategoryName
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string BarCode, string Name, double Quantity, decimal Price, string Description, global::System.Nullable<long> CategoryID, string CategoryName, System.DateTime CreationDate) {
+        public virtual int Insert(string BarCode, string Name, double Quantity, decimal Price, string Description, global::System.Nullable<long> CategoryID, string CategoryName, System.DateTime CreationDate, global::System.Nullable<double> QuantityMinimum) {
             if ((BarCode == null)) {
                 throw new global::System.ArgumentNullException("BarCode");
             }
@@ -8532,6 +8589,12 @@ SELECT Id, BarCode, Name, Quantity, Price, Description, CategoryID, CategoryName
                 this.Adapter.InsertCommand.Parameters[6].Value = ((string)(CategoryName));
             }
             this.Adapter.InsertCommand.Parameters[7].Value = ((System.DateTime)(CreationDate));
+            if ((QuantityMinimum.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((double)(QuantityMinimum.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -8561,6 +8624,7 @@ SELECT Id, BarCode, Name, Quantity, Price, Description, CategoryID, CategoryName
                     global::System.Nullable<long> CategoryID, 
                     string CategoryName, 
                     System.DateTime CreationDate, 
+                    global::System.Nullable<double> QuantityMinimum, 
                     long Original_Id, 
                     string Original_BarCode, 
                     string Original_Name, 
@@ -8570,6 +8634,7 @@ SELECT Id, BarCode, Name, Quantity, Price, Description, CategoryID, CategoryName
                     global::System.Nullable<long> Original_CategoryID, 
                     string Original_CategoryName, 
                     System.DateTime Original_CreationDate, 
+                    global::System.Nullable<double> Original_QuantityMinimum, 
                     long Id) {
             if ((BarCode == null)) {
                 throw new global::System.ArgumentNullException("BarCode");
@@ -8604,45 +8669,59 @@ SELECT Id, BarCode, Name, Quantity, Price, Description, CategoryID, CategoryName
                 this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(CategoryName));
             }
             this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(CreationDate));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((long)(Original_Id));
+            if ((QuantityMinimum.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((double)(QuantityMinimum.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((long)(Original_Id));
             if ((Original_BarCode == null)) {
                 throw new global::System.ArgumentNullException("Original_BarCode");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_BarCode));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_BarCode));
             }
             if ((Original_Name == null)) {
                 throw new global::System.ArgumentNullException("Original_Name");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_Name));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_Name));
             }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((double)(Original_Quantity));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((decimal)(Original_Price));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((double)(Original_Quantity));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((decimal)(Original_Price));
             if ((Original_Description == null)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_Description));
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_Description));
             }
             if ((Original_CategoryID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((long)(Original_CategoryID.Value));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((long)(Original_CategoryID.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
             }
             if ((Original_CategoryName == null)) {
                 throw new global::System.ArgumentNullException("Original_CategoryName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_CategoryName));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_CategoryName));
             }
-            this.Adapter.UpdateCommand.Parameters[18].Value = ((System.DateTime)(Original_CreationDate));
-            this.Adapter.UpdateCommand.Parameters[19].Value = ((long)(Id));
+            this.Adapter.UpdateCommand.Parameters[19].Value = ((System.DateTime)(Original_CreationDate));
+            if ((Original_QuantityMinimum.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((double)(Original_QuantityMinimum.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((long)(Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -8672,6 +8751,7 @@ SELECT Id, BarCode, Name, Quantity, Price, Description, CategoryID, CategoryName
                     global::System.Nullable<long> CategoryID, 
                     string CategoryName, 
                     System.DateTime CreationDate, 
+                    global::System.Nullable<double> QuantityMinimum, 
                     long Original_Id, 
                     string Original_BarCode, 
                     string Original_Name, 
@@ -8680,8 +8760,9 @@ SELECT Id, BarCode, Name, Quantity, Price, Description, CategoryID, CategoryName
                     string Original_Description, 
                     global::System.Nullable<long> Original_CategoryID, 
                     string Original_CategoryName, 
-                    System.DateTime Original_CreationDate) {
-            return this.Update(BarCode, Name, Quantity, Price, Description, CategoryID, CategoryName, CreationDate, Original_Id, Original_BarCode, Original_Name, Original_Quantity, Original_Price, Original_Description, Original_CategoryID, Original_CategoryName, Original_CreationDate, Original_Id);
+                    System.DateTime Original_CreationDate, 
+                    global::System.Nullable<double> Original_QuantityMinimum) {
+            return this.Update(BarCode, Name, Quantity, Price, Description, CategoryID, CategoryName, CreationDate, QuantityMinimum, Original_Id, Original_BarCode, Original_Name, Original_Quantity, Original_Price, Original_Description, Original_CategoryID, Original_CategoryName, Original_CreationDate, Original_QuantityMinimum, Original_Id);
         }
     }
     

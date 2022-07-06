@@ -61,7 +61,7 @@ namespace SuperMarket.UserControls
 
         private void btn_save_Click(object sender, EventArgs e)
         {
-            if (txt_productname.Text.Trim() != "" && txt_productprice.Text.Trim() != "" && txt_productquantity.Text.Trim() != "" && txt_productBarCode.Text.Trim() != "")
+            if (txt_productname.Text.Trim() != "" && txt_productprice.Text.Trim() != "" && txt_productBarCode.Text.Trim() != "")
             {
                 if (!txt_productid.Enabled)
                 {
@@ -74,16 +74,22 @@ namespace SuperMarket.UserControls
                             long categoryId = long.Parse(txt_categoriename.SelectedValue.ToString());
                             string categoryName = Classes.DataAccess.Categories.GetCategoryParameter
                                     ("Id", "" + categoryId).FirstOrDefault().Name;
+                            double MinQuantity = 0;
+
+                            if (txt_productquantityMin.Text != "")
+                                MinQuantity = double.Parse(txt_productquantityMin.Text);
+
                             ProductModel product = new ProductModel
                             {
                                 Id = long.Parse(txt_productid.Text),
                                 Name = txt_productname.Text,
                                 Quantity = double.Parse(txt_productquantity.Text),
+                                QuantityMinimum = MinQuantity,
                                 Price = decimal.Parse(txt_productprice.Text),
                                 Description = txt_description.Text,
                                 BarCode = txt_productBarCode.Text,
                                 CategoryID = categoryId,
-                                CategoryName = categoryName
+                                CategoryName = categoryName,
                             };
                             Classes.DataAccess.Products.UpdateProduct(product);
 
@@ -121,6 +127,11 @@ namespace SuperMarket.UserControls
                             long categoryId = long.Parse(txt_categoriename.SelectedValue.ToString());
                             CategoryModel SearcgCategoryName = Classes.DataAccess.Categories.GetCategoryParameter("Id", "" + categoryId)
                                 .FirstOrDefault();
+                            double MinQuantity = 0;
+
+                            if (txt_productquantity.Text != "")
+                                MinQuantity = double.Parse(txt_productquantityMin.Text);
+
                             if (SearcgCategoryName != null)
                             {
                                 string categoryName = SearcgCategoryName.Name;
@@ -130,9 +141,10 @@ namespace SuperMarket.UserControls
                                     Name = txt_productname.Text,
                                     Price = decimal.Parse(txt_productprice.Text),
                                     Description = txt_description.Text,
-                                    Quantity = double.Parse(txt_productquantity.Text),
+                                    Quantity = 0,
+                                    QuantityMinimum = MinQuantity,
                                     CategoryID = categoryId,
-                                    CategoryName = categoryName
+                                    CategoryName = categoryName,
                                 };
                                 Classes.DataAccess.Products.SaveProduct(product);
                                 LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
@@ -169,6 +181,7 @@ namespace SuperMarket.UserControls
             txt_productquantity.Text = "";
             txt_productid.Text = "";
             txt_productBarCode.Text = "";
+            txt_productquantityMin.Text = "";
 
             txt_categoriename.SelectedIndex = -1;
         }
@@ -184,6 +197,7 @@ namespace SuperMarket.UserControls
             productsDataGridView.Columns["Price"].HeaderText = "سعر المنتج";
             productsDataGridView.Columns["Description"].HeaderText = "وصف المتج";
             productsDataGridView.Columns["Quantity"].HeaderText = "كميه المنتج";
+            productsDataGridView.Columns["QuantityMinimum"].HeaderText = "حد ادنى للمنتج";
             productsDataGridView.Columns["CategoryID"].HeaderText = "رقم الصنف";
             productsDataGridView.Columns["CategoryName"].HeaderText = "اسم الصنف";
             productsDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه المنتج";
@@ -269,7 +283,8 @@ namespace SuperMarket.UserControls
                         ProductQuantity = productsDataGridView.Rows[RowIndex].Cells["Quantity"].Value.ToString(),
                         ProductDescription = productsDataGridView.Rows[RowIndex].Cells["Description"].Value.ToString(),
                         ProductBarcode = productsDataGridView.Rows[RowIndex].Cells["BarCode"].Value.ToString(),
-                        CategoryName = productsDataGridView.Rows[RowIndex].Cells["CategoryName"].Value.ToString();
+                        CategoryName = productsDataGridView.Rows[RowIndex].Cells["CategoryName"].Value.ToString(),
+                        ProductQuantityMin = productsDataGridView.Rows[RowIndex].Cells["QuantityMinimum"].Value.ToString();
 
                     Logger.Log($"user removed product: {ProductName} with id: {ProductID}",
                         System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
@@ -281,6 +296,7 @@ namespace SuperMarket.UserControls
                     txt_description.Text = ProductDescription;
                     txt_productBarCode.Text = ProductBarcode;
                     txt_categoriename.Text = CategoryName;
+                    txt_productquantityMin.Text = ProductQuantityMin;
 
                     SetEditMode(true);
                 }
