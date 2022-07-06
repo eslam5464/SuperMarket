@@ -64,7 +64,6 @@ namespace SuperMarket.UserControls
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.pcb_refresh = new System.Windows.Forms.PictureBox();
             this.pcb_searchID = new System.Windows.Forms.PictureBox();
             this.pcb_searchName = new System.Windows.Forms.PictureBox();
             this.txt_productBarCode = new System.Windows.Forms.TextBox();
@@ -80,7 +79,6 @@ namespace SuperMarket.UserControls
             ((System.ComponentModel.ISupportInitialize)(this.productsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_refresh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchBarCode)).BeginInit();
@@ -468,20 +466,6 @@ namespace SuperMarket.UserControls
             this.label10.TabIndex = 201;
             this.label10.Text = "*";
             // 
-            // pcb_refresh
-            // 
-            this.pcb_refresh.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_refresh.Image = global::SuperMarket.Properties.Resources.icons8_synchronize_48;
-            this.pcb_refresh.Location = new System.Drawing.Point(431, 213);
-            this.pcb_refresh.Name = "pcb_refresh";
-            this.pcb_refresh.Size = new System.Drawing.Size(45, 45);
-            this.pcb_refresh.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_refresh.TabIndex = 197;
-            this.pcb_refresh.TabStop = false;
-            this.pcb_refresh.Click += new System.EventHandler(this.pcb_refresh_Click);
-            this.pcb_refresh.MouseEnter += new System.EventHandler(this.pcb_refresh_MouseEnter);
-            this.pcb_refresh.MouseLeave += new System.EventHandler(this.pcb_refresh_MouseLeave);
-            // 
             // pcb_searchID
             // 
             this.pcb_searchID.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -631,7 +615,6 @@ namespace SuperMarket.UserControls
             this.Controls.Add(this.txt_productBarCode);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.pcb_refresh);
             this.Controls.Add(this.txt_categoriename);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txt_productquantity);
@@ -662,7 +645,6 @@ namespace SuperMarket.UserControls
             ((System.ComponentModel.ISupportInitialize)(this.productsDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_refresh)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchBarCode)).EndInit();
@@ -691,7 +673,6 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txt_productid;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pcb_refresh;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;

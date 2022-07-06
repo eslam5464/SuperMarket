@@ -119,25 +119,35 @@ namespace SuperMarket.UserControls
                         {
 
                             long categoryId = long.Parse(txt_categoriename.SelectedValue.ToString());
-                            string categoryName = Classes.DataAccess.Categories.GetCategoryParameter
-                                ("Id", "" + categoryId).FirstOrDefault().Name;
-                            ProductModel product = new ProductModel
+                            CategoryModel SearcgCategoryName = Classes.DataAccess.Categories.GetCategoryParameter("Id", "" + categoryId)
+                                .FirstOrDefault();
+                            if (SearcgCategoryName != null)
                             {
-                                BarCode = txt_productBarCode.Text,
-                                Name = txt_productname.Text,
-                                Price = decimal.Parse(txt_productprice.Text),
-                                Description = txt_description.Text,
-                                Quantity = double.Parse(txt_productquantity.Text),
-                                CategoryID = categoryId,
-                                CategoryName = categoryName
-                            };
-                            Classes.DataAccess.Products.SaveProduct(product);
-                            LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
+                                string categoryName = SearcgCategoryName.Name;
+                                ProductModel product = new ProductModel
+                                {
+                                    BarCode = txt_productBarCode.Text,
+                                    Name = txt_productname.Text,
+                                    Price = decimal.Parse(txt_productprice.Text),
+                                    Description = txt_description.Text,
+                                    Quantity = double.Parse(txt_productquantity.Text),
+                                    CategoryID = categoryId,
+                                    CategoryName = categoryName
+                                };
+                                Classes.DataAccess.Products.SaveProduct(product);
+                                LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
 
-                            ResetTextBoxes();
+                                ResetTextBoxes();
 
-                            Logger.Log($"user added product: {product.Name}",
-                                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                                Logger.Log($"user added product: {product.Name}",
+                                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                            }
+                            else
+                            {
+                                MessageBox.Show("لا يوجد تصنيف بهذا الاسم", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                Logger.Log($"while adding product {txt_productname.Text} category is null with id = {categoryId}",
+                                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.ERROR);
+                            }
                         }
                     }
                     else
@@ -198,21 +208,6 @@ namespace SuperMarket.UserControls
                     LoadDataGrid(productSearch);
                 }
             }
-        }
-
-        private void pcb_refresh_MouseEnter(object sender, EventArgs e)
-        {
-            pcb_refresh.BackColor = Properties.Settings.Default.AppColor;
-        }
-
-        private void pcb_refresh_MouseLeave(object sender, EventArgs e)
-        {
-            pcb_refresh.BackColor = Color.Transparent;
-        }
-
-        private void pcb_refresh_Click(object sender, EventArgs e)
-        {
-            LoadCategories();
         }
 
         private void pcb_searchName_Click(object sender, EventArgs e)
@@ -448,7 +443,7 @@ namespace SuperMarket.UserControls
             for (int i = 0; i < 100; i++)
             {
                 categoryId = r.Next(9, 15);
-                barcode = r.Next(10000, 999999);
+                barcode = r.Next(0, 999999);
                 productPirce = (decimal)r.NextDouble() * 100;
                 quantity = r.Next(20, 100);
 
@@ -456,7 +451,7 @@ namespace SuperMarket.UserControls
                 ProductModel product = new ProductModel();
 
                 product.BarCode = "" + barcode;
-                product.Name = "random " + categoryId;
+                product.Name = "random " + barcode;
                 product.Price = productPirce;
                 product.Description = "";
                 product.Quantity = quantity;

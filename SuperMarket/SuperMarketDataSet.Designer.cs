@@ -62,6 +62,12 @@ namespace SuperMarket {
         
         private global::System.Data.DataRelation relationFK_UserLevelAccess_Users;
         
+        private global::System.Data.DataRelation relationFK_Invoices_Products1;
+        
+        private global::System.Data.DataRelation relationFK_Products_Categories1;
+        
+        private global::System.Data.DataRelation relationFK_SupplierInvoiceProduct_Products1;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -437,6 +443,9 @@ namespace SuperMarket {
             this.relationFK_SupplierInvoices_SupplierInvoiceProduct = this.Relations["FK_SupplierInvoices_SupplierInvoiceProduct"];
             this.relationFK_SupplierInvoices_Suppliers = this.Relations["FK_SupplierInvoices_Suppliers"];
             this.relationFK_UserLevelAccess_Users = this.Relations["FK_UserLevelAccess_Users"];
+            this.relationFK_Invoices_Products1 = this.Relations["FK_Invoices_Products1"];
+            this.relationFK_Products_Categories1 = this.Relations["FK_Products_Categories1"];
+            this.relationFK_SupplierInvoiceProduct_Products1 = this.Relations["FK_SupplierInvoiceProduct_Products1"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -503,6 +512,24 @@ namespace SuperMarket {
                         this.tableUsers.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableUserLevelAccess.UserIdColumn}, false);
             this.Relations.Add(this.relationFK_UserLevelAccess_Users);
+            this.relationFK_Invoices_Products1 = new global::System.Data.DataRelation("FK_Invoices_Products1", new global::System.Data.DataColumn[] {
+                        this.tableProducts.IdColumn,
+                        this.tableProducts.NameColumn}, new global::System.Data.DataColumn[] {
+                        this.tableInvoices.ProductIDColumn,
+                        this.tableInvoices.ProductNameColumn}, false);
+            this.Relations.Add(this.relationFK_Invoices_Products1);
+            this.relationFK_Products_Categories1 = new global::System.Data.DataRelation("FK_Products_Categories1", new global::System.Data.DataColumn[] {
+                        this.tableCategories.IdColumn,
+                        this.tableCategories.NameColumn}, new global::System.Data.DataColumn[] {
+                        this.tableProducts.CategoryIDColumn,
+                        this.tableProducts.CategoryNameColumn}, false);
+            this.Relations.Add(this.relationFK_Products_Categories1);
+            this.relationFK_SupplierInvoiceProduct_Products1 = new global::System.Data.DataRelation("FK_SupplierInvoiceProduct_Products1", new global::System.Data.DataColumn[] {
+                        this.tableProducts.IdColumn,
+                        this.tableProducts.NameColumn}, new global::System.Data.DataColumn[] {
+                        this.tableSupplierInvoiceProduct.ProductIdColumn,
+                        this.tableSupplierInvoiceProduct.ProductNameColumn}, false);
+            this.Relations.Add(this.relationFK_SupplierInvoiceProduct_Products1);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4425,6 +4452,17 @@ namespace SuperMarket {
                     return ((ProductsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Products_Categories"])));
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ProductsRow[] GetProductsRowsByFK_Products_Categories1() {
+                if ((this.Table.ChildRelations["FK_Products_Categories1"] == null)) {
+                    return new ProductsRow[0];
+                }
+                else {
+                    return ((ProductsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Products_Categories1"])));
+                }
+            }
         }
         
         /// <summary>
@@ -4766,6 +4804,17 @@ namespace SuperMarket {
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_Invoices_Products"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ProductsRow ProductsRowParentByFK_Invoices_Products1 {
+                get {
+                    return ((ProductsRow)(this.GetParentRow(this.Table.ParentRelations["FK_Invoices_Products1"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Invoices_Products1"]);
                 }
             }
             
@@ -5203,6 +5252,17 @@ namespace SuperMarket {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public CategoriesRow CategoriesRowParentByFK_Products_Categories1 {
+                get {
+                    return ((CategoriesRow)(this.GetParentRow(this.Table.ParentRelations["FK_Products_Categories1"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Products_Categories1"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsDescriptionNull() {
                 return this.IsNull(this.tableProducts.DescriptionColumn);
             }
@@ -5244,6 +5304,28 @@ namespace SuperMarket {
                 }
                 else {
                     return ((SupplierInvoiceProductRow[])(base.GetChildRows(this.Table.ChildRelations["FK_SupplierInvoiceProduct_Products"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public InvoicesRow[] GetInvoicesRowsByFK_Invoices_Products1() {
+                if ((this.Table.ChildRelations["FK_Invoices_Products1"] == null)) {
+                    return new InvoicesRow[0];
+                }
+                else {
+                    return ((InvoicesRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Invoices_Products1"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public SupplierInvoiceProductRow[] GetSupplierInvoiceProductRowsByFK_SupplierInvoiceProduct_Products1() {
+                if ((this.Table.ChildRelations["FK_SupplierInvoiceProduct_Products1"] == null)) {
+                    return new SupplierInvoiceProductRow[0];
+                }
+                else {
+                    return ((SupplierInvoiceProductRow[])(base.GetChildRows(this.Table.ChildRelations["FK_SupplierInvoiceProduct_Products1"])));
                 }
             }
         }
@@ -5325,6 +5407,17 @@ namespace SuperMarket {
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_SupplierInvoiceProduct_Products"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ProductsRow ProductsRowParentByFK_SupplierInvoiceProduct_Products1 {
+                get {
+                    return ((ProductsRow)(this.GetParentRow(this.Table.ParentRelations["FK_SupplierInvoiceProduct_Products1"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_SupplierInvoiceProduct_Products1"]);
                 }
             }
             

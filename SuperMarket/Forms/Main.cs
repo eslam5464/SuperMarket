@@ -144,6 +144,7 @@ namespace SuperMarket.Forms
             SidePanel.Top = btn_Products.Top;
 
             uc_products.BringToFront();
+            uc_products.LoadCategories();
         }
 
         private void btn_Customers_Click(object sender, EventArgs e)
