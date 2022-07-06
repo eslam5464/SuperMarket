@@ -10,10 +10,10 @@ namespace SuperMarket.UserControls
 {
     public partial class SupplierInvoices : UserControl
     {
-        private IDictionary<int, string> PaymentMethodDict = new Dictionary<int, string>(),
+        private readonly IDictionary<int, string> PaymentMethodDict = new Dictionary<int, string>(),
             SupplierSearchType = new Dictionary<int, string>(), ProductSearchType = new Dictionary<int, string>();
-        private string[] SupplierSearchString = { "اسم المورد", "التواصل" },
-            ProductSearchString = { "اسم المنتج", "الباركود" };
+        private readonly string[] SupplierSearchString = { "اسم المورد", "التواصل", "الرقم التعريفي" },
+            ProductSearchString = { "اسم المنتج", "الباركود", "الرقم التعريفي" };
 
         public SupplierInvoices()
         {
@@ -35,17 +35,16 @@ namespace SuperMarket.UserControls
             //contextMenu = Methods.SetupContextMenuCopy(contextMenu, MenuItemCopyOption_Click);
         }
 
-        private void SetDataGrid()
+        private void ResizeAndRenameCoulmns()
         {
-            db_productDataGridView.Columns["ProductId"].HeaderText = "الرقم التعريفي";
+            db_productDataGridView.Columns["ProductId"].HeaderText = "الرقم التعريفي للمنتج";
             db_productDataGridView.Columns["Quantity"].HeaderText = "كميه المنتج";
-            db_productDataGridView.Columns["ProductName_"].HeaderText = "اسم المنتج";
-            db_productDataGridView.Columns["CreationDate"].HeaderText = "يوم الاضافه";
+            db_productDataGridView.Columns["ProductName"].HeaderText = "اسم المنتج";
 
+            db_productDataGridView.Columns["CreationDate"].Visible = false;
             db_productDataGridView.Columns["Id"].Visible = false;
 
             db_productDataGridView.AutoResizeColumns();
-            db_productDataGridView.Columns["CreationDate"].Width += 5;
         }
 
         private void ResetAll()
@@ -60,27 +59,6 @@ namespace SuperMarket.UserControls
             SetEachComboBos(GlobalVars.PaymentMethod, PaymentMethodDict, txt_paymentMethod);
             SetEachComboBos(SupplierSearchString, SupplierSearchType, txt_searchSupplierType);
             SetEachComboBos(ProductSearchString, ProductSearchType, txt_searchProductType);
-
-            //for (int i = 0; i < GlobalVars.PaymentMethod.Length; i++)
-            //    PaymentMethodDict.Add(i, GlobalVars.PaymentMethod[i]);
-            //txt_paymentMethod.DataSource = new BindingSource(PaymentMethodDict, null);
-            //txt_paymentMethod.DisplayMember = "Value";
-            //txt_paymentMethod.ValueMember = "Key";
-            //txt_paymentMethod.SelectedIndex = -1;
-
-            //for (int i = 0; i < SupplierSearchString.Length; i++)
-            //    SupplierSearchType.Add(i, SupplierSearchString[i]);
-            //txt_searchSupplierType.DataSource = new BindingSource(SupplierSearchType, null);
-            //txt_searchSupplierType.DisplayMember = "Value";
-            //txt_searchSupplierType.ValueMember = "Key";
-            //txt_searchSupplierType.SelectedIndex = -1;
-
-            //for (int i = 0; i < ProductSearchString.Length; i++)
-            //    ProductSearchType.Add(i, ProductSearchString[i]);
-            //txt_searchProductType.DataSource = new BindingSource(ProductSearchType, null);
-            //txt_searchProductType.DisplayMember = "Value";
-            //txt_searchProductType.ValueMember = "Key";
-            //txt_searchProductType.SelectedIndex = -1;
         }
 
         private void SetEachComboBos(string[] SearchString, IDictionary<int, string> SearchType, ComboBox SearchComboBox)
@@ -162,6 +140,82 @@ namespace SuperMarket.UserControls
                 {
                     txt_searchedProductBarCode.Text = "" + SearchedProducts[0].BarCode;
                 }
+            }
+        }
+
+        private void txt_supplierInvoices_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Return)
+            {
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void txt_productQuantity_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btn_addProduct_Click(object sender, EventArgs e)
+        {
+            if (txt_searchedProductName.DataSource != null)
+            {
+                if (txt_searchedProductName.SelectedIndex != -1)
+                {
+                    //List<SupplierInvoiceProductModel> SearchedProducts = Classes.DataAccess.Products.GetProductLikeParameter("Id",
+                    //    txt_searchedProductName.SelectedValue.ToString());
+
+                    SupplierInvoiceProductModel supplierProduct = new SupplierInvoiceProductModel()
+                    {
+                        ProductId = long.Parse(txt_searchedProductName.SelectedValue.ToString()),
+                        ProductName = txt_searchedProductName.Text,
+                        Quantity = float.Parse(txt_productQuantity.Text)
+                    };
+
+                    UpdateProductsDataGrid(supplierProduct);
+
+                    ////Classes.DataAccess.SupplierInvoice.SaveSupplierInvoice()
+
+                    //if (SearchedProducts.Count > 0)
+                    //{
+                    //    UpdateProductsDataGrid(SearchedProducts);
+                    //    //List<ProductModel> datasource = (List<ProductModel>)db_productDataGridView.DataSource;
+                    //    //db_productDataGridView.DataSource = null;
+                    //    //datasource.Add(SearchedProducts[0]);
+                    //    //db_productDataGridView.DataSource = datasource;
+                    //    //SetDataGrid();
+                    //}
+                }
+            }
+        }
+
+        private void UpdateProductsDataGrid(SupplierInvoiceProductModel Product)
+        {
+            if (db_productDataGridView.DataSource != null)
+            {
+                List<SupplierInvoiceProductModel> datasource = (List<SupplierInvoiceProductModel>)db_productDataGridView.DataSource;
+                db_productDataGridView.DataSource = null;
+                datasource.Add(Product);
+                db_productDataGridView.DataSource = datasource;
+                ResizeAndRenameCoulmns();
+            }
+            else
+            {
+                List<SupplierInvoiceProductModel> ProductList = new List<SupplierInvoiceProductModel>
+                {
+                    Product
+                };
+
+                db_productDataGridView.DataSource = ProductList;
+                ResizeAndRenameCoulmns();
             }
         }
 

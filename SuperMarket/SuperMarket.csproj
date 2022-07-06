@@ -129,6 +129,8 @@
     <Compile Include="Classes\DataAccess\Invoices.cs" />
     <Compile Include="Classes\DataAccess\Orders.cs" />
     <Compile Include="Classes\DataAccess\Products.cs" />
+    <Compile Include="Classes\DataAccess\SupplierInvoice.cs" />
+    <Compile Include="Classes\DataAccess\SupplierInvoiceProduct.cs" />
     <Compile Include="Classes\DataAccess\Suppliers.cs" />
     <Compile Include="Classes\DataAccess\Users.cs" />
     <Compile Include="Classes\GlobalVars.cs" />
