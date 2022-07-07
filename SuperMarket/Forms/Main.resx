@@ -179,17 +179,17 @@
   </data>
   <data name="btn_supplierInvoices.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAIbSURBVGhD7ZPPSkJBHIV9ieoNat+qIGijQdAmyEU3WoQKPUf1NO1bSWBlRloWRLsW7kpb9Wet
-        zdgZm4aj/NKZBup+8EHXuZ5ztGsmJSXlH1Ktt6sXjXYWl31Om49T54324U/PNNWrzpI6K+MyPOf1du/T
-        p0qt/rxcu+zk1XXn63XhmVL/bV5HfHi+j/En4sPDyn2I+PCwch8iPjys3IeIDw8r9yHiw2MKl9ePRNoj
-        2XvNa4gPDxsxSnO/LTtHvH9WtnenV7aKB7mkeKN8t4f4VGcrm9mksK87UT8ZuaSQzybFVxWsC/qych/a
-        HbpTfWkbmDEeerwK69rBWlNoPwau9jAmu9ftUXbH/hD6X+h+80Y2wtXcM0x2L+vKJaWX1fzOFGbJwTNP
-        An/nEXLcwyw5uc3SrRs0O7/Ql5X70OS7vcomZslRb3pzQqJ9AP0oY5YcN0RrCkLLujFLDgthZSFk3Zgl
-        h4XEFLPksJCYYpYcFhJTzJLDQq4fFn9F1o1ZclgIKwsh68YsOSyElYWQdWOWHBbCykLIujFLDgthZSFk
-        3Zglh4WwshCybsySw0JiillyWEhMMUsOC4kpZslhIccn1V6r1RpYrpxNfHY/u9brzWQH3s2tDc5sMUsO
-        C7FHGCc9s8cbzZktZslhIaOGjHuWfoBhsBD97NojypXTic/0M2+PD/obiClmyWEhMcUsOSwkppiVkpLy
-        t8hkPgBynSHRRQHlDwAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABGdBTUEAALGPC/xhBQAAAhtJREFUaEPt
+        k89KQkEchX2J6g1q36ogaKNB0CbIRTdahAo9R/U07VtJYGVGWhZEuxbuSlv1Z63N2BmbhqP80pkG6n7w
+        Qde5nnO0ayYlJeUfUq23qxeNdhaXfU6bj1PnjfbhT8801avOkjor4zI85/V279OnSq3+vFy77OTVdefr
+        deGZUv9tXkd8eL6P8Sfiw8PKfYj48LByHyI+PKzch4gPDyv3IeLDYwqX149E2iPZe81riA8PGzFKc78t
+        O0e8f1a2d6dXtooHuaR4o3y3h/hUZyub2aSwrztRPxm5pJDPJsVXFawL+rJyH9odulN9aRuYMR56vArr
+        2sFaU2g/Bq72MCa71+1Rdsf+EPpf6H7zRjbC1dwzTHYv68olpZfV/M4UZsnBM08Cf+cRctzDLDm5zdKt
+        GzQ7v9CXlfvQ5Lu9yiZmyVFvenNCon0A/Shjlhw3RGsKQsu6MUsOC2FlIWTdmCWHhcQUs+SwkJhilhwW
+        ElPMksNCrh8Wf0XWjVlyWAgrCyHrxiw5LISVhZB1Y5YcFsLKQsi6MUsOC2FlIWTdmCWHhbCyELJuzJLD
+        QmKKWXJYSEwxSw4LiSlmyWEhxyfVXqvVGliunE18dj+71uvNZAfeza0NzmwxSw4LsUcYJz2zxxvNmS1m
+        yWEho4aMe5Z+gGGwEP3s2iPKldOJz/Qzb48P+huIKWbJYSExxSw5LCSmmJWSkvK3yGQ+AHKdIdFFAeUP
+        AAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="btn_suppliers.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

@@ -53,7 +53,6 @@ namespace SuperMarket.Forms
                 panel5,
                 panel6,
                 panel7,
-                panel8,
             };
 
             foreach (Panel panel in AllPanels)

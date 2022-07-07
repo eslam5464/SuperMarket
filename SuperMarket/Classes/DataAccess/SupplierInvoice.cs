@@ -9,7 +9,7 @@ namespace SuperMarket.Classes.DataAccess
 {
     class SupplierInvoice
     {
-        private static readonly string TableName = "SupplierInvoice";
+        private static readonly string TableName = "SupplierInvoices";
 
         internal static void SaveSupplierInvoice(SupplierInvoiceModel supplierInvoice)
         {
@@ -17,9 +17,9 @@ namespace SuperMarket.Classes.DataAccess
             {
                 using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
                 {
-                    cnn.Execute($"INSERT INTO Customers (SupplierId, PaymentMethod, PaidAmount, AmountLeft," +
+                    cnn.Execute($"INSERT INTO {TableName} (SupplierId, PaymentMethod, AmountPaid, AmountLeft," +
                         $"AmountTotal, PaymentStatus, SupplierInvoiceProductId, CreationDate) VALUES " +
-                        $"(@SupplierId, @PaymentMethod, @PaidAmount, @AmountLeft, @AmountTotal, @PaymentStatus," +
+                        $"(@SupplierId, @PaymentMethod, @AmountPaid, @AmountLeft, @AmountTotal, @PaymentStatus," +
                         $" @SupplierInvoiceProductId, '{DateTime.Now}')", supplierInvoice);
                 }
             }

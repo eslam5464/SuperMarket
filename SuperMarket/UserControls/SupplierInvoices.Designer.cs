@@ -29,7 +29,7 @@ namespace SuperMarket.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txt_paymentMethod = new System.Windows.Forms.ComboBox();
             this.txt_searchSupplier = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -46,6 +46,8 @@ namespace SuperMarket.UserControls
             this.pcb_searchSupplier = new System.Windows.Forms.PictureBox();
             this.pan_payment = new System.Windows.Forms.Panel();
             this.pan_productResults = new System.Windows.Forms.Panel();
+            this.btn_removeProduct = new System.Windows.Forms.Button();
+            this.btn_addProduct = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
             this.txt_productQuantity = new System.Windows.Forms.TextBox();
             this.txt_searchedProductBarCode = new System.Windows.Forms.TextBox();
@@ -60,8 +62,16 @@ namespace SuperMarket.UserControls
             this.label8 = new System.Windows.Forms.Label();
             this.pan_productDataGrid = new System.Windows.Forms.Panel();
             this.db_productDataGridView = new System.Windows.Forms.DataGridView();
-            this.btn_addProduct = new System.Windows.Forms.Button();
-            this.btn_removeFromCart = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.num_paymentAmoutPaid = new System.Windows.Forms.NumericUpDown();
+            this.num_paymentAmoutRequired = new System.Windows.Forms.NumericUpDown();
+            this.num_paymentAmoutLeft = new System.Windows.Forms.NumericUpDown();
+            this.pan_save = new System.Windows.Forms.Panel();
+            this.btn_saveInovice = new System.Windows.Forms.Button();
+            this.btn_resetAll = new System.Windows.Forms.Button();
             this.pan_supplierResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchSupplier)).BeginInit();
             this.pan_payment.SuspendLayout();
@@ -69,6 +79,10 @@ namespace SuperMarket.UserControls
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchProduct)).BeginInit();
             this.pan_productDataGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_productDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutPaid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutRequired)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutLeft)).BeginInit();
+            this.pan_save.SuspendLayout();
             this.SuspendLayout();
             // 
             // txt_paymentMethod
@@ -78,7 +92,7 @@ namespace SuperMarket.UserControls
             this.txt_paymentMethod.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_paymentMethod.FormattingEnabled = true;
             this.txt_paymentMethod.IntegralHeight = false;
-            this.txt_paymentMethod.Location = new System.Drawing.Point(28, 33);
+            this.txt_paymentMethod.Location = new System.Drawing.Point(72, 37);
             this.txt_paymentMethod.Name = "txt_paymentMethod";
             this.txt_paymentMethod.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txt_paymentMethod.Size = new System.Drawing.Size(175, 40);
@@ -104,7 +118,7 @@ namespace SuperMarket.UserControls
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Purple;
-            this.label5.Location = new System.Drawing.Point(266, 33);
+            this.label5.Location = new System.Drawing.Point(305, 47);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(76, 23);
             this.label5.TabIndex = 197;
@@ -259,6 +273,13 @@ namespace SuperMarket.UserControls
             // pan_payment
             // 
             this.pan_payment.BackColor = System.Drawing.Color.Gainsboro;
+            this.pan_payment.Controls.Add(this.num_paymentAmoutLeft);
+            this.pan_payment.Controls.Add(this.num_paymentAmoutRequired);
+            this.pan_payment.Controls.Add(this.num_paymentAmoutPaid);
+            this.pan_payment.Controls.Add(this.label16);
+            this.pan_payment.Controls.Add(this.label15);
+            this.pan_payment.Controls.Add(this.label14);
+            this.pan_payment.Controls.Add(this.label13);
             this.pan_payment.Controls.Add(this.txt_paymentMethod);
             this.pan_payment.Controls.Add(this.label5);
             this.pan_payment.Location = new System.Drawing.Point(587, 305);
@@ -269,7 +290,7 @@ namespace SuperMarket.UserControls
             // pan_productResults
             // 
             this.pan_productResults.BackColor = System.Drawing.Color.Gainsboro;
-            this.pan_productResults.Controls.Add(this.btn_removeFromCart);
+            this.pan_productResults.Controls.Add(this.btn_removeProduct);
             this.pan_productResults.Controls.Add(this.btn_addProduct);
             this.pan_productResults.Controls.Add(this.label12);
             this.pan_productResults.Controls.Add(this.txt_productQuantity);
@@ -288,6 +309,36 @@ namespace SuperMarket.UserControls
             this.pan_productResults.Name = "pan_productResults";
             this.pan_productResults.Size = new System.Drawing.Size(571, 649);
             this.pan_productResults.TabIndex = 211;
+            // 
+            // btn_removeProduct
+            // 
+            this.btn_removeProduct.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_removeProduct.BackColor = System.Drawing.Color.Purple;
+            this.btn_removeProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_removeProduct.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_removeProduct.ForeColor = System.Drawing.Color.White;
+            this.btn_removeProduct.Location = new System.Drawing.Point(7, 180);
+            this.btn_removeProduct.Name = "btn_removeProduct";
+            this.btn_removeProduct.Size = new System.Drawing.Size(134, 50);
+            this.btn_removeProduct.TabIndex = 222;
+            this.btn_removeProduct.Text = "حذف المنتج";
+            this.btn_removeProduct.UseVisualStyleBackColor = false;
+            this.btn_removeProduct.Click += new System.EventHandler(this.btn_removeProduct_Click);
+            // 
+            // btn_addProduct
+            // 
+            this.btn_addProduct.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_addProduct.BackColor = System.Drawing.Color.Purple;
+            this.btn_addProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_addProduct.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_addProduct.ForeColor = System.Drawing.Color.White;
+            this.btn_addProduct.Location = new System.Drawing.Point(147, 180);
+            this.btn_addProduct.Name = "btn_addProduct";
+            this.btn_addProduct.Size = new System.Drawing.Size(134, 50);
+            this.btn_addProduct.TabIndex = 221;
+            this.btn_addProduct.Text = "اضافه المنتج";
+            this.btn_addProduct.UseVisualStyleBackColor = false;
+            this.btn_addProduct.Click += new System.EventHandler(this.btn_addProduct_Click);
             // 
             // label12
             // 
@@ -313,6 +364,7 @@ namespace SuperMarket.UserControls
             this.txt_productQuantity.Name = "txt_productQuantity";
             this.txt_productQuantity.Size = new System.Drawing.Size(169, 45);
             this.txt_productQuantity.TabIndex = 219;
+            this.txt_productQuantity.TextChanged += new System.EventHandler(this.txt_productQuantity_TextChanged);
             this.txt_productQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_supplierInvoices_KeyDown);
             this.txt_productQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_productQuantity_KeyPress);
             // 
@@ -462,14 +514,14 @@ namespace SuperMarket.UserControls
             this.db_productDataGridView.AllowUserToResizeColumns = false;
             this.db_productDataGridView.AllowUserToResizeRows = false;
             this.db_productDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.db_productDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.db_productDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.db_productDataGridView.ColumnHeadersHeight = 40;
             this.db_productDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.db_productDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -486,39 +538,165 @@ namespace SuperMarket.UserControls
             this.db_productDataGridView.Size = new System.Drawing.Size(556, 399);
             this.db_productDataGridView.TabIndex = 1;
             // 
-            // btn_addProduct
+            // label13
             // 
-            this.btn_addProduct.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_addProduct.BackColor = System.Drawing.Color.Purple;
-            this.btn_addProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_addProduct.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_addProduct.ForeColor = System.Drawing.Color.White;
-            this.btn_addProduct.Location = new System.Drawing.Point(147, 180);
-            this.btn_addProduct.Name = "btn_addProduct";
-            this.btn_addProduct.Size = new System.Drawing.Size(134, 50);
-            this.btn_addProduct.TabIndex = 221;
-            this.btn_addProduct.Text = "اضافه المنتج";
-            this.btn_addProduct.UseVisualStyleBackColor = false;
-            this.btn_addProduct.Click += new System.EventHandler(this.btn_addProduct_Click);
+            this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Purple;
+            this.label13.Location = new System.Drawing.Point(317, 93);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(64, 23);
+            this.label13.TabIndex = 219;
+            this.label13.Text = ":المدفوع";
             // 
-            // btn_removeFromCart
+            // label14
             // 
-            this.btn_removeFromCart.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_removeFromCart.BackColor = System.Drawing.Color.Purple;
-            this.btn_removeFromCart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_removeFromCart.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_removeFromCart.ForeColor = System.Drawing.Color.White;
-            this.btn_removeFromCart.Location = new System.Drawing.Point(7, 180);
-            this.btn_removeFromCart.Name = "btn_removeFromCart";
-            this.btn_removeFromCart.Size = new System.Drawing.Size(134, 50);
-            this.btn_removeFromCart.TabIndex = 222;
-            this.btn_removeFromCart.Text = "حذف المنتج";
-            this.btn_removeFromCart.UseVisualStyleBackColor = false;
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.Purple;
+            this.label14.Location = new System.Drawing.Point(268, 139);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(113, 23);
+            this.label14.TabIndex = 221;
+            this.label14.Text = ":المبلغ المطلوب";
+            // 
+            // label15
+            // 
+            this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.Purple;
+            this.label15.Location = new System.Drawing.Point(322, 195);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(59, 23);
+            this.label15.TabIndex = 223;
+            this.label15.Text = ":المتبقي";
+            // 
+            // label16
+            // 
+            this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Century Gothic", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.Purple;
+            this.label16.Location = new System.Drawing.Point(190, 5);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(58, 23);
+            this.label16.TabIndex = 225;
+            this.label16.Text = "الحساب";
+            // 
+            // num_paymentAmoutPaid
+            // 
+            this.num_paymentAmoutPaid.DecimalPlaces = 2;
+            this.num_paymentAmoutPaid.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold);
+            this.num_paymentAmoutPaid.Location = new System.Drawing.Point(58, 84);
+            this.num_paymentAmoutPaid.Maximum = new decimal(new int[] {
+            900000000,
+            0,
+            0,
+            0});
+            this.num_paymentAmoutPaid.Minimum = new decimal(new int[] {
+            900000000,
+            0,
+            0,
+            -2147483648});
+            this.num_paymentAmoutPaid.Name = "num_paymentAmoutPaid";
+            this.num_paymentAmoutPaid.Size = new System.Drawing.Size(204, 40);
+            this.num_paymentAmoutPaid.TabIndex = 226;
+            this.num_paymentAmoutPaid.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.num_paymentAmoutPaid.ThousandsSeparator = true;
+            this.num_paymentAmoutPaid.ValueChanged += new System.EventHandler(this.num_payment_ValueChanged);
+            // 
+            // num_paymentAmoutRequired
+            // 
+            this.num_paymentAmoutRequired.DecimalPlaces = 2;
+            this.num_paymentAmoutRequired.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold);
+            this.num_paymentAmoutRequired.Location = new System.Drawing.Point(58, 130);
+            this.num_paymentAmoutRequired.Maximum = new decimal(new int[] {
+            900000000,
+            0,
+            0,
+            0});
+            this.num_paymentAmoutRequired.Minimum = new decimal(new int[] {
+            410065408,
+            2,
+            0,
+            -2147483648});
+            this.num_paymentAmoutRequired.Name = "num_paymentAmoutRequired";
+            this.num_paymentAmoutRequired.Size = new System.Drawing.Size(204, 40);
+            this.num_paymentAmoutRequired.TabIndex = 227;
+            this.num_paymentAmoutRequired.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.num_paymentAmoutRequired.ThousandsSeparator = true;
+            this.num_paymentAmoutRequired.ValueChanged += new System.EventHandler(this.num_payment_ValueChanged);
+            // 
+            // num_paymentAmoutLeft
+            // 
+            this.num_paymentAmoutLeft.DecimalPlaces = 2;
+            this.num_paymentAmoutLeft.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold);
+            this.num_paymentAmoutLeft.Location = new System.Drawing.Point(58, 186);
+            this.num_paymentAmoutLeft.Maximum = new decimal(new int[] {
+            900000000,
+            0,
+            0,
+            0});
+            this.num_paymentAmoutLeft.Minimum = new decimal(new int[] {
+            410065408,
+            2,
+            0,
+            -2147483648});
+            this.num_paymentAmoutLeft.Name = "num_paymentAmoutLeft";
+            this.num_paymentAmoutLeft.ReadOnly = true;
+            this.num_paymentAmoutLeft.Size = new System.Drawing.Size(204, 40);
+            this.num_paymentAmoutLeft.TabIndex = 228;
+            this.num_paymentAmoutLeft.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.num_paymentAmoutLeft.ThousandsSeparator = true;
+            // 
+            // pan_save
+            // 
+            this.pan_save.BackColor = System.Drawing.Color.Gainsboro;
+            this.pan_save.Controls.Add(this.btn_saveInovice);
+            this.pan_save.Location = new System.Drawing.Point(587, 552);
+            this.pan_save.Name = "pan_save";
+            this.pan_save.Size = new System.Drawing.Size(239, 105);
+            this.pan_save.TabIndex = 212;
+            // 
+            // btn_saveInovice
+            // 
+            this.btn_saveInovice.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_saveInovice.BackColor = System.Drawing.Color.Purple;
+            this.btn_saveInovice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_saveInovice.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_saveInovice.ForeColor = System.Drawing.Color.White;
+            this.btn_saveInovice.Location = new System.Drawing.Point(52, 27);
+            this.btn_saveInovice.Name = "btn_saveInovice";
+            this.btn_saveInovice.Size = new System.Drawing.Size(134, 50);
+            this.btn_saveInovice.TabIndex = 223;
+            this.btn_saveInovice.Text = "حفظ الفاتورة";
+            this.btn_saveInovice.UseVisualStyleBackColor = false;
+            this.btn_saveInovice.Click += new System.EventHandler(this.btn_saveInovice_Click);
+            // 
+            // btn_resetAll
+            // 
+            this.btn_resetAll.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_resetAll.BackColor = System.Drawing.Color.Purple;
+            this.btn_resetAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_resetAll.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_resetAll.ForeColor = System.Drawing.Color.White;
+            this.btn_resetAll.Location = new System.Drawing.Point(859, 579);
+            this.btn_resetAll.Name = "btn_resetAll";
+            this.btn_resetAll.Size = new System.Drawing.Size(134, 50);
+            this.btn_resetAll.TabIndex = 224;
+            this.btn_resetAll.Text = "مسح الكل";
+            this.btn_resetAll.UseVisualStyleBackColor = false;
+            this.btn_resetAll.Click += new System.EventHandler(this.btn_resetAll_Click);
             // 
             // SupplierInvoices
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btn_resetAll);
+            this.Controls.Add(this.pan_save);
             this.Controls.Add(this.pan_payment);
             this.Controls.Add(this.pan_productResults);
             this.Controls.Add(this.pcb_searchSupplier);
@@ -541,6 +719,10 @@ namespace SuperMarket.UserControls
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchProduct)).EndInit();
             this.pan_productDataGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.db_productDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutPaid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutRequired)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutLeft)).EndInit();
+            this.pan_save.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -579,6 +761,16 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.TextBox txt_productQuantity;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btn_addProduct;
-        private System.Windows.Forms.Button btn_removeFromCart;
+        private System.Windows.Forms.Button btn_removeProduct;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.NumericUpDown num_paymentAmoutPaid;
+        private System.Windows.Forms.NumericUpDown num_paymentAmoutRequired;
+        private System.Windows.Forms.NumericUpDown num_paymentAmoutLeft;
+        private System.Windows.Forms.Panel pan_save;
+        private System.Windows.Forms.Button btn_saveInovice;
+        private System.Windows.Forms.Button btn_resetAll;
     }
 }

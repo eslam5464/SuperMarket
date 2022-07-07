@@ -15,6 +15,8 @@ namespace SuperMarket.UserControls
         private readonly string[] SupplierSearchString = { "اسم المورد", "التواصل", "الرقم التعريفي" },
             ProductSearchString = { "اسم المنتج", "الباركود", "الرقم التعريفي" };
 
+        private SupplierInvoiceProductModel supplierProduct;
+
         public SupplierInvoices()
         {
             InitializeComponent();
@@ -45,6 +47,7 @@ namespace SuperMarket.UserControls
             db_productDataGridView.Columns["Id"].Visible = false;
 
             db_productDataGridView.AutoResizeColumns();
+            db_productDataGridView.Columns["Quantity"].Width += 20;
         }
 
         private void ResetAll()
@@ -52,6 +55,31 @@ namespace SuperMarket.UserControls
             pan_supplierResults.Enabled = false;
             pan_productResults.Enabled = false;
             pan_payment.Enabled = false;
+            pan_save.Enabled = false;
+
+            db_productDataGridView.DataSource = null;
+            db_productDataGridView.Refresh();
+
+            txt_searchProduct.Text = "";
+            txt_searchSupplier.Text = "";
+            txt_searchedProductBarCode.Text = "";
+            txt_productQuantity.Text = "";
+
+            txt_searchedProductName.SelectedIndex = -1;
+            txt_searchedProductName.DataSource = null;
+
+            txt_searchProductType.SelectedIndex = -1;
+
+            txt_searchedSupplierName.SelectedIndex = -1;
+            txt_searchedSupplierName.DataSource = null;
+
+            txt_searchSupplierType.SelectedIndex = -1;
+
+            txt_paymentMethod.SelectedIndex = -1;
+
+            num_paymentAmoutLeft.Value = 0;
+            num_paymentAmoutPaid.Value = 0;
+            num_paymentAmoutRequired.Value = 0;
         }
 
         private void SetComboBoxs()
@@ -94,15 +122,7 @@ namespace SuperMarket.UserControls
 
                     if (SearchedProducts.Count > 0)
                     {
-                        txt_searchedProductName.DataSource = null;
-                        txt_searchedProductName.Items.Clear();
-
-                        DataTable DataProductSearch = new Methods().ListToDataTable(SearchedProducts);
-                        txt_searchedProductName.DataSource = DataProductSearch;
-                        txt_searchedProductName.ValueMember = "Id";
-                        txt_searchedProductName.DisplayMember = "Name";
-
-                        pan_payment.Enabled = true;
+                        FillProductComboBox(txt_searchedProductName, SearchedProducts, "Id", "Name");
                     }
                     else
                         MessageBox.Show("لا يوجد منتج بهذه البيانات", "لا يوجد",
@@ -111,12 +131,26 @@ namespace SuperMarket.UserControls
 
                 else if (txt_searchSupplierType.Text == SupplierSearchType[1].ToString())
                 {
-                    List<ProductModel> SearchedProducts = Classes.DataAccess.Products.GetProductLikeParameter("Name",
+                    List<ProductModel> SearchedProducts = Classes.DataAccess.Products.GetProductParameter("BarCode",
                         txt_searchProduct.Text);
 
                     if (SearchedProducts.Count > 0)
                     {
+                        FillProductComboBox(txt_searchedProductName, SearchedProducts, "Id", "Name");
+                    }
+                    else
+                        MessageBox.Show("لا يوجد منتج بهذه البيانات", "لا يوجد",
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
 
+                else if (txt_searchSupplierType.Text == SupplierSearchType[2].ToString())
+                {
+                    List<ProductModel> SearchedProducts = Classes.DataAccess.Products.GetProductParameter("Id",
+                        txt_searchProduct.Text);
+
+                    if (SearchedProducts.Count > 0)
+                    {
+                        FillProductComboBox(txt_searchedProductName, SearchedProducts, "Id", "Name");
                     }
                     else
                         MessageBox.Show("لا يوجد منتج بهذه البيانات", "لا يوجد",
@@ -124,8 +158,19 @@ namespace SuperMarket.UserControls
                 }
             }
             else
-                MessageBox.Show("برجاء اختيار نوع البحث", "خطأ",
+                MessageBox.Show("برجاء اختيار نوع البحث اولا", "خطأ",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void FillProductComboBox(ComboBox comboBox, List<ProductModel> searchedProducts, string Value, string Display)
+        {
+            comboBox.DataSource = null;
+            comboBox.Items.Clear();
+
+            DataTable DataProductSearch = new Methods().ListToDataTable(searchedProducts);
+            comboBox.DataSource = DataProductSearch;
+            comboBox.ValueMember = Value;
+            comboBox.DisplayMember = Display;
         }
 
         private void txt_searchedProductName_SelectedIndexChanged(object sender, EventArgs e)
@@ -170,17 +215,34 @@ namespace SuperMarket.UserControls
             {
                 if (txt_searchedProductName.SelectedIndex != -1)
                 {
-                    //List<SupplierInvoiceProductModel> SearchedProducts = Classes.DataAccess.Products.GetProductLikeParameter("Id",
-                    //    txt_searchedProductName.SelectedValue.ToString());
-
-                    SupplierInvoiceProductModel supplierProduct = new SupplierInvoiceProductModel()
+                    if (txt_productQuantity.Text.Trim() != "")
                     {
-                        ProductId = long.Parse(txt_searchedProductName.SelectedValue.ToString()),
-                        ProductName = txt_searchedProductName.Text,
-                        Quantity = float.Parse(txt_productQuantity.Text)
-                    };
+                        if (float.Parse(txt_productQuantity.Text) != 0)
+                        {
+                            supplierProduct = new SupplierInvoiceProductModel()
+                            {
+                                ProductId = long.Parse(txt_searchedProductName.SelectedValue.ToString()),
+                                ProductName = txt_searchedProductName.Text,
+                                Quantity = float.Parse(txt_productQuantity.Text)
+                            };
 
-                    UpdateProductsDataGrid(supplierProduct);
+                            UpdateProductsDataGrid(supplierProduct);
+
+                            pan_payment.Enabled = true;
+                            pan_save.Enabled = true;
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("لا يمكن اضافه منتج والكمية تساوي صفر", "خطأ",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("برجاء تحديد الكمية", "خطأ",
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
 
                     ////Classes.DataAccess.SupplierInvoice.SaveSupplierInvoice()
 
@@ -194,6 +256,16 @@ namespace SuperMarket.UserControls
                     //    //SetDataGrid();
                     //}
                 }
+                else
+                {
+                    MessageBox.Show("يجب اختيار منتج للاضافه", "خطأ",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+            }
+            else
+            {
+                MessageBox.Show("يجب اختيار منتج للاضافه", "خطأ",
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -219,6 +291,24 @@ namespace SuperMarket.UserControls
             }
         }
 
+        private void num_payment_ValueChanged(object sender, EventArgs e)
+        {
+            decimal AmoutRequired = num_paymentAmoutRequired.Value,
+                    AmoutPaid = num_paymentAmoutPaid.Value,
+                    AmoutLeft = AmoutRequired - AmoutPaid;
+
+            num_paymentAmoutLeft.Value = AmoutLeft;
+        }
+
+        private void txt_productQuantity_TextChanged(object sender, EventArgs e)
+        {
+            if (txt_productQuantity.Text == ".")
+            {
+                txt_productQuantity.Text = "0.";
+                txt_productQuantity.SelectionStart = txt_productQuantity.Text.Length;
+            }
+        }
+
         private void pcb_searchSupplier_Click(object sender, EventArgs e)
         {
             if (txt_searchSupplierType.SelectedIndex != -1)
@@ -229,16 +319,7 @@ namespace SuperMarket.UserControls
 
                     if (SearchecSuppliers.Count > 0)
                     {
-                        txt_searchedSupplierName.DataSource = null;
-                        txt_searchedSupplierName.Items.Clear();
-
-                        DataTable DataSupplierSearch = new Methods().ListToDataTable(SearchecSuppliers);
-                        txt_searchedSupplierName.DataSource = DataSupplierSearch;
-                        txt_searchedSupplierName.ValueMember = "Id";
-                        txt_searchedSupplierName.DisplayMember = "Name";
-
-                        pan_supplierResults.Enabled = true;
-                        pan_productResults.Enabled = true;
+                        FillSupplierComboBox(txt_searchedSupplierName, SearchecSuppliers, "Id", "Name");
                     }
                     else
                         MessageBox.Show("لا يوجد مورد بهذه البيانات", "لا يوجد",
@@ -251,10 +332,19 @@ namespace SuperMarket.UserControls
 
                     if (SearchecSuppliers.Count > 0)
                     {
-                        foreach (SupplierModel supplier in SearchecSuppliers)
-                        {
+                        FillSupplierComboBox(txt_searchedSupplierName, SearchecSuppliers, "Id", "Name");
+                    }
+                    else
+                        MessageBox.Show("لا يوجد مورد بهذه البيانات", "لا يوجد",
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else if (txt_searchSupplierType.Text == SupplierSearchType[2].ToString())
+                {
+                    List<SupplierModel> SearchecSuppliers = Classes.DataAccess.Suppliers.GetSupplierParameter("Id", txt_searchSupplier.Text);
 
-                        }
+                    if (SearchecSuppliers.Count > 0)
+                    {
+                        FillSupplierComboBox(txt_searchedSupplierName, SearchecSuppliers, "Id", "Name");
                     }
                     else
                         MessageBox.Show("لا يوجد مورد بهذه البيانات", "لا يوجد",
@@ -264,6 +354,103 @@ namespace SuperMarket.UserControls
             else
                 MessageBox.Show("برجاء اختيار نوع البحث", "خطأ",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btn_saveInovice_Click(object sender, EventArgs e)
+        {
+            if (txt_paymentMethod.SelectedIndex != -1)
+            {
+                List<SupplierInvoiceProductModel> AllSupplierProducts = (List<SupplierInvoiceProductModel>)db_productDataGridView.DataSource;
+
+                foreach (SupplierInvoiceProductModel SupplierProduct in AllSupplierProducts)
+                {
+                    Classes.DataAccess.SupplierInvoiceProduct.SaveSupplierInvoiceProduct(SupplierProduct);
+
+                    List<SupplierInvoiceProductModel> SearchedSupplierProducts =
+                        Classes.DataAccess.SupplierInvoiceProduct.LoadSupplierInvoiceProduct();
+
+                    SupplierInvoiceProductModel lastSupplierProduct = SearchedSupplierProducts[SearchedSupplierProducts.Count - 1];
+
+                    int PaymentFinished = 0;
+                    if (num_paymentAmoutPaid.Value == 0)
+                        PaymentFinished = 1;
+
+                    SupplierInvoiceModel supplierInvoice = new SupplierInvoiceModel()
+                    {
+                        AmountLeft = num_paymentAmoutLeft.Value,
+                        AmountTotal = num_paymentAmoutRequired.Value,
+                        AmountPaid = num_paymentAmoutPaid.Value,
+                        PaymentMethod = (int)txt_paymentMethod.SelectedValue,
+                        PaymentStatus = PaymentFinished,
+                        SupplierId = (int)txt_searchedSupplierName.SelectedValue,
+                        SupplierInvoiceProductId = lastSupplierProduct.Id
+                    };
+
+                    Classes.DataAccess.SupplierInvoice.SaveSupplierInvoice(supplierInvoice);
+                }
+                ResetAll();
+
+                MessageBox.Show("تمت الإضافه", "نجحت العملية",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("برجاء اختيار طريقه الدفع", "خطأ",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_resetAll_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show($"هل انت متأكد من مسح جميع الخانات", "انتظر",
+                                MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                ResetAll();
+            }
+        }
+
+        private void btn_removeProduct_Click(object sender, EventArgs e)
+        {
+            if (db_productDataGridView.DataSource != null && db_productDataGridView.CurrentCell != null)
+            {
+                int rowindex = db_productDataGridView.CurrentCell.RowIndex;
+                long SupplierID = int.Parse(db_productDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
+                string ProductName = db_productDataGridView.Rows[rowindex].Cells["ProductName"].Value.ToString();
+
+                if (MessageBox.Show($"هل تريد ان تحذف من السله {ProductName}", "انتظر",
+                           MessageBoxButtons.YesNo,
+                           MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    List<SupplierInvoiceProductModel> datasource = (List<SupplierInvoiceProductModel>)db_productDataGridView.DataSource;
+                    db_productDataGridView.DataSource = null;
+                    datasource.Remove(datasource.Find(product => product.Id == SupplierID));
+                    db_productDataGridView.DataSource = datasource;
+                    ResizeAndRenameCoulmns();
+                }
+            }
+            else
+                MessageBox.Show("رجاء اختيار منتج أولا قبل الحذف", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            if (db_productDataGridView.Rows.Count == 0)
+            {
+                pan_payment.Enabled = false;
+            }
+        }
+
+        private void FillSupplierComboBox(ComboBox comboBox, List<SupplierModel> searchecSuppliers, string Value, string Display)
+        {
+            comboBox.DataSource = null;
+            comboBox.Items.Clear();
+
+            DataTable DataSupplierSearch = new Methods().ListToDataTable(searchecSuppliers);
+            comboBox.DataSource = DataSupplierSearch;
+            comboBox.ValueMember = Value;
+            comboBox.DisplayMember = Display;
+
+            comboBox.SelectedIndex = -1;
+
+            pan_supplierResults.Enabled = true;
         }
 
         private void text_searchedSupplierName_SelectedIndexChanged(object sender, EventArgs e)
@@ -279,7 +466,15 @@ namespace SuperMarket.UserControls
                     txt_searchedSupplierContact.Text = "" + SearchecSuppliers[0].Contact;
                     txt_searchedSupplierName.Text = "" + SearchecSuppliers[0].Name;
                     txt_searchedSupplierAddress.Text = SearchecSuppliers[0].Address;
+                    pan_productResults.Enabled = true;
                 }
+            }
+
+            if (txt_searchedSupplierName.SelectedIndex == -1)
+            {
+                txt_searchedSupplierAddress.Text = "";
+                txt_searchedSupplierContact.Text = "";
+                pan_productResults.Enabled = false;
             }
         }
 
