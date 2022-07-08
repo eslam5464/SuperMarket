@@ -34,6 +34,7 @@ namespace SuperMarket.Forms
             this.pan_controls = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.btn_settings = new System.Windows.Forms.Button();
             this.btn_advancedSearch = new System.Windows.Forms.Button();
             this.btn_supplierInvoices = new System.Windows.Forms.Button();
@@ -98,6 +99,7 @@ namespace SuperMarket.Forms
             // panel7
             // 
             this.panel7.AutoScroll = true;
+            this.panel7.Controls.Add(this.button1);
             this.panel7.Controls.Add(this.btn_settings);
             this.panel7.Controls.Add(this.btn_advancedSearch);
             this.panel7.Controls.Add(this.btn_supplierInvoices);
@@ -119,6 +121,25 @@ namespace SuperMarket.Forms
             this.panel7.TabIndex = 8;
             this.panel7.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panels_MouseMove);
             // 
+            // button1
+            // 
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Image = global::SuperMarket.Properties.Resources.icons8_safe_48;
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.Location = new System.Drawing.Point(13, 539);
+            this.button1.Margin = new System.Windows.Forms.Padding(0);
+            this.button1.Name = "button1";
+            this.button1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.button1.Size = new System.Drawing.Size(245, 45);
+            this.button1.TabIndex = 30;
+            this.button1.Text = "   الخزنة";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // btn_settings
             // 
             this.btn_settings.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -126,9 +147,9 @@ namespace SuperMarket.Forms
             this.btn_settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_settings.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_settings.ForeColor = System.Drawing.Color.White;
-            this.btn_settings.Image = ((System.Drawing.Image)(resources.GetObject("btn_settings.Image")));
+            this.btn_settings.Image = global::SuperMarket.Properties.Resources.icons8_settings_48;
             this.btn_settings.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_settings.Location = new System.Drawing.Point(13, 539);
+            this.btn_settings.Location = new System.Drawing.Point(13, 584);
             this.btn_settings.Margin = new System.Windows.Forms.Padding(0);
             this.btn_settings.Name = "btn_settings";
             this.btn_settings.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -146,7 +167,7 @@ namespace SuperMarket.Forms
             this.btn_advancedSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_advancedSearch.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_advancedSearch.ForeColor = System.Drawing.Color.White;
-            this.btn_advancedSearch.Image = ((System.Drawing.Image)(resources.GetObject("btn_advancedSearch.Image")));
+            this.btn_advancedSearch.Image = global::SuperMarket.Properties.Resources.icons8_look_up_48;
             this.btn_advancedSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_advancedSearch.Location = new System.Drawing.Point(13, 494);
             this.btn_advancedSearch.Margin = new System.Windows.Forms.Padding(0);
@@ -166,7 +187,7 @@ namespace SuperMarket.Forms
             this.btn_supplierInvoices.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_supplierInvoices.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_supplierInvoices.ForeColor = System.Drawing.Color.White;
-            this.btn_supplierInvoices.Image = ((System.Drawing.Image)(resources.GetObject("btn_supplierInvoices.Image")));
+            this.btn_supplierInvoices.Image = global::SuperMarket.Properties.Resources.icons8_receipt_48;
             this.btn_supplierInvoices.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_supplierInvoices.Location = new System.Drawing.Point(13, 448);
             this.btn_supplierInvoices.Margin = new System.Windows.Forms.Padding(0);
@@ -186,7 +207,7 @@ namespace SuperMarket.Forms
             this.btn_suppliers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_suppliers.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_suppliers.ForeColor = System.Drawing.Color.White;
-            this.btn_suppliers.Image = ((System.Drawing.Image)(resources.GetObject("btn_suppliers.Image")));
+            this.btn_suppliers.Image = global::SuperMarket.Properties.Resources.icons8_supplier_48;
             this.btn_suppliers.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_suppliers.Location = new System.Drawing.Point(13, 405);
             this.btn_suppliers.Margin = new System.Windows.Forms.Padding(0);
@@ -206,7 +227,7 @@ namespace SuperMarket.Forms
             this.btn_sellers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_sellers.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_sellers.ForeColor = System.Drawing.Color.White;
-            this.btn_sellers.Image = ((System.Drawing.Image)(resources.GetObject("btn_sellers.Image")));
+            this.btn_sellers.Image = global::SuperMarket.Properties.Resources.icons8_user_48;
             this.btn_sellers.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_sellers.Location = new System.Drawing.Point(13, 360);
             this.btn_sellers.Margin = new System.Windows.Forms.Padding(0);
@@ -226,7 +247,7 @@ namespace SuperMarket.Forms
             this.btn_reports.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_reports.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_reports.ForeColor = System.Drawing.Color.White;
-            this.btn_reports.Image = ((System.Drawing.Image)(resources.GetObject("btn_reports.Image")));
+            this.btn_reports.Image = global::SuperMarket.Properties.Resources.icons8_business_report_48;
             this.btn_reports.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_reports.Location = new System.Drawing.Point(13, 315);
             this.btn_reports.Margin = new System.Windows.Forms.Padding(0);
@@ -266,7 +287,7 @@ namespace SuperMarket.Forms
             this.btn_billing.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_billing.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_billing.ForeColor = System.Drawing.Color.White;
-            this.btn_billing.Image = ((System.Drawing.Image)(resources.GetObject("btn_billing.Image")));
+            this.btn_billing.Image = global::SuperMarket.Properties.Resources.icons8_bill_48;
             this.btn_billing.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_billing.Location = new System.Drawing.Point(13, 225);
             this.btn_billing.Margin = new System.Windows.Forms.Padding(0);
@@ -286,7 +307,7 @@ namespace SuperMarket.Forms
             this.btn_Orders.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Orders.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Orders.ForeColor = System.Drawing.Color.White;
-            this.btn_Orders.Image = ((System.Drawing.Image)(resources.GetObject("btn_Orders.Image")));
+            this.btn_Orders.Image = global::SuperMarket.Properties.Resources.icons8_report_card_48;
             this.btn_Orders.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Orders.Location = new System.Drawing.Point(13, 180);
             this.btn_Orders.Margin = new System.Windows.Forms.Padding(0);
@@ -306,7 +327,7 @@ namespace SuperMarket.Forms
             this.btn_Customers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Customers.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Customers.ForeColor = System.Drawing.Color.White;
-            this.btn_Customers.Image = ((System.Drawing.Image)(resources.GetObject("btn_Customers.Image")));
+            this.btn_Customers.Image = global::SuperMarket.Properties.Resources.icons8_customer_48;
             this.btn_Customers.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Customers.Location = new System.Drawing.Point(13, 135);
             this.btn_Customers.Margin = new System.Windows.Forms.Padding(0);
@@ -326,7 +347,7 @@ namespace SuperMarket.Forms
             this.btn_Products.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Products.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Products.ForeColor = System.Drawing.Color.White;
-            this.btn_Products.Image = ((System.Drawing.Image)(resources.GetObject("btn_Products.Image")));
+            this.btn_Products.Image = global::SuperMarket.Properties.Resources.icons8_products_pile_48;
             this.btn_Products.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Products.Location = new System.Drawing.Point(13, 90);
             this.btn_Products.Margin = new System.Windows.Forms.Padding(0);
@@ -346,7 +367,7 @@ namespace SuperMarket.Forms
             this.btn_Categories.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Categories.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Categories.ForeColor = System.Drawing.Color.White;
-            this.btn_Categories.Image = ((System.Drawing.Image)(resources.GetObject("btn_Categories.Image")));
+            this.btn_Categories.Image = global::SuperMarket.Properties.Resources.icons8_sorting_48;
             this.btn_Categories.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_Categories.Location = new System.Drawing.Point(13, 45);
             this.btn_Categories.Margin = new System.Windows.Forms.Padding(0);
@@ -366,7 +387,7 @@ namespace SuperMarket.Forms
             this.btn_dashborad.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_dashborad.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_dashborad.ForeColor = System.Drawing.Color.White;
-            this.btn_dashborad.Image = ((System.Drawing.Image)(resources.GetObject("btn_dashborad.Image")));
+            this.btn_dashborad.Image = global::SuperMarket.Properties.Resources.icons8_combo_chart_48;
             this.btn_dashborad.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_dashborad.Location = new System.Drawing.Point(13, 0);
             this.btn_dashborad.Margin = new System.Windows.Forms.Padding(0);
@@ -589,5 +610,6 @@ namespace SuperMarket.Forms
         private System.Windows.Forms.Timer HourlyChecker;
         public System.Windows.Forms.Button btn_suppliers;
         public System.Windows.Forms.Button btn_supplierInvoices;
+        private System.Windows.Forms.Button button1;
     }
 }

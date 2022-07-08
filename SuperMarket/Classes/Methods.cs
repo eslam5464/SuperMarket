@@ -4,12 +4,44 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Net;
+using System.Net.Cache;
 using System.Windows.Forms;
 
 namespace SuperMarket.Classes
 {
     internal class Methods
     {
+        internal static object GetTimeOnline()
+        {
+            try
+            {
+                DateTime dateTime = DateTime.MinValue;
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://www.google.com.eg");
+                request.Method = "GET";
+                request.Accept = "text/html, application/xhtml+xml, */*";
+                request.UserAgent = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)";
+                request.ContentType = "application/x-www-form-urlencoded";
+                request.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    string todaysDates = response.Headers["date"];
+
+                    dateTime = DateTime.ParseExact(todaysDates, "ddd, dd MMM yyyy HH:mm:ss 'GMT'",
+                        System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat, System.Globalization.DateTimeStyles.AssumeUniversal);
+                }
+
+                return dateTime;
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"Error while fetching the online date now & error: {ex.Message}",
+                           System.Reflection.MethodInfo.GetCurrentMethod().Name, "Methods", Logger.ERROR);
+            }
+            return null;
+        }
+
         internal virtual DataTable DataGridToDataTable(DataGridView dataGridView)
         {
             DataTable dataTable = new DataTable();

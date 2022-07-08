@@ -56,6 +56,16 @@ namespace SuperMarket {
         
         private global::System.Data.DataRelation relationFK_UserLevelAccess_Users;
         
+        private global::System.Data.DataRelation relationFK_Invoices_Customers;
+        
+        private global::System.Data.DataRelation relationFK_Invoices_Products;
+        
+        private global::System.Data.DataRelation relationFK_Orders_Users1;
+        
+        private global::System.Data.DataRelation relationFK_Products_Categories;
+        
+        private global::System.Data.DataRelation relationFK_UserLevelAccess_Users1;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -428,6 +438,11 @@ namespace SuperMarket {
             this.relationFK_SupplierInvoices_SupplierInvoiceProduct = this.Relations["FK_SupplierInvoices_SupplierInvoiceProduct"];
             this.relationFK_SupplierInvoices_Suppliers1 = this.Relations["FK_SupplierInvoices_Suppliers1"];
             this.relationFK_UserLevelAccess_Users = this.Relations["FK_UserLevelAccess_Users"];
+            this.relationFK_Invoices_Customers = this.Relations["FK_Invoices_Customers"];
+            this.relationFK_Invoices_Products = this.Relations["FK_Invoices_Products"];
+            this.relationFK_Orders_Users1 = this.Relations["FK_Orders_Users1"];
+            this.relationFK_Products_Categories = this.Relations["FK_Products_Categories"];
+            this.relationFK_UserLevelAccess_Users1 = this.Relations["FK_UserLevelAccess_Users1"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -484,6 +499,34 @@ namespace SuperMarket {
                         this.tableUsers.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableUserLevelAccess.UserIdColumn}, false);
             this.Relations.Add(this.relationFK_UserLevelAccess_Users);
+            this.relationFK_Invoices_Customers = new global::System.Data.DataRelation("FK_Invoices_Customers", new global::System.Data.DataColumn[] {
+                        this.tableCustomers.IdColumn}, new global::System.Data.DataColumn[] {
+                        this.tableInvoices.CustomerIDColumn}, false);
+            this.Relations.Add(this.relationFK_Invoices_Customers);
+            this.relationFK_Invoices_Products = new global::System.Data.DataRelation("FK_Invoices_Products", new global::System.Data.DataColumn[] {
+                        this.tableProducts.IdColumn,
+                        this.tableProducts.NameColumn}, new global::System.Data.DataColumn[] {
+                        this.tableInvoices.ProductIDColumn,
+                        this.tableInvoices.ProductNameColumn}, false);
+            this.Relations.Add(this.relationFK_Invoices_Products);
+            this.relationFK_Orders_Users1 = new global::System.Data.DataRelation("FK_Orders_Users1", new global::System.Data.DataColumn[] {
+                        this.tableUsers.IdColumn,
+                        this.tableUsers.FullNameColumn}, new global::System.Data.DataColumn[] {
+                        this.tableOrders.CreatedByUserIdColumn,
+                        this.tableOrders.CreatedByUserFullNameColumn}, false);
+            this.Relations.Add(this.relationFK_Orders_Users1);
+            this.relationFK_Products_Categories = new global::System.Data.DataRelation("FK_Products_Categories", new global::System.Data.DataColumn[] {
+                        this.tableCategories.IdColumn,
+                        this.tableCategories.NameColumn}, new global::System.Data.DataColumn[] {
+                        this.tableProducts.CategoryIDColumn,
+                        this.tableProducts.CategoryNameColumn}, false);
+            this.Relations.Add(this.relationFK_Products_Categories);
+            this.relationFK_UserLevelAccess_Users1 = new global::System.Data.DataRelation("FK_UserLevelAccess_Users1", new global::System.Data.DataColumn[] {
+                        this.tableUsers.IdColumn,
+                        this.tableUsers.FullNameColumn}, new global::System.Data.DataColumn[] {
+                        this.tableUserLevelAccess.UserIdColumn,
+                        this.tableUserLevelAccess.UserFullNameColumn}, false);
+            this.Relations.Add(this.relationFK_UserLevelAccess_Users1);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1454,13 +1497,13 @@ namespace SuperMarket {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public InvoicesRow AddInvoicesRow(long InvoiceNumber, System.DateTime CreationDate, long CustomerID, string CustomerName, string CustomerContact, string CustomerAddress, long ProductID, long ProductBarCode, string ProductName, double ProductQuantity, decimal ProductPrice, decimal PriceTotal) {
+            public InvoicesRow AddInvoicesRow(long InvoiceNumber, System.DateTime CreationDate, CustomersRow parentCustomersRowByFK_Invoices_Customers, string CustomerName, string CustomerContact, string CustomerAddress, long ProductID, long ProductBarCode, string ProductName, double ProductQuantity, decimal ProductPrice, decimal PriceTotal) {
                 InvoicesRow rowInvoicesRow = ((InvoicesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         InvoiceNumber,
                         CreationDate,
-                        CustomerID,
+                        null,
                         CustomerName,
                         CustomerContact,
                         CustomerAddress,
@@ -1470,6 +1513,9 @@ namespace SuperMarket {
                         ProductQuantity,
                         ProductPrice,
                         PriceTotal};
+                if ((parentCustomersRowByFK_Invoices_Customers != null)) {
+                    columnValuesArray[3] = parentCustomersRowByFK_Invoices_Customers[0];
+                }
                 rowInvoicesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowInvoicesRow);
                 return rowInvoicesRow;
@@ -3556,6 +3602,8 @@ namespace SuperMarket {
             
             private global::System.Data.DataColumn columnSettings;
             
+            private global::System.Data.DataColumn columnUserFullName;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public UserLevelAccessDataTable() {
@@ -3687,6 +3735,14 @@ namespace SuperMarket {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn UserFullNameColumn {
+                get {
+                    return this.columnUserFullName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3722,7 +3778,7 @@ namespace SuperMarket {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public UserLevelAccessRow AddUserLevelAccessRow(int Id, UsersRow parentUsersRowByFK_UserLevelAccess_Users, string UserLevel, bool Billing, bool BillsEdit, bool Categories, bool Customers, bool Dashboard, bool Products, bool Reports, bool Sellers, bool Settings) {
+            public UserLevelAccessRow AddUserLevelAccessRow(int Id, UsersRow parentUsersRowByFK_UserLevelAccess_Users, string UserLevel, bool Billing, bool BillsEdit, bool Categories, bool Customers, bool Dashboard, bool Products, bool Reports, bool Sellers, bool Settings, string UserFullName) {
                 UserLevelAccessRow rowUserLevelAccessRow = ((UserLevelAccessRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
@@ -3736,7 +3792,8 @@ namespace SuperMarket {
                         Products,
                         Reports,
                         Sellers,
-                        Settings};
+                        Settings,
+                        UserFullName};
                 if ((parentUsersRowByFK_UserLevelAccess_Users != null)) {
                     columnValuesArray[1] = parentUsersRowByFK_UserLevelAccess_Users[0];
                 }
@@ -3781,6 +3838,7 @@ namespace SuperMarket {
                 this.columnReports = base.Columns["Reports"];
                 this.columnSellers = base.Columns["Sellers"];
                 this.columnSettings = base.Columns["Settings"];
+                this.columnUserFullName = base.Columns["UserFullName"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3810,6 +3868,8 @@ namespace SuperMarket {
                 base.Columns.Add(this.columnSellers);
                 this.columnSettings = new global::System.Data.DataColumn("Settings", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSettings);
+                this.columnUserFullName = new global::System.Data.DataColumn("UserFullName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUserFullName);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AllowDBNull = false;
@@ -3826,6 +3886,8 @@ namespace SuperMarket {
                 this.columnReports.AllowDBNull = false;
                 this.columnSellers.AllowDBNull = false;
                 this.columnSettings.AllowDBNull = false;
+                this.columnUserFullName.AllowDBNull = false;
+                this.columnUserFullName.MaxLength = 200;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4399,6 +4461,17 @@ namespace SuperMarket {
                     this[this.tableCategories.CreationDateColumn] = value;
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ProductsRow[] GetProductsRows() {
+                if ((this.Table.ChildRelations["FK_Products_Categories"] == null)) {
+                    return new ProductsRow[0];
+                }
+                else {
+                    return ((ProductsRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Products_Categories"])));
+                }
+            }
         }
         
         /// <summary>
@@ -4529,6 +4602,17 @@ namespace SuperMarket {
                 }
                 else {
                     return ((OrdersRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Orders_Customers"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public InvoicesRow[] GetInvoicesRows() {
+                if ((this.Table.ChildRelations["FK_Invoices_Customers"] == null)) {
+                    return new InvoicesRow[0];
+                }
+                else {
+                    return ((InvoicesRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Invoices_Customers"])));
                 }
             }
         }
@@ -4707,6 +4791,28 @@ namespace SuperMarket {
                 }
                 set {
                     this[this.tableInvoices.PriceTotalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public CustomersRow CustomersRow {
+                get {
+                    return ((CustomersRow)(this.GetParentRow(this.Table.ParentRelations["FK_Invoices_Customers"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Invoices_Customers"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public ProductsRow ProductsRowParent {
+                get {
+                    return ((ProductsRow)(this.GetParentRow(this.Table.ParentRelations["FK_Invoices_Products"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Invoices_Products"]);
                 }
             }
             
@@ -4942,6 +5048,17 @@ namespace SuperMarket {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public UsersRow UsersRowParentByFK_Orders_Users1 {
+                get {
+                    return ((UsersRow)(this.GetParentRow(this.Table.ParentRelations["FK_Orders_Users1"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Orders_Users1"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsInvoiceIdNull() {
                 return this.IsNull(this.tableOrders.InvoiceIdColumn);
             }
@@ -5161,6 +5278,17 @@ namespace SuperMarket {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public CategoriesRow CategoriesRowParent {
+                get {
+                    return ((CategoriesRow)(this.GetParentRow(this.Table.ParentRelations["FK_Products_Categories"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Products_Categories"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsDescriptionNull() {
                 return this.IsNull(this.tableProducts.DescriptionColumn);
             }
@@ -5191,6 +5319,17 @@ namespace SuperMarket {
                 }
                 else {
                     return ((SupplierInvoiceProductRow[])(base.GetChildRows(this.Table.ChildRelations["FK_SupplierInvoiceProduct_Products"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public InvoicesRow[] GetInvoicesRows() {
+                if ((this.Table.ChildRelations["FK_Invoices_Products"] == null)) {
+                    return new InvoicesRow[0];
+                }
+                else {
+                    return ((InvoicesRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Invoices_Products"])));
                 }
             }
         }
@@ -5652,12 +5791,34 @@ namespace SuperMarket {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string UserFullName {
+                get {
+                    return ((string)(this[this.tableUserLevelAccess.UserFullNameColumn]));
+                }
+                set {
+                    this[this.tableUserLevelAccess.UserFullNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public UsersRow UsersRow {
                 get {
                     return ((UsersRow)(this.GetParentRow(this.Table.ParentRelations["FK_UserLevelAccess_Users"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_UserLevelAccess_Users"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public UsersRow UsersRowParentByFK_UserLevelAccess_Users1 {
+                get {
+                    return ((UsersRow)(this.GetParentRow(this.Table.ParentRelations["FK_UserLevelAccess_Users1"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_UserLevelAccess_Users1"]);
                 }
             }
         }
@@ -5839,6 +6000,28 @@ namespace SuperMarket {
                 }
                 else {
                     return ((UserLevelAccessRow[])(base.GetChildRows(this.Table.ChildRelations["FK_UserLevelAccess_Users"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public OrdersRow[] GetOrdersRowsByFK_Orders_Users1() {
+                if ((this.Table.ChildRelations["FK_Orders_Users1"] == null)) {
+                    return new OrdersRow[0];
+                }
+                else {
+                    return ((OrdersRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Orders_Users1"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public UserLevelAccessRow[] GetUserLevelAccessRowsByFK_UserLevelAccess_Users1() {
+                if ((this.Table.ChildRelations["FK_UserLevelAccess_Users1"] == null)) {
+                    return new UserLevelAccessRow[0];
+                }
+                else {
+                    return ((UserLevelAccessRow[])(base.GetChildRows(this.Table.ChildRelations["FK_UserLevelAccess_Users1"])));
                 }
             }
         }
@@ -9835,10 +10018,11 @@ SELECT Id, Name, Contact, Address, CreationDate FROM Suppliers WHERE (Id = @Id)"
             tableMapping.ColumnMappings.Add("Reports", "Reports");
             tableMapping.ColumnMappings.Add("Sellers", "Sellers");
             tableMapping.ColumnMappings.Add("Settings", "Settings");
+            tableMapping.ColumnMappings.Add("UserFullName", "UserFullName");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[UserLevelAccess] WHERE (([Id] = @Original_Id) AND ([UserId] = @Original_UserId) AND ([UserLevel] = @Original_UserLevel) AND ([Billing] = @Original_Billing) AND ([BillsEdit] = @Original_BillsEdit) AND ([Categories] = @Original_Categories) AND ([Customers] = @Original_Customers) AND ([Dashboard] = @Original_Dashboard) AND ([Products] = @Original_Products) AND ([Reports] = @Original_Reports) AND ([Sellers] = @Original_Sellers) AND ([Settings] = @Original_Settings))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [UserLevelAccess] WHERE (([Id] = @Original_Id) AND ([UserId] = @Original_UserId) AND ([UserLevel] = @Original_UserLevel) AND ([Billing] = @Original_Billing) AND ([BillsEdit] = @Original_BillsEdit) AND ([Categories] = @Original_Categories) AND ([Customers] = @Original_Customers) AND ([Dashboard] = @Original_Dashboard) AND ([Products] = @Original_Products) AND ([Reports] = @Original_Reports) AND ([Sellers] = @Original_Sellers) AND ([Settings] = @Original_Settings) AND ([UserFullName] = @Original_UserFullName))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserId", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -9852,10 +10036,11 @@ SELECT Id, Name, Contact, Address, CreationDate FROM Suppliers WHERE (Id = @Id)"
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Reports", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reports", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Sellers", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sellers", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Settings", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Settings", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserFullName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserFullName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[UserLevelAccess] ([Id], [UserId], [UserLevel], [Billing], [BillsEdit], [Categories], [Customers], [Dashboard], [Products], [Reports], [Sellers], [Settings]) VALUES (@Id, @UserId, @UserLevel, @Billing, @BillsEdit, @Categories, @Customers, @Dashboard, @Products, @Reports, @Sellers, @Settings);
-SELECT Id, UserId, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboard, Products, Reports, Sellers, Settings FROM UserLevelAccess WHERE (Id = @Id)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [UserLevelAccess] ([Id], [UserId], [UserLevel], [Billing], [BillsEdit], [Categories], [Customers], [Dashboard], [Products], [Reports], [Sellers], [Settings], [UserFullName]) VALUES (@Id, @UserId, @UserLevel, @Billing, @BillsEdit, @Categories, @Customers, @Dashboard, @Products, @Reports, @Sellers, @Settings, @UserFullName);
+SELECT Id, UserId, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboard, Products, Reports, Sellers, Settings, UserFullName FROM UserLevelAccess WHERE (Id = @Id)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserId", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -9869,10 +10054,11 @@ SELECT Id, UserId, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboa
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Reports", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reports", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Sellers", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sellers", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Settings", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Settings", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserFullName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserFullName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[UserLevelAccess] SET [Id] = @Id, [UserId] = @UserId, [UserLevel] = @UserLevel, [Billing] = @Billing, [BillsEdit] = @BillsEdit, [Categories] = @Categories, [Customers] = @Customers, [Dashboard] = @Dashboard, [Products] = @Products, [Reports] = @Reports, [Sellers] = @Sellers, [Settings] = @Settings WHERE (([Id] = @Original_Id) AND ([UserId] = @Original_UserId) AND ([UserLevel] = @Original_UserLevel) AND ([Billing] = @Original_Billing) AND ([BillsEdit] = @Original_BillsEdit) AND ([Categories] = @Original_Categories) AND ([Customers] = @Original_Customers) AND ([Dashboard] = @Original_Dashboard) AND ([Products] = @Original_Products) AND ([Reports] = @Original_Reports) AND ([Sellers] = @Original_Sellers) AND ([Settings] = @Original_Settings));
-SELECT Id, UserId, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboard, Products, Reports, Sellers, Settings FROM UserLevelAccess WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [UserLevelAccess] SET [Id] = @Id, [UserId] = @UserId, [UserLevel] = @UserLevel, [Billing] = @Billing, [BillsEdit] = @BillsEdit, [Categories] = @Categories, [Customers] = @Customers, [Dashboard] = @Dashboard, [Products] = @Products, [Reports] = @Reports, [Sellers] = @Sellers, [Settings] = @Settings, [UserFullName] = @UserFullName WHERE (([Id] = @Original_Id) AND ([UserId] = @Original_UserId) AND ([UserLevel] = @Original_UserLevel) AND ([Billing] = @Original_Billing) AND ([BillsEdit] = @Original_BillsEdit) AND ([Categories] = @Original_Categories) AND ([Customers] = @Original_Customers) AND ([Dashboard] = @Original_Dashboard) AND ([Products] = @Original_Products) AND ([Reports] = @Original_Reports) AND ([Sellers] = @Original_Sellers) AND ([Settings] = @Original_Settings) AND ([UserFullName] = @Original_UserFullName));
+SELECT Id, UserId, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboard, Products, Reports, Sellers, Settings, UserFullName FROM UserLevelAccess WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserId", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -9886,6 +10072,7 @@ SELECT Id, UserId, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboa
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Reports", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reports", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Sellers", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sellers", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Settings", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Settings", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserFullName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserFullName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserId", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserLevel", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserLevel", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -9898,6 +10085,7 @@ SELECT Id, UserId, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboa
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Reports", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reports", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Sellers", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sellers", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Settings", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Settings", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserFullName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserFullName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9914,7 +10102,7 @@ SELECT Id, UserId, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboa
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT Id, UserId, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboar" +
-                "d, Products, Reports, Sellers, Settings FROM dbo.UserLevelAccess";
+                "d, Products, Reports, Sellers, Settings, UserFullName FROM UserLevelAccess";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -9975,7 +10163,7 @@ SELECT Id, UserId, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboa
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Id, long Original_UserId, string Original_UserLevel, bool Original_Billing, bool Original_BillsEdit, bool Original_Categories, bool Original_Customers, bool Original_Dashboard, bool Original_Products, bool Original_Reports, bool Original_Sellers, bool Original_Settings) {
+        public virtual int Delete(int Original_Id, long Original_UserId, string Original_UserLevel, bool Original_Billing, bool Original_BillsEdit, bool Original_Categories, bool Original_Customers, bool Original_Dashboard, bool Original_Products, bool Original_Reports, bool Original_Sellers, bool Original_Settings, string Original_UserFullName) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((long)(Original_UserId));
             if ((Original_UserLevel == null)) {
@@ -9993,6 +10181,12 @@ SELECT Id, UserId, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboa
             this.Adapter.DeleteCommand.Parameters[9].Value = ((bool)(Original_Reports));
             this.Adapter.DeleteCommand.Parameters[10].Value = ((bool)(Original_Sellers));
             this.Adapter.DeleteCommand.Parameters[11].Value = ((bool)(Original_Settings));
+            if ((Original_UserFullName == null)) {
+                throw new global::System.ArgumentNullException("Original_UserFullName");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((string)(Original_UserFullName));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -10013,7 +10207,7 @@ SELECT Id, UserId, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboa
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int Id, long UserId, string UserLevel, bool Billing, bool BillsEdit, bool Categories, bool Customers, bool Dashboard, bool Products, bool Reports, bool Sellers, bool Settings) {
+        public virtual int Insert(int Id, long UserId, string UserLevel, bool Billing, bool BillsEdit, bool Categories, bool Customers, bool Dashboard, bool Products, bool Reports, bool Sellers, bool Settings, string UserFullName) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Id));
             this.Adapter.InsertCommand.Parameters[1].Value = ((long)(UserId));
             if ((UserLevel == null)) {
@@ -10031,6 +10225,12 @@ SELECT Id, UserId, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboa
             this.Adapter.InsertCommand.Parameters[9].Value = ((bool)(Reports));
             this.Adapter.InsertCommand.Parameters[10].Value = ((bool)(Sellers));
             this.Adapter.InsertCommand.Parameters[11].Value = ((bool)(Settings));
+            if ((UserFullName == null)) {
+                throw new global::System.ArgumentNullException("UserFullName");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(UserFullName));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -10064,6 +10264,7 @@ SELECT Id, UserId, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboa
                     bool Reports, 
                     bool Sellers, 
                     bool Settings, 
+                    string UserFullName, 
                     int Original_Id, 
                     long Original_UserId, 
                     string Original_UserLevel, 
@@ -10075,7 +10276,8 @@ SELECT Id, UserId, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboa
                     bool Original_Products, 
                     bool Original_Reports, 
                     bool Original_Sellers, 
-                    bool Original_Settings) {
+                    bool Original_Settings, 
+                    string Original_UserFullName) {
             this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Id));
             this.Adapter.UpdateCommand.Parameters[1].Value = ((long)(UserId));
             if ((UserLevel == null)) {
@@ -10093,23 +10295,35 @@ SELECT Id, UserId, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboa
             this.Adapter.UpdateCommand.Parameters[9].Value = ((bool)(Reports));
             this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(Sellers));
             this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(Settings));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(Original_Id));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((long)(Original_UserId));
+            if ((UserFullName == null)) {
+                throw new global::System.ArgumentNullException("UserFullName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(UserFullName));
+            }
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_Id));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((long)(Original_UserId));
             if ((Original_UserLevel == null)) {
                 throw new global::System.ArgumentNullException("Original_UserLevel");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((string)(Original_UserLevel));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_UserLevel));
             }
-            this.Adapter.UpdateCommand.Parameters[15].Value = ((bool)(Original_Billing));
-            this.Adapter.UpdateCommand.Parameters[16].Value = ((bool)(Original_BillsEdit));
-            this.Adapter.UpdateCommand.Parameters[17].Value = ((bool)(Original_Categories));
-            this.Adapter.UpdateCommand.Parameters[18].Value = ((bool)(Original_Customers));
-            this.Adapter.UpdateCommand.Parameters[19].Value = ((bool)(Original_Dashboard));
-            this.Adapter.UpdateCommand.Parameters[20].Value = ((bool)(Original_Products));
-            this.Adapter.UpdateCommand.Parameters[21].Value = ((bool)(Original_Reports));
-            this.Adapter.UpdateCommand.Parameters[22].Value = ((bool)(Original_Sellers));
-            this.Adapter.UpdateCommand.Parameters[23].Value = ((bool)(Original_Settings));
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((bool)(Original_Billing));
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((bool)(Original_BillsEdit));
+            this.Adapter.UpdateCommand.Parameters[18].Value = ((bool)(Original_Categories));
+            this.Adapter.UpdateCommand.Parameters[19].Value = ((bool)(Original_Customers));
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((bool)(Original_Dashboard));
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((bool)(Original_Products));
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((bool)(Original_Reports));
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((bool)(Original_Sellers));
+            this.Adapter.UpdateCommand.Parameters[24].Value = ((bool)(Original_Settings));
+            if ((Original_UserFullName == null)) {
+                throw new global::System.ArgumentNullException("Original_UserFullName");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((string)(Original_UserFullName));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -10142,6 +10356,7 @@ SELECT Id, UserId, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboa
                     bool Reports, 
                     bool Sellers, 
                     bool Settings, 
+                    string UserFullName, 
                     int Original_Id, 
                     long Original_UserId, 
                     string Original_UserLevel, 
@@ -10153,8 +10368,9 @@ SELECT Id, UserId, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboa
                     bool Original_Products, 
                     bool Original_Reports, 
                     bool Original_Sellers, 
-                    bool Original_Settings) {
-            return this.Update(Original_Id, UserId, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboard, Products, Reports, Sellers, Settings, Original_Id, Original_UserId, Original_UserLevel, Original_Billing, Original_BillsEdit, Original_Categories, Original_Customers, Original_Dashboard, Original_Products, Original_Reports, Original_Sellers, Original_Settings);
+                    bool Original_Settings, 
+                    string Original_UserFullName) {
+            return this.Update(Original_Id, UserId, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboard, Products, Reports, Sellers, Settings, UserFullName, Original_Id, Original_UserId, Original_UserLevel, Original_Billing, Original_BillsEdit, Original_Categories, Original_Customers, Original_Dashboard, Original_Products, Original_Reports, Original_Sellers, Original_Settings, Original_UserFullName);
         }
     }
     
@@ -10998,6 +11214,15 @@ SELECT Id, Username, Password, FullName, UserLevel, Email, Phone, CreationDate, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private int UpdateUpdatedRows(SuperMarketDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._categoriesTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Categories.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._categoriesTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._productsTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Products.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -11040,15 +11265,6 @@ SELECT Id, Username, Password, FullName, UserLevel, Email, Phone, CreationDate, 
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._usersTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._categoriesTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Categories.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._categoriesTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -11098,6 +11314,14 @@ SELECT Id, Username, Password, FullName, UserLevel, Email, Phone, CreationDate, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private int UpdateInsertedRows(SuperMarketDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._categoriesTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Categories.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._categoriesTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._productsTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Products.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -11135,14 +11359,6 @@ SELECT Id, Username, Password, FullName, UserLevel, Email, Phone, CreationDate, 
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._usersTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._categoriesTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Categories.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._categoriesTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -11220,14 +11436,6 @@ SELECT Id, Username, Password, FullName, UserLevel, Email, Phone, CreationDate, 
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._categoriesTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Categories.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._categoriesTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._usersTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Users.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -11265,6 +11473,14 @@ SELECT Id, Username, Password, FullName, UserLevel, Email, Phone, CreationDate, 
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._productsTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._categoriesTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Categories.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._categoriesTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }

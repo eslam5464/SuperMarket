@@ -44,7 +44,7 @@ namespace SuperMarket.UserControls
                 btn_save,
                 label1,
                 label3,
-                label6
+                label6,
             };
 
             foreach (Control control in AllControls)

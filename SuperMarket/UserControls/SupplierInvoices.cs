@@ -482,7 +482,26 @@ namespace SuperMarket.UserControls
         {
             Control[] AllControls =
             {
-                label6
+                label1,
+                label2,
+                label3,
+                label4,
+                label5,
+                label6,
+                label7,
+                label8,
+                label9,
+                label10,
+                label11,
+                label12,
+                label13,
+                label14,
+                label15,
+                label16,
+                btn_addProduct,
+                btn_removeProduct,
+                btn_resetAll,
+                btn_saveInovice,
             };
 
             foreach (Control control in AllControls)
@@ -494,7 +513,7 @@ namespace SuperMarket.UserControls
                     control.ForeColor = appColor;
             }
 
-            //suppliersDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
+            db_productDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
         }
     }
 }

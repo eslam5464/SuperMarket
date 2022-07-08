@@ -146,6 +146,7 @@
     <Compile Include="Classes\Models\SupplierInvoiceModel.cs" />
     <Compile Include="Classes\Models\SupplierInvoiceProductModel.cs" />
     <Compile Include="Classes\Models\SupplierModel.cs" />
+    <Compile Include="Classes\Models\UserLevelAccess.cs" />
     <Compile Include="Classes\Models\UserModel.cs" />
     <Compile Include="Classes\Models\Validators\UserValidator.cs" />
     <Compile Include="Classes\Security.cs" />
@@ -192,6 +193,9 @@
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="SuperMarketDataSet.cs">
+      <DependentUpon>SuperMarketDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SuperMarketDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -251,6 +255,12 @@
     <Compile Include="UserControls\Reports.Designer.cs">
       <DependentUpon>Reports.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Safe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Safe.Designer.cs">
+      <DependentUpon>Safe.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Sellers.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -277,6 +287,9 @@
     <Compile Include="UserControls\Suppliers.Designer.cs">
       <DependentUpon>Suppliers.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserControls\Safe.resx">
+      <DependentUpon>Safe.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\SupplierInvoices.resx">
       <DependentUpon>SupplierInvoices.cs</DependentUpon>
     </EmbeddedResource>
@@ -433,6 +446,23 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="Resources\icons8-business-report-48.png" />
+    <None Include="Resources\icons8-customer-48.png" />
+    <None Include="Resources\icons8-edit-property-481.png" />
+    <None Include="Resources\icons8-look-up-48.png" />
+    <None Include="Resources\icons8-products-pile-48.png" />
+    <None Include="Resources\icons8-receipt-48.png" />
+    <None Include="Resources\icons8-safe-48.png" />
+    <None Include="Resources\icons8-sorting-48.png" />
+    <None Include="Resources\icons8-supplier-48.png" />
+    <None Include="Resources\icons8-synchronize-481.png" />
+    <None Include="Resources\icons8-user-48.png" />
+    <None Include="Resources\icons8-warehouse-961.png" />
+    <None Include="Resources\icons8-combo-chart-48.png" />
+    <None Include="Resources\icons8-purchase-order-48.png" />
+    <None Include="Resources\icons8-report-card-48.png" />
+    <None Include="Resources\icons8-bill-48.png" />
+    <None Include="Resources\icons8-settings-48.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

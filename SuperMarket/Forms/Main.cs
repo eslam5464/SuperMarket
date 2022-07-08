@@ -27,7 +27,7 @@ namespace SuperMarket.Forms
         }
 
         internal static Classes.Models.UserModel LoggedUser;
-        private int SessionTimer = 0, HourlyTimer = 0;
+        private int SessionTimer = 0, HourlyTimer = 0, FourHoursTimer = 0;
         private bool SessionState = true;
 
         private void Main_Load(object sender, EventArgs e)
@@ -333,10 +333,17 @@ namespace SuperMarket.Forms
         private void HourlyChecker_Tick(object sender, EventArgs e)
         {
             HourlyTimer += 1;
+            FourHoursTimer += 1;
             if (HourlyTimer >= 3600)
             {
                 Classes.DataAccess.Backup.AllDaily();
                 HourlyTimer = 0;
+            }
+
+            if (FourHoursTimer >= 14400)
+            {
+                Console.WriteLine(Methods.GetTimeOnline());// to do : finish checking online
+                FourHoursTimer = 0;
             }
         }
 

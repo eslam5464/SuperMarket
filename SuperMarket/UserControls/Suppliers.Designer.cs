@@ -157,7 +157,7 @@ namespace SuperMarket.UserControls
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Purple;
-            this.label1.Location = new System.Drawing.Point(227, 109);
+            this.label1.Location = new System.Drawing.Point(239, 109);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(85, 23);
             this.label1.TabIndex = 213;
@@ -328,7 +328,7 @@ namespace SuperMarket.UserControls
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Red;
-            this.label9.Location = new System.Drawing.Point(404, 29);
+            this.label9.Location = new System.Drawing.Point(732, 18);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(29, 37);
             this.label9.TabIndex = 219;
@@ -340,7 +340,7 @@ namespace SuperMarket.UserControls
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(3, 118);
+            this.label2.Location = new System.Drawing.Point(330, 109);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 37);
             this.label2.TabIndex = 220;
