@@ -19,6 +19,7 @@ namespace SuperMarket.Forms
         private readonly UserControls.Suppliers uc_suppliers = new UserControls.Suppliers();
         private readonly UserControls.SupplierInvoices uc_supplierInvoices = new UserControls.SupplierInvoices();
         private readonly UserControls.Reports uc_reports = new UserControls.Reports();
+        private readonly UserControls.Safe uc_safe = new UserControls.Safe();
         private readonly UserControls.Settings uc_settings = new UserControls.Settings();
 
         public Main()
@@ -110,157 +111,161 @@ namespace SuperMarket.Forms
 
             UserSession.Start();
             HourlyChecker.Start();
+
+            HideSubMenu();
         }
 
         private void btn_dashborad_Click(object sender, EventArgs e)
         {
-            Logger.Log("user clicked on dashboard button",
-                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
-
-            SidePanel.Height = btn_dashborad.Height;
-            SidePanel.Top = btn_dashborad.Top;
-
+            SelectButton(btn_dashborad, true);
             uc_dashboard.BringToFront();
         }
 
         private void btn_Categories_Click(object sender, EventArgs e)
         {
-            Logger.Log("user clicked on categories button",
-                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
-
-            SidePanel.Height = btn_Categories.Height;
-            SidePanel.Top = btn_Categories.Top;
-
+            SelectButton(btn_Categories, true);
             uc_categories.BringToFront();
         }
 
         private void btn_Products_Click(object sender, EventArgs e)
         {
-            Logger.Log("user clicked on products button",
-                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
-
-            SidePanel.Height = btn_Products.Height;
-            SidePanel.Top = btn_Products.Top;
-
+            SelectButton(btn_Products, true);
             uc_products.BringToFront();
             uc_products.LoadCategories();
         }
 
         private void btn_Customers_Click(object sender, EventArgs e)
         {
-            Logger.Log("user clicked on customers button",
-                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
-
-            SidePanel.Height = btn_Customers.Height;
-            SidePanel.Top = btn_Customers.Top;
-
+            SelectButton(btn_Customers, true);
             uc_customers.BringToFront();
         }
 
         private void btn_Orders_Click(object sender, EventArgs e)
         {
-            Logger.Log("user clicked on orders button",
-                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
-
-            SidePanel.Height = btn_Orders.Height;
-            SidePanel.Top = btn_Orders.Top;
-
+            SelectButton(btn_Orders, true);
             uc_orders.BringToFront();
         }
 
         private void btn_billing_Click(object sender, EventArgs e)
         {
-            Logger.Log("user clicked on billing button",
-                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+            SelectButton(btn_billing, false);
+            ShowSubMenu(pan_billing);
+        }
 
-            SidePanel.Height = btn_billing.Height;
-            SidePanel.Top = btn_billing.Top;
-
+        private void btn_billingAdd_Click(object sender, EventArgs e)
+        {
+            SelectSideMenuButton(btn_billing, btn_billing, false, 1);
             uc_billing.BringToFront();
             uc_billing.setFocusForBarcode();
         }
 
-        private void btn_sellers_Click(object sender, EventArgs e)
-        {
-            Logger.Log("user clicked on sellers button",
-                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
-
-            SidePanel.Height = btn_sellers.Height;
-            SidePanel.Top = btn_sellers.Top;
-
-            uc_sellers.BringToFront();
-        }
-
         private void btn_editBills_Click(object sender, EventArgs e)
         {
-            Logger.Log("user clicked on edit bill button",
-                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
-
-            SidePanel.Height = btn_editBills.Height;
-            SidePanel.Top = btn_editBills.Top;
-
+            SelectSideMenuButton(btn_billingEdit, btn_billing, false, 2);
             uc_billsEdit.BringToFront();
             uc_billsEdit.SetFocusOnBarCode();
         }
 
+        private void btn_sellers_Click(object sender, EventArgs e)
+        {
+            SelectButton(btn_sellers, true);
+            uc_sellers.BringToFront();
+        }
+
         private void btn_settings_Click(object sender, EventArgs e)
         {
-            Logger.Log("user clicked on settings button",
-                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
-
-            SidePanel.Height = btn_settings.Height;
-            SidePanel.Top = btn_settings.Top;
+            SelectButton(btn_settings, true);
 
             uc_settings.BringToFront();
         }
 
         private void btn_reports_Click(object sender, EventArgs e)
         {
-            Logger.Log("user clicked on reports button",
-                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
-
-            SidePanel.Height = btn_reports.Height;
-            SidePanel.Top = btn_reports.Top;
+            SelectButton(btn_reports, true);
 
             uc_reports.BringToFront();
         }
 
         private void btn_advancedSearch_Click(object sender, EventArgs e)
         {
-            Logger.Log("user clicked on advanced search button",
-                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
-
-            SidePanel.Height = btn_advancedSearch.Height;
-            SidePanel.Top = btn_advancedSearch.Top;
+            SelectButton(btn_advancedSearch, true);
 
             uc_advancedSearch.BringToFront();
         }
 
         private void btn_suppliers_Click(object sender, EventArgs e)
         {
-            Logger.Log("user clicked on suppliers button",
-                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+            SelectButton(btn_suppliers, false);
 
-            SidePanel.Height = btn_suppliers.Height;
-            SidePanel.Top = btn_suppliers.Top;
-
-            uc_suppliers.BringToFront();
+            ShowSubMenu(pan_suppliers);
         }
 
         private void btn_supplierInvoices_Click(object sender, EventArgs e)
         {
-            Logger.Log("user clicked on supplier invoices button",
-                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
-
-            SidePanel.Height = btn_supplierInvoices.Height;
-            SidePanel.Top = btn_supplierInvoices.Top;
+            SelectSideMenuButton(btn_suppliers, btn_suppliers, false, 1);
 
             uc_supplierInvoices.BringToFront();
         }
 
-        private void btn_logout_Click(object sender, EventArgs e)
+        private void btn_suppliersEdit_Click(object sender, EventArgs e)
         {
-            Close();
+            SelectSideMenuButton(btn_suppliers, btn_suppliers, false, 2);
+            uc_suppliers.BringToFront();
+        }
+
+        private void btn_safe_Click(object sender, EventArgs e)
+        {
+            SelectButton(btn_safe, false);
+            uc_safe.BringToFront();
+        }
+
+        private void SelectButton(Button SelectedButton, bool HideAllSubMenus)
+        {
+            Logger.Log($"user clicked on {SelectedButton.Name} button",
+                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+            SidePanel.Height = SelectedButton.Height;
+            SidePanel.Top = SelectedButton.Top;
+
+            if (HideAllSubMenus)
+                HideSubMenu();
+        }
+
+        private void SelectSideMenuButton(Button SelectedButton, Button MainButton, bool HideAllSubMenus, int location)
+        {
+            Logger.Log($"user clicked on {SelectedButton.Name} button",
+                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+            SidePanel.Height = MainButton.Height;
+            SidePanel.Top = MainButton.Top + (location * MainButton.Height);
+
+            if (HideAllSubMenus)
+                HideSubMenu();
+        }
+
+        private void ShowSubMenu(Panel subMenu)
+        {
+            if (subMenu.Visible == false)
+            {
+                HideSubMenu();
+                subMenu.Visible = true;
+            }
+            else
+                subMenu.Visible = false;
+        }
+
+        private void HideSubMenu()
+        {
+            Panel[] AllPanels =
+            {
+                pan_suppliers,
+                pan_billing
+            };
+
+            foreach (Panel panel in AllPanels)
+            {
+                panel.Visible = false;
+            }
         }
 
         private void Main_FormClosing(object sender, FormClosingEventArgs e)

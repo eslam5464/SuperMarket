@@ -143,6 +143,7 @@
     <Compile Include="Classes\Models\LogModel.cs" />
     <Compile Include="Classes\Models\OrderModel.cs" />
     <Compile Include="Classes\Models\ProductModel.cs" />
+    <Compile Include="Classes\Models\SafeModel.cs" />
     <Compile Include="Classes\Models\SupplierInvoiceModel.cs" />
     <Compile Include="Classes\Models\SupplierInvoiceProductModel.cs" />
     <Compile Include="Classes\Models\SupplierModel.cs" />
