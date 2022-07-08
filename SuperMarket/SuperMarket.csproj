@@ -144,6 +144,7 @@
     <Compile Include="Classes\Models\OrderModel.cs" />
     <Compile Include="Classes\Models\ProductModel.cs" />
     <Compile Include="Classes\Models\SafeModel.cs" />
+    <Compile Include="Classes\Models\SafeTransactionModel.cs" />
     <Compile Include="Classes\Models\SupplierInvoiceModel.cs" />
     <Compile Include="Classes\Models\SupplierInvoiceProductModel.cs" />
     <Compile Include="Classes\Models\SupplierModel.cs" />
@@ -194,9 +195,6 @@
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <Compile Include="SuperMarketDataSet.cs">
-      <DependentUpon>SuperMarketDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="SuperMarketDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

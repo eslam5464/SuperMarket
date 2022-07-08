@@ -387,6 +387,14 @@ namespace SuperMarket.UserControls
                     };
 
                     Classes.DataAccess.SupplierInvoice.SaveSupplierInvoice(supplierInvoice);
+
+
+                    List<ProductModel> AdjustedProuduct = Classes.DataAccess.Products
+                          .GetProductParameter("Id", lastSupplierProduct.ProductId.ToString());
+
+                    AdjustedProuduct[0].Quantity += lastSupplierProduct.Quantity;
+
+                    Classes.DataAccess.Products.UpdateProduct(AdjustedProuduct[0]);
                 }
                 ResetAll();
 

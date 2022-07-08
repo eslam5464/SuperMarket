@@ -278,12 +278,15 @@ namespace SuperMarket.UserControls
                     long ProductID = long.Parse(productsDataGridView.Rows[RowIndex].Cells["Id"].Value.ToString()),
                         CategoryID = long.Parse(productsDataGridView.Rows[RowIndex].Cells["CategoryId"].Value.ToString());
 
+                    string CategoryName = "";
+                    if (productsDataGridView.Rows[RowIndex].Cells["CategoryName"].Value != null)
+                        CategoryName = productsDataGridView.Rows[RowIndex].Cells["CategoryName"].Value.ToString();
+
                     string ProductName = productsDataGridView.Rows[RowIndex].Cells["ProductName_"].Value.ToString(),
                         ProductPrice = productsDataGridView.Rows[RowIndex].Cells["Price"].Value.ToString(),
                         ProductQuantity = productsDataGridView.Rows[RowIndex].Cells["Quantity"].Value.ToString(),
                         ProductDescription = productsDataGridView.Rows[RowIndex].Cells["Description"].Value.ToString(),
                         ProductBarcode = productsDataGridView.Rows[RowIndex].Cells["BarCode"].Value.ToString(),
-                        CategoryName = productsDataGridView.Rows[RowIndex].Cells["CategoryName"].Value.ToString(),
                         ProductQuantityMin = productsDataGridView.Rows[RowIndex].Cells["QuantityMinimum"].Value.ToString();
 
                     Logger.Log($"user removed product: {ProductName} with id: {ProductID}",
