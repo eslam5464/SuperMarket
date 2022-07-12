@@ -2,7 +2,6 @@
 using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -17,7 +16,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     var output = cnn.Query<CategoryModel>($"SELECT TOP {MaxRows} * FROM Categories WHERE {Parameter} = N'{Condition}'", new DynamicParameters());
                     return output.ToList();
@@ -35,7 +34,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     if (LimitRows)
                     {
@@ -61,7 +60,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     var output = cnn.Query<CategoryModel>($"SELECT TOP {MaxRows} * FROM Categories", new DynamicParameters());
                     return output.ToList();
@@ -75,13 +74,14 @@ namespace SuperMarket.Classes.DataAccess
             return new List<CategoryModel>();
         }
 
-        public static void SaveCategory(CategoryModel Category)
+        public async static Task SaveCategory(CategoryModel Category)
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
-                    cnn.Execute($"INSERT INTO Categories (Name, CreationDate) VALUES (@Name, '{DateTime.Now}')", Category);
+                    await Task.Run(() => cnn.Execute($"INSERT INTO Categories (Name, CreationDate) " +
+                        $"VALUES (@Name, '{DateTime.Now}')", Category));
                 }
             }
             catch (Exception ex)
@@ -91,13 +91,14 @@ namespace SuperMarket.Classes.DataAccess
             }
         }
 
-        public static void UpdateCategory(CategoryModel Category)
+        public async static Task UpdateCategory(CategoryModel Category)
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
-                    cnn.Execute($"UPDATE Categories SET Name = @Name WHERE Id = @Id", Category);
+                    await Task.Run(() => cnn.Execute($"UPDATE Categories SET Name = @Name, StorageId = @StorageId, StorageName = @StorageName " +
+                        $"WHERE Id = @Id", Category));
                 }
             }
             catch (Exception ex)
@@ -107,13 +108,13 @@ namespace SuperMarket.Classes.DataAccess
             }
         }
 
-        internal static void RemoveCategory(long categoryID)
+        internal async static Task RemoveCategory(long categoryID)
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
-                    cnn.Execute($"DELETE FROM Categories WHERE Id = {categoryID}");
+                    await Task.Run(() => cnn.Execute($"DELETE FROM Categories WHERE Id = {categoryID}"));
                 }
             }
             catch (Exception ex)
@@ -121,11 +122,6 @@ namespace SuperMarket.Classes.DataAccess
                 Logger.Log($"while removing a category with id = {categoryID} error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Categories", Logger.ERROR);
             }
-        }
-
-        private static string LoadConnectionString(string id = "Default")
-        {
-            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
     }
 }

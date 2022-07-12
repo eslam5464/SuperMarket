@@ -1,7 +1,6 @@
 ﻿using Dapper;
 using SuperMarket.Classes.Models;
 using System;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -15,7 +14,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     cnn.Execute($"INSERT INTO {TableName} (SupplierId, PaymentMethod, AmountPaid, AmountLeft," +
                         $"AmountTotal, PaymentStatus, SupplierInvoiceProductId, CreationDate) VALUES " +
@@ -28,11 +27,6 @@ namespace SuperMarket.Classes.DataAccess
                 Logger.Log($"while saving a supplier invoice for supplier with id = {supplierInvoice.SupplierId} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
             }
-        }
-
-        private static string LoadConnectionString(string id = "Default")
-        {
-            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
     }
 }

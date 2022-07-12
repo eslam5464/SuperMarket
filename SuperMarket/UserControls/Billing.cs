@@ -7,7 +7,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarket.UserControls
@@ -343,7 +342,7 @@ namespace SuperMarket.UserControls
 
                 if (productSearch.Count != 0)
                 {
-                    txt_productprice.Text = "" + productSearch[0].Price;
+                    txt_productprice.Text = "" + productSearch[0].PriceSell;
                     txt_productBarCode.Text = "" + productSearch[0].BarCode;
                     txt_productName.Text = productSearch[0].Name;
                     txt_productquantity.Text = "" + 1;
@@ -590,7 +589,7 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void btn_save_Click(object sender, EventArgs e)
+        private async void btn_save_Click(object sender, EventArgs e)
         {
             List<InvoiceModel> datasource = new List<InvoiceModel>();
             try
@@ -607,10 +606,10 @@ namespace SuperMarket.UserControls
                         {
                             foreach (InvoiceModel invoice in datasource)
                             {
-                                Classes.DataAccess.Invoices.AddToInvoice(invoice);
+                                await Classes.DataAccess.Invoices.AddToInvoice(invoice);
                                 ProductModel ProductSearch = Classes.DataAccess.Products.GetProductParameter("Id", "" + invoice.ProductID).FirstOrDefault();
                                 ProductSearch.Quantity -= invoice.ProductQuantity;
-                                Classes.DataAccess.Products.UpdateProduct(ProductSearch);
+                                await Classes.DataAccess.Products.UpdateProduct(ProductSearch);
                             }
 
                             OrderModel order = new OrderModel
@@ -648,7 +647,7 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void cb_defaultCST_CheckedChanged(object sender, EventArgs e)
+        private async void cb_defaultCST_CheckedChanged(object sender, EventArgs e)
         {
             TextBox[] AllTextBoxes =
             {
@@ -670,7 +669,7 @@ namespace SuperMarket.UserControls
                         ContactNo = "000000000",
                         Name = "عميل افتراضي"
                     };
-                    Classes.DataAccess.Customers.SaveCustomer(customer);
+                    await Classes.DataAccess.Customers.SaveCustomer(customer);
 
                     CustomerSearch = Classes.DataAccess.Customers.GetCustomerParameter("Name", "عميل افتراضي");
                     if (CustomerSearch.Count != 0)

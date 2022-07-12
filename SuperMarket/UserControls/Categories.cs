@@ -19,7 +19,7 @@ namespace SuperMarket.UserControls
         private ContextMenu contextMenu = new ContextMenu();
         private DataGridViewCell ContextMenuSelectedCell;
 
-        private void btn_save_Click(object sender, EventArgs e)
+        private async void btn_save_Click(object sender, EventArgs e)
         {
             Control FocusedObject = (Control)sender;
 
@@ -28,73 +28,90 @@ namespace SuperMarket.UserControls
 
             if (txt_categoriename.Text.Trim() != "")
             {
-                if (!txt_categorieid.Enabled)
+                if (txt_storageNameSearch.SelectedIndex != -1)
                 {
-                    if (MessageBox.Show($"هل تريد ان تعدل {txt_categoriename.Text} ", "انتظر",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Information) == DialogResult.Yes)
+                    if (!txt_categorieid.Enabled)
                     {
-                        Logger.Log($"user is trying to edit category: {txt_categoriename.Text}",
+                        if (MessageBox.Show($"هل تريد ان تعدل {txt_categoriename.Text} ", "انتظر",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Information) == DialogResult.Yes)
+                        {
+                            Logger.Log($"user is trying to edit category: {txt_categoriename.Text}",
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+                            CategoryModel category = new CategoryModel
+                            {
+                                Id = long.Parse(txt_categorieid.Text),
+                                Name = txt_categoriename.Text,
+                                StorageId = int.Parse(txt_storageNameSearch.SelectedValue.ToString()),
+                                StorageName = txt_storageNameSearch.Text
+                            };
+                            await Classes.DataAccess.Categories.UpdateCategory(category);
+
+
+                            LoadDataGrid(Classes.DataAccess.Categories.GetCategoryParameter("Id", "" + category.Id));
+                        }
+                        ResetTextBoxes(true, false);
+
+                        EditMode(false);
+                    }
+                    else
+                    {
+                        Logger.Log($"user is trying to add category: {txt_categoriename.Text}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-                        CategoryModel category = new CategoryModel
+                        string MsgResponse = $"هل تريد ان تحفظ {txt_categoriename.Text} ";
+
+                        var CategoryResult = Classes.DataAccess.Categories.GetCategoryParameter("Name", txt_categoriename.Text);
+
+                        if (CategoryResult.Count > 0)
+                            MsgResponse += "لانه يوجد تصنيف بهذا الاسم";
+
+                        if (MessageBox.Show(MsgResponse, "انتظر",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Information) == DialogResult.Yes)
                         {
-                            Id = long.Parse(txt_categorieid.Text),
-                            Name = txt_categoriename.Text
-                        };
-                        Classes.DataAccess.Categories.UpdateCategory(category);
+                            CategoryModel category = new CategoryModel
+                            {
+                                Name = txt_categoriename.Text
+                            };
+                            await Classes.DataAccess.Categories.SaveCategory(category);
 
-                        LoadDataGrid(Classes.DataAccess.Categories.GetCategoryParameter("Id", "" + category.Id));
+                            LoadDataGrid(Classes.DataAccess.Categories.LoadCategories());
 
+                            ResetTextBoxes(true, false);
 
-
-                        ResetTextBoxes();
+                            Logger.Log($"user added category: {category.Name}",
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                        }
+                        else
+                            Logger.Log($"user didnt add category: {txt_categoriename.Text}",
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
                     }
-
-                    EditMode(false);
                 }
                 else
                 {
-                    Logger.Log($"user is trying to add category: {txt_categoriename.Text}",
-                        System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
-
-                    string MsgResponse = $"هل تريد ان تحفظ {txt_categoriename.Text} ";
-
-                    var CategoryResult = Classes.DataAccess.Categories.GetCategoryParameter("Name", txt_categoriename.Text);
-
-                    if (CategoryResult.Count > 0)
-                        MsgResponse += "لانه يوجد تصنيف بهذا الاسم";
-
-                    if (MessageBox.Show(MsgResponse, "انتظر",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Information) == DialogResult.Yes)
-                    {
-                        CategoryModel category = new CategoryModel
-                        {
-                            Name = txt_categoriename.Text
-                        };
-                        Classes.DataAccess.Categories.SaveCategory(category);
-
-                        LoadDataGrid(Classes.DataAccess.Categories.LoadCategories());
-
-                        ResetTextBoxes();
-
-                        Logger.Log($"user added category: {category.Name}",
-                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
-                    }
-                    else
-                        Logger.Log($"user didnt add category: {txt_categoriename.Text}",
-                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                    MessageBox.Show("برجاء اختيار المخزن", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
                 MessageBox.Show("برجاء ادخال اسم التصنيف", "حاول مره أخرى", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void ResetTextBoxes()
+        private void ResetTextBoxes(bool ResetCategories, bool ResetStorages)
         {
-            txt_categoriename.Text = "";
-            txt_categorieid.Text = "";
+            if (ResetStorages)
+            {
+                txt_storageName.Text = "";
+            }
+
+            if (ResetCategories)
+            {
+                txt_categoriename.Text = "";
+                txt_categorieid.Text = "";
+            }
+
+            txt_storageNameSearch.SelectedIndex = -1;
         }
 
         private void LoadDataGrid(List<CategoryModel> Categories)
@@ -104,6 +121,8 @@ namespace SuperMarket.UserControls
 
             categoriesDataGridView.Columns["Id"].HeaderText = "رقم التصنيف";
             categoriesDataGridView.Columns["CategoryName"].HeaderText = "اسم التصنيف";
+            categoriesDataGridView.Columns["StorageId"].HeaderText = "الرقم التعريفي للمخزن";
+            categoriesDataGridView.Columns["StorageName"].HeaderText = "اسم المخزن";
             categoriesDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه التصنيف";
             categoriesDataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
 
@@ -117,7 +136,30 @@ namespace SuperMarket.UserControls
 
             LoadDataGrid(Classes.DataAccess.Categories.LoadCategories());
 
+            RefreshComboBoxes();
+
             contextMenu = Methods.SetupContextMenuCopy(contextMenu, MenuItemCopyOption_Click);
+        }
+
+        internal void RefreshComboBoxes()
+        {
+            ComboBox[] AllComboBoxes =
+            {
+                txt_storageNameSearch,
+                txt_storageNameEdit,
+            };
+
+            List<StorageModel> AllStoragesData;
+
+            foreach (ComboBox comboBox in AllComboBoxes)
+            {
+                AllStoragesData = Classes.DataAccess.Storage.LoadStorages(false);
+                comboBox.DataSource = null;
+                comboBox.DataSource = AllStoragesData;
+                comboBox.ValueMember = "Id";
+                comboBox.DisplayMember = "Name";
+                comboBox.SelectedIndex = -1;
+            }
         }
 
         private void MenuItemCopyOption_Click(Object sender, EventArgs e)
@@ -153,9 +195,9 @@ namespace SuperMarket.UserControls
         {
             label2.ForeColor = appColor;
             label3.ForeColor = appColor;
-            btn_edit.BackColor = appColor;
-            btn_remove.BackColor = appColor;
-            btn_save.BackColor = appColor;
+            btn_categoryEdit.BackColor = appColor;
+            btn_CategoryRemove.BackColor = appColor;
+            btn_saveCategory.BackColor = appColor;
             //db_categoriesDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
             categoriesDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
         }
@@ -188,7 +230,7 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void btn_remove_Click(object sender, EventArgs e)
+        private async void btn_remove_Click(object sender, EventArgs e)
         {
             if (categoriesDataGridView != null)
             {
@@ -206,7 +248,7 @@ namespace SuperMarket.UserControls
                                 MessageBoxButtons.YesNo,
                                 MessageBoxIcon.Information) == DialogResult.Yes)
                     {
-                        Classes.DataAccess.Categories.RemoveCategory(CategoryID);
+                        await Classes.DataAccess.Categories.RemoveCategory(CategoryID);
                         LoadDataGrid(Classes.DataAccess.Categories.LoadCategories());
 
                         Logger.Log($"user has removed {CategoryName} with id: {CategoryID}",
@@ -239,18 +281,26 @@ namespace SuperMarket.UserControls
         {
             if (State)
             {
-                btn_edit.BackColor = Color.Silver;
-                btn_remove.BackColor = Color.Silver;
+                btn_categoryEdit.BackColor = Color.Silver;
+                btn_CategoryRemove.BackColor = Color.Silver;
             }
             else
             {
-                btn_edit.BackColor = Properties.Settings.Default.AppColor;
-                btn_remove.BackColor = Properties.Settings.Default.AppColor;
+                btn_categoryEdit.BackColor = Properties.Settings.Default.AppColor;
+                btn_CategoryRemove.BackColor = Properties.Settings.Default.AppColor;
             }
 
+            txt_storageName.Enabled = !State;
+            txt_storageNameEdit.Enabled = !State;
             txt_categorieid.Enabled = !State;
-            btn_edit.Enabled = !State;
-            btn_remove.Enabled = !State;
+
+            btn_saveStorage.Enabled = !State;
+            btn_storageDelete.Enabled = !State;
+            btn_storageEdit.Enabled = !State;
+            btn_categoryEdit.Enabled = !State;
+            btn_CategoryRemove.Enabled = !State;
+            btn_exportPDF.Enabled = !State;
+
             pcb_searchID.Enabled = !State;
             pcb_searchName.Enabled = !State;
         }
@@ -260,7 +310,7 @@ namespace SuperMarket.UserControls
             if (e.KeyCode == Keys.Enter)
             {
                 e.SuppressKeyPress = true;
-                btn_save.PerformClick();
+                btn_saveCategory.PerformClick();
             }
         }
 
@@ -317,6 +367,121 @@ namespace SuperMarket.UserControls
         private void btn_exportPDF_Click(object sender, EventArgs e)
         {
             Task.Run(() => Methods.ExportDGVtoPDF(categoriesDataGridView, "الاصناف"));
+        }
+
+        private void categoriesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void categoriesBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_categorieid_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_categoriename_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txt_storageName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void btn_saveStorage_Click(object sender, EventArgs e)
+        {
+            if (txt_storageName.Text.Trim() != "")
+            {
+                string MsgResponse = $"هل تريد ان تحفظ {txt_storageName.Text} ";
+
+                var CategoryResult = Classes.DataAccess.Storage.GetStorageParameter("Name", txt_storageName.Text);
+
+                if (CategoryResult.Count > 0)
+                    MsgResponse += "لانه يوجد تصنيف بهذا الاسم";
+
+                if (MessageBox.Show(MsgResponse, "انتظر",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    StorageModel storage = new StorageModel
+                    {
+                        Name = txt_storageName.Text,
+                    };
+                    await Classes.DataAccess.Storage.SaveStorage(storage);
+
+                    ResetTextBoxes(false, true);
+
+                    RefreshComboBoxes();
+
+                    Logger.Log($"user added storage: {storage.Name}",
+                        System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                }
+                else
+                    Logger.Log($"user didnt add storage: {txt_storageName.Text}",
+                        System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+            }
+            else
+                MessageBox.Show("برجاء ادخال اسم المخزن", "حاول مره أخرى", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private async void btn_storageDelete_Click(object sender, EventArgs e)
+        {
+            if (txt_storageNameEdit.SelectedIndex != -1)
+            {
+                if (MessageBox.Show($"هل انت متأكد من مسح {txt_storageName.Text} ", "انتظر",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    await Classes.DataAccess.Storage.RemoveStorage(int.Parse(txt_storageNameEdit.SelectedValue.ToString()));
+                    RefreshComboBoxes();
+                }
+            }
+            else
+                MessageBox.Show("برجاءاختيار مخزن للحذف", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btn_storageEdit_Click(object sender, EventArgs e)
+        {
+            if (txt_storageNameEdit.SelectedIndex != -1)
+            {
+                string StorageNameEditResult = Microsoft.VisualBasic.Interaction.InputBox("",
+                    $"تعديل اسم المخزن {txt_storageNameEdit.Text}", txt_storageNameEdit.Text);
+
+                if (StorageNameEditResult != "")
+                {
+                    List<StorageModel> StorageSearch =
+                        Classes.DataAccess.Storage.GetStorageParameter("Id", txt_storageNameEdit.SelectedValue.ToString());
+
+                    if (StorageSearch.Count > 0)
+                    {
+                        StorageSearch[0].Name = StorageNameEditResult;
+                        Classes.DataAccess.Storage.UpdateStorage(StorageSearch[0]);
+                        RefreshComboBoxes();
+                        MessageBox.Show("تم التعديل", "عمليه ناجحه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("لا يمكن تعديل اسم المخزن لانه غير موجود", "حدث خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("test");
+                }
+            }
+            else
+                MessageBox.Show("برجاءاختيار مخزن للتعديل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void txt_storageNameEdit_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

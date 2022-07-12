@@ -97,6 +97,7 @@
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="QRCoder, Version=1.4.3.0, Culture=neutral, PublicKeyToken=c4ed5b9ae8358a28, processorArchitecture=MSIL">
@@ -135,6 +136,7 @@
     <Compile Include="Classes\DataAccess\Invoices.cs" />
     <Compile Include="Classes\DataAccess\Orders.cs" />
     <Compile Include="Classes\DataAccess\Products.cs" />
+    <Compile Include="Classes\DataAccess\Storage.cs" />
     <Compile Include="Classes\DataAccess\SupplierInvoice.cs" />
     <Compile Include="Classes\DataAccess\SupplierInvoiceProduct.cs" />
     <Compile Include="Classes\DataAccess\Suppliers.cs" />
@@ -151,6 +153,7 @@
     <Compile Include="Classes\Models\ProductModel.cs" />
     <Compile Include="Classes\Models\SafeModel.cs" />
     <Compile Include="Classes\Models\SafeTransactionModel.cs" />
+    <Compile Include="Classes\Models\StorageModel.cs" />
     <Compile Include="Classes\Models\SupplierInvoiceModel.cs" />
     <Compile Include="Classes\Models\SupplierInvoiceProductModel.cs" />
     <Compile Include="Classes\Models\SupplierModel.cs" />

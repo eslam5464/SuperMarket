@@ -2,7 +2,6 @@
 using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -16,7 +15,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     var output = cnn.Query<OrderModel>($"SELECT TOP {MaxRows} * FROM Orders WHERE {Parameter} = N'{Condition}'", new DynamicParameters());
                     return output.ToList();
@@ -34,7 +33,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     cnn.Execute($"INSERT INTO Orders (InvoiceDate, InvoiceId, CustomerId, CustomerName, " +
                         $"ContactNumber, Address, GrandTotal, CreatedByUserId, CreatedByUserFullName) VALUES (@InvoiceDate, @InvoiceId, @CustomerId, @CustomerName, " +
@@ -52,7 +51,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     if (LimitRows)
                     {
@@ -73,11 +72,6 @@ namespace SuperMarket.Classes.DataAccess
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Orders", Logger.ERROR);
             }
             return new List<OrderModel>();
-        }
-
-        private static string LoadConnectionString(string id = "Default")
-        {
-            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
     }
 }

@@ -2,10 +2,10 @@
 using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SuperMarket.Classes.DataAccess
 {
@@ -16,7 +16,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     if (LimitRows)
                     {
@@ -39,14 +39,14 @@ namespace SuperMarket.Classes.DataAccess
             return new List<CustomerModel>();
         }
 
-        internal static void SaveCustomer(CustomerModel customer)
+        internal async static Task SaveCustomer(CustomerModel customer)
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
-                    cnn.Execute($"INSERT INTO Customers (Name, ContactNo, Address, CreationDate) VALUES " +
-                        $"(@Name, @ContactNo, @Address, '{DateTime.Now}')", customer);
+                    await Task.Run(() => cnn.Execute($"INSERT INTO Customers (Name, ContactNo, Address, CreationDate) VALUES " +
+                        $"(@Name, @ContactNo, @Address, '{DateTime.Now}')", customer));
                 }
             }
             catch (Exception ex)
@@ -56,13 +56,14 @@ namespace SuperMarket.Classes.DataAccess
             }
         }
 
-        internal static void UpdateCustomer(CustomerModel customer)
+        internal async static Task UpdateCustomer(CustomerModel customer)
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
-                    cnn.Execute($"UPDATE Customers SET Name = @Name, ContactNo = @ContactNo, Address = @Address WHERE Id = @Id", customer);
+                    await Task.Run(() => cnn.Execute($"UPDATE Customers SET Name = @Name, ContactNo = @ContactNo," +
+                        $" Address = @Address WHERE Id = @Id", customer));
                 }
             }
             catch (Exception ex)
@@ -76,7 +77,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     var output = cnn.Query<CustomerModel>($"SELECT TOP {MaxRows} * FROM Customers WHERE {Parameter} = N'{Condition}'", new DynamicParameters());
                     return output.ToList();
@@ -94,7 +95,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     var output = cnn.Query<CustomerModel>($"SELECT TOP {MaxRows} * FROM Customers WHERE Id = {CustomerID}", new DynamicParameters());
                     return output.ToList();
@@ -108,13 +109,13 @@ namespace SuperMarket.Classes.DataAccess
             return new List<CustomerModel>();
         }
 
-        internal static void RemoveCustomer(long customerID)
+        internal async static Task RemoveCustomer(long customerID)
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
-                    cnn.Execute($"DELETE FROM Customers WHERE Id= {customerID}");
+                    await Task.Run(() => cnn.Execute($"DELETE FROM Customers WHERE Id= {customerID}"));
                 }
             }
             catch (Exception ex)
@@ -122,11 +123,6 @@ namespace SuperMarket.Classes.DataAccess
                 Logger.Log($"while removing a customer with id = {customerID} error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Customers", Logger.ERROR);
             }
-        }
-
-        private static string LoadConnectionString(string id = "Default")
-        {
-            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
     }
 }

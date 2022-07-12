@@ -34,7 +34,7 @@ namespace SuperMarket.UserControls
             dataGridView.Columns["CreationDate"].Width += 5;
         }
 
-        private void btn_save_Click(object sender, EventArgs e)
+        private async void btn_save_Click(object sender, EventArgs e)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace SuperMarket.UserControls
                                 Address = txt_address.Text,
                                 ContactNo = txt_contact.Text
                             };
-                            Classes.DataAccess.Customers.UpdateCustomer(customer);
+                            await Classes.DataAccess.Customers.UpdateCustomer(customer);
 
                             LoadDataGrid(Classes.DataAccess.Customers.GetCustomerParameter("Id", "" + customer.Id), customersDataGridView);
 
@@ -93,7 +93,7 @@ namespace SuperMarket.UserControls
                                 Address = txt_address.Text,
                                 ContactNo = txt_contact.Text
                             };
-                            Classes.DataAccess.Customers.SaveCustomer(customer);
+                            await Classes.DataAccess.Customers.SaveCustomer(customer);
 
                             LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers(true), customersDataGridView);
 
@@ -217,7 +217,7 @@ namespace SuperMarket.UserControls
             btn_remove.Enabled = !State;
         }
 
-        private void btn_remove_Click(object sender, EventArgs e)
+        private async void btn_remove_Click(object sender, EventArgs e)
         {
 
             if (customersDataGridView != null)
@@ -235,7 +235,7 @@ namespace SuperMarket.UserControls
                                 MessageBoxButtons.YesNo,
                                 MessageBoxIcon.Information) == DialogResult.Yes)
                     {
-                        Classes.DataAccess.Customers.RemoveCustomer(CustomerID);
+                        await Classes.DataAccess.Customers.RemoveCustomer(CustomerID);
                         LoadDataGrid(Classes.DataAccess.Customers.LoadCustomers(true), customersDataGridView);
 
                         Logger.Log($"user removed {CustomerName} with id: {CustomerID}",

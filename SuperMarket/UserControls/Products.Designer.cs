@@ -30,9 +30,8 @@ namespace SuperMarket.UserControls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txt_categoriename = new System.Windows.Forms.ComboBox();
             this.btn_remove = new System.Windows.Forms.Button();
             this.btn_edit = new System.Windows.Forms.Button();
@@ -43,13 +42,25 @@ namespace SuperMarket.UserControls
             this.txt_productquantity = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.txt_productprice = new System.Windows.Forms.TextBox();
+            this.txt_productPriceSell = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txt_productname = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txt_productid = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.productsDataGridView = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BarCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductName_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantityMinimum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PriceWholesale = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PriceSell = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CategoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.superMarketDataSet = new SuperMarket.SuperMarketDataSet();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -68,24 +79,16 @@ namespace SuperMarket.UserControls
             this.button2 = new System.Windows.Forms.Button();
             this.txt_productquantityMin = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.productsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BarCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductName_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QuantityMinimum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CategoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt_productPriceWholeSale = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productsDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchBarCode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // txt_categoriename
@@ -208,9 +211,9 @@ namespace SuperMarket.UserControls
             this.label1.ForeColor = System.Drawing.Color.Purple;
             this.label1.Location = new System.Drawing.Point(691, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(86, 23);
+            this.label1.Size = new System.Drawing.Size(111, 23);
             this.label1.TabIndex = 184;
-            this.label1.Text = ":سعر المنتج";
+            this.label1.Text = ":سعر بيع المنتج";
             // 
             // label4
             // 
@@ -224,20 +227,20 @@ namespace SuperMarket.UserControls
             this.label4.TabIndex = 185;
             this.label4.Text = ":كميه المنتج";
             // 
-            // txt_productprice
+            // txt_productPriceSell
             // 
-            this.txt_productprice.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txt_productprice.BackColor = System.Drawing.Color.White;
-            this.txt_productprice.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.txt_productprice.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_productprice.ForeColor = System.Drawing.Color.Black;
-            this.txt_productprice.Location = new System.Drawing.Point(474, 40);
-            this.txt_productprice.Multiline = true;
-            this.txt_productprice.Name = "txt_productprice";
-            this.txt_productprice.Size = new System.Drawing.Size(341, 45);
-            this.txt_productprice.TabIndex = 186;
-            this.txt_productprice.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_products_KeyDown);
-            this.txt_productprice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_products_KeyPress);
+            this.txt_productPriceSell.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_productPriceSell.BackColor = System.Drawing.Color.White;
+            this.txt_productPriceSell.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txt_productPriceSell.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_productPriceSell.ForeColor = System.Drawing.Color.Black;
+            this.txt_productPriceSell.Location = new System.Drawing.Point(650, 40);
+            this.txt_productPriceSell.Multiline = true;
+            this.txt_productPriceSell.Name = "txt_productPriceSell";
+            this.txt_productPriceSell.Size = new System.Drawing.Size(165, 45);
+            this.txt_productPriceSell.TabIndex = 186;
+            this.txt_productPriceSell.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_products_KeyDown);
+            this.txt_productPriceSell.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_products_KeyPress);
             // 
             // label3
             // 
@@ -308,14 +311,14 @@ namespace SuperMarket.UserControls
             this.productsDataGridView.AllowUserToResizeRows = false;
             this.productsDataGridView.AutoGenerateColumns = false;
             this.productsDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.productsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.productsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.productsDataGridView.ColumnHeadersHeight = 40;
             this.productsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -323,20 +326,21 @@ namespace SuperMarket.UserControls
             this.ProductName_,
             this.Quantity,
             this.QuantityMinimum,
-            this.Price,
             this.Description,
+            this.PriceWholesale,
+            this.PriceSell,
             this.CategoryID,
             this.CategoryName,
             this.CreationDate});
             this.productsDataGridView.DataSource = this.productsBindingSource;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.productsDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.productsDataGridView.DefaultCellStyle = dataGridViewCellStyle12;
             this.productsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.productsDataGridView.EnableHeadersVisualStyles = false;
             this.productsDataGridView.GridColor = System.Drawing.Color.Silver;
@@ -350,6 +354,88 @@ namespace SuperMarket.UserControls
             this.productsDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.productsDataGridView_CellMouseClick);
             this.productsDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_productDataGridView_ColumnHeaderMouseClick);
             this.productsDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_productDataGridView_ColumnHeaderMouseDoubleClick);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            // 
+            // BarCode
+            // 
+            this.BarCode.DataPropertyName = "BarCode";
+            this.BarCode.HeaderText = "BarCode";
+            this.BarCode.Name = "BarCode";
+            this.BarCode.ReadOnly = true;
+            // 
+            // ProductName_
+            // 
+            this.ProductName_.DataPropertyName = "Name";
+            this.ProductName_.HeaderText = "Name";
+            this.ProductName_.Name = "ProductName_";
+            this.ProductName_.ReadOnly = true;
+            // 
+            // Quantity
+            // 
+            this.Quantity.DataPropertyName = "Quantity";
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            // 
+            // QuantityMinimum
+            // 
+            this.QuantityMinimum.DataPropertyName = "QuantityMinimum";
+            this.QuantityMinimum.HeaderText = "QuantityMinimum";
+            this.QuantityMinimum.Name = "QuantityMinimum";
+            this.QuantityMinimum.ReadOnly = true;
+            // 
+            // Description
+            // 
+            this.Description.DataPropertyName = "Description";
+            this.Description.HeaderText = "Description";
+            this.Description.Name = "Description";
+            this.Description.ReadOnly = true;
+            // 
+            // PriceWholesale
+            // 
+            this.PriceWholesale.DataPropertyName = "PriceWholesale";
+            this.PriceWholesale.HeaderText = "PriceWholesale";
+            this.PriceWholesale.Name = "PriceWholesale";
+            this.PriceWholesale.ReadOnly = true;
+            // 
+            // PriceSell
+            // 
+            this.PriceSell.DataPropertyName = "PriceSell";
+            this.PriceSell.HeaderText = "PriceSell";
+            this.PriceSell.Name = "PriceSell";
+            this.PriceSell.ReadOnly = true;
+            // 
+            // CategoryID
+            // 
+            this.CategoryID.DataPropertyName = "CategoryID";
+            this.CategoryID.HeaderText = "CategoryID";
+            this.CategoryID.Name = "CategoryID";
+            this.CategoryID.ReadOnly = true;
+            // 
+            // CategoryName
+            // 
+            this.CategoryName.DataPropertyName = "CategoryName";
+            this.CategoryName.HeaderText = "CategoryName";
+            this.CategoryName.Name = "CategoryName";
+            this.CategoryName.ReadOnly = true;
+            // 
+            // CreationDate
+            // 
+            this.CreationDate.DataPropertyName = "CreationDate";
+            this.CreationDate.HeaderText = "CreationDate";
+            this.CreationDate.Name = "CreationDate";
+            this.CreationDate.ReadOnly = true;
+            // 
+            // productsBindingSource
+            // 
+            this.productsBindingSource.DataMember = "Products";
+            this.productsBindingSource.DataSource = this.superMarketDataSet;
             // 
             // superMarketDataSet
             // 
@@ -500,6 +586,9 @@ namespace SuperMarket.UserControls
             this.tableAdapterManager.InvoicesTableAdapter = null;
             this.tableAdapterManager.OrdersTableAdapter = null;
             this.tableAdapterManager.ProductsTableAdapter = this.productsTableAdapter;
+            this.tableAdapterManager.SafeTableAdapter = null;
+            this.tableAdapterManager.SafeTransactionTableAdapter = null;
+            this.tableAdapterManager.StorageTableAdapter = null;
             this.tableAdapterManager.SupplierInvoiceProductTableAdapter = null;
             this.tableAdapterManager.SupplierInvoicesTableAdapter = null;
             this.tableAdapterManager.SuppliersTableAdapter = null;
@@ -569,88 +658,51 @@ namespace SuperMarket.UserControls
             this.label13.TabIndex = 210;
             this.label13.Text = ":اقل كمية للمنتج";
             // 
-            // productsBindingSource
+            // txt_productPriceWholeSale
             // 
-            this.productsBindingSource.DataMember = "Products";
-            this.productsBindingSource.DataSource = this.superMarketDataSet;
+            this.txt_productPriceWholeSale.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_productPriceWholeSale.BackColor = System.Drawing.Color.White;
+            this.txt_productPriceWholeSale.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txt_productPriceWholeSale.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_productPriceWholeSale.ForeColor = System.Drawing.Color.Black;
+            this.txt_productPriceWholeSale.Location = new System.Drawing.Point(474, 40);
+            this.txt_productPriceWholeSale.Multiline = true;
+            this.txt_productPriceWholeSale.Name = "txt_productPriceWholeSale";
+            this.txt_productPriceWholeSale.Size = new System.Drawing.Size(165, 45);
+            this.txt_productPriceWholeSale.TabIndex = 211;
+            this.txt_productPriceWholeSale.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_products_KeyDown);
+            this.txt_productPriceWholeSale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_products_KeyPress);
             // 
-            // Id
+            // label14
             // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.Purple;
+            this.label14.Location = new System.Drawing.Point(511, 9);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(122, 23);
+            this.label14.TabIndex = 212;
+            this.label14.Text = ":سعر جمله المنتج";
             // 
-            // BarCode
+            // label15
             // 
-            this.BarCode.DataPropertyName = "BarCode";
-            this.BarCode.HeaderText = "BarCode";
-            this.BarCode.Name = "BarCode";
-            this.BarCode.ReadOnly = true;
-            // 
-            // ProductName_
-            // 
-            this.ProductName_.DataPropertyName = "Name";
-            this.ProductName_.HeaderText = "Name";
-            this.ProductName_.Name = "ProductName_";
-            this.ProductName_.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.DataPropertyName = "Quantity";
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
-            // 
-            // QuantityMinimum
-            // 
-            this.QuantityMinimum.DataPropertyName = "QuantityMinimum";
-            this.QuantityMinimum.HeaderText = "QuantityMinimum";
-            this.QuantityMinimum.Name = "QuantityMinimum";
-            this.QuantityMinimum.ReadOnly = true;
-            // 
-            // Price
-            // 
-            this.Price.DataPropertyName = "Price";
-            this.Price.HeaderText = "Price";
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            // 
-            // Description
-            // 
-            this.Description.DataPropertyName = "Description";
-            this.Description.HeaderText = "Description";
-            this.Description.Name = "Description";
-            this.Description.ReadOnly = true;
-            // 
-            // CategoryID
-            // 
-            this.CategoryID.DataPropertyName = "CategoryID";
-            this.CategoryID.HeaderText = "CategoryID";
-            this.CategoryID.Name = "CategoryID";
-            this.CategoryID.ReadOnly = true;
-            // 
-            // CategoryName
-            // 
-            this.CategoryName.DataPropertyName = "CategoryName";
-            this.CategoryName.HeaderText = "CategoryName";
-            this.CategoryName.Name = "CategoryName";
-            this.CategoryName.ReadOnly = true;
-            // 
-            // CreationDate
-            // 
-            this.CreationDate.DataPropertyName = "CreationDate";
-            dataGridViewCellStyle2.Format = "g";
-            dataGridViewCellStyle2.NullValue = null;
-            this.CreationDate.DefaultCellStyle = dataGridViewCellStyle2;
-            this.CreationDate.HeaderText = "CreationDate";
-            this.CreationDate.Name = "CreationDate";
-            this.CreationDate.ReadOnly = true;
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.Red;
+            this.label15.Location = new System.Drawing.Point(639, 21);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(29, 37);
+            this.label15.TabIndex = 213;
+            this.label15.Text = "*";
             // 
             // Products
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.txt_productPriceWholeSale);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txt_productquantityMin);
             this.Controls.Add(this.button2);
@@ -663,7 +715,7 @@ namespace SuperMarket.UserControls
             this.Controls.Add(this.txt_categoriename);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txt_productquantity);
-            this.Controls.Add(this.txt_productprice);
+            this.Controls.Add(this.txt_productPriceSell);
             this.Controls.Add(this.txt_productname);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
@@ -682,17 +734,18 @@ namespace SuperMarket.UserControls
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txt_productid);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.label15);
             this.MinimumSize = new System.Drawing.Size(1038, 660);
             this.Name = "Products";
             this.Size = new System.Drawing.Size(1038, 660);
             this.Load += new System.EventHandler(this.Products_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.productsDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchBarCode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -712,7 +765,7 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.TextBox txt_productquantity;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txt_productprice;
+        private System.Windows.Forms.TextBox txt_productPriceSell;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txt_productname;
         private System.Windows.Forms.Label label2;
@@ -741,10 +794,14 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.DataGridViewTextBoxColumn ProductName_;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn QuantityMinimum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Price;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PriceWholesale;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PriceSell;
         private System.Windows.Forms.DataGridViewTextBoxColumn CategoryID;
         private System.Windows.Forms.DataGridViewTextBoxColumn CategoryName;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreationDate;
+        private System.Windows.Forms.TextBox txt_productPriceWholeSale;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
     }
 }

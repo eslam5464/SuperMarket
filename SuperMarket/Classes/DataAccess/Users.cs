@@ -2,7 +2,6 @@
 using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -15,7 +14,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     string query = $"SELECT * FROM Users WHERE {Parameter} = N'{Condition}' " +
                         $"AND ActiveState = 1 AND UserLevel != 'admin'";
@@ -35,7 +34,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     if (LimitRows)
                     {
@@ -62,7 +61,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     var output = cnn.Query<UserModel>($"SELECT * FROM Users WHERE ActiveState = 1", new DynamicParameters());
                     return output.ToList();
@@ -80,7 +79,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     var output = cnn.Query<UserModel>($"SELECT * FROM Users WHERE ActiveState = 1 AND " +
                         "UserLevel = 'admin'", new DynamicParameters());
@@ -99,7 +98,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     var output = cnn.Query<UserModel>($"SELECT * FROM Users WHERE ActiveState = 1 AND " +
                         "UserLevel != 'admin'", new DynamicParameters());
@@ -118,7 +117,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     var output = cnn.Query<UserModel>($"SELECT * FROM Users WHERE ActiveState = 0", new DynamicParameters());
                     return output.ToList();
@@ -136,7 +135,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     cnn.Execute("INSERT INTO Users (Username, Password, FullName, UserLevel, Email, Phone, CreationDate, ModifyDate, ActiveState) " +
                         $"VALUES (@Username, @Password, @FullName, @UserLevel, @Email, @Phone, '{DateTime.Now}', '{DateTime.Now}', 1)", User);
@@ -153,7 +152,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     cnn.Execute($"UPDATE Users SET Username = @Username, Password = @Password, ModifyDate = {DateTime.Now}," +
                         $"FullName = @FullName, Phone = @Phone, UserLevel = @UserLevel WHERE Id = @Id", User);
@@ -170,7 +169,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     cnn.Execute($"UPDATE Users SET ActiveState = 0, ModifyDate = {DateTime.Now} WHERE Id = {UserID}");
                 }
@@ -180,11 +179,6 @@ namespace SuperMarket.Classes.DataAccess
                 Logger.Log($"while stopping user with id = {UserID} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Users", Logger.ERROR);
             }
-        }
-
-        private static string LoadConnectionString(string id = "Default")
-        {
-            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
     }
 }

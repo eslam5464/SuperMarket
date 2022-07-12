@@ -44,13 +44,14 @@ namespace SuperMarket.UserControls
             label5.ForeColor = appColor;
             label6.ForeColor = appColor;
             label11.ForeColor = appColor;
+            label14.ForeColor = appColor;
             btn_edit.BackColor = appColor;
             btn_remove.BackColor = appColor;
             btn_save.BackColor = appColor;
             productsDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
         }
 
-        public void LoadCategories()
+        internal void LoadCategories()
         {
             txt_categoriename.DataSource = null;
             txt_categoriename.DataSource = Classes.DataAccess.Categories.LoadCategories();
@@ -59,48 +60,58 @@ namespace SuperMarket.UserControls
             txt_categoriename.SelectedIndex = -1;
         }
 
-        private void btn_save_Click(object sender, EventArgs e)
+        private async void btn_save_Click(object sender, EventArgs e)
         {
-            if (txt_productname.Text.Trim() != "" && txt_productprice.Text.Trim() != "" && txt_productBarCode.Text.Trim() != "")
+            if (txt_productname.Text.Trim() != "" && txt_productPriceSell.Text.Trim() != "" && txt_productBarCode.Text.Trim() != "")
             {
                 if (!txt_productid.Enabled)
                 {
                     if (txt_categoriename.SelectedIndex != -1)
                     {
-                        if (MessageBox.Show($"هل تريد ان تعدل {txt_productname.Text} ", "انتظر",
+                        if (decimal.Parse(txt_productPriceWholeSale.Text) >= decimal.Parse(txt_productPriceSell.Text))
+                        {
+                            MessageBox.Show("سعر الجملة اكبر أو يساوي سعر البيع برجاء تعديل السعر", "خطأ",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+                        else
+                        {
+                            if (MessageBox.Show($"هل تريد ان تعدل {txt_productname.Text} ", "انتظر",
                             MessageBoxButtons.YesNo,
                             MessageBoxIcon.Information) == DialogResult.Yes)
-                        {
-                            long categoryId = long.Parse(txt_categoriename.SelectedValue.ToString());
-                            string categoryName = Classes.DataAccess.Categories.GetCategoryParameter
-                                    ("Id", "" + categoryId).FirstOrDefault().Name;
-                            double MinQuantity = 0;
-
-                            if (txt_productquantityMin.Text != "")
-                                MinQuantity = double.Parse(txt_productquantityMin.Text);
-
-                            ProductModel product = new ProductModel
                             {
-                                Id = long.Parse(txt_productid.Text),
-                                Name = txt_productname.Text,
-                                Quantity = double.Parse(txt_productquantity.Text),
-                                QuantityMinimum = MinQuantity,
-                                Price = decimal.Parse(txt_productprice.Text),
-                                Description = txt_description.Text,
-                                BarCode = txt_productBarCode.Text,
-                                CategoryID = categoryId,
-                                CategoryName = categoryName,
-                            };
-                            Classes.DataAccess.Products.UpdateProduct(product);
+                                long categoryId = long.Parse(txt_categoriename.SelectedValue.ToString());
+                                string categoryName = Classes.DataAccess.Categories.GetCategoryParameter
+                                        ("Id", "" + categoryId).FirstOrDefault().Name;
+                                double MinQuantity = 0;
 
-                            LoadDataGrid(Classes.DataAccess.Products.GetProductParameter("Id", "" + product.Id));
+                                if (txt_productquantityMin.Text != "")
+                                    MinQuantity = double.Parse(txt_productquantityMin.Text);
 
-                            ResetTextBoxes();
+                                ProductModel product = new ProductModel
+                                {
+                                    Id = long.Parse(txt_productid.Text),
+                                    Name = txt_productname.Text,
+                                    Quantity = double.Parse(txt_productquantity.Text),
+                                    QuantityMinimum = MinQuantity,
+                                    PriceSell = decimal.Parse(txt_productPriceSell.Text),
+                                    Description = txt_description.Text,
+                                    BarCode = txt_productBarCode.Text,
+                                    CategoryID = categoryId,
+                                    CategoryName = categoryName,
+                                    PriceWholesale = decimal.Parse(txt_productPriceWholeSale.Text),
+                                };
+                                await Classes.DataAccess.Products.UpdateProduct(product);
 
-                            Logger.Log($"user is editing product: {categoryName} with id: {categoryId}",
-                                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                                LoadDataGrid(Classes.DataAccess.Products.GetProductParameter("Id", "" + product.Id));
+
+                                ResetTextBoxes();
+
+                                Logger.Log($"user is editing product: {categoryName} with id: {categoryId}",
+                                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                            }
+                            SetEditMode(false);
                         }
-                        SetEditMode(false);
                     }
                     else
                     {
@@ -119,46 +130,55 @@ namespace SuperMarket.UserControls
 
                     if (txt_categoriename.SelectedValue != null && txt_categoriename.SelectedIndex != -1)
                     {
-                        if (MessageBox.Show(MsgResponse, "انتظر",
-                        MessageBoxButtons.YesNo,
-                        MessageBoxIcon.Information) == DialogResult.Yes)
+                        if (decimal.Parse(txt_productPriceWholeSale.Text) >= decimal.Parse(txt_productPriceSell.Text))
                         {
-
-                            long categoryId = long.Parse(txt_categoriename.SelectedValue.ToString());
-                            CategoryModel SearcgCategoryName = Classes.DataAccess.Categories.GetCategoryParameter("Id", "" + categoryId)
-                                .FirstOrDefault();
-                            double MinQuantity = 0;
-
-                            if (txt_productquantity.Text != "")
-                                MinQuantity = double.Parse(txt_productquantityMin.Text);
-
-                            if (SearcgCategoryName != null)
+                            MessageBox.Show("سعر الجملة اكبر أو يساوي سعر البيع برجاء تعديل السعر", "خطأ",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        else
+                        {
+                            if (MessageBox.Show(MsgResponse, "انتظر",
+                                   MessageBoxButtons.YesNo,
+                                   MessageBoxIcon.Information) == DialogResult.Yes)
                             {
-                                string categoryName = SearcgCategoryName.Name;
-                                ProductModel product = new ProductModel
+
+                                long categoryId = long.Parse(txt_categoriename.SelectedValue.ToString());
+                                CategoryModel SearcgCategoryName = Classes.DataAccess.Categories.GetCategoryParameter("Id", "" + categoryId)
+                                    .FirstOrDefault();
+                                double MinQuantity = 0;
+
+                                if (txt_productquantity.Text != "")
+                                    MinQuantity = double.Parse(txt_productquantityMin.Text);
+
+                                if (SearcgCategoryName != null)
                                 {
-                                    BarCode = txt_productBarCode.Text,
-                                    Name = txt_productname.Text,
-                                    Price = decimal.Parse(txt_productprice.Text),
-                                    Description = txt_description.Text,
-                                    Quantity = 0,
-                                    QuantityMinimum = MinQuantity,
-                                    CategoryID = categoryId,
-                                    CategoryName = categoryName,
-                                };
-                                Classes.DataAccess.Products.SaveProduct(product);
-                                LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
+                                    string categoryName = SearcgCategoryName.Name;
+                                    ProductModel product = new ProductModel
+                                    {
+                                        BarCode = txt_productBarCode.Text,
+                                        Name = txt_productname.Text,
+                                        PriceSell = decimal.Parse(txt_productPriceSell.Text),
+                                        Description = txt_description.Text,
+                                        Quantity = 0,
+                                        QuantityMinimum = MinQuantity,
+                                        CategoryID = categoryId,
+                                        CategoryName = categoryName,
+                                        PriceWholesale = decimal.Parse(txt_productPriceWholeSale.Text),
+                                    };
+                                    await Classes.DataAccess.Products.SaveProduct(product);
+                                    LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
 
-                                ResetTextBoxes();
+                                    ResetTextBoxes();
 
-                                Logger.Log($"user added product: {product.Name}",
-                                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
-                            }
-                            else
-                            {
-                                MessageBox.Show("لا يوجد تصنيف بهذا الاسم", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                Logger.Log($"while adding product {txt_productname.Text} category is null with id = {categoryId}",
-                                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.ERROR);
+                                    Logger.Log($"user added product: {product.Name}",
+                                        System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("لا يوجد تصنيف بهذا الاسم", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    Logger.Log($"while adding product {txt_productname.Text} category is null with id = {categoryId}",
+                                        System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.ERROR);
+                                }
                             }
                         }
                     }
@@ -177,7 +197,8 @@ namespace SuperMarket.UserControls
             txt_categoriename.Text = "";
             txt_description.Text = "";
             txt_productname.Text = "";
-            txt_productprice.Text = "";
+            txt_productPriceSell.Text = "";
+            txt_productPriceWholeSale.Text = "";
             txt_productquantity.Text = "";
             txt_productid.Text = "";
             txt_productBarCode.Text = "";
@@ -194,7 +215,8 @@ namespace SuperMarket.UserControls
             productsDataGridView.Columns["Id"].HeaderText = "رقم المنتج";
             productsDataGridView.Columns["BarCode"].HeaderText = "باركود";
             productsDataGridView.Columns["ProductName_"].HeaderText = "اسم المنتج";
-            productsDataGridView.Columns["Price"].HeaderText = "سعر المنتج";
+            productsDataGridView.Columns["PriceWholesale"].HeaderText = "سعر جمله المنتج";
+            productsDataGridView.Columns["PriceSell"].HeaderText = "سعر بيع المنتج";
             productsDataGridView.Columns["Description"].HeaderText = "وصف المتج";
             productsDataGridView.Columns["Quantity"].HeaderText = "كميه المنتج";
             productsDataGridView.Columns["QuantityMinimum"].HeaderText = "حد ادنى للمنتج";
@@ -283,7 +305,8 @@ namespace SuperMarket.UserControls
                         CategoryName = productsDataGridView.Rows[RowIndex].Cells["CategoryName"].Value.ToString();
 
                     string ProductName = productsDataGridView.Rows[RowIndex].Cells["ProductName_"].Value.ToString(),
-                        ProductPrice = productsDataGridView.Rows[RowIndex].Cells["Price"].Value.ToString(),
+                        ProductPriceWholesale = productsDataGridView.Rows[RowIndex].Cells["PriceWholesale"].Value.ToString(),
+                        ProductPriceSell = productsDataGridView.Rows[RowIndex].Cells["PriceSell"].Value.ToString(),
                         ProductQuantity = productsDataGridView.Rows[RowIndex].Cells["Quantity"].Value.ToString(),
                         ProductDescription = productsDataGridView.Rows[RowIndex].Cells["Description"].Value.ToString(),
                         ProductBarcode = productsDataGridView.Rows[RowIndex].Cells["BarCode"].Value.ToString(),
@@ -294,7 +317,8 @@ namespace SuperMarket.UserControls
 
                     txt_productid.Text = "" + ProductID;
                     txt_productname.Text = ProductName;
-                    txt_productprice.Text = ProductPrice;
+                    txt_productPriceSell.Text = ProductPriceSell;
+                    txt_productPriceWholeSale.Text = ProductPriceWholesale;
                     txt_productquantity.Text = ProductQuantity;
                     txt_description.Text = ProductDescription;
                     txt_productBarCode.Text = ProductBarcode;
@@ -330,7 +354,7 @@ namespace SuperMarket.UserControls
             pcb_searchName.Enabled = !State;
         }
 
-        private void btn_remove_Click(object sender, EventArgs e)
+        private async void btn_remove_Click(object sender, EventArgs e)
         {
             if (productsDataGridView != null)
             {
@@ -347,7 +371,7 @@ namespace SuperMarket.UserControls
                                 MessageBoxButtons.YesNo,
                                 MessageBoxIcon.Information) == DialogResult.Yes)
                     {
-                        Classes.DataAccess.Products.RemoveProduct(ProductID);
+                        await Classes.DataAccess.Products.RemoveProduct(ProductID);
                         LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
 
                         Logger.Log($"user removed product: {ProductName} with id: {ProductID}",
@@ -453,7 +477,7 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             Random r = new Random();
             int categoryId, barcode, quantity;
@@ -471,13 +495,13 @@ namespace SuperMarket.UserControls
 
                 product.BarCode = "" + barcode;
                 product.Name = "random " + barcode;
-                product.Price = productPirce;
+                product.PriceSell = productPirce;
                 product.Description = "";
                 product.Quantity = quantity;
                 product.CategoryID = categoryId;
                 product.CategoryName = "test " + categoryId;
 
-                Classes.DataAccess.Products.SaveProduct(product);
+                await Classes.DataAccess.Products.SaveProduct(product);
             }
         }
 

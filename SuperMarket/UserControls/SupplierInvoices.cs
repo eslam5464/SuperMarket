@@ -310,7 +310,7 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void pcb_searchSupplier_Click(object sender, EventArgs e)
+        private async void pcb_searchSupplier_Click(object sender, EventArgs e)
         {
             if (txt_searchSupplierType.SelectedIndex != -1)
             {
@@ -320,7 +320,7 @@ namespace SuperMarket.UserControls
 
                     if (SearchecSuppliers.Count > 0)
                     {
-                        Task.Run(() => FillSupplierComboBox(txt_searchedSupplierName, SearchecSuppliers, "Id", "Name"));
+                        await FillSupplierComboBox(txt_searchedSupplierName, SearchecSuppliers, "Id", "Name");
                     }
                     else
                         MessageBox.Show("لا يوجد مورد بهذه البيانات", "لا يوجد",
@@ -333,7 +333,7 @@ namespace SuperMarket.UserControls
 
                     if (SearchecSuppliers.Count > 0)
                     {
-                        Task.Run(() => FillSupplierComboBox(txt_searchedSupplierName, SearchecSuppliers, "Id", "Name"));
+                        await FillSupplierComboBox(txt_searchedSupplierName, SearchecSuppliers, "Id", "Name");
                     }
                     else
                         MessageBox.Show("لا يوجد مورد بهذه البيانات", "لا يوجد",
@@ -345,7 +345,7 @@ namespace SuperMarket.UserControls
 
                     if (SearchecSuppliers.Count > 0)
                     {
-                        Task.Run(() => FillSupplierComboBox(txt_searchedSupplierName, SearchecSuppliers, "Id", "Name"));
+                        await FillSupplierComboBox(txt_searchedSupplierName, SearchecSuppliers, "Id", "Name");
                     }
                     else
                         MessageBox.Show("لا يوجد مورد بهذه البيانات", "لا يوجد",
@@ -357,7 +357,7 @@ namespace SuperMarket.UserControls
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void btn_saveInovice_Click(object sender, EventArgs e)
+        private async void btn_saveInovice_Click(object sender, EventArgs e)
         {
             if (txt_paymentMethod.SelectedIndex != -1)
             {
@@ -372,9 +372,9 @@ namespace SuperMarket.UserControls
 
                     SupplierInvoiceProductModel lastSupplierProduct = SearchedSupplierProducts[SearchedSupplierProducts.Count - 1];
 
-                    int PaymentFinished = 0;
-                    if (num_paymentAmoutPaid.Value == 0)
-                        PaymentFinished = 1;
+                    bool PaymentFinished = false;
+                    if (num_paymentAmoutLeft.Value == 0)
+                        PaymentFinished = true;
 
                     SupplierInvoiceModel supplierInvoice = new SupplierInvoiceModel()
                     {
@@ -395,7 +395,7 @@ namespace SuperMarket.UserControls
 
                     AdjustedProuduct[0].Quantity += lastSupplierProduct.Quantity;
 
-                    Classes.DataAccess.Products.UpdateProduct(AdjustedProuduct[0]);
+                    await Classes.DataAccess.Products.UpdateProduct(AdjustedProuduct[0]);
                 }
                 ResetAll();
 

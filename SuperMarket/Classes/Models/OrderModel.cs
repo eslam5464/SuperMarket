@@ -11,8 +11,8 @@ namespace SuperMarket.Classes.Models
         public string CustomerName { get; set; }
         public string ContactNumber { get; set; }
         public string Address { get; set; }
-        public long CreatedByUserId { get; set; }
         public Decimal GrandTotal { get; set; }
-        public string CreatedByUserFullName { get; internal set; }
+        public long CreatedByUserId { get; set; }
+        public string CreatedByUserFullName { get; set; }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Dapper;
 using System;
-using System.Configuration;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
@@ -52,7 +51,7 @@ namespace SuperMarket.Classes.DataAccess
 
                 try
                 {
-                    using (var location = new SqlConnection(LoadConnectionString(Id)))
+                    using (var location = new SqlConnection(GlobalVars.LoadConnectionString(Id)))
                     {
                         await Task.Run(() => location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{FileName}' WITH DIFFERENTIAL", new DynamicParameters()));
                     }
@@ -64,7 +63,7 @@ namespace SuperMarket.Classes.DataAccess
 
                     try
                     {
-                        using (var location = new SqlConnection(LoadConnectionString(Id)))
+                        using (var location = new SqlConnection(GlobalVars.LoadConnectionString(Id)))
                         {
                             await Task.Run(() => location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{FileName}' WITH DIFFERENTIAL", new DynamicParameters()));
                         }
@@ -81,7 +80,7 @@ namespace SuperMarket.Classes.DataAccess
             {
                 try
                 {
-                    using (var location = new SqlConnection(LoadConnectionString(Id)))
+                    using (var location = new SqlConnection(GlobalVars.LoadConnectionString(Id)))
                     //using (var destination = new SqlConnection($@"Data Source={strDestination}\{FileName}; Version=3;"))
                     {
                         await Task.Run(() => location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{FileName}'", new DynamicParameters()));
@@ -101,10 +100,6 @@ namespace SuperMarket.Classes.DataAccess
             {
                 await Task.Run(() => Logger.Log("backup already done, cant make an new backup", System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.INFO));
             }
-        }
-        private static string LoadConnectionString(string id)
-        {
-            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
     }
 }

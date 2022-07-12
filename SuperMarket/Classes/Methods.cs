@@ -36,8 +36,8 @@ namespace SuperMarket.Classes
             }
             catch (Exception ex)
             {
-                 Logger.Log($"Error while fetching the online date now & error: {ex.Message}",
-                           System.Reflection.MethodInfo.GetCurrentMethod().Name, "Methods", Logger.ERROR);
+                Logger.Log($"Error while fetching the online date now & error: {ex.Message}",
+                          System.Reflection.MethodInfo.GetCurrentMethod().Name, "Methods", Logger.ERROR);
             }
             return null;
         }

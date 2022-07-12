@@ -2,25 +2,25 @@
 using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SuperMarket.Classes.DataAccess
 {
     class Products
     {
         private static readonly int MaxRows = GlobalVars.MaxQueryRows;
-        public static void UpdateProduct(ProductModel Product)
+        public async static Task UpdateProduct(ProductModel Product)
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
-                    cnn.Execute($"UPDATE Products SET BarCode = @BarCode, Name = @Name, Quantity = @Quantity," +
-                        $" QuantityMinimum = @QuantityMinimum, PriceWholesale = @PriceWholesale, PriceSell = @PriceSell," +
-                        $" Description = @Description, CategoryID = @CategoryID, CategoryName = @CategoryName WHERE Id = @Id", Product);
+                    await Task.Run(() => cnn.Execute($"UPDATE Products SET BarCode = @BarCode, Name = @Name, Quantity = @Quantity,"
+                        + $" QuantityMinimum = @QuantityMinimum, PriceWholesale = @PriceWholesale, PriceSell = @PriceSell,"
+                        + $" Description = @Description, CategoryID = @CategoryID, CategoryName = @CategoryName WHERE Id = @Id", Product));
                 }
             }
             catch (Exception ex)
@@ -34,7 +34,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     if (LimitRows)
                     {
@@ -61,7 +61,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     var output = cnn.Query<ProductModel>($"SELECT TOP {MaxRows} * FROM Products WHERE {Parameter} LIKE N'%{Condition}%'", new DynamicParameters());
                     return output.ToList();
@@ -79,7 +79,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     string query = $"SELECT TOP {MaxRows} * FROM Products WHERE {Parameter} = N'{Condition}'";
 
@@ -96,16 +96,16 @@ namespace SuperMarket.Classes.DataAccess
             return new List<ProductModel>();
         }
 
-        public static void SaveProduct(ProductModel Product)
+        public async static Task SaveProduct(ProductModel Product)
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
-                    cnn.Execute($"INSERT INTO Products (BarCode, Name, Quantity, QuantityMinimum, PriceWholesale, PriceSell, " +
-                        $"Description, CategoryID, CategoryName, CreationDate) VALUES " +
+                    await Task.Run(() => cnn.Execute($"INSERT INTO Products (BarCode, Name, Quantity, QuantityMinimum, PriceWholesale," +
+                        $" PriceSell, Description, CategoryID, CategoryName, CreationDate) VALUES " +
                         $"(@BarCode, @Name, @Quantity, @QuantityMinimum, @PriceWholesale, @PriceSell, @Description, @CategoryID," +
-                        $" @CategoryName, '{DateTime.Now}')", Product);
+                        $" @CategoryName, '{DateTime.Now}')", Product));
                 }
             }
             catch (Exception ex)
@@ -115,13 +115,13 @@ namespace SuperMarket.Classes.DataAccess
             }
         }
 
-        public static void RemoveProduct(long ProductID)
+        public async static Task RemoveProduct(long ProductID)
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
-                    cnn.Execute($"DELETE FROM Products WHERE Id = {ProductID}");
+                    await Task.Run(() => cnn.Execute($"DELETE FROM Products WHERE Id = {ProductID}"));
                 }
             }
             catch (Exception ex)
@@ -129,11 +129,6 @@ namespace SuperMarket.Classes.DataAccess
                 Logger.Log($"while removing prodict with id = {ProductID} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Products", Logger.ERROR);
             }
-        }
-
-        private static string LoadConnectionString(string id = "Default")
-        {
-            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
     }
 }

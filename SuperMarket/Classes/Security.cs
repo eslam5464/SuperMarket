@@ -61,7 +61,7 @@ namespace SuperMarket.Classes
             }
         }
 
-        public  static void SaveLicenseKeyInAppAsync(string LicenseKey)
+        public static void SaveLicenseKeyInAppAsync(string LicenseKey)
         {
             Logger.Log("Entered the serial key & saved it in the app",
                     System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.INFO);

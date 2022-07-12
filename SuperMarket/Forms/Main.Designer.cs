@@ -145,7 +145,7 @@ namespace SuperMarket.Forms
             this.btn_settings.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btn_settings.Size = new System.Drawing.Size(228, 45);
             this.btn_settings.TabIndex = 22;
-            this.btn_settings.Text = "   الاعدادات";
+            this.btn_settings.Text = "   اعدادات";
             this.btn_settings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_settings.UseVisualStyleBackColor = true;
             this.btn_settings.Click += new System.EventHandler(this.btn_settings_Click);
@@ -166,7 +166,7 @@ namespace SuperMarket.Forms
             this.btn_safe.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btn_safe.Size = new System.Drawing.Size(228, 45);
             this.btn_safe.TabIndex = 30;
-            this.btn_safe.Text = "   الخزنة";
+            this.btn_safe.Text = "   خزنة";
             this.btn_safe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_safe.UseVisualStyleBackColor = true;
             this.btn_safe.Click += new System.EventHandler(this.btn_safe_Click);
@@ -240,7 +240,7 @@ namespace SuperMarket.Forms
             this.btn_supplierInvoices.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btn_supplierInvoices.Size = new System.Drawing.Size(226, 45);
             this.btn_supplierInvoices.TabIndex = 29;
-            this.btn_supplierInvoices.Text = "الفواتير";
+            this.btn_supplierInvoices.Text = "اضافه فاتورة";
             this.btn_supplierInvoices.UseVisualStyleBackColor = false;
             this.btn_supplierInvoices.Click += new System.EventHandler(this.btn_supplierInvoices_Click);
             // 
@@ -260,7 +260,7 @@ namespace SuperMarket.Forms
             this.btn_suppliers.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btn_suppliers.Size = new System.Drawing.Size(228, 45);
             this.btn_suppliers.TabIndex = 28;
-            this.btn_suppliers.Text = "   الموردين";
+            this.btn_suppliers.Text = "   موردين";
             this.btn_suppliers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_suppliers.UseVisualStyleBackColor = true;
             this.btn_suppliers.Click += new System.EventHandler(this.btn_suppliers_Click);
@@ -281,7 +281,7 @@ namespace SuperMarket.Forms
             this.btn_sellers.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btn_sellers.Size = new System.Drawing.Size(228, 45);
             this.btn_sellers.TabIndex = 21;
-            this.btn_sellers.Text = "   البائعين";
+            this.btn_sellers.Text = "   بـائعين";
             this.btn_sellers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_sellers.UseVisualStyleBackColor = true;
             this.btn_sellers.Click += new System.EventHandler(this.btn_sellers_Click);
@@ -302,7 +302,7 @@ namespace SuperMarket.Forms
             this.btn_reports.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btn_reports.Size = new System.Drawing.Size(228, 45);
             this.btn_reports.TabIndex = 24;
-            this.btn_reports.Text = "   التقارير";
+            this.btn_reports.Text = "   تقارير";
             this.btn_reports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_reports.UseVisualStyleBackColor = true;
             this.btn_reports.Click += new System.EventHandler(this.btn_reports_Click);
@@ -375,7 +375,7 @@ namespace SuperMarket.Forms
             this.btn_billing.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btn_billing.Size = new System.Drawing.Size(228, 45);
             this.btn_billing.TabIndex = 20;
-            this.btn_billing.Text = "   الفواتير";
+            this.btn_billing.Text = "   فواتير";
             this.btn_billing.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_billing.UseVisualStyleBackColor = true;
             this.btn_billing.Click += new System.EventHandler(this.btn_billing_Click);
@@ -396,7 +396,7 @@ namespace SuperMarket.Forms
             this.btn_Orders.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btn_Orders.Size = new System.Drawing.Size(228, 45);
             this.btn_Orders.TabIndex = 19;
-            this.btn_Orders.Text = "   الطلبات";
+            this.btn_Orders.Text = "   طلبات";
             this.btn_Orders.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_Orders.UseVisualStyleBackColor = true;
             this.btn_Orders.Click += new System.EventHandler(this.btn_Orders_Click);
@@ -417,7 +417,7 @@ namespace SuperMarket.Forms
             this.btn_Customers.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btn_Customers.Size = new System.Drawing.Size(228, 45);
             this.btn_Customers.TabIndex = 18;
-            this.btn_Customers.Text = "   العملاء";
+            this.btn_Customers.Text = "   عملاء";
             this.btn_Customers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_Customers.UseVisualStyleBackColor = true;
             this.btn_Customers.Click += new System.EventHandler(this.btn_Customers_Click);
@@ -438,7 +438,7 @@ namespace SuperMarket.Forms
             this.btn_Products.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btn_Products.Size = new System.Drawing.Size(228, 45);
             this.btn_Products.TabIndex = 17;
-            this.btn_Products.Text = "   المنتجات";
+            this.btn_Products.Text = "   منتجات";
             this.btn_Products.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_Products.UseVisualStyleBackColor = true;
             this.btn_Products.Click += new System.EventHandler(this.btn_Products_Click);
@@ -459,7 +459,7 @@ namespace SuperMarket.Forms
             this.btn_Categories.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btn_Categories.Size = new System.Drawing.Size(228, 45);
             this.btn_Categories.TabIndex = 16;
-            this.btn_Categories.Text = "   الاصناف";
+            this.btn_Categories.Text = "   اصناف ومخازن";
             this.btn_Categories.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_Categories.UseVisualStyleBackColor = true;
             this.btn_Categories.Click += new System.EventHandler(this.btn_Categories_Click);

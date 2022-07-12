@@ -2,10 +2,10 @@
 using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SuperMarket.Classes.DataAccess
 {
@@ -16,7 +16,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     var output = cnn.Query<InvoiceModel>($"SELECT TOP {MaxRows} * FROM Invoices WHERE {Parameter} = N'{Condition}'", new DynamicParameters());
                     return output.ToList();
@@ -30,17 +30,17 @@ namespace SuperMarket.Classes.DataAccess
             return new List<InvoiceModel>();
         }
 
-        internal static void AddToInvoice(InvoiceModel invoice)
+        internal async static Task AddToInvoice(InvoiceModel invoice)
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     string query = "INSERT INTO Invoices (InvoiceNumber, CreationDate, CustomerID, CustomerName, CustomerContact, CustomerAddress," +
                         " ProductID, ProductBarCode, ProductName, ProductQuantity, ProductPrice, PriceTotal) VALUES " +
                         $"(@InvoiceNumber, '{DateTime.Now}', @CustomerID, @CustomerName, @CustomerContact, @CustomerAddress, @ProductID," +
                         " @ProductBarCode, @ProductName, @ProductQuantity, @ProductPrice, @PriceTotal)";
-                    cnn.Execute(query, invoice);
+                    await Task.Run(() => cnn.Execute(query, invoice));
                 }
             }
             catch (Exception ex)
@@ -54,7 +54,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     var output = cnn.Query<InvoiceModel>($"SELECT TOP {MaxRows} * FROM Invoices WHERE InvoiceNumber = {InvoiceNumber}", new DynamicParameters());
                     return output.ToList();
@@ -72,7 +72,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     if (LimitRows)
                     {
@@ -95,13 +95,13 @@ namespace SuperMarket.Classes.DataAccess
             return new List<InvoiceModel>();
         }
 
-        internal static void RemoveProductFromInvoice(long ProductID, long InvoiceNumber)
+        internal async static Task RemoveProductFromInvoice(long ProductID, long InvoiceNumber)
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
-                    cnn.Execute($"DELETE FROM Invoices WHERE Id = {InvoiceNumber} AND ProductID = {ProductID}");
+                    await Task.Run(() => cnn.Execute($"DELETE FROM Invoices WHERE Id = {InvoiceNumber} AND ProductID = {ProductID}"));
                 }
             }
             catch (Exception ex)
@@ -115,7 +115,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     var output = cnn.Query<InvoiceModel>($"SELECT TOP {MaxRows} * FROM Invoices WHERE InvoiceNumber = {InvoiceNumber}", new DynamicParameters());
                     return output.ToList();
@@ -127,11 +127,6 @@ namespace SuperMarket.Classes.DataAccess
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Invoices", Logger.ERROR);
             }
             return new List<InvoiceModel>();
-        }
-
-        private static string LoadConnectionString(string id = "Default")
-        {
-            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
     }
 }

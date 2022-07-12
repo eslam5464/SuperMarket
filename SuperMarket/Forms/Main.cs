@@ -127,6 +127,7 @@ namespace SuperMarket.Forms
         {
             SelectButton(btn_Categories, true);
             uc_categories.BringToFront();
+            uc_categories.RefreshComboBoxes();
         }
 
         private void btn_Products_Click(object sender, EventArgs e)

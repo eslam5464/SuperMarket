@@ -2,7 +2,6 @@
 using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -17,7 +16,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     var output = cnn.Query<SupplierModel>($"SELECT TOP {GlobalVars.MaxQueryRows} * FROM {TableName} WHERE {Parameter} = N'{Condition}'", new DynamicParameters());
                     return output.ToList();
@@ -35,7 +34,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     var output = cnn.Query<SupplierModel>($"SELECT TOP {GlobalVars.MaxQueryRows} * FROM {TableName} WHERE {Parameter} Like N'%{Condition}%'", new DynamicParameters());
                     return output.ToList();
@@ -53,7 +52,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     if (LimitRows)
                     {
@@ -82,7 +81,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     cnn.Execute($"UPDATE {TableName} SET Name = @Name, Contact = @Contact, Address = @Address" +
                         $" WHERE Id = @Id", supplier);
@@ -99,7 +98,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     cnn.Execute($"INSERT INTO {TableName} ( Name, Contact, Address, CreationDate) VALUES " +
                         $"(@Name, @Contact, @Address, '{DateTime.Now}')", supplier);
@@ -116,7 +115,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     cnn.Execute($"DELETE FROM {TableName} WHERE Id = {SupplierId}");
                 }
@@ -126,11 +125,6 @@ namespace SuperMarket.Classes.DataAccess
                 Logger.Log($"while removing a {TableName} with id = {SupplierId} error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
             }
-        }
-
-        internal static string LoadConnectionString(string id = "Default")
-        {
-            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
     }
 }

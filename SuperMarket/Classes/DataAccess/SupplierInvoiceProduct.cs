@@ -2,7 +2,6 @@
 using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -17,7 +16,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     cnn.Execute($"INSERT INTO {TableName} (ProductId, ProductName, Quantity, CreationDate) VALUES " +
                         $"(@ProductId, @ProductName, @Quantity, '{DateTime.Now}')", supplierInvoice);
@@ -34,7 +33,7 @@ namespace SuperMarket.Classes.DataAccess
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(LoadConnectionString()))
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     var output = cnn.Query<SupplierInvoiceProductModel>
                         ($"SELECT TOP {GlobalVars.MaxQueryRows} * FROM {TableName}", new DynamicParameters());
@@ -47,11 +46,6 @@ namespace SuperMarket.Classes.DataAccess
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
             }
             return new List<SupplierInvoiceProductModel>();
-        }
-
-        private static string LoadConnectionString(string id = "Default")
-        {
-            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
     }
 }

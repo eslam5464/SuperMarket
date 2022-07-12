@@ -7,7 +7,6 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarket.UserControls
@@ -317,7 +316,7 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private  void btn_remove_Click(object sender, EventArgs e)
+        private void btn_remove_Click(object sender, EventArgs e)
         {
             if (usersDataGridView != null)
             {
@@ -349,7 +348,7 @@ namespace SuperMarket.UserControls
             RefreshDataGrid();
         }
 
-        private  void pcb_serchbyPhone_Click(object sender, EventArgs e)
+        private void pcb_serchbyPhone_Click(object sender, EventArgs e)
         {
             if (txt_Username.Text.Trim() == "")
             {
