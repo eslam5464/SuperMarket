@@ -1,6 +1,7 @@
 ﻿using SuperMarket.Classes;
 using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarket.Forms
@@ -45,20 +46,20 @@ namespace SuperMarket.Forms
             Close();
         }
 
-        private void btn_checkKey_Click(object sender, EventArgs e)
+        private async void btn_checkKey_Click(object sender, EventArgs e)
         {
-            Logger.Log("Entered the serial & checked it",
-                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
-            string SerialKey = $"{tb_serial1.Text}-{tb_serial2.Text}-{tb_serial3.Text}-{tb_serial4.Text}-{tb_serial5.Text}-{tb_serial6.Text}-{tb_serial7.Text}";
+            Logger.Log("Entered the serial & checked it", System.Reflection.MethodInfo.GetCurrentMethod().Name,
+               this.Name, Logger.INFO);
+            string SerialKey = $"{tb_serial1.Text}-{tb_serial2.Text}-{tb_serial3.Text}-" +
+                $"{tb_serial4.Text}-{tb_serial5.Text}-{tb_serial6.Text}-{tb_serial7.Text}";
 
-            Security.SaveLicenseKeyInApp(SerialKey);
+            Security.SaveLicenseKeyInAppAsync(SerialKey);
 
-            string output = Security.CheckLicenseKeyOnApp();
+            string output = await Security.CheckLicenseKeyOnAppAsync();
 
             if (output == "200")
             {
-                Logger.Log("serial key is correct closing the form SerialKeyCheck",
-                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                Logger.Log("serial key is correct closing the form SerialKeyCheck", System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                 MessageBox.Show("الرقم السري صحيح. البرنامج سوف يغلق الأن بـرجاء فتحه مره أخرى");
 
@@ -66,8 +67,7 @@ namespace SuperMarket.Forms
             }
             else
             {
-                Logger.Log("serial key is not correct",
-                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                Logger.Log("serial key is not correct", System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                 MessageBox.Show("الرقم السري غير صحيح");
             }

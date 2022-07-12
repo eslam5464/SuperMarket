@@ -4,6 +4,7 @@ using System.Linq;
 using System.Management;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace SuperMarket.Classes
 {
@@ -25,40 +26,42 @@ namespace SuperMarket.Classes
             return DirectoryLocation;
         }
 
-        public static string CheckLicenseKeyOnApp()
+        public async static Task<string> CheckLicenseKeyOnAppAsync()
         {
             if (CPUID == "" && MOBOID == "")
             {
-                CPUID = GetCpuID();
-                MOBOID = GetMotherBoardID();
+                CPUID = await Task.Run(() => GetCpuID());
+                MOBOID = await Task.Run(() => GetMotherBoardIDAsync());
             }
 
-            SerialKeyFileExists();
+            await SerialKeyFileExistsAsync();
 
             if (new FileInfo(SerialKeyFile).Length == 0)
 
             {
                 Logger.Log("serial file exists with no serial in it",
-                    System.Reflection.MethodInfo.GetCurrentMethod().Name, "Security", Logger.CRITICAL);
+                     System.Reflection.MethodInfo.GetCurrentMethod().Name, "Security", Logger.CRITICAL);
                 return "404";
             }
 
-            if (Properties.Settings.Default.LicenseKey == Security.Decrypt(File.ReadAllText(SerialKeyFile), CPUID + MOBOID))
+            string LisenceKey = await Security.DecryptAsync(File.ReadAllText(SerialKeyFile), CPUID + MOBOID);
+
+            if (Properties.Settings.Default.LicenseKey == LisenceKey)
             {
                 Logger.Log("serial key matched on system",
-                    System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.INFO);
+                     System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.INFO);
                 return "200";
             }
 
             else
             {
                 Logger.Log("wrong serial on app",
-                    System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.ERROR);
+                   System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.ERROR);
                 return "400";
             }
         }
 
-        public static void SaveLicenseKeyInApp(string LicenseKey)
+        public  static void SaveLicenseKeyInAppAsync(string LicenseKey)
         {
             Logger.Log("Entered the serial key & saved it in the app",
                     System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.INFO);
@@ -66,53 +69,53 @@ namespace SuperMarket.Classes
             Properties.Settings.Default.Save();
         }
 
-        public static string CheckLicenseKeyValidity(string LicenseKey)
+        public async static Task<string> CheckLicenseKeyValidityAsync(string LicenseKey)
         {
             if (CPUID == "" && MOBOID == "")
             {
-                CPUID = GetCpuID();
-                MOBOID = GetMotherBoardID();
+                CPUID = await Task.Run(() => GetCpuID());
+                MOBOID = await Task.Run(() => GetMotherBoardIDAsync());
             }
 
-            SerialKeyFileExists();
+            await SerialKeyFileExistsAsync();
 
             if (new FileInfo(SerialKeyFile).Length == 0)
             {
                 Logger.Log("serial file exists with no serial in it",
-                    System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.CRITICAL);
+                     System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.CRITICAL);
                 return "404";
             }
 
-            if (LicenseKey == Security.Decrypt(File.ReadAllText(SerialKeyFile), CPUID + MOBOID))
+            string LisenceKeyChecker = await Security.DecryptAsync(File.ReadAllText(SerialKeyFile), CPUID + MOBOID);
+
+            if (LicenseKey == LisenceKeyChecker)
             {
-                Logger.Log("serial key matched on system",
-                    System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.INFO);
+                Logger.Log("serial key matched on system", System.Reflection.MethodInfo.GetCurrentMethod().Name,
+                   "LoginMethods", Logger.INFO);
                 return "200";
             }
 
             else
             {
-                Logger.Log("wrong serial on app",
-                    System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.ERROR);
+                Logger.Log("wrong serial on app", System.Reflection.MethodInfo.GetCurrentMethod().Name,
+                   "LoginMethods", Logger.ERROR);
                 return "400";
             }
         }
 
-        internal static bool SerialKeyFileExists()
+        internal async static Task<bool> SerialKeyFileExistsAsync()
         {
             bool state = true;
 
             if (!Directory.Exists(DirectoryLocation))
             {
-                Directory.CreateDirectory(DirectoryLocation);
-                Logger.Log("created the directory for the serial",
-                    System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.CRITICAL);
+                await Task.Run(() => Directory.CreateDirectory(DirectoryLocation));
+                Logger.Log("created the directory for the serial", System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.CRITICAL);
             }
 
             if (!File.Exists(DirectoryLocation + SerialKeyFileName + FileExtention))
             {
-                Logger.Log("serial key file doesnt exist & created a new one",
-                    System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.CRITICAL);
+                Logger.Log("serial key file doesnt exist & created a new one", System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.CRITICAL);
                 state = false;
                 //File.Create(DirectoryLocation + SerialKeyFileName + FileExtention).Close();
             }
@@ -122,31 +125,32 @@ namespace SuperMarket.Classes
 
         #region Motherboard & CPU methods
 
-        private static string GetMotherBoardID()
+        private async static Task<string> GetMotherBoardIDAsync()
         {
             string serial = "";
             try
             {
-                ManagementObjectSearcher mos = new ManagementObjectSearcher("SELECT SerialNumber FROM Win32_BaseBoard");
-                ManagementObjectCollection moc = mos.Get();
+                ManagementObjectSearcher mos =
+                    await Task.Run(() => new ManagementObjectSearcher("SELECT SerialNumber FROM Win32_BaseBoard"));
+                ManagementObjectCollection moc = await Task.Run(() => mos.Get());
 
                 foreach (ManagementObject mo in moc)
                 {
-                    serial = mo["SerialNumber"].ToString();
+                    serial = await Task.Run(() => mo["SerialNumber"].ToString());
                 }
                 return serial;
             }
             catch (Exception) { return serial; }
         }
 
-        private static string GetCpuID()
+        private async static Task<string> GetCpuID()
         {
-            ManagementClass management = new ManagementClass("win32_processor");
-            ManagementObjectCollection managementObjectCollection = management.GetInstances();
+            ManagementClass management = await Task.Run(() => new ManagementClass("win32_processor"));
+            ManagementObjectCollection managementObjectCollection = await Task.Run(() => management.GetInstances());
 
             foreach (var managementObject in managementObjectCollection)
             {
-                var cpuid = managementObject.Properties["processorID"].Value.ToString();
+                var cpuid = await Task.Run(() => managementObject.Properties["processorID"].Value.ToString());
                 return cpuid;
             }
 
@@ -168,24 +172,24 @@ namespace SuperMarket.Classes
             return randomBytes;
         }
 
-        internal static string Encrypt(string plainText, string passPhrase)
+        internal async static Task<string> EncryptAsync(string plainText, string passPhrase)
         {
-            var saltStringBytes = Generate256BitsOfRandomEntropy();
-            var ivStringBytes = Generate256BitsOfRandomEntropy();
-            var plainTextBytes = Encoding.UTF8.GetBytes(plainText);
+            var saltStringBytes = await Task.Run(() => Generate256BitsOfRandomEntropy());
+            var ivStringBytes = await Task.Run(() => Generate256BitsOfRandomEntropy());
+            var plainTextBytes = await Task.Run(() => Encoding.UTF8.GetBytes(plainText));
             using (var password = new Rfc2898DeriveBytes(passPhrase, saltStringBytes, DerivationIterations))
             {
-                var keyBytes = password.GetBytes(Keysize / 8);
-                using (var symmetricKey = new RijndaelManaged())
+                var keyBytes = await Task.Run(() => password.GetBytes(Keysize / 8));
+                using (var symmetricKey = await Task.Run(() => new RijndaelManaged()))
                 {
                     symmetricKey.BlockSize = 128;
                     symmetricKey.Mode = CipherMode.CBC;
                     symmetricKey.Padding = PaddingMode.PKCS7;
-                    using (var encryptor = symmetricKey.CreateEncryptor(keyBytes, ivStringBytes))
+                    using (var encryptor = await Task.Run(() => symmetricKey.CreateEncryptor(keyBytes, ivStringBytes)))
                     {
-                        using (var memoryStream = new MemoryStream())
+                        using (var memoryStream = await Task.Run(() => new MemoryStream()))
                         {
-                            using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
+                            using (var cryptoStream = await Task.Run(() => new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write)))
                             {
                                 cryptoStream.Write(plainTextBytes, 0, plainTextBytes.Length);
                                 cryptoStream.FlushFinalBlock();
@@ -197,6 +201,38 @@ namespace SuperMarket.Classes
                                 return Convert.ToBase64String(cipherTextBytes);
                             }
                         }
+                    }
+                }
+            }
+        }
+
+        internal async static Task<string> DecryptAsync(string cipherText, string passPhrase)
+        {
+            var cipherTextBytesWithSaltAndIv = await Task.Run(() => Convert.FromBase64String(cipherText));
+            var saltStringBytes = await Task.Run(() => cipherTextBytesWithSaltAndIv.Take(Keysize / 8).ToArray());
+            var ivStringBytes = await Task.Run(() => cipherTextBytesWithSaltAndIv.Skip(Keysize / 8).Take(Keysize / 8).ToArray());
+            var cipherTextBytes = await Task.Run(() => cipherTextBytesWithSaltAndIv.Skip((Keysize / 8) * 2).Take(cipherTextBytesWithSaltAndIv.Length - ((Keysize / 8) * 2)).ToArray());
+
+            using (var password = new Rfc2898DeriveBytes(passPhrase, saltStringBytes, DerivationIterations))
+            {
+                var keyBytes = await Task.Run(() => password.GetBytes(Keysize / 8));
+                using (var symmetricKey = new RijndaelManaged())
+                {
+                    symmetricKey.BlockSize = 128;
+                    symmetricKey.Mode = CipherMode.CBC;
+                    symmetricKey.Padding = PaddingMode.PKCS7;
+                    using (var decryptor = await Task.Run(() => symmetricKey.CreateDecryptor(keyBytes, ivStringBytes)))
+                    {
+                        using (var memoryStream = new MemoryStream(cipherTextBytes))
+                        using (var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
+                        {
+                            var plainTextBytes = new byte[cipherTextBytes.Length];
+                            var decryptedByteCount = await Task.Run(() => cryptoStream.Read(plainTextBytes, 0, plainTextBytes.Length));
+                            memoryStream.Close();
+                            cryptoStream.Close();
+                            return Encoding.UTF8.GetString(plainTextBytes, 0, decryptedByteCount);
+                        }
+
                     }
                 }
             }

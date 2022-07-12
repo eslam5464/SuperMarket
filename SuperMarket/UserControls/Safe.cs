@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using SuperMarket.Classes;
+using System.Windows.Forms;
 
 namespace SuperMarket.UserControls
 {

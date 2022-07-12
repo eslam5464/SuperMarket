@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarket.UserControls
@@ -162,12 +163,12 @@ namespace SuperMarket.UserControls
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void FillProductComboBox(ComboBox comboBox, List<ProductModel> searchedProducts, string Value, string Display)
+        private async void FillProductComboBox(ComboBox comboBox, List<ProductModel> searchedProducts, string Value, string Display)
         {
             comboBox.DataSource = null;
             comboBox.Items.Clear();
 
-            DataTable DataProductSearch = new Methods().ListToDataTable(searchedProducts);
+            DataTable DataProductSearch = await new Methods().ListToDataTable(searchedProducts);
             comboBox.DataSource = DataProductSearch;
             comboBox.ValueMember = Value;
             comboBox.DisplayMember = Display;
@@ -319,7 +320,7 @@ namespace SuperMarket.UserControls
 
                     if (SearchecSuppliers.Count > 0)
                     {
-                        FillSupplierComboBox(txt_searchedSupplierName, SearchecSuppliers, "Id", "Name");
+                        Task.Run(() => FillSupplierComboBox(txt_searchedSupplierName, SearchecSuppliers, "Id", "Name"));
                     }
                     else
                         MessageBox.Show("لا يوجد مورد بهذه البيانات", "لا يوجد",
@@ -332,7 +333,7 @@ namespace SuperMarket.UserControls
 
                     if (SearchecSuppliers.Count > 0)
                     {
-                        FillSupplierComboBox(txt_searchedSupplierName, SearchecSuppliers, "Id", "Name");
+                        Task.Run(() => FillSupplierComboBox(txt_searchedSupplierName, SearchecSuppliers, "Id", "Name"));
                     }
                     else
                         MessageBox.Show("لا يوجد مورد بهذه البيانات", "لا يوجد",
@@ -344,7 +345,7 @@ namespace SuperMarket.UserControls
 
                     if (SearchecSuppliers.Count > 0)
                     {
-                        FillSupplierComboBox(txt_searchedSupplierName, SearchecSuppliers, "Id", "Name");
+                        Task.Run(() => FillSupplierComboBox(txt_searchedSupplierName, SearchecSuppliers, "Id", "Name"));
                     }
                     else
                         MessageBox.Show("لا يوجد مورد بهذه البيانات", "لا يوجد",
@@ -446,12 +447,12 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void FillSupplierComboBox(ComboBox comboBox, List<SupplierModel> searchecSuppliers, string Value, string Display)
+        private async Task FillSupplierComboBox(ComboBox comboBox, List<SupplierModel> searchecSuppliers, string Value, string Display)
         {
             comboBox.DataSource = null;
             comboBox.Items.Clear();
 
-            DataTable DataSupplierSearch = new Methods().ListToDataTable(searchecSuppliers);
+            DataTable DataSupplierSearch = await new Methods().ListToDataTable(searchecSuppliers);
             comboBox.DataSource = DataSupplierSearch;
             comboBox.ValueMember = Value;
             comboBox.DisplayMember = Display;

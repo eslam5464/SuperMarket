@@ -6,49 +6,49 @@ using System.Data;
 using System.Drawing;
 using System.Net;
 using System.Net.Cache;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarket.Classes
 {
     internal class Methods
     {
-        internal static object GetTimeOnline()
+        internal async static Task<object> GetTimeOnline()
         {
             try
             {
                 DateTime dateTime = DateTime.MinValue;
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://www.google.com.eg");
+                HttpWebRequest request = await Task.Run(() => (HttpWebRequest)WebRequest.Create("https://www.google.com.eg"));
                 request.Method = "GET";
                 request.Accept = "text/html, application/xhtml+xml, */*";
                 request.UserAgent = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)";
                 request.ContentType = "application/x-www-form-urlencoded";
-                request.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                request.CachePolicy = await Task.Run(() => new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore));
+                HttpWebResponse response = await Task.Run(() => (HttpWebResponse)request.GetResponse());
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     string todaysDates = response.Headers["date"];
 
-                    dateTime = DateTime.ParseExact(todaysDates, "ddd, dd MMM yyyy HH:mm:ss 'GMT'",
-                        System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat, System.Globalization.DateTimeStyles.AssumeUniversal);
+                    dateTime = await Task.Run(() => DateTime.ParseExact(todaysDates, "ddd, dd MMM yyyy HH:mm:ss 'GMT'", System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat, System.Globalization.DateTimeStyles.AssumeUniversal));
                 }
 
                 return dateTime;
             }
             catch (Exception ex)
             {
-                Logger.Log($"Error while fetching the online date now & error: {ex.Message}",
+                 Logger.Log($"Error while fetching the online date now & error: {ex.Message}",
                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Methods", Logger.ERROR);
             }
             return null;
         }
 
-        internal virtual DataTable DataGridToDataTable(DataGridView dataGridView)
+        internal async virtual Task<DataTable> DataGridToDataTable(DataGridView dataGridView)
         {
             DataTable dataTable = new DataTable();
 
             foreach (DataGridViewColumn column in dataGridView.Columns)
             {
-                dataTable.Columns.Add(column.Name, column.ValueType);
+                await Task.Run(() => dataTable.Columns.Add(column.Name, column.ValueType));
             }
 
             foreach (DataGridViewRow row in dataGridView.Rows)
@@ -57,32 +57,34 @@ namespace SuperMarket.Classes
                 foreach (DataGridViewCell cell in row.Cells)
                 {
                     if (cell.Value == null)
-                        dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = "";
+                        await Task.Run(() => dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = "");
 
                     else
-                        dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString();
+                        await Task.Run(() => dataTable.Rows[dataTable.Rows.Count - 1][cell.ColumnIndex] = cell.Value.ToString());
                 }
             }
             return dataTable;
         }
 
-        internal virtual DataTable ListToDataTable<T>(List<T> items)
+        internal async virtual Task<DataTable> ListToDataTable<T>(List<T> items)
         {
             DataTable dataTable = new DataTable(typeof(T).Name);
 
-            System.Reflection.PropertyInfo[] Props = typeof(T).GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+            System.Reflection.PropertyInfo[] Props =
+                await Task.Run(() => typeof(T).GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance));
+
             foreach (System.Reflection.PropertyInfo prop in Props)
             {
-                dataTable.Columns.Add(prop.Name, prop.PropertyType);
+                await Task.Run(() => dataTable.Columns.Add(prop.Name, prop.PropertyType));
             }
             foreach (T item in items)
             {
                 var values = new object[Props.Length];
                 for (int i = 0; i < Props.Length; i++)
                 {
-                    values[i] = Props[i].GetValue(item, null);
+                    values[i] = await Task.Run(() => Props[i].GetValue(item, null));
                 }
-                dataTable.Rows.Add(values);
+                await Task.Run(() => dataTable.Rows.Add(values));
             }
             return dataTable;
         }
@@ -105,35 +107,35 @@ namespace SuperMarket.Classes
             return result.ToString();
         }
 
-        internal virtual Image CreateBarcodeImage(string Barcode)
+        internal async virtual Task<Image> CreateBarcodeImage(string Barcode)
         {
             BarcodeLib.Barcode b = new BarcodeLib.Barcode();
-            Image img = b.Encode(BarcodeLib.TYPE.Interleaved2of5, Barcode, Color.Black, Color.White, 290, 120);
+            Image img = await Task.Run(() => b.Encode(BarcodeLib.TYPE.Interleaved2of5, Barcode, Color.Black, Color.White, 290, 120));
             return img;
         }
 
-        internal virtual Image CreateBarcodeImage(string Barcode, int Width, int Height)
+        internal async virtual Task<Image> CreateBarcodeImage(string Barcode, int Width, int Height)
         {
             BarcodeLib.Barcode b = new BarcodeLib.Barcode();
-            Image img = b.Encode(BarcodeLib.TYPE.Interleaved2of5, Barcode, Color.Black, Color.White, Width, Height);
+            Image img = await Task.Run(() => b.Encode(BarcodeLib.TYPE.Interleaved2of5, Barcode, Color.Black, Color.White, Width, Height));
             return img;
         }
 
-        internal virtual Image CreateQRCodeImage(string Text)
+        internal async virtual Task<Image> CreateQRCodeImage(string Text)
         {
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(Text, QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = await Task.Run(() => qrGenerator.CreateQrCode(Text, QRCodeGenerator.ECCLevel.Q));
             QRCode qrCode = new QRCode(qrCodeData);
-            Bitmap qrCodeImage = qrCode.GetGraphic(20);
+            Bitmap qrCodeImage = await Task.Run(() => qrCode.GetGraphic(20));
             return qrCodeImage;
         }
 
-        internal virtual Image CreateQRCodeImage(string Text, Color DarkColor, Color LightColor)
+        internal async virtual Task<Image> CreateQRCodeImage(string Text, Color DarkColor, Color LightColor)
         {
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
-            QRCodeData qrCodeData = qrGenerator.CreateQrCode(Text, QRCodeGenerator.ECCLevel.Q);
+            QRCodeData qrCodeData = await Task.Run(() => qrGenerator.CreateQrCode(Text, QRCodeGenerator.ECCLevel.Q));
             QRCode qrCode = new QRCode(qrCodeData);
-            Bitmap qrCodeImage = qrCode.GetGraphic(20, DarkColor, LightColor, true);
+            Bitmap qrCodeImage = await Task.Run(() => qrCode.GetGraphic(20, DarkColor, LightColor, true));
             return qrCodeImage;
         }
 
@@ -143,7 +145,7 @@ namespace SuperMarket.Classes
             return contextMenu;
         }
 
-        internal static void ExportDGVtoPDF(DataGridView categoriesDataGridView, string TitleName)
+        internal async static Task ExportDGVtoPDF(DataGridView categoriesDataGridView, string TitleName)
         {
             DGVPrinter dGVPrinter = new DGVPrinter
             {
@@ -158,7 +160,7 @@ namespace SuperMarket.Classes
                 FooterSpacing = 15,
             };
 
-            dGVPrinter.PrintDataGridView(categoriesDataGridView);
+            await Task.Run(() => dGVPrinter.PrintDataGridView(categoriesDataGridView));
         }
 
         //---------------------------------------------------------------

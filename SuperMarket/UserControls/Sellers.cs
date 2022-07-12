@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarket.UserControls
@@ -118,7 +119,7 @@ namespace SuperMarket.UserControls
             usersDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
         }
 
-        private void btn_save_Click(object sender, EventArgs e)
+        private async void btn_save_Click(object sender, EventArgs e)
         {
             try
             {
@@ -130,7 +131,7 @@ namespace SuperMarket.UserControls
                     if (!btn_edit.Enabled)
                     {
                         Logger.Log($"user is trying to edit seller with id: {EditedUserId}",
-                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                           System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                         if (MessageBox.Show($"هل تريد تأكيد هذا التعديل", "انتظر",
                             MessageBoxButtons.YesNo,
@@ -142,11 +143,11 @@ namespace SuperMarket.UserControls
                             UserModel user = new UserModel
                             {
                                 Id = UseriD,
-                                Username = Security.Encrypt(txt_Username.Text, CPUID + MOBOID),
-                                Password = Security.Encrypt(txt_Password.Text, CPUID + MOBOID),
-                                FullName = Security.Encrypt(txt_fullname.Text, CPUID + MOBOID),
-                                Phone = Security.Encrypt(txt_mobailno.Text, CPUID + MOBOID),
-                                Email = Security.Encrypt("NA", CPUID + MOBOID),
+                                Username = await Security.EncryptAsync(txt_Username.Text, CPUID + MOBOID),
+                                Password = await Security.EncryptAsync(txt_Password.Text, CPUID + MOBOID),
+                                FullName = await Security.EncryptAsync(txt_fullname.Text, CPUID + MOBOID),
+                                Phone = await Security.EncryptAsync(txt_mobailno.Text, CPUID + MOBOID),
+                                Email = await Security.EncryptAsync("NA", CPUID + MOBOID),
                                 UserLevel = txt_userLevel.SelectedValue.ToString()
                             };
                             Users.UpdateUser(user);
@@ -154,7 +155,7 @@ namespace SuperMarket.UserControls
                             RefreshDataGrid();
 
                             Logger.Log($"user has edited seller: {txt_Username.Text} with id: {user.Id}",
-                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                           System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                             ResetTextBoxes();
                         }
@@ -179,11 +180,11 @@ namespace SuperMarket.UserControls
 
                                     UserModel user = new UserModel
                                     {
-                                        Username = Security.Encrypt(txt_Username.Text, CPUID + MOBOID),
-                                        Password = Security.Encrypt(txt_Password.Text, CPUID + MOBOID),
-                                        FullName = Security.Encrypt(txt_fullname.Text, CPUID + MOBOID),
-                                        Phone = Security.Encrypt(txt_mobailno.Text, CPUID + MOBOID),
-                                        Email = Security.Encrypt("NA", CPUID + MOBOID),
+                                        Username = await Security.EncryptAsync(txt_Username.Text, CPUID + MOBOID),
+                                        Password = await Security.EncryptAsync(txt_Password.Text, CPUID + MOBOID),
+                                        FullName = await Security.EncryptAsync(txt_fullname.Text, CPUID + MOBOID),
+                                        Phone = await Security.EncryptAsync(txt_mobailno.Text, CPUID + MOBOID),
+                                        Email = await Security.EncryptAsync("NA", CPUID + MOBOID),
                                         UserLevel = txt_userLevel.SelectedValue.ToString(),
                                         ActiveState = true
                                     };
@@ -191,8 +192,7 @@ namespace SuperMarket.UserControls
 
                                     RefreshDataGrid();
 
-                                    Logger.Log($"user has added seller: {txt_Username.Text} with user level: {user.UserLevel}",
-                                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                                    Logger.Log($"user has added seller: {txt_Username.Text} with user level: {user.UserLevel}", System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                                     ResetTextBoxes();
                                 }
@@ -283,7 +283,7 @@ namespace SuperMarket.UserControls
             else
             {
                 Logger.Log($"user is trying to search for seller by username: {txt_Username.Text}",
-                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                              System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                 List<UserModel> AllUsers = Users.LoadAtiveUsersNonAdmin();
                 usersDataGridView.DataSource = null;
@@ -304,7 +304,7 @@ namespace SuperMarket.UserControls
             else
             {
                 Logger.Log($"user is trying to search by full name for seller: {txt_fullname.Text}",
-                               System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                 usersDataGridView.DataSource = null;
 
@@ -317,7 +317,7 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void btn_remove_Click(object sender, EventArgs e)
+        private  void btn_remove_Click(object sender, EventArgs e)
         {
             if (usersDataGridView != null)
             {
@@ -328,14 +328,14 @@ namespace SuperMarket.UserControls
                     string UserName = usersDataGridView.Rows[rowindex].Cells["UserName"].Value.ToString();
 
                     Logger.Log($"user is trying to remove seller: {UserName}",
-                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                             System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                     if (MessageBox.Show($"هل تريد ان تمسح {UserName}", "انتظر",
                                 MessageBoxButtons.YesNo,
                                 MessageBoxIcon.Information) == DialogResult.Yes)
                     {
                         Logger.Log($"user has removed seller: {UserName} with id: {UserId}",
-                               System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                                  System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                         Users.StopUser(UserId);
                         RefreshDataGrid();
@@ -349,7 +349,7 @@ namespace SuperMarket.UserControls
             RefreshDataGrid();
         }
 
-        private void pcb_serchbyPhone_Click(object sender, EventArgs e)
+        private  void pcb_serchbyPhone_Click(object sender, EventArgs e)
         {
             if (txt_Username.Text.Trim() == "")
             {
@@ -358,7 +358,7 @@ namespace SuperMarket.UserControls
             else
             {
                 Logger.Log($"user is trying to search by phone for seller: {txt_mobailno.Text}",
-                               System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                 usersDataGridView.DataSource = null;
 
@@ -430,9 +430,9 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void btn_exportPDF_Click(object sender, EventArgs e)
+        private async void btn_exportPDF_Click(object sender, EventArgs e)
         {
-            Methods.ExportDGVtoPDF(usersDataGridView, "الموظفين");
+            await Methods.ExportDGVtoPDF(usersDataGridView, "الموظفين");
         }
     }
 }

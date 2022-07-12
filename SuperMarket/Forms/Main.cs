@@ -1,6 +1,7 @@
 ﻿using SuperMarket.Classes;
 using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarket.Forms
@@ -31,7 +32,7 @@ namespace SuperMarket.Forms
         private int SessionTimer = 0, HourlyTimer = 0, FourHoursTimer = 0;
         private bool SessionState = true;
 
-        private void Main_Load(object sender, EventArgs e)
+        private async void Main_Load(object sender, EventArgs e)
         {
             SetColors(Properties.Settings.Default.AppColor);
 
@@ -40,7 +41,7 @@ namespace SuperMarket.Forms
             else if (!Security.OpenFormMain || LoggedUser.Username == "")
                 Close();
             else
-                FormInitialSetup();
+                await FormInitialSetup();
         }
 
         public void SetColors(Color color)
@@ -62,7 +63,7 @@ namespace SuperMarket.Forms
             }
         }
 
-        private void FormInitialSetup()
+        private async Task FormInitialSetup()
         {
             this.WindowState = Properties.Settings.Default.WindowState;
 
@@ -95,7 +96,8 @@ namespace SuperMarket.Forms
                 uc_reports,
                 uc_advancedSearch,
                 uc_suppliers,
-                uc_supplierInvoices
+                uc_supplierInvoices,
+                uc_safe,
             };
 
             foreach (UserControl userControl in AllUserControls)
@@ -107,7 +109,7 @@ namespace SuperMarket.Forms
 
             lbl_welcomeName.Text = LoggedUser.FullName;
 
-            Classes.DataAccess.Backup.AllDaily();
+            await Classes.DataAccess.Backup.AllDaily();
 
             UserSession.Start();
             HourlyChecker.Start();
@@ -341,7 +343,7 @@ namespace SuperMarket.Forms
             FourHoursTimer += 1;
             if (HourlyTimer >= 3600)
             {
-                Classes.DataAccess.Backup.AllDaily();
+                Task.Run(() => Classes.DataAccess.Backup.AllDaily());
                 HourlyTimer = 0;
             }
 

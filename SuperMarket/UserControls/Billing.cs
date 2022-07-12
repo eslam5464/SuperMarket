@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarket.UserControls
@@ -21,13 +22,13 @@ namespace SuperMarket.UserControls
         private ContextMenu contextMenu = new ContextMenu();
         private DataGridViewCell ContextMenuSelectedCell;
 
-        private void ub_billing_Load(object sender, EventArgs e)
+        private async void ub_billing_Load(object sender, EventArgs e)
         {
             SetColors(Properties.Settings.Default.AppColor);
 
             txt_invoiceno.Text = Methods.GetUniqueInvoiceID().ToString();
 
-            pic_barcode.BackgroundImage = new Methods().CreateBarcodeImage(txt_invoiceno.Text, pic_barcode.Width, pic_barcode.Height);
+            pic_barcode.BackgroundImage = await new Methods().CreateBarcodeImage(txt_invoiceno.Text, pic_barcode.Width, pic_barcode.Height);
 
             cb_defaultCST.Checked = true;
 
@@ -100,7 +101,7 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void txt_billing_KeyDown(object sender, KeyEventArgs e)
+        private async void txt_billing_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Return)
             {
@@ -126,7 +127,7 @@ namespace SuperMarket.UserControls
                         List<ProductModel> productSearch =
                             Classes.DataAccess.Products.GetProductLikeParameter("BarCode", txt_productBarCode.Text);
 
-                        DataTable dataProductSearch = new Methods().ListToDataTable(productSearch);
+                        DataTable dataProductSearch = await new Methods().ListToDataTable(productSearch);
 
                         txt_prodSearch.DataSource = dataProductSearch;
                         txt_prodSearch.ValueMember = "Id";
@@ -313,7 +314,7 @@ namespace SuperMarket.UserControls
             db_procardsDataGridView.Columns["CreationDate"].Width += 5;
         }
 
-        private void pcb_searchProdName_Click(object sender, EventArgs e)
+        private async void pcb_searchProdName_Click(object sender, EventArgs e)
         {
             if (txt_productName.Text.Trim() == "")
                 MessageBox.Show("برجاء كتابه اسم المنتج قبل البحث", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -325,7 +326,7 @@ namespace SuperMarket.UserControls
 
                 List<ProductModel> productSearch = Classes.DataAccess.Products.GetProductLikeParameter("Name", txt_productName.Text);
 
-                DataTable dataProductSearch = new Methods().ListToDataTable(productSearch);
+                DataTable dataProductSearch = await new Methods().ListToDataTable(productSearch);
 
                 txt_prodSearch.DataSource = dataProductSearch;
                 txt_prodSearch.ValueMember = "Id";
@@ -385,7 +386,7 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void pcb_getInvoiceID_Click(object sender, EventArgs e)
+        private async void pcb_getInvoiceID_Click(object sender, EventArgs e)
         {
             if (db_procardsDataGridView.DataSource == null)
             {
@@ -401,7 +402,7 @@ namespace SuperMarket.UserControls
 
                 txt_invoiceno.Text = "" + UniqueInvoiceID;
 
-                pic_barcode.BackgroundImage = new Methods().CreateBarcodeImage(UniqueInvoiceID, pic_barcode.Width, pic_barcode.Height);
+                pic_barcode.BackgroundImage = await new Methods().CreateBarcodeImage(UniqueInvoiceID, pic_barcode.Width, pic_barcode.Height);
             }
         }
 
@@ -440,7 +441,7 @@ namespace SuperMarket.UserControls
             CalculateGrandTotal();
         }
 
-        private void btn_remove__Click(object sender, EventArgs e)
+        private async void btn_remove__Click(object sender, EventArgs e)
         {
             if (MessageBox.Show($"هل انت متأكد من ازالتك لجميع ما في العربه؟", "انتظر",
                            MessageBoxButtons.YesNo,
@@ -462,7 +463,7 @@ namespace SuperMarket.UserControls
 
                 txt_invoiceno.Text = "" + UniqueInvoiceID;
 
-                pic_barcode.BackgroundImage = new Methods().CreateBarcodeImage(UniqueInvoiceID, pic_barcode.Width, pic_barcode.Height);
+                pic_barcode.BackgroundImage = await new Methods().CreateBarcodeImage(UniqueInvoiceID, pic_barcode.Width, pic_barcode.Height);
 
             }
         }

@@ -3,6 +3,7 @@ using SuperMarket.Classes;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarket.Forms
@@ -19,17 +20,17 @@ namespace SuperMarket.Forms
 
         public enum ShownReport { Customers, Products, Orders, Users, Suppliers }
 
-        private void Customers_Load(object sender, EventArgs e)
+        private async void Customers_Load(object sender, EventArgs e)
         {
-            CheckReport(SelectedReport);
+            await CheckReport(SelectedReport);
         }
 
-        private void CheckReport(ShownReport selectedReport)
+        private async Task CheckReport(ShownReport selectedReport)
         {
             if (selectedReport == ShownReport.Customers)
             {
                 Methods methods = new Methods();
-                using (dtp = methods.DataGridToDataTable(DGVtoPrint))
+                using (dtp = await Task.Run(() => methods.DataGridToDataTable(DGVtoPrint)))
                 {
                     dtp.TableName = "العملاء";
 
@@ -47,7 +48,7 @@ namespace SuperMarket.Forms
             {
                 List<Classes.Models.ProductModel> AllProducts = Classes.DataAccess.Products.LoadProducts(false);
 
-                using (dtp = new Methods().ListToDataTable(AllProducts))
+                using (dtp = await new Methods().ListToDataTable(AllProducts))
                 {
                     dtp.TableName = "المنتجات";
 

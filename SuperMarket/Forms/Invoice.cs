@@ -3,6 +3,7 @@ using SuperMarket.Classes;
 using System;
 using System.Data;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarket.Forms
@@ -34,10 +35,10 @@ namespace SuperMarket.Forms
             panel4.BackColor = appColor;
         }
 
-        private void txt_invoiceid_TextChanged(object sender, EventArgs e)
+        private async void txt_invoiceid_TextChanged(object sender, EventArgs e)
         {
             Methods methods = new Methods();
-            DataTable dtp = methods.DataGridToDataTable(DGVtoPrint);
+            DataTable dtp = await Task.Run(() => methods.DataGridToDataTable(DGVtoPrint));
             dtp.TableName = "Invoice";
 
             ReportDataSource datasource = new ReportDataSource("Invoice", dtp);

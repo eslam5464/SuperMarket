@@ -1,6 +1,7 @@
 ﻿using SuperMarket.Classes;
 using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarket.Forms
@@ -17,17 +18,17 @@ namespace SuperMarket.Forms
             new About().ShowDialog();
         }
 
-        private void btn_login_Click(object sender, EventArgs e)
+        private async void btn_login_Click(object sender, EventArgs e)
         {
             txt_Username.Text = "admin";
             txt_Password.Text = "passnot100%Safe";
 
-            Logger.Log("user clicked on login button",
-                        System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+             Logger.Log("user clicked on login button",
+                         System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
             try
             {
-                var AllUsers = Classes.DataAccess.Users.LoadAtiveUsers();
+                var AllUsers = await Task.Run(() => Classes.DataAccess.Users.LoadAtiveUsers());
 
                 var user = AllUsers.FindAll(User => Security.Decrypt(User.Username, Security.CPUID + Security.MOBOID) == txt_Username.Text);
                 //if (txt_Username.Text == "admin" && txt_Password.Text == "admin")
@@ -45,11 +46,11 @@ namespace SuperMarket.Forms
                 }
                 else
                 {
-                    string username = Security.Decrypt(user[0].Username, Security.CPUID + Security.MOBOID),
-                        password = Security.Decrypt(user[0].Password, Security.CPUID + Security.MOBOID),
-                        fullname = Security.Decrypt(user[0].FullName, Security.CPUID + Security.MOBOID),
-                        email = Security.Decrypt(user[0].Email, Security.CPUID + Security.MOBOID),
-                        phone = Security.Decrypt(user[0].Phone, Security.CPUID + Security.MOBOID);
+                    string username = await Security.DecryptAsync(user[0].Username, Security.CPUID + Security.MOBOID),
+                        password = await Security.DecryptAsync(user[0].Password, Security.CPUID + Security.MOBOID),
+                        fullname = await Security.DecryptAsync(user[0].FullName, Security.CPUID + Security.MOBOID),
+                        email = await Security.DecryptAsync(user[0].Email, Security.CPUID + Security.MOBOID),
+                        phone = await Security.DecryptAsync(user[0].Phone, Security.CPUID + Security.MOBOID);
 
                     if (username == txt_Username.Text && password == txt_Password.Text)
                     {
@@ -68,7 +69,7 @@ namespace SuperMarket.Forms
                         };
 
                         Main.LoggedUser = LoggedUser;
-                        Logger.Log($"user entered the correct credentials. accessing the application now",
+                         Logger.Log($"user entered the correct credentials. accessing the application now",
                                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
                         Close();
                     }
@@ -93,7 +94,7 @@ namespace SuperMarket.Forms
                 txt_Password.PasswordChar = '✪';
         }
 
-        private void Login_Load(object sender, EventArgs e)
+        private async void Login_Load(object sender, EventArgs e)
         {
             this.TopMost = false;
 
@@ -105,11 +106,11 @@ namespace SuperMarket.Forms
                 string CPUID = Security.CPUID, MOBOID = Security.MOBOID;
                 Classes.Models.UserModel user = new Classes.Models.UserModel
                 {
-                    Username = Security.Encrypt("admin", CPUID + MOBOID),
-                    Password = Security.Encrypt("passnot100%Safe", CPUID + MOBOID),
-                    FullName = Security.Encrypt("admin", CPUID + MOBOID),
-                    Phone = Security.Encrypt("01100308506", CPUID + MOBOID),
-                    Email = Security.Encrypt("NA", CPUID + MOBOID),
+                    Username = await Security.EncryptAsync("admin", CPUID + MOBOID),
+                    Password = await Security.EncryptAsync("passnot100%Safe", CPUID + MOBOID),
+                    FullName = await Security.EncryptAsync("admin", CPUID + MOBOID),
+                    Phone = await Security.EncryptAsync("01100308506", CPUID + MOBOID),
+                    Email = await Security.EncryptAsync("NA", CPUID + MOBOID),
                     UserLevel = "admin",
                     ActiveState = true
                 };

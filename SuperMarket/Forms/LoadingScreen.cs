@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Net;
 using System.Net.Cache;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarket.Forms
@@ -69,7 +70,7 @@ namespace SuperMarket.Forms
             pic_logo.BackColor = appColor;
         }
 
-        private void MoveProgressBar()
+        private async Task MoveProgressBar()
         {
             if (progressBar.Value < 75)
             {
@@ -88,7 +89,7 @@ namespace SuperMarket.Forms
 
                     if (LicenseKey != "")
                     {
-                        string SerialKeyCheckOutput = Security.CheckLicenseKeyValidity(LicenseKey);
+                        string SerialKeyCheckOutput = await Security.CheckLicenseKeyValidityAsync(LicenseKey);
 
                         if (SerialKeyCheckOutput == "404")
                         {
@@ -99,7 +100,7 @@ namespace SuperMarket.Forms
                         else if (SerialKeyCheckOutput == "200")
                         {
                             Logger.Log("serial key validated",
-                                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                                      System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                             this.TopMost = false;
                             this.Hide();
@@ -132,7 +133,7 @@ namespace SuperMarket.Forms
                         else
                         {
                             Logger.Log("unknown error",
-                                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
+                                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
                             Security.OpenFormMain = false;
                         }
                     }
@@ -140,9 +141,9 @@ namespace SuperMarket.Forms
                     else
                     {
                         Logger.Log("serial key isnt available prompting the user to add it",
-                                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-                        if (Security.SerialKeyFileExists())
+                        if (await Security.SerialKeyFileExistsAsync())
                         {
                             this.Hide();
                             LicenseKeyValidator licenseKeyValidator = new LicenseKeyValidator();
@@ -173,9 +174,9 @@ namespace SuperMarket.Forms
             }
         }
 
-        private void timer_loading_Tick(object sender, EventArgs e)
+        private async void timer_loading_Tick(object sender, EventArgs e)
         {
-            MoveProgressBar();
+            await MoveProgressBar();
         }
     }
 }
