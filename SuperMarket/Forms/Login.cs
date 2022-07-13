@@ -75,7 +75,7 @@ namespace SuperMarket.Forms
                     }
                     else
                     {
-                        // to do: ########################### change login
+                        // TODO: change login
                         MessageBox.Show("اسم المستخدم أو كلمه المرور غير صحيحة", "حاول مره أخرى", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }

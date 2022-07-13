@@ -294,11 +294,23 @@ namespace SuperMarket.UserControls
 
         private void num_payment_ValueChanged(object sender, EventArgs e)
         {
-            decimal AmoutRequired = num_paymentAmoutRequired.Value,
-                    AmoutPaid = num_paymentAmoutPaid.Value,
-                    AmoutLeft = AmoutRequired - AmoutPaid;
+            if ((NumericUpDown)sender == num_paymentAmoutRequired && num_paymentAmoutPaid.Enabled == false)
+            {
+                if (txt_paymentMethod.SelectedIndex == Methods.FindIndexFromArray(GlobalVars.PaymentMethod, "نقدي"))
+                {
+                    num_paymentAmoutPaid.Value = num_paymentAmoutRequired.Value;
 
-            num_paymentAmoutLeft.Value = AmoutLeft;
+                    num_paymentAmoutLeft.Value = 0;
+                }
+            }
+            else
+            {
+                decimal AmoutRequired = num_paymentAmoutRequired.Value,
+                AmoutPaid = num_paymentAmoutPaid.Value,
+                AmoutLeft = AmoutRequired - AmoutPaid;
+
+                num_paymentAmoutLeft.Value = AmoutLeft;
+            }
         }
 
         private void txt_productQuantity_TextChanged(object sender, EventArgs e)
@@ -444,6 +456,19 @@ namespace SuperMarket.UserControls
             if (db_productDataGridView.Rows.Count == 0)
             {
                 pan_payment.Enabled = false;
+            }
+        }
+
+        private void txt_paymentMethod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (txt_paymentMethod.SelectedIndex == Methods.FindIndexFromArray(GlobalVars.PaymentMethod, "نقدي"))
+            {
+                num_paymentAmoutPaid.Value = num_paymentAmoutRequired.Value;
+                num_paymentAmoutPaid.Enabled = false;
+            }
+            else
+            {
+                num_paymentAmoutPaid.Enabled = true;
             }
         }
 

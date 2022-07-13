@@ -135,6 +135,7 @@
     <Compile Include="Classes\DataAccess\Customers.cs" />
     <Compile Include="Classes\DataAccess\Invoices.cs" />
     <Compile Include="Classes\DataAccess\Orders.cs" />
+    <Compile Include="Classes\DataAccess\ProductPrice.cs" />
     <Compile Include="Classes\DataAccess\Products.cs" />
     <Compile Include="Classes\DataAccess\Storage.cs" />
     <Compile Include="Classes\DataAccess\SupplierInvoice.cs" />
@@ -148,9 +149,11 @@
     <Compile Include="Classes\Models\CategoryModel.cs" />
     <Compile Include="Classes\Models\CustomerModel.cs" />
     <Compile Include="Classes\Models\InvoiceModel.cs" />
+    <Compile Include="Classes\Models\Joins\Product_ProductPriceModel.cs" />
     <Compile Include="Classes\Models\LogModel.cs" />
     <Compile Include="Classes\Models\OrderModel.cs" />
     <Compile Include="Classes\Models\ProductModel.cs" />
+    <Compile Include="Classes\Models\ProductPriceModel.cs" />
     <Compile Include="Classes\Models\SafeModel.cs" />
     <Compile Include="Classes\Models\SafeTransactionModel.cs" />
     <Compile Include="Classes\Models\StorageModel.cs" />
@@ -204,6 +207,9 @@
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="SuperMarketDataSet.cs">
+      <DependentUpon>SuperMarketDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SuperMarketDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

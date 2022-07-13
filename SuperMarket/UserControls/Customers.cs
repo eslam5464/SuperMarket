@@ -143,7 +143,7 @@ namespace SuperMarket.UserControls
                 Logger.Log($"user is trying to search for customer with phone {txt_contact.Text}",
                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-                List<CustomerModel> customerSearch = Classes.DataAccess.Customers.GetCustomerParameter("ContactNo", txt_contact.Text);
+                List<CustomerModel> customerSearch = Classes.DataAccess.Customers.GetCustomerParameterLike("ContactNo", txt_contact.Text);
                 LoadDataGrid(customerSearch, customersDataGridView);
             }
         }

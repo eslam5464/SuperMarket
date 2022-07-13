@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarket.UserControls
@@ -186,9 +185,9 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void btn_exportPDF_Click(object sender, EventArgs e)
+        private async void btn_exportPDF_Click(object sender, EventArgs e)
         {
-            Task.Run(() => Methods.ExportDGVtoPDF(ordersDataGridView, "الطلبات"));
+            await Methods.ExportDGVtoPDF(ordersDataGridView, "الطلبات");
         }
     }
 }

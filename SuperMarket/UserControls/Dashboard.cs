@@ -44,7 +44,7 @@ namespace SuperMarket.UserControls
 
             lbl_orders_sum.Text = "" + OrderSum;
             lbl_orders_count.Text = "" + Classes.DataAccess.Orders.GetAllOrders(false).Count;
-            lbl_product_count.Text = "" + Classes.DataAccess.Products.LoadProducts(false).Count;
+            lbl_product_count.Text = "" + Classes.DataAccess.Products.LoadProductsWithPrices(false).Count;
             lbl_customer_count.Text = "" + Classes.DataAccess.Customers.LoadCustomers(false).Count;
             lbl_user_count.Text = "" + Classes.DataAccess.Users.LoadAtiveUsersNonAdmin().Count;
 

@@ -79,7 +79,7 @@ namespace SuperMarket.Forms
             else
             {
                 if (progressBar.Value == 75 && FoundTimeOnline)
-                    progressBar.Value += 25;// TO DO: finish finding time online
+                    progressBar.Value += 25;// TODO: finish finding time online
 
                 else
                 {

@@ -86,7 +86,7 @@
             this.btn_CategoryRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_CategoryRemove.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
             this.btn_CategoryRemove.ForeColor = System.Drawing.Color.White;
-            this.btn_CategoryRemove.Location = new System.Drawing.Point(549, 137);
+            this.btn_CategoryRemove.Location = new System.Drawing.Point(546, 136);
             this.btn_CategoryRemove.Name = "btn_CategoryRemove";
             this.btn_CategoryRemove.Size = new System.Drawing.Size(154, 50);
             this.btn_CategoryRemove.TabIndex = 137;
@@ -101,7 +101,7 @@
             this.btn_categoryEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_categoryEdit.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
             this.btn_categoryEdit.ForeColor = System.Drawing.Color.White;
-            this.btn_categoryEdit.Location = new System.Drawing.Point(333, 137);
+            this.btn_categoryEdit.Location = new System.Drawing.Point(330, 136);
             this.btn_categoryEdit.Name = "btn_categoryEdit";
             this.btn_categoryEdit.Size = new System.Drawing.Size(154, 50);
             this.btn_categoryEdit.TabIndex = 136;
@@ -113,9 +113,9 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.Gray;
             this.panel1.Controls.Add(this.categoriesDataGridView);
-            this.panel1.Location = new System.Drawing.Point(2, 364);
+            this.panel1.Location = new System.Drawing.Point(3, 364);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1035, 281);
+            this.panel1.Size = new System.Drawing.Size(1032, 293);
             this.panel1.TabIndex = 138;
             // 
             // categoriesDataGridView
@@ -158,7 +158,7 @@
             this.categoriesDataGridView.Name = "categoriesDataGridView";
             this.categoriesDataGridView.ReadOnly = true;
             this.categoriesDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.categoriesDataGridView.Size = new System.Drawing.Size(1035, 281);
+            this.categoriesDataGridView.Size = new System.Drawing.Size(1032, 293);
             this.categoriesDataGridView.TabIndex = 0;
             this.categoriesDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.categoriesDataGridView_CellContentClick);
             this.categoriesDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.categoriesDataGridView_CellMouseClick);
@@ -218,7 +218,7 @@
             this.btn_saveCategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_saveCategory.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_saveCategory.ForeColor = System.Drawing.Color.White;
-            this.btn_saveCategory.Location = new System.Drawing.Point(117, 137);
+            this.btn_saveCategory.Location = new System.Drawing.Point(114, 136);
             this.btn_saveCategory.Name = "btn_saveCategory";
             this.btn_saveCategory.Size = new System.Drawing.Size(154, 50);
             this.btn_saveCategory.TabIndex = 135;
@@ -233,9 +233,10 @@
             this.txt_categorieid.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txt_categorieid.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_categorieid.ForeColor = System.Drawing.Color.Black;
-            this.txt_categorieid.Location = new System.Drawing.Point(403, 77);
+            this.txt_categorieid.Location = new System.Drawing.Point(384, 76);
             this.txt_categorieid.Multiline = true;
             this.txt_categorieid.Name = "txt_categorieid";
+            this.txt_categorieid.ShortcutsEnabled = false;
             this.txt_categorieid.Size = new System.Drawing.Size(150, 45);
             this.txt_categorieid.TabIndex = 132;
             this.txt_categorieid.TextChanged += new System.EventHandler(this.txt_categorieid_TextChanged);
@@ -247,7 +248,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Purple;
-            this.label3.Location = new System.Drawing.Point(760, 46);
+            this.label3.Location = new System.Drawing.Point(741, 45);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(122, 28);
             this.label3.TabIndex = 129;
@@ -259,7 +260,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Purple;
-            this.label2.Location = new System.Drawing.Point(432, 46);
+            this.label2.Location = new System.Drawing.Point(413, 45);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(121, 28);
             this.label2.TabIndex = 130;
@@ -272,7 +273,7 @@
             this.txt_categoriename.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txt_categoriename.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_categoriename.ForeColor = System.Drawing.Color.Black;
-            this.txt_categoriename.Location = new System.Drawing.Point(643, 77);
+            this.txt_categoriename.Location = new System.Drawing.Point(624, 76);
             this.txt_categoriename.Multiline = true;
             this.txt_categoriename.Name = "txt_categoriename";
             this.txt_categoriename.Size = new System.Drawing.Size(300, 45);
@@ -286,7 +287,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(870, 31);
+            this.label1.Location = new System.Drawing.Point(850, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 37);
             this.label1.TabIndex = 139;
@@ -296,7 +297,7 @@
             // 
             this.pcb_searchID.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pcb_searchID.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_searchID.Location = new System.Drawing.Point(559, 77);
+            this.pcb_searchID.Location = new System.Drawing.Point(542, 77);
             this.pcb_searchID.Name = "pcb_searchID";
             this.pcb_searchID.Size = new System.Drawing.Size(45, 45);
             this.pcb_searchID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -311,7 +312,7 @@
             // 
             this.pcb_searchName.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pcb_searchName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_searchName.Location = new System.Drawing.Point(949, 77);
+            this.pcb_searchName.Location = new System.Drawing.Point(932, 77);
             this.pcb_searchName.Name = "pcb_searchName";
             this.pcb_searchName.Size = new System.Drawing.Size(45, 45);
             this.pcb_searchName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -351,7 +352,7 @@
             this.btn_exportPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_exportPDF.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_exportPDF.ForeColor = System.Drawing.Color.White;
-            this.btn_exportPDF.Location = new System.Drawing.Point(765, 137);
+            this.btn_exportPDF.Location = new System.Drawing.Point(762, 136);
             this.btn_exportPDF.Name = "btn_exportPDF";
             this.btn_exportPDF.Size = new System.Drawing.Size(154, 50);
             this.btn_exportPDF.TabIndex = 168;
@@ -365,7 +366,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Purple;
-            this.label4.Location = new System.Drawing.Point(222, 46);
+            this.label4.Location = new System.Drawing.Point(203, 45);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(114, 28);
             this.label4.TabIndex = 170;
@@ -378,7 +379,7 @@
             this.txt_storageNameSearch.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_storageNameSearch.FormattingEnabled = true;
             this.txt_storageNameSearch.IntegralHeight = false;
-            this.txt_storageNameSearch.Location = new System.Drawing.Point(72, 77);
+            this.txt_storageNameSearch.Location = new System.Drawing.Point(55, 77);
             this.txt_storageNameSearch.Name = "txt_storageNameSearch";
             this.txt_storageNameSearch.Size = new System.Drawing.Size(300, 40);
             this.txt_storageNameSearch.TabIndex = 197;
@@ -391,7 +392,7 @@
             this.txt_storageName.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txt_storageName.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_storageName.ForeColor = System.Drawing.Color.Black;
-            this.txt_storageName.Location = new System.Drawing.Point(10, 49);
+            this.txt_storageName.Location = new System.Drawing.Point(9, 48);
             this.txt_storageName.Multiline = true;
             this.txt_storageName.Name = "txt_storageName";
             this.txt_storageName.Size = new System.Drawing.Size(300, 45);
@@ -404,7 +405,7 @@
             this.btn_saveStorage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_saveStorage.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_saveStorage.ForeColor = System.Drawing.Color.White;
-            this.btn_saveStorage.Location = new System.Drawing.Point(156, 100);
+            this.btn_saveStorage.Location = new System.Drawing.Point(155, 99);
             this.btn_saveStorage.Name = "btn_saveStorage";
             this.btn_saveStorage.Size = new System.Drawing.Size(154, 50);
             this.btn_saveStorage.TabIndex = 199;
@@ -415,6 +416,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.btn_saveStorage);
@@ -430,7 +432,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Purple;
-            this.label6.Location = new System.Drawing.Point(186, 7);
+            this.label6.Location = new System.Drawing.Point(185, 6);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(115, 28);
             this.label6.TabIndex = 201;
@@ -442,7 +444,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Purple;
-            this.label5.Location = new System.Drawing.Point(319, 54);
+            this.label5.Location = new System.Drawing.Point(318, 53);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(168, 28);
             this.label5.TabIndex = 200;
@@ -451,6 +453,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.btn_storageDelete);
             this.panel3.Controls.Add(this.txt_storageNameEdit);
             this.panel3.Controls.Add(this.label7);
@@ -468,7 +471,7 @@
             this.btn_storageDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_storageDelete.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_storageDelete.ForeColor = System.Drawing.Color.White;
-            this.btn_storageDelete.Location = new System.Drawing.Point(22, 100);
+            this.btn_storageDelete.Location = new System.Drawing.Point(21, 99);
             this.btn_storageDelete.Name = "btn_storageDelete";
             this.btn_storageDelete.Size = new System.Drawing.Size(154, 50);
             this.btn_storageDelete.TabIndex = 203;
@@ -495,7 +498,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Century Gothic", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Purple;
-            this.label7.Location = new System.Drawing.Point(206, 7);
+            this.label7.Location = new System.Drawing.Point(205, 6);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(127, 28);
             this.label7.TabIndex = 201;
@@ -507,7 +510,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Purple;
-            this.label8.Location = new System.Drawing.Point(382, 54);
+            this.label8.Location = new System.Drawing.Point(381, 53);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(120, 28);
             this.label8.TabIndex = 200;
@@ -520,7 +523,7 @@
             this.btn_storageEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_storageEdit.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_storageEdit.ForeColor = System.Drawing.Color.White;
-            this.btn_storageEdit.Location = new System.Drawing.Point(22, 44);
+            this.btn_storageEdit.Location = new System.Drawing.Point(21, 43);
             this.btn_storageEdit.Name = "btn_storageEdit";
             this.btn_storageEdit.Size = new System.Drawing.Size(154, 50);
             this.btn_storageEdit.TabIndex = 199;
@@ -531,6 +534,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.Gainsboro;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.label9);
             this.panel4.Controls.Add(this.txt_storageNameSearch);
             this.panel4.Controls.Add(this.label2);
@@ -547,7 +551,7 @@
             this.panel4.Controls.Add(this.label1);
             this.panel4.Location = new System.Drawing.Point(3, 165);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1035, 193);
+            this.panel4.Size = new System.Drawing.Size(1032, 193);
             this.panel4.TabIndex = 202;
             // 
             // label9
@@ -556,7 +560,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Century Gothic", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.Purple;
-            this.label9.Location = new System.Drawing.Point(471, 3);
+            this.label9.Location = new System.Drawing.Point(469, 2);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(93, 28);
             this.label9.TabIndex = 202;

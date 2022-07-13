@@ -91,6 +91,25 @@ namespace SuperMarket.Classes.DataAccess
             return new List<CustomerModel>();
         }
 
+        internal static List<CustomerModel> GetCustomerParameterLike(string Parameter, string Condition)
+        {
+            try
+            {
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
+                {
+                    var output = cnn.Query<CustomerModel>($"SELECT TOP {MaxRows} * FROM Customers WHERE {Parameter} = " +
+                        $"N'%{Condition}%'", new DynamicParameters());
+                    return output.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"while getting a customer like param = {Parameter} & condition = {Condition} error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Customers", Logger.ERROR);
+            }
+            return new List<CustomerModel>();
+        }
+
         internal static List<CustomerModel> GetCustomerWithID(long CustomerID)
         {
             try

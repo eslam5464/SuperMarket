@@ -227,11 +227,11 @@ namespace SuperMarket.Forms
             Logger.Log($"user clicked on {SelectedButton.Name} button",
                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-            SidePanel.Height = SelectedButton.Height;
-            SidePanel.Top = SelectedButton.Top;
-
             if (HideAllSubMenus)
                 HideSubMenu();
+
+            SidePanel.Height = SelectedButton.Height;
+            SidePanel.Top = SelectedButton.Top;
         }
 
         private void SelectSideMenuButton(Button SelectedButton, Button MainButton, bool HideAllSubMenus, int location)
@@ -239,11 +239,11 @@ namespace SuperMarket.Forms
             Logger.Log($"user clicked on {SelectedButton.Name} button",
                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-            SidePanel.Height = MainButton.Height;
-            SidePanel.Top = MainButton.Top + (location * MainButton.Height);
-
             if (HideAllSubMenus)
                 HideSubMenu();
+
+            SidePanel.Height = MainButton.Height;
+            SidePanel.Top = MainButton.Top + (location * MainButton.Height);
         }
 
         private void ShowSubMenu(Panel subMenu)
@@ -350,7 +350,7 @@ namespace SuperMarket.Forms
 
             if (FourHoursTimer >= 14400)
             {
-                Console.WriteLine(Methods.GetTimeOnline());// to do : finish checking online
+                Console.WriteLine(Methods.GetTimeOnline());// TODO: finish checking online
                 FourHoursTimer = 0;
             }
         }

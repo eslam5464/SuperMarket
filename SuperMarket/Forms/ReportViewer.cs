@@ -46,7 +46,7 @@ namespace SuperMarket.Forms
             }
             else if (selectedReport == ShownReport.Products)
             {
-                List<Classes.Models.ProductModel> AllProducts = Classes.DataAccess.Products.LoadProducts(false);
+                List<Classes.Models.Joins.Product_ProductPriceModel> AllProducts = Classes.DataAccess.Products.LoadProductsWithPrices(false);
 
                 using (dtp = await new Methods().ListToDataTable(AllProducts))
                 {

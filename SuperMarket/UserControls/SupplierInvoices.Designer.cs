@@ -29,7 +29,7 @@ namespace SuperMarket.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txt_paymentMethod = new System.Windows.Forms.ComboBox();
             this.txt_searchSupplier = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -45,6 +45,13 @@ namespace SuperMarket.UserControls
             this.txt_searchSupplierType = new System.Windows.Forms.ComboBox();
             this.pcb_searchSupplier = new System.Windows.Forms.PictureBox();
             this.pan_payment = new System.Windows.Forms.Panel();
+            this.num_paymentAmoutLeft = new System.Windows.Forms.NumericUpDown();
+            this.num_paymentAmoutRequired = new System.Windows.Forms.NumericUpDown();
+            this.num_paymentAmoutPaid = new System.Windows.Forms.NumericUpDown();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.pan_productResults = new System.Windows.Forms.Panel();
             this.btn_removeProduct = new System.Windows.Forms.Button();
             this.btn_addProduct = new System.Windows.Forms.Button();
@@ -62,26 +69,19 @@ namespace SuperMarket.UserControls
             this.label8 = new System.Windows.Forms.Label();
             this.pan_productDataGrid = new System.Windows.Forms.Panel();
             this.db_productDataGridView = new System.Windows.Forms.DataGridView();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.num_paymentAmoutPaid = new System.Windows.Forms.NumericUpDown();
-            this.num_paymentAmoutRequired = new System.Windows.Forms.NumericUpDown();
-            this.num_paymentAmoutLeft = new System.Windows.Forms.NumericUpDown();
             this.pan_save = new System.Windows.Forms.Panel();
             this.btn_saveInovice = new System.Windows.Forms.Button();
             this.btn_resetAll = new System.Windows.Forms.Button();
             this.pan_supplierResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchSupplier)).BeginInit();
             this.pan_payment.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutLeft)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutRequired)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutPaid)).BeginInit();
             this.pan_productResults.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchProduct)).BeginInit();
             this.pan_productDataGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_productDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutPaid)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutRequired)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutLeft)).BeginInit();
             this.pan_save.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,6 +97,7 @@ namespace SuperMarket.UserControls
             this.txt_paymentMethod.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txt_paymentMethod.Size = new System.Drawing.Size(175, 40);
             this.txt_paymentMethod.TabIndex = 200;
+            this.txt_paymentMethod.SelectedIndexChanged += new System.EventHandler(this.txt_paymentMethod_SelectedIndexChanged);
             // 
             // txt_searchSupplier
             // 
@@ -286,6 +287,120 @@ namespace SuperMarket.UserControls
             this.pan_payment.Name = "pan_payment";
             this.pan_payment.Size = new System.Drawing.Size(438, 241);
             this.pan_payment.TabIndex = 210;
+            // 
+            // num_paymentAmoutLeft
+            // 
+            this.num_paymentAmoutLeft.DecimalPlaces = 2;
+            this.num_paymentAmoutLeft.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold);
+            this.num_paymentAmoutLeft.Location = new System.Drawing.Point(58, 186);
+            this.num_paymentAmoutLeft.Maximum = new decimal(new int[] {
+            900000000,
+            0,
+            0,
+            0});
+            this.num_paymentAmoutLeft.Minimum = new decimal(new int[] {
+            410065408,
+            2,
+            0,
+            -2147483648});
+            this.num_paymentAmoutLeft.Name = "num_paymentAmoutLeft";
+            this.num_paymentAmoutLeft.ReadOnly = true;
+            this.num_paymentAmoutLeft.Size = new System.Drawing.Size(204, 40);
+            this.num_paymentAmoutLeft.TabIndex = 228;
+            this.num_paymentAmoutLeft.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.num_paymentAmoutLeft.ThousandsSeparator = true;
+            // 
+            // num_paymentAmoutRequired
+            // 
+            this.num_paymentAmoutRequired.DecimalPlaces = 2;
+            this.num_paymentAmoutRequired.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold);
+            this.num_paymentAmoutRequired.Location = new System.Drawing.Point(58, 130);
+            this.num_paymentAmoutRequired.Maximum = new decimal(new int[] {
+            900000000,
+            0,
+            0,
+            0});
+            this.num_paymentAmoutRequired.Minimum = new decimal(new int[] {
+            410065408,
+            2,
+            0,
+            -2147483648});
+            this.num_paymentAmoutRequired.Name = "num_paymentAmoutRequired";
+            this.num_paymentAmoutRequired.Size = new System.Drawing.Size(204, 40);
+            this.num_paymentAmoutRequired.TabIndex = 227;
+            this.num_paymentAmoutRequired.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.num_paymentAmoutRequired.ThousandsSeparator = true;
+            this.num_paymentAmoutRequired.ValueChanged += new System.EventHandler(this.num_payment_ValueChanged);
+            // 
+            // num_paymentAmoutPaid
+            // 
+            this.num_paymentAmoutPaid.DecimalPlaces = 2;
+            this.num_paymentAmoutPaid.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold);
+            this.num_paymentAmoutPaid.Location = new System.Drawing.Point(58, 84);
+            this.num_paymentAmoutPaid.Maximum = new decimal(new int[] {
+            900000000,
+            0,
+            0,
+            0});
+            this.num_paymentAmoutPaid.Minimum = new decimal(new int[] {
+            900000000,
+            0,
+            0,
+            -2147483648});
+            this.num_paymentAmoutPaid.Name = "num_paymentAmoutPaid";
+            this.num_paymentAmoutPaid.Size = new System.Drawing.Size(204, 40);
+            this.num_paymentAmoutPaid.TabIndex = 226;
+            this.num_paymentAmoutPaid.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.num_paymentAmoutPaid.ThousandsSeparator = true;
+            this.num_paymentAmoutPaid.ValueChanged += new System.EventHandler(this.num_payment_ValueChanged);
+            // 
+            // label16
+            // 
+            this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Century Gothic", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.Purple;
+            this.label16.Location = new System.Drawing.Point(190, 5);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(58, 23);
+            this.label16.TabIndex = 225;
+            this.label16.Text = "الحساب";
+            // 
+            // label15
+            // 
+            this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.Purple;
+            this.label15.Location = new System.Drawing.Point(322, 195);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(59, 23);
+            this.label15.TabIndex = 223;
+            this.label15.Text = ":المتبقي";
+            // 
+            // label14
+            // 
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.Purple;
+            this.label14.Location = new System.Drawing.Point(268, 139);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(113, 23);
+            this.label14.TabIndex = 221;
+            this.label14.Text = ":المبلغ المطلوب";
+            // 
+            // label13
+            // 
+            this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Purple;
+            this.label13.Location = new System.Drawing.Point(317, 93);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(64, 23);
+            this.label13.TabIndex = 219;
+            this.label13.Text = ":المدفوع";
             // 
             // pan_productResults
             // 
@@ -514,14 +629,14 @@ namespace SuperMarket.UserControls
             this.db_productDataGridView.AllowUserToResizeColumns = false;
             this.db_productDataGridView.AllowUserToResizeRows = false;
             this.db_productDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.db_productDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.db_productDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.db_productDataGridView.ColumnHeadersHeight = 40;
             this.db_productDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.db_productDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -537,120 +652,6 @@ namespace SuperMarket.UserControls
             this.db_productDataGridView.RowTemplate.Height = 24;
             this.db_productDataGridView.Size = new System.Drawing.Size(556, 399);
             this.db_productDataGridView.TabIndex = 1;
-            // 
-            // label13
-            // 
-            this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.Purple;
-            this.label13.Location = new System.Drawing.Point(317, 93);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(64, 23);
-            this.label13.TabIndex = 219;
-            this.label13.Text = ":المدفوع";
-            // 
-            // label14
-            // 
-            this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.Purple;
-            this.label14.Location = new System.Drawing.Point(268, 139);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(113, 23);
-            this.label14.TabIndex = 221;
-            this.label14.Text = ":المبلغ المطلوب";
-            // 
-            // label15
-            // 
-            this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.Purple;
-            this.label15.Location = new System.Drawing.Point(322, 195);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(59, 23);
-            this.label15.TabIndex = 223;
-            this.label15.Text = ":المتبقي";
-            // 
-            // label16
-            // 
-            this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Century Gothic", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.Purple;
-            this.label16.Location = new System.Drawing.Point(190, 5);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(58, 23);
-            this.label16.TabIndex = 225;
-            this.label16.Text = "الحساب";
-            // 
-            // num_paymentAmoutPaid
-            // 
-            this.num_paymentAmoutPaid.DecimalPlaces = 2;
-            this.num_paymentAmoutPaid.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold);
-            this.num_paymentAmoutPaid.Location = new System.Drawing.Point(58, 84);
-            this.num_paymentAmoutPaid.Maximum = new decimal(new int[] {
-            900000000,
-            0,
-            0,
-            0});
-            this.num_paymentAmoutPaid.Minimum = new decimal(new int[] {
-            900000000,
-            0,
-            0,
-            -2147483648});
-            this.num_paymentAmoutPaid.Name = "num_paymentAmoutPaid";
-            this.num_paymentAmoutPaid.Size = new System.Drawing.Size(204, 40);
-            this.num_paymentAmoutPaid.TabIndex = 226;
-            this.num_paymentAmoutPaid.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.num_paymentAmoutPaid.ThousandsSeparator = true;
-            this.num_paymentAmoutPaid.ValueChanged += new System.EventHandler(this.num_payment_ValueChanged);
-            // 
-            // num_paymentAmoutRequired
-            // 
-            this.num_paymentAmoutRequired.DecimalPlaces = 2;
-            this.num_paymentAmoutRequired.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold);
-            this.num_paymentAmoutRequired.Location = new System.Drawing.Point(58, 130);
-            this.num_paymentAmoutRequired.Maximum = new decimal(new int[] {
-            900000000,
-            0,
-            0,
-            0});
-            this.num_paymentAmoutRequired.Minimum = new decimal(new int[] {
-            410065408,
-            2,
-            0,
-            -2147483648});
-            this.num_paymentAmoutRequired.Name = "num_paymentAmoutRequired";
-            this.num_paymentAmoutRequired.Size = new System.Drawing.Size(204, 40);
-            this.num_paymentAmoutRequired.TabIndex = 227;
-            this.num_paymentAmoutRequired.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.num_paymentAmoutRequired.ThousandsSeparator = true;
-            this.num_paymentAmoutRequired.ValueChanged += new System.EventHandler(this.num_payment_ValueChanged);
-            // 
-            // num_paymentAmoutLeft
-            // 
-            this.num_paymentAmoutLeft.DecimalPlaces = 2;
-            this.num_paymentAmoutLeft.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold);
-            this.num_paymentAmoutLeft.Location = new System.Drawing.Point(58, 186);
-            this.num_paymentAmoutLeft.Maximum = new decimal(new int[] {
-            900000000,
-            0,
-            0,
-            0});
-            this.num_paymentAmoutLeft.Minimum = new decimal(new int[] {
-            410065408,
-            2,
-            0,
-            -2147483648});
-            this.num_paymentAmoutLeft.Name = "num_paymentAmoutLeft";
-            this.num_paymentAmoutLeft.ReadOnly = true;
-            this.num_paymentAmoutLeft.Size = new System.Drawing.Size(204, 40);
-            this.num_paymentAmoutLeft.TabIndex = 228;
-            this.num_paymentAmoutLeft.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.num_paymentAmoutLeft.ThousandsSeparator = true;
             // 
             // pan_save
             // 
@@ -714,14 +715,14 @@ namespace SuperMarket.UserControls
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchSupplier)).EndInit();
             this.pan_payment.ResumeLayout(false);
             this.pan_payment.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutLeft)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutRequired)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutPaid)).EndInit();
             this.pan_productResults.ResumeLayout(false);
             this.pan_productResults.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchProduct)).EndInit();
             this.pan_productDataGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.db_productDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutPaid)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutRequired)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutLeft)).EndInit();
             this.pan_save.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace SuperMarket.Classes
 {
-    internal class Methods
+    public class Methods
     {
         internal async static Task<object> GetTimeOnline()
         {
@@ -163,6 +163,13 @@ namespace SuperMarket.Classes
             await Task.Run(() => dGVPrinter.PrintDataGridView(categoriesDataGridView));
         }
 
+        internal static int FindIndexFromArray(string[] SearchedArray, string Value)
+        {
+            int Index = Array.FindIndex(SearchedArray, row => row.Contains(Value));
+            return Index;
+        }
+        //Array.FindIndex(GlobalVars.PaymentMethod, row => row.Contains("نقدي"))
+
         //---------------------------------------------------------------
 
 
@@ -176,7 +183,7 @@ namespace SuperMarket.Classes
         //private void MenuItemEdit_Click(Object sender, System.EventArgs e)
         //{
         //    txt_productName.Text = db_procardsDataGridView.Rows[EditedRowID].Cells["ProductName"].Value.ToString();
-        //    //MessageBox.Show("invoice: " + InvoiceID); // TO DO: finish editing
+        //    //MessageBox.Show("invoice: " + InvoiceID); // TODO: finish editing
         //    txt_productBarCode.Text = db_procardsDataGridView.Rows[EditedRowID].Cells["ProductBarCode"].Value.ToString();
         //    txt_productquantity.Text = db_procardsDataGridView.Rows[EditedRowID].Cells["ProductQuantity"].Value.ToString();
         //    txt_productprice.Text = db_procardsDataGridView.Rows[EditedRowID].Cells["ProductPrice"].Value.ToString();

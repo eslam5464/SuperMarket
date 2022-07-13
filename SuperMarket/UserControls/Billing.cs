@@ -342,7 +342,7 @@ namespace SuperMarket.UserControls
 
                 if (productSearch.Count != 0)
                 {
-                    txt_productprice.Text = "" + productSearch[0].PriceSell;
+                    txt_productprice.Text = "" + Classes.DataAccess.ProductPrice.GetProductPriceParameter("ProductId", "" + productSearch[0].Id);
                     txt_productBarCode.Text = "" + productSearch[0].BarCode;
                     txt_productName.Text = productSearch[0].Name;
                     txt_productquantity.Text = "" + 1;
@@ -535,7 +535,7 @@ namespace SuperMarket.UserControls
             {
                 List<InvoiceModel> InvoiceSearch = Classes.DataAccess.Invoices.GetInvoice(int.Parse(txt_invoiceno.Text));
                 if (InvoiceSearch.Count != 0)
-                {//TO DO: finish searching for invoice
+                {//TODO: finish searching for invoice
                     SetEditMode(true);
                 }
 

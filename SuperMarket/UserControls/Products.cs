@@ -1,8 +1,8 @@
 ﻿using SuperMarket.Classes;
 using SuperMarket.Classes.Models;
+using SuperMarket.Classes.Models.Joins;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -23,7 +23,7 @@ namespace SuperMarket.UserControls
         {
             SetColors(Properties.Settings.Default.AppColor);
             LoadCategories();
-            LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
+            LoadJoinedDataGrid(Classes.DataAccess.Products.LoadProductsWithPrices(true));
 
             contextMenu = Methods.SetupContextMenuCopy(contextMenu, MenuItemCopyOption_Click);
         }
@@ -88,20 +88,31 @@ namespace SuperMarket.UserControls
                                 if (txt_productquantityMin.Text != "")
                                     MinQuantity = double.Parse(txt_productquantityMin.Text);
 
+                                ProductPriceModel productPriceModel = new ProductPriceModel
+                                {
+                                    PriceWholesale = decimal.Parse(txt_productPriceWholeSale.Text),
+                                    PriceSell = decimal.Parse(txt_productPriceSell.Text),
+                                    ProductId = long.Parse(txt_productid.Text),
+                                    ProductName = txt_productname.Text,
+                                    CreationDate = DateTime.Now
+                                };
+
                                 ProductModel product = new ProductModel
                                 {
                                     Id = long.Parse(txt_productid.Text),
                                     Name = txt_productname.Text,
                                     Quantity = double.Parse(txt_productquantity.Text),
                                     QuantityMinimum = MinQuantity,
-                                    PriceSell = decimal.Parse(txt_productPriceSell.Text),
                                     Description = txt_description.Text,
                                     BarCode = txt_productBarCode.Text,
                                     CategoryID = categoryId,
                                     CategoryName = categoryName,
-                                    PriceWholesale = decimal.Parse(txt_productPriceWholeSale.Text),
+                                    PriceModificationDate = productPriceModel.CreationDate
                                 };
+
                                 await Classes.DataAccess.Products.UpdateProduct(product);
+
+                                await Classes.DataAccess.ProductPrice.SaveProductPrice(productPriceModel);
 
                                 LoadDataGrid(Classes.DataAccess.Products.GetProductParameter("Id", "" + product.Id));
 
@@ -143,30 +154,44 @@ namespace SuperMarket.UserControls
                             {
 
                                 long categoryId = long.Parse(txt_categoriename.SelectedValue.ToString());
-                                CategoryModel SearcgCategoryName = Classes.DataAccess.Categories.GetCategoryParameter("Id", "" + categoryId)
+                                CategoryModel SearchedCategoryName = Classes.DataAccess.Categories.GetCategoryParameter("Id", "" + categoryId)
                                     .FirstOrDefault();
                                 double MinQuantity = 0;
 
-                                if (txt_productquantity.Text != "")
+                                if (txt_productquantityMin.Text != "")
                                     MinQuantity = double.Parse(txt_productquantityMin.Text);
 
-                                if (SearcgCategoryName != null)
+                                if (SearchedCategoryName != null)
                                 {
-                                    string categoryName = SearcgCategoryName.Name;
+                                    string categoryName = SearchedCategoryName.Name;
+
                                     ProductModel product = new ProductModel
                                     {
                                         BarCode = txt_productBarCode.Text,
                                         Name = txt_productname.Text,
-                                        PriceSell = decimal.Parse(txt_productPriceSell.Text),
+                                        //PriceSell = decimal.Parse(txt_productPriceSell.Text),
                                         Description = txt_description.Text,
                                         Quantity = 0,
                                         QuantityMinimum = MinQuantity,
                                         CategoryID = categoryId,
                                         CategoryName = categoryName,
-                                        PriceWholesale = decimal.Parse(txt_productPriceWholeSale.Text),
+                                        //PriceWholesale = decimal.Parse(txt_productPriceWholeSale.Text),
                                     };
                                     await Classes.DataAccess.Products.SaveProduct(product);
-                                    LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
+
+                                    ProductModel LastProduct = Classes.DataAccess.Products.GetLastAddedProduct();
+
+                                    ProductPriceModel ProductPrice = new ProductPriceModel
+                                    {
+                                        ProductId = LastProduct.Id,
+                                        ProductName = LastProduct.Name,
+                                        PriceSell = decimal.Parse(txt_productPriceSell.Text),
+                                        PriceWholesale = decimal.Parse(txt_productPriceWholeSale.Text),
+                                    };
+
+                                    await Classes.DataAccess.ProductPrice.SaveProductPrice(ProductPrice);
+
+                                    LoadJoinedDataGrid(Classes.DataAccess.Products.LoadProductsWithPrices(true));
 
                                     ResetTextBoxes();
 
@@ -207,6 +232,30 @@ namespace SuperMarket.UserControls
             txt_categoriename.SelectedIndex = -1;
         }
 
+        private void LoadJoinedDataGrid(List<Product_ProductPriceModel> Products)
+        {
+            productsDataGridView.DataSource = null;
+            productsDataGridView.DataSource = Products;
+
+            productsDataGridView.Columns["Id"].HeaderText = "رقم المنتج";
+            productsDataGridView.Columns["BarCode"].HeaderText = "باركود";
+            productsDataGridView.Columns["ProductName_"].HeaderText = "اسم المنتج";
+            productsDataGridView.Columns["PriceWholesale"].HeaderText = "سعر جمله المنتج";
+            productsDataGridView.Columns["PriceSell"].HeaderText = "سعر بيع المنتج";
+            productsDataGridView.Columns["Description"].HeaderText = "وصف المتج";
+            productsDataGridView.Columns["Quantity"].HeaderText = "كميه المنتج";
+            productsDataGridView.Columns["QuantityMinimum"].HeaderText = "حد ادنى للمنتج";
+            productsDataGridView.Columns["CategoryID"].HeaderText = "رقم الصنف";
+            productsDataGridView.Columns["CategoryName"].HeaderText = "اسم الصنف";
+            productsDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه المنتج";
+            productsDataGridView.Columns["PriceModificationDate"].HeaderText = "يوم تعديل السعر";
+            productsDataGridView.Columns["PriceModificationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
+            productsDataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
+
+            productsDataGridView.AutoResizeColumns();
+            productsDataGridView.Columns["CreationDate"].Width += 5;
+        }
+
         private void LoadDataGrid(List<ProductModel> Products)
         {
             productsDataGridView.DataSource = null;
@@ -223,6 +272,8 @@ namespace SuperMarket.UserControls
             productsDataGridView.Columns["CategoryID"].HeaderText = "رقم الصنف";
             productsDataGridView.Columns["CategoryName"].HeaderText = "اسم الصنف";
             productsDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه المنتج";
+            productsDataGridView.Columns["PriceModificationDate"].HeaderText = "يوم تعديل السعر";
+            productsDataGridView.Columns["PriceModificationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
             productsDataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
 
             productsDataGridView.AutoResizeColumns();
@@ -249,7 +300,7 @@ namespace SuperMarket.UserControls
         private void pcb_searchName_Click(object sender, EventArgs e)
         {
             if (txt_productname.Text.Trim() == "")
-                LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
+                LoadJoinedDataGrid(Classes.DataAccess.Products.LoadProductsWithPrices(true));
 
             else
             {
@@ -264,7 +315,7 @@ namespace SuperMarket.UserControls
         private void pcb_searchID_Click(object sender, EventArgs e)
         {
             if (txt_productid.Text.Trim() == "")
-                LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
+                LoadJoinedDataGrid(Classes.DataAccess.Products.LoadProductsWithPrices(true));
 
             else
             {
@@ -305,8 +356,8 @@ namespace SuperMarket.UserControls
                         CategoryName = productsDataGridView.Rows[RowIndex].Cells["CategoryName"].Value.ToString();
 
                     string ProductName = productsDataGridView.Rows[RowIndex].Cells["ProductName_"].Value.ToString(),
-                        ProductPriceWholesale = productsDataGridView.Rows[RowIndex].Cells["PriceWholesale"].Value.ToString(),
-                        ProductPriceSell = productsDataGridView.Rows[RowIndex].Cells["PriceSell"].Value.ToString(),
+                        //ProductPriceWholesale = productsDataGridView.Rows[RowIndex].Cells["PriceWholesale"].Value.ToString(),
+                        //ProductPriceSell = productsDataGridView.Rows[RowIndex].Cells["PriceSell"].Value.ToString(),
                         ProductQuantity = productsDataGridView.Rows[RowIndex].Cells["Quantity"].Value.ToString(),
                         ProductDescription = productsDataGridView.Rows[RowIndex].Cells["Description"].Value.ToString(),
                         ProductBarcode = productsDataGridView.Rows[RowIndex].Cells["BarCode"].Value.ToString(),
@@ -317,8 +368,8 @@ namespace SuperMarket.UserControls
 
                     txt_productid.Text = "" + ProductID;
                     txt_productname.Text = ProductName;
-                    txt_productPriceSell.Text = ProductPriceSell;
-                    txt_productPriceWholeSale.Text = ProductPriceWholesale;
+                    //txt_productPriceSell.Text = ProductPriceSell;
+                    //txt_productPriceWholeSale.Text = ProductPriceWholesale;
                     txt_productquantity.Text = ProductQuantity;
                     txt_description.Text = ProductDescription;
                     txt_productBarCode.Text = ProductBarcode;
@@ -372,7 +423,7 @@ namespace SuperMarket.UserControls
                                 MessageBoxIcon.Information) == DialogResult.Yes)
                     {
                         await Classes.DataAccess.Products.RemoveProduct(ProductID);
-                        LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
+                        LoadJoinedDataGrid(Classes.DataAccess.Products.LoadProductsWithPrices(true));
 
                         Logger.Log($"user removed product: {ProductName} with id: {ProductID}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
@@ -386,7 +437,7 @@ namespace SuperMarket.UserControls
 
         private void pcb_search_DoubleClick(object sender, EventArgs e)
         {
-            LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
+            LoadJoinedDataGrid(Classes.DataAccess.Products.LoadProductsWithPrices(true));
         }
 
         private void pcb_search_MouseEnter(object sender, EventArgs e)
@@ -404,7 +455,7 @@ namespace SuperMarket.UserControls
         private void pcb_searchBarCode_Click(object sender, EventArgs e)
         {
             if (txt_productBarCode.Text.Trim() == "")
-                LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
+                LoadJoinedDataGrid(Classes.DataAccess.Products.LoadProductsWithPrices(true));
 
             else
             {
@@ -418,31 +469,31 @@ namespace SuperMarket.UserControls
 
         private void db_productDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            productsDataGridView.DataSource = new Methods().DataGridToDataTable(productsDataGridView);
+            //productsDataGridView.DataSource = new Methods().DataGridToDataTable(productsDataGridView);
 
-            productsDataGridView.Sort(productsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+            //productsDataGridView.Sort(productsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
         }
 
         private void db_productDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            productsDataGridView.DataSource = new Methods().DataGridToDataTable(productsDataGridView);
+            //productsDataGridView.DataSource = new Methods().DataGridToDataTable(productsDataGridView);
 
-            productsDataGridView.Sort(productsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+            //productsDataGridView.Sort(productsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
         }
 
         private void productsBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            this.productsBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.superMarketDataSet);
+            //this.Validate();
+            //this.productsBindingSource.EndEdit();
+            //this.tableAdapterManager.UpdateAll(this.superMarketDataSet);
 
         }
 
         private void productsBindingNavigatorSaveItem_Click_1(object sender, EventArgs e)
         {
-            this.Validate();
-            this.productsBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.superMarketDataSet);
+            //this.Validate();
+            //this.productsBindingSource.EndEdit();
+            //this.tableAdapterManager.UpdateAll(this.superMarketDataSet);
 
         }
 
@@ -495,7 +546,7 @@ namespace SuperMarket.UserControls
 
                 product.BarCode = "" + barcode;
                 product.Name = "random " + barcode;
-                product.PriceSell = productPirce;
+                //product.PriceSell = productPirce;
                 product.Description = "";
                 product.Quantity = quantity;
                 product.CategoryID = categoryId;
@@ -507,7 +558,7 @@ namespace SuperMarket.UserControls
 
         private void button2_Click(object sender, EventArgs e)
         {
-            LoadDataGrid(Classes.DataAccess.Products.LoadProducts(true));
+            LoadJoinedDataGrid(Classes.DataAccess.Products.LoadProductsWithPrices(true));
         }
     }
 }

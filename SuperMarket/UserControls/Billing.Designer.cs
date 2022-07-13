@@ -131,6 +131,7 @@ namespace SuperMarket.UserControls
             this.txt_grandtotal.Multiline = true;
             this.txt_grandtotal.Name = "txt_grandtotal";
             this.txt_grandtotal.ReadOnly = true;
+            this.txt_grandtotal.ShortcutsEnabled = false;
             this.txt_grandtotal.Size = new System.Drawing.Size(303, 45);
             this.txt_grandtotal.TabIndex = 219;
             this.txt_grandtotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -174,6 +175,7 @@ namespace SuperMarket.UserControls
             this.txt_totalprice.Location = new System.Drawing.Point(245, 230);
             this.txt_totalprice.Multiline = true;
             this.txt_totalprice.Name = "txt_totalprice";
+            this.txt_totalprice.ShortcutsEnabled = false;
             this.txt_totalprice.Size = new System.Drawing.Size(247, 45);
             this.txt_totalprice.TabIndex = 221;
             this.txt_totalprice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -190,6 +192,7 @@ namespace SuperMarket.UserControls
             this.txt_productquantity.Location = new System.Drawing.Point(372, 156);
             this.txt_productquantity.Multiline = true;
             this.txt_productquantity.Name = "txt_productquantity";
+            this.txt_productquantity.ShortcutsEnabled = false;
             this.txt_productquantity.Size = new System.Drawing.Size(120, 45);
             this.txt_productquantity.TabIndex = 215;
             this.txt_productquantity.TextChanged += new System.EventHandler(this.txt_productquantity_TextChanged);
@@ -382,6 +385,7 @@ namespace SuperMarket.UserControls
             this.txt_productprice.Location = new System.Drawing.Point(245, 156);
             this.txt_productprice.Multiline = true;
             this.txt_productprice.Name = "txt_productprice";
+            this.txt_productprice.ShortcutsEnabled = false;
             this.txt_productprice.Size = new System.Drawing.Size(120, 45);
             this.txt_productprice.TabIndex = 214;
             this.txt_productprice.TextChanged += new System.EventHandler(this.txt_productprice_TextChanged);
