@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace SuperMarket.Classes.DataAccess
 {
@@ -42,6 +43,9 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
+                MessageBox.Show($"حدث خطأ أثناء اضافه الطلب {order.InvoiceId}", "خطأ",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 Logger.Log($"while adding order for invoice id = {order.InvoiceId} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Orders", Logger.ERROR);
             }

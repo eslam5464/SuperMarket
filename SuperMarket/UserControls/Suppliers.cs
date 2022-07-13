@@ -242,7 +242,7 @@ namespace SuperMarket.UserControls
 
         private void btn_exportPDF_Click(object sender, EventArgs e)
         {
-            Forms.ReportViewer.SelectedReport = Forms.ReportViewer.ShownReport.Suppliers;
+            Forms.ReportViewer.SelectedReport = Forms.ReportViewer.AvailableReports.Suppliers;
 
             using (Forms.ReportViewer reportViewer = new Forms.ReportViewer())
             {

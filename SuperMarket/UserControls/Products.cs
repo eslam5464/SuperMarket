@@ -114,7 +114,7 @@ namespace SuperMarket.UserControls
 
                                 await Classes.DataAccess.ProductPrice.SaveProductPrice(productPriceModel);
 
-                                LoadDataGrid(Classes.DataAccess.Products.GetProductParameter("Id", "" + product.Id));
+                                LoadJoinedDataGrid(Classes.DataAccess.Products.GetProductParameterWithPricee("Id", "" + product.Id));
 
                                 ResetTextBoxes();
 
@@ -256,30 +256,6 @@ namespace SuperMarket.UserControls
             productsDataGridView.Columns["CreationDate"].Width += 5;
         }
 
-        private void LoadDataGrid(List<ProductModel> Products)
-        {
-            productsDataGridView.DataSource = null;
-            productsDataGridView.DataSource = Products;
-
-            productsDataGridView.Columns["Id"].HeaderText = "رقم المنتج";
-            productsDataGridView.Columns["BarCode"].HeaderText = "باركود";
-            productsDataGridView.Columns["ProductName_"].HeaderText = "اسم المنتج";
-            productsDataGridView.Columns["PriceWholesale"].HeaderText = "سعر جمله المنتج";
-            productsDataGridView.Columns["PriceSell"].HeaderText = "سعر بيع المنتج";
-            productsDataGridView.Columns["Description"].HeaderText = "وصف المتج";
-            productsDataGridView.Columns["Quantity"].HeaderText = "كميه المنتج";
-            productsDataGridView.Columns["QuantityMinimum"].HeaderText = "حد ادنى للمنتج";
-            productsDataGridView.Columns["CategoryID"].HeaderText = "رقم الصنف";
-            productsDataGridView.Columns["CategoryName"].HeaderText = "اسم الصنف";
-            productsDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه المنتج";
-            productsDataGridView.Columns["PriceModificationDate"].HeaderText = "يوم تعديل السعر";
-            productsDataGridView.Columns["PriceModificationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
-            productsDataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
-
-            productsDataGridView.AutoResizeColumns();
-            productsDataGridView.Columns["CreationDate"].Width += 5;
-        }
-
         private void txt_products_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -291,8 +267,8 @@ namespace SuperMarket.UserControls
                     Logger.Log($"user is searching for product by barcode: {txt_productBarCode.Text}",
                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-                    List<ProductModel> productSearch = Classes.DataAccess.Products.GetProductParameter("BarCode", txt_productBarCode.Text);
-                    LoadDataGrid(productSearch);
+                    List<Product_ProductPriceModel> productSearch = Classes.DataAccess.Products.GetProductParameterWithPricee("BarCode", txt_productBarCode.Text);
+                    LoadJoinedDataGrid(productSearch);
                 }
             }
         }
@@ -307,8 +283,8 @@ namespace SuperMarket.UserControls
                 Logger.Log($"user is searching by name for product: {txt_productname.Text}",
                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-                List<ProductModel> productSearch = Classes.DataAccess.Products.GetProductParameter("Name", txt_productname.Text);
-                LoadDataGrid(productSearch);
+                List<Product_ProductPriceModel> productSearch = Classes.DataAccess.Products.GetProductParameterWithPricee("Name", txt_productname.Text);
+                LoadJoinedDataGrid(productSearch);
             }
         }
 
@@ -322,8 +298,8 @@ namespace SuperMarket.UserControls
                 Logger.Log($"user is searching by id for product: {txt_productid.Text}",
                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-                List<ProductModel> productSearch = Classes.DataAccess.Products.GetProductParameter("Id", txt_productid.Text);
-                LoadDataGrid(productSearch);
+                List<Product_ProductPriceModel> productSearch = Classes.DataAccess.Products.GetProductParameterWithPricee("Id", txt_productid.Text);
+                LoadJoinedDataGrid(productSearch);
             }
         }
 
@@ -462,8 +438,8 @@ namespace SuperMarket.UserControls
                 Logger.Log($"user is searching for product by barcode: {txt_productBarCode.Text}",
                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-                List<ProductModel> productSearch = Classes.DataAccess.Products.GetProductParameter("BarCode", txt_productBarCode.Text);
-                LoadDataGrid(productSearch);
+                List<Product_ProductPriceModel> productSearch = Classes.DataAccess.Products.GetProductParameterWithPricee("BarCode", txt_productBarCode.Text);
+                LoadJoinedDataGrid(productSearch);
             }
         }
 
@@ -518,7 +494,7 @@ namespace SuperMarket.UserControls
 
         private void btn_exportPDF_Click(object sender, EventArgs e)
         {
-            Forms.ReportViewer.SelectedReport = Forms.ReportViewer.ShownReport.Products;
+            Forms.ReportViewer.SelectedReport = Forms.ReportViewer.AvailableReports.Products;
 
             using (Forms.ReportViewer reportViewer = new Forms.ReportViewer())
             {

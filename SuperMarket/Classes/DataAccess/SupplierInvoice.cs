@@ -3,6 +3,7 @@ using SuperMarket.Classes.Models;
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 
 namespace SuperMarket.Classes.DataAccess
 {
@@ -24,6 +25,9 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
+                MessageBox.Show($"حدث خطأ أثناء حفظ فاتورة المورد {supplierInvoice.SupplierInvoiceProductId}", "خطأ",
+                      MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 Logger.Log($"while saving a supplier invoice for supplier with id = {supplierInvoice.SupplierId} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
             }

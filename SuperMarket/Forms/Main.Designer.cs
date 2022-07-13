@@ -166,7 +166,7 @@ namespace SuperMarket.Forms
             this.btn_safe.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btn_safe.Size = new System.Drawing.Size(228, 45);
             this.btn_safe.TabIndex = 30;
-            this.btn_safe.Text = "   خزنة";
+            this.btn_safe.Text = "   خزنة المال";
             this.btn_safe.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_safe.UseVisualStyleBackColor = true;
             this.btn_safe.Click += new System.EventHandler(this.btn_safe_Click);

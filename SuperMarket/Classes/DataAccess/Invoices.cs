@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SuperMarket.Classes.DataAccess
 {
@@ -45,6 +46,9 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
+                MessageBox.Show($"حدث خطأ أثناء اضافه المنتج  للفاتورة {invoice.InvoiceNumber}",
+                    "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 Logger.Log($"while adding an invoice with id = {invoice.Id} error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Invoices", Logger.ERROR);
             }
@@ -106,6 +110,9 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
+                MessageBox.Show($"حدث خطأ أثناء مسح المنتج من الفاتورة {InvoiceNumber}",
+                    "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 Logger.Log($"while removing product from invoice with Pid = {ProductID} & Iid = {InvoiceNumber} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Invoices", Logger.ERROR);
             }

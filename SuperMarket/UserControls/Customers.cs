@@ -322,7 +322,7 @@ namespace SuperMarket.UserControls
             using (Forms.ReportViewer reportViewer = new Forms.ReportViewer())
             {
                 Forms.ReportViewer.DGVtoPrint = customersDataGridView;
-                Forms.ReportViewer.SelectedReport = Forms.ReportViewer.ShownReport.Customers;
+                Forms.ReportViewer.SelectedReport = Forms.ReportViewer.AvailableReports.Customers;
                 reportViewer.ShowDialog();
                 reportViewer.Dispose();
                 reportViewer.Close();

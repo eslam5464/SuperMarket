@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace SuperMarket.Classes.DataAccess
 {
@@ -24,6 +25,9 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
+                MessageBox.Show($"حدث خطأ أثناء حفظ منتج لفاتورة المورد {supplierInvoice.ProductName}", "خطأ",
+                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 Logger.Log($"while saving a supplier product with id = {supplierInvoice.ProductId} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
             }

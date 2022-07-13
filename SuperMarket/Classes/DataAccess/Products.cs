@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SuperMarket.Classes.DataAccess
 {
@@ -27,6 +28,9 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
+                MessageBox.Show($"حدث خطأ أثناء تعديل المنتج {Product.Name}", "خطأ",
+                       MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 Logger.Log($"while updating {TableName} with id = {Product.Id} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
             }
@@ -126,6 +130,33 @@ namespace SuperMarket.Classes.DataAccess
             return new List<ProductModel>();
         }
 
+        public static List<Product_ProductPriceModel> GetProductParameterWithPricee(string Parameter, string Condition)
+        {
+            try
+            {
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
+                {
+                    string query = $"SELECT TOP {MaxRows} * FROM (SELECT [Id],[BarCode],[Name],[Quantity],[QuantityMinimum], " +
+                        $"productPrice.[PriceWholesale], productPrice.[PriceSell], [Description], [CategoryID], " +
+                        $"[CategoryName], products.[CreationDate], [PriceModificationDate] FROM [dbo].[Products] AS products " +
+                        $"join (SELECT[ProductId], [PriceWholesale], [PriceSell], [CreationDate] FROM[dbo].[ProductPrice]) " +
+                        $"AS productPrice ON products .[Id] = productPrice.[ProductId] " +
+                        $"AND products.[PriceModificationDate] = productPrice.[CreationDate]) AS TempTable " +
+                        $"WHERE {Parameter} = N'{Condition}'";
+
+                    var output = cnn.Query<Product_ProductPriceModel>(query, new DynamicParameters());
+
+                    return output.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"while getting product EQUAL param = {Parameter} & condition = {Condition} & error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
+            }
+            return new List<Product_ProductPriceModel>();
+        }
+
         public async static Task SaveProduct(ProductModel Product)
         {
             try
@@ -141,6 +172,9 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
+                MessageBox.Show($"حدث خطأ أثناء حفظ المنتج {Product.Name}", "خطأ",
+                          MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 Logger.Log($"while saving {TableName} with name = {Product.Name} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
             }
@@ -157,6 +191,9 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
+                MessageBox.Show($"حدث خطأ أثناء مسح المنتج", "خطأ",
+                       MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 Logger.Log($"while removing {TableName} with id = {ProductID} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
             }

@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SuperMarket.Classes.DataAccess
 {
@@ -91,6 +92,9 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
+                MessageBox.Show($"حدث خطأ أثناء تعديل سعر المنتج {ProductPrice.ProductName}", "خطأ",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 Logger.Log($"while updating {TableName} with id = {ProductPrice.Id} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
             }
@@ -109,6 +113,9 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
+                MessageBox.Show($"حدث خطأ أثناء حفظ السعر على المنتج {ProductPrice.ProductName}", "خطأ",
+                       MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 Logger.Log($"while saving {TableName} with id = {ProductPrice.Id} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Products", Logger.ERROR);
             }
@@ -125,6 +132,9 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
+                MessageBox.Show($"حدث خطأ أثناء مسح السعر", "خطأ",
+                       MessageBoxButtons.OK, MessageBoxIcon.Error);
+
                 Logger.Log($"while removing a {TableName} with id = {ProductPriceId} error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
             }

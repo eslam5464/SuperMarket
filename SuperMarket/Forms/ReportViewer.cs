@@ -15,19 +15,19 @@ namespace SuperMarket.Forms
             InitializeComponent();
         }
         public static DataGridView DGVtoPrint;
-        public static ShownReport SelectedReport;
+        public static AvailableReports SelectedReport;
         private DataTable dtp = null;
 
-        public enum ShownReport { Customers, Products, Orders, Users, Suppliers }
+        public enum AvailableReports { Customers, Products, Orders, Users, Suppliers }
 
         private async void Customers_Load(object sender, EventArgs e)
         {
             await CheckReport(SelectedReport);
         }
 
-        private async Task CheckReport(ShownReport selectedReport)
+        private async Task CheckReport(AvailableReports selectedReport)
         {
-            if (selectedReport == ShownReport.Customers)
+            if (selectedReport == AvailableReports.Customers)
             {
                 Methods methods = new Methods();
                 using (dtp = await Task.Run(() => methods.DataGridToDataTable(DGVtoPrint)))
@@ -44,7 +44,7 @@ namespace SuperMarket.Forms
                     rv_customers.Dock = DockStyle.Fill;
                 }
             }
-            else if (selectedReport == ShownReport.Products)
+            else if (selectedReport == AvailableReports.Products)
             {
                 List<Classes.Models.Joins.Product_ProductPriceModel> AllProducts = Classes.DataAccess.Products.LoadProductsWithPrices(false);
 
