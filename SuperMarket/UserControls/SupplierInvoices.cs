@@ -41,9 +41,11 @@ namespace SuperMarket.UserControls
 
         private void ResizeAndRenameCoulmns()
         {
-            db_productDataGridView.Columns["ProductId"].HeaderText = "الرقم التعريفي للمنتج";
+            db_productDataGridView.Columns["ProductId"].HeaderText = "الرقم التعريفي";
             db_productDataGridView.Columns["Quantity"].HeaderText = "كميه المنتج";
             db_productDataGridView.Columns["ProductName"].HeaderText = "اسم المنتج";
+            db_productDataGridView.Columns["ProductPriceWholesale"].HeaderText = "سعر الجملة";
+            db_productDataGridView.Columns["ProductPriceSell"].HeaderText = "سعر البيع";
 
             db_productDataGridView.Columns["CreationDate"].Visible = false;
             db_productDataGridView.Columns["Id"].Visible = false;
@@ -217,7 +219,8 @@ namespace SuperMarket.UserControls
             {
                 if (txt_searchedProductName.SelectedIndex != -1)
                 {
-                    if (txt_productQuantity.Text.Trim() != "")
+                    if (txt_productQuantity.Text.Trim() != "" && txt_productPriceSell.Text.Trim() != ""
+                        && txt_productPriceWholeSale.Text.Trim() != "")
                     {
                         if (float.Parse(txt_productQuantity.Text) != 0)
                         {
@@ -225,25 +228,42 @@ namespace SuperMarket.UserControls
                             {
                                 ProductId = long.Parse(txt_searchedProductName.SelectedValue.ToString()),
                                 ProductName = txt_searchedProductName.Text,
-                                Quantity = float.Parse(txt_productQuantity.Text)
+                                Quantity = float.Parse(txt_productQuantity.Text),
+                                ProductPriceSell = decimal.Parse(txt_productPriceSell.Text),
+                                ProductPriceWholesale = decimal.Parse(txt_productPriceWholeSale.Text),
                             };
 
-                            UpdateProductsDataGrid(supplierProduct);
+                            if (supplierProduct.ProductPriceSell < supplierProduct.ProductPriceWholesale)
+                            {
+                                MessageBox.Show("لا يمكن اضافه منتج وسعر البيع اصغر من سعر الجملة", "خطأ",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            else
+                            {
+                                if (!CheckProductInDataGrid(supplierProduct.ProductId))
+                                {
+                                    UpdateProductsDataGrid(supplierProduct);
 
-                            pan_payment.Enabled = true;
-                            pan_save.Enabled = true;
-
+                                    pan_payment.Enabled = true;
+                                    pan_save.Enabled = true;
+                                }
+                                else
+                                {
+                                    MessageBox.Show("لا يمكن اضافه هذا المنتج لانه موجود في الفاتورة", "خطأ",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
                         }
                         else
                         {
                             MessageBox.Show("لا يمكن اضافه منتج والكمية تساوي صفر", "خطأ",
-                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("برجاء تحديد الكمية", "خطأ",
-                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show("برجاء ادخال بيانات المنتج كامله من الكمية وسعر البيع وسعر الجملة", "خطأ",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                     ////Classes.DataAccess.SupplierInvoice.SaveSupplierInvoice()
@@ -269,6 +289,21 @@ namespace SuperMarket.UserControls
                 MessageBox.Show("يجب اختيار منتج للاضافه", "خطأ",
                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private bool CheckProductInDataGrid(long ProductId)
+        {
+            if (db_productDataGridView.DataSource != null)
+            {
+                List<SupplierInvoiceProductModel> datasource = (List<SupplierInvoiceProductModel>)db_productDataGridView.DataSource;
+
+                foreach (SupplierInvoiceProductModel supplierInvoice in datasource)
+                {
+                    if (supplierInvoice.ProductId == ProductId)
+                        return true;
+                }
+            }
+            return false;
         }
 
         private void UpdateProductsDataGrid(SupplierInvoiceProductModel Product)
@@ -378,6 +413,7 @@ namespace SuperMarket.UserControls
 
                 foreach (SupplierInvoiceProductModel SupplierProduct in AllSupplierProducts)
                 {
+                    //TODO: finish supplier product error when saving
                     Classes.DataAccess.SupplierInvoiceProduct.SaveSupplierInvoiceProduct(SupplierProduct);
 
                     List<SupplierInvoiceProductModel> SearchedSupplierProducts =
@@ -397,7 +433,7 @@ namespace SuperMarket.UserControls
                         PaymentMethod = (int)txt_paymentMethod.SelectedValue,
                         PaymentStatus = PaymentFinished,
                         SupplierId = (int)txt_searchedSupplierName.SelectedValue,
-                        SupplierInvoiceProductId = lastSupplierProduct.Id
+                        SupplierInvoiceProductId = lastSupplierProduct.Id,
                     };
 
                     Classes.DataAccess.SupplierInvoice.SaveSupplierInvoice(supplierInvoice);
@@ -409,6 +445,22 @@ namespace SuperMarket.UserControls
                     AdjustedProuduct[0].Quantity += lastSupplierProduct.Quantity;
 
                     await Classes.DataAccess.Products.UpdateProduct(AdjustedProuduct[0]);
+
+                    ProductPriceModel productPrice = new ProductPriceModel()
+                    {
+                        ProductId = lastSupplierProduct.ProductId,
+                        PriceSell = lastSupplierProduct.ProductPriceSell,
+                        PriceWholesale = lastSupplierProduct.ProductPriceWholesale,
+                        ProductName = lastSupplierProduct.ProductName,
+                        CreationDate = DateTime.Now
+                    };
+
+                    await Classes.DataAccess.ProductPrice.SaveProductPrice(productPrice);
+
+                    List<ProductModel> SearchedProduct = Classes.DataAccess.Products.GetProductParameter("Id", "" + productPrice.ProductId);
+                    SearchedProduct[0].PriceModificationDate = productPrice.CreationDate;
+
+                    await Classes.DataAccess.Products.UpdateProduct(SearchedProduct[0]);
                 }
                 ResetAll();
 
@@ -479,10 +531,10 @@ namespace SuperMarket.UserControls
             {
                 int rowindex = db_productDataGridView.CurrentCell.RowIndex;
                 long ProdcutID = int.Parse(db_productDataGridView.Rows[rowindex].Cells["ProductId"].Value.ToString());
-                string ProductName = db_productDataGridView.Rows[rowindex].Cells["ProductName"].Value.ToString();
+                //string ProductName = db_productDataGridView.Rows[rowindex].Cells["ProductName"].Value.ToString();
 
                 List<Product_ProductPriceModel> ProductData =
-                    Classes.DataAccess.Products.GetProductParameterWithPricee("Id", "" + ProdcutID);
+                     Classes.DataAccess.Products.GetProductParameterWithPricee("Id", "" + ProdcutID);
 
                 if (ProductData.Count > 0)
                     MessageBox.Show($"اسم المنتج: {ProductData[0].Name}\n" +
@@ -494,6 +546,9 @@ namespace SuperMarket.UserControls
                         $"الكمية: {ProductData[0].Quantity}\n" +
                         $"اقل كميه مسموحة: {ProductData[0].QuantityMinimum}\n",
                         "بيانات المنتج", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                else
+                    MessageBox.Show("لا يوجد بيانات لهذا المنتج", "خطأ",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

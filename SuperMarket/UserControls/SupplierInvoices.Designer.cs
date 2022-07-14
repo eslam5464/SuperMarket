@@ -72,6 +72,10 @@ namespace SuperMarket.UserControls
             this.btn_resetAll = new System.Windows.Forms.Button();
             this.pcb_searchProduct = new System.Windows.Forms.PictureBox();
             this.pcb_searchSupplier = new System.Windows.Forms.PictureBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txt_productPriceWholeSale = new System.Windows.Forms.TextBox();
+            this.txt_productPriceSell = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.pan_supplierResults.SuspendLayout();
             this.pan_payment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutLeft)).BeginInit();
@@ -150,6 +154,7 @@ namespace SuperMarket.UserControls
             this.txt_searchedSupplierContact.ReadOnly = true;
             this.txt_searchedSupplierContact.Size = new System.Drawing.Size(332, 45);
             this.txt_searchedSupplierContact.TabIndex = 202;
+            this.txt_searchedSupplierContact.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label1
             // 
@@ -188,6 +193,7 @@ namespace SuperMarket.UserControls
             this.txt_searchedSupplierAddress.ReadOnly = true;
             this.txt_searchedSupplierAddress.Size = new System.Drawing.Size(332, 45);
             this.txt_searchedSupplierAddress.TabIndex = 206;
+            this.txt_searchedSupplierAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
             // 
@@ -391,6 +397,10 @@ namespace SuperMarket.UserControls
             // pan_productResults
             // 
             this.pan_productResults.BackColor = System.Drawing.Color.Gainsboro;
+            this.pan_productResults.Controls.Add(this.label17);
+            this.pan_productResults.Controls.Add(this.txt_productPriceWholeSale);
+            this.pan_productResults.Controls.Add(this.txt_productPriceSell);
+            this.pan_productResults.Controls.Add(this.label19);
             this.pan_productResults.Controls.Add(this.btn_removeProduct);
             this.pan_productResults.Controls.Add(this.btn_addProduct);
             this.pan_productResults.Controls.Add(this.label12);
@@ -418,7 +428,7 @@ namespace SuperMarket.UserControls
             this.btn_removeProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_removeProduct.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_removeProduct.ForeColor = System.Drawing.Color.White;
-            this.btn_removeProduct.Location = new System.Drawing.Point(7, 180);
+            this.btn_removeProduct.Location = new System.Drawing.Point(282, 257);
             this.btn_removeProduct.Name = "btn_removeProduct";
             this.btn_removeProduct.Size = new System.Drawing.Size(134, 50);
             this.btn_removeProduct.TabIndex = 222;
@@ -433,7 +443,7 @@ namespace SuperMarket.UserControls
             this.btn_addProduct.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_addProduct.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_addProduct.ForeColor = System.Drawing.Color.White;
-            this.btn_addProduct.Location = new System.Drawing.Point(147, 180);
+            this.btn_addProduct.Location = new System.Drawing.Point(430, 257);
             this.btn_addProduct.Name = "btn_addProduct";
             this.btn_addProduct.Size = new System.Drawing.Size(134, 50);
             this.btn_addProduct.TabIndex = 221;
@@ -463,8 +473,10 @@ namespace SuperMarket.UserControls
             this.txt_productQuantity.Location = new System.Drawing.Point(14, 119);
             this.txt_productQuantity.Multiline = true;
             this.txt_productQuantity.Name = "txt_productQuantity";
+            this.txt_productQuantity.ShortcutsEnabled = false;
             this.txt_productQuantity.Size = new System.Drawing.Size(169, 45);
             this.txt_productQuantity.TabIndex = 219;
+            this.txt_productQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txt_productQuantity.TextChanged += new System.EventHandler(this.txt_productQuantity_TextChanged);
             this.txt_productQuantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_supplierInvoices_KeyDown);
             this.txt_productQuantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_productQuantity_KeyPress);
@@ -482,6 +494,7 @@ namespace SuperMarket.UserControls
             this.txt_searchedProductBarCode.ReadOnly = true;
             this.txt_searchedProductBarCode.Size = new System.Drawing.Size(188, 45);
             this.txt_searchedProductBarCode.TabIndex = 218;
+            this.txt_searchedProductBarCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label11
             // 
@@ -589,9 +602,9 @@ namespace SuperMarket.UserControls
             this.pan_productDataGrid.BackColor = System.Drawing.Color.Gray;
             this.pan_productDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pan_productDataGrid.Controls.Add(this.db_productDataGridView);
-            this.pan_productDataGrid.Location = new System.Drawing.Point(6, 242);
+            this.pan_productDataGrid.Location = new System.Drawing.Point(6, 313);
             this.pan_productDataGrid.Name = "pan_productDataGrid";
-            this.pan_productDataGrid.Size = new System.Drawing.Size(558, 401);
+            this.pan_productDataGrid.Size = new System.Drawing.Size(558, 330);
             this.pan_productDataGrid.TabIndex = 208;
             // 
             // db_productDataGridView
@@ -622,7 +635,7 @@ namespace SuperMarket.UserControls
             this.db_productDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.db_productDataGridView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Palatino Linotype", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.db_productDataGridView.RowTemplate.Height = 24;
-            this.db_productDataGridView.Size = new System.Drawing.Size(556, 399);
+            this.db_productDataGridView.Size = new System.Drawing.Size(556, 328);
             this.db_productDataGridView.TabIndex = 1;
             this.db_productDataGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_productDataGridView_CellMouseDoubleClick);
             // 
@@ -692,6 +705,66 @@ namespace SuperMarket.UserControls
             this.pcb_searchSupplier.Click += new System.EventHandler(this.pcb_searchSupplier_Click);
             this.pcb_searchSupplier.MouseEnter += new System.EventHandler(this.pcb_supplier_MouseEnter);
             this.pcb_searchSupplier.MouseLeave += new System.EventHandler(this.pcb_supplier_MouseLeave);
+            // 
+            // label17
+            // 
+            this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.Purple;
+            this.label17.Location = new System.Drawing.Point(197, 195);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(82, 23);
+            this.label17.TabIndex = 227;
+            this.label17.Text = ":سعرالجملة";
+            // 
+            // txt_productPriceWholeSale
+            // 
+            this.txt_productPriceWholeSale.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_productPriceWholeSale.BackColor = System.Drawing.Color.White;
+            this.txt_productPriceWholeSale.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txt_productPriceWholeSale.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_productPriceWholeSale.ForeColor = System.Drawing.Color.Black;
+            this.txt_productPriceWholeSale.Location = new System.Drawing.Point(14, 185);
+            this.txt_productPriceWholeSale.Multiline = true;
+            this.txt_productPriceWholeSale.Name = "txt_productPriceWholeSale";
+            this.txt_productPriceWholeSale.ShortcutsEnabled = false;
+            this.txt_productPriceWholeSale.Size = new System.Drawing.Size(169, 45);
+            this.txt_productPriceWholeSale.TabIndex = 226;
+            this.txt_productPriceWholeSale.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_productPriceWholeSale.TextChanged += new System.EventHandler(this.txt_productQuantity_TextChanged);
+            this.txt_productPriceWholeSale.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_supplierInvoices_KeyDown);
+            this.txt_productPriceWholeSale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_productQuantity_KeyPress);
+            // 
+            // txt_productPriceSell
+            // 
+            this.txt_productPriceSell.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_productPriceSell.BackColor = System.Drawing.Color.White;
+            this.txt_productPriceSell.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txt_productPriceSell.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_productPriceSell.ForeColor = System.Drawing.Color.Black;
+            this.txt_productPriceSell.Location = new System.Drawing.Point(14, 251);
+            this.txt_productPriceSell.Multiline = true;
+            this.txt_productPriceSell.Name = "txt_productPriceSell";
+            this.txt_productPriceSell.ShortcutsEnabled = false;
+            this.txt_productPriceSell.Size = new System.Drawing.Size(169, 45);
+            this.txt_productPriceSell.TabIndex = 224;
+            this.txt_productPriceSell.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_productPriceSell.TextChanged += new System.EventHandler(this.txt_productQuantity_TextChanged);
+            this.txt_productPriceSell.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_supplierInvoices_KeyDown);
+            this.txt_productPriceSell.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_productQuantity_KeyPress);
+            // 
+            // label19
+            // 
+            this.label19.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.Purple;
+            this.label19.Location = new System.Drawing.Point(194, 261);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(82, 23);
+            this.label19.TabIndex = 223;
+            this.label19.Text = ":سعر البيع ";
             // 
             // SupplierInvoices
             // 
@@ -774,5 +847,9 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.Panel pan_save;
         private System.Windows.Forms.Button btn_saveInovice;
         private System.Windows.Forms.Button btn_resetAll;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.TextBox txt_productPriceWholeSale;
+        private System.Windows.Forms.TextBox txt_productPriceSell;
+        private System.Windows.Forms.Label label19;
     }
 }

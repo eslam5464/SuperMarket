@@ -19,8 +19,8 @@ namespace SuperMarket.Classes.DataAccess
             {
                 using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
-                    cnn.Execute($"INSERT INTO {TableName} (ProductId, ProductName, Quantity, CreationDate) VALUES " +
-                        $"(@ProductId, @ProductName, @Quantity, '{DateTime.Now}')", supplierInvoice);
+                    cnn.Execute($"INSERT INTO {TableName} (ProductId, ProductName, ProductPriceWholesale, ProductPriceSell, Quantity, CreationDate)" +
+                        $" VALUES (@ProductId, @ProductName, @ProductPriceWholesale, @ProductPriceSell, @Quantity, '{DateTime.Now}')", supplierInvoice);
                 }
             }
             catch (Exception ex)

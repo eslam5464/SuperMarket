@@ -15,7 +15,7 @@
     <Shape ID="DesignTable:Safe" ZOrder="22" X="1461" Y="364" Height="134" Width="169" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
     <Shape ID="DesignTable:SafeTransaction" ZOrder="21" X="1373" Y="70" Height="229" Width="237" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="178" />
     <Shape ID="DesignTable:Storage" ZOrder="20" X="296" Y="629" Height="134" Width="190" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
-    <Shape ID="DesignTable:SupplierInvoiceProduct" ZOrder="19" X="568" Y="632" Height="172" Width="280" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
+    <Shape ID="DesignTable:SupplierInvoiceProduct" ZOrder="19" X="568" Y="632" Height="210" Width="280" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="159" />
     <Shape ID="DesignTable:SupplierInvoices" ZOrder="18" X="880" Y="554" Height="248" Width="240" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="197" />
     <Shape ID="DesignTable:Suppliers" ZOrder="17" X="908" Y="356" Height="172" Width="198" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
     <Shape ID="DesignTable:UserLevelAccess" ZOrder="16" X="1188" Y="379" Height="305" Width="238" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />
