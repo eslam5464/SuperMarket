@@ -29,7 +29,7 @@ namespace SuperMarket.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txt_paymentMethod = new System.Windows.Forms.ComboBox();
             this.txt_searchSupplier = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -43,7 +43,6 @@ namespace SuperMarket.UserControls
             this.txt_searchedSupplierName = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txt_searchSupplierType = new System.Windows.Forms.ComboBox();
-            this.pcb_searchSupplier = new System.Windows.Forms.PictureBox();
             this.pan_payment = new System.Windows.Forms.Panel();
             this.num_paymentAmoutLeft = new System.Windows.Forms.NumericUpDown();
             this.num_paymentAmoutRequired = new System.Windows.Forms.NumericUpDown();
@@ -63,7 +62,6 @@ namespace SuperMarket.UserControls
             this.txt_searchedProductName = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.pcb_searchProduct = new System.Windows.Forms.PictureBox();
             this.txt_searchProductType = new System.Windows.Forms.ComboBox();
             this.txt_searchProduct = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -72,17 +70,19 @@ namespace SuperMarket.UserControls
             this.pan_save = new System.Windows.Forms.Panel();
             this.btn_saveInovice = new System.Windows.Forms.Button();
             this.btn_resetAll = new System.Windows.Forms.Button();
+            this.pcb_searchProduct = new System.Windows.Forms.PictureBox();
+            this.pcb_searchSupplier = new System.Windows.Forms.PictureBox();
             this.pan_supplierResults.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchSupplier)).BeginInit();
             this.pan_payment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutRequired)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutPaid)).BeginInit();
             this.pan_productResults.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchProduct)).BeginInit();
             this.pan_productDataGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_productDataGridView)).BeginInit();
             this.pan_save.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchProduct)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchSupplier)).BeginInit();
             this.SuspendLayout();
             // 
             // txt_paymentMethod
@@ -256,20 +256,6 @@ namespace SuperMarket.UserControls
             this.txt_searchSupplierType.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txt_searchSupplierType.Size = new System.Drawing.Size(123, 40);
             this.txt_searchSupplierType.TabIndex = 208;
-            // 
-            // pcb_searchSupplier
-            // 
-            this.pcb_searchSupplier.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchSupplier.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_searchSupplier.Location = new System.Drawing.Point(587, 17);
-            this.pcb_searchSupplier.Name = "pcb_searchSupplier";
-            this.pcb_searchSupplier.Size = new System.Drawing.Size(45, 45);
-            this.pcb_searchSupplier.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_searchSupplier.TabIndex = 209;
-            this.pcb_searchSupplier.TabStop = false;
-            this.pcb_searchSupplier.Click += new System.EventHandler(this.pcb_searchSupplier_Click);
-            this.pcb_searchSupplier.MouseEnter += new System.EventHandler(this.pcb_supplier_MouseEnter);
-            this.pcb_searchSupplier.MouseLeave += new System.EventHandler(this.pcb_supplier_MouseLeave);
             // 
             // pan_payment
             // 
@@ -559,20 +545,6 @@ namespace SuperMarket.UserControls
             this.label9.TabIndex = 213;
             this.label9.Text = ": البحث بـ";
             // 
-            // pcb_searchProduct
-            // 
-            this.pcb_searchProduct.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchProduct.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_searchProduct.Location = new System.Drawing.Point(66, 28);
-            this.pcb_searchProduct.Name = "pcb_searchProduct";
-            this.pcb_searchProduct.Size = new System.Drawing.Size(45, 45);
-            this.pcb_searchProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_searchProduct.TabIndex = 212;
-            this.pcb_searchProduct.TabStop = false;
-            this.pcb_searchProduct.Click += new System.EventHandler(this.pcb_searchProduct_Click);
-            this.pcb_searchProduct.MouseEnter += new System.EventHandler(this.pcb_supplier_MouseEnter);
-            this.pcb_searchProduct.MouseLeave += new System.EventHandler(this.pcb_supplier_MouseLeave);
-            // 
             // txt_searchProductType
             // 
             this.txt_searchProductType.DropDownHeight = 200;
@@ -629,14 +601,14 @@ namespace SuperMarket.UserControls
             this.db_productDataGridView.AllowUserToResizeColumns = false;
             this.db_productDataGridView.AllowUserToResizeRows = false;
             this.db_productDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.db_productDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.db_productDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.db_productDataGridView.ColumnHeadersHeight = 40;
             this.db_productDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.db_productDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -652,6 +624,7 @@ namespace SuperMarket.UserControls
             this.db_productDataGridView.RowTemplate.Height = 24;
             this.db_productDataGridView.Size = new System.Drawing.Size(556, 399);
             this.db_productDataGridView.TabIndex = 1;
+            this.db_productDataGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_productDataGridView_CellMouseDoubleClick);
             // 
             // pan_save
             // 
@@ -692,6 +665,34 @@ namespace SuperMarket.UserControls
             this.btn_resetAll.UseVisualStyleBackColor = false;
             this.btn_resetAll.Click += new System.EventHandler(this.btn_resetAll_Click);
             // 
+            // pcb_searchProduct
+            // 
+            this.pcb_searchProduct.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_searchProduct.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchProduct.Location = new System.Drawing.Point(66, 28);
+            this.pcb_searchProduct.Name = "pcb_searchProduct";
+            this.pcb_searchProduct.Size = new System.Drawing.Size(45, 45);
+            this.pcb_searchProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_searchProduct.TabIndex = 212;
+            this.pcb_searchProduct.TabStop = false;
+            this.pcb_searchProduct.Click += new System.EventHandler(this.pcb_searchProduct_Click);
+            this.pcb_searchProduct.MouseEnter += new System.EventHandler(this.pcb_supplier_MouseEnter);
+            this.pcb_searchProduct.MouseLeave += new System.EventHandler(this.pcb_supplier_MouseLeave);
+            // 
+            // pcb_searchSupplier
+            // 
+            this.pcb_searchSupplier.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_searchSupplier.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchSupplier.Location = new System.Drawing.Point(587, 17);
+            this.pcb_searchSupplier.Name = "pcb_searchSupplier";
+            this.pcb_searchSupplier.Size = new System.Drawing.Size(45, 45);
+            this.pcb_searchSupplier.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_searchSupplier.TabIndex = 209;
+            this.pcb_searchSupplier.TabStop = false;
+            this.pcb_searchSupplier.Click += new System.EventHandler(this.pcb_searchSupplier_Click);
+            this.pcb_searchSupplier.MouseEnter += new System.EventHandler(this.pcb_supplier_MouseEnter);
+            this.pcb_searchSupplier.MouseLeave += new System.EventHandler(this.pcb_supplier_MouseLeave);
+            // 
             // SupplierInvoices
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -712,7 +713,6 @@ namespace SuperMarket.UserControls
             this.Load += new System.EventHandler(this.SupplierInvoices_Load);
             this.pan_supplierResults.ResumeLayout(false);
             this.pan_supplierResults.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchSupplier)).EndInit();
             this.pan_payment.ResumeLayout(false);
             this.pan_payment.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutLeft)).EndInit();
@@ -720,10 +720,11 @@ namespace SuperMarket.UserControls
             ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutPaid)).EndInit();
             this.pan_productResults.ResumeLayout(false);
             this.pan_productResults.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchProduct)).EndInit();
             this.pan_productDataGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.db_productDataGridView)).EndInit();
             this.pan_save.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchProduct)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchSupplier)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

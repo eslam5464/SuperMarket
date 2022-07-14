@@ -49,28 +49,6 @@ namespace SuperMarket.UserControls
             this.txt_productid = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.productsDataGridView = new System.Windows.Forms.DataGridView();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.pcb_searchID = new System.Windows.Forms.PictureBox();
-            this.pcb_searchName = new System.Windows.Forms.PictureBox();
-            this.txt_productBarCode = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.pcb_searchBarCode = new System.Windows.Forms.PictureBox();
-            this.btn_exportPDF = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.txt_productquantityMin = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txt_productPriceWholeSale = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.superMarketDataSet = new SuperMarket.SuperMarketDataSet();
-            this.spProductsGetFullDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.spProducts_GetFullDetailsTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.spProducts_GetFullDetailsTableAdapter();
-            this.tableAdapterManager = new SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BarCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductName_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -83,13 +61,36 @@ namespace SuperMarket.UserControls
             this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CreationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PriceModificationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.spProductsGetFullDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.superMarketDataSet = new SuperMarket.SuperMarketDataSet();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txt_productBarCode = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.btn_exportPDF = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.txt_productquantityMin = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txt_productPriceWholeSale = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.spProducts_GetFullDetailsTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.spProducts_GetFullDetailsTableAdapter();
+            this.tableAdapterManager = new SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager();
+            this.pcb_searchBarCode = new System.Windows.Forms.PictureBox();
+            this.pcb_searchID = new System.Windows.Forms.PictureBox();
+            this.pcb_searchName = new System.Windows.Forms.PictureBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productsDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spProductsGetFullDetailsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchBarCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchBarCode)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spProductsGetFullDetailsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // txt_categoriename
@@ -99,7 +100,7 @@ namespace SuperMarket.UserControls
             this.txt_categoriename.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_categoriename.FormattingEnabled = true;
             this.txt_categoriename.IntegralHeight = false;
-            this.txt_categoriename.Location = new System.Drawing.Point(474, 203);
+            this.txt_categoriename.Location = new System.Drawing.Point(48, 204);
             this.txt_categoriename.Name = "txt_categoriename";
             this.txt_categoriename.Size = new System.Drawing.Size(341, 40);
             this.txt_categoriename.TabIndex = 196;
@@ -157,7 +158,7 @@ namespace SuperMarket.UserControls
             this.txt_description.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txt_description.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_description.ForeColor = System.Drawing.Color.Black;
-            this.txt_description.Location = new System.Drawing.Point(474, 119);
+            this.txt_description.Location = new System.Drawing.Point(48, 120);
             this.txt_description.Multiline = true;
             this.txt_description.Name = "txt_description";
             this.txt_description.Size = new System.Drawing.Size(341, 45);
@@ -170,7 +171,7 @@ namespace SuperMarket.UserControls
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Purple;
-            this.label5.Location = new System.Drawing.Point(691, 167);
+            this.label5.Location = new System.Drawing.Point(255, 175);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(87, 23);
             this.label5.TabIndex = 188;
@@ -182,7 +183,7 @@ namespace SuperMarket.UserControls
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Purple;
-            this.label6.Location = new System.Drawing.Point(715, 88);
+            this.label6.Location = new System.Drawing.Point(289, 89);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(62, 23);
             this.label6.TabIndex = 189;
@@ -196,7 +197,7 @@ namespace SuperMarket.UserControls
             this.txt_productquantity.Enabled = false;
             this.txt_productquantity.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_productquantity.ForeColor = System.Drawing.Color.Black;
-            this.txt_productquantity.Location = new System.Drawing.Point(224, 198);
+            this.txt_productquantity.Location = new System.Drawing.Point(604, 199);
             this.txt_productquantity.Multiline = true;
             this.txt_productquantity.Name = "txt_productquantity";
             this.txt_productquantity.ShortcutsEnabled = false;
@@ -211,7 +212,7 @@ namespace SuperMarket.UserControls
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Purple;
-            this.label1.Location = new System.Drawing.Point(691, 9);
+            this.label1.Location = new System.Drawing.Point(255, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(111, 23);
             this.label1.TabIndex = 184;
@@ -223,7 +224,7 @@ namespace SuperMarket.UserControls
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Purple;
-            this.label4.Location = new System.Drawing.Point(290, 172);
+            this.label4.Location = new System.Drawing.Point(657, 172);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(87, 23);
             this.label4.TabIndex = 185;
@@ -236,7 +237,7 @@ namespace SuperMarket.UserControls
             this.txt_productPriceSell.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txt_productPriceSell.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_productPriceSell.ForeColor = System.Drawing.Color.Black;
-            this.txt_productPriceSell.Location = new System.Drawing.Point(650, 40);
+            this.txt_productPriceSell.Location = new System.Drawing.Point(224, 41);
             this.txt_productPriceSell.Multiline = true;
             this.txt_productPriceSell.Name = "txt_productPriceSell";
             this.txt_productPriceSell.ShortcutsEnabled = false;
@@ -251,7 +252,7 @@ namespace SuperMarket.UserControls
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Purple;
-            this.label3.Location = new System.Drawing.Point(296, 88);
+            this.label3.Location = new System.Drawing.Point(662, 95);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(81, 23);
             this.label3.TabIndex = 180;
@@ -264,7 +265,7 @@ namespace SuperMarket.UserControls
             this.txt_productname.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txt_productname.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_productname.ForeColor = System.Drawing.Color.Black;
-            this.txt_productname.Location = new System.Drawing.Point(48, 119);
+            this.txt_productname.Location = new System.Drawing.Point(428, 120);
             this.txt_productname.Multiline = true;
             this.txt_productname.Name = "txt_productname";
             this.txt_productname.Size = new System.Drawing.Size(341, 45);
@@ -277,7 +278,7 @@ namespace SuperMarket.UserControls
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Purple;
-            this.label2.Location = new System.Drawing.Point(296, 9);
+            this.label2.Location = new System.Drawing.Point(676, 10);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(81, 23);
             this.label2.TabIndex = 181;
@@ -290,7 +291,7 @@ namespace SuperMarket.UserControls
             this.txt_productid.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txt_productid.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_productid.ForeColor = System.Drawing.Color.Black;
-            this.txt_productid.Location = new System.Drawing.Point(48, 40);
+            this.txt_productid.Location = new System.Drawing.Point(428, 41);
             this.txt_productid.Multiline = true;
             this.txt_productid.Name = "txt_productid";
             this.txt_productid.Size = new System.Drawing.Size(341, 45);
@@ -358,273 +359,6 @@ namespace SuperMarket.UserControls
             this.productsDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.productsDataGridView_CellMouseClick);
             this.productsDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_productDataGridView_ColumnHeaderMouseClick);
             this.productsDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_productDataGridView_ColumnHeaderMouseDoubleClick);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(28, 182);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(29, 37);
-            this.label7.TabIndex = 198;
-            this.label7.Text = "*";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.Transparent;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Red;
-            this.label8.Location = new System.Drawing.Point(28, 98);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(29, 37);
-            this.label8.TabIndex = 199;
-            this.label8.Text = "*";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.Transparent;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.Red;
-            this.label9.Location = new System.Drawing.Point(462, 20);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(29, 37);
-            this.label9.TabIndex = 200;
-            this.label9.Text = "*";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.Red;
-            this.label10.Location = new System.Drawing.Point(453, 182);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(29, 37);
-            this.label10.TabIndex = 201;
-            this.label10.Text = "*";
-            // 
-            // pcb_searchID
-            // 
-            this.pcb_searchID.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchID.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_searchID.Location = new System.Drawing.Point(395, 40);
-            this.pcb_searchID.Name = "pcb_searchID";
-            this.pcb_searchID.Size = new System.Drawing.Size(45, 45);
-            this.pcb_searchID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_searchID.TabIndex = 192;
-            this.pcb_searchID.TabStop = false;
-            this.pcb_searchID.Click += new System.EventHandler(this.pcb_searchID_Click);
-            this.pcb_searchID.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
-            this.pcb_searchID.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
-            this.pcb_searchID.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
-            // 
-            // pcb_searchName
-            // 
-            this.pcb_searchName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_searchName.Location = new System.Drawing.Point(395, 119);
-            this.pcb_searchName.Name = "pcb_searchName";
-            this.pcb_searchName.Size = new System.Drawing.Size(45, 45);
-            this.pcb_searchName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_searchName.TabIndex = 191;
-            this.pcb_searchName.TabStop = false;
-            this.pcb_searchName.Click += new System.EventHandler(this.pcb_searchName_Click);
-            this.pcb_searchName.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
-            this.pcb_searchName.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
-            this.pcb_searchName.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
-            // 
-            // txt_productBarCode
-            // 
-            this.txt_productBarCode.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txt_productBarCode.BackColor = System.Drawing.Color.White;
-            this.txt_productBarCode.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.txt_productBarCode.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_productBarCode.ForeColor = System.Drawing.Color.Black;
-            this.txt_productBarCode.Location = new System.Drawing.Point(48, 275);
-            this.txt_productBarCode.MaxLength = 18;
-            this.txt_productBarCode.Multiline = true;
-            this.txt_productBarCode.Name = "txt_productBarCode";
-            this.txt_productBarCode.Size = new System.Drawing.Size(341, 45);
-            this.txt_productBarCode.TabIndex = 202;
-            this.txt_productBarCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_products_KeyDown);
-            // 
-            // label11
-            // 
-            this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.Purple;
-            this.label11.Location = new System.Drawing.Point(320, 249);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(57, 23);
-            this.label11.TabIndex = 203;
-            this.label11.Text = ":باركود";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.Transparent;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.ForeColor = System.Drawing.Color.Red;
-            this.label12.Location = new System.Drawing.Point(25, 256);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(29, 37);
-            this.label12.TabIndex = 204;
-            this.label12.Text = "*";
-            // 
-            // pcb_searchBarCode
-            // 
-            this.pcb_searchBarCode.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchBarCode.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_searchBarCode.Location = new System.Drawing.Point(395, 275);
-            this.pcb_searchBarCode.Name = "pcb_searchBarCode";
-            this.pcb_searchBarCode.Size = new System.Drawing.Size(45, 45);
-            this.pcb_searchBarCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_searchBarCode.TabIndex = 205;
-            this.pcb_searchBarCode.TabStop = false;
-            this.pcb_searchBarCode.Click += new System.EventHandler(this.pcb_searchBarCode_Click);
-            this.pcb_searchBarCode.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
-            this.pcb_searchBarCode.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
-            this.pcb_searchBarCode.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
-            // 
-            // btn_exportPDF
-            // 
-            this.btn_exportPDF.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_exportPDF.BackColor = System.Drawing.Color.Purple;
-            this.btn_exportPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_exportPDF.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_exportPDF.ForeColor = System.Drawing.Color.White;
-            this.btn_exportPDF.Location = new System.Drawing.Point(843, 259);
-            this.btn_exportPDF.Name = "btn_exportPDF";
-            this.btn_exportPDF.Size = new System.Drawing.Size(167, 50);
-            this.btn_exportPDF.TabIndex = 206;
-            this.btn_exportPDF.Text = "طباعه الجدول";
-            this.btn_exportPDF.UseVisualStyleBackColor = false;
-            this.btn_exportPDF.Click += new System.EventHandler(this.btn_exportPDF_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(575, 288);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 207;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(707, 293);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 208;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // txt_productquantityMin
-            // 
-            this.txt_productquantityMin.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txt_productquantityMin.BackColor = System.Drawing.Color.White;
-            this.txt_productquantityMin.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.txt_productquantityMin.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_productquantityMin.ForeColor = System.Drawing.Color.Black;
-            this.txt_productquantityMin.Location = new System.Drawing.Point(48, 198);
-            this.txt_productquantityMin.Multiline = true;
-            this.txt_productquantityMin.Name = "txt_productquantityMin";
-            this.txt_productquantityMin.ShortcutsEnabled = false;
-            this.txt_productquantityMin.Size = new System.Drawing.Size(165, 45);
-            this.txt_productquantityMin.TabIndex = 209;
-            this.txt_productquantityMin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_products_KeyDown);
-            this.txt_productquantityMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_products_KeyPress);
-            // 
-            // label13
-            // 
-            this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.ForeColor = System.Drawing.Color.Purple;
-            this.label13.Location = new System.Drawing.Point(88, 172);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(114, 23);
-            this.label13.TabIndex = 210;
-            this.label13.Text = ":اقل كمية للمنتج";
-            // 
-            // txt_productPriceWholeSale
-            // 
-            this.txt_productPriceWholeSale.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txt_productPriceWholeSale.BackColor = System.Drawing.Color.White;
-            this.txt_productPriceWholeSale.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.txt_productPriceWholeSale.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_productPriceWholeSale.ForeColor = System.Drawing.Color.Black;
-            this.txt_productPriceWholeSale.Location = new System.Drawing.Point(474, 40);
-            this.txt_productPriceWholeSale.Multiline = true;
-            this.txt_productPriceWholeSale.Name = "txt_productPriceWholeSale";
-            this.txt_productPriceWholeSale.ShortcutsEnabled = false;
-            this.txt_productPriceWholeSale.Size = new System.Drawing.Size(165, 45);
-            this.txt_productPriceWholeSale.TabIndex = 211;
-            this.txt_productPriceWholeSale.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_products_KeyDown);
-            this.txt_productPriceWholeSale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_products_KeyPress);
-            // 
-            // label14
-            // 
-            this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.Color.Purple;
-            this.label14.Location = new System.Drawing.Point(511, 9);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(122, 23);
-            this.label14.TabIndex = 212;
-            this.label14.Text = ":سعر جمله المنتج";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.Color.Red;
-            this.label15.Location = new System.Drawing.Point(639, 21);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(29, 37);
-            this.label15.TabIndex = 213;
-            this.label15.Text = "*";
-            // 
-            // superMarketDataSet
-            // 
-            this.superMarketDataSet.DataSetName = "SuperMarketDataSet";
-            this.superMarketDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // spProductsGetFullDetailsBindingSource
-            // 
-            this.spProductsGetFullDetailsBindingSource.DataMember = "spProducts_GetFullDetails";
-            this.spProductsGetFullDetailsBindingSource.DataSource = this.superMarketDataSet;
-            // 
-            // spProducts_GetFullDetailsTableAdapter
-            // 
-            this.spProducts_GetFullDetailsTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.CategoriesTableAdapter = null;
-            this.tableAdapterManager.CustomersTableAdapter = null;
-            this.tableAdapterManager.InvoicesTableAdapter = null;
-            this.tableAdapterManager.OrdersTableAdapter = null;
-            this.tableAdapterManager.ProductPriceTableAdapter = null;
-            this.tableAdapterManager.SafeTableAdapter = null;
-            this.tableAdapterManager.SafeTransactionTableAdapter = null;
-            this.tableAdapterManager.StorageTableAdapter = null;
-            this.tableAdapterManager.SupplierInvoiceProductTableAdapter = null;
-            this.tableAdapterManager.SupplierInvoicesTableAdapter = null;
-            this.tableAdapterManager.SuppliersTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.UserLevelAccessTableAdapter = null;
-            this.tableAdapterManager.UsersTableAdapter = null;
             // 
             // Id
             // 
@@ -710,43 +444,325 @@ namespace SuperMarket.UserControls
             this.PriceModificationDate.Name = "PriceModificationDate";
             this.PriceModificationDate.ReadOnly = true;
             // 
+            // spProductsGetFullDetailsBindingSource
+            // 
+            this.spProductsGetFullDetailsBindingSource.DataMember = "spProducts_GetFullDetails";
+            this.spProductsGetFullDetailsBindingSource.DataSource = this.superMarketDataSet;
+            // 
+            // superMarketDataSet
+            // 
+            this.superMarketDataSet.DataSetName = "SuperMarketDataSet";
+            this.superMarketDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(569, 164);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(29, 37);
+            this.label7.TabIndex = 198;
+            this.label7.Text = "*";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.Transparent;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.Red;
+            this.label8.Location = new System.Drawing.Point(740, 89);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(29, 37);
+            this.label8.TabIndex = 199;
+            this.label8.Text = "*";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Red;
+            this.label9.Location = new System.Drawing.Point(184, 10);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(29, 37);
+            this.label9.TabIndex = 200;
+            this.label9.Text = "*";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.Red;
+            this.label10.Location = new System.Drawing.Point(348, 167);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(29, 37);
+            this.label10.TabIndex = 201;
+            this.label10.Text = "*";
+            // 
+            // txt_productBarCode
+            // 
+            this.txt_productBarCode.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_productBarCode.BackColor = System.Drawing.Color.White;
+            this.txt_productBarCode.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txt_productBarCode.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_productBarCode.ForeColor = System.Drawing.Color.Black;
+            this.txt_productBarCode.Location = new System.Drawing.Point(428, 276);
+            this.txt_productBarCode.MaxLength = 18;
+            this.txt_productBarCode.Multiline = true;
+            this.txt_productBarCode.Name = "txt_productBarCode";
+            this.txt_productBarCode.Size = new System.Drawing.Size(341, 45);
+            this.txt_productBarCode.TabIndex = 202;
+            this.txt_productBarCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_products_KeyDown);
+            // 
+            // label11
+            // 
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.Purple;
+            this.label11.Location = new System.Drawing.Point(700, 250);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(57, 23);
+            this.label11.TabIndex = 203;
+            this.label11.Text = ":باركود";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.Red;
+            this.label12.Location = new System.Drawing.Point(405, 257);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(29, 37);
+            this.label12.TabIndex = 204;
+            this.label12.Text = "*";
+            // 
+            // btn_exportPDF
+            // 
+            this.btn_exportPDF.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_exportPDF.BackColor = System.Drawing.Color.Purple;
+            this.btn_exportPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_exportPDF.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_exportPDF.ForeColor = System.Drawing.Color.White;
+            this.btn_exportPDF.Location = new System.Drawing.Point(843, 259);
+            this.btn_exportPDF.Name = "btn_exportPDF";
+            this.btn_exportPDF.Size = new System.Drawing.Size(167, 50);
+            this.btn_exportPDF.TabIndex = 206;
+            this.btn_exportPDF.Text = "طباعه الجدول";
+            this.btn_exportPDF.UseVisualStyleBackColor = false;
+            this.btn_exportPDF.Click += new System.EventHandler(this.btn_exportPDF_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(149, 289);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 207;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(281, 294);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 208;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // txt_productquantityMin
+            // 
+            this.txt_productquantityMin.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_productquantityMin.BackColor = System.Drawing.Color.White;
+            this.txt_productquantityMin.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txt_productquantityMin.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_productquantityMin.ForeColor = System.Drawing.Color.Black;
+            this.txt_productquantityMin.Location = new System.Drawing.Point(428, 199);
+            this.txt_productquantityMin.Multiline = true;
+            this.txt_productquantityMin.Name = "txt_productquantityMin";
+            this.txt_productquantityMin.ShortcutsEnabled = false;
+            this.txt_productquantityMin.Size = new System.Drawing.Size(165, 45);
+            this.txt_productquantityMin.TabIndex = 209;
+            this.txt_productquantityMin.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_products_KeyDown);
+            this.txt_productquantityMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_products_KeyPress);
+            // 
+            // label13
+            // 
+            this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.Purple;
+            this.label13.Location = new System.Drawing.Point(464, 173);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(114, 23);
+            this.label13.TabIndex = 210;
+            this.label13.Text = ":اقل كمية للمنتج";
+            // 
+            // txt_productPriceWholeSale
+            // 
+            this.txt_productPriceWholeSale.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_productPriceWholeSale.BackColor = System.Drawing.Color.White;
+            this.txt_productPriceWholeSale.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txt_productPriceWholeSale.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_productPriceWholeSale.ForeColor = System.Drawing.Color.Black;
+            this.txt_productPriceWholeSale.Location = new System.Drawing.Point(48, 41);
+            this.txt_productPriceWholeSale.Multiline = true;
+            this.txt_productPriceWholeSale.Name = "txt_productPriceWholeSale";
+            this.txt_productPriceWholeSale.ShortcutsEnabled = false;
+            this.txt_productPriceWholeSale.Size = new System.Drawing.Size(165, 45);
+            this.txt_productPriceWholeSale.TabIndex = 211;
+            this.txt_productPriceWholeSale.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_products_KeyDown);
+            this.txt_productPriceWholeSale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_products_KeyPress);
+            // 
+            // label14
+            // 
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.Purple;
+            this.label14.Location = new System.Drawing.Point(71, 15);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(122, 23);
+            this.label14.TabIndex = 212;
+            this.label14.Text = ":سعر جمله المنتج";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.Red;
+            this.label15.Location = new System.Drawing.Point(360, 10);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(29, 37);
+            this.label15.TabIndex = 213;
+            this.label15.Text = "*";
+            // 
+            // spProducts_GetFullDetailsTableAdapter
+            // 
+            this.spProducts_GetFullDetailsTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CategoriesTableAdapter = null;
+            this.tableAdapterManager.Connection = null;
+            this.tableAdapterManager.CustomersTableAdapter = null;
+            this.tableAdapterManager.InvoicesTableAdapter = null;
+            this.tableAdapterManager.OrdersTableAdapter = null;
+            this.tableAdapterManager.ProductPriceTableAdapter = null;
+            this.tableAdapterManager.ProductsTableAdapter = null;
+            this.tableAdapterManager.SafeTableAdapter = null;
+            this.tableAdapterManager.SafeTransactionTableAdapter = null;
+            this.tableAdapterManager.StorageTableAdapter = null;
+            this.tableAdapterManager.SupplierInvoiceProductTableAdapter = null;
+            this.tableAdapterManager.SupplierInvoicesTableAdapter = null;
+            this.tableAdapterManager.SuppliersTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserLevelAccessTableAdapter = null;
+            this.tableAdapterManager.UsersTableAdapter = null;
+            // 
+            // pcb_searchBarCode
+            // 
+            this.pcb_searchBarCode.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_searchBarCode.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchBarCode.Location = new System.Drawing.Point(775, 276);
+            this.pcb_searchBarCode.Name = "pcb_searchBarCode";
+            this.pcb_searchBarCode.Size = new System.Drawing.Size(45, 45);
+            this.pcb_searchBarCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_searchBarCode.TabIndex = 205;
+            this.pcb_searchBarCode.TabStop = false;
+            this.pcb_searchBarCode.Click += new System.EventHandler(this.pcb_searchBarCode_Click);
+            this.pcb_searchBarCode.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
+            this.pcb_searchBarCode.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
+            this.pcb_searchBarCode.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
+            // 
+            // pcb_searchID
+            // 
+            this.pcb_searchID.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_searchID.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchID.Location = new System.Drawing.Point(775, 41);
+            this.pcb_searchID.Name = "pcb_searchID";
+            this.pcb_searchID.Size = new System.Drawing.Size(45, 45);
+            this.pcb_searchID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_searchID.TabIndex = 192;
+            this.pcb_searchID.TabStop = false;
+            this.pcb_searchID.Click += new System.EventHandler(this.pcb_searchID_Click);
+            this.pcb_searchID.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
+            this.pcb_searchID.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
+            this.pcb_searchID.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
+            // 
+            // pcb_searchName
+            // 
+            this.pcb_searchName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_searchName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchName.Location = new System.Drawing.Point(775, 120);
+            this.pcb_searchName.Name = "pcb_searchName";
+            this.pcb_searchName.Size = new System.Drawing.Size(45, 45);
+            this.pcb_searchName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_searchName.TabIndex = 191;
+            this.pcb_searchName.TabStop = false;
+            this.pcb_searchName.Click += new System.EventHandler(this.pcb_searchName_Click);
+            this.pcb_searchName.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
+            this.pcb_searchName.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
+            this.pcb_searchName.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.ForeColor = System.Drawing.Color.Red;
+            this.label16.Location = new System.Drawing.Point(741, 167);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(29, 37);
+            this.label16.TabIndex = 214;
+            this.label16.Text = "*";
+            // 
             // Products
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.txt_productPriceWholeSale);
+            this.Controls.Add(this.txt_productBarCode);
             this.Controls.Add(this.label13);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.txt_productid);
+            this.Controls.Add(this.txt_productPriceWholeSale);
             this.Controls.Add(this.txt_productquantityMin);
             this.Controls.Add(this.button2);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.btn_exportPDF);
-            this.Controls.Add(this.pcb_searchBarCode);
-            this.Controls.Add(this.txt_productBarCode);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.txt_categoriename);
+            this.Controls.Add(this.pcb_searchName);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.txt_productquantity);
+            this.Controls.Add(this.pcb_searchBarCode);
             this.Controls.Add(this.txt_productPriceSell);
-            this.Controls.Add(this.txt_productname);
+            this.Controls.Add(this.pcb_searchID);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.btn_remove);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.btn_edit);
             this.Controls.Add(this.btn_save);
-            this.Controls.Add(this.pcb_searchID);
-            this.Controls.Add(this.pcb_searchName);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.txt_description);
+            this.Controls.Add(this.txt_productname);
             this.Controls.Add(this.label5);
+            this.Controls.Add(this.txt_productquantity);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txt_productid);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.MinimumSize = new System.Drawing.Size(1038, 660);
             this.Name = "Products";
@@ -754,11 +770,11 @@ namespace SuperMarket.UserControls
             this.Load += new System.EventHandler(this.Products_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.productsDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spProductsGetFullDetailsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchBarCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchBarCode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spProductsGetFullDetailsBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -817,5 +833,6 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.DataGridViewTextBoxColumn CategoryName;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreationDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn PriceModificationDate;
+        private System.Windows.Forms.Label label16;
     }
 }

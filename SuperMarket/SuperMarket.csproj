@@ -233,6 +233,12 @@
     <Compile Include="UserControls\BillsEdit.Designer.cs">
       <DependentUpon>BillsEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\Blank.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\Blank.Designer.cs">
+      <DependentUpon>Blank.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Categories.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -301,6 +307,9 @@
     <Compile Include="UserControls\Suppliers.Designer.cs">
       <DependentUpon>Suppliers.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UserControls\Blank.resx">
+      <DependentUpon>Blank.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Safe.resx">
       <DependentUpon>Safe.cs</DependentUpon>
     </EmbeddedResource>
@@ -477,6 +486,7 @@
     <None Include="Resources\icons8-report-card-48.png" />
     <None Include="Resources\icons8-bill-48.png" />
     <None Include="Resources\icons8-settings-48.png" />
+    <None Include="Resources\pic_logo.Image.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

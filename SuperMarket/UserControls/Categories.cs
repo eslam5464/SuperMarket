@@ -72,7 +72,9 @@ namespace SuperMarket.UserControls
                         {
                             CategoryModel category = new CategoryModel
                             {
-                                Name = txt_categoriename.Text
+                                Name = txt_categoriename.Text,
+                                StorageId = int.Parse(txt_storageNameSearch.SelectedValue.ToString()),
+                                StorageName = txt_storageNameSearch.Text
                             };
                             await Classes.DataAccess.Categories.SaveCategory(category);
 

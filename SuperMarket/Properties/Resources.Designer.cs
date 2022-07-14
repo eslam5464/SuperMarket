@@ -303,6 +303,16 @@ namespace SuperMarket.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap pic_logo_Image {
+            get {
+                object obj = ResourceManager.GetObject("pic_logo.Image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Spinner_0_4s_391px {
             get {
                 object obj = ResourceManager.GetObject("Spinner_0_4s_391px", resourceCulture);

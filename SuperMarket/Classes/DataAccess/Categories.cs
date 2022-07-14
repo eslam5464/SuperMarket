@@ -81,8 +81,8 @@ namespace SuperMarket.Classes.DataAccess
             {
                 using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
-                    await Task.Run(() => cnn.Execute($"INSERT INTO Categories (Name, CreationDate) " +
-                        $"VALUES (@Name, '{DateTime.Now}')", Category));
+                    await Task.Run(() => cnn.Execute($"INSERT INTO Categories (Name,StorageId, StorageName, CreationDate) " +
+                        $"VALUES (@Name, @StorageId, @StorageName, '{DateTime.Now}')", Category));
                 }
             }
             catch (Exception ex)

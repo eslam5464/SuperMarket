@@ -1,5 +1,6 @@
 ﻿using SuperMarket.Classes;
 using SuperMarket.Classes.Models;
+using SuperMarket.Classes.Models.Joins;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -469,6 +470,30 @@ namespace SuperMarket.UserControls
             else
             {
                 num_paymentAmoutPaid.Enabled = true;
+            }
+        }
+
+        private void db_productDataGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (db_productDataGridView.DataSource != null && db_productDataGridView.CurrentCell != null)
+            {
+                int rowindex = db_productDataGridView.CurrentCell.RowIndex;
+                long ProdcutID = int.Parse(db_productDataGridView.Rows[rowindex].Cells["ProductId"].Value.ToString());
+                string ProductName = db_productDataGridView.Rows[rowindex].Cells["ProductName"].Value.ToString();
+
+                List<Product_ProductPriceModel> ProductData =
+                    Classes.DataAccess.Products.GetProductParameterWithPricee("Id", "" + ProdcutID);
+
+                if (ProductData.Count > 0)
+                    MessageBox.Show($"اسم المنتج: {ProductData[0].Name}\n" +
+                        $"باركود المنتج: {ProductData[0].BarCode}\n" +
+                        $"التصنيف: {ProductData[0].CategoryName}\n" +
+                        $"وصف المنتج: {ProductData[0].Description}\n" +
+                        $"سعر البيع: {ProductData[0].PriceSell}\n" +
+                        $"سعر الجملة: {ProductData[0].PriceWholesale}\n" +
+                        $"الكمية: {ProductData[0].Quantity}\n" +
+                        $"اقل كميه مسموحة: {ProductData[0].QuantityMinimum}\n",
+                        "بيانات المنتج", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
         }
 

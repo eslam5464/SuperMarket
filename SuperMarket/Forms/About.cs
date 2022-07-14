@@ -23,6 +23,15 @@ namespace SuperMarket.Forms
             else
                 lbl_info.Visible = false;
 
+            SetAppVersion();
+        }
+
+        private void SetAppVersion()
+        {
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
+            string AppVersion = fvi.FileVersion;
+            lbl_Version.Text += $" {AppVersion}";
         }
     }
 }

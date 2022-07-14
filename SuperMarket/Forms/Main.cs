@@ -21,6 +21,7 @@ namespace SuperMarket.Forms
         private readonly UserControls.SupplierInvoices uc_supplierInvoices = new UserControls.SupplierInvoices();
         private readonly UserControls.Reports uc_reports = new UserControls.Reports();
         private readonly UserControls.Safe uc_safe = new UserControls.Safe();
+        private readonly UserControls.Blank uc_blank = new UserControls.Blank();
         private readonly UserControls.Settings uc_settings = new UserControls.Settings();
 
         public Main()
@@ -98,6 +99,7 @@ namespace SuperMarket.Forms
                 uc_suppliers,
                 uc_supplierInvoices,
                 uc_safe,
+                uc_blank,
             };
 
             foreach (UserControl userControl in AllUserControls)
@@ -153,6 +155,7 @@ namespace SuperMarket.Forms
         {
             SelectButton(btn_billing, false);
             ShowSubMenu(pan_billing);
+            ShowBlankUC();
         }
 
         private void btn_billingAdd_Click(object sender, EventArgs e)
@@ -201,6 +204,8 @@ namespace SuperMarket.Forms
             SelectButton(btn_suppliers, false);
 
             ShowSubMenu(pan_suppliers);
+
+            ShowBlankUC();
         }
 
         private void btn_supplierInvoices_Click(object sender, EventArgs e)
@@ -220,6 +225,11 @@ namespace SuperMarket.Forms
         {
             SelectButton(btn_safe, false);
             uc_safe.BringToFront();
+        }
+
+        private void ShowBlankUC()
+        {
+            uc_blank.BringToFront();
         }
 
         private void SelectButton(Button SelectedButton, bool HideAllSubMenus)

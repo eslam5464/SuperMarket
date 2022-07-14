@@ -175,6 +175,7 @@ namespace SuperMarket.UserControls
                                         QuantityMinimum = MinQuantity,
                                         CategoryID = categoryId,
                                         CategoryName = categoryName,
+                                        CreationDate = DateTime.Now
                                         //PriceWholesale = decimal.Parse(txt_productPriceWholeSale.Text),
                                     };
                                     await Classes.DataAccess.Products.SaveProduct(product);
@@ -187,6 +188,7 @@ namespace SuperMarket.UserControls
                                         ProductName = LastProduct.Name,
                                         PriceSell = decimal.Parse(txt_productPriceSell.Text),
                                         PriceWholesale = decimal.Parse(txt_productPriceWholeSale.Text),
+                                        CreationDate = LastProduct.CreationDate
                                     };
 
                                     await Classes.DataAccess.ProductPrice.SaveProductPrice(ProductPrice);
@@ -332,8 +334,8 @@ namespace SuperMarket.UserControls
                         CategoryName = productsDataGridView.Rows[RowIndex].Cells["CategoryName"].Value.ToString();
 
                     string ProductName = productsDataGridView.Rows[RowIndex].Cells["ProductName_"].Value.ToString(),
-                        //ProductPriceWholesale = productsDataGridView.Rows[RowIndex].Cells["PriceWholesale"].Value.ToString(),
-                        //ProductPriceSell = productsDataGridView.Rows[RowIndex].Cells["PriceSell"].Value.ToString(),
+                        ProductPriceWholesale = productsDataGridView.Rows[RowIndex].Cells["PriceWholesale"].Value.ToString(),
+                        ProductPriceSell = productsDataGridView.Rows[RowIndex].Cells["PriceSell"].Value.ToString(),
                         ProductQuantity = productsDataGridView.Rows[RowIndex].Cells["Quantity"].Value.ToString(),
                         ProductDescription = productsDataGridView.Rows[RowIndex].Cells["Description"].Value.ToString(),
                         ProductBarcode = productsDataGridView.Rows[RowIndex].Cells["BarCode"].Value.ToString(),
@@ -344,8 +346,8 @@ namespace SuperMarket.UserControls
 
                     txt_productid.Text = "" + ProductID;
                     txt_productname.Text = ProductName;
-                    //txt_productPriceSell.Text = ProductPriceSell;
-                    //txt_productPriceWholeSale.Text = ProductPriceWholesale;
+                    txt_productPriceSell.Text = ProductPriceSell;
+                    txt_productPriceWholeSale.Text = ProductPriceWholesale;
                     txt_productquantity.Text = ProductQuantity;
                     txt_description.Text = ProductDescription;
                     txt_productBarCode.Text = ProductBarcode;
