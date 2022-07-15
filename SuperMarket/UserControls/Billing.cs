@@ -325,11 +325,18 @@ namespace SuperMarket.UserControls
 
                 List<ProductModel> productSearch = Classes.DataAccess.Products.GetProductLikeParameter("Name", txt_productName.Text);
 
-                DataTable dataProductSearch = await new Methods().ListToDataTable(productSearch);
+                if (productSearch.Count != 0)
+                {
+                    DataTable dataProductSearch = await new Methods().ListToDataTable(productSearch);
 
-                txt_prodSearch.DataSource = dataProductSearch;
-                txt_prodSearch.ValueMember = "Id";
-                txt_prodSearch.DisplayMember = "Name";
+                    txt_prodSearch.DataSource = dataProductSearch;
+                    txt_prodSearch.ValueMember = "Id";
+                    txt_prodSearch.DisplayMember = "Name";
+                }
+                else
+                {
+                    MessageBox.Show("لا يوجد منتج بهذه البيانات", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
@@ -342,10 +349,10 @@ namespace SuperMarket.UserControls
 
                 if (productSearch.Count != 0)
                 {
-                    txt_productprice.Text = "" + Classes.DataAccess.ProductPrice.GetProductPriceParameter("ProductId", "" + productSearch[0].Id);
+                    txt_productprice.Text = "" + Classes.DataAccess.ProductPrice.GetProductPriceParameter("ProductId", "" + productSearch[0].Id)[0].PriceSell;
                     txt_productBarCode.Text = "" + productSearch[0].BarCode;
                     txt_productName.Text = productSearch[0].Name;
-                    txt_productquantity.Text = "" + 1;
+                    txt_productquantity.Text = "1";
 
                     UsedBarCodeSearch = true;
                 }
@@ -622,7 +629,7 @@ namespace SuperMarket.UserControls
                                 Address = datasource[0].CustomerAddress,
                                 GrandTotal = decimal.Parse(txt_grandtotal.Text),
                                 CreatedByUserId = Main.LoggedUser.Id,
-                                CreatedByUserFullName = Main.LoggedUserEnc.FullName
+                                CreatedByUserFullName = Main.LoggedUser.FullName,
                             };
                             Classes.DataAccess.Orders.AddOrder(order);
 

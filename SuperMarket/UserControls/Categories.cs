@@ -388,16 +388,6 @@ namespace SuperMarket.UserControls
 
         }
 
-        private void txt_categorieid_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_categoriename_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void txt_storageName_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -491,6 +481,30 @@ namespace SuperMarket.UserControls
         private void txt_storageNameEdit_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void pcb_searchStorage_Click(object sender, EventArgs e)
+        {
+            if (txt_storageNameSearch.SelectedIndex != -1)
+            {
+                List<CategoryModel> SearchedSafe =
+                    Classes.DataAccess.Categories.GetCategoryParameter("StorageName", txt_storageNameSearch.Text);
+
+                if (SearchedSafe.Count != 0)
+                {
+                    LoadDataGrid(SearchedSafe);
+                }
+                else
+                {
+                    MessageBox.Show($"لا يوجد مخزن بهذا الاسم", "خطأ",
+                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show($"برجاء اختيار اسم المخزن قبل البحث", "خطأ",
+                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

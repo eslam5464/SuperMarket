@@ -67,6 +67,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btn_storageEdit = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.pcb_searchStorage = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.categoriesDataGridView)).BeginInit();
@@ -77,6 +78,7 @@
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchStorage)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_CategoryRemove
@@ -239,7 +241,6 @@
             this.txt_categorieid.ShortcutsEnabled = false;
             this.txt_categorieid.Size = new System.Drawing.Size(150, 45);
             this.txt_categorieid.TabIndex = 132;
-            this.txt_categorieid.TextChanged += new System.EventHandler(this.txt_categorieid_TextChanged);
             this.txt_categorieid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_category_KeyDown);
             // 
             // label3
@@ -278,7 +279,6 @@
             this.txt_categoriename.Name = "txt_categoriename";
             this.txt_categoriename.Size = new System.Drawing.Size(300, 45);
             this.txt_categoriename.TabIndex = 131;
-            this.txt_categoriename.TextChanged += new System.EventHandler(this.txt_categoriename_TextChanged);
             this.txt_categoriename.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_category_KeyDown);
             // 
             // label1
@@ -334,6 +334,7 @@
             this.tableAdapterManager.CustomersTableAdapter = null;
             this.tableAdapterManager.InvoicesTableAdapter = null;
             this.tableAdapterManager.OrdersTableAdapter = null;
+            this.tableAdapterManager.ProductPriceTableAdapter = null;
             this.tableAdapterManager.ProductsTableAdapter = null;
             this.tableAdapterManager.SafeTableAdapter = null;
             this.tableAdapterManager.SafeTransactionTableAdapter = null;
@@ -366,7 +367,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Purple;
-            this.label4.Location = new System.Drawing.Point(203, 45);
+            this.label4.Location = new System.Drawing.Point(191, 45);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(114, 28);
             this.label4.TabIndex = 170;
@@ -379,11 +380,10 @@
             this.txt_storageNameSearch.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_storageNameSearch.FormattingEnabled = true;
             this.txt_storageNameSearch.IntegralHeight = false;
-            this.txt_storageNameSearch.Location = new System.Drawing.Point(55, 77);
+            this.txt_storageNameSearch.Location = new System.Drawing.Point(52, 76);
             this.txt_storageNameSearch.Name = "txt_storageNameSearch";
-            this.txt_storageNameSearch.Size = new System.Drawing.Size(300, 40);
+            this.txt_storageNameSearch.Size = new System.Drawing.Size(265, 40);
             this.txt_storageNameSearch.TabIndex = 197;
-            this.txt_storageNameSearch.SelectedIndexChanged += new System.EventHandler(this.txt_storageName_SelectedIndexChanged);
             // 
             // txt_storageName
             // 
@@ -535,6 +535,7 @@
             // 
             this.panel4.BackColor = System.Drawing.Color.Gainsboro;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.pcb_searchStorage);
             this.panel4.Controls.Add(this.label9);
             this.panel4.Controls.Add(this.txt_storageNameSearch);
             this.panel4.Controls.Add(this.label2);
@@ -553,6 +554,21 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1032, 193);
             this.panel4.TabIndex = 202;
+            // 
+            // pcb_searchStorage
+            // 
+            this.pcb_searchStorage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_searchStorage.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchStorage.Location = new System.Drawing.Point(323, 76);
+            this.pcb_searchStorage.Name = "pcb_searchStorage";
+            this.pcb_searchStorage.Size = new System.Drawing.Size(45, 45);
+            this.pcb_searchStorage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_searchStorage.TabIndex = 203;
+            this.pcb_searchStorage.TabStop = false;
+            this.pcb_searchStorage.Click += new System.EventHandler(this.pcb_searchStorage_Click);
+            this.pcb_searchStorage.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
+            this.pcb_searchStorage.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
+            this.pcb_searchStorage.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
             // 
             // label9
             // 
@@ -590,6 +606,7 @@
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchStorage)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -633,5 +650,6 @@
         private System.Windows.Forms.Button btn_storageDelete;
         private System.Windows.Forms.ComboBox txt_storageNameEdit;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.PictureBox pcb_searchStorage;
     }
 }

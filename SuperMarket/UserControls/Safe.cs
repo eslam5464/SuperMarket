@@ -4,7 +4,6 @@ using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarket.UserControls
@@ -19,11 +18,11 @@ namespace SuperMarket.UserControls
             InitializeComponent();
         }
 
-        private async void Safe_Load(object sender, System.EventArgs e)
+        private void Safe_Load(object sender, System.EventArgs e)
         {
             SetColors(Properties.Settings.Default.AppColor);
 
-            await LoadDataGrid(Classes.DataAccess.SafeTransactions.LoadSafeTransactions(true));
+            LoadDataGrid(Classes.DataAccess.SafeTransactions.LoadSafeTransactions(true));
 
             RefreshComboBoxes();
 
@@ -58,13 +57,8 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private async Task LoadDataGrid(List<SafeTransactionModel> safeTransactionModels)
+        private void LoadDataGrid(List<SafeTransactionModel> safeTransactionModels)
         {
-            foreach (SafeTransactionModel safeTransaction in safeTransactionModels)
-            {
-                safeTransaction.AdjustedByUserFullName =
-                   await Task.Run(() => Security.Decrypt(safeTransaction.AdjustedByUserFullName, Security.CPUID + Security.MOBOID));
-            }
             db_safeTransactionDataGridView.DataSource = null;
             db_safeTransactionDataGridView.DataSource = safeTransactionModels;
 
@@ -72,7 +66,7 @@ namespace SuperMarket.UserControls
             db_safeTransactionDataGridView.Columns["SafeName"].HeaderText = "اسم الخزنة";
             db_safeTransactionDataGridView.Columns["AmountAdded"].HeaderText = "المبلغ المضاف";
             db_safeTransactionDataGridView.Columns["AmountTotal"].HeaderText = "المبلغ الكلي بعد الاضافه";
-            db_safeTransactionDataGridView.Columns["AdjustedByUserFullName"].HeaderText = "اسم منفذ العملية";
+            db_safeTransactionDataGridView.Columns["AdjustedByUserFullName"].HeaderText = "منفذ المعامله";
             db_safeTransactionDataGridView.Columns["Notes"].HeaderText = "الملاحظات";
             db_safeTransactionDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه المعامله";
             db_safeTransactionDataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
@@ -177,7 +171,7 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private async void btn_safeTransactionSave_Click(object sender, EventArgs e)
+        private void btn_safeTransactionSave_Click(object sender, EventArgs e)
         {
             if (txt_safeTransactionNameSearch.SelectedIndex != -1)
             {
@@ -215,7 +209,7 @@ namespace SuperMarket.UserControls
                         Classes.DataAccess.SafeTransactions.SaveSafeTransaction(safeTransactionModel);
                     }
 
-                    await LoadDataGrid(Classes.DataAccess.SafeTransactions.LoadSafeTransactions(true));
+                    LoadDataGrid(Classes.DataAccess.SafeTransactions.LoadSafeTransactions(true));
 
                     ResetTransactionTextBoxes();
                 }
@@ -240,7 +234,7 @@ namespace SuperMarket.UserControls
             txt_safeTransactionNameSearch.SelectedIndex = -1;
         }
 
-        private async void pcb_searchSafeName_Click(object sender, EventArgs e)
+        private void pcb_searchSafeName_Click(object sender, EventArgs e)
         {
             if (txt_safeTransactionNameSearch.SelectedIndex != -1)
             {
@@ -249,7 +243,7 @@ namespace SuperMarket.UserControls
 
                 if (SearchedSafe.Count != 0)
                 {
-                    await LoadDataGrid(SearchedSafe);
+                    LoadDataGrid(SearchedSafe);
                 }
                 else
                 {
@@ -264,7 +258,7 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private async void pcb_searchID_Click(object sender, EventArgs e)
+        private void pcb_searchID_Click(object sender, EventArgs e)
         {
             if (txt_safeTransactionId.Text.Trim() != "")
             {
@@ -273,7 +267,7 @@ namespace SuperMarket.UserControls
 
                 if (SearchedSafe.Count != 0)
                 {
-                    await LoadDataGrid(SearchedSafe);
+                    LoadDataGrid(SearchedSafe);
                 }
                 else
                 {
@@ -283,12 +277,12 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private async void pcb_search_DoubleClick(object sender, EventArgs e)
+        private void pcb_search_DoubleClick(object sender, EventArgs e)
         {
-            await LoadDataGrid(Classes.DataAccess.SafeTransactions.LoadSafeTransactions(true));
+            LoadDataGrid(Classes.DataAccess.SafeTransactions.LoadSafeTransactions(true));
         }
 
-        private async void btn_safeTransactionRemove_Click(object sender, EventArgs e)
+        private void btn_safeTransactionRemove_Click(object sender, EventArgs e)
         {
             if (db_safeTransactionDataGridView.DataSource != null && db_safeTransactionDataGridView.CurrentCell != null)
             {
@@ -303,7 +297,7 @@ namespace SuperMarket.UserControls
                     db_safeTransactionDataGridView.DataSource = null;
                     datasource.Remove(datasource.Find(SafeTransaction => SafeTransaction.Id == SafeTransactionId));
                     db_safeTransactionDataGridView.DataSource = datasource;
-                    await LoadDataGrid(Classes.DataAccess.SafeTransactions.LoadSafeTransactions(true));
+                    LoadDataGrid(Classes.DataAccess.SafeTransactions.LoadSafeTransactions(true));
                 }
             }
             else

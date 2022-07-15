@@ -67,9 +67,9 @@ namespace SuperMarket.UserControls
             {
                 user.Username = Security.Decrypt(user.Username, CPUID + MOBOID);
                 user.Password = Security.Decrypt(user.Password, CPUID + MOBOID);
-                user.FullName = Security.Decrypt(user.FullName, CPUID + MOBOID);
-                user.Phone = Security.Decrypt(user.Phone, CPUID + MOBOID);
-                user.Email = Security.Decrypt(user.Email, CPUID + MOBOID);
+                user.FullName = user.FullName;
+                user.Phone = user.Phone;
+                user.Email = user.Email;
                 user.UserLevel = user.UserLevel;
                 return user;
             }).ToList();
@@ -144,9 +144,9 @@ namespace SuperMarket.UserControls
                                 Id = UseriD,
                                 Username = await Security.EncryptAsync(txt_Username.Text, CPUID + MOBOID),
                                 Password = await Security.EncryptAsync(txt_Password.Text, CPUID + MOBOID),
-                                FullName = await Security.EncryptAsync(txt_fullname.Text, CPUID + MOBOID),
-                                Phone = await Security.EncryptAsync(txt_mobailno.Text, CPUID + MOBOID),
-                                Email = await Security.EncryptAsync("NA", CPUID + MOBOID),
+                                FullName = txt_fullname.Text,
+                                Phone = txt_mobailno.Text,
+                                Email = "NA",
                                 UserLevel = txt_userLevel.SelectedValue.ToString()
                             };
                             Users.UpdateUser(user);
@@ -181,9 +181,9 @@ namespace SuperMarket.UserControls
                                     {
                                         Username = await Security.EncryptAsync(txt_Username.Text, CPUID + MOBOID),
                                         Password = await Security.EncryptAsync(txt_Password.Text, CPUID + MOBOID),
-                                        FullName = await Security.EncryptAsync(txt_fullname.Text, CPUID + MOBOID),
-                                        Phone = await Security.EncryptAsync(txt_mobailno.Text, CPUID + MOBOID),
-                                        Email = await Security.EncryptAsync("NA", CPUID + MOBOID),
+                                        FullName = txt_fullname.Text,
+                                        Phone = txt_mobailno.Text,
+                                        Email = "NA",
                                         UserLevel = txt_userLevel.SelectedValue.ToString(),
                                         ActiveState = true
                                     };
@@ -308,7 +308,7 @@ namespace SuperMarket.UserControls
                 usersDataGridView.DataSource = null;
 
                 List<UserModel> AllUsers = Users.LoadAtiveUsersNonAdmin();
-                var user = AllUsers.FindAll(User => Security.Decrypt(User.FullName, Security.CPUID + Security.MOBOID) == txt_fullname.Text);
+                var user = AllUsers.FindAll(User => User.FullName == txt_fullname.Text);
 
                 usersDataGridView.DataSource = DecryptUsers(user);
 
@@ -362,7 +362,7 @@ namespace SuperMarket.UserControls
                 usersDataGridView.DataSource = null;
 
                 List<UserModel> AllUsers = Users.LoadAtiveUsersNonAdmin();
-                var user = AllUsers.FindAll(User => Security.Decrypt(User.Phone, Security.CPUID + Security.MOBOID) == txt_mobailno.Text);
+                var user = AllUsers.FindAll(User => User.Phone == txt_mobailno.Text);
 
                 usersDataGridView.DataSource = DecryptUsers(user);
 

@@ -48,9 +48,9 @@ namespace SuperMarket.Forms
                 {
                     string username = await Security.DecryptAsync(user[0].Username, Security.CPUID + Security.MOBOID),
                         password = await Security.DecryptAsync(user[0].Password, Security.CPUID + Security.MOBOID),
-                        fullname = await Security.DecryptAsync(user[0].FullName, Security.CPUID + Security.MOBOID),
-                        email = await Security.DecryptAsync(user[0].Email, Security.CPUID + Security.MOBOID),
-                        phone = await Security.DecryptAsync(user[0].Phone, Security.CPUID + Security.MOBOID);
+                        fullname = user[0].FullName,
+                        email = user[0].Email,
+                        phone = user[0].Phone;
 
                     if (username == txt_Username.Text && password == txt_Password.Text)
                     {
@@ -109,9 +109,9 @@ namespace SuperMarket.Forms
                 {
                     Username = await Security.EncryptAsync("admin", CPUID + MOBOID),
                     Password = await Security.EncryptAsync("passnot100%Safe", CPUID + MOBOID),
-                    FullName = await Security.EncryptAsync("admin", CPUID + MOBOID),
-                    Phone = await Security.EncryptAsync("01100308506", CPUID + MOBOID),
-                    Email = await Security.EncryptAsync("NA", CPUID + MOBOID),
+                    FullName = "admin",
+                    Phone = "01027360983",
+                    Email = "NA",
                     UserLevel = "admin",
                     ActiveState = true
                 };

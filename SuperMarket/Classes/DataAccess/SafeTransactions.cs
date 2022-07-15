@@ -20,7 +20,7 @@ namespace SuperMarket.Classes.DataAccess
                 using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     var output = cnn.Query<SafeTransactionModel>($"SELECT TOP {GlobalVars.MaxQueryRows} * FROM {TableName} " +
-                        $"WHERE {Parameter} = N'{Condition}'", new DynamicParameters());
+                        $"WHERE {Parameter} = N'{Condition}' ORDER BY CreationDate DESC", new DynamicParameters());
                     return output.ToList();
                 }
             }
@@ -38,7 +38,8 @@ namespace SuperMarket.Classes.DataAccess
             {
                 using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
-                    var output = cnn.Query<SafeTransactionModel>($"SELECT TOP {GlobalVars.MaxQueryRows} * FROM {TableName} WHERE {Parameter} Like N'%{Condition}%'", new DynamicParameters());
+                    var output = cnn.Query<SafeTransactionModel>($"SELECT TOP {GlobalVars.MaxQueryRows} * FROM {TableName} " +
+                        $"WHERE {Parameter} Like N'%{Condition}%' ORDER BY CreationDate DESC", new DynamicParameters());
                     return output.ToList();
                 }
             }
