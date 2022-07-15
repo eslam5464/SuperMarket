@@ -18,7 +18,7 @@ namespace SuperMarket.Forms
         public static AvailableReports SelectedReport;
         private DataTable dtp = null;
 
-        public enum AvailableReports { Customers, Products, Orders, Users, Suppliers }
+        public enum AvailableReports { Customers, Products, Orders, Users, Suppliers, Safe }
 
         private async void Customers_Load(object sender, EventArgs e)
         {

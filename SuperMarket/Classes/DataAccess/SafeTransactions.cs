@@ -58,13 +58,14 @@ namespace SuperMarket.Classes.DataAccess
                 {
                     if (LimitRows)
                     {
-                        var output = cnn.Query<SafeTransactionModel>($"SELECT TOP {GlobalVars.MaxQueryRows} * FROM {TableName}",
-                            new DynamicParameters());
+                        var output = cnn.Query<SafeTransactionModel>($"SELECT TOP {GlobalVars.MaxQueryRows} * FROM {TableName} " +
+                            $"ORDER BY CreationDate DESC", new DynamicParameters());
                         return output.ToList();
                     }
                     else
                     {
-                        var output = cnn.Query<SafeTransactionModel>($"SELECT * FROM {TableName}", new DynamicParameters());
+                        var output = cnn.Query<SafeTransactionModel>($"SELECT * FROM {TableName} ORDER BY CreationDate DESC",
+                            new DynamicParameters());
                         return output.ToList();
                     }
                 }
@@ -109,6 +110,8 @@ namespace SuperMarket.Classes.DataAccess
                         $"(@SafeId, @SafeName, @AmountAdded, @AmountTotal, @AdjustedByUserId, @AdjustedByUserFullName, " +
                         $"@Notes, '{DateTime.Now}')", safe);
                 }
+                MessageBox.Show($"تم الحفظ", "عملية ناجحه",
+                         MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {

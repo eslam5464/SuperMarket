@@ -1,8 +1,10 @@
 ﻿using SuperMarket.Classes;
 using SuperMarket.Classes.Models;
+using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarket.UserControls
@@ -17,11 +19,11 @@ namespace SuperMarket.UserControls
             InitializeComponent();
         }
 
-        private void Safe_Load(object sender, System.EventArgs e)
+        private async void Safe_Load(object sender, System.EventArgs e)
         {
             SetColors(Properties.Settings.Default.AppColor);
 
-            LoadDataGrid(Classes.DataAccess.SafeTransactions.LoadSafeTransactions(true));
+            await LoadDataGrid(Classes.DataAccess.SafeTransactions.LoadSafeTransactions(true));
 
             RefreshComboBoxes();
 
@@ -56,9 +58,30 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void LoadDataGrid(List<SafeTransactionModel> safeTransactionModels)
+        private async Task LoadDataGrid(List<SafeTransactionModel> safeTransactionModels)
         {
-            //throw new NotImplementedException();
+            foreach (SafeTransactionModel safeTransaction in safeTransactionModels)
+            {
+                safeTransaction.AdjustedByUserFullName =
+                   await Task.Run(() => Security.Decrypt(safeTransaction.AdjustedByUserFullName, Security.CPUID + Security.MOBOID));
+            }
+            db_safeTransactionDataGridView.DataSource = null;
+            db_safeTransactionDataGridView.DataSource = safeTransactionModels;
+
+            db_safeTransactionDataGridView.Columns["Id"].HeaderText = "رقم التصنيف";
+            db_safeTransactionDataGridView.Columns["SafeName"].HeaderText = "اسم الخزنة";
+            db_safeTransactionDataGridView.Columns["AmountAdded"].HeaderText = "المبلغ المضاف";
+            db_safeTransactionDataGridView.Columns["AmountTotal"].HeaderText = "المبلغ الكلي بعد الاضافه";
+            db_safeTransactionDataGridView.Columns["AdjustedByUserFullName"].HeaderText = "اسم منفذ العملية";
+            db_safeTransactionDataGridView.Columns["Notes"].HeaderText = "الملاحظات";
+            db_safeTransactionDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه المعامله";
+            db_safeTransactionDataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
+
+            db_safeTransactionDataGridView.Columns["SafeId"].Visible = false;
+            db_safeTransactionDataGridView.Columns["AdjustedByUserId"].Visible = false;
+
+            db_safeTransactionDataGridView.AutoResizeColumns();
+            db_safeTransactionDataGridView.Columns["CreationDate"].Width += 5;
         }
 
         private void SetColors(Color appColor)
@@ -66,14 +89,12 @@ namespace SuperMarket.UserControls
             Control[] AllControls =
             {
                 label2,
-                label3,
                 label4,
                 label5,
                 label6,
                 label7,
                 label8,
                 label9,
-                btn_safeTransactionEdit,
                 btn_safeTransactionRemove,
                 btn_exportPDF,
                 btn_safeDelete,
@@ -116,7 +137,7 @@ namespace SuperMarket.UserControls
 
             List<SafeModel> SearchedSafe = await Classes.DataAccess.Safe.GetSafeParameter("Name", safeModel.Name);
 
-            if (SearchedSafe.Count > 0)
+            if (SearchedSafe.Count == 0)
             {
                 await Classes.DataAccess.Safe.SaveSafe(safeModel);
 
@@ -124,7 +145,7 @@ namespace SuperMarket.UserControls
             }
             else
             {
-                MessageBox.Show($"لا يمكنك الحفظ لانهيوجد خزنه بهذا الاسم", "خطأ",
+                MessageBox.Show($"لا يمكنك الحفظ لانه يوجد خزنه بهذا الاسم", "خطأ",
                          MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -156,29 +177,148 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void txt_safeTransactionAmount_KeyPress(object sender, KeyPressEventArgs e)
+        private async void btn_safeTransactionSave_Click(object sender, EventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.') && (e.KeyChar != '-'))
+            if (txt_safeTransactionNameSearch.SelectedIndex != -1)
             {
-                e.Handled = true;
-            }
+                if (num_safeTransactionAmount.Value != 0 && txt_safeTransactionNotes.Text.Trim() != "")
+                {
+                    List<SafeTransactionModel> AllSafeTransactions =
+                        Classes.DataAccess.SafeTransactions.GetSafeTransactionParameter("SafeName", txt_safeTransactionNameSearch.Text);
 
-            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
-            {
-                e.Handled = true;
-            }
-        }
+                    if (AllSafeTransactions.Count == 0)
+                    {
+                        SafeTransactionModel safeTransactionModel = new SafeTransactionModel()
+                        {
+                            AdjustedByUserId = Main.LoggedUser.Id,
+                            AdjustedByUserFullName = Main.LoggedUserEnc.FullName,
+                            AmountAdded = num_safeTransactionAmount.Value,
+                            AmountTotal = num_safeTransactionAmount.Value,
+                            Notes = txt_safeTransactionNotes.Text,
+                            SafeId = int.Parse(txt_safeTransactionNameSearch.SelectedValue.ToString()),
+                            SafeName = txt_safeTransactionNameSearch.Text
+                        };
+                        Classes.DataAccess.SafeTransactions.SaveSafeTransaction(safeTransactionModel);
+                    }
+                    else
+                    {
+                        SafeTransactionModel safeTransactionModel = new SafeTransactionModel()
+                        {
+                            AdjustedByUserId = Main.LoggedUser.Id,
+                            AdjustedByUserFullName = Main.LoggedUserEnc.FullName,
+                            AmountAdded = num_safeTransactionAmount.Value,
+                            AmountTotal = AllSafeTransactions[AllSafeTransactions.Count - 1].AmountTotal + num_safeTransactionAmount.Value,
+                            Notes = txt_safeTransactionNotes.Text,
+                            SafeId = int.Parse(txt_safeTransactionNameSearch.SelectedValue.ToString()),
+                            SafeName = txt_safeTransactionNameSearch.Text
+                        };
+                        Classes.DataAccess.SafeTransactions.SaveSafeTransaction(safeTransactionModel);
+                    }
 
-        private void btn_safeTransactionSave_Click(object sender, EventArgs e)
-        {
-            if (txt_safeTransactionNameSearch.SelectedIndex!=-1)
-            {
+                    await LoadDataGrid(Classes.DataAccess.SafeTransactions.LoadSafeTransactions(true));
 
+                    ResetTransactionTextBoxes();
+                }
+                else
+                {
+                    MessageBox.Show($"برجاء اكمل بيانات المعامله من المال الذي لا يساوي صفر والملاحظات", "خطأ",
+                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
                 MessageBox.Show($"برجاء اختيار الخزنة", "خطأ",
                          MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ResetTransactionTextBoxes()
+        {
+            txt_safeTransactionId.Text = "";
+            txt_safeTransactionNotes.Text = "";
+            num_safeTransactionAmount.Value = 0;
+            txt_safeTransactionNameSearch.SelectedIndex = -1;
+        }
+
+        private async void pcb_searchSafeName_Click(object sender, EventArgs e)
+        {
+            if (txt_safeTransactionNameSearch.SelectedIndex != -1)
+            {
+                List<SafeTransactionModel> SearchedSafe =
+                    Classes.DataAccess.SafeTransactions.GetSafeTransactionParameter("SafeName", txt_safeTransactionNameSearch.Text);
+
+                if (SearchedSafe.Count != 0)
+                {
+                    await LoadDataGrid(SearchedSafe);
+                }
+                else
+                {
+                    MessageBox.Show($"لا يوجد خزنه بهذا الاسم", "خطأ",
+                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show($"برجاء اختيار اسم الخزنه قبل البحث", "خطأ",
+                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async void pcb_searchID_Click(object sender, EventArgs e)
+        {
+            if (txt_safeTransactionId.Text.Trim() != "")
+            {
+                List<SafeTransactionModel> SearchedSafe =
+                    Classes.DataAccess.SafeTransactions.GetSafeTransactionParameter("Id", txt_safeTransactionId.Text);
+
+                if (SearchedSafe.Count != 0)
+                {
+                    await LoadDataGrid(SearchedSafe);
+                }
+                else
+                {
+                    MessageBox.Show($"لا يوجد بيانات لرقم التصنيف هذا", "خطأ",
+                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private async void pcb_search_DoubleClick(object sender, EventArgs e)
+        {
+            await LoadDataGrid(Classes.DataAccess.SafeTransactions.LoadSafeTransactions(true));
+        }
+
+        private async void btn_safeTransactionRemove_Click(object sender, EventArgs e)
+        {
+            if (db_safeTransactionDataGridView.DataSource != null && db_safeTransactionDataGridView.CurrentCell != null)
+            {
+                int rowindex = db_safeTransactionDataGridView.CurrentCell.RowIndex;
+                long SafeTransactionId = long.Parse(db_safeTransactionDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
+
+                if (MessageBox.Show($"هل تريد انت تحذف من السله {ProductName}", "انتظر",
+                           MessageBoxButtons.YesNo,
+                           MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    List<SafeTransactionModel> datasource = (List<SafeTransactionModel>)db_safeTransactionDataGridView.DataSource;
+                    db_safeTransactionDataGridView.DataSource = null;
+                    datasource.Remove(datasource.Find(SafeTransaction => SafeTransaction.Id == SafeTransactionId));
+                    db_safeTransactionDataGridView.DataSource = datasource;
+                    await LoadDataGrid(Classes.DataAccess.SafeTransactions.LoadSafeTransactions(true));
+                }
+            }
+            else
+                MessageBox.Show("رجاء اختيار منتج أولا قبل الحذف", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void btn_exportPDF_Click(object sender, EventArgs e)
+        {
+            Forms.ReportViewer.SelectedReport = Forms.ReportViewer.AvailableReports.Safe;
+
+            using (Forms.ReportViewer reportViewer = new Forms.ReportViewer())
+            {
+                reportViewer.ShowDialog();
+                reportViewer.Dispose();
+                reportViewer.Close();
             }
         }
     }

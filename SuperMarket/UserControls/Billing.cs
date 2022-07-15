@@ -622,7 +622,7 @@ namespace SuperMarket.UserControls
                                 Address = datasource[0].CustomerAddress,
                                 GrandTotal = decimal.Parse(txt_grandtotal.Text),
                                 CreatedByUserId = Main.LoggedUser.Id,
-                                CreatedByUserFullName = Main.LoggedUser.FullName
+                                CreatedByUserFullName = Main.LoggedUserEnc.FullName
                             };
                             Classes.DataAccess.Orders.AddOrder(order);
 
