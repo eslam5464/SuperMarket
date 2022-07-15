@@ -29,7 +29,7 @@ namespace SuperMarket.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txt_paymentMethod = new System.Windows.Forms.ComboBox();
             this.txt_searchSupplier = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -52,6 +52,10 @@ namespace SuperMarket.UserControls
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.pan_productResults = new System.Windows.Forms.Panel();
+            this.label17 = new System.Windows.Forms.Label();
+            this.txt_productPriceWholeSale = new System.Windows.Forms.TextBox();
+            this.txt_productPriceSell = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.btn_removeProduct = new System.Windows.Forms.Button();
             this.btn_addProduct = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
@@ -62,6 +66,7 @@ namespace SuperMarket.UserControls
             this.txt_searchedProductName = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.pcb_searchProduct = new System.Windows.Forms.PictureBox();
             this.txt_searchProductType = new System.Windows.Forms.ComboBox();
             this.txt_searchProduct = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -70,22 +75,19 @@ namespace SuperMarket.UserControls
             this.pan_save = new System.Windows.Forms.Panel();
             this.btn_saveInovice = new System.Windows.Forms.Button();
             this.btn_resetAll = new System.Windows.Forms.Button();
-            this.pcb_searchProduct = new System.Windows.Forms.PictureBox();
             this.pcb_searchSupplier = new System.Windows.Forms.PictureBox();
-            this.label17 = new System.Windows.Forms.Label();
-            this.txt_productPriceWholeSale = new System.Windows.Forms.TextBox();
-            this.txt_productPriceSell = new System.Windows.Forms.TextBox();
-            this.label19 = new System.Windows.Forms.Label();
+            this.chk_withdrawFromSafe = new System.Windows.Forms.CheckBox();
+            this.txt_withdrawFromSafe = new System.Windows.Forms.ComboBox();
             this.pan_supplierResults.SuspendLayout();
             this.pan_payment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutRequired)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutPaid)).BeginInit();
             this.pan_productResults.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchProduct)).BeginInit();
             this.pan_productDataGrid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_productDataGridView)).BeginInit();
             this.pan_save.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchSupplier)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,7 +98,7 @@ namespace SuperMarket.UserControls
             this.txt_paymentMethod.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_paymentMethod.FormattingEnabled = true;
             this.txt_paymentMethod.IntegralHeight = false;
-            this.txt_paymentMethod.Location = new System.Drawing.Point(72, 37);
+            this.txt_paymentMethod.Location = new System.Drawing.Point(64, 99);
             this.txt_paymentMethod.Name = "txt_paymentMethod";
             this.txt_paymentMethod.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txt_paymentMethod.Size = new System.Drawing.Size(175, 40);
@@ -123,7 +125,7 @@ namespace SuperMarket.UserControls
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Purple;
-            this.label5.Location = new System.Drawing.Point(305, 47);
+            this.label5.Location = new System.Drawing.Point(302, 109);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(76, 23);
             this.label5.TabIndex = 197;
@@ -266,6 +268,8 @@ namespace SuperMarket.UserControls
             // pan_payment
             // 
             this.pan_payment.BackColor = System.Drawing.Color.Gainsboro;
+            this.pan_payment.Controls.Add(this.txt_withdrawFromSafe);
+            this.pan_payment.Controls.Add(this.chk_withdrawFromSafe);
             this.pan_payment.Controls.Add(this.num_paymentAmoutLeft);
             this.pan_payment.Controls.Add(this.num_paymentAmoutRequired);
             this.pan_payment.Controls.Add(this.num_paymentAmoutPaid);
@@ -277,14 +281,14 @@ namespace SuperMarket.UserControls
             this.pan_payment.Controls.Add(this.label5);
             this.pan_payment.Location = new System.Drawing.Point(587, 305);
             this.pan_payment.Name = "pan_payment";
-            this.pan_payment.Size = new System.Drawing.Size(438, 241);
+            this.pan_payment.Size = new System.Drawing.Size(438, 285);
             this.pan_payment.TabIndex = 210;
             // 
             // num_paymentAmoutLeft
             // 
             this.num_paymentAmoutLeft.DecimalPlaces = 2;
             this.num_paymentAmoutLeft.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold);
-            this.num_paymentAmoutLeft.Location = new System.Drawing.Point(58, 186);
+            this.num_paymentAmoutLeft.Location = new System.Drawing.Point(55, 237);
             this.num_paymentAmoutLeft.Maximum = new decimal(new int[] {
             900000000,
             0,
@@ -306,7 +310,7 @@ namespace SuperMarket.UserControls
             // 
             this.num_paymentAmoutRequired.DecimalPlaces = 2;
             this.num_paymentAmoutRequired.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold);
-            this.num_paymentAmoutRequired.Location = new System.Drawing.Point(58, 130);
+            this.num_paymentAmoutRequired.Location = new System.Drawing.Point(55, 191);
             this.num_paymentAmoutRequired.Maximum = new decimal(new int[] {
             900000000,
             0,
@@ -328,7 +332,7 @@ namespace SuperMarket.UserControls
             // 
             this.num_paymentAmoutPaid.DecimalPlaces = 2;
             this.num_paymentAmoutPaid.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold);
-            this.num_paymentAmoutPaid.Location = new System.Drawing.Point(58, 84);
+            this.num_paymentAmoutPaid.Location = new System.Drawing.Point(55, 145);
             this.num_paymentAmoutPaid.Maximum = new decimal(new int[] {
             900000000,
             0,
@@ -352,7 +356,7 @@ namespace SuperMarket.UserControls
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Century Gothic", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.Purple;
-            this.label16.Location = new System.Drawing.Point(190, 5);
+            this.label16.Location = new System.Drawing.Point(198, 4);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(58, 23);
             this.label16.TabIndex = 225;
@@ -364,7 +368,7 @@ namespace SuperMarket.UserControls
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.Purple;
-            this.label15.Location = new System.Drawing.Point(322, 195);
+            this.label15.Location = new System.Drawing.Point(319, 246);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(59, 23);
             this.label15.TabIndex = 223;
@@ -376,7 +380,7 @@ namespace SuperMarket.UserControls
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Purple;
-            this.label14.Location = new System.Drawing.Point(268, 139);
+            this.label14.Location = new System.Drawing.Point(265, 200);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(113, 23);
             this.label14.TabIndex = 221;
@@ -388,7 +392,7 @@ namespace SuperMarket.UserControls
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.Purple;
-            this.label13.Location = new System.Drawing.Point(317, 93);
+            this.label13.Location = new System.Drawing.Point(314, 154);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(64, 23);
             this.label13.TabIndex = 219;
@@ -420,6 +424,66 @@ namespace SuperMarket.UserControls
             this.pan_productResults.Name = "pan_productResults";
             this.pan_productResults.Size = new System.Drawing.Size(571, 649);
             this.pan_productResults.TabIndex = 211;
+            // 
+            // label17
+            // 
+            this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.ForeColor = System.Drawing.Color.Purple;
+            this.label17.Location = new System.Drawing.Point(197, 195);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(82, 23);
+            this.label17.TabIndex = 227;
+            this.label17.Text = ":سعرالجملة";
+            // 
+            // txt_productPriceWholeSale
+            // 
+            this.txt_productPriceWholeSale.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_productPriceWholeSale.BackColor = System.Drawing.Color.White;
+            this.txt_productPriceWholeSale.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txt_productPriceWholeSale.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_productPriceWholeSale.ForeColor = System.Drawing.Color.Black;
+            this.txt_productPriceWholeSale.Location = new System.Drawing.Point(14, 185);
+            this.txt_productPriceWholeSale.Multiline = true;
+            this.txt_productPriceWholeSale.Name = "txt_productPriceWholeSale";
+            this.txt_productPriceWholeSale.ShortcutsEnabled = false;
+            this.txt_productPriceWholeSale.Size = new System.Drawing.Size(169, 45);
+            this.txt_productPriceWholeSale.TabIndex = 226;
+            this.txt_productPriceWholeSale.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_productPriceWholeSale.TextChanged += new System.EventHandler(this.txt_productQuantity_TextChanged);
+            this.txt_productPriceWholeSale.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_supplierInvoices_KeyDown);
+            this.txt_productPriceWholeSale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_productQuantity_KeyPress);
+            // 
+            // txt_productPriceSell
+            // 
+            this.txt_productPriceSell.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_productPriceSell.BackColor = System.Drawing.Color.White;
+            this.txt_productPriceSell.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txt_productPriceSell.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_productPriceSell.ForeColor = System.Drawing.Color.Black;
+            this.txt_productPriceSell.Location = new System.Drawing.Point(14, 251);
+            this.txt_productPriceSell.Multiline = true;
+            this.txt_productPriceSell.Name = "txt_productPriceSell";
+            this.txt_productPriceSell.ShortcutsEnabled = false;
+            this.txt_productPriceSell.Size = new System.Drawing.Size(169, 45);
+            this.txt_productPriceSell.TabIndex = 224;
+            this.txt_productPriceSell.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_productPriceSell.TextChanged += new System.EventHandler(this.txt_productQuantity_TextChanged);
+            this.txt_productPriceSell.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_supplierInvoices_KeyDown);
+            this.txt_productPriceSell.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_productQuantity_KeyPress);
+            // 
+            // label19
+            // 
+            this.label19.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.ForeColor = System.Drawing.Color.Purple;
+            this.label19.Location = new System.Drawing.Point(194, 261);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(82, 23);
+            this.label19.TabIndex = 223;
+            this.label19.Text = ":سعر البيع ";
             // 
             // btn_removeProduct
             // 
@@ -558,6 +622,20 @@ namespace SuperMarket.UserControls
             this.label9.TabIndex = 213;
             this.label9.Text = ": البحث بـ";
             // 
+            // pcb_searchProduct
+            // 
+            this.pcb_searchProduct.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_searchProduct.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchProduct.Location = new System.Drawing.Point(66, 28);
+            this.pcb_searchProduct.Name = "pcb_searchProduct";
+            this.pcb_searchProduct.Size = new System.Drawing.Size(45, 45);
+            this.pcb_searchProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_searchProduct.TabIndex = 212;
+            this.pcb_searchProduct.TabStop = false;
+            this.pcb_searchProduct.Click += new System.EventHandler(this.pcb_searchProduct_Click);
+            this.pcb_searchProduct.MouseEnter += new System.EventHandler(this.pcb_supplier_MouseEnter);
+            this.pcb_searchProduct.MouseLeave += new System.EventHandler(this.pcb_supplier_MouseLeave);
+            // 
             // txt_searchProductType
             // 
             this.txt_searchProductType.DropDownHeight = 200;
@@ -614,14 +692,14 @@ namespace SuperMarket.UserControls
             this.db_productDataGridView.AllowUserToResizeColumns = false;
             this.db_productDataGridView.AllowUserToResizeRows = false;
             this.db_productDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.db_productDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.db_productDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.db_productDataGridView.ColumnHeadersHeight = 40;
             this.db_productDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.db_productDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -643,9 +721,9 @@ namespace SuperMarket.UserControls
             // 
             this.pan_save.BackColor = System.Drawing.Color.Gainsboro;
             this.pan_save.Controls.Add(this.btn_saveInovice);
-            this.pan_save.Location = new System.Drawing.Point(587, 552);
+            this.pan_save.Location = new System.Drawing.Point(587, 596);
             this.pan_save.Name = "pan_save";
-            this.pan_save.Size = new System.Drawing.Size(239, 105);
+            this.pan_save.Size = new System.Drawing.Size(239, 61);
             this.pan_save.TabIndex = 212;
             // 
             // btn_saveInovice
@@ -655,7 +733,7 @@ namespace SuperMarket.UserControls
             this.btn_saveInovice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_saveInovice.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_saveInovice.ForeColor = System.Drawing.Color.White;
-            this.btn_saveInovice.Location = new System.Drawing.Point(52, 27);
+            this.btn_saveInovice.Location = new System.Drawing.Point(52, 5);
             this.btn_saveInovice.Name = "btn_saveInovice";
             this.btn_saveInovice.Size = new System.Drawing.Size(134, 50);
             this.btn_saveInovice.TabIndex = 223;
@@ -670,27 +748,13 @@ namespace SuperMarket.UserControls
             this.btn_resetAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_resetAll.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_resetAll.ForeColor = System.Drawing.Color.White;
-            this.btn_resetAll.Location = new System.Drawing.Point(859, 579);
+            this.btn_resetAll.Location = new System.Drawing.Point(856, 600);
             this.btn_resetAll.Name = "btn_resetAll";
             this.btn_resetAll.Size = new System.Drawing.Size(134, 50);
             this.btn_resetAll.TabIndex = 224;
             this.btn_resetAll.Text = "مسح الكل";
             this.btn_resetAll.UseVisualStyleBackColor = false;
             this.btn_resetAll.Click += new System.EventHandler(this.btn_resetAll_Click);
-            // 
-            // pcb_searchProduct
-            // 
-            this.pcb_searchProduct.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchProduct.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_searchProduct.Location = new System.Drawing.Point(66, 28);
-            this.pcb_searchProduct.Name = "pcb_searchProduct";
-            this.pcb_searchProduct.Size = new System.Drawing.Size(45, 45);
-            this.pcb_searchProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_searchProduct.TabIndex = 212;
-            this.pcb_searchProduct.TabStop = false;
-            this.pcb_searchProduct.Click += new System.EventHandler(this.pcb_searchProduct_Click);
-            this.pcb_searchProduct.MouseEnter += new System.EventHandler(this.pcb_supplier_MouseEnter);
-            this.pcb_searchProduct.MouseLeave += new System.EventHandler(this.pcb_supplier_MouseLeave);
             // 
             // pcb_searchSupplier
             // 
@@ -706,65 +770,32 @@ namespace SuperMarket.UserControls
             this.pcb_searchSupplier.MouseEnter += new System.EventHandler(this.pcb_supplier_MouseEnter);
             this.pcb_searchSupplier.MouseLeave += new System.EventHandler(this.pcb_supplier_MouseLeave);
             // 
-            // label17
+            // chk_withdrawFromSafe
             // 
-            this.label17.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.Purple;
-            this.label17.Location = new System.Drawing.Point(197, 195);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(82, 23);
-            this.label17.TabIndex = 227;
-            this.label17.Text = ":سعرالجملة";
+            this.chk_withdrawFromSafe.AutoSize = true;
+            this.chk_withdrawFromSafe.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold);
+            this.chk_withdrawFromSafe.ForeColor = System.Drawing.Color.Purple;
+            this.chk_withdrawFromSafe.Location = new System.Drawing.Point(270, 54);
+            this.chk_withdrawFromSafe.Name = "chk_withdrawFromSafe";
+            this.chk_withdrawFromSafe.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chk_withdrawFromSafe.Size = new System.Drawing.Size(133, 27);
+            this.chk_withdrawFromSafe.TabIndex = 229;
+            this.chk_withdrawFromSafe.Text = "سحب من الخزنة";
+            this.chk_withdrawFromSafe.UseVisualStyleBackColor = true;
+            this.chk_withdrawFromSafe.CheckedChanged += new System.EventHandler(this.chk_withdrawFromSafe_CheckedChanged);
             // 
-            // txt_productPriceWholeSale
+            // txt_withdrawFromSafe
             // 
-            this.txt_productPriceWholeSale.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txt_productPriceWholeSale.BackColor = System.Drawing.Color.White;
-            this.txt_productPriceWholeSale.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.txt_productPriceWholeSale.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_productPriceWholeSale.ForeColor = System.Drawing.Color.Black;
-            this.txt_productPriceWholeSale.Location = new System.Drawing.Point(14, 185);
-            this.txt_productPriceWholeSale.Multiline = true;
-            this.txt_productPriceWholeSale.Name = "txt_productPriceWholeSale";
-            this.txt_productPriceWholeSale.ShortcutsEnabled = false;
-            this.txt_productPriceWholeSale.Size = new System.Drawing.Size(169, 45);
-            this.txt_productPriceWholeSale.TabIndex = 226;
-            this.txt_productPriceWholeSale.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txt_productPriceWholeSale.TextChanged += new System.EventHandler(this.txt_productQuantity_TextChanged);
-            this.txt_productPriceWholeSale.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_supplierInvoices_KeyDown);
-            this.txt_productPriceWholeSale.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_productQuantity_KeyPress);
-            // 
-            // txt_productPriceSell
-            // 
-            this.txt_productPriceSell.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txt_productPriceSell.BackColor = System.Drawing.Color.White;
-            this.txt_productPriceSell.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.txt_productPriceSell.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_productPriceSell.ForeColor = System.Drawing.Color.Black;
-            this.txt_productPriceSell.Location = new System.Drawing.Point(14, 251);
-            this.txt_productPriceSell.Multiline = true;
-            this.txt_productPriceSell.Name = "txt_productPriceSell";
-            this.txt_productPriceSell.ShortcutsEnabled = false;
-            this.txt_productPriceSell.Size = new System.Drawing.Size(169, 45);
-            this.txt_productPriceSell.TabIndex = 224;
-            this.txt_productPriceSell.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txt_productPriceSell.TextChanged += new System.EventHandler(this.txt_productQuantity_TextChanged);
-            this.txt_productPriceSell.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_supplierInvoices_KeyDown);
-            this.txt_productPriceSell.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_productQuantity_KeyPress);
-            // 
-            // label19
-            // 
-            this.label19.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.ForeColor = System.Drawing.Color.Purple;
-            this.label19.Location = new System.Drawing.Point(194, 261);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(82, 23);
-            this.label19.TabIndex = 223;
-            this.label19.Text = ":سعر البيع ";
+            this.txt_withdrawFromSafe.DropDownHeight = 200;
+            this.txt_withdrawFromSafe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txt_withdrawFromSafe.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_withdrawFromSafe.FormattingEnabled = true;
+            this.txt_withdrawFromSafe.IntegralHeight = false;
+            this.txt_withdrawFromSafe.Location = new System.Drawing.Point(64, 45);
+            this.txt_withdrawFromSafe.Name = "txt_withdrawFromSafe";
+            this.txt_withdrawFromSafe.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txt_withdrawFromSafe.Size = new System.Drawing.Size(175, 40);
+            this.txt_withdrawFromSafe.TabIndex = 230;
             // 
             // SupplierInvoices
             // 
@@ -793,10 +824,10 @@ namespace SuperMarket.UserControls
             ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutPaid)).EndInit();
             this.pan_productResults.ResumeLayout(false);
             this.pan_productResults.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchProduct)).EndInit();
             this.pan_productDataGrid.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.db_productDataGridView)).EndInit();
             this.pan_save.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchSupplier)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -851,5 +882,7 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.TextBox txt_productPriceWholeSale;
         private System.Windows.Forms.TextBox txt_productPriceSell;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.CheckBox chk_withdrawFromSafe;
+        private System.Windows.Forms.ComboBox txt_withdrawFromSafe;
     }
 }

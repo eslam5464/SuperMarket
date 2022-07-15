@@ -3407,6 +3407,8 @@ namespace SuperMarket {
             
             private global::System.Data.DataColumn columnCreationDate;
             
+            private global::System.Data.DataColumn columnNotes;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public SafeTransactionDataTable() {
@@ -3506,6 +3508,14 @@ namespace SuperMarket {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn NotesColumn {
+                get {
+                    return this.columnNotes;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3541,7 +3551,7 @@ namespace SuperMarket {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public SafeTransactionRow AddSafeTransactionRow(int SafeId, string SafeName, decimal AmountAdded, decimal AmountTotal, long AdjustedByUserId, string AdjustedByUserFullName, System.DateTime CreationDate) {
+            public SafeTransactionRow AddSafeTransactionRow(int SafeId, string SafeName, decimal AmountAdded, decimal AmountTotal, long AdjustedByUserId, string AdjustedByUserFullName, System.DateTime CreationDate, string Notes) {
                 SafeTransactionRow rowSafeTransactionRow = ((SafeTransactionRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -3551,7 +3561,8 @@ namespace SuperMarket {
                         AmountTotal,
                         AdjustedByUserId,
                         AdjustedByUserFullName,
-                        CreationDate};
+                        CreationDate,
+                        Notes};
                 rowSafeTransactionRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowSafeTransactionRow);
                 return rowSafeTransactionRow;
@@ -3589,6 +3600,7 @@ namespace SuperMarket {
                 this.columnAdjustedByUserId = base.Columns["AdjustedByUserId"];
                 this.columnAdjustedByUserFullName = base.Columns["AdjustedByUserFullName"];
                 this.columnCreationDate = base.Columns["CreationDate"];
+                this.columnNotes = base.Columns["Notes"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3610,6 +3622,8 @@ namespace SuperMarket {
                 base.Columns.Add(this.columnAdjustedByUserFullName);
                 this.columnCreationDate = new global::System.Data.DataColumn("CreationDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCreationDate);
+                this.columnNotes = new global::System.Data.DataColumn("Notes", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNotes);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AutoIncrement = true;
@@ -3623,6 +3637,8 @@ namespace SuperMarket {
                 this.columnAmountTotal.AllowDBNull = false;
                 this.columnAdjustedByUserFullName.MaxLength = 200;
                 this.columnCreationDate.AllowDBNull = false;
+                this.columnNotes.AllowDBNull = false;
+                this.columnNotes.MaxLength = 500;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7732,6 +7748,17 @@ namespace SuperMarket {
                 }
                 set {
                     this[this.tableSafeTransaction.CreationDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string Notes {
+                get {
+                    return ((string)(this[this.tableSafeTransaction.NotesColumn]));
+                }
+                set {
+                    this[this.tableSafeTransaction.NotesColumn] = value;
                 }
             }
             
@@ -12720,10 +12747,11 @@ SELECT Id, BarCode, Name, Quantity, QuantityMinimum, Description, CategoryID, Ca
             tableMapping.ColumnMappings.Add("AdjustedByUserId", "AdjustedByUserId");
             tableMapping.ColumnMappings.Add("AdjustedByUserFullName", "AdjustedByUserFullName");
             tableMapping.ColumnMappings.Add("CreationDate", "CreationDate");
+            tableMapping.ColumnMappings.Add("Notes", "Notes");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[SafeTransaction] WHERE (([Id] = @Original_Id) AND ((@IsNull_SafeId = 1 AND [SafeId] IS NULL) OR ([SafeId] = @Original_SafeId)) AND ((@IsNull_SafeName = 1 AND [SafeName] IS NULL) OR ([SafeName] = @Original_SafeName)) AND ([AmountAdded] = @Original_AmountAdded) AND ([AmountTotal] = @Original_AmountTotal) AND ((@IsNull_AdjustedByUserId = 1 AND [AdjustedByUserId] IS NULL) OR ([AdjustedByUserId] = @Original_AdjustedByUserId)) AND ((@IsNull_AdjustedByUserFullName = 1 AND [AdjustedByUserFullName] IS NULL) OR ([AdjustedByUserFullName] = @Original_AdjustedByUserFullName)) AND ([CreationDate] = @Original_CreationDate))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [SafeTransaction] WHERE (([Id] = @Original_Id) AND ((@IsNull_SafeId = 1 AND [SafeId] IS NULL) OR ([SafeId] = @Original_SafeId)) AND ((@IsNull_SafeName = 1 AND [SafeName] IS NULL) OR ([SafeName] = @Original_SafeName)) AND ([AmountAdded] = @Original_AmountAdded) AND ([AmountTotal] = @Original_AmountTotal) AND ((@IsNull_AdjustedByUserId = 1 AND [AdjustedByUserId] IS NULL) OR ([AdjustedByUserId] = @Original_AdjustedByUserId)) AND ((@IsNull_AdjustedByUserFullName = 1 AND [AdjustedByUserFullName] IS NULL) OR ([AdjustedByUserFullName] = @Original_AdjustedByUserFullName)) AND ([CreationDate] = @Original_CreationDate) AND ([Notes] = @Original_Notes))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_SafeId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SafeId", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -12737,10 +12765,11 @@ SELECT Id, BarCode, Name, Quantity, QuantityMinimum, Description, CategoryID, Ca
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AdjustedByUserFullName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AdjustedByUserFullName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AdjustedByUserFullName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AdjustedByUserFullName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CreationDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreationDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Notes", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[SafeTransaction] ([SafeId], [SafeName], [AmountAdded], [AmountTotal], [AdjustedByUserId], [AdjustedByUserFullName], [CreationDate]) VALUES (@SafeId, @SafeName, @AmountAdded, @AmountTotal, @AdjustedByUserId, @AdjustedByUserFullName, @CreationDate);
-SELECT Id, SafeId, SafeName, AmountAdded, AmountTotal, AdjustedByUserId, AdjustedByUserFullName, CreationDate FROM SafeTransaction WHERE (Id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [SafeTransaction] ([SafeId], [SafeName], [AmountAdded], [AmountTotal], [AdjustedByUserId], [AdjustedByUserFullName], [CreationDate], [Notes]) VALUES (@SafeId, @SafeName, @AmountAdded, @AmountTotal, @AdjustedByUserId, @AdjustedByUserFullName, @CreationDate, @Notes);
+SELECT Id, SafeId, SafeName, AmountAdded, AmountTotal, AdjustedByUserId, AdjustedByUserFullName, CreationDate, Notes FROM SafeTransaction WHERE (Id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SafeId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SafeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SafeName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SafeName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -12749,10 +12778,11 @@ SELECT Id, SafeId, SafeName, AmountAdded, AmountTotal, AdjustedByUserId, Adjuste
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AdjustedByUserId", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AdjustedByUserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AdjustedByUserFullName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AdjustedByUserFullName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreationDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreationDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Notes", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[SafeTransaction] SET [SafeId] = @SafeId, [SafeName] = @SafeName, [AmountAdded] = @AmountAdded, [AmountTotal] = @AmountTotal, [AdjustedByUserId] = @AdjustedByUserId, [AdjustedByUserFullName] = @AdjustedByUserFullName, [CreationDate] = @CreationDate WHERE (([Id] = @Original_Id) AND ((@IsNull_SafeId = 1 AND [SafeId] IS NULL) OR ([SafeId] = @Original_SafeId)) AND ((@IsNull_SafeName = 1 AND [SafeName] IS NULL) OR ([SafeName] = @Original_SafeName)) AND ([AmountAdded] = @Original_AmountAdded) AND ([AmountTotal] = @Original_AmountTotal) AND ((@IsNull_AdjustedByUserId = 1 AND [AdjustedByUserId] IS NULL) OR ([AdjustedByUserId] = @Original_AdjustedByUserId)) AND ((@IsNull_AdjustedByUserFullName = 1 AND [AdjustedByUserFullName] IS NULL) OR ([AdjustedByUserFullName] = @Original_AdjustedByUserFullName)) AND ([CreationDate] = @Original_CreationDate));
-SELECT Id, SafeId, SafeName, AmountAdded, AmountTotal, AdjustedByUserId, AdjustedByUserFullName, CreationDate FROM SafeTransaction WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [SafeTransaction] SET [SafeId] = @SafeId, [SafeName] = @SafeName, [AmountAdded] = @AmountAdded, [AmountTotal] = @AmountTotal, [AdjustedByUserId] = @AdjustedByUserId, [AdjustedByUserFullName] = @AdjustedByUserFullName, [CreationDate] = @CreationDate, [Notes] = @Notes WHERE (([Id] = @Original_Id) AND ((@IsNull_SafeId = 1 AND [SafeId] IS NULL) OR ([SafeId] = @Original_SafeId)) AND ((@IsNull_SafeName = 1 AND [SafeName] IS NULL) OR ([SafeName] = @Original_SafeName)) AND ([AmountAdded] = @Original_AmountAdded) AND ([AmountTotal] = @Original_AmountTotal) AND ((@IsNull_AdjustedByUserId = 1 AND [AdjustedByUserId] IS NULL) OR ([AdjustedByUserId] = @Original_AdjustedByUserId)) AND ((@IsNull_AdjustedByUserFullName = 1 AND [AdjustedByUserFullName] IS NULL) OR ([AdjustedByUserFullName] = @Original_AdjustedByUserFullName)) AND ([CreationDate] = @Original_CreationDate) AND ([Notes] = @Original_Notes));
+SELECT Id, SafeId, SafeName, AmountAdded, AmountTotal, AdjustedByUserId, AdjustedByUserFullName, CreationDate, Notes FROM SafeTransaction WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SafeId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SafeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SafeName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SafeName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -12761,6 +12791,7 @@ SELECT Id, SafeId, SafeName, AmountAdded, AmountTotal, AdjustedByUserId, Adjuste
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AdjustedByUserId", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AdjustedByUserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@AdjustedByUserFullName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AdjustedByUserFullName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreationDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreationDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Notes", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_SafeId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SafeId", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SafeId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SafeId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -12773,6 +12804,7 @@ SELECT Id, SafeId, SafeName, AmountAdded, AmountTotal, AdjustedByUserId, Adjuste
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_AdjustedByUserFullName", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AdjustedByUserFullName", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_AdjustedByUserFullName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "AdjustedByUserFullName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CreationDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreationDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Notes", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Notes", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -12790,7 +12822,7 @@ SELECT Id, SafeId, SafeName, AmountAdded, AmountTotal, AdjustedByUserId, Adjuste
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT Id, SafeId, SafeName, AmountAdded, AmountTotal, AdjustedByUserId, Adjusted" +
-                "ByUserFullName, CreationDate FROM dbo.SafeTransaction";
+                "ByUserFullName, CreationDate, Notes FROM SafeTransaction";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -12851,7 +12883,7 @@ SELECT Id, SafeId, SafeName, AmountAdded, AmountTotal, AdjustedByUserId, Adjuste
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Id, global::System.Nullable<int> Original_SafeId, string Original_SafeName, decimal Original_AmountAdded, decimal Original_AmountTotal, global::System.Nullable<long> Original_AdjustedByUserId, string Original_AdjustedByUserFullName, System.DateTime Original_CreationDate) {
+        public virtual int Delete(int Original_Id, global::System.Nullable<int> Original_SafeId, string Original_SafeName, decimal Original_AmountAdded, decimal Original_AmountTotal, global::System.Nullable<long> Original_AdjustedByUserId, string Original_AdjustedByUserFullName, System.DateTime Original_CreationDate, string Original_Notes) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
             if ((Original_SafeId.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
@@ -12888,6 +12920,12 @@ SELECT Id, SafeId, SafeName, AmountAdded, AmountTotal, AdjustedByUserId, Adjuste
                 this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_AdjustedByUserFullName));
             }
             this.Adapter.DeleteCommand.Parameters[11].Value = ((System.DateTime)(Original_CreationDate));
+            if ((Original_Notes == null)) {
+                throw new global::System.ArgumentNullException("Original_Notes");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((string)(Original_Notes));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -12908,7 +12946,7 @@ SELECT Id, SafeId, SafeName, AmountAdded, AmountTotal, AdjustedByUserId, Adjuste
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> SafeId, string SafeName, decimal AmountAdded, decimal AmountTotal, global::System.Nullable<long> AdjustedByUserId, string AdjustedByUserFullName, System.DateTime CreationDate) {
+        public virtual int Insert(global::System.Nullable<int> SafeId, string SafeName, decimal AmountAdded, decimal AmountTotal, global::System.Nullable<long> AdjustedByUserId, string AdjustedByUserFullName, System.DateTime CreationDate, string Notes) {
             if ((SafeId.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((int)(SafeId.Value));
             }
@@ -12936,6 +12974,12 @@ SELECT Id, SafeId, SafeName, AmountAdded, AmountTotal, AdjustedByUserId, Adjuste
                 this.Adapter.InsertCommand.Parameters[5].Value = ((string)(AdjustedByUserFullName));
             }
             this.Adapter.InsertCommand.Parameters[6].Value = ((System.DateTime)(CreationDate));
+            if ((Notes == null)) {
+                throw new global::System.ArgumentNullException("Notes");
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(Notes));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -12964,6 +13008,7 @@ SELECT Id, SafeId, SafeName, AmountAdded, AmountTotal, AdjustedByUserId, Adjuste
                     global::System.Nullable<long> AdjustedByUserId, 
                     string AdjustedByUserFullName, 
                     System.DateTime CreationDate, 
+                    string Notes, 
                     int Original_Id, 
                     global::System.Nullable<int> Original_SafeId, 
                     string Original_SafeName, 
@@ -12972,6 +13017,7 @@ SELECT Id, SafeId, SafeName, AmountAdded, AmountTotal, AdjustedByUserId, Adjuste
                     global::System.Nullable<long> Original_AdjustedByUserId, 
                     string Original_AdjustedByUserFullName, 
                     System.DateTime Original_CreationDate, 
+                    string Original_Notes, 
                     int Id) {
             if ((SafeId.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(SafeId.Value));
@@ -13000,43 +13046,55 @@ SELECT Id, SafeId, SafeName, AmountAdded, AmountTotal, AdjustedByUserId, Adjuste
                 this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(AdjustedByUserFullName));
             }
             this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(CreationDate));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_Id));
-            if ((Original_SafeId.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_SafeId.Value));
+            if ((Notes == null)) {
+                throw new global::System.ArgumentNullException("Notes");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Notes));
+            }
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_Id));
+            if ((Original_SafeId.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(Original_SafeId.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
             }
             if ((Original_SafeName == null)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Original_SafeName));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Original_SafeName));
             }
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((decimal)(Original_AmountAdded));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((decimal)(Original_AmountTotal));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((decimal)(Original_AmountAdded));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((decimal)(Original_AmountTotal));
             if ((Original_AdjustedByUserId.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((long)(Original_AdjustedByUserId.Value));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((long)(Original_AdjustedByUserId.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
             }
             if ((Original_AdjustedByUserFullName == null)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_AdjustedByUserFullName));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_AdjustedByUserFullName));
             }
-            this.Adapter.UpdateCommand.Parameters[18].Value = ((System.DateTime)(Original_CreationDate));
-            this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(Id));
+            this.Adapter.UpdateCommand.Parameters[19].Value = ((System.DateTime)(Original_CreationDate));
+            if ((Original_Notes == null)) {
+                throw new global::System.ArgumentNullException("Original_Notes");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_Notes));
+            }
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((int)(Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -13057,8 +13115,25 @@ SELECT Id, SafeId, SafeName, AmountAdded, AmountTotal, AdjustedByUserId, Adjuste
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> SafeId, string SafeName, decimal AmountAdded, decimal AmountTotal, global::System.Nullable<long> AdjustedByUserId, string AdjustedByUserFullName, System.DateTime CreationDate, int Original_Id, global::System.Nullable<int> Original_SafeId, string Original_SafeName, decimal Original_AmountAdded, decimal Original_AmountTotal, global::System.Nullable<long> Original_AdjustedByUserId, string Original_AdjustedByUserFullName, System.DateTime Original_CreationDate) {
-            return this.Update(SafeId, SafeName, AmountAdded, AmountTotal, AdjustedByUserId, AdjustedByUserFullName, CreationDate, Original_Id, Original_SafeId, Original_SafeName, Original_AmountAdded, Original_AmountTotal, Original_AdjustedByUserId, Original_AdjustedByUserFullName, Original_CreationDate, Original_Id);
+        public virtual int Update(
+                    global::System.Nullable<int> SafeId, 
+                    string SafeName, 
+                    decimal AmountAdded, 
+                    decimal AmountTotal, 
+                    global::System.Nullable<long> AdjustedByUserId, 
+                    string AdjustedByUserFullName, 
+                    System.DateTime CreationDate, 
+                    string Notes, 
+                    int Original_Id, 
+                    global::System.Nullable<int> Original_SafeId, 
+                    string Original_SafeName, 
+                    decimal Original_AmountAdded, 
+                    decimal Original_AmountTotal, 
+                    global::System.Nullable<long> Original_AdjustedByUserId, 
+                    string Original_AdjustedByUserFullName, 
+                    System.DateTime Original_CreationDate, 
+                    string Original_Notes) {
+            return this.Update(SafeId, SafeName, AmountAdded, AmountTotal, AdjustedByUserId, AdjustedByUserFullName, CreationDate, Notes, Original_Id, Original_SafeId, Original_SafeName, Original_AmountAdded, Original_AmountTotal, Original_AdjustedByUserId, Original_AdjustedByUserFullName, Original_CreationDate, Original_Notes, Original_Id);
         }
     }
     

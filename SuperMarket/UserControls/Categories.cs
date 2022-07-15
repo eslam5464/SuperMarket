@@ -154,7 +154,7 @@ namespace SuperMarket.UserControls
 
             foreach (ComboBox comboBox in AllComboBoxes)
             {
-                AllStoragesData = Classes.DataAccess.Storage.LoadStorages(false);
+                AllStoragesData = Classes.DataAccess.Storages.LoadStorages(false);
                 comboBox.DataSource = null;
                 comboBox.DataSource = AllStoragesData;
                 comboBox.ValueMember = "Id";
@@ -401,7 +401,7 @@ namespace SuperMarket.UserControls
             {
                 string MsgResponse = $"هل تريد ان تحفظ {txt_storageName.Text} ";
 
-                var CategoryResult = Classes.DataAccess.Storage.GetStorageParameter("Name", txt_storageName.Text);
+                var CategoryResult = Classes.DataAccess.Storages.GetStorageParameter("Name", txt_storageName.Text);
 
                 if (CategoryResult.Count > 0)
                     MsgResponse += "لانه يوجد تصنيف بهذا الاسم";
@@ -414,7 +414,7 @@ namespace SuperMarket.UserControls
                     {
                         Name = txt_storageName.Text,
                     };
-                    await Classes.DataAccess.Storage.SaveStorage(storage);
+                    await Classes.DataAccess.Storages.SaveStorage(storage);
 
                     ResetTextBoxes(false, true);
 
@@ -439,7 +439,7 @@ namespace SuperMarket.UserControls
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    await Classes.DataAccess.Storage.RemoveStorage(int.Parse(txt_storageNameEdit.SelectedValue.ToString()));
+                    await Classes.DataAccess.Storages.RemoveStorage(int.Parse(txt_storageNameEdit.SelectedValue.ToString()));
                     RefreshComboBoxes();
                 }
             }
@@ -457,12 +457,12 @@ namespace SuperMarket.UserControls
                 if (StorageNameEditResult != "")
                 {
                     List<StorageModel> StorageSearch =
-                        Classes.DataAccess.Storage.GetStorageParameter("Id", txt_storageNameEdit.SelectedValue.ToString());
+                        Classes.DataAccess.Storages.GetStorageParameter("Id", txt_storageNameEdit.SelectedValue.ToString());
 
                     if (StorageSearch.Count > 0)
                     {
                         StorageSearch[0].Name = StorageNameEditResult;
-                        Classes.DataAccess.Storage.UpdateStorage(StorageSearch[0]);
+                        Classes.DataAccess.Storages.UpdateStorage(StorageSearch[0]);
                         RefreshComboBoxes();
                         MessageBox.Show("تم التعديل", "عمليه ناجحه", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }

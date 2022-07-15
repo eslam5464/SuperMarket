@@ -11,6 +11,7 @@ namespace SuperMarket.Classes.Models
         public decimal AmountTotal { get; set; }
         public long AdjustedByUserId { get; set; }
         public string AdjustedByUserFullName { get; set; }
+        public string Notes { get; set; }
         public DateTime CreationDate { get; set; }
     }
 }

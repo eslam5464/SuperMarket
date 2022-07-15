@@ -91,12 +91,19 @@ namespace SuperMarket.UserControls
             SetEachComboBos(GlobalVars.PaymentMethod, PaymentMethodDict, txt_paymentMethod);
             SetEachComboBos(SupplierSearchString, SupplierSearchType, txt_searchSupplierType);
             SetEachComboBos(ProductSearchString, ProductSearchType, txt_searchProductType);
+
+            //txt_withdrawFromSafe.DataSource = null;
+            //txt_withdrawFromSafe.DataSource = Classes.DataAccess.Safe.LoadSafe();
+            //txt_withdrawFromSafe.ValueMember = "Key";
+            //txt_withdrawFromSafe.DisplayMember = "Value";
+            //txt_withdrawFromSafe.SelectedIndex = -1;
         }
 
         private void SetEachComboBos(string[] SearchString, IDictionary<int, string> SearchType, ComboBox SearchComboBox)
         {
             for (int i = 0; i < SearchString.Length; i++)
                 SearchType.Add(i, SearchString[i]);
+            SearchComboBox.DataSource = null;
             SearchComboBox.DataSource = new BindingSource(SearchType, null);
             SearchComboBox.DisplayMember = "Value";
             SearchComboBox.ValueMember = "Key";
@@ -413,7 +420,6 @@ namespace SuperMarket.UserControls
 
                 foreach (SupplierInvoiceProductModel SupplierProduct in AllSupplierProducts)
                 {
-                    //TODO: finish supplier product error when saving
                     Classes.DataAccess.SupplierInvoiceProduct.SaveSupplierInvoiceProduct(SupplierProduct);
 
                     List<SupplierInvoiceProductModel> SearchedSupplierProducts =
@@ -549,6 +555,18 @@ namespace SuperMarket.UserControls
                 else
                     MessageBox.Show("لا يوجد بيانات لهذا المنتج", "خطأ",
                             MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void chk_withdrawFromSafe_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_withdrawFromSafe.Checked)
+            {
+                txt_withdrawFromSafe.Enabled = true;
+            }
+            else
+            {
+                txt_withdrawFromSafe.Enabled = false;
             }
         }
 

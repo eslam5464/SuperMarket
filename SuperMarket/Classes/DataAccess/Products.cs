@@ -15,7 +15,7 @@ namespace SuperMarket.Classes.DataAccess
     {
         private static readonly int MaxRows = GlobalVars.MaxQueryRows;
         private static readonly string TableName = "Products";
-        public async static Task UpdateProduct(ProductModel Product)
+        internal async static Task UpdateProduct(ProductModel Product)
         {
             try
             {
@@ -36,7 +36,7 @@ namespace SuperMarket.Classes.DataAccess
             }
         }
 
-        public static List<ProductModel> LoadProductsWithoutPrices(bool LimitRows)
+        internal static List<ProductModel> LoadProductsWithoutPrices(bool LimitRows)
         {
             try
             {
@@ -63,7 +63,7 @@ namespace SuperMarket.Classes.DataAccess
             return new List<ProductModel>();
         }
 
-        public static List<Product_ProductPriceModel> LoadProductsWithPrices(bool LimitRows)
+        internal static List<Product_ProductPriceModel> LoadProductsWithPrices(bool LimitRows)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace SuperMarket.Classes.DataAccess
             return new List<Product_ProductPriceModel>();
         }
 
-        public static List<ProductModel> GetProductLikeParameter(string Parameter, string Condition)
+        internal static List<ProductModel> GetProductLikeParameter(string Parameter, string Condition)
         {
             try
             {
@@ -109,7 +109,7 @@ namespace SuperMarket.Classes.DataAccess
             return new List<ProductModel>();
         }
 
-        public static List<ProductModel> GetProductParameter(string Parameter, string Condition)
+        internal static List<ProductModel> GetProductParameter(string Parameter, string Condition)
         {
             try
             {
@@ -130,7 +130,7 @@ namespace SuperMarket.Classes.DataAccess
             return new List<ProductModel>();
         }
 
-        public static List<Product_ProductPriceModel> GetProductParameterWithPricee(string Parameter, string Condition)
+        internal static List<Product_ProductPriceModel> GetProductParameterWithPricee(string Parameter, string Condition)
         {
             try
             {
@@ -157,7 +157,7 @@ namespace SuperMarket.Classes.DataAccess
             return new List<Product_ProductPriceModel>();
         }
 
-        public async static Task SaveProduct(ProductModel Product)
+        internal async static Task SaveProduct(ProductModel Product)
         {
             try
             {
@@ -180,7 +180,7 @@ namespace SuperMarket.Classes.DataAccess
             }
         }
 
-        public async static Task RemoveProduct(long ProductID)
+        internal async static Task RemoveProduct(long ProductID)
         {
             try
             {
@@ -199,7 +199,7 @@ namespace SuperMarket.Classes.DataAccess
             }
         }
 
-        public static ProductModel GetLastAddedProduct()
+        internal static ProductModel GetLastAddedProduct()
         {
             try
             {

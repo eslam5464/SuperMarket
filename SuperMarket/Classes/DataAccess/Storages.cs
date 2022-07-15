@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace SuperMarket.Classes.DataAccess
 {
-    class Storage
+    class Storages
     {
         private static readonly string TableName = "Storage";
         internal static List<StorageModel> LoadStorages(bool LimitRows)

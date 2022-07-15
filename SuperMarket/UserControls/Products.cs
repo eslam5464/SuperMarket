@@ -68,7 +68,7 @@ namespace SuperMarket.UserControls
                 {
                     if (txt_categoriename.SelectedIndex != -1)
                     {
-                        if (decimal.Parse(txt_productPriceWholeSale.Text) >= decimal.Parse(txt_productPriceSell.Text))
+                        if (decimal.Parse(txt_productPriceWholeSale.Text) > decimal.Parse(txt_productPriceSell.Text))
                         {
                             MessageBox.Show("سعر الجملة اكبر أو يساوي سعر البيع برجاء تعديل السعر", "خطأ",
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -256,6 +256,7 @@ namespace SuperMarket.UserControls
 
             productsDataGridView.AutoResizeColumns();
             productsDataGridView.Columns["CreationDate"].Width += 5;
+            productsDataGridView.Columns["PriceModificationDate"].Width += 5;
         }
 
         private void txt_products_KeyDown(object sender, KeyEventArgs e)

@@ -137,7 +137,9 @@
     <Compile Include="Classes\DataAccess\Orders.cs" />
     <Compile Include="Classes\DataAccess\ProductPrice.cs" />
     <Compile Include="Classes\DataAccess\Products.cs" />
-    <Compile Include="Classes\DataAccess\Storage.cs" />
+    <Compile Include="Classes\DataAccess\SafeTransactions.cs" />
+    <Compile Include="Classes\DataAccess\Safe.cs" />
+    <Compile Include="Classes\DataAccess\Storages.cs" />
     <Compile Include="Classes\DataAccess\SupplierInvoice.cs" />
     <Compile Include="Classes\DataAccess\SupplierInvoiceProduct.cs" />
     <Compile Include="Classes\DataAccess\Suppliers.cs" />

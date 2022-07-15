@@ -83,7 +83,6 @@ namespace SuperMarket.UserControls
             this.pcb_searchBarCode = new System.Windows.Forms.PictureBox();
             this.pcb_searchID = new System.Windows.Forms.PictureBox();
             this.pcb_searchName = new System.Windows.Forms.PictureBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spProductsGetFullDetailsBindingSource)).BeginInit();
@@ -713,18 +712,6 @@ namespace SuperMarket.UserControls
             this.pcb_searchName.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
             this.pcb_searchName.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.Red;
-            this.label16.Location = new System.Drawing.Point(741, 167);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(29, 37);
-            this.label16.TabIndex = 214;
-            this.label16.Text = "*";
-            // 
             // Products
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -762,7 +749,6 @@ namespace SuperMarket.UserControls
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.MinimumSize = new System.Drawing.Size(1038, 660);
             this.Name = "Products";
@@ -833,6 +819,5 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.DataGridViewTextBoxColumn CategoryName;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreationDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn PriceModificationDate;
-        private System.Windows.Forms.Label label16;
     }
 }
