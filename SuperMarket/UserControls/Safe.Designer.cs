@@ -29,7 +29,7 @@ namespace SuperMarket.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.db_safeTransactionDataGridView = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -44,6 +44,10 @@ namespace SuperMarket.UserControls
             this.btn_safeSave = new System.Windows.Forms.Button();
             this.txt_safeName = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txt_safeTransactionAmount = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txt_safeTransactionNotes = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txt_safeTransactionNameSearch = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -53,15 +57,11 @@ namespace SuperMarket.UserControls
             this.txt_safeTransactionId = new System.Windows.Forms.TextBox();
             this.txt_safeTransactionName = new System.Windows.Forms.TextBox();
             this.pcb_searchName = new System.Windows.Forms.PictureBox();
-            this.btn_CategoryRemove = new System.Windows.Forms.Button();
+            this.btn_safeTransactionRemove = new System.Windows.Forms.Button();
             this.pcb_searchID = new System.Windows.Forms.PictureBox();
-            this.btn_categoryEdit = new System.Windows.Forms.Button();
-            this.btn_saveCategory = new System.Windows.Forms.Button();
+            this.btn_safeTransactionEdit = new System.Windows.Forms.Button();
+            this.btn_safeTransactionSave = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.txt_safeTransactionNotes = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txt_safeTransactionAmount = new System.Windows.Forms.TextBox();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_safeTransactionDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
@@ -88,14 +88,14 @@ namespace SuperMarket.UserControls
             this.db_safeTransactionDataGridView.AllowUserToResizeColumns = false;
             this.db_safeTransactionDataGridView.AllowUserToResizeRows = false;
             this.db_safeTransactionDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.db_safeTransactionDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.db_safeTransactionDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.db_safeTransactionDataGridView.ColumnHeadersHeight = 40;
             this.db_safeTransactionDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.db_safeTransactionDataGridView.EnableHeadersVisualStyles = false;
@@ -273,15 +273,68 @@ namespace SuperMarket.UserControls
             this.panel4.Controls.Add(this.txt_safeTransactionId);
             this.panel4.Controls.Add(this.txt_safeTransactionName);
             this.panel4.Controls.Add(this.pcb_searchName);
-            this.panel4.Controls.Add(this.btn_CategoryRemove);
+            this.panel4.Controls.Add(this.btn_safeTransactionRemove);
             this.panel4.Controls.Add(this.pcb_searchID);
-            this.panel4.Controls.Add(this.btn_categoryEdit);
-            this.panel4.Controls.Add(this.btn_saveCategory);
+            this.panel4.Controls.Add(this.btn_safeTransactionEdit);
+            this.panel4.Controls.Add(this.btn_safeTransactionSave);
             this.panel4.Controls.Add(this.label1);
             this.panel4.Location = new System.Drawing.Point(3, 165);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1032, 228);
             this.panel4.TabIndex = 211;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.Purple;
+            this.label11.Location = new System.Drawing.Point(336, 77);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(59, 28);
+            this.label11.TabIndex = 205;
+            this.label11.Text = ":المال";
+            // 
+            // txt_safeTransactionAmount
+            // 
+            this.txt_safeTransactionAmount.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_safeTransactionAmount.BackColor = System.Drawing.Color.White;
+            this.txt_safeTransactionAmount.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txt_safeTransactionAmount.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_safeTransactionAmount.ForeColor = System.Drawing.Color.Black;
+            this.txt_safeTransactionAmount.Location = new System.Drawing.Point(245, 108);
+            this.txt_safeTransactionAmount.Multiline = true;
+            this.txt_safeTransactionAmount.Name = "txt_safeTransactionAmount";
+            this.txt_safeTransactionAmount.Size = new System.Drawing.Size(203, 45);
+            this.txt_safeTransactionAmount.TabIndex = 206;
+            this.txt_safeTransactionAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_safeTransaction_KeyDown);
+            this.txt_safeTransactionAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_safeTransactionAmount_KeyPress);
+            // 
+            // label10
+            // 
+            this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.Purple;
+            this.label10.Location = new System.Drawing.Point(84, 77);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(93, 28);
+            this.label10.TabIndex = 203;
+            this.label10.Text = ":ملاحظات";
+            // 
+            // txt_safeTransactionNotes
+            // 
+            this.txt_safeTransactionNotes.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_safeTransactionNotes.BackColor = System.Drawing.Color.White;
+            this.txt_safeTransactionNotes.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txt_safeTransactionNotes.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_safeTransactionNotes.ForeColor = System.Drawing.Color.Black;
+            this.txt_safeTransactionNotes.Location = new System.Drawing.Point(28, 108);
+            this.txt_safeTransactionNotes.Multiline = true;
+            this.txt_safeTransactionNotes.Name = "txt_safeTransactionNotes";
+            this.txt_safeTransactionNotes.Size = new System.Drawing.Size(203, 45);
+            this.txt_safeTransactionNotes.TabIndex = 204;
+            this.txt_safeTransactionNotes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_safeTransaction_KeyDown);
             // 
             // label9
             // 
@@ -399,19 +452,19 @@ namespace SuperMarket.UserControls
             this.pcb_searchName.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
             this.pcb_searchName.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
             // 
-            // btn_CategoryRemove
+            // btn_safeTransactionRemove
             // 
-            this.btn_CategoryRemove.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_CategoryRemove.BackColor = System.Drawing.Color.Purple;
-            this.btn_CategoryRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_CategoryRemove.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
-            this.btn_CategoryRemove.ForeColor = System.Drawing.Color.White;
-            this.btn_CategoryRemove.Location = new System.Drawing.Point(546, 173);
-            this.btn_CategoryRemove.Name = "btn_CategoryRemove";
-            this.btn_CategoryRemove.Size = new System.Drawing.Size(154, 50);
-            this.btn_CategoryRemove.TabIndex = 137;
-            this.btn_CategoryRemove.Text = "مسح";
-            this.btn_CategoryRemove.UseVisualStyleBackColor = false;
+            this.btn_safeTransactionRemove.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_safeTransactionRemove.BackColor = System.Drawing.Color.Purple;
+            this.btn_safeTransactionRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_safeTransactionRemove.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btn_safeTransactionRemove.ForeColor = System.Drawing.Color.White;
+            this.btn_safeTransactionRemove.Location = new System.Drawing.Point(546, 173);
+            this.btn_safeTransactionRemove.Name = "btn_safeTransactionRemove";
+            this.btn_safeTransactionRemove.Size = new System.Drawing.Size(154, 50);
+            this.btn_safeTransactionRemove.TabIndex = 137;
+            this.btn_safeTransactionRemove.Text = "مسح";
+            this.btn_safeTransactionRemove.UseVisualStyleBackColor = false;
             // 
             // pcb_searchID
             // 
@@ -426,33 +479,34 @@ namespace SuperMarket.UserControls
             this.pcb_searchID.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
             this.pcb_searchID.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
             // 
-            // btn_categoryEdit
+            // btn_safeTransactionEdit
             // 
-            this.btn_categoryEdit.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_categoryEdit.BackColor = System.Drawing.Color.Purple;
-            this.btn_categoryEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_categoryEdit.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
-            this.btn_categoryEdit.ForeColor = System.Drawing.Color.White;
-            this.btn_categoryEdit.Location = new System.Drawing.Point(330, 173);
-            this.btn_categoryEdit.Name = "btn_categoryEdit";
-            this.btn_categoryEdit.Size = new System.Drawing.Size(154, 50);
-            this.btn_categoryEdit.TabIndex = 136;
-            this.btn_categoryEdit.Text = "تعديل";
-            this.btn_categoryEdit.UseVisualStyleBackColor = false;
+            this.btn_safeTransactionEdit.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_safeTransactionEdit.BackColor = System.Drawing.Color.Purple;
+            this.btn_safeTransactionEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_safeTransactionEdit.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
+            this.btn_safeTransactionEdit.ForeColor = System.Drawing.Color.White;
+            this.btn_safeTransactionEdit.Location = new System.Drawing.Point(330, 173);
+            this.btn_safeTransactionEdit.Name = "btn_safeTransactionEdit";
+            this.btn_safeTransactionEdit.Size = new System.Drawing.Size(154, 50);
+            this.btn_safeTransactionEdit.TabIndex = 136;
+            this.btn_safeTransactionEdit.Text = "تعديل";
+            this.btn_safeTransactionEdit.UseVisualStyleBackColor = false;
             // 
-            // btn_saveCategory
+            // btn_safeTransactionSave
             // 
-            this.btn_saveCategory.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_saveCategory.BackColor = System.Drawing.Color.Purple;
-            this.btn_saveCategory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_saveCategory.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_saveCategory.ForeColor = System.Drawing.Color.White;
-            this.btn_saveCategory.Location = new System.Drawing.Point(114, 173);
-            this.btn_saveCategory.Name = "btn_saveCategory";
-            this.btn_saveCategory.Size = new System.Drawing.Size(154, 50);
-            this.btn_saveCategory.TabIndex = 135;
-            this.btn_saveCategory.Text = "حفظ";
-            this.btn_saveCategory.UseVisualStyleBackColor = false;
+            this.btn_safeTransactionSave.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_safeTransactionSave.BackColor = System.Drawing.Color.Purple;
+            this.btn_safeTransactionSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_safeTransactionSave.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_safeTransactionSave.ForeColor = System.Drawing.Color.White;
+            this.btn_safeTransactionSave.Location = new System.Drawing.Point(114, 173);
+            this.btn_safeTransactionSave.Name = "btn_safeTransactionSave";
+            this.btn_safeTransactionSave.Size = new System.Drawing.Size(154, 50);
+            this.btn_safeTransactionSave.TabIndex = 135;
+            this.btn_safeTransactionSave.Text = "حفظ";
+            this.btn_safeTransactionSave.UseVisualStyleBackColor = false;
+            this.btn_safeTransactionSave.Click += new System.EventHandler(this.btn_safeTransactionSave_Click);
             // 
             // label1
             // 
@@ -465,59 +519,6 @@ namespace SuperMarket.UserControls
             this.label1.Size = new System.Drawing.Size(29, 37);
             this.label1.TabIndex = 139;
             this.label1.Text = "*";
-            // 
-            // label10
-            // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.Purple;
-            this.label10.Location = new System.Drawing.Point(84, 77);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(93, 28);
-            this.label10.TabIndex = 203;
-            this.label10.Text = ":ملاحظات";
-            // 
-            // txt_safeTransactionNotes
-            // 
-            this.txt_safeTransactionNotes.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txt_safeTransactionNotes.BackColor = System.Drawing.Color.White;
-            this.txt_safeTransactionNotes.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.txt_safeTransactionNotes.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_safeTransactionNotes.ForeColor = System.Drawing.Color.Black;
-            this.txt_safeTransactionNotes.Location = new System.Drawing.Point(28, 108);
-            this.txt_safeTransactionNotes.Multiline = true;
-            this.txt_safeTransactionNotes.Name = "txt_safeTransactionNotes";
-            this.txt_safeTransactionNotes.Size = new System.Drawing.Size(203, 45);
-            this.txt_safeTransactionNotes.TabIndex = 204;
-            this.txt_safeTransactionNotes.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_safeTransaction_KeyDown);
-            // 
-            // label11
-            // 
-            this.label11.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.Purple;
-            this.label11.Location = new System.Drawing.Point(336, 77);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(59, 28);
-            this.label11.TabIndex = 205;
-            this.label11.Text = ":المال";
-            // 
-            // txt_safeTransactionAmount
-            // 
-            this.txt_safeTransactionAmount.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txt_safeTransactionAmount.BackColor = System.Drawing.Color.White;
-            this.txt_safeTransactionAmount.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
-            this.txt_safeTransactionAmount.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_safeTransactionAmount.ForeColor = System.Drawing.Color.Black;
-            this.txt_safeTransactionAmount.Location = new System.Drawing.Point(245, 108);
-            this.txt_safeTransactionAmount.Multiline = true;
-            this.txt_safeTransactionAmount.Name = "txt_safeTransactionAmount";
-            this.txt_safeTransactionAmount.Size = new System.Drawing.Size(203, 45);
-            this.txt_safeTransactionAmount.TabIndex = 206;
-            this.txt_safeTransactionAmount.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_safeTransaction_KeyDown);
-            this.txt_safeTransactionAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_safeTransactionAmount_KeyPress);
             // 
             // Safe
             // 
@@ -571,10 +572,10 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.TextBox txt_safeTransactionId;
         private System.Windows.Forms.TextBox txt_safeTransactionName;
         private System.Windows.Forms.PictureBox pcb_searchName;
-        private System.Windows.Forms.Button btn_CategoryRemove;
+        private System.Windows.Forms.Button btn_safeTransactionRemove;
         private System.Windows.Forms.PictureBox pcb_searchID;
-        private System.Windows.Forms.Button btn_categoryEdit;
-        private System.Windows.Forms.Button btn_saveCategory;
+        private System.Windows.Forms.Button btn_safeTransactionEdit;
+        private System.Windows.Forms.Button btn_safeTransactionSave;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox txt_safeTransactionNotes;

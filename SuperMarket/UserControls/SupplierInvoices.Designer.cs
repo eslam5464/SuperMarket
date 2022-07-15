@@ -29,7 +29,7 @@ namespace SuperMarket.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txt_paymentMethod = new System.Windows.Forms.ComboBox();
             this.txt_searchSupplier = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -44,6 +44,8 @@ namespace SuperMarket.UserControls
             this.label4 = new System.Windows.Forms.Label();
             this.txt_searchSupplierType = new System.Windows.Forms.ComboBox();
             this.pan_payment = new System.Windows.Forms.Panel();
+            this.txt_withdrawFromSafe = new System.Windows.Forms.ComboBox();
+            this.chk_withdrawFromSafe = new System.Windows.Forms.CheckBox();
             this.num_paymentAmoutLeft = new System.Windows.Forms.NumericUpDown();
             this.num_paymentAmoutRequired = new System.Windows.Forms.NumericUpDown();
             this.num_paymentAmoutPaid = new System.Windows.Forms.NumericUpDown();
@@ -76,8 +78,6 @@ namespace SuperMarket.UserControls
             this.btn_saveInovice = new System.Windows.Forms.Button();
             this.btn_resetAll = new System.Windows.Forms.Button();
             this.pcb_searchSupplier = new System.Windows.Forms.PictureBox();
-            this.chk_withdrawFromSafe = new System.Windows.Forms.CheckBox();
-            this.txt_withdrawFromSafe = new System.Windows.Forms.ComboBox();
             this.pan_supplierResults.SuspendLayout();
             this.pan_payment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.num_paymentAmoutLeft)).BeginInit();
@@ -283,6 +283,36 @@ namespace SuperMarket.UserControls
             this.pan_payment.Name = "pan_payment";
             this.pan_payment.Size = new System.Drawing.Size(438, 285);
             this.pan_payment.TabIndex = 210;
+            // 
+            // txt_withdrawFromSafe
+            // 
+            this.txt_withdrawFromSafe.DropDownHeight = 200;
+            this.txt_withdrawFromSafe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txt_withdrawFromSafe.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_withdrawFromSafe.FormattingEnabled = true;
+            this.txt_withdrawFromSafe.IntegralHeight = false;
+            this.txt_withdrawFromSafe.Location = new System.Drawing.Point(64, 45);
+            this.txt_withdrawFromSafe.Name = "txt_withdrawFromSafe";
+            this.txt_withdrawFromSafe.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txt_withdrawFromSafe.Size = new System.Drawing.Size(175, 40);
+            this.txt_withdrawFromSafe.TabIndex = 230;
+            this.txt_withdrawFromSafe.SelectedIndexChanged += new System.EventHandler(this.txt_withdrawFromSafe_SelectedIndexChanged);
+            // 
+            // chk_withdrawFromSafe
+            // 
+            this.chk_withdrawFromSafe.AutoSize = true;
+            this.chk_withdrawFromSafe.Checked = true;
+            this.chk_withdrawFromSafe.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chk_withdrawFromSafe.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold);
+            this.chk_withdrawFromSafe.ForeColor = System.Drawing.Color.Purple;
+            this.chk_withdrawFromSafe.Location = new System.Drawing.Point(270, 54);
+            this.chk_withdrawFromSafe.Name = "chk_withdrawFromSafe";
+            this.chk_withdrawFromSafe.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chk_withdrawFromSafe.Size = new System.Drawing.Size(133, 27);
+            this.chk_withdrawFromSafe.TabIndex = 229;
+            this.chk_withdrawFromSafe.Text = "سحب من الخزنة";
+            this.chk_withdrawFromSafe.UseVisualStyleBackColor = true;
+            this.chk_withdrawFromSafe.CheckedChanged += new System.EventHandler(this.chk_withdrawFromSafe_CheckedChanged);
             // 
             // num_paymentAmoutLeft
             // 
@@ -692,14 +722,14 @@ namespace SuperMarket.UserControls
             this.db_productDataGridView.AllowUserToResizeColumns = false;
             this.db_productDataGridView.AllowUserToResizeRows = false;
             this.db_productDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.db_productDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.db_productDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.db_productDataGridView.ColumnHeadersHeight = 40;
             this.db_productDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.db_productDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -769,33 +799,6 @@ namespace SuperMarket.UserControls
             this.pcb_searchSupplier.Click += new System.EventHandler(this.pcb_searchSupplier_Click);
             this.pcb_searchSupplier.MouseEnter += new System.EventHandler(this.pcb_supplier_MouseEnter);
             this.pcb_searchSupplier.MouseLeave += new System.EventHandler(this.pcb_supplier_MouseLeave);
-            // 
-            // chk_withdrawFromSafe
-            // 
-            this.chk_withdrawFromSafe.AutoSize = true;
-            this.chk_withdrawFromSafe.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold);
-            this.chk_withdrawFromSafe.ForeColor = System.Drawing.Color.Purple;
-            this.chk_withdrawFromSafe.Location = new System.Drawing.Point(270, 54);
-            this.chk_withdrawFromSafe.Name = "chk_withdrawFromSafe";
-            this.chk_withdrawFromSafe.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chk_withdrawFromSafe.Size = new System.Drawing.Size(133, 27);
-            this.chk_withdrawFromSafe.TabIndex = 229;
-            this.chk_withdrawFromSafe.Text = "سحب من الخزنة";
-            this.chk_withdrawFromSafe.UseVisualStyleBackColor = true;
-            this.chk_withdrawFromSafe.CheckedChanged += new System.EventHandler(this.chk_withdrawFromSafe_CheckedChanged);
-            // 
-            // txt_withdrawFromSafe
-            // 
-            this.txt_withdrawFromSafe.DropDownHeight = 200;
-            this.txt_withdrawFromSafe.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.txt_withdrawFromSafe.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_withdrawFromSafe.FormattingEnabled = true;
-            this.txt_withdrawFromSafe.IntegralHeight = false;
-            this.txt_withdrawFromSafe.Location = new System.Drawing.Point(64, 45);
-            this.txt_withdrawFromSafe.Name = "txt_withdrawFromSafe";
-            this.txt_withdrawFromSafe.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txt_withdrawFromSafe.Size = new System.Drawing.Size(175, 40);
-            this.txt_withdrawFromSafe.TabIndex = 230;
             // 
             // SupplierInvoices
             // 

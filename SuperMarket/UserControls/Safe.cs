@@ -73,13 +73,13 @@ namespace SuperMarket.UserControls
                 label7,
                 label8,
                 label9,
-                btn_categoryEdit,
-                btn_CategoryRemove,
+                btn_safeTransactionEdit,
+                btn_safeTransactionRemove,
                 btn_exportPDF,
                 btn_safeDelete,
                 btn_safeEdit,
                 btn_safeSave,
-                btn_saveCategory
+                btn_safeTransactionSave
             };
 
             foreach (Control control in AllControls)
@@ -114,7 +114,19 @@ namespace SuperMarket.UserControls
                 Name = txt_safeName.Text
             };
 
-            await Classes.DataAccess.Safe.SaveSafe(safeModel);
+            List<SafeModel> SearchedSafe = await Classes.DataAccess.Safe.GetSafeParameter("Name", safeModel.Name);
+
+            if (SearchedSafe.Count > 0)
+            {
+                await Classes.DataAccess.Safe.SaveSafe(safeModel);
+
+                RefreshComboBoxes();
+            }
+            else
+            {
+                MessageBox.Show($"لا يمكنك الحفظ لانهيوجد خزنه بهذا الاسم", "خطأ",
+                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void db_safeTransactionDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -154,6 +166,19 @@ namespace SuperMarket.UserControls
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void btn_safeTransactionSave_Click(object sender, EventArgs e)
+        {
+            if (txt_safeTransactionNameSearch.SelectedIndex!=-1)
+            {
+
+            }
+            else
+            {
+                MessageBox.Show($"برجاء اختيار الخزنة", "خطأ",
+                         MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

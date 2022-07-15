@@ -149,6 +149,7 @@ namespace SuperMarket.Forms
                             LicenseKeyValidator licenseKeyValidator = new LicenseKeyValidator();
                             licenseKeyValidator.TopMost = true;
                             licenseKeyValidator.ShowDialog();
+                            licenseKeyValidator.Close();
                             this.Show();
 
                             progressBar.Value = 0;
@@ -177,6 +178,11 @@ namespace SuperMarket.Forms
         private async void timer_loading_Tick(object sender, EventArgs e)
         {
             await MoveProgressBar();
+        }
+
+        private void btn_close_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

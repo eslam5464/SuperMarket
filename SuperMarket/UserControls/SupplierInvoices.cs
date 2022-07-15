@@ -1,6 +1,7 @@
 ﻿using SuperMarket.Classes;
 using SuperMarket.Classes.Models;
 using SuperMarket.Classes.Models.Joins;
+using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -68,6 +69,8 @@ namespace SuperMarket.UserControls
             txt_searchSupplier.Text = "";
             txt_searchedProductBarCode.Text = "";
             txt_productQuantity.Text = "";
+            txt_productPriceSell.Text = "";
+            txt_productPriceWholeSale.Text = "";
 
             txt_searchedProductName.SelectedIndex = -1;
             txt_searchedProductName.DataSource = null;
@@ -79,6 +82,8 @@ namespace SuperMarket.UserControls
 
             txt_searchSupplierType.SelectedIndex = -1;
 
+            txt_withdrawFromSafe.SelectedIndex = -1;
+
             txt_paymentMethod.SelectedIndex = -1;
 
             num_paymentAmoutLeft.Value = 0;
@@ -86,23 +91,27 @@ namespace SuperMarket.UserControls
             num_paymentAmoutRequired.Value = 0;
         }
 
-        private void SetComboBoxs()
+        public void SetComboBoxs()
         {
             SetEachComboBos(GlobalVars.PaymentMethod, PaymentMethodDict, txt_paymentMethod);
             SetEachComboBos(SupplierSearchString, SupplierSearchType, txt_searchSupplierType);
             SetEachComboBos(ProductSearchString, ProductSearchType, txt_searchProductType);
+        }
 
-            //txt_withdrawFromSafe.DataSource = null;
-            //txt_withdrawFromSafe.DataSource = Classes.DataAccess.Safe.LoadSafe();
-            //txt_withdrawFromSafe.ValueMember = "Key";
-            //txt_withdrawFromSafe.DisplayMember = "Value";
-            //txt_withdrawFromSafe.SelectedIndex = -1;
+        public void GetSafeNames()
+        {
+            txt_withdrawFromSafe.DataSource = null;
+            txt_withdrawFromSafe.DataSource = new BindingSource(Classes.DataAccess.Safe.LoadSafe(), null);
+            txt_withdrawFromSafe.DisplayMember = "Name";
+            txt_withdrawFromSafe.ValueMember = "Id";
+            txt_withdrawFromSafe.SelectedIndex = -1;
         }
 
         private void SetEachComboBos(string[] SearchString, IDictionary<int, string> SearchType, ComboBox SearchComboBox)
         {
             for (int i = 0; i < SearchString.Length; i++)
                 SearchType.Add(i, SearchString[i]);
+
             SearchComboBox.DataSource = null;
             SearchComboBox.DataSource = new BindingSource(SearchType, null);
             SearchComboBox.DisplayMember = "Value";
@@ -252,7 +261,7 @@ namespace SuperMarket.UserControls
                                     UpdateProductsDataGrid(supplierProduct);
 
                                     pan_payment.Enabled = true;
-                                    pan_save.Enabled = true;
+                                    pan_save.Enabled = false;
                                 }
                                 else
                                 {
@@ -467,6 +476,47 @@ namespace SuperMarket.UserControls
                     SearchedProduct[0].PriceModificationDate = productPrice.CreationDate;
 
                     await Classes.DataAccess.Products.UpdateProduct(SearchedProduct[0]);
+
+                    if (txt_withdrawFromSafe.SelectedIndex != -1)
+                    {
+                        List<SafeTransactionModel> AllSafeTransactions =
+                        Classes.DataAccess.SafeTransactions.GetSafeTransactionParameter("SafeName", txt_withdrawFromSafe.Text);
+
+                        if (AllSafeTransactions.Count == 0)
+                        {
+                            SafeTransactionModel safeTransactionModel = new SafeTransactionModel
+                            {
+                                AdjustedByUserId = Main.LoggedUser.Id,
+                                AdjustedByUserFullName = Main.LoggedUserEnc.FullName,
+                                AmountAdded = num_paymentAmoutPaid.Value,
+                                AmountTotal = num_paymentAmoutPaid.Value,
+                                Notes = $"حساب فاتورة المورد {txt_searchedSupplierName.Text}",
+                                SafeId = int.Parse(txt_withdrawFromSafe.SelectedValue.ToString()),
+                                SafeName = txt_withdrawFromSafe.Text
+                            };
+                            Classes.DataAccess.SafeTransactions.SaveSafeTransaction(safeTransactionModel);
+                        }
+                        else
+                        {//TODO: fix billing userfullname 
+                            SafeTransactionModel safeTransactionModel = new SafeTransactionModel
+                            {
+                                AdjustedByUserId = Main.LoggedUser.Id,
+                                AdjustedByUserFullName = Main.LoggedUserEnc.FullName,
+                                AmountAdded = num_paymentAmoutPaid.Value,
+                                AmountTotal = AllSafeTransactions[AllSafeTransactions.Count - 1].AmountTotal + num_paymentAmoutPaid.Value,
+                                Notes = $"حساب فاتورة المورد {txt_searchedSupplierName.Text}",
+                                SafeId = int.Parse(txt_withdrawFromSafe.SelectedValue.ToString()),
+                                SafeName = txt_withdrawFromSafe.Text
+                            };
+                            Classes.DataAccess.SafeTransactions.SaveSafeTransaction(safeTransactionModel);
+                        }
+                        ResetAll();
+                    }
+                    else
+                    {
+                        MessageBox.Show("برجاء اختيار الخزنة", "خطأ",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 ResetAll();
 
@@ -563,10 +613,22 @@ namespace SuperMarket.UserControls
             if (chk_withdrawFromSafe.Checked)
             {
                 txt_withdrawFromSafe.Enabled = true;
+
+                pan_save.Enabled = false;
             }
             else
             {
                 txt_withdrawFromSafe.Enabled = false;
+
+                pan_save.Enabled = true;
+            }
+        }
+
+        private void txt_withdrawFromSafe_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (txt_withdrawFromSafe.SelectedIndex != -1)
+            {
+                pan_save.Enabled = true;
             }
         }
 

@@ -85,7 +85,7 @@ namespace SuperMarket.Classes.DataAccess
                 {
                     cnn.Execute($"UPDATE {TableName} SET SafeId = @SafeId, SafeName = @SafeName, AmountAdded = @AmountAdded, " +
                         $"AmountTotal = @AmountTotal, AdjustedByUserId = @AdjustedByUserId, AdjustedByUserFullName = @AdjustedByUserFullName, " +
-                        $"Notes = @Notes Id = @Id", safe);
+                        $"Notes = @Notes WHERE Id = @Id", safe);
                 }
             }
             catch (Exception ex)
@@ -115,8 +115,8 @@ namespace SuperMarket.Classes.DataAccess
                 MessageBox.Show($"حدث خطأ أثناء حفظ الخزنة {safe.SafeName}", "خطأ",
                          MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                Logger.Log($"while saving product with name = {safe.SafeId} & error: {ex.Message}",
-                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Products", Logger.ERROR);
+                Logger.Log($"while saving product with id = {safe.SafeId} & error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
             }
         }
 

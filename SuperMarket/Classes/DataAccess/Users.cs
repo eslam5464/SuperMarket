@@ -11,17 +11,41 @@ namespace SuperMarket.Classes.DataAccess
 {
     class Users
     {
-        public static List<UserModel> LoadUsersWithParamNonAdmin(string Parameter, string Condition)
+        public static List<UserModel> LoadUsersWithParameter(string Parameter, string Condition, string GetType)
         {
             try
             {
-                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
+                if (GetType == "Admin")
                 {
-                    string query = $"SELECT * FROM Users WHERE {Parameter} = N'{Condition}' " +
-                        $"AND ActiveState = 1 AND UserLevel != 'admin'";
-                    var output = cnn.Query<UserModel>(query, new DynamicParameters());
-                    return output.ToList();
+                    using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
+                    {
+                        string query = $"SELECT * FROM Users WHERE {Parameter} = N'{Condition}' " +
+                            $"AND ActiveState = 1 AND UserLevel = 'admin'";
+                        var output = cnn.Query<UserModel>(query, new DynamicParameters());
+                        return output.ToList();
+                    }
                 }
+                else if (GetType == "NonAdmin")
+                {
+                    using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
+                    {
+                        string query = $"SELECT * FROM Users WHERE {Parameter} = N'{Condition}' " +
+                            $"AND ActiveState = 1 AND UserLevel != 'admin'";
+                        var output = cnn.Query<UserModel>(query, new DynamicParameters());
+                        return output.ToList();
+                    }
+                }
+                else if (GetType == "All")
+                {
+                    using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
+                    {
+                        string query = $"SELECT * FROM Users WHERE {Parameter} = N'{Condition}' " +
+                            $"AND ActiveState = 1";
+                        var output = cnn.Query<UserModel>(query, new DynamicParameters());
+                        return output.ToList();
+                    }
+                }
+
             }
             catch (Exception ex)
             {

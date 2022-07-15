@@ -69,6 +69,7 @@ namespace SuperMarket.Forms
                         };
 
                         Main.LoggedUser = LoggedUser;
+                        Main.LoggedUserEnc = user[0];
                         Logger.Log($"user entered the correct credentials. accessing the application now",
                                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
                         Close();

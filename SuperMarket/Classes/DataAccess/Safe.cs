@@ -14,14 +14,14 @@ namespace SuperMarket.Classes.DataAccess
     {
         private static readonly string TableName = "Safe";
 
-        internal static List<SafeModel> GetSafeParameter(string Parameter, string Condition)
+        internal async static Task<List<SafeModel>> GetSafeParameter(string Parameter, string Condition)
         {
             try
             {
                 using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
-                    var output = cnn.Query<SafeModel>($"SELECT TOP {GlobalVars.MaxQueryRows} * FROM {TableName} " +
-                        $"WHERE {Parameter} = N'{Condition}'", new DynamicParameters());
+                    var output = await Task.Run(() => cnn.Query<SafeModel>($"SELECT TOP {GlobalVars.MaxQueryRows} * FROM {TableName} " +
+                        $"WHERE {Parameter} = N'{Condition}'", new DynamicParameters()));
                     return output.ToList();
                 }
             }
@@ -98,6 +98,8 @@ namespace SuperMarket.Classes.DataAccess
                     await Task.Run(() => cnn.Execute($"INSERT INTO {TableName} ( Name, CreationDate) VALUES " +
                         $"(@Name, '{DateTime.Now}')", safe));
                 }
+                MessageBox.Show($"تم الحفظ", "عملية ناجحه",
+                         MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {

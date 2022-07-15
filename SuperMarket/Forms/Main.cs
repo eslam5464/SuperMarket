@@ -29,7 +29,7 @@ namespace SuperMarket.Forms
             InitializeComponent();
         }
 
-        internal static Classes.Models.UserModel LoggedUser;
+        internal static Classes.Models.UserModel LoggedUser, LoggedUserEnc;
         private int SessionTimer = 0, HourlyTimer = 0, FourHoursTimer = 0;
         private bool SessionState = true;
 
@@ -213,6 +213,7 @@ namespace SuperMarket.Forms
             SelectSideMenuButton(btn_suppliers, btn_suppliers, false, 1);
 
             uc_supplierInvoices.BringToFront();
+            uc_supplierInvoices.GetSafeNames();
         }
 
         private void btn_suppliersEdit_Click(object sender, EventArgs e)
