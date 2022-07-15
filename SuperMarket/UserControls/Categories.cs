@@ -365,9 +365,17 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private async void btn_exportPDF_Click(object sender, EventArgs e)
+        private void btn_exportPDF_Click(object sender, EventArgs e)
         {
-            await Methods.ExportDGVtoPDF(categoriesDataGridView, "الاصناف");
+            //await Methods.ExportDGVtoPDF(categoriesDataGridView, "الاصناف");
+            Forms.ReportViewer.SelectedReport = Forms.ReportViewer.AvailableReports.Categories;
+
+            using (Forms.ReportViewer reportViewer = new Forms.ReportViewer())
+            {
+                reportViewer.ShowDialog();
+                reportViewer.Dispose();
+                reportViewer.Close();
+            }
         }
 
         private void categoriesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
