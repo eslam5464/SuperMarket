@@ -480,7 +480,7 @@ namespace SuperMarket.UserControls
                     if (txt_withdrawFromSafe.SelectedIndex != -1)
                     {
                         List<SafeTransactionModel> AllSafeTransactions =
-                        Classes.DataAccess.SafeTransactions.GetSafeTransactionParameter("SafeName", txt_withdrawFromSafe.Text);
+                        Classes.DataAccess.SafeTransactions.GetSafeTransactionParameter("SafeName", txt_withdrawFromSafe.Text, "ASC");
 
                         if (AllSafeTransactions.Count == 0)
                         {
@@ -488,22 +488,23 @@ namespace SuperMarket.UserControls
                             {
                                 AdjustedByUserId = Main.LoggedUser.Id,
                                 AdjustedByUserFullName = Main.LoggedUserEnc.FullName,
-                                AmountAdded = num_paymentAmoutPaid.Value,
-                                AmountTotal = num_paymentAmoutPaid.Value,
+                                AmountAdded = -1 * num_paymentAmoutPaid.Value,
+                                AmountTotal = -1 * num_paymentAmoutPaid.Value,
                                 Notes = $"حساب فاتورة المورد {txt_searchedSupplierName.Text}",
                                 SafeId = int.Parse(txt_withdrawFromSafe.SelectedValue.ToString()),
                                 SafeName = txt_withdrawFromSafe.Text
                             };
                             Classes.DataAccess.SafeTransactions.SaveSafeTransaction(safeTransactionModel);
                         }
+
                         else
-                        {//TODO: fix billing userfullname 
+                        {
                             SafeTransactionModel safeTransactionModel = new SafeTransactionModel
                             {
                                 AdjustedByUserId = Main.LoggedUser.Id,
                                 AdjustedByUserFullName = Main.LoggedUserEnc.FullName,
-                                AmountAdded = num_paymentAmoutPaid.Value,
-                                AmountTotal = AllSafeTransactions[AllSafeTransactions.Count - 1].AmountTotal + num_paymentAmoutPaid.Value,
+                                AmountAdded = -1 * num_paymentAmoutPaid.Value,
+                                AmountTotal = AllSafeTransactions[AllSafeTransactions.Count - 1].AmountTotal + (-1 * num_paymentAmoutPaid.Value),
                                 Notes = $"حساب فاتورة المورد {txt_searchedSupplierName.Text}",
                                 SafeId = int.Parse(txt_withdrawFromSafe.SelectedValue.ToString()),
                                 SafeName = txt_withdrawFromSafe.Text
@@ -519,9 +520,6 @@ namespace SuperMarket.UserControls
                     }
                 }
                 ResetAll();
-
-                MessageBox.Show("تمت الإضافه", "نجحت العملية",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {

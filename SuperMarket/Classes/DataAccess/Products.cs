@@ -63,6 +63,26 @@ namespace SuperMarket.Classes.DataAccess
             return new List<ProductModel>();
         }
 
+        internal static List<ProductModel> LoadProductsLowStockWithoutPrices()
+        {
+            try
+            {
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
+                {
+
+                    var output = cnn.Query<ProductModel>($"SELECT * FROM {TableName} WHERE QuantityMinimum >= Quantity",
+                        new DynamicParameters());
+                    return output.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"while getting all {TableName} & error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
+            }
+            return new List<ProductModel>();
+        }
+
         internal static List<Product_ProductPriceModel> LoadProductsWithPrices(bool LimitRows)
         {
             try

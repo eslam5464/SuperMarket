@@ -29,7 +29,7 @@ namespace SuperMarket.UserControls
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_print = new System.Windows.Forms.Button();
             this.btn_save = new System.Windows.Forms.Button();
             this.txt_grandtotal = new System.Windows.Forms.TextBox();
@@ -59,35 +59,41 @@ namespace SuperMarket.UserControls
             this.label7 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pic_barcode = new System.Windows.Forms.PictureBox();
-            this.pcb_getInvoiceID = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.cb_defaultCST = new System.Windows.Forms.CheckBox();
-            this.pcb_searchCstID = new System.Windows.Forms.PictureBox();
-            this.pcb_searchCstName = new System.Windows.Forms.PictureBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txt_cstID = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.pcb_searchProdName = new System.Windows.Forms.PictureBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txt_amountPaid = new System.Windows.Forms.TextBox();
+            this.txt_amountLeft = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.pcb_searchProdBarCode = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txt_productBarCode = new System.Windows.Forms.TextBox();
             this.txt_prodSearch = new System.Windows.Forms.ComboBox();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.pcb_calculator = new System.Windows.Forms.PictureBox();
+            this.pic_barcode = new System.Windows.Forms.PictureBox();
+            this.pcb_getInvoiceID = new System.Windows.Forms.PictureBox();
+            this.pcb_searchCstID = new System.Windows.Forms.PictureBox();
+            this.pcb_searchCstName = new System.Windows.Forms.PictureBox();
+            this.pcb_searchProdName = new System.Windows.Forms.PictureBox();
+            this.pcb_searchProdBarCode = new System.Windows.Forms.PictureBox();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_procardsDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_calculator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_barcode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_getInvoiceID)).BeginInit();
-            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchCstID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchCstName)).BeginInit();
-            this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchProdName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchProdBarCode)).BeginInit();
-            this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // btn_print
@@ -135,6 +141,7 @@ namespace SuperMarket.UserControls
             this.txt_grandtotal.Size = new System.Drawing.Size(303, 45);
             this.txt_grandtotal.TabIndex = 219;
             this.txt_grandtotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_grandtotal.TextChanged += new System.EventHandler(this.txt_grandtotal_TextChanged);
             this.txt_grandtotal.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_billing_KeyDown);
             this.txt_grandtotal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_grandtotal_KeyPress);
             // 
@@ -172,11 +179,11 @@ namespace SuperMarket.UserControls
             this.txt_totalprice.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txt_totalprice.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_totalprice.ForeColor = System.Drawing.Color.Black;
-            this.txt_totalprice.Location = new System.Drawing.Point(245, 230);
+            this.txt_totalprice.Location = new System.Drawing.Point(255, 230);
             this.txt_totalprice.Multiline = true;
             this.txt_totalprice.Name = "txt_totalprice";
             this.txt_totalprice.ShortcutsEnabled = false;
-            this.txt_totalprice.Size = new System.Drawing.Size(247, 45);
+            this.txt_totalprice.Size = new System.Drawing.Size(237, 45);
             this.txt_totalprice.TabIndex = 221;
             this.txt_totalprice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txt_totalprice.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_billing_KeyDown);
@@ -195,6 +202,7 @@ namespace SuperMarket.UserControls
             this.txt_productquantity.ShortcutsEnabled = false;
             this.txt_productquantity.Size = new System.Drawing.Size(120, 45);
             this.txt_productquantity.TabIndex = 215;
+            this.txt_productquantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txt_productquantity.TextChanged += new System.EventHandler(this.txt_productquantity_TextChanged);
             this.txt_productquantity.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_billing_KeyDown);
             this.txt_productquantity.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_grandtotal_KeyPress);
@@ -246,7 +254,7 @@ namespace SuperMarket.UserControls
             this.btn_addToCart.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_addToCart.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
             this.btn_addToCart.ForeColor = System.Drawing.Color.White;
-            this.btn_addToCart.Location = new System.Drawing.Point(59, 235);
+            this.btn_addToCart.Location = new System.Drawing.Point(114, 235);
             this.btn_addToCart.Name = "btn_addToCart";
             this.btn_addToCart.Size = new System.Drawing.Size(150, 50);
             this.btn_addToCart.TabIndex = 216;
@@ -371,6 +379,7 @@ namespace SuperMarket.UserControls
             this.dtp_invoicedate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtp_invoicedate.Location = new System.Drawing.Point(3, 115);
             this.dtp_invoicedate.Name = "dtp_invoicedate";
+            this.dtp_invoicedate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.dtp_invoicedate.Size = new System.Drawing.Size(219, 40);
             this.dtp_invoicedate.TabIndex = 201;
             this.dtp_invoicedate.ValueChanged += new System.EventHandler(this.dtp_invoicedate_ValueChanged);
@@ -388,6 +397,7 @@ namespace SuperMarket.UserControls
             this.txt_productprice.ShortcutsEnabled = false;
             this.txt_productprice.Size = new System.Drawing.Size(120, 45);
             this.txt_productprice.TabIndex = 214;
+            this.txt_productprice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txt_productprice.TextChanged += new System.EventHandler(this.txt_productprice_TextChanged);
             this.txt_productprice.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_billing_KeyDown);
             this.txt_productprice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_grandtotal_KeyPress);
@@ -451,14 +461,14 @@ namespace SuperMarket.UserControls
             this.db_procardsDataGridView.AllowUserToResizeColumns = false;
             this.db_procardsDataGridView.AllowUserToResizeRows = false;
             this.db_procardsDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.db_procardsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.db_procardsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.db_procardsDataGridView.ColumnHeadersHeight = 40;
             this.db_procardsDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.db_procardsDataGridView.EnableHeadersVisualStyles = false;
@@ -516,30 +526,6 @@ namespace SuperMarket.UserControls
             this.panel2.Size = new System.Drawing.Size(515, 160);
             this.panel2.TabIndex = 223;
             // 
-            // pic_barcode
-            // 
-            this.pic_barcode.BackColor = System.Drawing.Color.Gainsboro;
-            this.pic_barcode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pic_barcode.Location = new System.Drawing.Point(130, 3);
-            this.pic_barcode.Name = "pic_barcode";
-            this.pic_barcode.Size = new System.Drawing.Size(225, 70);
-            this.pic_barcode.TabIndex = 204;
-            this.pic_barcode.TabStop = false;
-            // 
-            // pcb_getInvoiceID
-            // 
-            this.pcb_getInvoiceID.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_getInvoiceID.Image = global::SuperMarket.Properties.Resources.icons8_synchronize_48;
-            this.pcb_getInvoiceID.Location = new System.Drawing.Point(228, 110);
-            this.pcb_getInvoiceID.Name = "pcb_getInvoiceID";
-            this.pcb_getInvoiceID.Size = new System.Drawing.Size(45, 45);
-            this.pcb_getInvoiceID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_getInvoiceID.TabIndex = 198;
-            this.pcb_getInvoiceID.TabStop = false;
-            this.pcb_getInvoiceID.Click += new System.EventHandler(this.pcb_getInvoiceID_Click);
-            this.pcb_getInvoiceID.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
-            this.pcb_getInvoiceID.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
-            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.Gainsboro;
@@ -574,36 +560,6 @@ namespace SuperMarket.UserControls
             this.cb_defaultCST.UseVisualStyleBackColor = true;
             this.cb_defaultCST.CheckedChanged += new System.EventHandler(this.cb_defaultCST_CheckedChanged);
             // 
-            // pcb_searchCstID
-            // 
-            this.pcb_searchCstID.BackColor = System.Drawing.Color.Gainsboro;
-            this.pcb_searchCstID.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchCstID.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_searchCstID.Location = new System.Drawing.Point(464, 51);
-            this.pcb_searchCstID.Name = "pcb_searchCstID";
-            this.pcb_searchCstID.Size = new System.Drawing.Size(45, 45);
-            this.pcb_searchCstID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_searchCstID.TabIndex = 207;
-            this.pcb_searchCstID.TabStop = false;
-            this.pcb_searchCstID.Click += new System.EventHandler(this.pcb_searchCstID_Click);
-            this.pcb_searchCstID.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
-            this.pcb_searchCstID.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
-            // 
-            // pcb_searchCstName
-            // 
-            this.pcb_searchCstName.BackColor = System.Drawing.Color.Gainsboro;
-            this.pcb_searchCstName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchCstName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_searchCstName.Location = new System.Drawing.Point(259, 51);
-            this.pcb_searchCstName.Name = "pcb_searchCstName";
-            this.pcb_searchCstName.Size = new System.Drawing.Size(45, 45);
-            this.pcb_searchCstName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_searchCstName.TabIndex = 203;
-            this.pcb_searchCstName.TabStop = false;
-            this.pcb_searchCstName.Click += new System.EventHandler(this.pcb_searchCstName_Click);
-            this.pcb_searchCstName.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
-            this.pcb_searchCstName.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
-            // 
             // label13
             // 
             this.label13.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -635,6 +591,10 @@ namespace SuperMarket.UserControls
             // 
             this.panel5.BackColor = System.Drawing.Color.Gainsboro;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.label15);
+            this.panel5.Controls.Add(this.label14);
+            this.panel5.Controls.Add(this.txt_amountPaid);
+            this.panel5.Controls.Add(this.txt_amountLeft);
             this.panel5.Controls.Add(this.txt_totalprice);
             this.panel5.Controls.Add(this.pcb_searchProdName);
             this.panel5.Controls.Add(this.label12);
@@ -654,20 +614,67 @@ namespace SuperMarket.UserControls
             this.panel5.Size = new System.Drawing.Size(497, 282);
             this.panel5.TabIndex = 225;
             // 
-            // pcb_searchProdName
+            // label15
             // 
-            this.pcb_searchProdName.BackColor = System.Drawing.Color.Gainsboro;
-            this.pcb_searchProdName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchProdName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_searchProdName.Location = new System.Drawing.Point(21, 10);
-            this.pcb_searchProdName.Name = "pcb_searchProdName";
-            this.pcb_searchProdName.Size = new System.Drawing.Size(45, 45);
-            this.pcb_searchProdName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_searchProdName.TabIndex = 215;
-            this.pcb_searchProdName.TabStop = false;
-            this.pcb_searchProdName.Click += new System.EventHandler(this.pcb_searchProdName_Click);
-            this.pcb_searchProdName.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
-            this.pcb_searchProdName.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
+            this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Gainsboro;
+            this.label15.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.ForeColor = System.Drawing.Color.Purple;
+            this.label15.Location = new System.Drawing.Point(29, 202);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(62, 25);
+            this.label15.TabIndex = 225;
+            this.label15.Text = ":الباقي";
+            // 
+            // label14
+            // 
+            this.label14.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Gainsboro;
+            this.label14.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.Purple;
+            this.label14.Location = new System.Drawing.Point(146, 203);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(76, 25);
+            this.label14.TabIndex = 224;
+            this.label14.Text = ":المدفوع";
+            // 
+            // txt_amountPaid
+            // 
+            this.txt_amountPaid.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_amountPaid.BackColor = System.Drawing.Color.White;
+            this.txt_amountPaid.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txt_amountPaid.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_amountPaid.ForeColor = System.Drawing.Color.Black;
+            this.txt_amountPaid.Location = new System.Drawing.Point(129, 230);
+            this.txt_amountPaid.Multiline = true;
+            this.txt_amountPaid.Name = "txt_amountPaid";
+            this.txt_amountPaid.ShortcutsEnabled = false;
+            this.txt_amountPaid.Size = new System.Drawing.Size(120, 45);
+            this.txt_amountPaid.TabIndex = 223;
+            this.txt_amountPaid.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_amountPaid.TextChanged += new System.EventHandler(this.txt_amountPaid_TextChanged);
+            this.txt_amountPaid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_billing_KeyDown);
+            this.txt_amountPaid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_grandtotal_KeyPress);
+            // 
+            // txt_amountLeft
+            // 
+            this.txt_amountLeft.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txt_amountLeft.BackColor = System.Drawing.Color.White;
+            this.txt_amountLeft.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
+            this.txt_amountLeft.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_amountLeft.ForeColor = System.Drawing.Color.Black;
+            this.txt_amountLeft.Location = new System.Drawing.Point(3, 230);
+            this.txt_amountLeft.Multiline = true;
+            this.txt_amountLeft.Name = "txt_amountLeft";
+            this.txt_amountLeft.ReadOnly = true;
+            this.txt_amountLeft.ShortcutsEnabled = false;
+            this.txt_amountLeft.Size = new System.Drawing.Size(120, 45);
+            this.txt_amountLeft.TabIndex = 222;
+            this.txt_amountLeft.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_amountLeft.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_billing_KeyDown);
+            this.txt_amountLeft.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_grandtotal_KeyPress);
             // 
             // label12
             // 
@@ -681,21 +688,6 @@ namespace SuperMarket.UserControls
             this.label12.Size = new System.Drawing.Size(68, 25);
             this.label12.TabIndex = 219;
             this.label12.Text = ":باركود";
-            // 
-            // pcb_searchProdBarCode
-            // 
-            this.pcb_searchProdBarCode.BackColor = System.Drawing.Color.Gainsboro;
-            this.pcb_searchProdBarCode.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchProdBarCode.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_searchProdBarCode.Location = new System.Drawing.Point(21, 71);
-            this.pcb_searchProdBarCode.Name = "pcb_searchProdBarCode";
-            this.pcb_searchProdBarCode.Size = new System.Drawing.Size(45, 45);
-            this.pcb_searchProdBarCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_searchProdBarCode.TabIndex = 218;
-            this.pcb_searchProdBarCode.TabStop = false;
-            this.pcb_searchProdBarCode.Click += new System.EventHandler(this.pcb_searchProdBarCode_Click);
-            this.pcb_searchProdBarCode.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
-            this.pcb_searchProdBarCode.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
             // 
             // label11
             // 
@@ -753,11 +745,111 @@ namespace SuperMarket.UserControls
             this.panel7.Size = new System.Drawing.Size(648, 70);
             this.panel7.TabIndex = 226;
             // 
+            // pcb_calculator
+            // 
+            this.pcb_calculator.BackColor = System.Drawing.Color.Transparent;
+            this.pcb_calculator.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_calculator.Image = global::SuperMarket.Properties.Resources.icons8_calculate_48;
+            this.pcb_calculator.Location = new System.Drawing.Point(22, 235);
+            this.pcb_calculator.Name = "pcb_calculator";
+            this.pcb_calculator.Size = new System.Drawing.Size(45, 45);
+            this.pcb_calculator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_calculator.TabIndex = 227;
+            this.pcb_calculator.TabStop = false;
+            this.pcb_calculator.Click += new System.EventHandler(this.pcb_calculator_Click);
+            this.pcb_calculator.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
+            this.pcb_calculator.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
+            // 
+            // pic_barcode
+            // 
+            this.pic_barcode.BackColor = System.Drawing.Color.Gainsboro;
+            this.pic_barcode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pic_barcode.Location = new System.Drawing.Point(130, 3);
+            this.pic_barcode.Name = "pic_barcode";
+            this.pic_barcode.Size = new System.Drawing.Size(225, 70);
+            this.pic_barcode.TabIndex = 204;
+            this.pic_barcode.TabStop = false;
+            // 
+            // pcb_getInvoiceID
+            // 
+            this.pcb_getInvoiceID.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_getInvoiceID.Image = global::SuperMarket.Properties.Resources.icons8_synchronize_48;
+            this.pcb_getInvoiceID.Location = new System.Drawing.Point(228, 110);
+            this.pcb_getInvoiceID.Name = "pcb_getInvoiceID";
+            this.pcb_getInvoiceID.Size = new System.Drawing.Size(45, 45);
+            this.pcb_getInvoiceID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_getInvoiceID.TabIndex = 198;
+            this.pcb_getInvoiceID.TabStop = false;
+            this.pcb_getInvoiceID.Click += new System.EventHandler(this.pcb_getInvoiceID_Click);
+            this.pcb_getInvoiceID.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
+            this.pcb_getInvoiceID.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
+            // 
+            // pcb_searchCstID
+            // 
+            this.pcb_searchCstID.BackColor = System.Drawing.Color.Gainsboro;
+            this.pcb_searchCstID.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_searchCstID.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchCstID.Location = new System.Drawing.Point(464, 51);
+            this.pcb_searchCstID.Name = "pcb_searchCstID";
+            this.pcb_searchCstID.Size = new System.Drawing.Size(45, 45);
+            this.pcb_searchCstID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_searchCstID.TabIndex = 207;
+            this.pcb_searchCstID.TabStop = false;
+            this.pcb_searchCstID.Click += new System.EventHandler(this.pcb_searchCstID_Click);
+            this.pcb_searchCstID.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
+            this.pcb_searchCstID.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
+            // 
+            // pcb_searchCstName
+            // 
+            this.pcb_searchCstName.BackColor = System.Drawing.Color.Gainsboro;
+            this.pcb_searchCstName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_searchCstName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchCstName.Location = new System.Drawing.Point(259, 51);
+            this.pcb_searchCstName.Name = "pcb_searchCstName";
+            this.pcb_searchCstName.Size = new System.Drawing.Size(45, 45);
+            this.pcb_searchCstName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_searchCstName.TabIndex = 203;
+            this.pcb_searchCstName.TabStop = false;
+            this.pcb_searchCstName.Click += new System.EventHandler(this.pcb_searchCstName_Click);
+            this.pcb_searchCstName.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
+            this.pcb_searchCstName.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
+            // 
+            // pcb_searchProdName
+            // 
+            this.pcb_searchProdName.BackColor = System.Drawing.Color.Gainsboro;
+            this.pcb_searchProdName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_searchProdName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchProdName.Location = new System.Drawing.Point(21, 10);
+            this.pcb_searchProdName.Name = "pcb_searchProdName";
+            this.pcb_searchProdName.Size = new System.Drawing.Size(45, 45);
+            this.pcb_searchProdName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_searchProdName.TabIndex = 215;
+            this.pcb_searchProdName.TabStop = false;
+            this.pcb_searchProdName.Click += new System.EventHandler(this.pcb_searchProdName_Click);
+            this.pcb_searchProdName.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
+            this.pcb_searchProdName.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
+            // 
+            // pcb_searchProdBarCode
+            // 
+            this.pcb_searchProdBarCode.BackColor = System.Drawing.Color.Gainsboro;
+            this.pcb_searchProdBarCode.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_searchProdBarCode.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchProdBarCode.Location = new System.Drawing.Point(21, 71);
+            this.pcb_searchProdBarCode.Name = "pcb_searchProdBarCode";
+            this.pcb_searchProdBarCode.Size = new System.Drawing.Size(45, 45);
+            this.pcb_searchProdBarCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_searchProdBarCode.TabIndex = 218;
+            this.pcb_searchProdBarCode.TabStop = false;
+            this.pcb_searchProdBarCode.Click += new System.EventHandler(this.pcb_searchProdBarCode_Click);
+            this.pcb_searchProdBarCode.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
+            this.pcb_searchProdBarCode.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
+            // 
             // Billing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.pcb_calculator);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.txt_grandtotal);
             this.Controls.Add(this.label4);
@@ -776,17 +868,18 @@ namespace SuperMarket.UserControls
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_barcode)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_getInvoiceID)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchCstID)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchCstName)).EndInit();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_calculator)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_barcode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_getInvoiceID)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchCstID)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchCstName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchProdName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchProdBarCode)).EndInit();
-            this.panel7.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -839,5 +932,10 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.CheckBox cb_defaultCST;
         private System.Windows.Forms.DataGridView db_procardsDataGridView;
         private System.Windows.Forms.PictureBox pic_barcode;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txt_amountPaid;
+        private System.Windows.Forms.TextBox txt_amountLeft;
+        private System.Windows.Forms.PictureBox pcb_calculator;
     }
 }

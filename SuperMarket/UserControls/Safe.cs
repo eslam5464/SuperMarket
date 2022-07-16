@@ -22,7 +22,7 @@ namespace SuperMarket.UserControls
         {
             SetColors(Properties.Settings.Default.AppColor);
 
-            LoadDataGrid(Classes.DataAccess.SafeTransactions.LoadSafeTransactions(true));
+            LoadDataGrid(Classes.DataAccess.SafeTransactions.LoadSafeTransactions(true, "DESC"));
 
             RefreshComboBoxes();
 
@@ -178,7 +178,7 @@ namespace SuperMarket.UserControls
                 if (num_safeTransactionAmount.Value != 0 && txt_safeTransactionNotes.Text.Trim() != "")
                 {
                     List<SafeTransactionModel> AllSafeTransactions =
-                        Classes.DataAccess.SafeTransactions.GetSafeTransactionParameter("SafeName", txt_safeTransactionNameSearch.Text);
+                        Classes.DataAccess.SafeTransactions.GetSafeTransactionParameter("SafeName", txt_safeTransactionNameSearch.Text, "ASC");
 
                     if (AllSafeTransactions.Count == 0)
                     {
@@ -209,7 +209,7 @@ namespace SuperMarket.UserControls
                         Classes.DataAccess.SafeTransactions.SaveSafeTransaction(safeTransactionModel);
                     }
 
-                    LoadDataGrid(Classes.DataAccess.SafeTransactions.LoadSafeTransactions(true));
+                    LoadDataGrid(Classes.DataAccess.SafeTransactions.LoadSafeTransactions(true, "DESC"));
 
                     ResetTransactionTextBoxes();
                 }
@@ -239,7 +239,7 @@ namespace SuperMarket.UserControls
             if (txt_safeTransactionNameSearch.SelectedIndex != -1)
             {
                 List<SafeTransactionModel> SearchedSafe =
-                    Classes.DataAccess.SafeTransactions.GetSafeTransactionParameter("SafeName", txt_safeTransactionNameSearch.Text);
+                    Classes.DataAccess.SafeTransactions.GetSafeTransactionParameter("SafeName", txt_safeTransactionNameSearch.Text, "DESC");
 
                 if (SearchedSafe.Count != 0)
                 {
@@ -247,7 +247,7 @@ namespace SuperMarket.UserControls
                 }
                 else
                 {
-                    MessageBox.Show($"لا يوجد خزنه بهذا الاسم", "خطأ",
+                    MessageBox.Show($"لا يوجد معاملات لهذه الخزنه", "خطأ",
                          MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -263,7 +263,7 @@ namespace SuperMarket.UserControls
             if (txt_safeTransactionId.Text.Trim() != "")
             {
                 List<SafeTransactionModel> SearchedSafe =
-                    Classes.DataAccess.SafeTransactions.GetSafeTransactionParameter("Id", txt_safeTransactionId.Text);
+                    Classes.DataAccess.SafeTransactions.GetSafeTransactionParameter("Id", txt_safeTransactionId.Text, "DESC");
 
                 if (SearchedSafe.Count != 0)
                 {
@@ -279,7 +279,7 @@ namespace SuperMarket.UserControls
 
         private void pcb_search_DoubleClick(object sender, EventArgs e)
         {
-            LoadDataGrid(Classes.DataAccess.SafeTransactions.LoadSafeTransactions(true));
+            LoadDataGrid(Classes.DataAccess.SafeTransactions.LoadSafeTransactions(true, "DESC"));
         }
 
         private void btn_safeTransactionRemove_Click(object sender, EventArgs e)
@@ -287,17 +287,18 @@ namespace SuperMarket.UserControls
             if (db_safeTransactionDataGridView.DataSource != null && db_safeTransactionDataGridView.CurrentCell != null)
             {
                 int rowindex = db_safeTransactionDataGridView.CurrentCell.RowIndex;
-                long SafeTransactionId = long.Parse(db_safeTransactionDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
+                int SafeTransactionId = int.Parse(db_safeTransactionDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
 
-                if (MessageBox.Show($"هل تريد انت تحذف من السله {ProductName}", "انتظر",
+                if (MessageBox.Show($"هل تريد ان تحذف المعامله رقم {SafeTransactionId}", "انتظر",
                            MessageBoxButtons.YesNo,
                            MessageBoxIcon.Information) == DialogResult.Yes)
                 {
                     List<SafeTransactionModel> datasource = (List<SafeTransactionModel>)db_safeTransactionDataGridView.DataSource;
-                    db_safeTransactionDataGridView.DataSource = null;
-                    datasource.Remove(datasource.Find(SafeTransaction => SafeTransaction.Id == SafeTransactionId));
-                    db_safeTransactionDataGridView.DataSource = datasource;
-                    LoadDataGrid(Classes.DataAccess.SafeTransactions.LoadSafeTransactions(true));
+                    //db_safeTransactionDataGridView.DataSource = null;
+                    //datasource.Remove(datasource.Find(SafeTransaction => SafeTransaction.Id == SafeTransactionId));
+                    //db_safeTransactionDataGridView.DataSource = datasource;
+                    Classes.DataAccess.SafeTransactions.RemoveSafeTransaction(SafeTransactionId);
+                    LoadDataGrid(Classes.DataAccess.SafeTransactions.LoadSafeTransactions(true, "DESC"));
                 }
             }
             else

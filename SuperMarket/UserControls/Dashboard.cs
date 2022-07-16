@@ -1,6 +1,8 @@
 ﻿using SuperMarket.Classes.Models;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarket.UserControls
@@ -48,7 +50,32 @@ namespace SuperMarket.UserControls
             lbl_customer_count.Text = "" + Classes.DataAccess.Customers.LoadCustomers(false).Count;
             lbl_user_count.Text = "" + Classes.DataAccess.Users.LoadAtiveUsersNonAdmin().Count;
 
+            LoadDataGrid(Classes.DataAccess.Products.LoadProductsLowStockWithoutPrices());
+
             CenterLabels();
+        }
+
+        private void LoadDataGrid(List<ProductModel> products)
+        {
+            productsDataGridView.DataSource = null;
+            productsDataGridView.DataSource = products;
+
+            productsDataGridView.Columns["Id"].HeaderText = "رقم المنتج";
+            productsDataGridView.Columns["BarCode"].HeaderText = "باركود";
+            productsDataGridView.Columns["ProductName_"].HeaderText = "اسم المنتج";
+            productsDataGridView.Columns["Description"].HeaderText = "وصف المنتج";
+            productsDataGridView.Columns["Quantity"].HeaderText = "كميه المنتج";
+            productsDataGridView.Columns["QuantityMinimum"].HeaderText = "حد ادنى للمنتج";
+            productsDataGridView.Columns["CategoryID"].HeaderText = "رقم الصنف";
+            productsDataGridView.Columns["CategoryName"].HeaderText = "اسم الصنف";
+            productsDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه المنتج";
+            productsDataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
+
+            productsDataGridView.Columns["PriceModificationDate"].Visible = false;
+
+            productsDataGridView.AutoResizeColumns();
+            productsDataGridView.Columns["CreationDate"].Width += 5;
+            productsDataGridView.Columns["PriceModificationDate"].Width += 5;
         }
 
         private void CenterLabels()

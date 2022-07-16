@@ -155,9 +155,9 @@ namespace SuperMarket.UserControls
 
                             Logger.Log($"user has edited seller: {txt_Username.Text} with id: {user.Id}",
                            System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
-
-                            ResetTextBoxes();
                         }
+
+                        ResetTextBoxes();
                         SetEditMode(false);
                     }
                     else

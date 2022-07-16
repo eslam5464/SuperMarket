@@ -62,7 +62,8 @@ namespace SuperMarket.UserControls
 
         private async void btn_save_Click(object sender, EventArgs e)
         {
-            if (txt_productname.Text.Trim() != "" && txt_productPriceSell.Text.Trim() != "" && txt_productBarCode.Text.Trim() != "")
+            if (txt_productname.Text.Trim() != "" && txt_productPriceSell.Text.Trim() != "" &&
+                txt_productBarCode.Text.Trim() != "" && txt_productPriceWholeSale.Text.Trim() != "")
             {
                 if (!txt_productid.Enabled)
                 {
@@ -77,8 +78,8 @@ namespace SuperMarket.UserControls
                         else
                         {
                             if (MessageBox.Show($"هل تريد ان تعدل {txt_productname.Text} ", "انتظر",
-                            MessageBoxButtons.YesNo,
-                            MessageBoxIcon.Information) == DialogResult.Yes)
+                                    MessageBoxButtons.YesNo,
+                                    MessageBoxIcon.Information) == DialogResult.Yes)
                             {
                                 long categoryId = long.Parse(txt_categoriename.SelectedValue.ToString());
                                 string categoryName = Classes.DataAccess.Categories.GetCategoryParameter
@@ -116,11 +117,11 @@ namespace SuperMarket.UserControls
 
                                 LoadJoinedDataGrid(Classes.DataAccess.Products.GetProductParameterWithPricee("Id", "" + product.Id));
 
-                                ResetTextBoxes();
-
                                 Logger.Log($"user is editing product: {categoryName} with id: {categoryId}",
                                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
                             }
+                            ResetTextBoxes();
+
                             SetEditMode(false);
                         }
                     }
@@ -244,7 +245,7 @@ namespace SuperMarket.UserControls
             productsDataGridView.Columns["ProductName_"].HeaderText = "اسم المنتج";
             productsDataGridView.Columns["PriceWholesale"].HeaderText = "سعر جمله المنتج";
             productsDataGridView.Columns["PriceSell"].HeaderText = "سعر بيع المنتج";
-            productsDataGridView.Columns["Description"].HeaderText = "وصف المتج";
+            productsDataGridView.Columns["Description"].HeaderText = "وصف المنتج";
             productsDataGridView.Columns["Quantity"].HeaderText = "كميه المنتج";
             productsDataGridView.Columns["QuantityMinimum"].HeaderText = "حد ادنى للمنتج";
             productsDataGridView.Columns["CategoryID"].HeaderText = "رقم الصنف";
@@ -507,37 +508,46 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private void chk_generateBarCode_CheckedChanged(object sender, EventArgs e)
         {
-            Random r = new Random();
-            int categoryId, barcode, quantity;
-            decimal productPirce;
-
-            for (int i = 0; i < 100; i++)
+            if (chk_generateBarCode.Checked)
             {
-                categoryId = r.Next(9, 15);
-                barcode = r.Next(0, 999999);
-                productPirce = (decimal)r.NextDouble() * 100;
-                quantity = r.Next(20, 100);
-
-                Math.Round(productPirce * 100, 2);
-                ProductModel product = new ProductModel();
-
-                product.BarCode = "" + barcode;
-                product.Name = "random " + barcode;
-                //product.PriceSell = productPirce;
-                product.Description = "";
-                product.Quantity = quantity;
-                product.CategoryID = categoryId;
-                product.CategoryName = "test " + categoryId;
-
-                await Classes.DataAccess.Products.SaveProduct(product);
+                txt_productBarCode.Enabled = false;
+                txt_productBarCode.Text = Methods.GetUniqueInvoiceID(6);
+            }
+            else
+            {
+                txt_productBarCode.Enabled = true;
+                txt_productBarCode.Text = "";
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            LoadJoinedDataGrid(Classes.DataAccess.Products.LoadProductsWithPrices(true));
-        }
+        //private async void button1_Click(object sender, EventArgs e)
+        //{
+        //    Random r = new Random();
+        //    int categoryId, barcode, quantity;
+        //    decimal productPirce;
+
+        //    for (int i = 0; i < 100; i++)
+        //    {
+        //        categoryId = r.Next(9, 15);
+        //        barcode = r.Next(0, 999999);
+        //        productPirce = (decimal)r.NextDouble() * 100;
+        //        quantity = r.Next(20, 100);
+
+        //        Math.Round(productPirce * 100, 2);
+        //        ProductModel product = new ProductModel();
+
+        //        product.BarCode = "" + barcode;
+        //        product.Name = "random " + barcode;
+        //        //product.PriceSell = productPirce;
+        //        product.Description = "";
+        //        product.Quantity = quantity;
+        //        product.CategoryID = categoryId;
+        //        product.CategoryName = "test " + categoryId;
+
+        //        await Classes.DataAccess.Products.SaveProduct(product);
+        //    }
+        //}
     }
 }

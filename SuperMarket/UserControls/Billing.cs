@@ -166,7 +166,12 @@ namespace SuperMarket.UserControls
         private void pcb_search_MouseLeave(object sender, EventArgs e)
         {
             Control FocusedObject = (Control)sender;
-            FocusedObject.BackColor = Color.Gainsboro;
+
+            if (FocusedObject == pcb_calculator)
+                FocusedObject.BackColor = Color.Transparent;
+
+            else
+                FocusedObject.BackColor = Color.Gainsboro;
         }
 
         private void btn_addtocard_Click(object sender, EventArgs e)
@@ -767,6 +772,31 @@ namespace SuperMarket.UserControls
         private void dtp_invoicedate_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txt_amountPaid_TextChanged(object sender, EventArgs e)
+        {
+            GetAmountLeft();
+        }
+
+        private void txt_grandtotal_TextChanged(object sender, EventArgs e)
+        {
+            GetAmountLeft();
+        }
+
+        private void GetAmountLeft()
+        {
+            if (txt_amountPaid.Text.Trim() != "" && txt_amountPaid.Text.Trim() != "." &&
+                txt_grandtotal.Text.Trim() != "" && txt_grandtotal.Text.Trim() != ".")
+            {
+                double amount_left = double.Parse(txt_amountPaid.Text) - double.Parse(txt_grandtotal.Text);
+                txt_amountLeft.Text = "" + Math.Round(amount_left + 0.005, 2);
+            }
+        }
+
+        private void pcb_calculator_Click(object sender, EventArgs e)
+        {
+            Methods.OpenCalculator();
         }
     }
 }

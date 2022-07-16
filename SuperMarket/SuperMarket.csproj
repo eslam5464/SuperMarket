@@ -502,6 +502,7 @@
     <None Include="Resources\Notification_info.png" />
     <None Include="Resources\Notification_ok.png" />
     <None Include="Resources\Notification_warning.png" />
+    <None Include="Resources\icons8-calculate-48.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

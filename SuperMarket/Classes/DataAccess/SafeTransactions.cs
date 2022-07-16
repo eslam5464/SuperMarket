@@ -13,14 +13,14 @@ namespace SuperMarket.Classes.DataAccess
     {
         private static readonly string TableName = "SafeTransaction";
 
-        internal static List<SafeTransactionModel> GetSafeTransactionParameter(string Parameter, string Condition)
+        internal static List<SafeTransactionModel> GetSafeTransactionParameter(string Parameter, string Condition, string SortOrder)
         {
             try
             {
                 using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     var output = cnn.Query<SafeTransactionModel>($"SELECT TOP {GlobalVars.MaxQueryRows} * FROM {TableName} " +
-                        $"WHERE {Parameter} = N'{Condition}' ORDER BY CreationDate DESC", new DynamicParameters());
+                        $"WHERE {Parameter} = N'{Condition}' ORDER BY CreationDate {SortOrder}", new DynamicParameters());
                     return output.ToList();
                 }
             }
@@ -32,7 +32,7 @@ namespace SuperMarket.Classes.DataAccess
             return new List<SafeTransactionModel>();
         }
 
-        internal static List<SafeTransactionModel> GetSafeTransactionParameterLike(string Parameter, string Condition)
+        internal static List<SafeTransactionModel> GetSafeTransactionParameterLike(string Parameter, string Condition, string SortOrder)
         {
             try
             {
@@ -51,7 +51,7 @@ namespace SuperMarket.Classes.DataAccess
             return new List<SafeTransactionModel>();
         }
 
-        internal static List<SafeTransactionModel> LoadSafeTransactions(bool LimitRows)
+        internal static List<SafeTransactionModel> LoadSafeTransactions(bool LimitRows, string SortOrder)
         {
             try
             {

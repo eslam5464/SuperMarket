@@ -115,11 +115,11 @@ namespace SuperMarket.UserControls
 
                         LoadDataGrid(Classes.DataAccess.Suppliers.GetSupplierParameter("Id", "" + supplier.Id));
 
-                        ResetTextBoxes();
-
                         Logger.Log($"user has edited product: {SupplierName} with id: {supplierId}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
                     }
+
+                    ResetTextBoxes();
                     SetEditMode(false);
                 }
                 else

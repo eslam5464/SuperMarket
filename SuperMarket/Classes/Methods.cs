@@ -168,6 +168,12 @@ namespace SuperMarket.Classes
             int Index = Array.FindIndex(SearchedArray, row => row.Contains(Value));
             return Index;
         }
+
+        internal static void OpenCalculator()
+        {
+            System.Diagnostics.Process.Start("calc.exe");
+        }
+
         //Array.FindIndex(GlobalVars.PaymentMethod, row => row.Contains("نقدي"))
 
         //---------------------------------------------------------------

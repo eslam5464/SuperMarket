@@ -190,6 +190,7 @@ namespace SuperMarket.Forms
             this.btn_advancedSearch.Text = "   بحث متقدم";
             this.btn_advancedSearch.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_advancedSearch.UseVisualStyleBackColor = true;
+            this.btn_advancedSearch.Visible = false;
             this.btn_advancedSearch.Click += new System.EventHandler(this.btn_advancedSearch_Click);
             // 
             // pan_suppliers
@@ -305,6 +306,7 @@ namespace SuperMarket.Forms
             this.btn_reports.Text = "   تقارير";
             this.btn_reports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_reports.UseVisualStyleBackColor = true;
+            this.btn_reports.Visible = false;
             this.btn_reports.Click += new System.EventHandler(this.btn_reports_Click);
             // 
             // pan_billing

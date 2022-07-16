@@ -83,6 +83,16 @@ namespace SuperMarket.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_calculate_48 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-calculate-48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_combo_chart_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-combo-chart-48", resourceCulture);

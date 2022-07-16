@@ -20,8 +20,6 @@ namespace SuperMarket.UserControls
 
         private async void btn_save_Click(object sender, EventArgs e)
         {
-            Control FocusedObject = (Control)sender;
-
             Logger.Log("user is trying to save  a category",
                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
@@ -50,6 +48,7 @@ namespace SuperMarket.UserControls
 
                             LoadDataGrid(Classes.DataAccess.Categories.GetCategoryParameter("Id", "" + category.Id));
                         }
+
                         ResetTextBoxes(true, false);
 
                         EditMode(false);

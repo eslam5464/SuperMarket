@@ -66,11 +66,11 @@ namespace SuperMarket.UserControls
 
                             LoadDataGrid(Classes.DataAccess.Customers.GetCustomerParameter("Id", "" + customer.Id), customersDataGridView);
 
-                            ResetTextBoxes();
-
                             Logger.Log($"user has edited customer with id: {customer.Id}",
                                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
                         }
+
+                        ResetTextBoxes();
 
                         SetEditMode(false);
                     }
