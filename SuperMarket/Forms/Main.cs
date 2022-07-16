@@ -22,6 +22,7 @@ namespace SuperMarket.Forms
         private readonly UserControls.Reports uc_reports = new UserControls.Reports();
         private readonly UserControls.Safe uc_safe = new UserControls.Safe();
         private readonly UserControls.Blank uc_blank = new UserControls.Blank();
+        private readonly UserControls.AdminPanel uc_adminPanel = new UserControls.AdminPanel();
         private readonly UserControls.Settings uc_settings = new UserControls.Settings();
 
         public Main()
@@ -100,6 +101,7 @@ namespace SuperMarket.Forms
                 uc_supplierInvoices,
                 uc_safe,
                 uc_blank,
+                uc_adminPanel,
             };
 
             foreach (UserControl userControl in AllUserControls)
@@ -117,6 +119,8 @@ namespace SuperMarket.Forms
             HourlyChecker.Start();
 
             HideSubMenu();
+
+            CheckUserLevelAccess();
         }
 
         private void btn_dashborad_Click(object sender, EventArgs e)
@@ -228,9 +232,21 @@ namespace SuperMarket.Forms
             uc_safe.BringToFront();
         }
 
+        private void btn_adminPanel_Click(object sender, EventArgs e)
+        {
+            SelectButton(btn_adminPanel, true);
+            uc_adminPanel.BringToFront();
+        }
+
         private void ShowBlankUC()
         {
             uc_blank.BringToFront();
+        }
+
+        private void CheckUserLevelAccess()
+        {
+            // TODO: finish level access
+            btn_adminPanel.Visible = true;
         }
 
         private void SelectButton(Button SelectedButton, bool HideAllSubMenus)

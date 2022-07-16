@@ -11,7 +11,8 @@ namespace SuperMarket.Classes.DataAccess
     {
         private static string Date = DateTime.Now.ToString("yyyy-MM-dd "),
                 BackupLocation = Security.GetDirecotryLocation() + @"\Backup",
-                FileName = $@"\{Date} LocalBackup.bak";
+                BackupType = "Daily",
+                FileName = $@"\{Date} {BackupType}LocalBackup.bak";
 
         public async static Task AllWeekly(DayOfWeek Day, string strDestination = ".", string Id = "Default")
         {

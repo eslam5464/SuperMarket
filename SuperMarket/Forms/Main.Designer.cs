@@ -35,6 +35,7 @@ namespace SuperMarket.Forms
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.btn_settings = new System.Windows.Forms.Button();
+            this.btn_adminPanel = new System.Windows.Forms.Button();
             this.btn_safe = new System.Windows.Forms.Button();
             this.btn_advancedSearch = new System.Windows.Forms.Button();
             this.pan_suppliers = new System.Windows.Forms.Panel();
@@ -108,6 +109,7 @@ namespace SuperMarket.Forms
             // 
             this.panel7.AutoScroll = true;
             this.panel7.Controls.Add(this.btn_settings);
+            this.panel7.Controls.Add(this.btn_adminPanel);
             this.panel7.Controls.Add(this.btn_safe);
             this.panel7.Controls.Add(this.btn_advancedSearch);
             this.panel7.Controls.Add(this.pan_suppliers);
@@ -139,7 +141,7 @@ namespace SuperMarket.Forms
             this.btn_settings.ForeColor = System.Drawing.Color.White;
             this.btn_settings.Image = global::SuperMarket.Properties.Resources.icons8_settings_48;
             this.btn_settings.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_settings.Location = new System.Drawing.Point(13, 677);
+            this.btn_settings.Location = new System.Drawing.Point(13, 722);
             this.btn_settings.Margin = new System.Windows.Forms.Padding(0);
             this.btn_settings.Name = "btn_settings";
             this.btn_settings.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -149,6 +151,28 @@ namespace SuperMarket.Forms
             this.btn_settings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_settings.UseVisualStyleBackColor = true;
             this.btn_settings.Click += new System.EventHandler(this.btn_settings_Click);
+            // 
+            // btn_adminPanel
+            // 
+            this.btn_adminPanel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_adminPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_adminPanel.FlatAppearance.BorderSize = 0;
+            this.btn_adminPanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_adminPanel.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_adminPanel.ForeColor = System.Drawing.Color.White;
+            this.btn_adminPanel.Image = global::SuperMarket.Properties.Resources.icons8_admin_settings_male_48;
+            this.btn_adminPanel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_adminPanel.Location = new System.Drawing.Point(13, 677);
+            this.btn_adminPanel.Margin = new System.Windows.Forms.Padding(0);
+            this.btn_adminPanel.Name = "btn_adminPanel";
+            this.btn_adminPanel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btn_adminPanel.Size = new System.Drawing.Size(228, 45);
+            this.btn_adminPanel.TabIndex = 31;
+            this.btn_adminPanel.Text = "   ادوات المشرف";
+            this.btn_adminPanel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_adminPanel.UseVisualStyleBackColor = true;
+            this.btn_adminPanel.Visible = false;
+            this.btn_adminPanel.Click += new System.EventHandler(this.btn_adminPanel_Click);
             // 
             // btn_safe
             // 
@@ -306,7 +330,6 @@ namespace SuperMarket.Forms
             this.btn_reports.Text = "   تقارير";
             this.btn_reports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_reports.UseVisualStyleBackColor = true;
-            this.btn_reports.Visible = false;
             this.btn_reports.Click += new System.EventHandler(this.btn_reports_Click);
             // 
             // pan_billing
@@ -494,7 +517,7 @@ namespace SuperMarket.Forms
             this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel8.Location = new System.Drawing.Point(0, 0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(13, 722);
+            this.panel8.Size = new System.Drawing.Size(13, 767);
             this.panel8.TabIndex = 26;
             // 
             // SidePanel
@@ -716,5 +739,6 @@ namespace SuperMarket.Forms
         public System.Windows.Forms.Button btn_suppliersEdit;
         private System.Windows.Forms.Panel pan_billing;
         private System.Windows.Forms.Button btn_billingAdd;
+        public System.Windows.Forms.Button btn_adminPanel;
     }
 }
