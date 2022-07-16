@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_CategoryRemove = new System.Windows.Forms.Button();
             this.btn_categoryEdit = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -48,8 +48,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txt_categoriename = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.pcb_searchID = new System.Windows.Forms.PictureBox();
-            this.pcb_searchName = new System.Windows.Forms.PictureBox();
             this.categoriesTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.CategoriesTableAdapter();
             this.tableAdapterManager = new SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager();
             this.btn_exportPDF = new System.Windows.Forms.Button();
@@ -67,18 +65,21 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btn_storageEdit = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.pcb_searchStorage = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.pcb_searchStorage = new System.Windows.Forms.PictureBox();
+            this.pcb_searchName = new System.Windows.Forms.PictureBox();
+            this.pcb_searchID = new System.Windows.Forms.PictureBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.categoriesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchStorage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_CategoryRemove
@@ -128,14 +129,14 @@
             this.categoriesDataGridView.AllowUserToResizeRows = false;
             this.categoriesDataGridView.AutoGenerateColumns = false;
             this.categoriesDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.categoriesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.categoriesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.categoriesDataGridView.ColumnHeadersHeight = 40;
             this.categoriesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -144,14 +145,14 @@
             this.StorageName,
             this.CreationDate});
             this.categoriesDataGridView.DataSource = this.categoriesBindingSource;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.categoriesDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.categoriesDataGridView.DefaultCellStyle = dataGridViewCellStyle4;
             this.categoriesDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.categoriesDataGridView.EnableHeadersVisualStyles = false;
             this.categoriesDataGridView.GridColor = System.Drawing.Color.Silver;
@@ -206,7 +207,6 @@
             // 
             this.categoriesBindingSource.DataMember = "Categories";
             this.categoriesBindingSource.DataSource = this.superMarketDataSet;
-            this.categoriesBindingSource.CurrentChanged += new System.EventHandler(this.categoriesBindingSource_CurrentChanged);
             // 
             // superMarketDataSet
             // 
@@ -287,41 +287,11 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(850, 31);
+            this.label1.Location = new System.Drawing.Point(857, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 37);
             this.label1.TabIndex = 139;
             this.label1.Text = "*";
-            // 
-            // pcb_searchID
-            // 
-            this.pcb_searchID.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchID.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_searchID.Location = new System.Drawing.Point(542, 77);
-            this.pcb_searchID.Name = "pcb_searchID";
-            this.pcb_searchID.Size = new System.Drawing.Size(45, 45);
-            this.pcb_searchID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_searchID.TabIndex = 134;
-            this.pcb_searchID.TabStop = false;
-            this.pcb_searchID.Click += new System.EventHandler(this.pcb_searchID_Click);
-            this.pcb_searchID.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
-            this.pcb_searchID.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
-            this.pcb_searchID.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
-            // 
-            // pcb_searchName
-            // 
-            this.pcb_searchName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_searchName.Location = new System.Drawing.Point(932, 77);
-            this.pcb_searchName.Name = "pcb_searchName";
-            this.pcb_searchName.Size = new System.Drawing.Size(45, 45);
-            this.pcb_searchName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_searchName.TabIndex = 133;
-            this.pcb_searchName.TabStop = false;
-            this.pcb_searchName.Click += new System.EventHandler(this.pcb_searchName_Click);
-            this.pcb_searchName.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
-            this.pcb_searchName.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
-            this.pcb_searchName.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
             // 
             // categoriesTableAdapter
             // 
@@ -550,10 +520,23 @@
             this.panel4.Controls.Add(this.btn_categoryEdit);
             this.panel4.Controls.Add(this.btn_saveCategory);
             this.panel4.Controls.Add(this.label1);
+            this.panel4.Controls.Add(this.label10);
             this.panel4.Location = new System.Drawing.Point(3, 165);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1032, 193);
             this.panel4.TabIndex = 202;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Century Gothic", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Purple;
+            this.label9.Location = new System.Drawing.Point(469, 2);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(93, 28);
+            this.label9.TabIndex = 202;
+            this.label9.Text = "التصنيفات";
             // 
             // pcb_searchStorage
             // 
@@ -570,17 +553,47 @@
             this.pcb_searchStorage.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
             this.pcb_searchStorage.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
             // 
-            // label9
+            // pcb_searchName
             // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Century Gothic", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.Purple;
-            this.label9.Location = new System.Drawing.Point(469, 2);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(93, 28);
-            this.label9.TabIndex = 202;
-            this.label9.Text = "التصنيفات";
+            this.pcb_searchName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_searchName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchName.Location = new System.Drawing.Point(932, 77);
+            this.pcb_searchName.Name = "pcb_searchName";
+            this.pcb_searchName.Size = new System.Drawing.Size(45, 45);
+            this.pcb_searchName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_searchName.TabIndex = 133;
+            this.pcb_searchName.TabStop = false;
+            this.pcb_searchName.Click += new System.EventHandler(this.pcb_searchName_Click);
+            this.pcb_searchName.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
+            this.pcb_searchName.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
+            this.pcb_searchName.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
+            // 
+            // pcb_searchID
+            // 
+            this.pcb_searchID.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_searchID.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchID.Location = new System.Drawing.Point(542, 77);
+            this.pcb_searchID.Name = "pcb_searchID";
+            this.pcb_searchID.Size = new System.Drawing.Size(45, 45);
+            this.pcb_searchID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_searchID.TabIndex = 134;
+            this.pcb_searchID.TabStop = false;
+            this.pcb_searchID.Click += new System.EventHandler(this.pcb_searchID_Click);
+            this.pcb_searchID.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
+            this.pcb_searchID.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
+            this.pcb_searchID.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.Red;
+            this.label10.Location = new System.Drawing.Point(297, 32);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(29, 37);
+            this.label10.TabIndex = 204;
+            this.label10.Text = "*";
             // 
             // Categories
             // 
@@ -598,8 +611,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.categoriesDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -607,6 +618,8 @@
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchStorage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -651,5 +664,6 @@
         private System.Windows.Forms.ComboBox txt_storageNameEdit;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox pcb_searchStorage;
+        private System.Windows.Forms.Label label10;
     }
 }

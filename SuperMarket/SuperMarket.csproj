@@ -172,6 +172,12 @@
     <Compile Include="Forms\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\Notification.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Notification.Designer.cs">
+      <DependentUpon>Notification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\ReportViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -309,6 +315,9 @@
     <Compile Include="UserControls\Suppliers.Designer.cs">
       <DependentUpon>Suppliers.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\Notification.resx">
+      <DependentUpon>Notification.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Blank.resx">
       <DependentUpon>Blank.cs</DependentUpon>
     </EmbeddedResource>
@@ -489,6 +498,10 @@
     <None Include="Resources\icons8-bill-48.png" />
     <None Include="Resources\icons8-settings-48.png" />
     <None Include="Resources\pic_logo.Image.png" />
+    <None Include="Resources\Notification_error.png" />
+    <None Include="Resources\Notification_info.png" />
+    <None Include="Resources\Notification_ok.png" />
+    <None Include="Resources\Notification_warning.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

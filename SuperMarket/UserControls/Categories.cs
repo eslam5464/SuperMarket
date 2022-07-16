@@ -199,7 +199,6 @@ namespace SuperMarket.UserControls
             btn_categoryEdit.BackColor = appColor;
             btn_CategoryRemove.BackColor = appColor;
             btn_saveCategory.BackColor = appColor;
-            //db_categoriesDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
             categoriesDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
         }
 
@@ -379,16 +378,6 @@ namespace SuperMarket.UserControls
         }
 
         private void categoriesDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void categoriesBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txt_storageName_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
