@@ -32,6 +32,7 @@ namespace SuperMarket.UserControls
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btn_edit = new System.Windows.Forms.Button();
             this.txt_address = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -219,7 +220,11 @@ namespace SuperMarket.UserControls
             this.tableAdapterManager.CustomersTableAdapter = null;
             this.tableAdapterManager.InvoicesTableAdapter = null;
             this.tableAdapterManager.OrdersTableAdapter = null;
+            this.tableAdapterManager.ProductPriceTableAdapter = null;
             this.tableAdapterManager.ProductsTableAdapter = null;
+            this.tableAdapterManager.SafeTableAdapter = null;
+            this.tableAdapterManager.SafeTransactionTableAdapter = null;
+            this.tableAdapterManager.StorageTableAdapter = null;
             this.tableAdapterManager.SupplierInvoiceProductTableAdapter = null;
             this.tableAdapterManager.SupplierInvoicesTableAdapter = null;
             this.tableAdapterManager.SuppliersTableAdapter = this.suppliersTableAdapter;
@@ -240,11 +245,10 @@ namespace SuperMarket.UserControls
             // 
             this.suppliersDataGridView.AllowUserToAddRows = false;
             this.suppliersDataGridView.AllowUserToDeleteRows = false;
-            this.suppliersDataGridView.AllowUserToResizeColumns = false;
             this.suppliersDataGridView.AllowUserToResizeRows = false;
             this.suppliersDataGridView.AutoGenerateColumns = false;
             this.suppliersDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.Purple;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
@@ -260,7 +264,7 @@ namespace SuperMarket.UserControls
             this.Address,
             this.CreationDate});
             this.suppliersDataGridView.DataSource = this.suppliersBindingSource;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -269,13 +273,21 @@ namespace SuperMarket.UserControls
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.suppliersDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.suppliersDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.suppliersDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.suppliersDataGridView.EnableHeadersVisualStyles = false;
             this.suppliersDataGridView.GridColor = System.Drawing.Color.Silver;
             this.suppliersDataGridView.Location = new System.Drawing.Point(0, 0);
             this.suppliersDataGridView.MultiSelect = false;
             this.suppliersDataGridView.Name = "suppliersDataGridView";
             this.suppliersDataGridView.ReadOnly = true;
-            this.suppliersDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.suppliersDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.suppliersDataGridView.Size = new System.Drawing.Size(1032, 445);
             this.suppliersDataGridView.TabIndex = 1;
             this.suppliersDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.suppliersDataGridView_CellMouseClick);

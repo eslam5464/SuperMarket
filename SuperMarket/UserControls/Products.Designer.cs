@@ -30,8 +30,9 @@ namespace SuperMarket.UserControls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txt_categoriename = new System.Windows.Forms.ComboBox();
             this.btn_remove = new System.Windows.Forms.Button();
             this.btn_edit = new System.Windows.Forms.Button();
@@ -78,17 +79,17 @@ namespace SuperMarket.UserControls
             this.label15 = new System.Windows.Forms.Label();
             this.spProducts_GetFullDetailsTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.spProducts_GetFullDetailsTableAdapter();
             this.tableAdapterManager = new SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager();
+            this.chk_generateBarCode = new System.Windows.Forms.CheckBox();
+            this.pcb_searchName = new System.Windows.Forms.PictureBox();
             this.pcb_searchBarCode = new System.Windows.Forms.PictureBox();
             this.pcb_searchID = new System.Windows.Forms.PictureBox();
-            this.pcb_searchName = new System.Windows.Forms.PictureBox();
-            this.chk_generateBarCode = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spProductsGetFullDetailsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchBarCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).BeginInit();
             this.SuspendLayout();
             // 
             // txt_categoriename
@@ -313,14 +314,14 @@ namespace SuperMarket.UserControls
             this.productsDataGridView.AllowUserToResizeRows = false;
             this.productsDataGridView.AutoGenerateColumns = false;
             this.productsDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.productsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.productsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.productsDataGridView.ColumnHeadersHeight = 40;
             this.productsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -336,14 +337,14 @@ namespace SuperMarket.UserControls
             this.CreationDate,
             this.PriceModificationDate});
             this.productsDataGridView.DataSource = this.spProductsGetFullDetailsBindingSource;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.productsDataGridView.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.productsDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.productsDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.productsDataGridView.EnableHeadersVisualStyles = false;
             this.productsDataGridView.GridColor = System.Drawing.Color.Silver;
@@ -351,7 +352,14 @@ namespace SuperMarket.UserControls
             this.productsDataGridView.MultiSelect = false;
             this.productsDataGridView.Name = "productsDataGridView";
             this.productsDataGridView.ReadOnly = true;
-            this.productsDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.productsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.productsDataGridView.Size = new System.Drawing.Size(1032, 331);
             this.productsDataGridView.TabIndex = 1;
             this.productsDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.productsDataGridView_CellMouseClick);
@@ -646,6 +654,32 @@ namespace SuperMarket.UserControls
             this.tableAdapterManager.UserLevelAccessTableAdapter = null;
             this.tableAdapterManager.UsersTableAdapter = null;
             // 
+            // chk_generateBarCode
+            // 
+            this.chk_generateBarCode.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_generateBarCode.Location = new System.Drawing.Point(402, 289);
+            this.chk_generateBarCode.Name = "chk_generateBarCode";
+            this.chk_generateBarCode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chk_generateBarCode.Size = new System.Drawing.Size(20, 20);
+            this.chk_generateBarCode.TabIndex = 214;
+            this.chk_generateBarCode.UseVisualStyleBackColor = true;
+            this.chk_generateBarCode.CheckedChanged += new System.EventHandler(this.chk_generateBarCode_CheckedChanged);
+            // 
+            // pcb_searchName
+            // 
+            this.pcb_searchName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_searchName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchName.Location = new System.Drawing.Point(775, 120);
+            this.pcb_searchName.Name = "pcb_searchName";
+            this.pcb_searchName.Size = new System.Drawing.Size(45, 45);
+            this.pcb_searchName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_searchName.TabIndex = 191;
+            this.pcb_searchName.TabStop = false;
+            this.pcb_searchName.Click += new System.EventHandler(this.pcb_searchName_Click);
+            this.pcb_searchName.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
+            this.pcb_searchName.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
+            this.pcb_searchName.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
+            // 
             // pcb_searchBarCode
             // 
             this.pcb_searchBarCode.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -675,32 +709,6 @@ namespace SuperMarket.UserControls
             this.pcb_searchID.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
             this.pcb_searchID.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
             this.pcb_searchID.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
-            // 
-            // pcb_searchName
-            // 
-            this.pcb_searchName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_searchName.Location = new System.Drawing.Point(775, 120);
-            this.pcb_searchName.Name = "pcb_searchName";
-            this.pcb_searchName.Size = new System.Drawing.Size(45, 45);
-            this.pcb_searchName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_searchName.TabIndex = 191;
-            this.pcb_searchName.TabStop = false;
-            this.pcb_searchName.Click += new System.EventHandler(this.pcb_searchName_Click);
-            this.pcb_searchName.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
-            this.pcb_searchName.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
-            this.pcb_searchName.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
-            // 
-            // chk_generateBarCode
-            // 
-            this.chk_generateBarCode.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_generateBarCode.Location = new System.Drawing.Point(402, 289);
-            this.chk_generateBarCode.Name = "chk_generateBarCode";
-            this.chk_generateBarCode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chk_generateBarCode.Size = new System.Drawing.Size(20, 20);
-            this.chk_generateBarCode.TabIndex = 214;
-            this.chk_generateBarCode.UseVisualStyleBackColor = true;
-            this.chk_generateBarCode.CheckedChanged += new System.EventHandler(this.chk_generateBarCode_CheckedChanged);
             // 
             // Products
             // 
@@ -747,9 +755,9 @@ namespace SuperMarket.UserControls
             ((System.ComponentModel.ISupportInitialize)(this.productsDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spProductsGetFullDetailsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchBarCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

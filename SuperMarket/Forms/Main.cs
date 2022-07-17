@@ -246,7 +246,10 @@ namespace SuperMarket.Forms
         private void CheckUserLevelAccess()
         {
             // TODO: finish level access
-            btn_adminPanel.Visible = true;
+            if (LoggedUser.UserLevel == "admin")
+            {
+                btn_adminPanel.Visible = true;
+            }
         }
 
         private void SelectButton(Button SelectedButton, bool HideAllSubMenus)

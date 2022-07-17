@@ -32,6 +32,7 @@ namespace SuperMarket.UserControls
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.ordersDataGridView = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,7 +49,6 @@ namespace SuperMarket.UserControls
             this.superMarketDataSet = new SuperMarket.SuperMarketDataSet();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.pcb_search_by_customer_name = new System.Windows.Forms.PictureBox();
             this.txt_customername = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txt_invoiceno = new System.Windows.Forms.TextBox();
@@ -56,17 +56,18 @@ namespace SuperMarket.UserControls
             this.panel4 = new System.Windows.Forms.Panel();
             this.btn_exportPDF = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pcb_search_by_invoiceno = new System.Windows.Forms.PictureBox();
             this.ordersTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.OrdersTableAdapter();
             this.tableAdapterManager = new SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager();
+            this.pcb_search_by_customer_name = new System.Windows.Forms.PictureBox();
+            this.pcb_search_by_invoiceno = new System.Windows.Forms.PictureBox();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_customer_name)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_customer_name)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_invoiceno)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,7 +109,7 @@ namespace SuperMarket.UserControls
             this.CreatedByUserId,
             this.CreatedByUserFullName});
             this.ordersDataGridView.DataSource = this.ordersBindingSource;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -123,7 +124,14 @@ namespace SuperMarket.UserControls
             this.ordersDataGridView.MultiSelect = false;
             this.ordersDataGridView.Name = "ordersDataGridView";
             this.ordersDataGridView.ReadOnly = true;
-            this.ordersDataGridView.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ordersDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.ordersDataGridView.Size = new System.Drawing.Size(1032, 536);
             this.ordersDataGridView.TabIndex = 1;
             this.ordersDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ordersDataGridView_CellMouseClick);
@@ -233,21 +241,6 @@ namespace SuperMarket.UserControls
             this.panel2.Size = new System.Drawing.Size(327, 100);
             this.panel2.TabIndex = 19;
             // 
-            // pcb_search_by_customer_name
-            // 
-            this.pcb_search_by_customer_name.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_search_by_customer_name.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_search_by_customer_name.Location = new System.Drawing.Point(270, 42);
-            this.pcb_search_by_customer_name.Name = "pcb_search_by_customer_name";
-            this.pcb_search_by_customer_name.Size = new System.Drawing.Size(45, 45);
-            this.pcb_search_by_customer_name.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_search_by_customer_name.TabIndex = 138;
-            this.pcb_search_by_customer_name.TabStop = false;
-            this.pcb_search_by_customer_name.Click += new System.EventHandler(this.pcb_search_by_customer_name_Click);
-            this.pcb_search_by_customer_name.DoubleClick += new System.EventHandler(this.pcb_search_by_customer_name_DoubleClick);
-            this.pcb_search_by_customer_name.MouseEnter += new System.EventHandler(this.pcb_search_by_MouseEnter);
-            this.pcb_search_by_customer_name.MouseLeave += new System.EventHandler(this.pcb_search_by_MouseLeave);
-            // 
             // txt_customername
             // 
             this.txt_customername.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -339,6 +332,44 @@ namespace SuperMarket.UserControls
             this.panel1.Size = new System.Drawing.Size(328, 100);
             this.panel1.TabIndex = 18;
             // 
+            // ordersTableAdapter
+            // 
+            this.ordersTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.CategoriesTableAdapter = null;
+            this.tableAdapterManager.CustomersTableAdapter = null;
+            this.tableAdapterManager.InvoicesTableAdapter = null;
+            this.tableAdapterManager.OrdersTableAdapter = this.ordersTableAdapter;
+            this.tableAdapterManager.ProductPriceTableAdapter = null;
+            this.tableAdapterManager.ProductsTableAdapter = null;
+            this.tableAdapterManager.SafeTableAdapter = null;
+            this.tableAdapterManager.SafeTransactionTableAdapter = null;
+            this.tableAdapterManager.StorageTableAdapter = null;
+            this.tableAdapterManager.SupplierInvoiceProductTableAdapter = null;
+            this.tableAdapterManager.SupplierInvoicesTableAdapter = null;
+            this.tableAdapterManager.SuppliersTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UserLevelAccessTableAdapter = null;
+            this.tableAdapterManager.UsersTableAdapter = null;
+            // 
+            // pcb_search_by_customer_name
+            // 
+            this.pcb_search_by_customer_name.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_search_by_customer_name.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_search_by_customer_name.Location = new System.Drawing.Point(270, 42);
+            this.pcb_search_by_customer_name.Name = "pcb_search_by_customer_name";
+            this.pcb_search_by_customer_name.Size = new System.Drawing.Size(45, 45);
+            this.pcb_search_by_customer_name.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_search_by_customer_name.TabIndex = 138;
+            this.pcb_search_by_customer_name.TabStop = false;
+            this.pcb_search_by_customer_name.Click += new System.EventHandler(this.pcb_search_by_customer_name_Click);
+            this.pcb_search_by_customer_name.DoubleClick += new System.EventHandler(this.pcb_search_by_customer_name_DoubleClick);
+            this.pcb_search_by_customer_name.MouseEnter += new System.EventHandler(this.pcb_search_by_MouseEnter);
+            this.pcb_search_by_customer_name.MouseLeave += new System.EventHandler(this.pcb_search_by_MouseLeave);
+            // 
             // pcb_search_by_invoiceno
             // 
             this.pcb_search_by_invoiceno.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -353,25 +384,6 @@ namespace SuperMarket.UserControls
             this.pcb_search_by_invoiceno.DoubleClick += new System.EventHandler(this.pcb_search_by_invoiceno_DoubleClick);
             this.pcb_search_by_invoiceno.MouseEnter += new System.EventHandler(this.pcb_search_by_MouseEnter);
             this.pcb_search_by_invoiceno.MouseLeave += new System.EventHandler(this.pcb_search_by_MouseLeave);
-            // 
-            // ordersTableAdapter
-            // 
-            this.ordersTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.CategoriesTableAdapter = null;
-            this.tableAdapterManager.CustomersTableAdapter = null;
-            this.tableAdapterManager.InvoicesTableAdapter = null;
-            this.tableAdapterManager.OrdersTableAdapter = this.ordersTableAdapter;
-            this.tableAdapterManager.ProductsTableAdapter = null;
-            this.tableAdapterManager.SupplierInvoiceProductTableAdapter = null;
-            this.tableAdapterManager.SupplierInvoicesTableAdapter = null;
-            this.tableAdapterManager.SuppliersTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            this.tableAdapterManager.UserLevelAccessTableAdapter = null;
-            this.tableAdapterManager.UsersTableAdapter = null;
             // 
             // Orders
             // 
@@ -391,10 +403,10 @@ namespace SuperMarket.UserControls
             ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_customer_name)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_customer_name)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_invoiceno)).EndInit();
             this.ResumeLayout(false);
 

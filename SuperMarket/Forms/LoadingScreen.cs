@@ -96,6 +96,8 @@ namespace SuperMarket.Forms
                             Logger.Log("cant find serial key file",
                                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
                             Security.OpenFormMain = false;
+
+                            this.Close();
                         }
                         else if (SerialKeyCheckOutput == "200")
                         {
@@ -125,16 +127,24 @@ namespace SuperMarket.Forms
                                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.ERROR);
 
                             this.Hide();
-                            LicenseKeyValidator frm_license = new LicenseKeyValidator();
-                            frm_license.TopMost = true;
+
+                            LicenseKeyValidator frm_license = new LicenseKeyValidator
+                            {
+                                TopMost = true
+                            };
                             frm_license.ShowDialog();
+
                             this.Show();
+
+                            progressBar.Value = 0;
+                            timer_loading.Start();
                         }
                         else
                         {
                             Logger.Log("unknown error",
                                      System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
                             Security.OpenFormMain = false;
+                            this.Close();
                         }
                     }
 

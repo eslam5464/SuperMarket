@@ -32,6 +32,7 @@ namespace SuperMarket.UserControls
             this.btn_openBackupLocation = new System.Windows.Forms.Button();
             this.btn_getSerial = new System.Windows.Forms.Button();
             this.txt_serialKey = new System.Windows.Forms.TextBox();
+            this.btn_restoreDatabase = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_openBackupLocation
@@ -77,10 +78,26 @@ namespace SuperMarket.UserControls
             this.txt_serialKey.Size = new System.Drawing.Size(512, 45);
             this.txt_serialKey.TabIndex = 202;
             // 
+            // btn_restoreDatabase
+            // 
+            this.btn_restoreDatabase.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_restoreDatabase.BackColor = System.Drawing.Color.Purple;
+            this.btn_restoreDatabase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_restoreDatabase.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_restoreDatabase.ForeColor = System.Drawing.Color.White;
+            this.btn_restoreDatabase.Location = new System.Drawing.Point(34, 110);
+            this.btn_restoreDatabase.Name = "btn_restoreDatabase";
+            this.btn_restoreDatabase.Size = new System.Drawing.Size(207, 50);
+            this.btn_restoreDatabase.TabIndex = 203;
+            this.btn_restoreDatabase.Text = "Restore Database";
+            this.btn_restoreDatabase.UseVisualStyleBackColor = false;
+            this.btn_restoreDatabase.Click += new System.EventHandler(this.btn_restoreDatabase_Click);
+            // 
             // AdminPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btn_restoreDatabase);
             this.Controls.Add(this.txt_serialKey);
             this.Controls.Add(this.btn_getSerial);
             this.Controls.Add(this.btn_openBackupLocation);
@@ -98,5 +115,6 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.Button btn_openBackupLocation;
         private System.Windows.Forms.Button btn_getSerial;
         private System.Windows.Forms.TextBox txt_serialKey;
+        private System.Windows.Forms.Button btn_restoreDatabase;
     }
 }

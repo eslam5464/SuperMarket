@@ -243,9 +243,9 @@ namespace SuperMarket.UserControls
                     Logger.Log($"user is trying to remove {CategoryName}",
                         System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-                    if (MessageBox.Show($"هل تريد ان تمسح {CategoryName}", "انتظر",
+                    if (MessageBox.Show($"هل تريد ان تمسح < {CategoryName} > لانه سوف يتم مسح جميع المنتجات المرتبطه به", "انتظر",
                                 MessageBoxButtons.YesNo,
-                                MessageBoxIcon.Information) == DialogResult.Yes)
+                                MessageBoxIcon.Warning) == DialogResult.Yes)
                     {
                         await Classes.DataAccess.Categories.RemoveCategory(CategoryID);
                         LoadDataGrid(Classes.DataAccess.Categories.LoadCategories());
@@ -421,9 +421,9 @@ namespace SuperMarket.UserControls
         {
             if (txt_storageNameEdit.SelectedIndex != -1)
             {
-                if (MessageBox.Show($"هل انت متأكد من مسح {txt_storageName.Text} ", "انتظر",
+                if (MessageBox.Show($"هل انت متأكد من مسح < {txt_storageNameEdit.Text} > لانه سوف يتم مسح جميع التصنيفات المرتبطه به", "انتظر",
                     MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Information) == DialogResult.Yes)
+                    MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     await Classes.DataAccess.Storages.RemoveStorage(int.Parse(txt_storageNameEdit.SelectedValue.ToString()));
                     RefreshComboBoxes();
@@ -456,10 +456,6 @@ namespace SuperMarket.UserControls
                     {
                         MessageBox.Show("لا يمكن تعديل اسم المخزن لانه غير موجود", "حدث خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }
-                else
-                {
-                    MessageBox.Show("test");
                 }
             }
             else

@@ -37,7 +37,10 @@ namespace SuperMarket.Forms
 
         private void btn_about_Click(object sender, EventArgs e)
         {
-            new About().ShowDialog();
+            About frm_about = new About();
+            About.AdditionalInfo = "هذا البرنامج غير مفعل برجاء ادخال مفتاح الترخيص";
+            frm_about.TopMost = true;
+            frm_about.ShowDialog();
         }
 
         private void btn_close_Click(object sender, EventArgs e)
@@ -49,8 +52,8 @@ namespace SuperMarket.Forms
         {
             Logger.Log("Entered the serial & checked it", System.Reflection.MethodInfo.GetCurrentMethod().Name,
                this.Name, Logger.INFO);
-            string SerialKey = $"{tb_serial1.Text}-{tb_serial2.Text}-{tb_serial3.Text}-" +
-                $"{tb_serial4.Text}-{tb_serial5.Text}-{tb_serial6.Text}-{tb_serial7.Text}";
+            string SerialKey = $"{tb_serial1.Text.ToUpper()}-{tb_serial2.Text.ToUpper()}-{tb_serial3.Text.ToUpper()}-" +
+                $"{tb_serial4.Text.ToUpper()}-{tb_serial5.Text.ToUpper()}-{tb_serial6.Text.ToUpper()}-{tb_serial7.Text.ToUpper()}";
 
             Security.SaveLicenseKeyInAppAsync(SerialKey);
 
@@ -60,7 +63,7 @@ namespace SuperMarket.Forms
             {
                 Logger.Log("serial key is correct closing the form SerialKeyCheck", System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-                MessageBox.Show("الرقم السري صحيح. البرنامج سوف يغلق الأن بـرجاء فتحه مره أخرى");
+                MessageBox.Show("مفتاح الترخيص صحيح.. سوف يتم بدا البرنامج","عملية ناجحه");
 
                 Close();
             }

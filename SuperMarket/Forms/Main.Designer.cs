@@ -330,6 +330,7 @@ namespace SuperMarket.Forms
             this.btn_reports.Text = "   تقارير";
             this.btn_reports.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_reports.UseVisualStyleBackColor = true;
+            this.btn_reports.Visible = false;
             this.btn_reports.Click += new System.EventHandler(this.btn_reports_Click);
             // 
             // pan_billing
@@ -545,11 +546,12 @@ namespace SuperMarket.Forms
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(140, 6);
+            this.label2.Location = new System.Drawing.Point(109, 7);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(75, 52);
+            this.label2.Size = new System.Drawing.Size(134, 52);
             this.label2.TabIndex = 15;
-            this.label2.Text = "بـرنامج\r\nالمخازن";
+            this.label2.Text = "برنامج المخازن\r\nوالمبيعات";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 

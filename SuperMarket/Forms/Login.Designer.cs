@@ -96,12 +96,12 @@ namespace SuperMarket.Forms
             this.lbl_appName.AutoSize = true;
             this.lbl_appName.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_appName.ForeColor = System.Drawing.Color.Purple;
-            this.lbl_appName.Location = new System.Drawing.Point(112, 9);
+            this.lbl_appName.Location = new System.Drawing.Point(35, 9);
             this.lbl_appName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbl_appName.Name = "lbl_appName";
-            this.lbl_appName.Size = new System.Drawing.Size(199, 32);
+            this.lbl_appName.Size = new System.Drawing.Size(353, 32);
             this.lbl_appName.TabIndex = 83;
-            this.lbl_appName.Text = "برنامج اداره المخازن";
+            this.lbl_appName.Text = "برنامج اداره برنامج المخازن والمبيعات";
             // 
             // btn_close
             // 

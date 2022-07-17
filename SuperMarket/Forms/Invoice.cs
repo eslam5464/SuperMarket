@@ -51,5 +51,23 @@ namespace SuperMarket.Forms
         {
             this.Close();
         }
+
+        private void pic_help_MouseEnter(object sender, EventArgs e)
+        {
+            pic_help.BackColor = Color.Goldenrod;
+        }
+
+        private void pic_help_MouseLeave(object sender, EventArgs e)
+        {
+            pic_help.BackColor = Properties.Settings.Default.AppColor;
+        }
+
+        private void pic_help_Click(object sender, EventArgs e)
+        {
+            Logger.Log("user clicked on help button",
+                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+            new About().ShowDialog();
+        }
     }
 }

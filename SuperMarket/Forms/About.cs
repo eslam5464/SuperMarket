@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace SuperMarket.Forms
@@ -15,13 +16,10 @@ namespace SuperMarket.Forms
         {
             BackColor = Properties.Settings.Default.AppColor;
 
-            if (AdditionalInfo != "")
+            if (AdditionalInfo.Trim() != "")
             {
-                lbl_info.Visible = true;
-                lbl_info.Text = AdditionalInfo;
+                lbl_additionalInfo.Text = AdditionalInfo;
             }
-            else
-                lbl_info.Visible = false;
 
             SetAppVersion();
         }
@@ -32,6 +30,11 @@ namespace SuperMarket.Forms
             System.Diagnostics.FileVersionInfo fvi = System.Diagnostics.FileVersionInfo.GetVersionInfo(assembly.Location);
             string AppVersion = fvi.FileVersion;
             lbl_Version.Text += $" {AppVersion}";
+        }
+
+        private void btn_close_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

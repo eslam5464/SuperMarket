@@ -513,6 +513,7 @@
     <None Include="Resources\Notification_warning.png" />
     <None Include="Resources\icons8-calculate-48.png" />
     <None Include="Resources\icons8-admin-settings-male-48.png" />
+    <Content Include="Classes\DataAccess\FullDatabase.sql" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

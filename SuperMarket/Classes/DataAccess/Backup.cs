@@ -9,10 +9,10 @@ namespace SuperMarket.Classes.DataAccess
 {
     class Backup
     {
-        private static string Date = DateTime.Now.ToString("yyyy-MM-dd "),
+        private static string Date = DateTime.Now.ToString("yyyy-MM-dd"),
                 BackupLocation = Security.GetDirecotryLocation() + @"\Backup",
                 BackupType = "Daily",
-                FileName = $@"\{Date} {BackupType}LocalBackup.bak";
+                FileName = $@"\{BackupType}LocalBackup {Date}.bak";
 
         public async static Task AllWeekly(DayOfWeek Day, string strDestination = ".", string Id = "Default")
         {

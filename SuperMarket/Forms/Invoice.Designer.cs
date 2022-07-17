@@ -47,9 +47,11 @@ namespace SuperMarket.Forms
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.pic_help = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.invoicesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_help)).BeginInit();
             this.SuspendLayout();
             // 
             // invoicesBindingSource
@@ -65,6 +67,7 @@ namespace SuperMarket.Forms
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.Purple;
+            this.panel1.Controls.Add(this.pic_help);
             this.panel1.Controls.Add(this.txt_invoiceid);
             this.panel1.Controls.Add(this.btn_close);
             this.panel1.Controls.Add(this.label9);
@@ -202,6 +205,21 @@ namespace SuperMarket.Forms
             this.panel8.Size = new System.Drawing.Size(674, 8);
             this.panel8.TabIndex = 14;
             // 
+            // pic_help
+            // 
+            this.pic_help.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pic_help.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pic_help.Image = global::SuperMarket.Properties.Resources.icons8_help_48;
+            this.pic_help.Location = new System.Drawing.Point(571, 11);
+            this.pic_help.Name = "pic_help";
+            this.pic_help.Size = new System.Drawing.Size(50, 41);
+            this.pic_help.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pic_help.TabIndex = 131;
+            this.pic_help.TabStop = false;
+            this.pic_help.Click += new System.EventHandler(this.pic_help_Click);
+            this.pic_help.MouseEnter += new System.EventHandler(this.pic_help_MouseEnter);
+            this.pic_help.MouseLeave += new System.EventHandler(this.pic_help_MouseLeave);
+            // 
             // Invoice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -232,6 +250,7 @@ namespace SuperMarket.Forms
             ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_help)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -253,5 +272,6 @@ namespace SuperMarket.Forms
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.PictureBox pic_help;
     }
 }

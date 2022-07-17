@@ -1,13 +1,8 @@
-﻿using SuperMarket.Classes;
+﻿using Dapper;
+using SuperMarket.Classes;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+using System.Data.SqlClient;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarket.UserControls
@@ -27,6 +22,23 @@ namespace SuperMarket.UserControls
         private void btn_getSerial_Click(object sender, EventArgs e)
         {
             txt_serialKey.Text = Properties.Settings.Default.LicenseKey;
+        }
+
+        private void btn_restoreDatabase_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var location = new SqlConnection(GlobalVars.LoadConnectionString("Default")))
+                {
+                    location.Execute($@"Restore database [SuperMarket] from disk = " +
+                                    $@"' C:\Users\Eslam\AppData\Local\Super Market System\Backup\DailyLocalBackup 2022-07-16.bak' " +
+                                    $@"with replace", new DynamicParameters());
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
