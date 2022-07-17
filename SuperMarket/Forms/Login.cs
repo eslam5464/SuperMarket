@@ -105,7 +105,8 @@ namespace SuperMarket.Forms
             if (Admins.Count == 0)
             {
                 string CPUID = Security.CPUID, MOBOID = Security.MOBOID;
-                Classes.Models.UserModel user = new Classes.Models.UserModel
+
+                Classes.Models.UserModel AdminUser = new Classes.Models.UserModel
                 {
                     Username = await Security.EncryptAsync("admin", CPUID + MOBOID),
                     Password = await Security.EncryptAsync("passnot100%Safe", CPUID + MOBOID),
@@ -115,7 +116,19 @@ namespace SuperMarket.Forms
                     UserLevel = "admin",
                     ActiveState = true
                 };
-                Classes.DataAccess.Users.SaveUser(user);
+                Classes.DataAccess.Users.SaveUser(AdminUser);
+
+                Classes.Models.UserModel ManagerUser = new Classes.Models.UserModel
+                {
+                    Username = await Security.EncryptAsync("modeer", CPUID + MOBOID),
+                    Password = await Security.EncryptAsync("modeer", CPUID + MOBOID),
+                    FullName = "modeer",
+                    Phone = "0",
+                    Email = "NA",
+                    UserLevel = "0",
+                    ActiveState = true
+                };
+                Classes.DataAccess.Users.SaveUser(ManagerUser);
             }
         }
 

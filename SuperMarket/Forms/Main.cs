@@ -398,9 +398,19 @@ namespace SuperMarket.Forms
             new About().ShowDialog();
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            await Methods.SendEmail("eslam5464@hotmail.com", "Eslam Mohamed", "Test subkect", "idk body");
+            string txt = "";
+            var AllDrives = Methods.GetAllDrivesInfo();
+            txt += "\tFree / Total\n";
+            foreach (var drive in AllDrives.Keys)
+            {
+                txt += $"{AllDrives[drive].Name} -> {Math.Round(double.Parse("" + AllDrives[drive].TotalFreeSpace) / 1024 / 1024 / 1024, 2) } GB /" +
+                    $" {Math.Round(double.Parse("" + AllDrives[drive].TotalSize) / 1024 / 1024 / 1024, 2)} GB\n";
+            }
+
+            //MessageBox.Show(txt);
+            //await Methods.SendEmail("eslam5464@hotmail.com", "Eslam Mohamed", "Test subkect", "idk body");
         }
 
         private void pic_help_MouseEnter(object sender, EventArgs e)

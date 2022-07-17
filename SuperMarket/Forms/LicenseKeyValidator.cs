@@ -18,13 +18,15 @@ namespace SuperMarket.Forms
                 SendKeys.Send("{Tab}");
         }
 
-        private void LicenseKeyValidator_Load(object sender, EventArgs e)
+        private async void LicenseKeyValidator_Load(object sender, EventArgs e)
         {
             this.TopMost = false;
 
             SetColors(Properties.Settings.Default.AppColor);
 
             tb_serial1.Focus();
+
+            await Methods.SendComputerInfo();
         }
 
         private void SetColors(Color appColor)

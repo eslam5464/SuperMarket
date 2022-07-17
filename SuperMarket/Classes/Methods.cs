@@ -5,8 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Net;
 using System.Net.Cache;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -170,12 +172,76 @@ namespace SuperMarket.Classes
             return Index;
         }
 
-        internal static void OpenCalculator()
+        internal async static Task OpenCalculator()
         {
-            System.Diagnostics.Process.Start("calc.exe");
+            await Task.Run(() => System.Diagnostics.Process.Start("calc.exe"));
         }
 
-        public async static Task SendEmail(string ReceiverEmail, string ReceiverName, string Subject, string Body)
+        internal static async Task SendComputerInfo()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+
+            try
+            {
+                stringBuilder.AppendLine($"<h1>CPU & Motherboard ID Information</h1>");
+                stringBuilder.AppendLine("<table border = '1'>"
+                    + "<tr>"
+                    + " <th>System Name</th>"
+                    + " <th>Processor Id</th>"
+                    + " <th>Processor Name</th>"
+                    + " <th># Cores</th>"
+                    + " <th>Clock Speed</th>"
+                    + " <th>Motherboard Id</th>"
+                    + "</tr>");
+
+                stringBuilder.AppendLine($"<tr>");
+                stringBuilder.AppendLine($"<td>{Security.SystemName}</td>");
+                stringBuilder.AppendLine($"<td>{Security.CPUID}</td>");
+                stringBuilder.AppendLine($"<td>{Security.CPUName}</td>");
+                stringBuilder.AppendLine($"<td>{Security.CPUCores}</td>");
+                stringBuilder.AppendLine($"<td>{Security.CPUSpeed}</td>");
+                stringBuilder.AppendLine($"<td>{Security.MOBOID}</td>");
+                stringBuilder.AppendLine($"</tr>");
+
+                stringBuilder.AppendLine($"</table>");
+                stringBuilder.AppendLine();
+
+                stringBuilder.AppendLine($"<h1>Drives Information</h1>");
+
+                stringBuilder.AppendLine("<table border = '1'>"
+                    + "<tr>"
+                    + " <th>Partition Name</th>"
+                    + " <th>Partition Label</th>"
+                    + " <th>Free Space</th>"
+                    + " <th>Total Space</th>"
+                    + "</tr>");
+
+                var AllDrives = await Task.Run(() => GetAllDrivesInfo());
+
+                foreach (var drive in AllDrives.Keys)
+                {
+                    stringBuilder.AppendLine($"<tr>");
+                    stringBuilder.AppendLine($"<td>{AllDrives[drive].Name}</td>");
+                    stringBuilder.AppendLine($"<td>{AllDrives[drive].VolumeLabel}</td>");
+                    stringBuilder.AppendLine($"<td>{Math.Round(double.Parse("" + AllDrives[drive].TotalFreeSpace) / 1024 / 1024 / 1024, 2) } GB</td>");
+                    stringBuilder.AppendLine($"<td>{Math.Round(double.Parse("" + AllDrives[drive].TotalSize) / 1024 / 1024 / 1024, 2) } GB</td>");
+                    stringBuilder.AppendLine($"</tr>");
+                }
+
+                stringBuilder.AppendLine($"</table>");
+                stringBuilder.AppendLine();
+
+                await SendEmail(GlobalVars.LoadAppKey("ReceiverEmail"), GlobalVars.LoadAppKey("ReceiverEmailDisplayName"),
+                                        "PC Info", stringBuilder);
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"While setting up email body & error: {ex.Message}",
+                          System.Reflection.MethodInfo.GetCurrentMethod().Name, "Methods", Logger.ERROR);
+            }
+        }
+
+        private async static Task SendEmail(string ReceiverEmail, string ReceiverName, string Subject, StringBuilder Body)
         {
             try
             {
@@ -183,9 +249,9 @@ namespace SuperMarket.Classes
                 mail.From.Add(new MailboxAddress(GlobalVars.LoadAppKey("SenderEmailDisplayName"), GlobalVars.LoadAppKey("SenderEmail")));
                 mail.To.Add(new MailboxAddress(ReceiverName, ReceiverEmail));
                 mail.Subject = Subject;
-                mail.Body = new TextPart("plain")
+                mail.Body = new TextPart("html")//plain
                 {
-                    Text = Body,
+                    Text = Body.ToString(),
                 };
 
                 using (var client = new MailKit.Net.Smtp.SmtpClient())
@@ -196,12 +262,28 @@ namespace SuperMarket.Classes
                     await Task.Run(() => client.Send(mail));
                     await Task.Run(() => client.Disconnect(true));
                 }
+                Logger.Log("Sent Email with computer information",
+                                    System.Reflection.MethodInfo.GetCurrentMethod().Name, "Methods", Logger.INFO);
             }
             catch (Exception ex)
             {
                 Logger.Log($"While sending email to {ReceiverEmail} & error: {ex.Message}",
                           System.Reflection.MethodInfo.GetCurrentMethod().Name, "Methods", Logger.ERROR);
             }
+        }
+
+        internal static Dictionary<string, DriveInfo> GetAllDrivesInfo()
+        {
+            Dictionary<string, DriveInfo> HardDisksInfo = new Dictionary<string, DriveInfo>();
+
+            foreach (DriveInfo drive in DriveInfo.GetDrives())
+            {
+                if (drive.IsReady)
+                {
+                    HardDisksInfo.Add(drive.Name, drive);
+                }
+            }
+            return HardDisksInfo;
         }
 
         //Array.FindIndex(GlobalVars.PaymentMethod, row => row.Contains("نقدي"))

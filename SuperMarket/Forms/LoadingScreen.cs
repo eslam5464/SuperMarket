@@ -132,12 +132,24 @@ namespace SuperMarket.Forms
                             {
                                 TopMost = true
                             };
+
                             frm_license.ShowDialog();
 
                             this.Show();
 
-                            progressBar.Value = 0;
-                            timer_loading.Start();
+                            LicenseKey = Properties.Settings.Default.LicenseKey;
+
+                            SerialKeyCheckOutput = await Security.CheckLicenseKeyValidityAsync(LicenseKey);
+
+                            if (SerialKeyCheckOutput == "200")
+                            {
+                                progressBar.Value = 0;
+                                timer_loading.Start();
+                            }
+                            else
+                            {
+                                Close();
+                            }
                         }
                         else
                         {

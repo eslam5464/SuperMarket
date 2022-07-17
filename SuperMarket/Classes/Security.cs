@@ -17,7 +17,7 @@ namespace SuperMarket.Classes
             FileExtention = ".enc",
             SerialKeyFile = DirectoryLocation + SerialKeyFileName + FileExtention;
 
-        public static string CPUID = "", MOBOID = "";
+        public static string CPUID = "", MOBOID = "", CPUName = "", CPUCores = "", CPUSpeed = "", SystemName = "";
 
         public static bool OpenFormMain = false;
 
@@ -32,6 +32,10 @@ namespace SuperMarket.Classes
             {
                 CPUID = await Task.Run(() => GetCpuID());
                 MOBOID = await Task.Run(() => GetMotherBoardIDAsync());
+                CPUName = await Task.Run(() => GetCpuInfo("Name"));
+                CPUCores = await Task.Run(() => GetCpuInfo("NumberOfCores"));
+                CPUSpeed = await Task.Run(() => GetCpuInfo("CurrentClockSpeed"));
+                SystemName = await Task.Run(() => GetCpuInfo("SystemName"));
             }
 
             await SerialKeyFileExistsAsync();
@@ -75,6 +79,10 @@ namespace SuperMarket.Classes
             {
                 CPUID = await Task.Run(() => GetCpuID());
                 MOBOID = await Task.Run(() => GetMotherBoardIDAsync());
+                CPUName = await Task.Run(() => GetCpuInfo("Name"));
+                CPUCores = await Task.Run(() => GetCpuInfo("NumberOfCores"));
+                CPUSpeed = await Task.Run(() => GetCpuInfo("CurrentClockSpeed"));
+                SystemName = await Task.Run(() => GetCpuInfo("SystemName"));
             }
 
             await SerialKeyFileExistsAsync();
@@ -123,7 +131,7 @@ namespace SuperMarket.Classes
             return state;
         }
 
-        #region Motherboard & CPU methods
+        #region Computer information
 
         private async static Task<string> GetMotherBoardIDAsync()
         {
@@ -152,6 +160,20 @@ namespace SuperMarket.Classes
             {
                 var cpuid = await Task.Run(() => managementObject.Properties["processorID"].Value.ToString());
                 return cpuid;
+            }
+
+            return "";
+        }
+
+        private async static Task<string> GetCpuInfo(string PropertyName)
+        {
+            ManagementClass management = await Task.Run(() => new ManagementClass("win32_processor"));
+            ManagementObjectCollection managementObjectCollection = await Task.Run(() => management.GetInstances());
+
+            foreach (var managementObject in managementObjectCollection)
+            {
+                string cpuName = await Task.Run(() => managementObject.Properties[PropertyName].Value.ToString().Trim());
+                return cpuName.Trim();
             }
 
             return "";

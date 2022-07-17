@@ -794,9 +794,9 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void pcb_calculator_Click(object sender, EventArgs e)
+        private async void pcb_calculator_Click(object sender, EventArgs e)
         {
-            Methods.OpenCalculator();
+            await Methods.OpenCalculator();
         }
     }
 }
