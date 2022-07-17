@@ -1,4 +1,5 @@
-﻿using QRCoder;
+﻿using MimeKit;
+using QRCoder;
 using SuperMarket.Classes.Helpers;
 using System;
 using System.Collections.Generic;
@@ -172,6 +173,35 @@ namespace SuperMarket.Classes
         internal static void OpenCalculator()
         {
             System.Diagnostics.Process.Start("calc.exe");
+        }
+
+        public async static Task SendEmail(string ReceiverEmail, string ReceiverName, string Subject, string Body)
+        {
+            try
+            {
+                MimeMessage mail = new MimeMessage();
+                mail.From.Add(new MailboxAddress(GlobalVars.LoadAppKey("SenderEmailDisplayName"), GlobalVars.LoadAppKey("SenderEmail")));
+                mail.To.Add(new MailboxAddress(ReceiverName, ReceiverEmail));
+                mail.Subject = Subject;
+                mail.Body = new TextPart("plain")
+                {
+                    Text = Body,
+                };
+
+                using (var client = new MailKit.Net.Smtp.SmtpClient())
+                {
+                    //993 587
+                    await Task.Run(() => client.Connect("whm.secureattack.com", 465, true));
+                    await Task.Run(() => client.Authenticate("eslam5464@vaatu.dev", "N3C}3h(5lBtJ"));
+                    await Task.Run(() => client.Send(mail));
+                    await Task.Run(() => client.Disconnect(true));
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"While sending email to {ReceiverEmail} & error: {ex.Message}",
+                          System.Reflection.MethodInfo.GetCurrentMethod().Name, "Methods", Logger.ERROR);
+            }
         }
 
         //Array.FindIndex(GlobalVars.PaymentMethod, row => row.Contains("نقدي"))

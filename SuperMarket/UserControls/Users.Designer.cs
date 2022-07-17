@@ -1,7 +1,7 @@
 ﻿
 namespace SuperMarket.UserControls
 {
-    partial class Sellers
+    partial class Users
     {
         /// <summary> 
         /// Required designer variable.

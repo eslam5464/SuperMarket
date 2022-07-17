@@ -1,7 +1,5 @@
-﻿using Dapper;
-using SuperMarket.Classes;
+﻿using SuperMarket.Classes;
 using System;
-using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Windows.Forms;
 

@@ -14,7 +14,7 @@ namespace SuperMarket.Forms
         private readonly UserControls.Customers uc_customers = new UserControls.Customers();
         private readonly UserControls.Orders uc_orders = new UserControls.Orders();
         private readonly UserControls.Billing uc_billing = new UserControls.Billing();
-        private readonly UserControls.Sellers uc_sellers = new UserControls.Sellers();
+        private readonly UserControls.Users uc_sellers = new UserControls.Users();
         private readonly UserControls.BillsEdit uc_billsEdit = new UserControls.BillsEdit();
         private readonly UserControls.AdvancedSearch uc_advancedSearch = new UserControls.AdvancedSearch();
         private readonly UserControls.Suppliers uc_suppliers = new UserControls.Suppliers();
@@ -178,7 +178,7 @@ namespace SuperMarket.Forms
 
         private void btn_sellers_Click(object sender, EventArgs e)
         {
-            SelectButton(btn_sellers, true);
+            SelectButton(btn_users, true);
             uc_sellers.BringToFront();
         }
 
@@ -396,6 +396,11 @@ namespace SuperMarket.Forms
                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
             new About().ShowDialog();
+        }
+
+        private async void button1_Click(object sender, EventArgs e)
+        {
+            await Methods.SendEmail("eslam5464@hotmail.com", "Eslam Mohamed", "Test subkect", "idk body");
         }
 
         private void pic_help_MouseEnter(object sender, EventArgs e)

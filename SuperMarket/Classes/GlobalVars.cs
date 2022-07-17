@@ -27,5 +27,10 @@ namespace SuperMarket.Classes
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;
         }
+
+        internal static string LoadAppKey(string key)
+        {
+            return ConfigurationManager.AppSettings[key];
+        }
     }
 }

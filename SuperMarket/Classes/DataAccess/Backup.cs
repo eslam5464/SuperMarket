@@ -38,9 +38,9 @@ namespace SuperMarket.Classes.DataAccess
                 BackupLocation = strDestination;
             }
 
-            if (BackupLocation != "")
+            if (BackupLocation == "")
                 BackupLocation = Security.GetDirecotryLocation() + @"\Backup";
-            
+
             await All(strDestination, Id, false);
 
             foreach (var BackupFiles in new DirectoryInfo(BackupLocation).GetFiles()

@@ -1,5 +1,4 @@
 ﻿using SuperMarket.Classes;
-using SuperMarket.Classes.DataAccess;
 using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
@@ -11,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SuperMarket.UserControls
 {
-    public partial class Sellers : UserControl
+    public partial class Users : UserControl
     {
-        public Sellers()
+        public Users()
         {
             InitializeComponent();
         }
@@ -48,7 +47,7 @@ namespace SuperMarket.UserControls
         private void RefreshDataGrid()
         {
             usersDataGridView.DataSource = null;
-            List<UserModel> AllUsers = DecryptUsers(Users.LoadAtiveUsersNonAdmin());
+            List<UserModel> AllUsers = DecryptUsers(Classes.DataAccess.Users.LoadAtiveUsersNonAdmin());
 
             foreach (UserModel user in AllUsers)
             {
@@ -149,7 +148,7 @@ namespace SuperMarket.UserControls
                                 Email = "NA",
                                 UserLevel = txt_userLevel.SelectedValue.ToString()
                             };
-                            Users.UpdateUser(user);
+                            Classes.DataAccess.Users.UpdateUser(user);
 
                             RefreshDataGrid();
 
@@ -164,7 +163,7 @@ namespace SuperMarket.UserControls
                     {
                         if (txt_userLevel.SelectedIndex != -1)
                         {
-                            List<UserModel> AllUsers = Users.LoadAllUsers(true);
+                            List<UserModel> AllUsers = Classes.DataAccess.Users.LoadAllUsers(true);
 
                             var UserResult = AllUsers.FindAll(User => Security.Decrypt(User.Username,
                                 Security.CPUID + Security.MOBOID) == txt_Username.Text);
@@ -187,7 +186,7 @@ namespace SuperMarket.UserControls
                                         UserLevel = txt_userLevel.SelectedValue.ToString(),
                                         ActiveState = true
                                     };
-                                    Users.SaveUser(user);
+                                    Classes.DataAccess.Users.SaveUser(user);
 
                                     RefreshDataGrid();
 
@@ -284,7 +283,7 @@ namespace SuperMarket.UserControls
                 Logger.Log($"user is trying to search for seller by username: {txt_Username.Text}",
                               System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-                List<UserModel> AllUsers = Users.LoadAtiveUsersNonAdmin();
+                List<UserModel> AllUsers = Classes.DataAccess.Users.LoadAtiveUsersNonAdmin();
                 usersDataGridView.DataSource = null;
 
                 var user = AllUsers.FindAll(User => Security.Decrypt(User.Username, Security.CPUID + Security.MOBOID) == txt_Username.Text);
@@ -307,7 +306,7 @@ namespace SuperMarket.UserControls
 
                 usersDataGridView.DataSource = null;
 
-                List<UserModel> AllUsers = Users.LoadAtiveUsersNonAdmin();
+                List<UserModel> AllUsers = Classes.DataAccess.Users.LoadAtiveUsersNonAdmin();
                 var user = AllUsers.FindAll(User => User.FullName == txt_fullname.Text);
 
                 usersDataGridView.DataSource = DecryptUsers(user);
@@ -336,7 +335,7 @@ namespace SuperMarket.UserControls
                         Logger.Log($"user has removed seller: {UserName} with id: {UserId}",
                                   System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-                        Users.StopUser(UserId);
+                        Classes.DataAccess.Users.StopUser(UserId);
                         RefreshDataGrid();
                     }
                 }
@@ -361,7 +360,7 @@ namespace SuperMarket.UserControls
 
                 usersDataGridView.DataSource = null;
 
-                List<UserModel> AllUsers = Users.LoadAtiveUsersNonAdmin();
+                List<UserModel> AllUsers = Classes.DataAccess.Users.LoadAtiveUsersNonAdmin();
                 var user = AllUsers.FindAll(User => User.Phone == txt_mobailno.Text);
 
                 usersDataGridView.DataSource = DecryptUsers(user);
