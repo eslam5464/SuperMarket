@@ -104,5 +104,17 @@ namespace SuperMarket.Properties {
                 return ((string)(this["SuperMarketConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string BackupLocation {
+            get {
+                return ((string)(this["BackupLocation"]));
+            }
+            set {
+                this["BackupLocation"] = value;
+            }
+        }
     }
 }

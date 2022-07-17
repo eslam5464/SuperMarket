@@ -28,12 +28,13 @@ namespace SuperMarket.UserControls
         {
             try
             {
-                using (var location = new SqlConnection(GlobalVars.LoadConnectionString("Default")))
-                {
-                    location.Execute($@"Restore database [SuperMarket] from disk = " +
-                                    $@"' C:\Users\Eslam\AppData\Local\Super Market System\Backup\DailyLocalBackup 2022-07-16.bak' " +
-                                    $@"with replace", new DynamicParameters());
-                }
+                // TODO: finish restore database
+                //using (var location = new SqlConnection(GlobalVars.LoadConnectionString("Default")))
+                //{
+                //    location.Execute($@"Restore database [SuperMarket] from disk = " +
+                //                    $@"' C:\Users\Eslam\AppData\Local\Super Market System\Backup\DailyLocalBackup 2022-07-16.bak' " +
+                //                    $@"with replace", new DynamicParameters());
+                //}
             }
             catch (Exception ex)
             {

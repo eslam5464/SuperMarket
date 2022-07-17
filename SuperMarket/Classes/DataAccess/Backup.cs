@@ -10,23 +10,37 @@ namespace SuperMarket.Classes.DataAccess
     class Backup
     {
         private static string Date = DateTime.Now.ToString("yyyy-MM-dd"),
-                BackupLocation = Security.GetDirecotryLocation() + @"\Backup",
+                BackupLocation = Properties.Settings.Default.BackupLocation,
                 BackupType = "Daily",
                 FileName = $@"\{BackupType}LocalBackup {Date}.bak";
 
         public async static Task AllWeekly(DayOfWeek Day, string strDestination = ".", string Id = "Default")
         {
+            Date = DateTime.Now.ToString("yyyy-MM-dd");
+            BackupType = "Weekly";
+            FileName = $@"\{BackupType}LocalBackup {Date}.bak";
+
+            if (BackupLocation != "")
+                BackupLocation = Security.GetDirecotryLocation() + @"\Backup";
+
             if (DateTime.Now.DayOfWeek == Day)
                 await All(strDestination, Id, false);
         }
 
         public async static Task AllDaily(int NumOfMaxBackup = 10, string strDestination = ".", string Id = "Default")
         {
+            Date = DateTime.Now.ToString("yyyy-MM-dd");
+            BackupType = "Daily";
+            FileName = $@"\{BackupType}LocalBackup {Date}.bak";
+
             if (strDestination != ".")
             {
                 BackupLocation = strDestination;
             }
 
+            if (BackupLocation != "")
+                BackupLocation = Security.GetDirecotryLocation() + @"\Backup";
+            
             await All(strDestination, Id, false);
 
             foreach (var BackupFiles in new DirectoryInfo(BackupLocation).GetFiles()
@@ -38,7 +52,7 @@ namespace SuperMarket.Classes.DataAccess
             }
         }
 
-        public async static Task All(string strDestination = ".", string Id = "Default", bool Overwrite = false)
+        private async static Task All(string strDestination = ".", string Id = "Default", bool Overwrite = false)
         {
             if (!Directory.Exists(BackupLocation))
             {

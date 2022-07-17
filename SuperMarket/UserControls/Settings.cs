@@ -17,6 +17,7 @@ namespace SuperMarket.UserControls
         private void Settings_Load(object sender, EventArgs e)
         {
             SetupColorsDict();
+            // TODO: finish get backup folder
         }
 
         private void SetupColorsDict()
