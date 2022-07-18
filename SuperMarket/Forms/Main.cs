@@ -38,7 +38,6 @@ namespace SuperMarket.Forms
 
         private async void Main_Load(object sender, EventArgs e)
         {
-            SetColors(Properties.Settings.Default.AppColor);
 
             if (LoggedUser == null)
                 Close();
@@ -70,6 +69,8 @@ namespace SuperMarket.Forms
 
         private async Task FormInitialSetup()
         {
+            SetColors(Properties.Settings.Default.AppColor);
+
             this.WindowState = Properties.Settings.Default.WindowState;
 
             if (this.WindowState == FormWindowState.Minimized)
@@ -94,10 +95,8 @@ namespace SuperMarket.Forms
                 uc_products,
                 uc_customers,
                 uc_orders,
-                uc_billing,
                 uc_sellers,
                 uc_settings,
-                uc_billsEdit,
                 uc_reports,
                 uc_advancedSearch,
                 uc_suppliers,
@@ -105,6 +104,8 @@ namespace SuperMarket.Forms
                 uc_safe,
                 uc_blank,
                 uc_adminPanel,
+                uc_billsEdit,
+                uc_billing,
             };
 
             foreach (UserControl userControl in AllUserControls)
@@ -123,7 +124,19 @@ namespace SuperMarket.Forms
 
             HideSubMenu();
 
-            await CheckUserLevelAccess();
+            CheckUserLevelAccess();
+        }
+
+        public void testmethod()
+        {
+            if (btn_supplierInvoices.Visible == false && btn_suppliersEdit.Visible == false)
+            {
+                btn_suppliers.Visible = false;
+            }
+            else
+            {
+                btn_suppliers.Visible = true;
+            }
         }
 
         private void btn_dashborad_Click(object sender, EventArgs e)
@@ -160,8 +173,8 @@ namespace SuperMarket.Forms
 
         private void btn_billing_Click(object sender, EventArgs e)
         {
-            SelectButton(btn_billing, false);
             ShowSubMenu(pan_billing);
+            SelectButton(btn_billing, false);
             ShowBlankUC();
         }
 
@@ -208,9 +221,9 @@ namespace SuperMarket.Forms
 
         private void btn_suppliers_Click(object sender, EventArgs e)
         {
-            SelectButton(btn_suppliers, false);
-
             ShowSubMenu(pan_suppliers);
+
+            SelectButton(btn_suppliers, false);
 
             ShowBlankUC();
         }
@@ -246,10 +259,10 @@ namespace SuperMarket.Forms
             uc_blank.BringToFront();
         }
 
-        private async Task CheckUserLevelAccess()
+        private void CheckUserLevelAccess()
         {
             List<Classes.Models.UserLevelAccessModel> SearchedUserAccess =
-               await Task.Run(() => Classes.DataAccess.UserLevelAccess.GetUserLevelAccessParameter("UserId", "" + LoggedUser.Id));
+                Classes.DataAccess.UserLevelAccess.GetUserLevelAccessParameter("UserId", "" + LoggedUser.Id);
 
             if (SearchedUserAccess.Count > 0)
             {
@@ -266,6 +279,7 @@ namespace SuperMarket.Forms
                     btn_adminPanel.Visible = false;
                     btn_advancedSearch.Visible = false;
                 }
+                btn_suppliers.Visible = true;
 
                 btn_billingAdd.Visible = LoggedUserAccess.Billing;
                 btn_billingEdit.Visible = LoggedUserAccess.BillsEdit;
@@ -281,18 +295,17 @@ namespace SuperMarket.Forms
                 btn_suppliersEdit.Visible = LoggedUserAccess.SuppliersEdit;
                 btn_users.Visible = LoggedUserAccess.Users;
 
-                if (btn_billingAdd.Visible == false && btn_billingEdit.Visible == false)
-                {
-                    btn_billing.Visible = false;
-                }
+                //if (btn_billingAdd.Visible == false && btn_billingEdit.Visible == false)
+                //{
+                //    btn_billing.Visible = false;
+                //}
+                //else
+                //    btn_billing.Visible = true;
 
-                if (btn_supplierInvoices.Visible == false && btn_suppliersEdit.Visible == false)
-                {
-                    btn_suppliers.Visible = false;
-                }
-
-                pan_billing.Visible = false;
-                pan_suppliers.Visible = false;
+                //if (btn_supplierInvoices.Visible == false && btn_suppliersEdit.Visible == false)
+                //{
+                //    btn_suppliers.Visible = false;
+                //}
             }
         }
 
@@ -453,7 +466,8 @@ namespace SuperMarket.Forms
             //        $" {Math.Round(double.Parse("" + AllDrives[drive].TotalSize) / 1024 / 1024 / 1024, 2)} GB\n";
             //}
 
-
+            btn_suppliers.Visible = true;
+            Console.WriteLine(btn_supplierInvoices.Visible);
 
             //MessageBox.Show(txt);
             //await Methods.SendEmail("eslam5464@hotmail.com", "Eslam Mohamed", "Test subkect", "idk body");

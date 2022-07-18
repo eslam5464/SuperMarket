@@ -4,7 +4,7 @@ namespace SuperMarket.Classes
 {
     class GlobalVars
     {
-        private static readonly int maxQueryRows = 500;
+        private static readonly int maxQueryRows = 500, notificationTimeout = 10000;
         private static readonly string[] userLevels = { "مدير", "مشرف", "موظف" };
         private static readonly string[] paymentMethod = { "نقدي", "آجل", "نصف آجل" };
 
@@ -16,6 +16,11 @@ namespace SuperMarket.Classes
         public static string[] UserLevels
         {
             get { return userLevels; }
+        }
+
+        public static int NotificationTimeout
+        {
+            get { return notificationTimeout; }
         }
 
         public static int MaxQueryRows

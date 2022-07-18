@@ -38,7 +38,7 @@ namespace SuperMarket.Forms
             switch (this.Action)
             {
                 case EnmAction.Wait:
-                    timer1.Interval = 5000;
+                    timer1.Interval = Classes.GlobalVars.NotificationTimeout;
                     Action = EnmAction.Close;
                     break;
 
