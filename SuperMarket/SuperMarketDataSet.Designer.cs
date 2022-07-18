@@ -5150,9 +5150,17 @@ namespace SuperMarket {
             
             private global::System.Data.DataColumn columnReports;
             
-            private global::System.Data.DataColumn columnSellers;
-            
             private global::System.Data.DataColumn columnSettings;
+            
+            private global::System.Data.DataColumn columnUsers;
+            
+            private global::System.Data.DataColumn columnOrders;
+            
+            private global::System.Data.DataColumn columnSafe;
+            
+            private global::System.Data.DataColumn columnSupplierInvoices;
+            
+            private global::System.Data.DataColumn columnSuppliersEdit;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -5277,17 +5285,49 @@ namespace SuperMarket {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn SellersColumn {
+            public global::System.Data.DataColumn SettingsColumn {
                 get {
-                    return this.columnSellers;
+                    return this.columnSettings;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn SettingsColumn {
+            public global::System.Data.DataColumn UsersColumn {
                 get {
-                    return this.columnSettings;
+                    return this.columnUsers;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn OrdersColumn {
+                get {
+                    return this.columnOrders;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn SafeColumn {
+                get {
+                    return this.columnSafe;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn SupplierInvoicesColumn {
+                get {
+                    return this.columnSupplierInvoices;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn SuppliersEditColumn {
+                get {
+                    return this.columnSuppliersEdit;
                 }
             }
             
@@ -5328,7 +5368,24 @@ namespace SuperMarket {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public UserLevelAccessRow AddUserLevelAccessRow(int Id, long UserId, string UserFullName, string UserLevel, bool Billing, bool BillsEdit, bool Categories, bool Customers, bool Dashboard, bool Products, bool Reports, bool Sellers, bool Settings) {
+            public UserLevelAccessRow AddUserLevelAccessRow(
+                        int Id, 
+                        long UserId, 
+                        string UserFullName, 
+                        string UserLevel, 
+                        bool Billing, 
+                        bool BillsEdit, 
+                        bool Categories, 
+                        bool Customers, 
+                        bool Dashboard, 
+                        bool Products, 
+                        bool Reports, 
+                        bool Settings, 
+                        bool Users, 
+                        bool Orders, 
+                        bool Safe, 
+                        bool SupplierInvoices, 
+                        bool SuppliersEdit) {
                 UserLevelAccessRow rowUserLevelAccessRow = ((UserLevelAccessRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
@@ -5342,8 +5399,12 @@ namespace SuperMarket {
                         Dashboard,
                         Products,
                         Reports,
-                        Sellers,
-                        Settings};
+                        Settings,
+                        Users,
+                        Orders,
+                        Safe,
+                        SupplierInvoices,
+                        SuppliersEdit};
                 rowUserLevelAccessRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowUserLevelAccessRow);
                 return rowUserLevelAccessRow;
@@ -5384,8 +5445,12 @@ namespace SuperMarket {
                 this.columnDashboard = base.Columns["Dashboard"];
                 this.columnProducts = base.Columns["Products"];
                 this.columnReports = base.Columns["Reports"];
-                this.columnSellers = base.Columns["Sellers"];
                 this.columnSettings = base.Columns["Settings"];
+                this.columnUsers = base.Columns["Users"];
+                this.columnOrders = base.Columns["Orders"];
+                this.columnSafe = base.Columns["Safe"];
+                this.columnSupplierInvoices = base.Columns["SupplierInvoices"];
+                this.columnSuppliersEdit = base.Columns["SuppliersEdit"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5413,10 +5478,18 @@ namespace SuperMarket {
                 base.Columns.Add(this.columnProducts);
                 this.columnReports = new global::System.Data.DataColumn("Reports", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnReports);
-                this.columnSellers = new global::System.Data.DataColumn("Sellers", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSellers);
                 this.columnSettings = new global::System.Data.DataColumn("Settings", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSettings);
+                this.columnUsers = new global::System.Data.DataColumn("Users", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUsers);
+                this.columnOrders = new global::System.Data.DataColumn("Orders", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnOrders);
+                this.columnSafe = new global::System.Data.DataColumn("Safe", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSafe);
+                this.columnSupplierInvoices = new global::System.Data.DataColumn("SupplierInvoices", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSupplierInvoices);
+                this.columnSuppliersEdit = new global::System.Data.DataColumn("SuppliersEdit", typeof(bool), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSuppliersEdit);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AllowDBNull = false;
@@ -5433,8 +5506,12 @@ namespace SuperMarket {
                 this.columnDashboard.AllowDBNull = false;
                 this.columnProducts.AllowDBNull = false;
                 this.columnReports.AllowDBNull = false;
-                this.columnSellers.AllowDBNull = false;
                 this.columnSettings.AllowDBNull = false;
+                this.columnUsers.AllowDBNull = false;
+                this.columnOrders.AllowDBNull = false;
+                this.columnSafe.AllowDBNull = false;
+                this.columnSupplierInvoices.AllowDBNull = false;
+                this.columnSuppliersEdit.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8429,23 +8506,67 @@ namespace SuperMarket {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool Sellers {
-                get {
-                    return ((bool)(this[this.tableUserLevelAccess.SellersColumn]));
-                }
-                set {
-                    this[this.tableUserLevelAccess.SellersColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool Settings {
                 get {
                     return ((bool)(this[this.tableUserLevelAccess.SettingsColumn]));
                 }
                 set {
                     this[this.tableUserLevelAccess.SettingsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Users {
+                get {
+                    return ((bool)(this[this.tableUserLevelAccess.UsersColumn]));
+                }
+                set {
+                    this[this.tableUserLevelAccess.UsersColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Orders {
+                get {
+                    return ((bool)(this[this.tableUserLevelAccess.OrdersColumn]));
+                }
+                set {
+                    this[this.tableUserLevelAccess.OrdersColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Safe {
+                get {
+                    return ((bool)(this[this.tableUserLevelAccess.SafeColumn]));
+                }
+                set {
+                    this[this.tableUserLevelAccess.SafeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool SupplierInvoices {
+                get {
+                    return ((bool)(this[this.tableUserLevelAccess.SupplierInvoicesColumn]));
+                }
+                set {
+                    this[this.tableUserLevelAccess.SupplierInvoicesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool SuppliersEdit {
+                get {
+                    return ((bool)(this[this.tableUserLevelAccess.SuppliersEditColumn]));
+                }
+                set {
+                    this[this.tableUserLevelAccess.SuppliersEditColumn] = value;
                 }
             }
             
@@ -14823,12 +14944,16 @@ SELECT Id, Name, Contact, Address, CreationDate FROM Suppliers WHERE (Id = @Id)"
             tableMapping.ColumnMappings.Add("Dashboard", "Dashboard");
             tableMapping.ColumnMappings.Add("Products", "Products");
             tableMapping.ColumnMappings.Add("Reports", "Reports");
-            tableMapping.ColumnMappings.Add("Sellers", "Sellers");
             tableMapping.ColumnMappings.Add("Settings", "Settings");
+            tableMapping.ColumnMappings.Add("Users", "Users");
+            tableMapping.ColumnMappings.Add("Orders", "Orders");
+            tableMapping.ColumnMappings.Add("Safe", "Safe");
+            tableMapping.ColumnMappings.Add("SupplierInvoices", "SupplierInvoices");
+            tableMapping.ColumnMappings.Add("SuppliersEdit", "SuppliersEdit");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[UserLevelAccess] WHERE (([Id] = @Original_Id) AND ([UserId] = @Original_UserId) AND ([UserFullName] = @Original_UserFullName) AND ([UserLevel] = @Original_UserLevel) AND ([Billing] = @Original_Billing) AND ([BillsEdit] = @Original_BillsEdit) AND ([Categories] = @Original_Categories) AND ([Customers] = @Original_Customers) AND ([Dashboard] = @Original_Dashboard) AND ([Products] = @Original_Products) AND ([Reports] = @Original_Reports) AND ([Sellers] = @Original_Sellers) AND ([Settings] = @Original_Settings))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [UserLevelAccess] WHERE (([Id] = @Original_Id) AND ([UserId] = @Original_UserId) AND ([UserFullName] = @Original_UserFullName) AND ([UserLevel] = @Original_UserLevel) AND ([Billing] = @Original_Billing) AND ([BillsEdit] = @Original_BillsEdit) AND ([Categories] = @Original_Categories) AND ([Customers] = @Original_Customers) AND ([Dashboard] = @Original_Dashboard) AND ([Products] = @Original_Products) AND ([Reports] = @Original_Reports) AND ([Settings] = @Original_Settings) AND ([Orders] = @Original_Orders) AND ([Safe] = @Original_Safe) AND ([SupplierInvoices] = @Original_SupplierInvoices) AND ([SuppliersEdit] = @Original_SuppliersEdit) AND ([Users] = @Original_Users))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserId", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -14841,14 +14966,17 @@ SELECT Id, Name, Contact, Address, CreationDate FROM Suppliers WHERE (Id = @Id)"
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Dashboard", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Dashboard", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Products", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Products", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Reports", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reports", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Sellers", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sellers", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Settings", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Settings", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Orders", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Orders", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Safe", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Safe", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SupplierInvoices", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SupplierInvoices", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SuppliersEdit", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SuppliersEdit", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Users", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Users", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[UserLevelAccess] ([Id], [UserId], [UserFullName], [UserLevel], [Billing], [BillsEdit], [Categories], [Customers], [Dashboard], [Products], [Reports], [Sellers], [Settings]) VALUES (@Id, @UserId, @UserFullName, @UserLevel, @Billing, @BillsEdit, @Categories, @Customers, @Dashboard, @Products, @Reports, @Sellers, @Settings);
-SELECT Id, UserId, UserFullName, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboard, Products, Reports, Sellers, Settings FROM UserLevelAccess WHERE (Id = @Id)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [UserLevelAccess] ([UserId], [UserFullName], [UserLevel], [Billing], [BillsEdit], [Categories], [Customers], [Dashboard], [Products], [Reports], [Settings], [Orders], [Safe], [SupplierInvoices], [SuppliersEdit], [Users]) VALUES (@UserId, @UserFullName, @UserLevel, @Billing, @BillsEdit, @Categories, @Customers, @Dashboard, @Products, @Reports, @Settings, @Orders, @Safe, @SupplierInvoices, @SuppliersEdit, @Users);
+SELECT Id, UserId, UserFullName, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboard, Products, Reports, Settings, Orders, Safe, SupplierInvoices, SuppliersEdit, Users FROM UserLevelAccess WHERE (Id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserId", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserFullName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserFullName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserLevel", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserLevel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -14859,14 +14987,17 @@ SELECT Id, UserId, UserFullName, UserLevel, Billing, BillsEdit, Categories, Cust
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Dashboard", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Dashboard", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Products", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Products", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Reports", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reports", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Sellers", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sellers", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Settings", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Settings", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Orders", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Orders", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Safe", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Safe", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SupplierInvoices", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SupplierInvoices", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SuppliersEdit", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SuppliersEdit", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Users", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Users", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[UserLevelAccess] SET [Id] = @Id, [UserId] = @UserId, [UserFullName] = @UserFullName, [UserLevel] = @UserLevel, [Billing] = @Billing, [BillsEdit] = @BillsEdit, [Categories] = @Categories, [Customers] = @Customers, [Dashboard] = @Dashboard, [Products] = @Products, [Reports] = @Reports, [Sellers] = @Sellers, [Settings] = @Settings WHERE (([Id] = @Original_Id) AND ([UserId] = @Original_UserId) AND ([UserFullName] = @Original_UserFullName) AND ([UserLevel] = @Original_UserLevel) AND ([Billing] = @Original_Billing) AND ([BillsEdit] = @Original_BillsEdit) AND ([Categories] = @Original_Categories) AND ([Customers] = @Original_Customers) AND ([Dashboard] = @Original_Dashboard) AND ([Products] = @Original_Products) AND ([Reports] = @Original_Reports) AND ([Sellers] = @Original_Sellers) AND ([Settings] = @Original_Settings));
-SELECT Id, UserId, UserFullName, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboard, Products, Reports, Sellers, Settings FROM UserLevelAccess WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [UserLevelAccess] SET [UserId] = @UserId, [UserFullName] = @UserFullName, [UserLevel] = @UserLevel, [Billing] = @Billing, [BillsEdit] = @BillsEdit, [Categories] = @Categories, [Customers] = @Customers, [Dashboard] = @Dashboard, [Products] = @Products, [Reports] = @Reports, [Settings] = @Settings, [Orders] = @Orders, [Safe] = @Safe, [SupplierInvoices] = @SupplierInvoices, [SuppliersEdit] = @SuppliersEdit, [Users] = @Users WHERE (([Id] = @Original_Id) AND ([UserId] = @Original_UserId) AND ([UserFullName] = @Original_UserFullName) AND ([UserLevel] = @Original_UserLevel) AND ([Billing] = @Original_Billing) AND ([BillsEdit] = @Original_BillsEdit) AND ([Categories] = @Original_Categories) AND ([Customers] = @Original_Customers) AND ([Dashboard] = @Original_Dashboard) AND ([Products] = @Original_Products) AND ([Reports] = @Original_Reports) AND ([Settings] = @Original_Settings) AND ([Orders] = @Original_Orders) AND ([Safe] = @Original_Safe) AND ([SupplierInvoices] = @Original_SupplierInvoices) AND ([SuppliersEdit] = @Original_SuppliersEdit) AND ([Users] = @Original_Users));
+SELECT Id, UserId, UserFullName, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboard, Products, Reports, Settings, Orders, Safe, SupplierInvoices, SuppliersEdit, Users FROM UserLevelAccess WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserId", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserFullName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserFullName", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@UserLevel", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserLevel", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -14877,8 +15008,12 @@ SELECT Id, UserId, UserFullName, UserLevel, Billing, BillsEdit, Categories, Cust
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Dashboard", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Dashboard", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Products", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Products", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Reports", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reports", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Sellers", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sellers", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Settings", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Settings", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Orders", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Orders", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Safe", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Safe", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SupplierInvoices", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SupplierInvoices", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@SuppliersEdit", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SuppliersEdit", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Users", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Users", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserId", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_UserFullName", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "UserFullName", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -14890,8 +15025,13 @@ SELECT Id, UserId, UserFullName, UserLevel, Billing, BillsEdit, Categories, Cust
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Dashboard", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Dashboard", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Products", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Products", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Reports", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Reports", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Sellers", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Sellers", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Settings", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Settings", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Orders", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Orders", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Safe", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Safe", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SupplierInvoices", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SupplierInvoices", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_SuppliersEdit", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "SuppliersEdit", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Users", global::System.Data.SqlDbType.Bit, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Users", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -14908,7 +15048,8 @@ SELECT Id, UserId, UserFullName, UserLevel, Billing, BillsEdit, Categories, Cust
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT Id, UserId, UserFullName, UserLevel, Billing, BillsEdit, Categories, Custo" +
-                "mers, Dashboard, Products, Reports, Sellers, Settings FROM dbo.UserLevelAccess";
+                "mers, Dashboard, Products, Reports, Settings, Orders, Safe, SupplierInvoices, Su" +
+                "ppliersEdit, Users FROM UserLevelAccess";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -14969,7 +15110,24 @@ SELECT Id, UserId, UserFullName, UserLevel, Billing, BillsEdit, Categories, Cust
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_Id, long Original_UserId, string Original_UserFullName, string Original_UserLevel, bool Original_Billing, bool Original_BillsEdit, bool Original_Categories, bool Original_Customers, bool Original_Dashboard, bool Original_Products, bool Original_Reports, bool Original_Sellers, bool Original_Settings) {
+        public virtual int Delete(
+                    int Original_Id, 
+                    long Original_UserId, 
+                    string Original_UserFullName, 
+                    string Original_UserLevel, 
+                    bool Original_Billing, 
+                    bool Original_BillsEdit, 
+                    bool Original_Categories, 
+                    bool Original_Customers, 
+                    bool Original_Dashboard, 
+                    bool Original_Products, 
+                    bool Original_Reports, 
+                    bool Original_Settings, 
+                    bool Original_Orders, 
+                    bool Original_Safe, 
+                    bool Original_SupplierInvoices, 
+                    bool Original_SuppliersEdit, 
+                    bool Original_Users) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_Id));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((long)(Original_UserId));
             if ((Original_UserFullName == null)) {
@@ -14991,8 +15149,12 @@ SELECT Id, UserId, UserFullName, UserLevel, Billing, BillsEdit, Categories, Cust
             this.Adapter.DeleteCommand.Parameters[8].Value = ((bool)(Original_Dashboard));
             this.Adapter.DeleteCommand.Parameters[9].Value = ((bool)(Original_Products));
             this.Adapter.DeleteCommand.Parameters[10].Value = ((bool)(Original_Reports));
-            this.Adapter.DeleteCommand.Parameters[11].Value = ((bool)(Original_Sellers));
-            this.Adapter.DeleteCommand.Parameters[12].Value = ((bool)(Original_Settings));
+            this.Adapter.DeleteCommand.Parameters[11].Value = ((bool)(Original_Settings));
+            this.Adapter.DeleteCommand.Parameters[12].Value = ((bool)(Original_Orders));
+            this.Adapter.DeleteCommand.Parameters[13].Value = ((bool)(Original_Safe));
+            this.Adapter.DeleteCommand.Parameters[14].Value = ((bool)(Original_SupplierInvoices));
+            this.Adapter.DeleteCommand.Parameters[15].Value = ((bool)(Original_SuppliersEdit));
+            this.Adapter.DeleteCommand.Parameters[16].Value = ((bool)(Original_Users));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -15013,30 +15175,49 @@ SELECT Id, UserId, UserFullName, UserLevel, Billing, BillsEdit, Categories, Cust
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int Id, long UserId, string UserFullName, string UserLevel, bool Billing, bool BillsEdit, bool Categories, bool Customers, bool Dashboard, bool Products, bool Reports, bool Sellers, bool Settings) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((int)(Id));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((long)(UserId));
+        public virtual int Insert(
+                    long UserId, 
+                    string UserFullName, 
+                    string UserLevel, 
+                    bool Billing, 
+                    bool BillsEdit, 
+                    bool Categories, 
+                    bool Customers, 
+                    bool Dashboard, 
+                    bool Products, 
+                    bool Reports, 
+                    bool Settings, 
+                    bool Orders, 
+                    bool Safe, 
+                    bool SupplierInvoices, 
+                    bool SuppliersEdit, 
+                    bool Users) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((long)(UserId));
             if ((UserFullName == null)) {
                 throw new global::System.ArgumentNullException("UserFullName");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(UserFullName));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(UserFullName));
             }
             if ((UserLevel == null)) {
                 throw new global::System.ArgumentNullException("UserLevel");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(UserLevel));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(UserLevel));
             }
-            this.Adapter.InsertCommand.Parameters[4].Value = ((bool)(Billing));
-            this.Adapter.InsertCommand.Parameters[5].Value = ((bool)(BillsEdit));
-            this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(Categories));
-            this.Adapter.InsertCommand.Parameters[7].Value = ((bool)(Customers));
-            this.Adapter.InsertCommand.Parameters[8].Value = ((bool)(Dashboard));
-            this.Adapter.InsertCommand.Parameters[9].Value = ((bool)(Products));
-            this.Adapter.InsertCommand.Parameters[10].Value = ((bool)(Reports));
-            this.Adapter.InsertCommand.Parameters[11].Value = ((bool)(Sellers));
-            this.Adapter.InsertCommand.Parameters[12].Value = ((bool)(Settings));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((bool)(Billing));
+            this.Adapter.InsertCommand.Parameters[4].Value = ((bool)(BillsEdit));
+            this.Adapter.InsertCommand.Parameters[5].Value = ((bool)(Categories));
+            this.Adapter.InsertCommand.Parameters[6].Value = ((bool)(Customers));
+            this.Adapter.InsertCommand.Parameters[7].Value = ((bool)(Dashboard));
+            this.Adapter.InsertCommand.Parameters[8].Value = ((bool)(Products));
+            this.Adapter.InsertCommand.Parameters[9].Value = ((bool)(Reports));
+            this.Adapter.InsertCommand.Parameters[10].Value = ((bool)(Settings));
+            this.Adapter.InsertCommand.Parameters[11].Value = ((bool)(Orders));
+            this.Adapter.InsertCommand.Parameters[12].Value = ((bool)(Safe));
+            this.Adapter.InsertCommand.Parameters[13].Value = ((bool)(SupplierInvoices));
+            this.Adapter.InsertCommand.Parameters[14].Value = ((bool)(SuppliersEdit));
+            this.Adapter.InsertCommand.Parameters[15].Value = ((bool)(Users));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -15058,7 +15239,6 @@ SELECT Id, UserId, UserFullName, UserLevel, Billing, BillsEdit, Categories, Cust
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
         public virtual int Update(
-                    int Id, 
                     long UserId, 
                     string UserFullName, 
                     string UserLevel, 
@@ -15069,8 +15249,12 @@ SELECT Id, UserId, UserFullName, UserLevel, Billing, BillsEdit, Categories, Cust
                     bool Dashboard, 
                     bool Products, 
                     bool Reports, 
-                    bool Sellers, 
                     bool Settings, 
+                    bool Orders, 
+                    bool Safe, 
+                    bool SupplierInvoices, 
+                    bool SuppliersEdit, 
+                    bool Users, 
                     int Original_Id, 
                     long Original_UserId, 
                     string Original_UserFullName, 
@@ -15082,54 +15266,67 @@ SELECT Id, UserId, UserFullName, UserLevel, Billing, BillsEdit, Categories, Cust
                     bool Original_Dashboard, 
                     bool Original_Products, 
                     bool Original_Reports, 
-                    bool Original_Sellers, 
-                    bool Original_Settings) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(Id));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((long)(UserId));
+                    bool Original_Settings, 
+                    bool Original_Orders, 
+                    bool Original_Safe, 
+                    bool Original_SupplierInvoices, 
+                    bool Original_SuppliersEdit, 
+                    bool Original_Users, 
+                    int Id) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((long)(UserId));
             if ((UserFullName == null)) {
                 throw new global::System.ArgumentNullException("UserFullName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(UserFullName));
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(UserFullName));
             }
             if ((UserLevel == null)) {
                 throw new global::System.ArgumentNullException("UserLevel");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(UserLevel));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(UserLevel));
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((bool)(Billing));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((bool)(BillsEdit));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(Categories));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((bool)(Customers));
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((bool)(Dashboard));
-            this.Adapter.UpdateCommand.Parameters[9].Value = ((bool)(Products));
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(Reports));
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(Sellers));
-            this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(Settings));
-            this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_Id));
-            this.Adapter.UpdateCommand.Parameters[14].Value = ((long)(Original_UserId));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((bool)(Billing));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((bool)(BillsEdit));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((bool)(Categories));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((bool)(Customers));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((bool)(Dashboard));
+            this.Adapter.UpdateCommand.Parameters[8].Value = ((bool)(Products));
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((bool)(Reports));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((bool)(Settings));
+            this.Adapter.UpdateCommand.Parameters[11].Value = ((bool)(Orders));
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((bool)(Safe));
+            this.Adapter.UpdateCommand.Parameters[13].Value = ((bool)(SupplierInvoices));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((bool)(SuppliersEdit));
+            this.Adapter.UpdateCommand.Parameters[15].Value = ((bool)(Users));
+            this.Adapter.UpdateCommand.Parameters[16].Value = ((int)(Original_Id));
+            this.Adapter.UpdateCommand.Parameters[17].Value = ((long)(Original_UserId));
             if ((Original_UserFullName == null)) {
                 throw new global::System.ArgumentNullException("Original_UserFullName");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_UserFullName));
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_UserFullName));
             }
             if ((Original_UserLevel == null)) {
                 throw new global::System.ArgumentNullException("Original_UserLevel");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_UserLevel));
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Original_UserLevel));
             }
-            this.Adapter.UpdateCommand.Parameters[17].Value = ((bool)(Original_Billing));
-            this.Adapter.UpdateCommand.Parameters[18].Value = ((bool)(Original_BillsEdit));
-            this.Adapter.UpdateCommand.Parameters[19].Value = ((bool)(Original_Categories));
-            this.Adapter.UpdateCommand.Parameters[20].Value = ((bool)(Original_Customers));
-            this.Adapter.UpdateCommand.Parameters[21].Value = ((bool)(Original_Dashboard));
-            this.Adapter.UpdateCommand.Parameters[22].Value = ((bool)(Original_Products));
-            this.Adapter.UpdateCommand.Parameters[23].Value = ((bool)(Original_Reports));
-            this.Adapter.UpdateCommand.Parameters[24].Value = ((bool)(Original_Sellers));
-            this.Adapter.UpdateCommand.Parameters[25].Value = ((bool)(Original_Settings));
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((bool)(Original_Billing));
+            this.Adapter.UpdateCommand.Parameters[21].Value = ((bool)(Original_BillsEdit));
+            this.Adapter.UpdateCommand.Parameters[22].Value = ((bool)(Original_Categories));
+            this.Adapter.UpdateCommand.Parameters[23].Value = ((bool)(Original_Customers));
+            this.Adapter.UpdateCommand.Parameters[24].Value = ((bool)(Original_Dashboard));
+            this.Adapter.UpdateCommand.Parameters[25].Value = ((bool)(Original_Products));
+            this.Adapter.UpdateCommand.Parameters[26].Value = ((bool)(Original_Reports));
+            this.Adapter.UpdateCommand.Parameters[27].Value = ((bool)(Original_Settings));
+            this.Adapter.UpdateCommand.Parameters[28].Value = ((bool)(Original_Orders));
+            this.Adapter.UpdateCommand.Parameters[29].Value = ((bool)(Original_Safe));
+            this.Adapter.UpdateCommand.Parameters[30].Value = ((bool)(Original_SupplierInvoices));
+            this.Adapter.UpdateCommand.Parameters[31].Value = ((bool)(Original_SuppliersEdit));
+            this.Adapter.UpdateCommand.Parameters[32].Value = ((bool)(Original_Users));
+            this.Adapter.UpdateCommand.Parameters[33].Value = ((int)(Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -15161,8 +15358,12 @@ SELECT Id, UserId, UserFullName, UserLevel, Billing, BillsEdit, Categories, Cust
                     bool Dashboard, 
                     bool Products, 
                     bool Reports, 
-                    bool Sellers, 
                     bool Settings, 
+                    bool Orders, 
+                    bool Safe, 
+                    bool SupplierInvoices, 
+                    bool SuppliersEdit, 
+                    bool Users, 
                     int Original_Id, 
                     long Original_UserId, 
                     string Original_UserFullName, 
@@ -15174,9 +15375,13 @@ SELECT Id, UserId, UserFullName, UserLevel, Billing, BillsEdit, Categories, Cust
                     bool Original_Dashboard, 
                     bool Original_Products, 
                     bool Original_Reports, 
-                    bool Original_Sellers, 
-                    bool Original_Settings) {
-            return this.Update(Original_Id, UserId, UserFullName, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboard, Products, Reports, Sellers, Settings, Original_Id, Original_UserId, Original_UserFullName, Original_UserLevel, Original_Billing, Original_BillsEdit, Original_Categories, Original_Customers, Original_Dashboard, Original_Products, Original_Reports, Original_Sellers, Original_Settings);
+                    bool Original_Settings, 
+                    bool Original_Orders, 
+                    bool Original_Safe, 
+                    bool Original_SupplierInvoices, 
+                    bool Original_SuppliersEdit, 
+                    bool Original_Users) {
+            return this.Update(UserId, UserFullName, UserLevel, Billing, BillsEdit, Categories, Customers, Dashboard, Products, Reports, Settings, Orders, Safe, SupplierInvoices, SuppliersEdit, Users, Original_Id, Original_UserId, Original_UserFullName, Original_UserLevel, Original_Billing, Original_BillsEdit, Original_Categories, Original_Customers, Original_Dashboard, Original_Products, Original_Reports, Original_Settings, Original_Orders, Original_Safe, Original_SupplierInvoices, Original_SuppliersEdit, Original_Users, Original_Id);
         }
     }
     

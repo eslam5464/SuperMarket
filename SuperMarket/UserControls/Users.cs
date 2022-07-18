@@ -1,11 +1,12 @@
 ﻿using SuperMarket.Classes;
 using SuperMarket.Classes.Models;
+using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SuperMarket.UserControls
@@ -187,6 +188,32 @@ namespace SuperMarket.UserControls
                                         ActiveState = true
                                     };
                                     Classes.DataAccess.Users.SaveUser(user);
+
+                                    List<UserModel> LastAddedUser = Classes.DataAccess.Users.LoadLastAddedUser();
+
+                                    if (LastAddedUser.Count != 0)
+                                    {
+                                        UserLevelAccessModel UserAccessLevel = new UserLevelAccessModel
+                                        {
+                                            UserId = LastAddedUser[0].Id,
+                                            UserFullName = LastAddedUser[0].FullName,
+                                            UserLevel = LastAddedUser[0].UserLevel,
+                                            Billing = true,
+                                            BillsEdit = true,
+                                            Dashboard = true,
+                                            Categories = true,
+                                            Customers = true,
+                                            Products = true,
+                                            Reports = true,
+                                            Settings = true,
+                                            Users = true,
+                                            Orders = true,
+                                            Safe = true,
+                                            SupplierInvoices = true,
+                                            SuppliersEdit = true,
+                                        };
+                                        Classes.DataAccess.UserLevelAccess.SaveUserLevelAccess(UserAccessLevel);
+                                    }
 
                                     RefreshDataGrid();
 
@@ -397,16 +424,16 @@ namespace SuperMarket.UserControls
 
         private void db_userDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            usersDataGridView.DataSource = new Methods().DataGridToDataTable(usersDataGridView);
+            //usersDataGridView.DataSource = new Methods().DataGridToDataTable(usersDataGridView);
 
-            usersDataGridView.Sort(usersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+            //usersDataGridView.Sort(usersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
         }
 
         private void db_userDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            usersDataGridView.DataSource = new Methods().DataGridToDataTable(usersDataGridView);
+            //usersDataGridView.DataSource = new Methods().DataGridToDataTable(usersDataGridView);
 
-            usersDataGridView.Sort(usersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+            //usersDataGridView.Sort(usersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
         }
 
         private void usersDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -438,6 +465,28 @@ namespace SuperMarket.UserControls
                 reportViewer.ShowDialog();
                 reportViewer.Dispose();
                 reportViewer.Close();
+            }
+        }
+
+        private async void usersDataGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (usersDataGridView != null)
+            {
+                if (usersDataGridView.CurrentCell != null)
+                {
+                    int rowindex = usersDataGridView.CurrentCell.RowIndex;
+                    long UserId = long.Parse(usersDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
+
+                    List<UserLevelAccessModel> SearchedUser =
+                       await Task.Run(() => Classes.DataAccess.UserLevelAccess.GetUserLevelAccessParameter("UserId", $"{UserId}"));
+
+                    if (SearchedUser.Count > 0)
+                    {
+                        UserAccess ac = new UserAccess();
+                        UserAccess.SetSelectedUser(SearchedUser[0]);
+                        ac.ShowDialog();
+                    }
+                }
             }
         }
     }

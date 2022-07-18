@@ -1,5 +1,7 @@
 ﻿using SuperMarket.Classes;
+using SuperMarket.Classes.Models;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -106,19 +108,45 @@ namespace SuperMarket.Forms
             {
                 string CPUID = Security.CPUID, MOBOID = Security.MOBOID;
 
-                Classes.Models.UserModel AdminUser = new Classes.Models.UserModel
+                UserModel AdminUser = new UserModel
                 {
                     Username = await Security.EncryptAsync("admin", CPUID + MOBOID),
                     Password = await Security.EncryptAsync("passnot100%Safe", CPUID + MOBOID),
                     FullName = "admin",
-                    Phone = "01027360983",
+                    Phone = "01069056049",
                     Email = "NA",
                     UserLevel = "admin",
                     ActiveState = true
                 };
                 Classes.DataAccess.Users.SaveUser(AdminUser);
 
-                Classes.Models.UserModel ManagerUser = new Classes.Models.UserModel
+                List<UserModel> LastAddedUser = Classes.DataAccess.Users.LoadLastAddedUser();
+
+                if (LastAddedUser.Count != 0)
+                {
+                    UserLevelAccessModel AdminUserAccessLevel = new UserLevelAccessModel
+                    {
+                        UserId = LastAddedUser[0].Id,
+                        UserFullName = LastAddedUser[0].FullName,
+                        UserLevel = LastAddedUser[0].UserLevel,
+                        Billing = true,
+                        BillsEdit = true,
+                        Dashboard = true,
+                        Categories = true,
+                        Customers = true,
+                        Products = true,
+                        Reports = true,
+                        Settings = true,
+                        Users = true,
+                        Orders = true,
+                        Safe = true,
+                        SupplierInvoices = true,
+                        SuppliersEdit = true,
+                    };
+                    Classes.DataAccess.UserLevelAccess.SaveUserLevelAccess(AdminUserAccessLevel);
+                }
+
+                UserModel ManagerUser = new UserModel
                 {
                     Username = await Security.EncryptAsync("modeer", CPUID + MOBOID),
                     Password = await Security.EncryptAsync("modeer", CPUID + MOBOID),
@@ -129,6 +157,32 @@ namespace SuperMarket.Forms
                     ActiveState = true
                 };
                 Classes.DataAccess.Users.SaveUser(ManagerUser);
+
+                LastAddedUser = Classes.DataAccess.Users.LoadLastAddedUser();
+
+                if (LastAddedUser.Count != 0)
+                {
+                    UserLevelAccessModel ManagerUserAccessLevel = new UserLevelAccessModel
+                    {
+                        UserId = LastAddedUser[0].Id,
+                        UserFullName = LastAddedUser[0].FullName,
+                        UserLevel = LastAddedUser[0].UserLevel,
+                        Billing = true,
+                        BillsEdit = true,
+                        Dashboard = true,
+                        Categories = true,
+                        Customers = true,
+                        Products = true,
+                        Reports = true,
+                        Settings = true,
+                        Users = true,
+                        Orders = true,
+                        Safe = true,
+                        SupplierInvoices = true,
+                        SuppliersEdit = true,
+                    };
+                    Classes.DataAccess.UserLevelAccess.SaveUserLevelAccess(ManagerUserAccessLevel);
+                }
             }
         }
 

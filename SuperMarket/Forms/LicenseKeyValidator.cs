@@ -1,6 +1,7 @@
 ﻿using SuperMarket.Classes;
 using System;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace SuperMarket.Forms
@@ -40,7 +41,7 @@ namespace SuperMarket.Forms
         private void btn_about_Click(object sender, EventArgs e)
         {
             About frm_about = new About();
-            About.AdditionalInfo = "هذا البرنامج غير مفعل برجاء ادخال مفتاح الترخيص";
+            About.AdditionalInfo = "هذا البرنامج غير مفعل برجاء ادخال ملف مفتاح الترخيص";
             frm_about.TopMost = true;
             frm_about.ShowDialog();
         }
@@ -52,28 +53,39 @@ namespace SuperMarket.Forms
 
         private async void btn_checkKey_Click(object sender, EventArgs e)
         {
-            Logger.Log("Entered the serial & checked it", System.Reflection.MethodInfo.GetCurrentMethod().Name,
-               this.Name, Logger.INFO);
-            string SerialKey = $"{tb_serial1.Text.ToUpper()}-{tb_serial2.Text.ToUpper()}-{tb_serial3.Text.ToUpper()}-" +
-                $"{tb_serial4.Text.ToUpper()}-{tb_serial5.Text.ToUpper()}-{tb_serial6.Text.ToUpper()}-{tb_serial7.Text.ToUpper()}";
-
-            Security.SaveLicenseKeyInAppAsync(SerialKey);
-
-            string output = await Security.CheckLicenseKeyOnAppAsync();
-
-            if (output == "200")
+            if (!File.Exists(Security.GetSerialKeyFileLocation()))
             {
-                Logger.Log("serial key is correct closing the form SerialKeyCheck", System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                Logger.Log("serial key file doesnt exist",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-                MessageBox.Show("مفتاح الترخيص صحيح.. سوف يتم بدا البرنامج", "عملية ناجحه");
-
-                Close();
+                MessageBox.Show("ملف مفتاح الترخيص غير موجود  برجاء الضغط على زر <عن البرنامج> لمعرفه التفاصيل", "خطأ");
             }
             else
             {
-                Logger.Log("serial key is not correct", System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                Logger.Log("Entered the serial & checked it", System.Reflection.MethodInfo.GetCurrentMethod().Name,
+                   this.Name, Logger.INFO);
+                string SerialKey = $"{tb_serial1.Text.ToUpper()}-{tb_serial2.Text.ToUpper()}-{tb_serial3.Text.ToUpper()}-" +
+                    $"{tb_serial4.Text.ToUpper()}-{tb_serial5.Text.ToUpper()}-{tb_serial6.Text.ToUpper()}-{tb_serial7.Text.ToUpper()}";
 
-                MessageBox.Show("الرقم السري غير صحيح");
+                Security.SaveLicenseKeyInAppAsync(SerialKey);
+
+                string StatusCode = await Security.CheckLicenseKeyOnAppAsync();
+
+                if (StatusCode == "200")
+                {
+                    Logger.Log("serial key is correct closing the form SerialKeyCheck", System.Reflection.MethodInfo.GetCurrentMethod().Name,
+                        this.Name, Logger.INFO);
+
+                    MessageBox.Show("مفتاح الترخيص صحيح.. سوف يتم بدا البرنامج", "عملية ناجحه");
+
+                    Close();
+                }
+                else
+                {
+                    Logger.Log("serial key is not correct", System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+                    MessageBox.Show("الرقم السري غير صحيح");
+                }
             }
         }
     }

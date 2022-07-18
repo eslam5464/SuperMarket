@@ -183,7 +183,8 @@ namespace SuperMarket.Classes.DataAccess
                 using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     cnn.Execute($"UPDATE Users SET Username = @Username, Password = @Password, ModifyDate = {DateTime.Now}," +
-                        $"FullName = @FullName, Phone = @Phone, UserLevel = @UserLevel WHERE Id = @Id", User);
+                        $"FullName = @FullName, Phone = @Phone, UserLevel = @UserLevel WHERE Id = @Id; " +
+                        $"UPDATE UserLevelAccess SET UserFullName = @FullName WHERE UserId = @Id", User);
                 }
             }
             catch (Exception ex)
@@ -213,6 +214,25 @@ namespace SuperMarket.Classes.DataAccess
                 Logger.Log($"while stopping user with id = {UserID} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Users", Logger.ERROR);
             }
+        }
+
+        public static List<UserModel> LoadLastAddedUser()
+        {
+            try
+            {
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
+                {
+                    var output = cnn.Query<UserModel>($"SELECT TOP 1 * FROM Users WHERE ActiveState = 1 ORDER BY Id DESC",
+                        new DynamicParameters());
+                    return output.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"while loading all active users that are NOT ADMIN & error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Users", Logger.ERROR);
+            }
+            return new List<UserModel>();
         }
     }
 }

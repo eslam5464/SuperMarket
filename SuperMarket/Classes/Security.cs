@@ -15,11 +15,16 @@ namespace SuperMarket.Classes
             DirectoryLocation = $@"{DriveLetter}Users\{Environment.UserName}\AppData\Local\{ApplicationName}",
             SerialKeyFileName = @"\serial",
             FileExtention = ".enc",
-            SerialKeyFile = DirectoryLocation + SerialKeyFileName + FileExtention;
+            SerialKeyFileLocation = DirectoryLocation + SerialKeyFileName + FileExtention;
 
         public static string CPUID = "", MOBOID = "", CPUName = "", CPUCores = "", CPUSpeed = "", SystemName = "";
 
         public static bool OpenFormMain = false;
+
+        public static string GetSerialKeyFileLocation()
+        {
+            return SerialKeyFileLocation;
+        }
 
         public static string GetDirecotryLocation()
         {
@@ -40,7 +45,7 @@ namespace SuperMarket.Classes
 
             await SerialKeyFileExistsAsync();
 
-            if (new FileInfo(SerialKeyFile).Length == 0)
+            if (new FileInfo(SerialKeyFileLocation).Length == 0)
 
             {
                 Logger.Log("serial file exists with no serial in it",
@@ -48,7 +53,7 @@ namespace SuperMarket.Classes
                 return "404";
             }
 
-            string LisenceKey = await Security.DecryptAsync(File.ReadAllText(SerialKeyFile), CPUID + MOBOID);
+            string LisenceKey = await Security.DecryptAsync(File.ReadAllText(SerialKeyFileLocation), CPUID + MOBOID);
 
             if (Properties.Settings.Default.LicenseKey == LisenceKey)
             {
@@ -87,14 +92,14 @@ namespace SuperMarket.Classes
 
             await SerialKeyFileExistsAsync();
 
-            if (new FileInfo(SerialKeyFile).Length == 0)
+            if (new FileInfo(SerialKeyFileLocation).Length == 0)
             {
                 Logger.Log("serial file exists with no serial in it",
                      System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.CRITICAL);
                 return "404";
             }
 
-            string LisenceKeyChecker = await Security.DecryptAsync(File.ReadAllText(SerialKeyFile), CPUID + MOBOID);
+            string LisenceKeyChecker = await Security.DecryptAsync(File.ReadAllText(SerialKeyFileLocation), CPUID + MOBOID);
 
             if (LicenseKey == LisenceKeyChecker)
             {

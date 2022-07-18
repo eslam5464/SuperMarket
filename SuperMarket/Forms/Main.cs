@@ -1,5 +1,6 @@
 ﻿using SuperMarket.Classes;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -31,6 +32,7 @@ namespace SuperMarket.Forms
         }
 
         internal static Classes.Models.UserModel LoggedUser, LoggedUserEnc;
+        private static Classes.Models.UserLevelAccessModel LoggedUserAccess;
         private int SessionTimer = 0, HourlyTimer = 0, FourHoursTimer = 0;
         private bool SessionState = true;
 
@@ -245,10 +247,38 @@ namespace SuperMarket.Forms
 
         private void CheckUserLevelAccess()
         {
-            // TODO: finish level access
-            if (LoggedUser.UserLevel == "admin")
+            List<Classes.Models.UserLevelAccessModel> SearchedUserAccess =
+                Classes.DataAccess.UserLevelAccess.GetUserLevelAccessParameter("UserId", "" + LoggedUser.Id);
+
+            if (SearchedUserAccess.Count > 0)
             {
-                btn_adminPanel.Visible = true;
+                LoggedUserAccess = SearchedUserAccess[0];
+
+                if (LoggedUserAccess.UserLevel == "admin")
+                {
+                    btn_adminPanel.Visible = true;
+                    btn_advancedSearch.Visible = true;
+                }
+
+                else
+                {
+                    btn_adminPanel.Visible = false;
+                    btn_advancedSearch.Visible = false;
+                }
+
+                btn_billingAdd.Visible = LoggedUserAccess.Billing;
+                btn_billingEdit.Visible = LoggedUserAccess.BillsEdit;
+                btn_Categories.Visible = LoggedUserAccess.Categories;
+                btn_Customers.Visible = LoggedUserAccess.Customers;
+                btn_dashborad.Visible = LoggedUserAccess.Dashboard;
+                btn_Orders.Visible = LoggedUserAccess.Orders;
+                btn_Products.Visible = LoggedUserAccess.Products;
+                btn_reports.Visible = LoggedUserAccess.Reports;
+                btn_safe.Visible = LoggedUserAccess.Safe;
+                btn_settings.Visible = LoggedUserAccess.Settings;
+                btn_supplierInvoices.Visible = LoggedUserAccess.SupplierInvoices;
+                btn_suppliersEdit.Visible = LoggedUserAccess.SuppliersEdit;
+                btn_users.Visible = LoggedUserAccess.Users;
             }
         }
 

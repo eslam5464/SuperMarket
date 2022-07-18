@@ -43,39 +43,39 @@ namespace SuperMarket.UserControls
             this.txt_fullname = new System.Windows.Forms.TextBox();
             this.btn_remove = new System.Windows.Forms.Button();
             this.btn_edit = new System.Windows.Forms.Button();
-            this.pcb_serchbyname = new System.Windows.Forms.PictureBox();
             this.btn_save = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.usersDataGridView = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ModifyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ActiveState = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.superMarketDataSet = new SuperMarket.SuperMarketDataSet();
-            this.pcb_serchbyfullname = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txt_userLevel = new System.Windows.Forms.ComboBox();
-            this.pcb_serchbyPhone = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
             this.usersTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.UsersTableAdapter();
             this.tableAdapterManager = new SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager();
             this.btn_exportPDF = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.ActiveState = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ModifyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserLevel = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Password = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.usersDataGridView = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_serchbyname)).BeginInit();
+            this.pcb_serchbyPhone = new System.Windows.Forms.PictureBox();
+            this.pcb_serchbyname = new System.Windows.Forms.PictureBox();
+            this.pcb_serchbyfullname = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.usersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_serchbyfullname)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_serchbyPhone)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usersDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_serchbyname)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_serchbyfullname)).BeginInit();
             this.SuspendLayout();
             // 
             // txt_Password
@@ -212,21 +212,6 @@ namespace SuperMarket.UserControls
             this.btn_edit.UseVisualStyleBackColor = false;
             this.btn_edit.Click += new System.EventHandler(this.btn_edit_Click);
             // 
-            // pcb_serchbyname
-            // 
-            this.pcb_serchbyname.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_serchbyname.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_serchbyname.Location = new System.Drawing.Point(392, 45);
-            this.pcb_serchbyname.Name = "pcb_serchbyname";
-            this.pcb_serchbyname.Size = new System.Drawing.Size(45, 45);
-            this.pcb_serchbyname.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_serchbyname.TabIndex = 125;
-            this.pcb_serchbyname.TabStop = false;
-            this.pcb_serchbyname.Click += new System.EventHandler(this.pcb_serchbyname_Click);
-            this.pcb_serchbyname.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
-            this.pcb_serchbyname.MouseEnter += new System.EventHandler(this.pcb_serchby_MouseEnter);
-            this.pcb_serchbyname.MouseLeave += new System.EventHandler(this.pcb_serchbyPhone_MouseLeave);
-            // 
             // btn_save
             // 
             this.btn_save.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -251,6 +236,134 @@ namespace SuperMarket.UserControls
             this.panel1.Size = new System.Drawing.Size(1032, 364);
             this.panel1.TabIndex = 120;
             // 
+            // usersDataGridView
+            // 
+            this.usersDataGridView.AllowUserToAddRows = false;
+            this.usersDataGridView.AllowUserToDeleteRows = false;
+            this.usersDataGridView.AllowUserToResizeColumns = false;
+            this.usersDataGridView.AllowUserToResizeRows = false;
+            this.usersDataGridView.AutoGenerateColumns = false;
+            this.usersDataGridView.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.usersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.usersDataGridView.ColumnHeadersHeight = 40;
+            this.usersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.Username,
+            this.Password,
+            this.FullName,
+            this.UserLevel,
+            this.Email,
+            this.Phone,
+            this.CreationDate,
+            this.ModifyDate,
+            this.ActiveState});
+            this.usersDataGridView.DataSource = this.usersBindingSource;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.usersDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            this.usersDataGridView.EnableHeadersVisualStyles = false;
+            this.usersDataGridView.GridColor = System.Drawing.Color.Silver;
+            this.usersDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.usersDataGridView.MultiSelect = false;
+            this.usersDataGridView.Name = "usersDataGridView";
+            this.usersDataGridView.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.usersDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.usersDataGridView.Size = new System.Drawing.Size(1032, 364);
+            this.usersDataGridView.TabIndex = 206;
+            this.usersDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.usersDataGridView_CellMouseClick);
+            this.usersDataGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.usersDataGridView_CellMouseDoubleClick);
+            this.usersDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_userDataGridView_ColumnHeaderMouseClick);
+            this.usersDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_userDataGridView_ColumnHeaderMouseDoubleClick);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            // 
+            // Username
+            // 
+            this.Username.DataPropertyName = "Username";
+            this.Username.HeaderText = "Username";
+            this.Username.Name = "Username";
+            this.Username.ReadOnly = true;
+            // 
+            // Password
+            // 
+            this.Password.DataPropertyName = "Password";
+            this.Password.HeaderText = "Password";
+            this.Password.Name = "Password";
+            this.Password.ReadOnly = true;
+            // 
+            // FullName
+            // 
+            this.FullName.DataPropertyName = "FullName";
+            this.FullName.HeaderText = "FullName";
+            this.FullName.Name = "FullName";
+            this.FullName.ReadOnly = true;
+            // 
+            // UserLevel
+            // 
+            this.UserLevel.DataPropertyName = "UserLevel";
+            this.UserLevel.HeaderText = "UserLevel";
+            this.UserLevel.Name = "UserLevel";
+            this.UserLevel.ReadOnly = true;
+            // 
+            // Email
+            // 
+            this.Email.DataPropertyName = "Email";
+            this.Email.HeaderText = "Email";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            // 
+            // Phone
+            // 
+            this.Phone.DataPropertyName = "Phone";
+            this.Phone.HeaderText = "Phone";
+            this.Phone.Name = "Phone";
+            this.Phone.ReadOnly = true;
+            // 
+            // CreationDate
+            // 
+            this.CreationDate.DataPropertyName = "CreationDate";
+            this.CreationDate.HeaderText = "CreationDate";
+            this.CreationDate.Name = "CreationDate";
+            this.CreationDate.ReadOnly = true;
+            // 
+            // ModifyDate
+            // 
+            this.ModifyDate.DataPropertyName = "ModifyDate";
+            this.ModifyDate.HeaderText = "ModifyDate";
+            this.ModifyDate.Name = "ModifyDate";
+            this.ModifyDate.ReadOnly = true;
+            // 
+            // ActiveState
+            // 
+            this.ActiveState.DataPropertyName = "ActiveState";
+            this.ActiveState.HeaderText = "ActiveState";
+            this.ActiveState.Name = "ActiveState";
+            this.ActiveState.ReadOnly = true;
+            // 
             // usersBindingSource
             // 
             this.usersBindingSource.DataMember = "Users";
@@ -260,21 +373,6 @@ namespace SuperMarket.UserControls
             // 
             this.superMarketDataSet.DataSetName = "SuperMarketDataSet";
             this.superMarketDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // pcb_serchbyfullname
-            // 
-            this.pcb_serchbyfullname.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_serchbyfullname.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_serchbyfullname.Location = new System.Drawing.Point(392, 138);
-            this.pcb_serchbyfullname.Name = "pcb_serchbyfullname";
-            this.pcb_serchbyfullname.Size = new System.Drawing.Size(45, 45);
-            this.pcb_serchbyfullname.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_serchbyfullname.TabIndex = 124;
-            this.pcb_serchbyfullname.TabStop = false;
-            this.pcb_serchbyfullname.Click += new System.EventHandler(this.pcb_serchbyfullname_Click);
-            this.pcb_serchbyfullname.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
-            this.pcb_serchbyfullname.MouseEnter += new System.EventHandler(this.pcb_serchby_MouseEnter);
-            this.pcb_serchbyfullname.MouseLeave += new System.EventHandler(this.pcb_serchbyPhone_MouseLeave);
             // 
             // label9
             // 
@@ -314,21 +412,6 @@ namespace SuperMarket.UserControls
             this.txt_userLevel.Sorted = true;
             this.txt_userLevel.TabIndex = 203;
             this.txt_userLevel.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_Password_KeyDown);
-            // 
-            // pcb_serchbyPhone
-            // 
-            this.pcb_serchbyPhone.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_serchbyPhone.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_serchbyPhone.Location = new System.Drawing.Point(392, 226);
-            this.pcb_serchbyPhone.Name = "pcb_serchbyPhone";
-            this.pcb_serchbyPhone.Size = new System.Drawing.Size(45, 45);
-            this.pcb_serchbyPhone.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_serchbyPhone.TabIndex = 204;
-            this.pcb_serchbyPhone.TabStop = false;
-            this.pcb_serchbyPhone.Click += new System.EventHandler(this.pcb_serchbyPhone_Click);
-            this.pcb_serchbyPhone.DoubleClick += new System.EventHandler(this.pcb_serchbyPhone_DoubleClick);
-            this.pcb_serchbyPhone.MouseEnter += new System.EventHandler(this.pcb_serchby_MouseEnter);
-            this.pcb_serchbyPhone.MouseLeave += new System.EventHandler(this.pcb_serchbyPhone_MouseLeave);
             // 
             // label6
             // 
@@ -392,134 +475,52 @@ namespace SuperMarket.UserControls
             this.label7.TabIndex = 207;
             this.label7.Text = "*";
             // 
-            // ActiveState
+            // pcb_serchbyPhone
             // 
-            this.ActiveState.DataPropertyName = "ActiveState";
-            this.ActiveState.HeaderText = "ActiveState";
-            this.ActiveState.Name = "ActiveState";
-            this.ActiveState.ReadOnly = true;
+            this.pcb_serchbyPhone.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_serchbyPhone.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_serchbyPhone.Location = new System.Drawing.Point(392, 226);
+            this.pcb_serchbyPhone.Name = "pcb_serchbyPhone";
+            this.pcb_serchbyPhone.Size = new System.Drawing.Size(45, 45);
+            this.pcb_serchbyPhone.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_serchbyPhone.TabIndex = 204;
+            this.pcb_serchbyPhone.TabStop = false;
+            this.pcb_serchbyPhone.Click += new System.EventHandler(this.pcb_serchbyPhone_Click);
+            this.pcb_serchbyPhone.DoubleClick += new System.EventHandler(this.pcb_serchbyPhone_DoubleClick);
+            this.pcb_serchbyPhone.MouseEnter += new System.EventHandler(this.pcb_serchby_MouseEnter);
+            this.pcb_serchbyPhone.MouseLeave += new System.EventHandler(this.pcb_serchbyPhone_MouseLeave);
             // 
-            // ModifyDate
+            // pcb_serchbyname
             // 
-            this.ModifyDate.DataPropertyName = "ModifyDate";
-            this.ModifyDate.HeaderText = "ModifyDate";
-            this.ModifyDate.Name = "ModifyDate";
-            this.ModifyDate.ReadOnly = true;
+            this.pcb_serchbyname.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_serchbyname.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_serchbyname.Location = new System.Drawing.Point(392, 45);
+            this.pcb_serchbyname.Name = "pcb_serchbyname";
+            this.pcb_serchbyname.Size = new System.Drawing.Size(45, 45);
+            this.pcb_serchbyname.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_serchbyname.TabIndex = 125;
+            this.pcb_serchbyname.TabStop = false;
+            this.pcb_serchbyname.Click += new System.EventHandler(this.pcb_serchbyname_Click);
+            this.pcb_serchbyname.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
+            this.pcb_serchbyname.MouseEnter += new System.EventHandler(this.pcb_serchby_MouseEnter);
+            this.pcb_serchbyname.MouseLeave += new System.EventHandler(this.pcb_serchbyPhone_MouseLeave);
             // 
-            // CreationDate
+            // pcb_serchbyfullname
             // 
-            this.CreationDate.DataPropertyName = "CreationDate";
-            this.CreationDate.HeaderText = "CreationDate";
-            this.CreationDate.Name = "CreationDate";
-            this.CreationDate.ReadOnly = true;
+            this.pcb_serchbyfullname.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_serchbyfullname.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_serchbyfullname.Location = new System.Drawing.Point(392, 138);
+            this.pcb_serchbyfullname.Name = "pcb_serchbyfullname";
+            this.pcb_serchbyfullname.Size = new System.Drawing.Size(45, 45);
+            this.pcb_serchbyfullname.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_serchbyfullname.TabIndex = 124;
+            this.pcb_serchbyfullname.TabStop = false;
+            this.pcb_serchbyfullname.Click += new System.EventHandler(this.pcb_serchbyfullname_Click);
+            this.pcb_serchbyfullname.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
+            this.pcb_serchbyfullname.MouseEnter += new System.EventHandler(this.pcb_serchby_MouseEnter);
+            this.pcb_serchbyfullname.MouseLeave += new System.EventHandler(this.pcb_serchbyPhone_MouseLeave);
             // 
-            // Phone
-            // 
-            this.Phone.DataPropertyName = "Phone";
-            this.Phone.HeaderText = "Phone";
-            this.Phone.Name = "Phone";
-            this.Phone.ReadOnly = true;
-            // 
-            // Email
-            // 
-            this.Email.DataPropertyName = "Email";
-            this.Email.HeaderText = "Email";
-            this.Email.Name = "Email";
-            this.Email.ReadOnly = true;
-            // 
-            // UserLevel
-            // 
-            this.UserLevel.DataPropertyName = "UserLevel";
-            this.UserLevel.HeaderText = "UserLevel";
-            this.UserLevel.Name = "UserLevel";
-            this.UserLevel.ReadOnly = true;
-            // 
-            // FullName
-            // 
-            this.FullName.DataPropertyName = "FullName";
-            this.FullName.HeaderText = "FullName";
-            this.FullName.Name = "FullName";
-            this.FullName.ReadOnly = true;
-            // 
-            // Password
-            // 
-            this.Password.DataPropertyName = "Password";
-            this.Password.HeaderText = "Password";
-            this.Password.Name = "Password";
-            this.Password.ReadOnly = true;
-            // 
-            // Username
-            // 
-            this.Username.DataPropertyName = "Username";
-            this.Username.HeaderText = "Username";
-            this.Username.Name = "Username";
-            this.Username.ReadOnly = true;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            // 
-            // usersDataGridView
-            // 
-            this.usersDataGridView.AllowUserToAddRows = false;
-            this.usersDataGridView.AllowUserToDeleteRows = false;
-            this.usersDataGridView.AllowUserToResizeColumns = false;
-            this.usersDataGridView.AllowUserToResizeRows = false;
-            this.usersDataGridView.AutoGenerateColumns = false;
-            this.usersDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.usersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.usersDataGridView.ColumnHeadersHeight = 40;
-            this.usersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.Username,
-            this.Password,
-            this.FullName,
-            this.UserLevel,
-            this.Email,
-            this.Phone,
-            this.CreationDate,
-            this.ModifyDate,
-            this.ActiveState});
-            this.usersDataGridView.DataSource = this.usersBindingSource;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.usersDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
-            this.usersDataGridView.EnableHeadersVisualStyles = false;
-            this.usersDataGridView.GridColor = System.Drawing.Color.Silver;
-            this.usersDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.usersDataGridView.MultiSelect = false;
-            this.usersDataGridView.Name = "usersDataGridView";
-            this.usersDataGridView.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.usersDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.usersDataGridView.Size = new System.Drawing.Size(1032, 364);
-            this.usersDataGridView.TabIndex = 206;
-            this.usersDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.usersDataGridView_CellMouseClick);
-            this.usersDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_userDataGridView_ColumnHeaderMouseClick);
-            this.usersDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_userDataGridView_ColumnHeaderMouseDoubleClick);
-            // 
-            // Sellers
+            // Users
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -545,16 +546,16 @@ namespace SuperMarket.UserControls
             this.Controls.Add(this.pcb_serchbyfullname);
             this.Controls.Add(this.label7);
             this.MinimumSize = new System.Drawing.Size(1038, 660);
-            this.Name = "Sellers";
+            this.Name = "Users";
             this.Size = new System.Drawing.Size(1038, 660);
             this.Load += new System.EventHandler(this.Sellers_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_serchbyname)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.usersDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.usersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_serchbyfullname)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_serchbyPhone)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.usersDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_serchbyname)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_serchbyfullname)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

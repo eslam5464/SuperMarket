@@ -185,6 +185,7 @@
     <Compile Include="Classes\DataAccess\Storages.cs" />
     <Compile Include="Classes\DataAccess\SupplierInvoice.cs" />
     <Compile Include="Classes\DataAccess\SupplierInvoiceProduct.cs" />
+    <Compile Include="Classes\DataAccess\UserLevelAccess.cs" />
     <Compile Include="Classes\DataAccess\Suppliers.cs" />
     <Compile Include="Classes\DataAccess\Users.cs" />
     <Compile Include="Classes\GlobalVars.cs" />
@@ -205,7 +206,7 @@
     <Compile Include="Classes\Models\SupplierInvoiceModel.cs" />
     <Compile Include="Classes\Models\SupplierInvoiceProductModel.cs" />
     <Compile Include="Classes\Models\SupplierModel.cs" />
-    <Compile Include="Classes\Models\UserLevelAccess.cs" />
+    <Compile Include="Classes\Models\UserLevelAccessModel.cs" />
     <Compile Include="Classes\Models\UserModel.cs" />
     <Compile Include="Classes\Models\Validators\UserValidator.cs" />
     <Compile Include="Classes\Security.cs" />
@@ -256,6 +257,12 @@
     </Compile>
     <Compile Include="Forms\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\UserAccess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\UserAccess.Designer.cs">
+      <DependentUpon>UserAccess.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="SuperMarketDataSet.cs">
@@ -366,6 +373,9 @@
     </Compile>
     <EmbeddedResource Include="Forms\Notification.resx">
       <DependentUpon>Notification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\UserAccess.resx">
+      <DependentUpon>UserAccess.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\AdminPanel.resx">
       <DependentUpon>AdminPanel.cs</DependentUpon>
@@ -557,6 +567,7 @@
     <None Include="Resources\icons8-calculate-48.png" />
     <None Include="Resources\icons8-admin-settings-male-48.png" />
     <Content Include="Classes\DataAccess\FullDatabase.sql" />
+    <None Include="Resources\icons8-warehouse-48.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
