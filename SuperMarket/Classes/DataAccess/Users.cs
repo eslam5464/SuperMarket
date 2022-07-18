@@ -182,9 +182,10 @@ namespace SuperMarket.Classes.DataAccess
             {
                 using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
-                    cnn.Execute($"UPDATE Users SET Username = @Username, Password = @Password, ModifyDate = {DateTime.Now}," +
+                    string query = $"UPDATE Users SET Username = @Username, Password = @Password, ModifyDate = '{DateTime.Now}'," +
                         $"FullName = @FullName, Phone = @Phone, UserLevel = @UserLevel WHERE Id = @Id; " +
-                        $"UPDATE UserLevelAccess SET UserFullName = @FullName WHERE UserId = @Id", User);
+                        $"UPDATE UserLevelAccess SET UserFullName = @FullName WHERE UserId = @Id";
+                    cnn.Execute(query, User);
                 }
             }
             catch (Exception ex)
@@ -203,7 +204,7 @@ namespace SuperMarket.Classes.DataAccess
             {
                 using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
-                    cnn.Execute($"UPDATE Users SET ActiveState = 0, ModifyDate = {DateTime.Now} WHERE Id = {UserID}");
+                    cnn.Execute($"UPDATE Users SET ActiveState = 0, ModifyDate = '{DateTime.Now}' WHERE Id = {UserID}");
                 }
             }
             catch (Exception ex)

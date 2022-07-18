@@ -1,5 +1,6 @@
 ﻿using SuperMarket.Classes;
 using SuperMarket.Classes.Models;
+using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -24,6 +25,16 @@ namespace SuperMarket.UserControls
             SetColors(Properties.Settings.Default.AppColor);
 
             CalculateAll();
+
+            CheckLowStock();
+        }
+
+        private void CheckLowStock()
+        {
+            if (productsDataGridView.Columns.Count > 0)
+            {
+                new Notification().ShowAlert("يوجد منتجات قليله الكمية في المخزن", Notification.EnmType.Warning);
+            }
         }
 
         private void SetColors(Color appColor)

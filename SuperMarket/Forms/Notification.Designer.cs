@@ -38,16 +38,22 @@ namespace SuperMarket.Forms
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbl_message
             // 
+            this.lbl_message.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_message.AutoSize = true;
-            this.lbl_message.Location = new System.Drawing.Point(131, 21);
+            this.lbl_message.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_message.Location = new System.Drawing.Point(3, 0);
             this.lbl_message.Name = "lbl_message";
             this.lbl_message.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.lbl_message.Size = new System.Drawing.Size(118, 28);
+            this.lbl_message.Size = new System.Drawing.Size(277, 48);
             this.lbl_message.TabIndex = 0;
             this.lbl_message.Text = "Message";
             this.lbl_message.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -59,7 +65,7 @@ namespace SuperMarket.Forms
             this.btn_close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_close.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_close.ForeColor = System.Drawing.Color.White;
-            this.btn_close.Location = new System.Drawing.Point(336, 18);
+            this.btn_close.Location = new System.Drawing.Point(367, 22);
             this.btn_close.Margin = new System.Windows.Forms.Padding(2);
             this.btn_close.Name = "btn_close";
             this.btn_close.Size = new System.Drawing.Size(34, 34);
@@ -71,7 +77,7 @@ namespace SuperMarket.Forms
             // pictureBox1
             // 
             this.pictureBox1.Image = global::SuperMarket.Properties.Resources.icons8_help_48;
-            this.pictureBox1.Location = new System.Drawing.Point(23, 10);
+            this.pictureBox1.Location = new System.Drawing.Point(23, 14);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(50, 50);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -84,7 +90,7 @@ namespace SuperMarket.Forms
             this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel8.Location = new System.Drawing.Point(0, 5);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(5, 65);
+            this.panel8.Size = new System.Drawing.Size(5, 74);
             this.panel8.TabIndex = 92;
             // 
             // panel1
@@ -93,42 +99,54 @@ namespace SuperMarket.Forms
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(381, 5);
+            this.panel1.Size = new System.Drawing.Size(412, 5);
             this.panel1.TabIndex = 93;
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Purple;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(5, 65);
+            this.panel2.Location = new System.Drawing.Point(5, 74);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(376, 5);
+            this.panel2.Size = new System.Drawing.Size(407, 5);
             this.panel2.TabIndex = 94;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Purple;
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel3.Location = new System.Drawing.Point(376, 5);
+            this.panel3.Location = new System.Drawing.Point(407, 5);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(5, 60);
+            this.panel3.Size = new System.Drawing.Size(5, 69);
             this.panel3.TabIndex = 95;
             // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.lbl_message, 0, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(79, 15);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(283, 48);
+            this.tableLayoutPanel1.TabIndex = 96;
+            // 
             // Notification
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(381, 70);
+            this.ClientSize = new System.Drawing.Size(412, 79);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btn_close);
-            this.Controls.Add(this.lbl_message);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -136,8 +154,9 @@ namespace SuperMarket.Forms
             this.Text = "Notification";
             this.Load += new System.EventHandler(this.Notification_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -151,5 +170,6 @@ namespace SuperMarket.Forms
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

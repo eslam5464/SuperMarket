@@ -1,6 +1,7 @@
 ﻿using SuperMarket.Properties;
 using System;
 using System.Drawing;
+using System.Media;
 using System.Windows.Forms;
 
 namespace SuperMarket.Forms
@@ -82,6 +83,7 @@ namespace SuperMarket.Forms
 
         public void ShowAlert(string Message, EnmType Type)
         {
+
             this.Opacity = 0.0;
             this.StartPosition = FormStartPosition.Manual;
             string fname;
@@ -104,26 +106,32 @@ namespace SuperMarket.Forms
             }
             this.x = Screen.PrimaryScreen.WorkingArea.Width - base.Width - 5;
 
+            SoundPlayer NotificationSound = null;
+
             switch (Type)
             {
                 case EnmType.Success:
                     this.pictureBox1.Image = Resources.Notification_success;
                     this.BackColor = Color.SeaGreen;
+                    NotificationSound = new SoundPlayer(Properties.Sound.notification_sound_success);
+
                     break;
                 case EnmType.Error:
                     this.pictureBox1.Image = Resources.Notification_error;
                     this.BackColor = Color.IndianRed;
+                    NotificationSound = new SoundPlayer(Properties.Sound.notification_sound_error);
                     break;
                 case EnmType.Info:
                     this.pictureBox1.Image = Resources.Notification_info;
                     this.BackColor = Color.RoyalBlue;
+                    NotificationSound = new SoundPlayer(Properties.Sound.notification_sound_information);
                     break;
                 case EnmType.Warning:
                     this.pictureBox1.Image = Resources.Notification_warning;
                     this.BackColor = Color.DarkOrange;
+                    NotificationSound = new SoundPlayer(Properties.Sound.notification_sound_warning);
                     break;
             }
-
 
             this.lbl_message.Text = Message;
 
@@ -131,6 +139,9 @@ namespace SuperMarket.Forms
             this.Action = EnmAction.Start;
             this.timer1.Interval = 1;
             this.timer1.Start();
+
+            if (NotificationSound != null)
+                NotificationSound.Play();
         }
     }
 }

@@ -59,6 +59,7 @@ namespace SuperMarket.Forms
                 panel5,
                 panel6,
                 panel7,
+                panel8,
             };
 
             foreach (Panel panel in AllPanels)
@@ -111,7 +112,7 @@ namespace SuperMarket.Forms
                 pan_controls.Controls.Add(userControl);
             }
 
-            uc_dashboard.BringToFront();
+            uc_blank.BringToFront();
 
             lbl_welcomeName.Text = LoggedUser.FullName;
 
@@ -122,7 +123,7 @@ namespace SuperMarket.Forms
 
             HideSubMenu();
 
-            CheckUserLevelAccess();
+            await CheckUserLevelAccess();
         }
 
         private void btn_dashborad_Click(object sender, EventArgs e)
@@ -245,10 +246,10 @@ namespace SuperMarket.Forms
             uc_blank.BringToFront();
         }
 
-        private void CheckUserLevelAccess()
+        private async Task CheckUserLevelAccess()
         {
             List<Classes.Models.UserLevelAccessModel> SearchedUserAccess =
-                Classes.DataAccess.UserLevelAccess.GetUserLevelAccessParameter("UserId", "" + LoggedUser.Id);
+               await Task.Run(() => Classes.DataAccess.UserLevelAccess.GetUserLevelAccessParameter("UserId", "" + LoggedUser.Id));
 
             if (SearchedUserAccess.Count > 0)
             {
@@ -279,6 +280,19 @@ namespace SuperMarket.Forms
                 btn_supplierInvoices.Visible = LoggedUserAccess.SupplierInvoices;
                 btn_suppliersEdit.Visible = LoggedUserAccess.SuppliersEdit;
                 btn_users.Visible = LoggedUserAccess.Users;
+
+                if (btn_billingAdd.Visible == false && btn_billingEdit.Visible == false)
+                {
+                    btn_billing.Visible = false;
+                }
+
+                if (btn_supplierInvoices.Visible == false && btn_suppliersEdit.Visible == false)
+                {
+                    btn_suppliers.Visible = false;
+                }
+
+                pan_billing.Visible = false;
+                pan_suppliers.Visible = false;
             }
         }
 
@@ -430,14 +444,16 @@ namespace SuperMarket.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string txt = "";
-            var AllDrives = Methods.GetAllDrivesInfo();
-            txt += "\tFree / Total\n";
-            foreach (var drive in AllDrives.Keys)
-            {
-                txt += $"{AllDrives[drive].Name} -> {Math.Round(double.Parse("" + AllDrives[drive].TotalFreeSpace) / 1024 / 1024 / 1024, 2) } GB /" +
-                    $" {Math.Round(double.Parse("" + AllDrives[drive].TotalSize) / 1024 / 1024 / 1024, 2)} GB\n";
-            }
+            //string txt = "";
+            //var AllDrives = Methods.GetAllDrivesInfo();
+            //txt += "\tFree / Total\n";
+            //foreach (var drive in AllDrives.Keys)
+            //{
+            //    txt += $"{AllDrives[drive].Name} -> {Math.Round(double.Parse("" + AllDrives[drive].TotalFreeSpace) / 1024 / 1024 / 1024, 2) } GB /" +
+            //        $" {Math.Round(double.Parse("" + AllDrives[drive].TotalSize) / 1024 / 1024 / 1024, 2)} GB\n";
+            //}
+
+
 
             //MessageBox.Show(txt);
             //await Methods.SendEmail("eslam5464@hotmail.com", "Eslam Mohamed", "Test subkect", "idk body");

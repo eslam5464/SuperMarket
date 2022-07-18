@@ -39,5 +39,10 @@ namespace SuperMarket.UserControls
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void AdminPanel_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

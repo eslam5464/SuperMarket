@@ -241,15 +241,17 @@ namespace SuperMarket.Forms
             // 
             // pan_suppliers
             // 
+            this.pan_suppliers.AutoSize = true;
             this.pan_suppliers.BackColor = System.Drawing.Color.Purple;
             this.pan_suppliers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pan_suppliers.Controls.Add(this.btn_suppliersEdit);
             this.pan_suppliers.Controls.Add(this.btn_supplierInvoices);
             this.pan_suppliers.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pan_suppliers.Location = new System.Drawing.Point(13, 451);
+            this.pan_suppliers.Location = new System.Drawing.Point(13, 450);
             this.pan_suppliers.Name = "pan_suppliers";
-            this.pan_suppliers.Size = new System.Drawing.Size(228, 91);
+            this.pan_suppliers.Size = new System.Drawing.Size(228, 92);
             this.pan_suppliers.TabIndex = 26;
+            this.pan_suppliers.Visible = false;
             // 
             // btn_suppliersEdit
             // 
@@ -301,7 +303,7 @@ namespace SuperMarket.Forms
             this.btn_suppliers.ForeColor = System.Drawing.Color.White;
             this.btn_suppliers.Image = global::SuperMarket.Properties.Resources.icons8_supplier_48;
             this.btn_suppliers.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_suppliers.Location = new System.Drawing.Point(13, 406);
+            this.btn_suppliers.Location = new System.Drawing.Point(13, 405);
             this.btn_suppliers.Margin = new System.Windows.Forms.Padding(0);
             this.btn_suppliers.Name = "btn_suppliers";
             this.btn_suppliers.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -322,7 +324,7 @@ namespace SuperMarket.Forms
             this.btn_reports.ForeColor = System.Drawing.Color.White;
             this.btn_reports.Image = global::SuperMarket.Properties.Resources.icons8_business_report_48;
             this.btn_reports.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_reports.Location = new System.Drawing.Point(13, 361);
+            this.btn_reports.Location = new System.Drawing.Point(13, 360);
             this.btn_reports.Margin = new System.Windows.Forms.Padding(0);
             this.btn_reports.Name = "btn_reports";
             this.btn_reports.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -336,15 +338,15 @@ namespace SuperMarket.Forms
             // 
             // pan_billing
             // 
+            this.pan_billing.AutoSize = true;
             this.pan_billing.BackColor = System.Drawing.Color.Purple;
             this.pan_billing.Controls.Add(this.btn_billingEdit);
             this.pan_billing.Controls.Add(this.btn_billingAdd);
             this.pan_billing.Dock = System.Windows.Forms.DockStyle.Top;
             this.pan_billing.Location = new System.Drawing.Point(13, 270);
             this.pan_billing.Name = "pan_billing";
-            this.pan_billing.Size = new System.Drawing.Size(228, 91);
+            this.pan_billing.Size = new System.Drawing.Size(228, 90);
             this.pan_billing.TabIndex = 26;
-            this.pan_billing.Visible = false;
             // 
             // btn_billingEdit
             // 
@@ -701,6 +703,7 @@ namespace SuperMarket.Forms
             this.Load += new System.EventHandler(this.Main_Load);
             this.panel1.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.pan_suppliers.ResumeLayout(false);
             this.pan_billing.ResumeLayout(false);
             this.panel8.ResumeLayout(false);

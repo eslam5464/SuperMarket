@@ -264,6 +264,11 @@
     <Compile Include="Forms\UserAccess.Designer.cs">
       <DependentUpon>UserAccess.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Sound.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Sound.resx</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="SuperMarketDataSet.cs">
       <DependentUpon>SuperMarketDataSet.xsd</DependentUpon>
@@ -376,6 +381,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\UserAccess.resx">
       <DependentUpon>UserAccess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Sound.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Sound.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\AdminPanel.resx">
       <DependentUpon>AdminPanel.cs</DependentUpon>
@@ -568,6 +577,10 @@
     <None Include="Resources\icons8-admin-settings-male-48.png" />
     <Content Include="Classes\DataAccess\FullDatabase.sql" />
     <None Include="Resources\icons8-warehouse-48.png" />
+    <None Include="Resources\notification_sound_warning.wav" />
+    <None Include="Resources\notification_sound_error.wav" />
+    <None Include="Resources\notification_sound_information.wav" />
+    <None Include="Resources\notification_sound_success.wav" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

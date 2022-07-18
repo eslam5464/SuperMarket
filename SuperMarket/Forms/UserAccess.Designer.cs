@@ -40,16 +40,18 @@ namespace SuperMarket.Forms
             this.chk_customers = new System.Windows.Forms.CheckBox();
             this.chk_billingEdit = new System.Windows.Forms.CheckBox();
             this.chk_categories = new System.Windows.Forms.CheckBox();
+            this.chk_orders = new System.Windows.Forms.CheckBox();
+            this.chk_safe = new System.Windows.Forms.CheckBox();
+            this.chk_supplierInvoices = new System.Windows.Forms.CheckBox();
+            this.chk_suppliersEdit = new System.Windows.Forms.CheckBox();
             this.btn_save = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lbl_userId = new System.Windows.Forms.Label();
             this.lbl_userName = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.chk_orders = new System.Windows.Forms.CheckBox();
-            this.chk_safe = new System.Windows.Forms.CheckBox();
-            this.chk_suppliersEdit = new System.Windows.Forms.CheckBox();
-            this.chk_supplierInvoices = new System.Windows.Forms.CheckBox();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pan_table_access.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pan_table_access
@@ -99,6 +101,7 @@ namespace SuperMarket.Forms
             this.chk_settings.TabIndex = 222;
             this.chk_settings.Text = "الاعدادات";
             this.chk_settings.UseVisualStyleBackColor = true;
+            this.chk_settings.CheckedChanged += new System.EventHandler(this.chk_userAccess_CheckedChanged);
             this.chk_settings.MouseEnter += new System.EventHandler(this.chk_userAccess_MouseEnter);
             this.chk_settings.MouseLeave += new System.EventHandler(this.chk_userAccess_MouseLeave);
             // 
@@ -118,6 +121,7 @@ namespace SuperMarket.Forms
             this.chk_users.TabIndex = 223;
             this.chk_users.Text = "المستخدمين";
             this.chk_users.UseVisualStyleBackColor = true;
+            this.chk_users.CheckedChanged += new System.EventHandler(this.chk_userAccess_CheckedChanged);
             this.chk_users.MouseEnter += new System.EventHandler(this.chk_userAccess_MouseEnter);
             this.chk_users.MouseLeave += new System.EventHandler(this.chk_userAccess_MouseLeave);
             // 
@@ -137,6 +141,7 @@ namespace SuperMarket.Forms
             this.chk_reports.TabIndex = 224;
             this.chk_reports.Text = "التقارير";
             this.chk_reports.UseVisualStyleBackColor = true;
+            this.chk_reports.CheckedChanged += new System.EventHandler(this.chk_userAccess_CheckedChanged);
             this.chk_reports.MouseEnter += new System.EventHandler(this.chk_userAccess_MouseEnter);
             this.chk_reports.MouseLeave += new System.EventHandler(this.chk_userAccess_MouseLeave);
             // 
@@ -156,6 +161,7 @@ namespace SuperMarket.Forms
             this.chk_dashboard.TabIndex = 217;
             this.chk_dashboard.Text = "الرئيسية";
             this.chk_dashboard.UseVisualStyleBackColor = true;
+            this.chk_dashboard.CheckedChanged += new System.EventHandler(this.chk_userAccess_CheckedChanged);
             this.chk_dashboard.MouseEnter += new System.EventHandler(this.chk_userAccess_MouseEnter);
             this.chk_dashboard.MouseLeave += new System.EventHandler(this.chk_userAccess_MouseLeave);
             // 
@@ -175,6 +181,7 @@ namespace SuperMarket.Forms
             this.chk_products.TabIndex = 220;
             this.chk_products.Text = "المنتجات";
             this.chk_products.UseVisualStyleBackColor = true;
+            this.chk_products.CheckedChanged += new System.EventHandler(this.chk_userAccess_CheckedChanged);
             this.chk_products.MouseEnter += new System.EventHandler(this.chk_userAccess_MouseEnter);
             this.chk_products.MouseLeave += new System.EventHandler(this.chk_userAccess_MouseLeave);
             // 
@@ -194,6 +201,7 @@ namespace SuperMarket.Forms
             this.chk_billing.TabIndex = 216;
             this.chk_billing.Text = "الفواتير";
             this.chk_billing.UseVisualStyleBackColor = true;
+            this.chk_billing.CheckedChanged += new System.EventHandler(this.chk_userAccess_CheckedChanged);
             this.chk_billing.MouseEnter += new System.EventHandler(this.chk_userAccess_MouseEnter);
             this.chk_billing.MouseLeave += new System.EventHandler(this.chk_userAccess_MouseLeave);
             // 
@@ -213,6 +221,7 @@ namespace SuperMarket.Forms
             this.chk_customers.TabIndex = 219;
             this.chk_customers.Text = "العملاء";
             this.chk_customers.UseVisualStyleBackColor = true;
+            this.chk_customers.CheckedChanged += new System.EventHandler(this.chk_userAccess_CheckedChanged);
             this.chk_customers.MouseEnter += new System.EventHandler(this.chk_userAccess_MouseEnter);
             this.chk_customers.MouseLeave += new System.EventHandler(this.chk_userAccess_MouseLeave);
             // 
@@ -232,6 +241,7 @@ namespace SuperMarket.Forms
             this.chk_billingEdit.TabIndex = 215;
             this.chk_billingEdit.Text = "تعديل الفواتير";
             this.chk_billingEdit.UseVisualStyleBackColor = true;
+            this.chk_billingEdit.CheckedChanged += new System.EventHandler(this.chk_userAccess_CheckedChanged);
             this.chk_billingEdit.MouseEnter += new System.EventHandler(this.chk_userAccess_MouseEnter);
             this.chk_billingEdit.MouseLeave += new System.EventHandler(this.chk_userAccess_MouseLeave);
             // 
@@ -251,73 +261,9 @@ namespace SuperMarket.Forms
             this.chk_categories.TabIndex = 218;
             this.chk_categories.Text = "التصنيفات\r\nوالمخازن";
             this.chk_categories.UseVisualStyleBackColor = true;
+            this.chk_categories.CheckedChanged += new System.EventHandler(this.chk_userAccess_CheckedChanged);
             this.chk_categories.MouseEnter += new System.EventHandler(this.chk_userAccess_MouseEnter);
             this.chk_categories.MouseLeave += new System.EventHandler(this.chk_userAccess_MouseLeave);
-            // 
-            // btn_save
-            // 
-            this.btn_save.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_save.BackColor = System.Drawing.Color.Purple;
-            this.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_save.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_save.ForeColor = System.Drawing.Color.White;
-            this.btn_save.Location = new System.Drawing.Point(591, 12);
-            this.btn_save.Name = "btn_save";
-            this.btn_save.Size = new System.Drawing.Size(167, 50);
-            this.btn_save.TabIndex = 223;
-            this.btn_save.Text = "حفظ التغيرات";
-            this.btn_save.UseVisualStyleBackColor = false;
-            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
-            // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Purple;
-            this.label2.Location = new System.Drawing.Point(366, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(106, 23);
-            this.label2.TabIndex = 224;
-            this.label2.Text = ":الرقم التعريفي";
-            // 
-            // lbl_userId
-            // 
-            this.lbl_userId.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lbl_userId.AutoSize = true;
-            this.lbl_userId.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_userId.ForeColor = System.Drawing.Color.Black;
-            this.lbl_userId.Location = new System.Drawing.Point(411, 39);
-            this.lbl_userId.Name = "lbl_userId";
-            this.lbl_userId.Size = new System.Drawing.Size(18, 23);
-            this.lbl_userId.TabIndex = 225;
-            this.lbl_userId.Text = "-";
-            this.lbl_userId.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbl_userName
-            // 
-            this.lbl_userName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lbl_userName.AutoSize = true;
-            this.lbl_userName.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_userName.ForeColor = System.Drawing.Color.Black;
-            this.lbl_userName.Location = new System.Drawing.Point(184, 39);
-            this.lbl_userName.Name = "lbl_userName";
-            this.lbl_userName.Size = new System.Drawing.Size(18, 23);
-            this.lbl_userName.TabIndex = 227;
-            this.lbl_userName.Text = "-";
-            this.lbl_userName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label4
-            // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Purple;
-            this.label4.Location = new System.Drawing.Point(172, 9);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(72, 23);
-            this.label4.TabIndex = 226;
-            this.label4.Text = ":المستخدم";
             // 
             // chk_orders
             // 
@@ -335,6 +281,7 @@ namespace SuperMarket.Forms
             this.chk_orders.TabIndex = 225;
             this.chk_orders.Text = "الطلبات";
             this.chk_orders.UseVisualStyleBackColor = true;
+            this.chk_orders.CheckedChanged += new System.EventHandler(this.chk_userAccess_CheckedChanged);
             this.chk_orders.MouseEnter += new System.EventHandler(this.chk_userAccess_MouseEnter);
             this.chk_orders.MouseLeave += new System.EventHandler(this.chk_userAccess_MouseLeave);
             // 
@@ -354,27 +301,9 @@ namespace SuperMarket.Forms
             this.chk_safe.TabIndex = 226;
             this.chk_safe.Text = "الخزنة";
             this.chk_safe.UseVisualStyleBackColor = true;
+            this.chk_safe.CheckedChanged += new System.EventHandler(this.chk_userAccess_CheckedChanged);
             this.chk_safe.MouseEnter += new System.EventHandler(this.chk_userAccess_MouseEnter);
             this.chk_safe.MouseLeave += new System.EventHandler(this.chk_userAccess_MouseLeave);
-            // 
-            // chk_suppliersEdit
-            // 
-            this.chk_suppliersEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.chk_suppliersEdit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chk_suppliersEdit.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_suppliersEdit.Image = global::SuperMarket.Properties.Resources.icons8_supplier_48;
-            this.chk_suppliersEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chk_suppliersEdit.Location = new System.Drawing.Point(645, 291);
-            this.chk_suppliersEdit.Name = "chk_suppliersEdit";
-            this.chk_suppliersEdit.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chk_suppliersEdit.Size = new System.Drawing.Size(210, 92);
-            this.chk_suppliersEdit.TabIndex = 227;
-            this.chk_suppliersEdit.Text = "بيانات\r\nالموردين";
-            this.chk_suppliersEdit.UseVisualStyleBackColor = true;
-            this.chk_suppliersEdit.MouseEnter += new System.EventHandler(this.chk_userAccess_MouseEnter);
-            this.chk_suppliersEdit.MouseLeave += new System.EventHandler(this.chk_userAccess_MouseLeave);
             // 
             // chk_supplierInvoices
             // 
@@ -392,29 +321,131 @@ namespace SuperMarket.Forms
             this.chk_supplierInvoices.TabIndex = 228;
             this.chk_supplierInvoices.Text = "فواتير\r\nالموردين";
             this.chk_supplierInvoices.UseVisualStyleBackColor = true;
+            this.chk_supplierInvoices.CheckedChanged += new System.EventHandler(this.chk_userAccess_CheckedChanged);
             this.chk_supplierInvoices.MouseEnter += new System.EventHandler(this.chk_userAccess_MouseEnter);
             this.chk_supplierInvoices.MouseLeave += new System.EventHandler(this.chk_userAccess_MouseLeave);
+            // 
+            // chk_suppliersEdit
+            // 
+            this.chk_suppliersEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chk_suppliersEdit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chk_suppliersEdit.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chk_suppliersEdit.Image = global::SuperMarket.Properties.Resources.icons8_supplier_48;
+            this.chk_suppliersEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chk_suppliersEdit.Location = new System.Drawing.Point(645, 291);
+            this.chk_suppliersEdit.Name = "chk_suppliersEdit";
+            this.chk_suppliersEdit.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chk_suppliersEdit.Size = new System.Drawing.Size(210, 92);
+            this.chk_suppliersEdit.TabIndex = 227;
+            this.chk_suppliersEdit.Text = "بيانات\r\nالموردين";
+            this.chk_suppliersEdit.UseVisualStyleBackColor = true;
+            this.chk_suppliersEdit.CheckedChanged += new System.EventHandler(this.chk_userAccess_CheckedChanged);
+            this.chk_suppliersEdit.MouseEnter += new System.EventHandler(this.chk_userAccess_MouseEnter);
+            this.chk_suppliersEdit.MouseLeave += new System.EventHandler(this.chk_userAccess_MouseLeave);
+            // 
+            // btn_save
+            // 
+            this.btn_save.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_save.BackColor = System.Drawing.Color.Purple;
+            this.btn_save.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_save.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_save.ForeColor = System.Drawing.Color.White;
+            this.btn_save.Location = new System.Drawing.Point(583, 19);
+            this.btn_save.Name = "btn_save";
+            this.btn_save.Size = new System.Drawing.Size(167, 50);
+            this.btn_save.TabIndex = 223;
+            this.btn_save.Text = "حفظ التغيرات";
+            this.btn_save.UseVisualStyleBackColor = false;
+            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Purple;
+            this.label2.Location = new System.Drawing.Point(229, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(106, 23);
+            this.label2.TabIndex = 224;
+            this.label2.Text = ":الرقم التعريفي";
+            // 
+            // lbl_userId
+            // 
+            this.lbl_userId.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbl_userId.AutoSize = true;
+            this.lbl_userId.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_userId.ForeColor = System.Drawing.Color.Black;
+            this.lbl_userId.Location = new System.Drawing.Point(273, 38);
+            this.lbl_userId.Name = "lbl_userId";
+            this.lbl_userId.Size = new System.Drawing.Size(18, 23);
+            this.lbl_userId.TabIndex = 225;
+            this.lbl_userId.Text = "-";
+            this.lbl_userId.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbl_userName
+            // 
+            this.lbl_userName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbl_userName.AutoSize = true;
+            this.lbl_userName.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_userName.ForeColor = System.Drawing.Color.Black;
+            this.lbl_userName.Location = new System.Drawing.Point(85, 38);
+            this.lbl_userName.Name = "lbl_userName";
+            this.lbl_userName.Size = new System.Drawing.Size(18, 23);
+            this.lbl_userName.TabIndex = 227;
+            this.lbl_userName.Text = "-";
+            this.lbl_userName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Purple;
+            this.label4.Location = new System.Drawing.Point(58, 3);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(72, 23);
+            this.label4.TabIndex = 226;
+            this.label4.Text = ":المستخدم";
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.lbl_userName, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lbl_userId, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 1, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(131, 12);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 44.92754F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 55.07246F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(376, 69);
+            this.tableLayoutPanel1.TabIndex = 228;
             // 
             // UserAccess
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(858, 473);
-            this.Controls.Add(this.lbl_userName);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.lbl_userId);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.btn_save);
             this.Controls.Add(this.pan_table_access);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "UserAccess";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "صلاحيات المستخدم";
             this.Load += new System.EventHandler(this.UserAccess_Load);
             this.pan_table_access.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -439,5 +470,6 @@ namespace SuperMarket.Forms
         private System.Windows.Forms.CheckBox chk_safe;
         private System.Windows.Forms.CheckBox chk_supplierInvoices;
         private System.Windows.Forms.CheckBox chk_suppliersEdit;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
     }
 }

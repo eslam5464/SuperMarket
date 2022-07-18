@@ -77,16 +77,26 @@ namespace SuperMarket.Forms
 
         private void chk_userAccess_MouseLeave(object sender, EventArgs e)
         {
-            Control FocusedObject = (Control)sender;
-            FocusedObject.BackColor = Color.Transparent;
-            FocusedObject.ForeColor = Color.Black;
+            //Control FocusedObject = (Control)sender;
+            //FocusedObject.BackColor = Color.Transparent;
+            //FocusedObject.ForeColor = Color.Black;
         }
 
         private void chk_userAccess_MouseEnter(object sender, EventArgs e)
         {
-            Control FocusedObject = (Control)sender;
-            FocusedObject.BackColor = Properties.Settings.Default.AppColor;
-            FocusedObject.ForeColor = Color.White;
+            //Control FocusedObject = (Control)sender;
+            //FocusedObject.BackColor = Properties.Settings.Default.AppColor;
+            //FocusedObject.ForeColor = Color.White;
+        }
+
+        private void chk_userAccess_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox FocusedObject = (CheckBox)sender;
+
+            if (FocusedObject.Checked)
+                FocusedObject.BackColor = Color.LightGreen;
+            else
+                FocusedObject.BackColor = Color.IndianRed;
         }
     }
 }
