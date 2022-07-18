@@ -317,7 +317,7 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void suppliersDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private async void suppliersDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             //suppliersDataGridView.DataSource = new Methods().DataGridToDataTable(suppliersDataGridView);
 
@@ -327,19 +327,31 @@ namespace SuperMarket.UserControls
             //suppliersDataGridView.DataSource = Classes.DataAccess.Suppliers.LoadSuppliers(true).OrderBy(o => o.Address).ToList();
 
 
-            suppliersDataGridView.DataSource =
-                Classes.DataAccess.Suppliers.LoadSuppliers(true).OrderBy(o => suppliersDataGridView.Columns[e.ColumnIndex].Name).ToList();
+            //suppliersDataGridView.DataSource =
+            //    Classes.DataAccess.Suppliers.LoadSuppliers(true).OrderBy(o => suppliersDataGridView.Columns[e.ColumnIndex].Name).ToList();
+
+            System.Data.DataTable data = await new Methods().DataGridToDataTable(suppliersDataGridView);
+
+            data.DefaultView.Sort = $"{suppliersDataGridView.Columns[e.ColumnIndex].Name} ASC";
+
+            suppliersDataGridView.DataSource = data;
         }
 
-        private void suppliersDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        private async void suppliersDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             //suppliersDataGridView.DataSource = new Methods().DataGridToDataTable(suppliersDataGridView);
 
             ////suppliersDataGridView.Sort(suppliersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
 
 
-            suppliersDataGridView.DataSource =
-                Classes.DataAccess.Suppliers.LoadSuppliers(true).OrderBy(o => (suppliersDataGridView.Columns[e.ColumnIndex].Name)).ToList();
+            //suppliersDataGridView.DataSource =
+            //    Classes.DataAccess.Suppliers.LoadSuppliers(true).OrderBy(o => (suppliersDataGridView.Columns[e.ColumnIndex].Name)).ToList();
+
+            System.Data.DataTable data = await new Methods().DataGridToDataTable(suppliersDataGridView);
+
+            data.DefaultView.Sort = $"{suppliersDataGridView.Columns[e.ColumnIndex].Name} DESC";
+
+            suppliersDataGridView.DataSource = data;
         }
 
         private void pcb_suppliers_MouseEnter(object sender, EventArgs e)

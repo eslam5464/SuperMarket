@@ -3,6 +3,7 @@ using SuperMarket.Classes.Models;
 using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -422,18 +423,30 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void db_userDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private async void db_userDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             //usersDataGridView.DataSource = new Methods().DataGridToDataTable(usersDataGridView);
+            DataTable data = await new Methods().DataGridToDataTable(usersDataGridView);
 
-            //usersDataGridView.Sort(usersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+
+            data.DefaultView.Sort = $"{usersDataGridView.Columns[e.ColumnIndex].Name} ASC";
+
+            usersDataGridView.DataSource = data;
+
+            usersDataGridView.Sort(usersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
         }
 
-        private void db_userDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        private async void db_userDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            //usersDataGridView.DataSource = new Methods().DataGridToDataTable(usersDataGridView);
+            //usersDataGridView.DataSource = new BindingSource(new Methods().DataGridToDataTable(usersDataGridView), null);
 
-            //usersDataGridView.Sort(usersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+            DataTable data = await new Methods().DataGridToDataTable(usersDataGridView);
+
+            data.DefaultView.Sort = $"{usersDataGridView.Columns[e.ColumnIndex].Name} DESC";
+
+            usersDataGridView.DataSource = data;
+
+            usersDataGridView.Sort(usersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
         }
 
         private void usersDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)

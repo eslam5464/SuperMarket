@@ -2,7 +2,6 @@
 using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -275,18 +274,30 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void customersDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private async void customersDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            customersDataGridView.DataSource = new Methods().DataGridToDataTable(customersDataGridView);
+            //customersDataGridView.DataSource = new Methods().DataGridToDataTable(customersDataGridView);
 
-            customersDataGridView.Sort(customersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+            //customersDataGridView.Sort(customersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+
+            System.Data.DataTable data = await new Methods().DataGridToDataTable(customersDataGridView);
+
+            data.DefaultView.Sort = $"{customersDataGridView.Columns[e.ColumnIndex].Name} ASC";
+
+            customersDataGridView.DataSource = data;
         }
 
-        private void customersDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        private async void customersDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            customersDataGridView.DataSource = new Methods().DataGridToDataTable(customersDataGridView);
+            //customersDataGridView.DataSource = new Methods().DataGridToDataTable(customersDataGridView);
 
-            customersDataGridView.Sort(customersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+            //customersDataGridView.Sort(customersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+
+            System.Data.DataTable data = await new Methods().DataGridToDataTable(customersDataGridView);
+
+            data.DefaultView.Sort = $"{customersDataGridView.Columns[e.ColumnIndex].Name} DESC";
+
+            customersDataGridView.DataSource = data;
         }
 
         private void customersBindingNavigatorSaveItem_Click(object sender, EventArgs e)

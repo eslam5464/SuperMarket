@@ -1,6 +1,5 @@
 ﻿using SuperMarket.Classes;
 using System;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -90,18 +89,30 @@ namespace SuperMarket.UserControls
 
         }
 
-        private void db_probillsDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private async void db_probillsDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            db_probillsDataGridView.DataSource = new Methods().DataGridToDataTable(db_probillsDataGridView);
+            //db_probillsDataGridView.DataSource = new Methods().DataGridToDataTable(db_probillsDataGridView);
 
-            db_probillsDataGridView.Sort(db_probillsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+            //db_probillsDataGridView.Sort(db_probillsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+
+            System.Data.DataTable data = await new Methods().DataGridToDataTable(db_probillsDataGridView);
+
+            data.DefaultView.Sort = $"{db_probillsDataGridView.Columns[e.ColumnIndex].Name} ASC";
+
+            db_probillsDataGridView.DataSource = data;
         }
 
-        private void db_probillsDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        private async void db_probillsDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            db_probillsDataGridView.DataSource = new Methods().DataGridToDataTable(db_probillsDataGridView);
+            //db_probillsDataGridView.DataSource = new Methods().DataGridToDataTable(db_probillsDataGridView);
 
-            db_probillsDataGridView.Sort(db_probillsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+            //db_probillsDataGridView.Sort(db_probillsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+
+            System.Data.DataTable data = await new Methods().DataGridToDataTable(db_probillsDataGridView);
+
+            data.DefaultView.Sort = $"{db_probillsDataGridView.Columns[e.ColumnIndex].Name} DESC";
+
+            db_probillsDataGridView.DataSource = data;
         }
 
         private void db_probillsDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)

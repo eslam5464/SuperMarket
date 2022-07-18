@@ -1,4 +1,5 @@
-﻿using SuperMarket.Classes.Models;
+﻿using SuperMarket.Classes;
+using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -93,6 +94,24 @@ namespace SuperMarket.UserControls
 
             startX = (pan_user_count.Size.Width - lbl_user_count.Width) / 2;
             lbl_user_count.Location = new Point(startX, lbl_user_count.Location.Y);
+        }
+
+        private async void productsDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            System.Data.DataTable data = await new Methods().DataGridToDataTable(productsDataGridView);
+
+            data.DefaultView.Sort = $"{productsDataGridView.Columns[e.ColumnIndex].Name} ASC";
+
+            productsDataGridView.DataSource = data;
+        }
+
+        private async void productsDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            System.Data.DataTable data = await new Methods().DataGridToDataTable(productsDataGridView);
+
+            data.DefaultView.Sort = $"{productsDataGridView.Columns[e.ColumnIndex].Name} DESC";
+
+            productsDataGridView.DataSource = data;
         }
     }
 }

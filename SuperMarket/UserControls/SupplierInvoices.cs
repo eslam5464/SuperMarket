@@ -630,6 +630,24 @@ namespace SuperMarket.UserControls
             }
         }
 
+        private async void db_productDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            System.Data.DataTable data = await new Methods().DataGridToDataTable(db_productDataGridView);
+
+            data.DefaultView.Sort = $"{db_productDataGridView.Columns[e.ColumnIndex].Name} DESC";
+
+            db_productDataGridView.DataSource = data;
+        }
+
+        private async void db_productDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            System.Data.DataTable data = await new Methods().DataGridToDataTable(db_productDataGridView);
+
+            data.DefaultView.Sort = $"{db_productDataGridView.Columns[e.ColumnIndex].Name} ASC";
+
+            db_productDataGridView.DataSource = data;
+        }
+
         private async Task FillSupplierComboBox(ComboBox comboBox, List<SupplierModel> searchecSuppliers, string Value, string Display)
         {
             comboBox.DataSource = null;

@@ -3,7 +3,6 @@ using SuperMarket.Classes.Models;
 using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -736,18 +735,30 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void db_procardsDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private async void db_procardsDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            db_procardsDataGridView.DataSource = new Methods().DataGridToDataTable(db_procardsDataGridView);
+            //db_procardsDataGridView.DataSource = new Methods().DataGridToDataTable(db_procardsDataGridView);
 
-            db_procardsDataGridView.Sort(db_procardsDataGridView.Columns[e.ColumnIndex], direction: ListSortDirection.Ascending);
+            //db_procardsDataGridView.Sort(db_procardsDataGridView.Columns[e.ColumnIndex], direction: ListSortDirection.Ascending);
+
+            System.Data.DataTable data = await new Methods().DataGridToDataTable(db_procardsDataGridView);
+
+            data.DefaultView.Sort = $"{db_procardsDataGridView.Columns[e.ColumnIndex].Name} ASC";
+
+            db_procardsDataGridView.DataSource = data;
         }
 
-        private void db_procardsDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        private async void db_procardsDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            db_procardsDataGridView.DataSource = new Methods().DataGridToDataTable(db_procardsDataGridView);
+            //db_procardsDataGridView.DataSource = new Methods().DataGridToDataTable(db_procardsDataGridView);
 
-            db_procardsDataGridView.Sort(db_procardsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+            //db_procardsDataGridView.Sort(db_procardsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+
+            System.Data.DataTable data = await new Methods().DataGridToDataTable(db_procardsDataGridView);
+
+            data.DefaultView.Sort = $"{db_procardsDataGridView.Columns[e.ColumnIndex].Name} DESC";
+
+            db_procardsDataGridView.DataSource = data;
         }
 
         private void db_procardsDataGridView_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)

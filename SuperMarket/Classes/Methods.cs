@@ -69,6 +69,35 @@ namespace SuperMarket.Classes
             return dataTable;
         }
 
+        public static List<T> DataTableToList<T>(DataTable dataTable)
+        {
+            List<T> data = new List<T>();
+            foreach (DataRow row in dataTable.Rows)
+            {
+                T item = GetItem<T>(row);
+                data.Add(item);
+            }
+            return data;
+        }
+
+        private static T GetItem<T>(DataRow dr)
+        {
+            Type temp = typeof(T);
+            T obj = Activator.CreateInstance<T>();
+
+            foreach (DataColumn column in dr.Table.Columns)
+            {
+                foreach (System.Reflection.PropertyInfo pro in temp.GetProperties())
+                {
+                    if (pro.Name == column.ColumnName)
+                        pro.SetValue(obj, dr[column.ColumnName], null);
+                    else
+                        continue;
+                }
+            }
+            return obj;
+        }
+
         internal async virtual Task<DataTable> ListToDataTable<T>(List<T> items)
         {
             DataTable dataTable = new DataTable(typeof(T).Name);

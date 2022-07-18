@@ -35,6 +35,15 @@ namespace SuperMarket.UserControls
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.db_safeTransactionDataGridView = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SafeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SafeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmountAdded = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmountTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AdjustedByUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AdjustedByUserFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.safeTransactionBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.superMarketDataSet = new SuperMarket.SuperMarketDataSet();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -49,6 +58,7 @@ namespace SuperMarket.UserControls
             this.btn_safeSave = new System.Windows.Forms.Button();
             this.txt_safeName = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.pcb_searchSafeName = new System.Windows.Forms.PictureBox();
             this.num_safeTransactionAmount = new System.Windows.Forms.NumericUpDown();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -60,22 +70,12 @@ namespace SuperMarket.UserControls
             this.btn_exportPDF = new System.Windows.Forms.Button();
             this.txt_safeTransactionId = new System.Windows.Forms.TextBox();
             this.btn_safeTransactionRemove = new System.Windows.Forms.Button();
+            this.pcb_searchID = new System.Windows.Forms.PictureBox();
             this.btn_safeTransactionSave = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.safeTransactionTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.SafeTransactionTableAdapter();
-            this.pcb_searchSafeName = new System.Windows.Forms.PictureBox();
-            this.pcb_searchID = new System.Windows.Forms.PictureBox();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SafeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SafeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AmountAdded = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AmountTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AdjustedByUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AdjustedByUserFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_safeTransactionDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.safeTransactionBindingSource)).BeginInit();
@@ -83,8 +83,8 @@ namespace SuperMarket.UserControls
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.num_safeTransactionAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchSafeName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_safeTransactionAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).BeginInit();
             this.SuspendLayout();
             // 
@@ -154,6 +154,71 @@ namespace SuperMarket.UserControls
             this.db_safeTransactionDataGridView.Size = new System.Drawing.Size(1018, 263);
             this.db_safeTransactionDataGridView.TabIndex = 1;
             this.db_safeTransactionDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_safeTransactionDataGridView_CellMouseClick);
+            this.db_safeTransactionDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_safeTransactionDataGridView_ColumnHeaderMouseClick);
+            this.db_safeTransactionDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_safeTransactionDataGridView_ColumnHeaderMouseDoubleClick);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            // 
+            // SafeId
+            // 
+            this.SafeId.DataPropertyName = "SafeId";
+            this.SafeId.HeaderText = "SafeId";
+            this.SafeId.Name = "SafeId";
+            this.SafeId.ReadOnly = true;
+            // 
+            // SafeName
+            // 
+            this.SafeName.DataPropertyName = "SafeName";
+            this.SafeName.HeaderText = "SafeName";
+            this.SafeName.Name = "SafeName";
+            this.SafeName.ReadOnly = true;
+            // 
+            // AmountAdded
+            // 
+            this.AmountAdded.DataPropertyName = "AmountAdded";
+            this.AmountAdded.HeaderText = "AmountAdded";
+            this.AmountAdded.Name = "AmountAdded";
+            this.AmountAdded.ReadOnly = true;
+            // 
+            // AmountTotal
+            // 
+            this.AmountTotal.DataPropertyName = "AmountTotal";
+            this.AmountTotal.HeaderText = "AmountTotal";
+            this.AmountTotal.Name = "AmountTotal";
+            this.AmountTotal.ReadOnly = true;
+            // 
+            // AdjustedByUserId
+            // 
+            this.AdjustedByUserId.DataPropertyName = "AdjustedByUserId";
+            this.AdjustedByUserId.HeaderText = "AdjustedByUserId";
+            this.AdjustedByUserId.Name = "AdjustedByUserId";
+            this.AdjustedByUserId.ReadOnly = true;
+            // 
+            // AdjustedByUserFullName
+            // 
+            this.AdjustedByUserFullName.DataPropertyName = "AdjustedByUserFullName";
+            this.AdjustedByUserFullName.HeaderText = "AdjustedByUserFullName";
+            this.AdjustedByUserFullName.Name = "AdjustedByUserFullName";
+            this.AdjustedByUserFullName.ReadOnly = true;
+            // 
+            // CreationDate
+            // 
+            this.CreationDate.DataPropertyName = "CreationDate";
+            this.CreationDate.HeaderText = "CreationDate";
+            this.CreationDate.Name = "CreationDate";
+            this.CreationDate.ReadOnly = true;
+            // 
+            // Notes
+            // 
+            this.Notes.DataPropertyName = "Notes";
+            this.Notes.HeaderText = "Notes";
+            this.Notes.Name = "Notes";
+            this.Notes.ReadOnly = true;
             // 
             // safeTransactionBindingSource
             // 
@@ -335,6 +400,21 @@ namespace SuperMarket.UserControls
             this.panel4.Size = new System.Drawing.Size(1032, 213);
             this.panel4.TabIndex = 211;
             // 
+            // pcb_searchSafeName
+            // 
+            this.pcb_searchSafeName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_searchSafeName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchSafeName.Location = new System.Drawing.Point(599, 82);
+            this.pcb_searchSafeName.Name = "pcb_searchSafeName";
+            this.pcb_searchSafeName.Size = new System.Drawing.Size(45, 45);
+            this.pcb_searchSafeName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_searchSafeName.TabIndex = 228;
+            this.pcb_searchSafeName.TabStop = false;
+            this.pcb_searchSafeName.Click += new System.EventHandler(this.pcb_searchSafeName_Click);
+            this.pcb_searchSafeName.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
+            this.pcb_searchSafeName.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
+            this.pcb_searchSafeName.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
+            // 
             // num_safeTransactionAmount
             // 
             this.num_safeTransactionAmount.DecimalPlaces = 2;
@@ -487,6 +567,21 @@ namespace SuperMarket.UserControls
             this.btn_safeTransactionRemove.UseVisualStyleBackColor = false;
             this.btn_safeTransactionRemove.Click += new System.EventHandler(this.btn_safeTransactionRemove_Click);
             // 
+            // pcb_searchID
+            // 
+            this.pcb_searchID.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_searchID.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchID.Location = new System.Drawing.Point(599, 10);
+            this.pcb_searchID.Name = "pcb_searchID";
+            this.pcb_searchID.Size = new System.Drawing.Size(45, 45);
+            this.pcb_searchID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_searchID.TabIndex = 134;
+            this.pcb_searchID.TabStop = false;
+            this.pcb_searchID.Click += new System.EventHandler(this.pcb_searchID_Click);
+            this.pcb_searchID.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
+            this.pcb_searchID.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
+            this.pcb_searchID.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
+            // 
             // btn_safeTransactionSave
             // 
             this.btn_safeTransactionSave.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -542,99 +637,6 @@ namespace SuperMarket.UserControls
             // 
             this.safeTransactionTableAdapter.ClearBeforeFill = true;
             // 
-            // pcb_searchSafeName
-            // 
-            this.pcb_searchSafeName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchSafeName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_searchSafeName.Location = new System.Drawing.Point(599, 82);
-            this.pcb_searchSafeName.Name = "pcb_searchSafeName";
-            this.pcb_searchSafeName.Size = new System.Drawing.Size(45, 45);
-            this.pcb_searchSafeName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_searchSafeName.TabIndex = 228;
-            this.pcb_searchSafeName.TabStop = false;
-            this.pcb_searchSafeName.Click += new System.EventHandler(this.pcb_searchSafeName_Click);
-            this.pcb_searchSafeName.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
-            this.pcb_searchSafeName.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
-            this.pcb_searchSafeName.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
-            // 
-            // pcb_searchID
-            // 
-            this.pcb_searchID.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchID.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_searchID.Location = new System.Drawing.Point(599, 10);
-            this.pcb_searchID.Name = "pcb_searchID";
-            this.pcb_searchID.Size = new System.Drawing.Size(45, 45);
-            this.pcb_searchID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_searchID.TabIndex = 134;
-            this.pcb_searchID.TabStop = false;
-            this.pcb_searchID.Click += new System.EventHandler(this.pcb_searchID_Click);
-            this.pcb_searchID.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
-            this.pcb_searchID.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
-            this.pcb_searchID.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            // 
-            // SafeId
-            // 
-            this.SafeId.DataPropertyName = "SafeId";
-            this.SafeId.HeaderText = "SafeId";
-            this.SafeId.Name = "SafeId";
-            this.SafeId.ReadOnly = true;
-            // 
-            // SafeName
-            // 
-            this.SafeName.DataPropertyName = "SafeName";
-            this.SafeName.HeaderText = "SafeName";
-            this.SafeName.Name = "SafeName";
-            this.SafeName.ReadOnly = true;
-            // 
-            // AmountAdded
-            // 
-            this.AmountAdded.DataPropertyName = "AmountAdded";
-            this.AmountAdded.HeaderText = "AmountAdded";
-            this.AmountAdded.Name = "AmountAdded";
-            this.AmountAdded.ReadOnly = true;
-            // 
-            // AmountTotal
-            // 
-            this.AmountTotal.DataPropertyName = "AmountTotal";
-            this.AmountTotal.HeaderText = "AmountTotal";
-            this.AmountTotal.Name = "AmountTotal";
-            this.AmountTotal.ReadOnly = true;
-            // 
-            // AdjustedByUserId
-            // 
-            this.AdjustedByUserId.DataPropertyName = "AdjustedByUserId";
-            this.AdjustedByUserId.HeaderText = "AdjustedByUserId";
-            this.AdjustedByUserId.Name = "AdjustedByUserId";
-            this.AdjustedByUserId.ReadOnly = true;
-            // 
-            // AdjustedByUserFullName
-            // 
-            this.AdjustedByUserFullName.DataPropertyName = "AdjustedByUserFullName";
-            this.AdjustedByUserFullName.HeaderText = "AdjustedByUserFullName";
-            this.AdjustedByUserFullName.Name = "AdjustedByUserFullName";
-            this.AdjustedByUserFullName.ReadOnly = true;
-            // 
-            // CreationDate
-            // 
-            this.CreationDate.DataPropertyName = "CreationDate";
-            this.CreationDate.HeaderText = "CreationDate";
-            this.CreationDate.Name = "CreationDate";
-            this.CreationDate.ReadOnly = true;
-            // 
-            // Notes
-            // 
-            this.Notes.DataPropertyName = "Notes";
-            this.Notes.HeaderText = "Notes";
-            this.Notes.Name = "Notes";
-            this.Notes.ReadOnly = true;
-            // 
             // Safe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -658,8 +660,8 @@ namespace SuperMarket.UserControls
             this.panel2.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.num_safeTransactionAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchSafeName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_safeTransactionAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).EndInit();
             this.ResumeLayout(false);
 

@@ -2,7 +2,6 @@
 using SuperMarket.Classes.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -88,18 +87,30 @@ namespace SuperMarket.UserControls
             ordersDataGridView.ColumnHeadersDefaultCellStyle.BackColor = appColor;
         }
 
-        private void db_ordersDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private async void db_ordersDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            ordersDataGridView.DataSource = new Methods().DataGridToDataTable(ordersDataGridView);
+            //ordersDataGridView.DataSource = new Methods().DataGridToDataTable(ordersDataGridView);
 
-            ordersDataGridView.Sort(ordersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+            //ordersDataGridView.Sort(ordersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+
+            System.Data.DataTable data = await new Methods().DataGridToDataTable(ordersDataGridView);
+
+            data.DefaultView.Sort = $"{ordersDataGridView.Columns[e.ColumnIndex].Name} ASC";
+
+            ordersDataGridView.DataSource = data;
         }
 
-        private void db_ordersDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        private async void db_ordersDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            ordersDataGridView.DataSource = new Methods().DataGridToDataTable(ordersDataGridView);
+            //ordersDataGridView.DataSource = new Methods().DataGridToDataTable(ordersDataGridView);
 
-            ordersDataGridView.Sort(ordersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+            //ordersDataGridView.Sort(ordersDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+
+            System.Data.DataTable data = await new Methods().DataGridToDataTable(ordersDataGridView);
+
+            data.DefaultView.Sort = $"{ordersDataGridView.Columns[e.ColumnIndex].Name} DESC";
+
+            ordersDataGridView.DataSource = data;
         }
 
         private void ordersBindingNavigatorSaveItem_Click(object sender, EventArgs e)

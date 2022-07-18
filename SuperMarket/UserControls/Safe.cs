@@ -316,5 +316,23 @@ namespace SuperMarket.UserControls
                 reportViewer.Close();
             }
         }
+
+        private async void db_safeTransactionDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            System.Data.DataTable data = await new Methods().DataGridToDataTable(db_safeTransactionDataGridView);
+
+            data.DefaultView.Sort = $"{db_safeTransactionDataGridView.Columns[e.ColumnIndex].Name} ASC";
+
+            db_safeTransactionDataGridView.DataSource = data;
+        }
+
+        private async void db_safeTransactionDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            System.Data.DataTable data = await new Methods().DataGridToDataTable(db_safeTransactionDataGridView);
+
+            data.DefaultView.Sort = $"{db_safeTransactionDataGridView.Columns[e.ColumnIndex].Name} DESC";
+
+            db_safeTransactionDataGridView.DataSource = data;
+        }
     }
 }

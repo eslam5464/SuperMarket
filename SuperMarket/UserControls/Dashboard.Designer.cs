@@ -433,6 +433,8 @@ namespace SuperMarket.UserControls
             this.productsDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.productsDataGridView.Size = new System.Drawing.Size(1032, 384);
             this.productsDataGridView.TabIndex = 1;
+            this.productsDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.productsDataGridView_ColumnHeaderMouseClick);
+            this.productsDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.productsDataGridView_ColumnHeaderMouseDoubleClick);
             // 
             // Id
             // 

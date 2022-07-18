@@ -447,18 +447,34 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void db_productDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        private async void db_productDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             //productsDataGridView.DataSource = new Methods().DataGridToDataTable(productsDataGridView);
 
-            //productsDataGridView.Sort(productsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Ascending);
+            System.Data.DataTable data = await new Methods().DataGridToDataTable(productsDataGridView);
+
+            data.DefaultView.Sort = $"{productsDataGridView.Columns[e.ColumnIndex].Name} ASC";
+
+            productsDataGridView.DataSource = data;
+
+
+            //productsDataGridView.Sort(productsDataGridView.Columns[e.ColumnIndex], System.ComponentModel.ListSortDirection.Ascending);
         }
 
-        private void db_productDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+
+
+        private async void db_productDataGridView_ColumnHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             //productsDataGridView.DataSource = new Methods().DataGridToDataTable(productsDataGridView);
 
-            //productsDataGridView.Sort(productsDataGridView.Columns[e.ColumnIndex], ListSortDirection.Descending);
+            System.Data.DataTable data = await new Methods().DataGridToDataTable(productsDataGridView);
+
+            data.DefaultView.Sort = $"{productsDataGridView.Columns[e.ColumnIndex].Name} DESC";
+
+            productsDataGridView.DataSource = data;
+
+            //productsDataGridView.Sort(productsDataGridView.Columns[e.ColumnIndex], System.ComponentModel.ListSortDirection.Descending);
+
         }
 
         private void productsBindingNavigatorSaveItem_Click(object sender, EventArgs e)
