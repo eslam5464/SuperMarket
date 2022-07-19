@@ -117,7 +117,7 @@ namespace SuperMarket.Forms
 
             lbl_welcomeName.Text = LoggedUser.FullName;
 
-            await Classes.DataAccess.Backup.AllDaily();
+            await Classes.DataAccess.DataBackup.AllDaily();
 
             UserSession.Start();
             HourlyChecker.Start();
@@ -431,7 +431,7 @@ namespace SuperMarket.Forms
             FourHoursTimer += 1;
             if (HourlyTimer >= 3600)
             {
-                Task.Run(() => Classes.DataAccess.Backup.AllDaily());
+                Task.Run(() => Classes.DataAccess.DataBackup.AllDaily());
                 HourlyTimer = 0;
             }
 
@@ -457,20 +457,19 @@ namespace SuperMarket.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //string txt = "";
-            //var AllDrives = Methods.GetAllDrivesInfo();
-            //txt += "\tFree / Total\n";
-            //foreach (var drive in AllDrives.Keys)
-            //{
-            //    txt += $"{AllDrives[drive].Name} -> {Math.Round(double.Parse("" + AllDrives[drive].TotalFreeSpace) / 1024 / 1024 / 1024, 2) } GB /" +
-            //        $" {Math.Round(double.Parse("" + AllDrives[drive].TotalSize) / 1024 / 1024 / 1024, 2)} GB\n";
-            //}
-
-            btn_suppliers.Visible = true;
-            Console.WriteLine(btn_supplierInvoices.Visible);
-
-            //MessageBox.Show(txt);
-            //await Methods.SendEmail("eslam5464@hotmail.com", "Eslam Mohamed", "Test subkect", "idk body");
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.InitialDirectory = @"C:\";
+            saveFileDialog1.Title = "Save text Files";
+            saveFileDialog1.CheckFileExists = true;
+            saveFileDialog1.CheckPathExists = true;
+            saveFileDialog1.DefaultExt = "txt";
+            saveFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show(saveFileDialog1.FileName);
+            }
         }
 
         private void pic_help_MouseEnter(object sender, EventArgs e)

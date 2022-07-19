@@ -76,6 +76,8 @@ namespace SuperMarket.Forms
                     Logger.Log("serial key is correct closing the form SerialKeyCheck", System.Reflection.MethodInfo.GetCurrentMethod().Name,
                         this.Name, Logger.INFO);
 
+                    Properties.Settings.Default.SystemName = await Security.GetSystemName();
+
                     MessageBox.Show("مفتاح الترخيص صحيح.. سوف يتم بدا البرنامج", "عملية ناجحه");
 
                     Close();

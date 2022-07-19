@@ -1,4 +1,5 @@
-﻿using MimeKit;
+﻿using Microsoft.WindowsAPICodePack.Dialogs;
+using MimeKit;
 using QRCoder;
 using SuperMarket.Classes.Helpers;
 using System;
@@ -313,6 +314,78 @@ namespace SuperMarket.Classes
                 }
             }
             return HardDisksInfo;
+        }
+
+        internal static string PromptOpenFileDialog(string FilterFilesExtention, string FilterFileName)
+        {
+            string RootDriveLetter = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System));
+
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = $@"{RootDriveLetter}Users\{Environment.UserName}\Desktop\",
+                Title = $"Browse {FilterFileName} Files",
+                CheckFileExists = true,
+                CheckPathExists = true,
+                DefaultExt = $"{FilterFileName}",
+                Filter = $"{FilterFileName} files (*.{FilterFilesExtention})| *.{FilterFilesExtention}|All files (*.*)|*.*",
+                FilterIndex = 1,
+                Multiselect = false,
+                RestoreDirectory = true,
+                ReadOnlyChecked = true,
+                ShowReadOnly = false,
+            };
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                return openFileDialog.FileName;
+            }
+
+            return "";
+        }
+
+        internal async static Task<string> PromptFolderBrowserDialog()
+        {
+            string RootDriveLetter = await Task.Run(() => Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System)));
+
+            var Dialog = await Task.Run(() => new CommonOpenFileDialog
+            {
+                IsFolderPicker = true,
+                InitialDirectory = $@"{RootDriveLetter}Users\{Environment.UserName}\Desktop\",
+                Multiselect = false,
+            });
+
+            CommonFileDialogResult DialogResult = Dialog.ShowDialog();
+
+            if (DialogResult == CommonFileDialogResult.Ok)
+                return Dialog.FileName;
+
+            else
+                return "";
+        }
+
+        internal async static Task<string> PromptSaveFileDialog(string FileName)
+        {
+            string RootDriveLetter = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System));
+
+            SaveFileDialog saveFileDialog = await Task.Run(() => new SaveFileDialog
+            {
+                InitialDirectory = $@"{RootDriveLetter}Users\{Environment.UserName}\Desktop\",
+                Title = $"Save {FileName.Split('.')[0]} Files",
+                CheckPathExists = true,
+                DefaultExt = $"{FileName.Split('.')[FileName.Split('.').Length - 1]}",
+                Filter = $"{FileName.Split('.')[FileName.Split('.').Length - 1]} " +
+                $"files (*.{FileName.Split('.')[FileName.Split('.').Length - 1]})|" +
+                $"*.{FileName.Split('.')[FileName.Split('.').Length - 1]}",
+                FilterIndex = 1,
+                RestoreDirectory = true,
+                FileName = FileName,
+            });
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                return saveFileDialog.FileName;
+            }
+            return "";
         }
 
         //Array.FindIndex(GlobalVars.PaymentMethod, row => row.Contains("نقدي"))

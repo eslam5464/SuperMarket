@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using System.Drawing;
 
 namespace SuperMarket.Classes
 {
@@ -7,6 +8,12 @@ namespace SuperMarket.Classes
         private static readonly int maxQueryRows = 500, notificationTimeout = 10000;
         private static readonly string[] userLevels = { "مدير", "مشرف", "موظف" };
         private static readonly string[] paymentMethod = { "نقدي", "آجل", "نصف آجل" };
+        private static readonly Color[] availableColors = { Color.Red, Color.Green, Color.Blue, Color.Purple, Color.Brown };
+
+        public static Color[] AvailableColors
+        {
+            get { return availableColors; }
+        }
 
         public static string[] PaymentMethod
         {

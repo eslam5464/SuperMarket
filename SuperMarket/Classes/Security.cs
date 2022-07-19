@@ -11,6 +11,7 @@ namespace SuperMarket.Classes
     class Security
     {
         private static readonly string ApplicationName = "Super Market System",
+            DatabaseName = "SuperMarket",
             DriveLetter = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System)),
             DirectoryLocation = $@"{DriveLetter}Users\{Environment.UserName}\AppData\Local\{ApplicationName}",
             SerialKeyFileName = @"\serial",
@@ -20,6 +21,16 @@ namespace SuperMarket.Classes
         public static string CPUID = "", MOBOID = "", CPUName = "", CPUCores = "", CPUSpeed = "", SystemName = "";
 
         public static bool OpenFormMain = false;
+
+        public static string GetDBName()
+        {
+            return DatabaseName;
+        }
+
+        public static string GetDriveLetter()
+        {
+            return DriveLetter;
+        }
 
         public static string GetSerialKeyFileLocation()
         {
@@ -179,6 +190,20 @@ namespace SuperMarket.Classes
             {
                 string cpuName = await Task.Run(() => managementObject.Properties[PropertyName].Value.ToString().Trim());
                 return cpuName.Trim();
+            }
+
+            return "";
+        }
+
+        public async static Task<string> GetSystemName()
+        {
+            ManagementClass management = await Task.Run(() => new ManagementClass("win32_processor"));
+            ManagementObjectCollection managementObjectCollection = await Task.Run(() => management.GetInstances());
+
+            foreach (var managementObject in managementObjectCollection)
+            {
+                string SystemName = await Task.Run(() => managementObject.Properties["SystemName"].Value.ToString().Trim());
+                return SystemName.Trim();
             }
 
             return "";

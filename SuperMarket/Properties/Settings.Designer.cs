@@ -116,5 +116,29 @@ namespace SuperMarket.Properties {
                 this["BackupLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ReportsEmail {
+            get {
+                return ((string)(this["ReportsEmail"]));
+            }
+            set {
+                this["ReportsEmail"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SystemName {
+            get {
+                return ((string)(this["SystemName"]));
+            }
+            set {
+                this["SystemName"] = value;
+            }
+        }
     }
 }

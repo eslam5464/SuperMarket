@@ -107,6 +107,12 @@
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.WindowsAPICodePack, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack-Core.1.1.1\lib\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\WindowsAPICodePack-Shell.1.1.1\lib\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
     <Reference Include="MimeKit, Version=3.3.0.0, Culture=neutral, PublicKeyToken=bede1c8a46c66814, processorArchitecture=MSIL">
       <HintPath>..\packages\MimeKit.3.3.0\lib\net47\MimeKit.dll</HintPath>
     </Reference>
@@ -173,9 +179,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\DataAccess\Backup.cs" />
+    <Compile Include="Classes\DataAccess\DataBackup.cs" />
     <Compile Include="Classes\DataAccess\Categories.cs" />
     <Compile Include="Classes\DataAccess\Customers.cs" />
+    <Compile Include="Classes\DataAccess\DataRestore.cs" />
     <Compile Include="Classes\DataAccess\Invoices.cs" />
     <Compile Include="Classes\DataAccess\Orders.cs" />
     <Compile Include="Classes\DataAccess\ProductPrice.cs" />

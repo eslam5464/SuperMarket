@@ -7,12 +7,21 @@ using System.Threading.Tasks;
 
 namespace SuperMarket.Classes.DataAccess
 {
-    class Backup
+    class DataBackup
     {
         private static string Date = DateTime.Now.ToString("yyyy-MM-dd"),
                 BackupLocation = Properties.Settings.Default.BackupLocation,
                 BackupType = "Daily",
                 FileName = $@"\{BackupType}LocalBackup {Date}.bak";
+
+        public async static Task<bool> AllOnce(string strDestination, string BackupFileName, bool Overwrite, string Id = "Default")
+        {
+            Date = DateTime.Now.ToString("yyyy-MM-dd ");
+
+            bool output = await All(strDestination, Id, Overwrite, BackupFileName);
+
+            return output;
+        }
 
         public async static Task AllWeekly(DayOfWeek Day, string strDestination = ".", string Id = "Default")
         {
@@ -24,7 +33,7 @@ namespace SuperMarket.Classes.DataAccess
                 BackupLocation = Security.GetDirecotryLocation() + @"\Backup";
 
             if (DateTime.Now.DayOfWeek == Day)
-                await All(strDestination, Id, false);
+                await All(strDestination, Id, false, FileName);
         }
 
         public async static Task AllDaily(int NumOfMaxBackup = 10, string strDestination = ".", string Id = "Default")
@@ -52,8 +61,10 @@ namespace SuperMarket.Classes.DataAccess
             }
         }
 
-        private async static Task All(string strDestination = ".", string Id = "Default", bool Overwrite = false)
+        private async static Task<bool> All(string strDestination = ".", string Id = "Default", bool Overwrite = false,
+            string BackupFileName = "")
         {
+            bool output = false;
             if (!Directory.Exists(BackupLocation))
             {
                 await Task.Run(() => Directory.CreateDirectory(BackupLocation));
@@ -64,17 +75,24 @@ namespace SuperMarket.Classes.DataAccess
             if (strDestination == ".")
                 strDestination = BackupLocation;
 
+            if (BackupFileName == "")
+                BackupFileName = FileName;
+
+
             if (Overwrite)
             {
                 try
                 {
                     using (var location = new SqlConnection(GlobalVars.LoadConnectionString(Id)))
                     {
-                        await Task.Run(() => location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{FileName}' 
+                        await Task.Run(() => location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{BackupFileName}' 
                             WITH DIFFERENTIAL", new DynamicParameters()));
                     }
-                    await Task.Run(() => Logger.Log("created backup and orverwrited the file",
-                        System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.INFO));
+                    await Task.Run(() => Logger.Log($@"created backup and orverwrited the file at location " +
+                        $@"<{strDestination}\{BackupFileName}>", System.Reflection.MethodInfo.GetCurrentMethod().Name,
+                        "Backup", Logger.INFO));
+
+                    output = true;
                 }
                 catch (Exception ex)
                 {
@@ -85,47 +103,60 @@ namespace SuperMarket.Classes.DataAccess
                     {
                         using (var location = new SqlConnection(GlobalVars.LoadConnectionString(Id)))
                         {
-                            await Task.Run(() => location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{FileName}' "
+                            await Task.Run(() => location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{BackupFileName}' "
                                 + "WITH DIFFERENTIAL", new DynamicParameters()));
                         }
-                        await Task.Run(() => Logger.Log("created backup and orverwrited the file", System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.WARNING));
+                        await Task.Run(() => Logger.Log($@"created backup and orverwrited the file at location " +
+                            $@"<{strDestination}\{BackupFileName}>", System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup",
+                            Logger.WARNING));
+
+                        output = true;
                     }
                     catch (Exception ex2)
                     {
                         await Task.Run(() => Logger.Log("Error again when creating backup with and without diferential & error: "
                             + ex2.Message, System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.WARNING));
+
+                        output = false;
                     }
                 }
             }
 
-            if (!Overwrite && !File.Exists(strDestination + FileName))
+            if (!Overwrite && !File.Exists(strDestination + BackupFileName))
             {
                 try
                 {
                     using (var location = new SqlConnection(GlobalVars.LoadConnectionString(Id)))
-                    //using (var destination = new SqlConnection($@"Data Source={strDestination}\{FileName}; Version=3;"))
+                    //using (var destination = new SqlConnection($@"Data Source={strDestination}\{BackupFileName}; Version=3;"))
                     {
-                        await Task.Run(() => location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{FileName}'",
+                        await Task.Run(() => location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{BackupFileName}'",
                             new DynamicParameters()));
                         //location.Open();
                         //destination.Open();
                         //location.BackupDatabase(destination, "main", "main", -1, null, 0);
                     }
 
-                    await Task.Run(() => Logger.Log("created backup without overwriting the file",
+                    await Task.Run(() => Logger.Log($@"created backup without overwriting the file at location <{strDestination}\{BackupFileName}>",
                         System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.INFO));
+
+                    output = true;
                 }
                 catch (Exception ex)
                 {
                     await Task.Run(() => Logger.Log("Error when creating backup: " + ex.Message,
                         System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.ERROR));
+                    output = false;
                 }
             }
-            else
+            if (!Overwrite && File.Exists(strDestination + BackupFileName))
             {
-                await Task.Run(() => Logger.Log("backup already done, cant make an new backup",
+                await Task.Run(() => Logger.Log($@"backup already done at <{strDestination}\{BackupFileName}>, cant make an new backup",
                     System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.INFO));
+
+                output = true;
             }
+
+            return output;
         }
     }
 }

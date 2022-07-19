@@ -48,7 +48,7 @@ namespace SuperMarket.UserControls
             this.btn_openBackupLocation.TabIndex = 200;
             this.btn_openBackupLocation.Text = "Backup location";
             this.btn_openBackupLocation.UseVisualStyleBackColor = false;
-            this.btn_openBackupLocation.Click += new System.EventHandler(this.btn_safeEdit_Click);
+            this.btn_openBackupLocation.Click += new System.EventHandler(this.btn_openBackupLocation_Click);
             // 
             // btn_getSerial
             // 
@@ -105,7 +105,6 @@ namespace SuperMarket.UserControls
             this.MinimumSize = new System.Drawing.Size(1038, 660);
             this.Name = "AdminPanel";
             this.Size = new System.Drawing.Size(1038, 660);
-            this.Load += new System.EventHandler(this.AdminPanel_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
