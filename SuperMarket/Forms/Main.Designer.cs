@@ -169,7 +169,7 @@ namespace SuperMarket.Forms
             this.btn_adminPanel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btn_adminPanel.Size = new System.Drawing.Size(228, 45);
             this.btn_adminPanel.TabIndex = 31;
-            this.btn_adminPanel.Text = "   ادوات المشرف";
+            this.btn_adminPanel.Text = "   ادوات متقدمه";
             this.btn_adminPanel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_adminPanel.UseVisualStyleBackColor = true;
             this.btn_adminPanel.Visible = false;
@@ -486,7 +486,7 @@ namespace SuperMarket.Forms
             this.btn_Categories.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btn_Categories.Size = new System.Drawing.Size(228, 45);
             this.btn_Categories.TabIndex = 16;
-            this.btn_Categories.Text = "   اصناف ومخازن";
+            this.btn_Categories.Text = "   تصنيف ومخازن";
             this.btn_Categories.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_Categories.UseVisualStyleBackColor = true;
             this.btn_Categories.Click += new System.EventHandler(this.btn_Categories_Click);

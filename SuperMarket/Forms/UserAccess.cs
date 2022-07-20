@@ -18,6 +18,7 @@ namespace SuperMarket.Forms
         {
             if (SelectedUser != null)
             {
+                ResetCheckBoxes();
                 SetAllCheckBoxes(SelectedUser);
                 lbl_userId.Text = "" + SelectedUser.UserId;
                 lbl_userName.Text = "" + SelectedUser.UserFullName;
@@ -26,6 +27,23 @@ namespace SuperMarket.Forms
             {
                 MessageBox.Show("حدث خطأ أثناء تحميل  بيانات المستخدم", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void ResetCheckBoxes()
+        {
+            chk_billing.BackColor = Color.IndianRed;
+            chk_billingEdit.BackColor = Color.IndianRed;
+            chk_categories.BackColor = Color.IndianRed;
+            chk_customers.BackColor = Color.IndianRed;
+            chk_dashboard.BackColor = Color.IndianRed;
+            chk_products.BackColor = Color.IndianRed;
+            chk_reports.BackColor = Color.IndianRed;
+            chk_settings.BackColor = Color.IndianRed;
+            chk_users.BackColor = Color.IndianRed;
+            chk_safe.BackColor = Color.IndianRed;
+            chk_orders.BackColor = Color.IndianRed;
+            chk_supplierInvoices.BackColor = Color.IndianRed;
+            chk_suppliersEdit.BackColor = Color.IndianRed;
         }
 
         private void SetAllCheckBoxes(UserLevelAccessModel selectedUser)
@@ -43,7 +61,6 @@ namespace SuperMarket.Forms
             chk_orders.Checked = selectedUser.Orders;
             chk_supplierInvoices.Checked = selectedUser.SupplierInvoices;
             chk_suppliersEdit.Checked = selectedUser.SuppliersEdit;
-
         }
 
         internal static void SetSelectedUser(UserLevelAccessModel userLevelAccess)

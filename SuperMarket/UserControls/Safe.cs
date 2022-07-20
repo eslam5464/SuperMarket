@@ -334,5 +334,50 @@ namespace SuperMarket.UserControls
 
             db_safeTransactionDataGridView.DataSource = data;
         }
+
+        private async void btn_safeDelete_Click(object sender, EventArgs e)
+        {
+            if (txt_safeNameEdit.SelectedIndex != -1)
+            {
+                if (MessageBox.Show($"هل انت متأكد من مسح < {txt_safeNameEdit.Text} >", "انتظر",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    await Classes.DataAccess.Safe.RemoveSafe(int.Parse(txt_safeNameEdit.SelectedValue.ToString()));
+                    RefreshComboBoxes();
+                }
+            }
+            else
+                MessageBox.Show("برجاءاختيار خزنه للحذف", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private async void btn_safeEdit_Click(object sender, EventArgs e)
+        {
+            if (txt_safeNameEdit.SelectedIndex != -1)
+            {
+                string SafeNameEditResult = Microsoft.VisualBasic.Interaction.InputBox("",
+                    $"تعديل اسم الخزنه {txt_safeNameEdit.Text}", txt_safeNameEdit.Text);
+
+                if (SafeNameEditResult != "")
+                {
+                    List<SafeModel> SafeSearch = await
+                        Classes.DataAccess.Safe.GetSafeParameter("Id", txt_safeNameEdit.SelectedValue.ToString());
+
+                    if (SafeSearch.Count > 0)
+                    {
+                        SafeSearch[0].Name = SafeNameEditResult;
+                        await Classes.DataAccess.Safe.UpdateSafe(SafeSearch[0]);
+                        RefreshComboBoxes();
+                        MessageBox.Show("تم التعديل", "عمليه ناجحه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("لا يمكن تعديل اسم الخزنة لانه غير موجود", "حدث خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+                MessageBox.Show("برجاءاختيار خزنه للتعديل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
     }
 }

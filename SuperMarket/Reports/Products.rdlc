@@ -745,11 +745,10 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <RepeatColumnHeaders>true</RepeatColumnHeaders>
-            <FixedColumnHeaders>true</FixedColumnHeaders>
             <DataSetName>Products</DataSetName>
             <Top>0.13195in</Top>
             <Height>0.59375in</Height>
-            <Width>9.90687in</Width>
+            <Width>9.90686in</Width>
             <Style>
               <Border>
                 <Color>Silver</Color>

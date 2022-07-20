@@ -34,6 +34,7 @@ namespace SuperMarket.Forms
             this.rv_orders = new Microsoft.Reporting.WinForms.ReportViewer();
             this.rv_products = new Microsoft.Reporting.WinForms.ReportViewer();
             this.rv_users = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.rv_categories = new Microsoft.Reporting.WinForms.ReportViewer();
             this.SuspendLayout();
             // 
             // rv_customers
@@ -76,11 +77,22 @@ namespace SuperMarket.Forms
             this.rv_users.TabIndex = 3;
             this.rv_users.Visible = false;
             // 
+            // rv_categories
+            // 
+            this.rv_categories.LocalReport.ReportEmbeddedResource = "SuperMarket.Reports.Categories.rdlc";
+            this.rv_categories.Location = new System.Drawing.Point(536, 12);
+            this.rv_categories.Name = "rv_categories";
+            this.rv_categories.ServerReport.BearerToken = null;
+            this.rv_categories.Size = new System.Drawing.Size(125, 174);
+            this.rv_categories.TabIndex = 4;
+            this.rv_categories.Visible = false;
+            // 
             // ReportViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.rv_categories);
             this.Controls.Add(this.rv_users);
             this.Controls.Add(this.rv_products);
             this.Controls.Add(this.rv_orders);
@@ -100,5 +112,6 @@ namespace SuperMarket.Forms
         private Microsoft.Reporting.WinForms.ReportViewer rv_orders;
         private Microsoft.Reporting.WinForms.ReportViewer rv_products;
         private Microsoft.Reporting.WinForms.ReportViewer rv_users;
+        private Microsoft.Reporting.WinForms.ReportViewer rv_categories;
     }
 }

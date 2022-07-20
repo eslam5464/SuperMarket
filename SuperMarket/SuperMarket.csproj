@@ -393,6 +393,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Sound.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Categories.rdlc" />
     <EmbeddedResource Include="UserControls\AdminPanel.resx">
       <DependentUpon>AdminPanel.cs</DependentUpon>
     </EmbeddedResource>

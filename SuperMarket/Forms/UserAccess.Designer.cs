@@ -366,7 +366,7 @@ namespace SuperMarket.Forms
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Purple;
-            this.label2.Location = new System.Drawing.Point(229, 3);
+            this.label2.Location = new System.Drawing.Point(229, 4);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(106, 23);
             this.label2.TabIndex = 224;
@@ -404,7 +404,7 @@ namespace SuperMarket.Forms
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Purple;
-            this.label4.Location = new System.Drawing.Point(58, 3);
+            this.label4.Location = new System.Drawing.Point(58, 4);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 23);
             this.label4.TabIndex = 226;

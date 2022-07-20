@@ -32,22 +32,22 @@ namespace SuperMarket.UserControls
             this.cb_color = new System.Windows.Forms.ComboBox();
             this.pan_color_sample = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbl_appColor = new System.Windows.Forms.Label();
-            this.btn_saveSettings = new System.Windows.Forms.Button();
-            this.btn_resetDefault = new System.Windows.Forms.Button();
-            this.lbl_backupLocation = new System.Windows.Forms.Label();
+            this.lbl_restoreDatabase = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
             this.btn_backupLocation = new System.Windows.Forms.Button();
             this.tb_backupLocation = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btn_restoreDatabase = new System.Windows.Forms.Button();
-            this.lbl_restoreDatabase = new System.Windows.Forms.Label();
+            this.lbl_backupLocation = new System.Windows.Forms.Label();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.lbl_appColor = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btn_createBackup = new System.Windows.Forms.Button();
+            this.btn_restoreDatabase = new System.Windows.Forms.Button();
+            this.btn_saveSettings = new System.Windows.Forms.Button();
+            this.btn_resetDefault = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -100,74 +100,17 @@ namespace SuperMarket.UserControls
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1032, 324);
             this.tableLayoutPanel1.TabIndex = 200;
             // 
-            // tableLayoutPanel2
+            // lbl_restoreDatabase
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.55786F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.44214F));
-            this.tableLayoutPanel2.Controls.Add(this.cb_color, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.pan_color_sample, 1, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(315, 6);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(711, 44);
-            this.tableLayoutPanel2.TabIndex = 201;
-            // 
-            // lbl_appColor
-            // 
-            this.lbl_appColor.AutoSize = true;
-            this.lbl_appColor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbl_appColor.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lbl_appColor.Location = new System.Drawing.Point(6, 3);
-            this.lbl_appColor.Name = "lbl_appColor";
-            this.lbl_appColor.Size = new System.Drawing.Size(300, 50);
-            this.lbl_appColor.TabIndex = 202;
-            this.lbl_appColor.Text = "لون البرنامج";
-            this.lbl_appColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btn_saveSettings
-            // 
-            this.btn_saveSettings.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_saveSettings.BackColor = System.Drawing.Color.Purple;
-            this.btn_saveSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_saveSettings.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_saveSettings.ForeColor = System.Drawing.Color.White;
-            this.btn_saveSettings.Location = new System.Drawing.Point(581, 509);
-            this.btn_saveSettings.Name = "btn_saveSettings";
-            this.btn_saveSettings.Size = new System.Drawing.Size(229, 50);
-            this.btn_saveSettings.TabIndex = 218;
-            this.btn_saveSettings.Text = "حفظ الاعدادات";
-            this.btn_saveSettings.UseVisualStyleBackColor = false;
-            this.btn_saveSettings.Click += new System.EventHandler(this.btn_saveSettings_Click);
-            // 
-            // btn_resetDefault
-            // 
-            this.btn_resetDefault.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_resetDefault.BackColor = System.Drawing.Color.Purple;
-            this.btn_resetDefault.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_resetDefault.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_resetDefault.ForeColor = System.Drawing.Color.White;
-            this.btn_resetDefault.Location = new System.Drawing.Point(229, 509);
-            this.btn_resetDefault.Name = "btn_resetDefault";
-            this.btn_resetDefault.Size = new System.Drawing.Size(229, 50);
-            this.btn_resetDefault.TabIndex = 219;
-            this.btn_resetDefault.Text = "إعادة تعيين الافتراضي";
-            this.btn_resetDefault.UseVisualStyleBackColor = false;
-            this.btn_resetDefault.Click += new System.EventHandler(this.btn_resetDefault_Click);
-            // 
-            // lbl_backupLocation
-            // 
-            this.lbl_backupLocation.AutoSize = true;
-            this.lbl_backupLocation.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbl_backupLocation.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lbl_backupLocation.Location = new System.Drawing.Point(6, 56);
-            this.lbl_backupLocation.Name = "lbl_backupLocation";
-            this.lbl_backupLocation.Size = new System.Drawing.Size(300, 70);
-            this.lbl_backupLocation.TabIndex = 220;
-            this.lbl_backupLocation.Text = "مكان النسخه الاحتياطيه للبيانات";
-            this.lbl_backupLocation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_restoreDatabase.AutoSize = true;
+            this.lbl_restoreDatabase.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_restoreDatabase.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
+            this.lbl_restoreDatabase.Location = new System.Drawing.Point(6, 129);
+            this.lbl_restoreDatabase.Name = "lbl_restoreDatabase";
+            this.lbl_restoreDatabase.Size = new System.Drawing.Size(300, 50);
+            this.lbl_restoreDatabase.TabIndex = 221;
+            this.lbl_restoreDatabase.Text = "البيانات المخزنه";
+            this.lbl_restoreDatabase.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel3
             // 
@@ -185,6 +128,18 @@ namespace SuperMarket.UserControls
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(711, 64);
             this.tableLayoutPanel3.TabIndex = 220;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label1.Location = new System.Drawing.Point(145, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(136, 64);
+            this.label1.TabIndex = 221;
+            this.label1.Text = "المكان الحالي:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // btn_backupLocation
             // 
@@ -213,44 +168,44 @@ namespace SuperMarket.UserControls
             this.tb_backupLocation.TabIndex = 221;
             this.tb_backupLocation.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label1
+            // lbl_backupLocation
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(145, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(136, 64);
-            this.label1.TabIndex = 221;
-            this.label1.Text = "المكان الحالي:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lbl_backupLocation.AutoSize = true;
+            this.lbl_backupLocation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_backupLocation.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
+            this.lbl_backupLocation.Location = new System.Drawing.Point(6, 56);
+            this.lbl_backupLocation.Name = "lbl_backupLocation";
+            this.lbl_backupLocation.Size = new System.Drawing.Size(300, 70);
+            this.lbl_backupLocation.TabIndex = 220;
+            this.lbl_backupLocation.Text = "مكان النسخه الاحتياطيه للبيانات";
+            this.lbl_backupLocation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btn_restoreDatabase
+            // tableLayoutPanel2
             // 
-            this.btn_restoreDatabase.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btn_restoreDatabase.BackColor = System.Drawing.Color.Purple;
-            this.btn_restoreDatabase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_restoreDatabase.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_restoreDatabase.ForeColor = System.Drawing.Color.White;
-            this.btn_restoreDatabase.Location = new System.Drawing.Point(62, 3);
-            this.btn_restoreDatabase.Name = "btn_restoreDatabase";
-            this.btn_restoreDatabase.Size = new System.Drawing.Size(231, 38);
-            this.btn_restoreDatabase.TabIndex = 220;
-            this.btn_restoreDatabase.Text = "استرجاع نسخه احتياطية";
-            this.btn_restoreDatabase.UseVisualStyleBackColor = false;
-            this.btn_restoreDatabase.Click += new System.EventHandler(this.btn_restoreDatabase_Click);
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 76.55786F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.44214F));
+            this.tableLayoutPanel2.Controls.Add(this.cb_color, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.pan_color_sample, 1, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(315, 6);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(711, 44);
+            this.tableLayoutPanel2.TabIndex = 201;
             // 
-            // lbl_restoreDatabase
+            // lbl_appColor
             // 
-            this.lbl_restoreDatabase.AutoSize = true;
-            this.lbl_restoreDatabase.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbl_restoreDatabase.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
-            this.lbl_restoreDatabase.Location = new System.Drawing.Point(6, 129);
-            this.lbl_restoreDatabase.Name = "lbl_restoreDatabase";
-            this.lbl_restoreDatabase.Size = new System.Drawing.Size(300, 50);
-            this.lbl_restoreDatabase.TabIndex = 221;
-            this.lbl_restoreDatabase.Text = "البيانات المخزنه";
-            this.lbl_restoreDatabase.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_appColor.AutoSize = true;
+            this.lbl_appColor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbl_appColor.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
+            this.lbl_appColor.Location = new System.Drawing.Point(6, 3);
+            this.lbl_appColor.Name = "lbl_appColor";
+            this.lbl_appColor.Size = new System.Drawing.Size(300, 50);
+            this.lbl_appColor.TabIndex = 202;
+            this.lbl_appColor.Text = "لون البرنامج";
+            this.lbl_appColor.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel4
             // 
@@ -282,6 +237,51 @@ namespace SuperMarket.UserControls
             this.btn_createBackup.UseVisualStyleBackColor = false;
             this.btn_createBackup.Click += new System.EventHandler(this.btn_createBackup_Click);
             // 
+            // btn_restoreDatabase
+            // 
+            this.btn_restoreDatabase.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_restoreDatabase.BackColor = System.Drawing.Color.Purple;
+            this.btn_restoreDatabase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_restoreDatabase.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_restoreDatabase.ForeColor = System.Drawing.Color.White;
+            this.btn_restoreDatabase.Location = new System.Drawing.Point(62, 3);
+            this.btn_restoreDatabase.Name = "btn_restoreDatabase";
+            this.btn_restoreDatabase.Size = new System.Drawing.Size(231, 38);
+            this.btn_restoreDatabase.TabIndex = 220;
+            this.btn_restoreDatabase.Text = "استرجاع نسخه احتياطية";
+            this.btn_restoreDatabase.UseVisualStyleBackColor = false;
+            this.btn_restoreDatabase.Click += new System.EventHandler(this.btn_restoreDatabase_Click);
+            // 
+            // btn_saveSettings
+            // 
+            this.btn_saveSettings.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_saveSettings.BackColor = System.Drawing.Color.Purple;
+            this.btn_saveSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_saveSettings.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_saveSettings.ForeColor = System.Drawing.Color.White;
+            this.btn_saveSettings.Location = new System.Drawing.Point(581, 509);
+            this.btn_saveSettings.Name = "btn_saveSettings";
+            this.btn_saveSettings.Size = new System.Drawing.Size(229, 50);
+            this.btn_saveSettings.TabIndex = 218;
+            this.btn_saveSettings.Text = "حفظ الاعدادات";
+            this.btn_saveSettings.UseVisualStyleBackColor = false;
+            this.btn_saveSettings.Click += new System.EventHandler(this.btn_saveSettings_Click);
+            // 
+            // btn_resetDefault
+            // 
+            this.btn_resetDefault.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btn_resetDefault.BackColor = System.Drawing.Color.Purple;
+            this.btn_resetDefault.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_resetDefault.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_resetDefault.ForeColor = System.Drawing.Color.White;
+            this.btn_resetDefault.Location = new System.Drawing.Point(229, 509);
+            this.btn_resetDefault.Name = "btn_resetDefault";
+            this.btn_resetDefault.Size = new System.Drawing.Size(229, 50);
+            this.btn_resetDefault.TabIndex = 219;
+            this.btn_resetDefault.Text = "إعادة تعيين الافتراضي";
+            this.btn_resetDefault.UseVisualStyleBackColor = false;
+            this.btn_resetDefault.Click += new System.EventHandler(this.btn_resetDefault_Click);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -296,9 +296,9 @@ namespace SuperMarket.UserControls
             this.Load += new System.EventHandler(this.Settings_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.ResumeLayout(false);
 

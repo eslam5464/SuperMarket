@@ -81,16 +81,22 @@ namespace SuperMarket.UserControls
 
         private void btn_restoreDatabase_Click(object sender, EventArgs e)
         {
+            btn_restoreDatabase.Enabled = false;
+
             string FileLocation = Methods.PromptOpenFileDialog("bak", "Backup");
 
             if (FileLocation != "")
             {
                 Classes.DataAccess.DataRestore.All(FileLocation, "Default");
             }
+
+            btn_restoreDatabase.Enabled = true;
         }
 
         private async void btn_createBackup_Click(object sender, EventArgs e)
         {
+            btn_createBackup.Enabled = false;
+
             string Date = DateTime.Now.ToString("yyyy-MM-dd"),
                 FileName = $"LocalBackup {Date}.bak";
 
@@ -114,6 +120,7 @@ namespace SuperMarket.UserControls
                 else
                     MessageBox.Show("حدث خطأ أثناء حفظ النسخة الاحتياطية", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            btn_createBackup.Enabled = true;
         }
     }
 }

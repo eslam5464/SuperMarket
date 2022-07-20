@@ -378,6 +378,7 @@ namespace SuperMarket.UserControls
         {
             //await Methods.ExportDGVtoPDF(categoriesDataGridView, "الاصناف");
             Forms.ReportViewer.SelectedReport = Forms.ReportViewer.AvailableReports.Categories;
+            Forms.ReportViewer.DGVtoPrint = categoriesDataGridView;
 
             using (Forms.ReportViewer reportViewer = new Forms.ReportViewer())
             {

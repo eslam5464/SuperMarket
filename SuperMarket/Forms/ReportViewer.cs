@@ -23,6 +23,7 @@ namespace SuperMarket.Forms
         private async void Customers_Load(object sender, EventArgs e)
         {
             await CheckReport(SelectedReport);
+            //this.rv_categories.RefreshReport();
         }
 
         private async Task CheckReport(AvailableReports selectedReport)
@@ -63,6 +64,27 @@ namespace SuperMarket.Forms
                     rv_products.RefreshReport();
 
                     ShowReportViewer(rv_products);
+                }
+            }
+            else if (selectedReport == AvailableReports.Categories)
+            {
+                List<Classes.Models.CategoryModel> AllCategories = Classes.DataAccess.Categories.LoadCategories();
+
+                using (dtp = await new Methods().ListToDataTable(AllCategories))
+                {
+                    dtp.TableName = "التصنيفات والمخازن";
+
+                    ReportDataSource datasource = new ReportDataSource("Categories", dtp);
+
+                    rv_categories.LocalReport.DataSources.Clear();
+                    rv_categories.LocalReport.DataSources.Add(datasource);
+
+                    var p = new ReportParameter("RenderDateTime", DateTime.Now.ToString());
+                    rv_categories.LocalReport.SetParameters(p);
+
+                    rv_categories.RefreshReport();
+
+                    ShowReportViewer(rv_categories);
                 }
             }
         }
