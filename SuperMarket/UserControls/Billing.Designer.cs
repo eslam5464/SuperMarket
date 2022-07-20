@@ -61,8 +61,12 @@ namespace SuperMarket.UserControls
             this.label7 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pic_barcode = new System.Windows.Forms.PictureBox();
+            this.pcb_getInvoiceID = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.cb_defaultCST = new System.Windows.Forms.CheckBox();
+            this.pcb_searchCstID = new System.Windows.Forms.PictureBox();
+            this.pcb_searchCstName = new System.Windows.Forms.PictureBox();
             this.label13 = new System.Windows.Forms.Label();
             this.txt_cstID = new System.Windows.Forms.TextBox();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -70,32 +74,28 @@ namespace SuperMarket.UserControls
             this.label14 = new System.Windows.Forms.Label();
             this.txt_amountPaid = new System.Windows.Forms.TextBox();
             this.txt_amountLeft = new System.Windows.Forms.TextBox();
+            this.pcb_searchProdName = new System.Windows.Forms.PictureBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.pcb_searchProdBarCode = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txt_productBarCode = new System.Windows.Forms.TextBox();
             this.txt_prodSearch = new System.Windows.Forms.ComboBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.pcb_calculator = new System.Windows.Forms.PictureBox();
-            this.pic_barcode = new System.Windows.Forms.PictureBox();
-            this.pcb_getInvoiceID = new System.Windows.Forms.PictureBox();
-            this.pcb_searchCstID = new System.Windows.Forms.PictureBox();
-            this.pcb_searchCstName = new System.Windows.Forms.PictureBox();
-            this.pcb_searchProdName = new System.Windows.Forms.PictureBox();
-            this.pcb_searchProdBarCode = new System.Windows.Forms.PictureBox();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_procardsDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_calculator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_barcode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_getInvoiceID)).BeginInit();
+            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchCstID)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchCstName)).BeginInit();
+            this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchProdName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchProdBarCode)).BeginInit();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_calculator)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_print
@@ -543,6 +543,30 @@ namespace SuperMarket.UserControls
             this.panel2.Size = new System.Drawing.Size(515, 160);
             this.panel2.TabIndex = 223;
             // 
+            // pic_barcode
+            // 
+            this.pic_barcode.BackColor = System.Drawing.Color.Gainsboro;
+            this.pic_barcode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pic_barcode.Location = new System.Drawing.Point(130, 3);
+            this.pic_barcode.Name = "pic_barcode";
+            this.pic_barcode.Size = new System.Drawing.Size(225, 70);
+            this.pic_barcode.TabIndex = 204;
+            this.pic_barcode.TabStop = false;
+            // 
+            // pcb_getInvoiceID
+            // 
+            this.pcb_getInvoiceID.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_getInvoiceID.Image = global::SuperMarket.Properties.Resources.icons8_synchronize_48;
+            this.pcb_getInvoiceID.Location = new System.Drawing.Point(228, 110);
+            this.pcb_getInvoiceID.Name = "pcb_getInvoiceID";
+            this.pcb_getInvoiceID.Size = new System.Drawing.Size(45, 45);
+            this.pcb_getInvoiceID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_getInvoiceID.TabIndex = 198;
+            this.pcb_getInvoiceID.TabStop = false;
+            this.pcb_getInvoiceID.Click += new System.EventHandler(this.pcb_getInvoiceID_Click);
+            this.pcb_getInvoiceID.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
+            this.pcb_getInvoiceID.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
+            // 
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.Gainsboro;
@@ -576,6 +600,36 @@ namespace SuperMarket.UserControls
             this.cb_defaultCST.Text = "العميل الافتراضي";
             this.cb_defaultCST.UseVisualStyleBackColor = true;
             this.cb_defaultCST.CheckedChanged += new System.EventHandler(this.cb_defaultCST_CheckedChanged);
+            // 
+            // pcb_searchCstID
+            // 
+            this.pcb_searchCstID.BackColor = System.Drawing.Color.Gainsboro;
+            this.pcb_searchCstID.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_searchCstID.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchCstID.Location = new System.Drawing.Point(464, 51);
+            this.pcb_searchCstID.Name = "pcb_searchCstID";
+            this.pcb_searchCstID.Size = new System.Drawing.Size(45, 45);
+            this.pcb_searchCstID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_searchCstID.TabIndex = 207;
+            this.pcb_searchCstID.TabStop = false;
+            this.pcb_searchCstID.Click += new System.EventHandler(this.pcb_searchCstID_Click);
+            this.pcb_searchCstID.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
+            this.pcb_searchCstID.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
+            // 
+            // pcb_searchCstName
+            // 
+            this.pcb_searchCstName.BackColor = System.Drawing.Color.Gainsboro;
+            this.pcb_searchCstName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_searchCstName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchCstName.Location = new System.Drawing.Point(259, 51);
+            this.pcb_searchCstName.Name = "pcb_searchCstName";
+            this.pcb_searchCstName.Size = new System.Drawing.Size(45, 45);
+            this.pcb_searchCstName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_searchCstName.TabIndex = 203;
+            this.pcb_searchCstName.TabStop = false;
+            this.pcb_searchCstName.Click += new System.EventHandler(this.pcb_searchCstName_Click);
+            this.pcb_searchCstName.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
+            this.pcb_searchCstName.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
             // 
             // label13
             // 
@@ -693,6 +747,21 @@ namespace SuperMarket.UserControls
             this.txt_amountLeft.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_billing_KeyDown);
             this.txt_amountLeft.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_grandtotal_KeyPress);
             // 
+            // pcb_searchProdName
+            // 
+            this.pcb_searchProdName.BackColor = System.Drawing.Color.Gainsboro;
+            this.pcb_searchProdName.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_searchProdName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchProdName.Location = new System.Drawing.Point(21, 10);
+            this.pcb_searchProdName.Name = "pcb_searchProdName";
+            this.pcb_searchProdName.Size = new System.Drawing.Size(45, 45);
+            this.pcb_searchProdName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_searchProdName.TabIndex = 215;
+            this.pcb_searchProdName.TabStop = false;
+            this.pcb_searchProdName.Click += new System.EventHandler(this.pcb_searchProdName_Click);
+            this.pcb_searchProdName.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
+            this.pcb_searchProdName.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
+            // 
             // label12
             // 
             this.label12.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -705,6 +774,21 @@ namespace SuperMarket.UserControls
             this.label12.Size = new System.Drawing.Size(68, 25);
             this.label12.TabIndex = 219;
             this.label12.Text = ":باركود";
+            // 
+            // pcb_searchProdBarCode
+            // 
+            this.pcb_searchProdBarCode.BackColor = System.Drawing.Color.Gainsboro;
+            this.pcb_searchProdBarCode.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pcb_searchProdBarCode.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchProdBarCode.Location = new System.Drawing.Point(21, 71);
+            this.pcb_searchProdBarCode.Name = "pcb_searchProdBarCode";
+            this.pcb_searchProdBarCode.Size = new System.Drawing.Size(45, 45);
+            this.pcb_searchProdBarCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcb_searchProdBarCode.TabIndex = 218;
+            this.pcb_searchProdBarCode.TabStop = false;
+            this.pcb_searchProdBarCode.Click += new System.EventHandler(this.pcb_searchProdBarCode_Click);
+            this.pcb_searchProdBarCode.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
+            this.pcb_searchProdBarCode.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
             // 
             // label11
             // 
@@ -765,6 +849,7 @@ namespace SuperMarket.UserControls
             // pcb_calculator
             // 
             this.pcb_calculator.BackColor = System.Drawing.Color.Transparent;
+            this.pcb_calculator.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pcb_calculator.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pcb_calculator.Image = global::SuperMarket.Properties.Resources.icons8_calculate_48;
             this.pcb_calculator.Location = new System.Drawing.Point(22, 235);
@@ -776,90 +861,6 @@ namespace SuperMarket.UserControls
             this.pcb_calculator.Click += new System.EventHandler(this.pcb_calculator_Click);
             this.pcb_calculator.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
             this.pcb_calculator.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
-            // 
-            // pic_barcode
-            // 
-            this.pic_barcode.BackColor = System.Drawing.Color.Gainsboro;
-            this.pic_barcode.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pic_barcode.Location = new System.Drawing.Point(130, 3);
-            this.pic_barcode.Name = "pic_barcode";
-            this.pic_barcode.Size = new System.Drawing.Size(225, 70);
-            this.pic_barcode.TabIndex = 204;
-            this.pic_barcode.TabStop = false;
-            // 
-            // pcb_getInvoiceID
-            // 
-            this.pcb_getInvoiceID.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_getInvoiceID.Image = global::SuperMarket.Properties.Resources.icons8_synchronize_48;
-            this.pcb_getInvoiceID.Location = new System.Drawing.Point(228, 110);
-            this.pcb_getInvoiceID.Name = "pcb_getInvoiceID";
-            this.pcb_getInvoiceID.Size = new System.Drawing.Size(45, 45);
-            this.pcb_getInvoiceID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_getInvoiceID.TabIndex = 198;
-            this.pcb_getInvoiceID.TabStop = false;
-            this.pcb_getInvoiceID.Click += new System.EventHandler(this.pcb_getInvoiceID_Click);
-            this.pcb_getInvoiceID.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
-            this.pcb_getInvoiceID.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
-            // 
-            // pcb_searchCstID
-            // 
-            this.pcb_searchCstID.BackColor = System.Drawing.Color.Gainsboro;
-            this.pcb_searchCstID.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchCstID.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_searchCstID.Location = new System.Drawing.Point(464, 51);
-            this.pcb_searchCstID.Name = "pcb_searchCstID";
-            this.pcb_searchCstID.Size = new System.Drawing.Size(45, 45);
-            this.pcb_searchCstID.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_searchCstID.TabIndex = 207;
-            this.pcb_searchCstID.TabStop = false;
-            this.pcb_searchCstID.Click += new System.EventHandler(this.pcb_searchCstID_Click);
-            this.pcb_searchCstID.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
-            this.pcb_searchCstID.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
-            // 
-            // pcb_searchCstName
-            // 
-            this.pcb_searchCstName.BackColor = System.Drawing.Color.Gainsboro;
-            this.pcb_searchCstName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchCstName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_searchCstName.Location = new System.Drawing.Point(259, 51);
-            this.pcb_searchCstName.Name = "pcb_searchCstName";
-            this.pcb_searchCstName.Size = new System.Drawing.Size(45, 45);
-            this.pcb_searchCstName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_searchCstName.TabIndex = 203;
-            this.pcb_searchCstName.TabStop = false;
-            this.pcb_searchCstName.Click += new System.EventHandler(this.pcb_searchCstName_Click);
-            this.pcb_searchCstName.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
-            this.pcb_searchCstName.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
-            // 
-            // pcb_searchProdName
-            // 
-            this.pcb_searchProdName.BackColor = System.Drawing.Color.Gainsboro;
-            this.pcb_searchProdName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchProdName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_searchProdName.Location = new System.Drawing.Point(21, 10);
-            this.pcb_searchProdName.Name = "pcb_searchProdName";
-            this.pcb_searchProdName.Size = new System.Drawing.Size(45, 45);
-            this.pcb_searchProdName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_searchProdName.TabIndex = 215;
-            this.pcb_searchProdName.TabStop = false;
-            this.pcb_searchProdName.Click += new System.EventHandler(this.pcb_searchProdName_Click);
-            this.pcb_searchProdName.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
-            this.pcb_searchProdName.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
-            // 
-            // pcb_searchProdBarCode
-            // 
-            this.pcb_searchProdBarCode.BackColor = System.Drawing.Color.Gainsboro;
-            this.pcb_searchProdBarCode.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchProdBarCode.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
-            this.pcb_searchProdBarCode.Location = new System.Drawing.Point(21, 71);
-            this.pcb_searchProdBarCode.Name = "pcb_searchProdBarCode";
-            this.pcb_searchProdBarCode.Size = new System.Drawing.Size(45, 45);
-            this.pcb_searchProdBarCode.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pcb_searchProdBarCode.TabIndex = 218;
-            this.pcb_searchProdBarCode.TabStop = false;
-            this.pcb_searchProdBarCode.Click += new System.EventHandler(this.pcb_searchProdBarCode_Click);
-            this.pcb_searchProdBarCode.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
-            this.pcb_searchProdBarCode.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
             // 
             // Billing
             // 
@@ -885,18 +886,18 @@ namespace SuperMarket.UserControls
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pcb_calculator)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_barcode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_getInvoiceID)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchCstID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchCstName)).EndInit();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchProdName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchProdBarCode)).EndInit();
+            this.panel7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pcb_calculator)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -69,6 +69,7 @@ namespace SuperMarket.Forms
             this.panel4 = new System.Windows.Forms.Panel();
             this.UserSession = new System.Windows.Forms.Timer(this.components);
             this.HourlyChecker = new System.Windows.Forms.Timer(this.components);
+            this.btn_supplierInvoicesHistory = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             this.pan_suppliers.SuspendLayout();
@@ -142,7 +143,7 @@ namespace SuperMarket.Forms
             this.btn_settings.ForeColor = System.Drawing.Color.White;
             this.btn_settings.Image = global::SuperMarket.Properties.Resources.icons8_settings_48;
             this.btn_settings.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_settings.Location = new System.Drawing.Point(13, 720);
+            this.btn_settings.Location = new System.Drawing.Point(13, 765);
             this.btn_settings.Margin = new System.Windows.Forms.Padding(0);
             this.btn_settings.Name = "btn_settings";
             this.btn_settings.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -163,7 +164,7 @@ namespace SuperMarket.Forms
             this.btn_adminPanel.ForeColor = System.Drawing.Color.White;
             this.btn_adminPanel.Image = global::SuperMarket.Properties.Resources.icons8_admin_settings_male_48;
             this.btn_adminPanel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_adminPanel.Location = new System.Drawing.Point(13, 675);
+            this.btn_adminPanel.Location = new System.Drawing.Point(13, 720);
             this.btn_adminPanel.Margin = new System.Windows.Forms.Padding(0);
             this.btn_adminPanel.Name = "btn_adminPanel";
             this.btn_adminPanel.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -185,7 +186,7 @@ namespace SuperMarket.Forms
             this.btn_users.ForeColor = System.Drawing.Color.White;
             this.btn_users.Image = global::SuperMarket.Properties.Resources.icons8_user_48;
             this.btn_users.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_users.Location = new System.Drawing.Point(13, 630);
+            this.btn_users.Location = new System.Drawing.Point(13, 675);
             this.btn_users.Margin = new System.Windows.Forms.Padding(0);
             this.btn_users.Name = "btn_users";
             this.btn_users.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -206,7 +207,7 @@ namespace SuperMarket.Forms
             this.btn_safe.ForeColor = System.Drawing.Color.White;
             this.btn_safe.Image = global::SuperMarket.Properties.Resources.icons8_safe_48;
             this.btn_safe.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_safe.Location = new System.Drawing.Point(13, 585);
+            this.btn_safe.Location = new System.Drawing.Point(13, 630);
             this.btn_safe.Margin = new System.Windows.Forms.Padding(0);
             this.btn_safe.Name = "btn_safe";
             this.btn_safe.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -227,7 +228,7 @@ namespace SuperMarket.Forms
             this.btn_advancedSearch.ForeColor = System.Drawing.Color.White;
             this.btn_advancedSearch.Image = global::SuperMarket.Properties.Resources.icons8_look_up_48;
             this.btn_advancedSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_advancedSearch.Location = new System.Drawing.Point(13, 540);
+            this.btn_advancedSearch.Location = new System.Drawing.Point(13, 585);
             this.btn_advancedSearch.Margin = new System.Windows.Forms.Padding(0);
             this.btn_advancedSearch.Name = "btn_advancedSearch";
             this.btn_advancedSearch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -243,12 +244,13 @@ namespace SuperMarket.Forms
             // 
             this.pan_suppliers.AutoSize = true;
             this.pan_suppliers.BackColor = System.Drawing.Color.Purple;
+            this.pan_suppliers.Controls.Add(this.btn_supplierInvoicesHistory);
             this.pan_suppliers.Controls.Add(this.btn_suppliersEdit);
             this.pan_suppliers.Controls.Add(this.btn_supplierInvoices);
             this.pan_suppliers.Dock = System.Windows.Forms.DockStyle.Top;
             this.pan_suppliers.Location = new System.Drawing.Point(13, 450);
             this.pan_suppliers.Name = "pan_suppliers";
-            this.pan_suppliers.Size = new System.Drawing.Size(228, 90);
+            this.pan_suppliers.Size = new System.Drawing.Size(228, 135);
             this.pan_suppliers.TabIndex = 26;
             // 
             // btn_suppliersEdit
@@ -519,7 +521,7 @@ namespace SuperMarket.Forms
             this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel8.Location = new System.Drawing.Point(0, 0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(13, 765);
+            this.panel8.Size = new System.Drawing.Size(13, 810);
             this.panel8.TabIndex = 26;
             // 
             // SidePanel
@@ -683,6 +685,26 @@ namespace SuperMarket.Forms
             this.HourlyChecker.Interval = 1000;
             this.HourlyChecker.Tick += new System.EventHandler(this.HourlyChecker_Tick);
             // 
+            // btn_supplierInvoicesHistory
+            // 
+            this.btn_supplierInvoicesHistory.BackColor = System.Drawing.Color.Magenta;
+            this.btn_supplierInvoicesHistory.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_supplierInvoicesHistory.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_supplierInvoicesHistory.FlatAppearance.BorderSize = 0;
+            this.btn_supplierInvoicesHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_supplierInvoicesHistory.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_supplierInvoicesHistory.ForeColor = System.Drawing.Color.White;
+            this.btn_supplierInvoicesHistory.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_supplierInvoicesHistory.Location = new System.Drawing.Point(0, 90);
+            this.btn_supplierInvoicesHistory.Margin = new System.Windows.Forms.Padding(0);
+            this.btn_supplierInvoicesHistory.Name = "btn_supplierInvoicesHistory";
+            this.btn_supplierInvoicesHistory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btn_supplierInvoicesHistory.Size = new System.Drawing.Size(228, 45);
+            this.btn_supplierInvoicesHistory.TabIndex = 31;
+            this.btn_supplierInvoicesHistory.Text = "جميع الفواتير";
+            this.btn_supplierInvoicesHistory.UseVisualStyleBackColor = false;
+            this.btn_supplierInvoicesHistory.Click += new System.EventHandler(this.btn_supplierInvoicesHistory_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -756,5 +778,6 @@ namespace SuperMarket.Forms
         private System.Windows.Forms.Button btn_billingAdd;
         public System.Windows.Forms.Button btn_adminPanel;
         private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Button btn_supplierInvoicesHistory;
     }
 }

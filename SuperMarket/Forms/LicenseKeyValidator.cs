@@ -53,6 +53,8 @@ namespace SuperMarket.Forms
 
         private async void btn_checkKey_Click(object sender, EventArgs e)
         {
+            btn_checkKey.Enabled = false;
+
             if (!File.Exists(Security.GetSerialKeyFileLocation()))
             {
                 Logger.Log("serial key file doesnt exist",
@@ -78,7 +80,10 @@ namespace SuperMarket.Forms
 
                     Properties.Settings.Default.SystemName = await Security.GetSystemName();
 
-                    MessageBox.Show("مفتاح الترخيص صحيح.. سوف يتم بدا البرنامج", "عملية ناجحه");
+                    Security.OpenFormMain = true;
+
+                    MessageBox.Show("مفتاح الترخيص صحيح.. برجاء اعاده فتح البرنامج", "عملية ناجحه",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     Close();
                 }
@@ -89,6 +94,8 @@ namespace SuperMarket.Forms
                     MessageBox.Show("الرقم السري غير صحيح");
                 }
             }
+
+            btn_checkKey.Enabled = true;
         }
     }
 }

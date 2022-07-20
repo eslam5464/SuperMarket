@@ -436,6 +436,7 @@ namespace SuperMarket.UserControls
                     datasource.Remove(datasource.Find(invoice => invoice.CreationDate == DateTime.Parse(DateCreated)));
                     db_procardsDataGridView.DataSource = datasource;
                     ResizeAndRenameCoulmns();
+                    CalculateGrandTotal();
                 }
             }
             else

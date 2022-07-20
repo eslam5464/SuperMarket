@@ -190,7 +190,7 @@
     <Compile Include="Classes\DataAccess\SafeTransactions.cs" />
     <Compile Include="Classes\DataAccess\Safe.cs" />
     <Compile Include="Classes\DataAccess\Storages.cs" />
-    <Compile Include="Classes\DataAccess\SupplierInvoice.cs" />
+    <Compile Include="Classes\DataAccess\SupplierInvoices.cs" />
     <Compile Include="Classes\DataAccess\SupplierInvoiceProduct.cs" />
     <Compile Include="Classes\DataAccess\UserLevelAccess.cs" />
     <Compile Include="Classes\DataAccess\Suppliers.cs" />
@@ -357,6 +357,12 @@
     <Compile Include="UserControls\Safe.Designer.cs">
       <DependentUpon>Safe.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\SupplierInvoicesHistory.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\SupplierInvoicesHistory.Designer.cs">
+      <DependentUpon>SupplierInvoicesHistory.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Users.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -405,6 +411,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\SupplierInvoices.resx">
       <DependentUpon>SupplierInvoices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\SupplierInvoicesHistory.resx">
+      <DependentUpon>SupplierInvoicesHistory.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\Suppliers.resx">
       <DependentUpon>Suppliers.cs</DependentUpon>

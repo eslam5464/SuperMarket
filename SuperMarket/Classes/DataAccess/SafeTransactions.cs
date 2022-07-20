@@ -111,8 +111,6 @@ namespace SuperMarket.Classes.DataAccess
                         $"(@SafeId, @SafeName, @AmountAdded, @AmountTotal, @AdjustedByUserId, @AdjustedByUserFullName, " +
                         $"@Notes, '{DateTime.Now}')", safe);
                 }
-                MessageBox.Show($"تم الحفظ", "عملية ناجحه",
-                         MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {

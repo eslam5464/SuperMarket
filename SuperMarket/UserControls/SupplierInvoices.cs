@@ -354,6 +354,10 @@ namespace SuperMarket.UserControls
 
                     num_paymentAmoutLeft.Value = 0;
                 }
+                else if (txt_paymentMethod.SelectedIndex == Methods.FindIndexFromArray(GlobalVars.PaymentMethod, "آجل"))
+                {
+                    num_paymentAmoutLeft.Value = num_paymentAmoutRequired.Value;
+                }
             }
             else
             {
@@ -421,64 +425,74 @@ namespace SuperMarket.UserControls
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private async void btn_saveInovice_Click(object sender, EventArgs e)
+        private async void AddSupplierProduct()
+        {
+            List<SupplierInvoiceProductModel> AllSupplierProducts = (List<SupplierInvoiceProductModel>)db_productDataGridView.DataSource;
+
+            foreach (SupplierInvoiceProductModel SupplierProduct in AllSupplierProducts)
+            {
+                Classes.DataAccess.SupplierInvoiceProduct.SaveSupplierInvoiceProduct(SupplierProduct);
+
+                List<SupplierInvoiceProductModel> SearchedSupplierProducts =
+                    Classes.DataAccess.SupplierInvoiceProduct.LoadSupplierInvoiceProduct();
+
+                SupplierInvoiceProductModel lastSupplierProduct = SearchedSupplierProducts[SearchedSupplierProducts.Count - 1];
+
+                bool PaymentFinished = false;
+                if (num_paymentAmoutLeft.Value == 0)
+                    PaymentFinished = true;
+
+                SupplierInvoiceModel supplierInvoice = new SupplierInvoiceModel
+                {
+                    AmountLeft = num_paymentAmoutLeft.Value,
+                    AmountTotal = num_paymentAmoutRequired.Value,
+                    AmountPaid = num_paymentAmoutPaid.Value,
+                    PaymentMethod = (int)txt_paymentMethod.SelectedValue,
+                    PaymentStatus = PaymentFinished,
+                    SupplierId = (int)txt_searchedSupplierName.SelectedValue,
+                    SupplierName = txt_searchedSupplierName.Text,
+                    SupplierInvoiceProductId = lastSupplierProduct.Id
+                };
+
+                Classes.DataAccess.SupplierInvoices.SaveSupplierInvoice(supplierInvoice);
+
+                List<ProductModel> AdjustedProuduct = Classes.DataAccess.Products
+                      .GetProductParameter("Id", lastSupplierProduct.ProductId.ToString());
+
+                AdjustedProuduct[0].Quantity += lastSupplierProduct.Quantity;
+
+                await Classes.DataAccess.Products.UpdateProduct(AdjustedProuduct[0]);
+
+                ProductPriceModel productPrice = new ProductPriceModel()
+                {
+                    ProductId = lastSupplierProduct.ProductId,
+                    PriceSell = lastSupplierProduct.ProductPriceSell,
+                    PriceWholesale = lastSupplierProduct.ProductPriceWholesale,
+                    ProductName = lastSupplierProduct.ProductName,
+                    CreationDate = DateTime.Now
+                };
+
+                await Classes.DataAccess.ProductPrice.SaveProductPrice(productPrice);
+
+                List<ProductModel> SearchedProduct = Classes.DataAccess.Products.GetProductParameter("Id", "" + productPrice.ProductId);
+                SearchedProduct[0].PriceModificationDate = productPrice.CreationDate;
+
+                await Classes.DataAccess.Products.UpdateProduct(SearchedProduct[0]);
+
+            }
+            ResetAll();
+        }
+
+        private void btn_saveInovice_Click(object sender, EventArgs e)
         {
             if (txt_paymentMethod.SelectedIndex != -1)
             {
-                List<SupplierInvoiceProductModel> AllSupplierProducts = (List<SupplierInvoiceProductModel>)db_productDataGridView.DataSource;
-
-                foreach (SupplierInvoiceProductModel SupplierProduct in AllSupplierProducts)
+                if (chk_withdrawFromSafe.Checked)
                 {
-                    Classes.DataAccess.SupplierInvoiceProduct.SaveSupplierInvoiceProduct(SupplierProduct);
-
-                    List<SupplierInvoiceProductModel> SearchedSupplierProducts =
-                        Classes.DataAccess.SupplierInvoiceProduct.LoadSupplierInvoiceProduct();
-
-                    SupplierInvoiceProductModel lastSupplierProduct = SearchedSupplierProducts[SearchedSupplierProducts.Count - 1];
-
-                    bool PaymentFinished = false;
-                    if (num_paymentAmoutLeft.Value == 0)
-                        PaymentFinished = true;
-
-                    SupplierInvoiceModel supplierInvoice = new SupplierInvoiceModel()
-                    {
-                        AmountLeft = num_paymentAmoutLeft.Value,
-                        AmountTotal = num_paymentAmoutRequired.Value,
-                        AmountPaid = num_paymentAmoutPaid.Value,
-                        PaymentMethod = (int)txt_paymentMethod.SelectedValue,
-                        PaymentStatus = PaymentFinished,
-                        SupplierId = (int)txt_searchedSupplierName.SelectedValue,
-                        SupplierInvoiceProductId = lastSupplierProduct.Id,
-                    };
-
-                    Classes.DataAccess.SupplierInvoice.SaveSupplierInvoice(supplierInvoice);
-
-
-                    List<ProductModel> AdjustedProuduct = Classes.DataAccess.Products
-                          .GetProductParameter("Id", lastSupplierProduct.ProductId.ToString());
-
-                    AdjustedProuduct[0].Quantity += lastSupplierProduct.Quantity;
-
-                    await Classes.DataAccess.Products.UpdateProduct(AdjustedProuduct[0]);
-
-                    ProductPriceModel productPrice = new ProductPriceModel()
-                    {
-                        ProductId = lastSupplierProduct.ProductId,
-                        PriceSell = lastSupplierProduct.ProductPriceSell,
-                        PriceWholesale = lastSupplierProduct.ProductPriceWholesale,
-                        ProductName = lastSupplierProduct.ProductName,
-                        CreationDate = DateTime.Now
-                    };
-
-                    await Classes.DataAccess.ProductPrice.SaveProductPrice(productPrice);
-
-                    List<ProductModel> SearchedProduct = Classes.DataAccess.Products.GetProductParameter("Id", "" + productPrice.ProductId);
-                    SearchedProduct[0].PriceModificationDate = productPrice.CreationDate;
-
-                    await Classes.DataAccess.Products.UpdateProduct(SearchedProduct[0]);
-
                     if (txt_withdrawFromSafe.SelectedIndex != -1)
                     {
+                        AddSupplierProduct();
+
                         List<SafeTransactionModel> AllSafeTransactions =
                         Classes.DataAccess.SafeTransactions.GetSafeTransactionParameter("SafeName", txt_withdrawFromSafe.Text, "ASC");
 
@@ -511,7 +525,8 @@ namespace SuperMarket.UserControls
                             };
                             Classes.DataAccess.SafeTransactions.SaveSafeTransaction(safeTransactionModel);
                         }
-                        ResetAll();
+
+                        MessageBox.Show("تمت اضافه الفاتورة", "عملية ناجحه", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
@@ -519,7 +534,10 @@ namespace SuperMarket.UserControls
                             MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
-                ResetAll();
+                else
+                {
+                    AddSupplierProduct();
+                }
             }
             else
             {
@@ -571,6 +589,10 @@ namespace SuperMarket.UserControls
             if (txt_paymentMethod.SelectedIndex == Methods.FindIndexFromArray(GlobalVars.PaymentMethod, "نقدي"))
             {
                 num_paymentAmoutPaid.Value = num_paymentAmoutRequired.Value;
+                num_paymentAmoutPaid.Enabled = false;
+            }
+            else if (txt_paymentMethod.SelectedIndex == Methods.FindIndexFromArray(GlobalVars.PaymentMethod, "آجل"))
+            {
                 num_paymentAmoutPaid.Enabled = false;
             }
             else

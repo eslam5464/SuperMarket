@@ -6,6 +6,7 @@ namespace SuperMarket.Classes.Models
     {
         public long Id { get; set; }
         public int SupplierId { get; set; }
+        public string SupplierName { get; set; }
         public int PaymentMethod { get; set; }
         public decimal AmountPaid { get; set; }
         public decimal AmountLeft { get; set; }

@@ -22,6 +22,7 @@ namespace SuperMarket.Forms
 
         private async void btn_login_Click(object sender, EventArgs e)
         {
+            btn_login.Enabled = false;
             txt_Username.Text = "admin";
             txt_Password.Text = "passnot100%Safe";
 
@@ -87,6 +88,8 @@ namespace SuperMarket.Forms
             {
                 MessageBox.Show(ex.Message);
             }
+
+            btn_login.Enabled = true;
         }
 
         private void cbshowpassword_CheckedChanged(object sender, EventArgs e)

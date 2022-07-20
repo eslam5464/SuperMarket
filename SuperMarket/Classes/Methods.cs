@@ -211,6 +211,8 @@ namespace SuperMarket.Classes
         {
             StringBuilder stringBuilder = new StringBuilder();
 
+            await Security.GetComputerInfo();
+
             try
             {
                 stringBuilder.AppendLine($"<h1>CPU & Motherboard ID Information</h1>");

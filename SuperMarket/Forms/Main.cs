@@ -24,6 +24,7 @@ namespace SuperMarket.Forms
         private readonly UserControls.Safe uc_safe = new UserControls.Safe();
         private readonly UserControls.Blank uc_blank = new UserControls.Blank();
         private readonly UserControls.AdminPanel uc_adminPanel = new UserControls.AdminPanel();
+        private readonly UserControls.SupplierInvoicesHistory uc_supplierInvoicesHistory = new UserControls.SupplierInvoicesHistory();
         private readonly UserControls.Settings uc_settings = new UserControls.Settings();
 
         public Main()
@@ -103,6 +104,7 @@ namespace SuperMarket.Forms
                 uc_supplierInvoices,
                 uc_safe,
                 uc_blank,
+                uc_supplierInvoicesHistory,
                 uc_adminPanel,
                 uc_billsEdit,
                 uc_billing,
@@ -240,6 +242,12 @@ namespace SuperMarket.Forms
         {
             SelectSideMenuButton(btn_suppliers, btn_suppliers, false, 2);
             uc_suppliers.BringToFront();
+        }
+
+        private void btn_supplierInvoicesHistory_Click(object sender, EventArgs e)
+        {
+            SelectSideMenuButton(btn_supplierInvoicesHistory, btn_suppliers, false, 3);
+            uc_supplierInvoicesHistory.BringToFront();
         }
 
         private void btn_safe_Click(object sender, EventArgs e)
@@ -471,6 +479,7 @@ namespace SuperMarket.Forms
                 MessageBox.Show(saveFileDialog1.FileName);
             }
         }
+
 
         private void pic_help_MouseEnter(object sender, EventArgs e)
         {

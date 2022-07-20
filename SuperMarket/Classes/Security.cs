@@ -44,15 +44,7 @@ namespace SuperMarket.Classes
 
         public async static Task<string> CheckLicenseKeyOnAppAsync()
         {
-            if (CPUID == "" && MOBOID == "")
-            {
-                CPUID = await Task.Run(() => GetCpuID());
-                MOBOID = await Task.Run(() => GetMotherBoardIDAsync());
-                CPUName = await Task.Run(() => GetCpuInfo("Name"));
-                CPUCores = await Task.Run(() => GetCpuInfo("NumberOfCores"));
-                CPUSpeed = await Task.Run(() => GetCpuInfo("CurrentClockSpeed"));
-                SystemName = await Task.Run(() => GetCpuInfo("SystemName"));
-            }
+            await GetComputerInfo();
 
             await SerialKeyFileExistsAsync();
 
@@ -89,7 +81,7 @@ namespace SuperMarket.Classes
             Properties.Settings.Default.Save();
         }
 
-        public async static Task<string> CheckLicenseKeyValidityAsync(string LicenseKey)
+        public static async Task GetComputerInfo()
         {
             if (CPUID == "" && MOBOID == "")
             {
@@ -100,6 +92,11 @@ namespace SuperMarket.Classes
                 CPUSpeed = await Task.Run(() => GetCpuInfo("CurrentClockSpeed"));
                 SystemName = await Task.Run(() => GetCpuInfo("SystemName"));
             }
+        }
+
+        public async static Task<string> CheckLicenseKeyValidityAsync(string LicenseKey)
+        {
+            await GetComputerInfo();
 
             await SerialKeyFileExistsAsync();
 
