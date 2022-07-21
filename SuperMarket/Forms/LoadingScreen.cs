@@ -1,9 +1,6 @@
 ﻿using SuperMarket.Classes;
 using System;
 using System.Drawing;
-using System.Net;
-using System.Net.Cache;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,49 +13,15 @@ namespace SuperMarket.Forms
             InitializeComponent();
         }
 
-        private bool FoundTimeOnline = false;
-        private DateTime OnlineTimeNow;
         private Login login = new Login();
 
-        private void LoadingScreen_Load(object sender, EventArgs e)
+        private async void LoadingScreen_Load(object sender, EventArgs e)
         {
             timer_loading.Start();
 
-            new Thread(new ThreadStart(GetTimeOnline)).Start();
+            Console.WriteLine(await Methods.GetTimeOnline());
 
             SetColors(Properties.Settings.Default.AppColor);
-        }
-
-        private void GetTimeOnline()
-        {
-            try
-            {
-                DateTime dateTime = DateTime.MinValue;
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://www.google.com.eg");
-                request.Method = "GET";
-                request.Accept = "text/html, application/xhtml+xml, */*";
-                request.UserAgent = "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; Trident/6.0)";
-                request.ContentType = "application/x-www-form-urlencoded";
-                request.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    string todaysDates = response.Headers["date"];
-
-                    dateTime = DateTime.ParseExact(todaysDates, "ddd, dd MMM yyyy HH:mm:ss 'GMT'",
-                        System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat, System.Globalization.DateTimeStyles.AssumeUniversal);
-                }
-
-                OnlineTimeNow = dateTime;
-                FoundTimeOnline = true;
-                Console.WriteLine(OnlineTimeNow);
-            }
-            catch (Exception ex)
-            {
-                Logger.Log($"Error while fetching the online date now & error: {ex.Message}",
-                           System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.ERROR);
-            }
-
         }
 
         private void SetColors(Color appColor)
@@ -79,31 +42,74 @@ namespace SuperMarket.Forms
             }
             else
             {
-                if (progressBar.Value == 75 && FoundTimeOnline)
-                    progressBar.Value += 25;// TODO: finish finding time online
+                timer_loading.Stop();
 
-                else
+                string LicenseKey = Properties.Settings.Default.LicenseKey;
+
+                if (LicenseKey != "")
                 {
-                    timer_loading.Stop();
+                    string SerialKeyCheckOutput = await Security.CheckLicenseKeyValidity(LicenseKey);
 
-                    string LicenseKey = Properties.Settings.Default.LicenseKey;
-
-                    if (LicenseKey != "")
+                    if (SerialKeyCheckOutput == "404")
                     {
-                        string SerialKeyCheckOutput = await Security.CheckLicenseKeyValidityAsync(LicenseKey);
+                        Logger.Log("cant find serial key file",
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
+                        Security.OpenFormMain = false;
 
-                        if (SerialKeyCheckOutput == "404")
+                        this.Close();
+                    }
+                    else if (SerialKeyCheckOutput == "200")
+                    {
+                        Security.SetupTrialDays();
+
+                        if (Security.GetTrialDays() == -1)
                         {
-                            Logger.Log("cant find serial key file",
-                                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
-                            Security.OpenFormMain = false;
+                            if (await Methods.GetTimeOnline() != DateTime.MinValue)
+                            {
+                                if (await Security.GetTrialDaysLeft() <= 0)
+                                {
+                                    MessageBox.Show("لكن انتهت المده المسموحة لاستخدام البرنامج", "انتبه",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    Logger.Log("time used to open the application finished",
+                                             System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-                            this.Close();
+                                    Close();
+                                }
+                                else
+                                {
+                                    Logger.Log("serial key validated",
+                                             System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+                                    this.TopMost = false;
+                                    this.Hide();
+
+                                    login.TopMost = true;
+
+                                    login.ShowDialog();
+
+                                    this.Show();
+
+                                    Security.OpenFormMain = true;
+
+                                    if (Main.LoggedUser != null)
+                                        if (Main.LoggedUser.Username == "")
+                                            Security.OpenFormMain = false;
+
+                                    this.Close();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("لا يمكن الاتصال بالإنترنت برجاء استخدام البرنامج عندما يكون الجهاز متصل بـال انترنت",
+                                    "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                Logger.Log("time used to open the application finished",
+                                         System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                            }
                         }
-                        else if (SerialKeyCheckOutput == "200")
+                        else
                         {
                             Logger.Log("serial key validated",
-                                      System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                                         System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                             this.TopMost = false;
                             this.Hide();
@@ -122,77 +128,78 @@ namespace SuperMarket.Forms
 
                             this.Close();
                         }
-                        else if (SerialKeyCheckOutput == "400")
-                        {
-                            Logger.Log("wrong serial key in the system",
-                                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.ERROR);
-
-                            this.Hide();
-
-                            LicenseKeyValidator frm_license = new LicenseKeyValidator
-                            {
-                                TopMost = true
-                            };
-
-                            frm_license.ShowDialog();
-
-                            this.Show();
-
-                            LicenseKey = Properties.Settings.Default.LicenseKey;
-
-                            SerialKeyCheckOutput = await Security.CheckLicenseKeyValidityAsync(LicenseKey);
-
-                            if (SerialKeyCheckOutput == "200")
-                            {
-                                progressBar.Value = 0;
-                                timer_loading.Start();
-                            }
-                            else
-                            {
-                                Close();
-                            }
-                        }
-                        else
-                        {
-                            Logger.Log("unknown error",
-                                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
-                            Security.OpenFormMain = false;
-                            this.Close();
-                        }
+                        progressBar.Value += 25;
                     }
-
-                    else
+                    else if (SerialKeyCheckOutput == "400")
                     {
-                        Logger.Log("serial key isnt available prompting the user to add it",
-                                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                        Logger.Log("wrong serial key in the system",
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.ERROR);
 
-                        if (await Security.SerialKeyFileExistsAsync())
+                        this.Hide();
+
+                        LicenseKeyValidator frm_license = new LicenseKeyValidator
                         {
-                            this.Hide();
-                            LicenseKeyValidator licenseKeyValidator = new LicenseKeyValidator();
-                            licenseKeyValidator.TopMost = true;
-                            licenseKeyValidator.ShowDialog();
-                            licenseKeyValidator.Close();
-                            this.Show();
+                            TopMost = true
+                        };
 
+                        frm_license.ShowDialog();
+
+                        this.Show();
+
+                        LicenseKey = Properties.Settings.Default.LicenseKey;
+
+                        SerialKeyCheckOutput = await Security.CheckLicenseKeyValidity(LicenseKey);
+
+                        if (SerialKeyCheckOutput == "200")
+                        {
                             progressBar.Value = 0;
                             timer_loading.Start();
-
-                            Security.OpenFormMain = true;
-
-                            this.Close();
                         }
                         else
                         {
-                            this.TopMost = false;
-
-                            About frm_about = new About();
-                            About.AdditionalInfo = "هذا البرنامج غير قابل للعمل على هذا الجهاز";
-                            frm_about.TopMost = true;
-                            frm_about.ShowDialog();
-
-                            this.Close();
+                            Close();
                         }
+                    }
+                    else
+                    {
+                        Logger.Log("unknown error",
+                                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
+                        Security.OpenFormMain = false;
+                        this.Close();
+                    }
+                }
+
+                else
+                {
+                    Logger.Log("serial key isnt available prompting the user to add it",
+                                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+                    if (await Security.SerialKeyFileExists())
+                    {
+                        this.Hide();
+                        LicenseKeyValidator licenseKeyValidator = new LicenseKeyValidator();
+                        licenseKeyValidator.TopMost = true;
+                        licenseKeyValidator.ShowDialog();
+                        licenseKeyValidator.Close();
+                        this.Show();
+
+                        progressBar.Value = 0;
+                        timer_loading.Start();
+
+                        Security.OpenFormMain = true;
+
+                        this.Close();
+                    }
+                    else
+                    {
+                        this.TopMost = false;
+
+                        About frm_about = new About();
+                        About.AdditionalInfo = "هذا البرنامج غير قابل للعمل على هذا الجهاز";
+                        frm_about.TopMost = true;
+                        frm_about.ShowDialog();
+
+                        this.Close();
                     }
                 }
             }

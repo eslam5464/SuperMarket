@@ -35,5 +35,19 @@ namespace SuperMarket.UserControls
                 Classes.DataAccess.DataRestore.All(FileLocation, "Default");
             }
         }
+
+        private void btn_trialDaysLeft_Click(object sender, EventArgs e)
+        {
+            //Console.WriteLine(await Classes.DataAccess.DataInit.GetDatabaseCreationDate("SuperMarket"));
+            //Console.WriteLine("trial: "+Security.GetTrialDays());
+
+            //Console.WriteLine("trial: " + await Security.GetTrialDaysLeft());
+            int TrialDays = Security.GetTrialDays();
+            if (TrialDays == -1)
+                MessageBox.Show($"This is a full version");
+
+            else if (TrialDays >= 0)
+                MessageBox.Show($"Trial Days left: {TrialDays}");
+        }
     }
 }

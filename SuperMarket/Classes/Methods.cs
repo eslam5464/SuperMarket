@@ -1,4 +1,5 @@
 ﻿using Microsoft.WindowsAPICodePack.Dialogs;
+using Microsoft.WindowsAPICodePack.Shell;
 using MimeKit;
 using QRCoder;
 using SuperMarket.Classes.Helpers;
@@ -17,11 +18,11 @@ namespace SuperMarket.Classes
 {
     public class Methods
     {
-        internal async static Task<object> GetTimeOnline()
+        internal async static Task<DateTime> GetTimeOnline()
         {
+            DateTime dateTime = DateTime.MinValue;
             try
             {
-                DateTime dateTime = DateTime.MinValue;
                 HttpWebRequest request = await Task.Run(() => (HttpWebRequest)WebRequest.Create("https://www.google.com.eg"));
                 request.Method = "GET";
                 request.Accept = "text/html, application/xhtml+xml, */*";
@@ -33,18 +34,21 @@ namespace SuperMarket.Classes
                 {
                     string todaysDates = response.Headers["date"];
 
-                    dateTime = await Task.Run(() => DateTime.ParseExact(todaysDates, "ddd, dd MMM yyyy HH:mm:ss 'GMT'", System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat, System.Globalization.DateTimeStyles.AssumeUniversal));
+                    dateTime = await Task.Run(() => DateTime.ParseExact(todaysDates, "ddd, dd MMM yyyy HH:mm:ss 'GMT'",
+                        System.Globalization.CultureInfo.InvariantCulture.DateTimeFormat, System.Globalization.DateTimeStyles.AssumeUniversal));
+
+                    return dateTime;
                 }
 
-                return dateTime;
             }
             catch (Exception ex)
             {
                 Logger.Log($"Error while fetching the online date now & error: {ex.Message}",
                           System.Reflection.MethodInfo.GetCurrentMethod().Name, "Methods", Logger.ERROR);
             }
-            return null;
+            return dateTime;
         }
+
 
         internal async virtual Task<DataTable> DataGridToDataTable(DataGridView dataGridView)
         {
@@ -70,28 +74,40 @@ namespace SuperMarket.Classes
             return dataTable;
         }
 
-        public static List<T> DataTableToList<T>(DataTable dataTable)
+        internal virtual void SortList<T>(List<T> list, string columnName, SortDirection direction)
+        {
+            var property = typeof(T).GetProperty(columnName);
+            var multiplier = direction == SortDirection.Descending ? -1 : 1;
+            list.Sort((t1, t2) =>
+            {
+                var col1 = property.GetValue(t1);
+                var col2 = property.GetValue(t2);
+                return multiplier * Comparer<object>.Default.Compare(col1, col2);
+            });
+        }
+
+        internal async virtual Task<List<T>> DataTableToList<T>(DataTable dataTable)
         {
             List<T> data = new List<T>();
             foreach (DataRow row in dataTable.Rows)
             {
-                T item = GetItem<T>(row);
+                T item = await GetItem<T>(row);
                 data.Add(item);
             }
             return data;
         }
 
-        private static T GetItem<T>(DataRow dr)
+        private async static Task<T> GetItem<T>(DataRow dr)
         {
             Type temp = typeof(T);
-            T obj = Activator.CreateInstance<T>();
+            T obj = await Task.Run(() => Activator.CreateInstance<T>());
 
             foreach (DataColumn column in dr.Table.Columns)
             {
-                foreach (System.Reflection.PropertyInfo pro in temp.GetProperties())
+                foreach (System.Reflection.PropertyInfo pro in await Task.Run(() => temp.GetProperties()))
                 {
                     if (pro.Name == column.ColumnName)
-                        pro.SetValue(obj, dr[column.ColumnName], null);
+                        await Task.Run(() => pro.SetValue(obj, dr[column.ColumnName], null));
                     else
                         continue;
                 }

@@ -40,6 +40,7 @@ namespace SuperMarket.Forms
             this.btn_safe = new System.Windows.Forms.Button();
             this.btn_advancedSearch = new System.Windows.Forms.Button();
             this.pan_suppliers = new System.Windows.Forms.Panel();
+            this.btn_supplierInvoicesHistory = new System.Windows.Forms.Button();
             this.btn_suppliersEdit = new System.Windows.Forms.Button();
             this.btn_supplierInvoices = new System.Windows.Forms.Button();
             this.btn_suppliers = new System.Windows.Forms.Button();
@@ -62,14 +63,13 @@ namespace SuperMarket.Forms
             this.panel5 = new System.Windows.Forms.Panel();
             this.lbl_welcome = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.pic_help = new System.Windows.Forms.PictureBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.lbl_welcomeName = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.UserSession = new System.Windows.Forms.Timer(this.components);
             this.HourlyChecker = new System.Windows.Forms.Timer(this.components);
-            this.btn_supplierInvoicesHistory = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             this.pan_suppliers.SuspendLayout();
@@ -253,6 +253,26 @@ namespace SuperMarket.Forms
             this.pan_suppliers.Size = new System.Drawing.Size(228, 135);
             this.pan_suppliers.TabIndex = 26;
             // 
+            // btn_supplierInvoicesHistory
+            // 
+            this.btn_supplierInvoicesHistory.BackColor = System.Drawing.Color.Magenta;
+            this.btn_supplierInvoicesHistory.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btn_supplierInvoicesHistory.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_supplierInvoicesHistory.FlatAppearance.BorderSize = 0;
+            this.btn_supplierInvoicesHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_supplierInvoicesHistory.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_supplierInvoicesHistory.ForeColor = System.Drawing.Color.White;
+            this.btn_supplierInvoicesHistory.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btn_supplierInvoicesHistory.Location = new System.Drawing.Point(0, 90);
+            this.btn_supplierInvoicesHistory.Margin = new System.Windows.Forms.Padding(0);
+            this.btn_supplierInvoicesHistory.Name = "btn_supplierInvoicesHistory";
+            this.btn_supplierInvoicesHistory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.btn_supplierInvoicesHistory.Size = new System.Drawing.Size(228, 45);
+            this.btn_supplierInvoicesHistory.TabIndex = 31;
+            this.btn_supplierInvoicesHistory.Text = "جميع الفواتير";
+            this.btn_supplierInvoicesHistory.UseVisualStyleBackColor = false;
+            this.btn_supplierInvoicesHistory.Click += new System.EventHandler(this.btn_supplierInvoicesHistory_Click);
+            // 
             // btn_suppliersEdit
             // 
             this.btn_suppliersEdit.BackColor = System.Drawing.Color.Magenta;
@@ -364,7 +384,7 @@ namespace SuperMarket.Forms
             this.btn_billingEdit.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btn_billingEdit.Size = new System.Drawing.Size(228, 45);
             this.btn_billingEdit.TabIndex = 23;
-            this.btn_billingEdit.Text = "تعديل الفواتير";
+            this.btn_billingEdit.Text = "المرتجعات";
             this.btn_billingEdit.UseVisualStyleBackColor = false;
             this.btn_billingEdit.Click += new System.EventHandler(this.btn_editBills_Click);
             // 
@@ -608,7 +628,7 @@ namespace SuperMarket.Forms
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Purple;
-            this.panel2.Controls.Add(this.button1);
+            this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.pic_help);
             this.panel2.Controls.Add(this.panel6);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -618,16 +638,6 @@ namespace SuperMarket.Forms
             this.panel2.Size = new System.Drawing.Size(996, 65);
             this.panel2.TabIndex = 24;
             this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panels_MouseMove);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(176, 29);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // pic_help
             // 
@@ -649,7 +659,7 @@ namespace SuperMarket.Forms
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel6.Controls.Add(this.lbl_welcome);
             this.panel6.Controls.Add(this.lbl_welcomeName);
-            this.panel6.Location = new System.Drawing.Point(349, 10);
+            this.panel6.Location = new System.Drawing.Point(299, 10);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(285, 44);
             this.panel6.TabIndex = 13;
@@ -685,25 +695,18 @@ namespace SuperMarket.Forms
             this.HourlyChecker.Interval = 1000;
             this.HourlyChecker.Tick += new System.EventHandler(this.HourlyChecker_Tick);
             // 
-            // btn_supplierInvoicesHistory
+            // label1
             // 
-            this.btn_supplierInvoicesHistory.BackColor = System.Drawing.Color.Magenta;
-            this.btn_supplierInvoicesHistory.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_supplierInvoicesHistory.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_supplierInvoicesHistory.FlatAppearance.BorderSize = 0;
-            this.btn_supplierInvoicesHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_supplierInvoicesHistory.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_supplierInvoicesHistory.ForeColor = System.Drawing.Color.White;
-            this.btn_supplierInvoicesHistory.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btn_supplierInvoicesHistory.Location = new System.Drawing.Point(0, 90);
-            this.btn_supplierInvoicesHistory.Margin = new System.Windows.Forms.Padding(0);
-            this.btn_supplierInvoicesHistory.Name = "btn_supplierInvoicesHistory";
-            this.btn_supplierInvoicesHistory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.btn_supplierInvoicesHistory.Size = new System.Drawing.Size(228, 45);
-            this.btn_supplierInvoicesHistory.TabIndex = 31;
-            this.btn_supplierInvoicesHistory.Text = "جميع الفواتير";
-            this.btn_supplierInvoicesHistory.UseVisualStyleBackColor = false;
-            this.btn_supplierInvoicesHistory.Click += new System.EventHandler(this.btn_supplierInvoicesHistory_Click);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(679, 16);
+            this.label1.Name = "label1";
+            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label1.Size = new System.Drawing.Size(251, 32);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "<= للاستفسارات اضغط هنا";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Main
             // 
@@ -719,6 +722,7 @@ namespace SuperMarket.Forms
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1280, 720);
             this.Name = "Main";
+            this.Text = "برنامج المخازن";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Main_FormClosing);
             this.Load += new System.EventHandler(this.Main_Load);
             this.panel1.ResumeLayout(false);
@@ -731,6 +735,7 @@ namespace SuperMarket.Forms
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_help)).EndInit();
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
@@ -777,7 +782,7 @@ namespace SuperMarket.Forms
         private System.Windows.Forms.Panel pan_billing;
         private System.Windows.Forms.Button btn_billingAdd;
         public System.Windows.Forms.Button btn_adminPanel;
-        private System.Windows.Forms.Button button1;
         public System.Windows.Forms.Button btn_supplierInvoicesHistory;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -15,12 +15,21 @@ namespace SuperMarket.Classes
             DriveLetter = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System)),
             DirectoryLocation = $@"{DriveLetter}Users\{Environment.UserName}\AppData\Local\{ApplicationName}",
             SerialKeyFileName = @"\serial",
+            SerialDateTimeKeyFileName = @"\datetime",
             FileExtention = ".enc",
-            SerialKeyFileLocation = DirectoryLocation + SerialKeyFileName + FileExtention;
+            SerialKeyFileLocation = DirectoryLocation + SerialKeyFileName + FileExtention,
+            SerialKeyDateTimeFileLocation = DirectoryLocation + SerialDateTimeKeyFileName + FileExtention;
 
         public static string CPUID = "", MOBOID = "", CPUName = "", CPUCores = "", CPUSpeed = "", SystemName = "";
 
         public static bool OpenFormMain = false;
+
+        private static int TrialDays, TrialDaysLeft;
+
+        public static int GetTrialDays()
+        {
+            return TrialDays;
+        }
 
         public static string GetDBName()
         {
@@ -42,11 +51,38 @@ namespace SuperMarket.Classes
             return DirectoryLocation;
         }
 
+        public async static Task<int> GetTrialDaysLeft()
+        {
+            DateTime LisenceDateTime = DateTime.Parse(await DecryptAsync(File.ReadAllText(SerialKeyDateTimeFileLocation), CPUID + MOBOID));
+
+            int DaysLeft = GetTrialDays() - int.Parse("" + Math.Floor((await Methods.GetTimeOnline() - LisenceDateTime).TotalDays));
+
+            TrialDaysLeft = DaysLeft;
+
+            return DaysLeft;
+        }
+
+        public async static void SetupTrialDays()
+        {
+            string LisenceKey = await DecryptAsync(File.ReadAllText(SerialKeyFileLocation), CPUID + MOBOID);
+
+            StringBuilder sb_lisenceKey = new StringBuilder(LisenceKey);
+
+            if (sb_lisenceKey[3] == 't' || sb_lisenceKey[3] == 'T')
+                TrialDays = int.Parse(sb_lisenceKey[5].ToString() + sb_lisenceKey[6].ToString());
+
+            else if (sb_lisenceKey[3] == 'f' || sb_lisenceKey[3] == 'F')
+                TrialDays = -1;
+
+            else
+                TrialDays = 0;
+        }
+
         public async static Task<string> CheckLicenseKeyOnAppAsync()
         {
             await GetComputerInfo();
 
-            await SerialKeyFileExistsAsync();
+            await SerialKeyFileExists();
 
             if (new FileInfo(SerialKeyFileLocation).Length == 0)
 
@@ -94,11 +130,11 @@ namespace SuperMarket.Classes
             }
         }
 
-        public async static Task<string> CheckLicenseKeyValidityAsync(string LicenseKey)
+        public async static Task<string> CheckLicenseKeyValidity(string LicenseKey)
         {
             await GetComputerInfo();
 
-            await SerialKeyFileExistsAsync();
+            await SerialKeyFileExists();
 
             if (new FileInfo(SerialKeyFileLocation).Length == 0)
             {
@@ -124,7 +160,7 @@ namespace SuperMarket.Classes
             }
         }
 
-        internal async static Task<bool> SerialKeyFileExistsAsync()
+        internal async static Task<bool> SerialKeyFileExists()
         {
             bool state = true;
 

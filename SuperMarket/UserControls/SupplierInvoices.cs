@@ -149,7 +149,7 @@ namespace SuperMarket.UserControls
                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
 
-                else if (txt_searchSupplierType.Text == SupplierSearchType[1].ToString())
+                else if (txt_searchProductType.Text == ProductSearchType[1].ToString())
                 {
                     List<ProductModel> SearchedProducts = Classes.DataAccess.Products.GetProductParameter("BarCode",
                         txt_searchProduct.Text);
@@ -163,7 +163,7 @@ namespace SuperMarket.UserControls
                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
 
-                else if (txt_searchSupplierType.Text == SupplierSearchType[2].ToString())
+                else if (txt_searchProductType.Text == ProductSearchType[2].ToString())
                 {
                     List<ProductModel> SearchedProducts = Classes.DataAccess.Products.GetProductParameter("Id",
                         txt_searchProduct.Text);

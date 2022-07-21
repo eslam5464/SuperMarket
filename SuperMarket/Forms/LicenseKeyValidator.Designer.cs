@@ -335,7 +335,7 @@ namespace SuperMarket.Forms
             // pic_loading
             // 
             this.pic_loading.Image = global::SuperMarket.Properties.Resources.gif_loading_48;
-            this.pic_loading.Location = new System.Drawing.Point(425, 143);
+            this.pic_loading.Location = new System.Drawing.Point(443, 143);
             this.pic_loading.Name = "pic_loading";
             this.pic_loading.Size = new System.Drawing.Size(64, 50);
             this.pic_loading.TabIndex = 94;

@@ -39,7 +39,6 @@ namespace SuperMarket.Forms
 
         private async void Main_Load(object sender, EventArgs e)
         {
-
             if (LoggedUser == null)
                 Close();
             else if (!Security.OpenFormMain || LoggedUser.Username == "")
@@ -191,7 +190,7 @@ namespace SuperMarket.Forms
         {
             SelectSideMenuButton(btn_billingEdit, btn_billing, false, 2);
             uc_billsEdit.BringToFront();
-            uc_billsEdit.SetFocusOnBarCode();
+            uc_billsEdit.SetFocusOnInvoiceNumber();
         }
 
         private void btn_sellers_Click(object sender, EventArgs e)
@@ -433,19 +432,41 @@ namespace SuperMarket.Forms
             }
         }
 
-        private void HourlyChecker_Tick(object sender, EventArgs e)
+        private async void HourlyChecker_Tick(object sender, EventArgs e)
         {
             HourlyTimer += 1;
             FourHoursTimer += 1;
             if (HourlyTimer >= 3600)
             {
-                Task.Run(() => Classes.DataAccess.DataBackup.AllDaily());
+                await Classes.DataAccess.DataBackup.AllDaily();
                 HourlyTimer = 0;
             }
 
             if (FourHoursTimer >= 14400)
             {
-                Console.WriteLine(Methods.GetTimeOnline());// TODO: finish checking online
+                if (Security.GetTrialDays() == -1)
+                {
+                    if (await Methods.GetTimeOnline() != DateTime.MinValue)
+                    {
+                        if (await Security.GetTrialDaysLeft() <= 0)
+                        {
+                            MessageBox.Show("لكن انتهت المده المسموحة لاستخدام البرنامج", "انتبه",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            Logger.Log("time used to open the application finished",
+                                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+                            this.Dispose();
+                            this.Close();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("لا يمكن الاتصال بالإنترنت برجاء استخدام البرنامج عندما يكون الجهاز متصل بـال انترنت",
+                            "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        Logger.Log("time used to open the application finished",
+                                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                    }
+                }
                 FourHoursTimer = 0;
             }
         }
@@ -461,30 +482,6 @@ namespace SuperMarket.Forms
                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
             new About().ShowDialog();
-        }
-
-        private async void button1_Click(object sender, EventArgs e)
-        {
-            string dbName = "TestDB";
-
-            if (!await Classes.DataAccess.DataInit.CheckDatabaseExists(dbName))
-            {
-                if (!await Classes.DataAccess.DataInit.CreateDatabase(dbName))
-                {
-                    MessageBox.Show("حدث خطأ أثناء انشاء قاعده البيانات",
-                        "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                else
-                {
-                    MessageBox.Show("working",
-                        "done", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else
-            {
-                MessageBox.Show("data exists",
-                        "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
         }
 
 

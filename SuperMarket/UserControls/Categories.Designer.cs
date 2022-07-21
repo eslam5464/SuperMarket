@@ -36,11 +36,6 @@
             this.btn_categoryEdit = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.categoriesDataGridView = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StorageId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StorageName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.superMarketDataSet = new SuperMarket.SuperMarketDataSet();
             this.btn_saveCategory = new System.Windows.Forms.Button();
@@ -66,11 +61,16 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btn_storageEdit = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.pcb_searchStorage = new System.Windows.Forms.PictureBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.pcb_searchName = new System.Windows.Forms.PictureBox();
             this.pcb_searchID = new System.Windows.Forms.PictureBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StorageId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StorageName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.categoriesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).BeginInit();
@@ -175,41 +175,6 @@
             this.categoriesDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.categoriesDataGridView_CellMouseClick);
             this.categoriesDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_categoriesDataGridView_ColumnHeaderMouseClick);
             this.categoriesDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_categoriesDataGridView_ColumnHeaderMouseDoubleClick);
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            // 
-            // CategoryName
-            // 
-            this.CategoryName.DataPropertyName = "Name";
-            this.CategoryName.HeaderText = "Name";
-            this.CategoryName.Name = "CategoryName";
-            this.CategoryName.ReadOnly = true;
-            // 
-            // StorageId
-            // 
-            this.StorageId.DataPropertyName = "StorageId";
-            this.StorageId.HeaderText = "StorageId";
-            this.StorageId.Name = "StorageId";
-            this.StorageId.ReadOnly = true;
-            // 
-            // StorageName
-            // 
-            this.StorageName.DataPropertyName = "StorageName";
-            this.StorageName.HeaderText = "StorageName";
-            this.StorageName.Name = "StorageName";
-            this.StorageName.ReadOnly = true;
-            // 
-            // CreationDate
-            // 
-            this.CreationDate.DataPropertyName = "CreationDate";
-            this.CreationDate.HeaderText = "CreationDate";
-            this.CreationDate.Name = "CreationDate";
-            this.CreationDate.ReadOnly = true;
             // 
             // categoriesBindingSource
             // 
@@ -534,30 +499,6 @@
             this.panel4.Size = new System.Drawing.Size(1032, 193);
             this.panel4.TabIndex = 202;
             // 
-            // label9
-            // 
-            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Century Gothic", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.Purple;
-            this.label9.Location = new System.Drawing.Point(469, 2);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(93, 28);
-            this.label9.TabIndex = 202;
-            this.label9.Text = "التصنيفات";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.BackColor = System.Drawing.Color.Transparent;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.Red;
-            this.label10.Location = new System.Drawing.Point(297, 32);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(29, 37);
-            this.label10.TabIndex = 204;
-            this.label10.Text = "*";
-            // 
             // pcb_searchStorage
             // 
             this.pcb_searchStorage.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -572,6 +513,18 @@
             this.pcb_searchStorage.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
             this.pcb_searchStorage.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
             this.pcb_searchStorage.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
+            // 
+            // label9
+            // 
+            this.label9.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Century Gothic", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.Purple;
+            this.label9.Location = new System.Drawing.Point(469, 2);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(93, 28);
+            this.label9.TabIndex = 202;
+            this.label9.Text = "التصنيفات";
             // 
             // pcb_searchName
             // 
@@ -602,6 +555,53 @@
             this.pcb_searchID.DoubleClick += new System.EventHandler(this.pcb_search_DoubleClick);
             this.pcb_searchID.MouseEnter += new System.EventHandler(this.pcb_search_MouseEnter);
             this.pcb_searchID.MouseLeave += new System.EventHandler(this.pcb_search_MouseLeave);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.Red;
+            this.label10.Location = new System.Drawing.Point(297, 32);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(29, 37);
+            this.label10.TabIndex = 204;
+            this.label10.Text = "*";
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            // 
+            // CategoryName
+            // 
+            this.CategoryName.DataPropertyName = "Name";
+            this.CategoryName.HeaderText = "Name";
+            this.CategoryName.Name = "CategoryName";
+            this.CategoryName.ReadOnly = true;
+            // 
+            // StorageId
+            // 
+            this.StorageId.DataPropertyName = "StorageId";
+            this.StorageId.HeaderText = "StorageId";
+            this.StorageId.Name = "StorageId";
+            this.StorageId.ReadOnly = true;
+            // 
+            // StorageName
+            // 
+            this.StorageName.DataPropertyName = "StorageName";
+            this.StorageName.HeaderText = "StorageName";
+            this.StorageName.Name = "StorageName";
+            this.StorageName.ReadOnly = true;
+            // 
+            // CreationDate
+            // 
+            this.CreationDate.DataPropertyName = "CreationDate";
+            this.CreationDate.HeaderText = "CreationDate";
+            this.CreationDate.Name = "CreationDate";
+            this.CreationDate.ReadOnly = true;
             // 
             // Categories
             // 
@@ -651,11 +651,6 @@
         private SuperMarketDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.DataGridView categoriesDataGridView;
         private System.Windows.Forms.Button btn_exportPDF;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CategoryName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StorageId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn StorageName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CreationDate;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox txt_storageNameSearch;
         private System.Windows.Forms.TextBox txt_storageName;
@@ -673,5 +668,10 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.PictureBox pcb_searchStorage;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CategoryName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StorageId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn StorageName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CreationDate;
     }
 }

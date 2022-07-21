@@ -1,18 +1,40 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Dapper;
+using Microsoft.Data.SqlClient;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
 using System;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SuperMarket.Classes.DataAccess
 {
     class DataInit
-    {
+    {//Task<DateTime>
+     //
+        public static async Task<DateTime> GetDatabaseCreationDate(string DatabaseName)
+        {
+            try
+            {
+                using (IDbConnection cnn = await Task.Run(() => new SqlConnection(GlobalVars.LoadConnectionString())))
+                {
+                    var output = await Task.Run(() => cnn.Query<DateTime>($"SELECT create_date FROM sys.databases " +
+                        $"WHERE name = '{DatabaseName}'", new DynamicParameters()).ToList());
+                    return output[0];
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"while getting the database <{DatabaseName}> creation date & error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "DataInit", Logger.ERROR);
+            }
+            return DateTime.MaxValue;
+        }
+
         public static async Task<bool> CheckDatabaseExists(string databaseName)
         {
             //string sqlCreateDBQuery;
-            bool result = false;
+            bool result = true;
 
             try
             {
@@ -70,6 +92,7 @@ namespace SuperMarket.Classes.DataAccess
                         await Task.Run(() => connection.Open());
                         Logger.Log($"->: {(command.ExecuteScalar() != DBNull.Value)}",
                                     System.Reflection.MethodInfo.GetCurrentMethod().Name, "DataInit", Logger.ERROR);
+
                         return (command.ExecuteScalar() != DBNull.Value);
                     }
                 }
