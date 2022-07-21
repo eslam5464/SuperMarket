@@ -364,57 +364,39 @@
     <Compile Include="Classes\Models\UserModel.cs" />
     <Compile Include="Classes\Models\Validators\UserValidator.cs" />
     <Compile Include="Classes\Security.cs" />
-    <Compile Include="Forms\About.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Forms\About.cs" />
     <Compile Include="Forms\About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Notification.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Forms\Notification.cs" />
     <Compile Include="Forms\Notification.Designer.cs">
       <DependentUpon>Notification.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ReportViewer.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Forms\ReportViewer.cs" />
     <Compile Include="Forms\ReportViewer.Designer.cs">
       <DependentUpon>ReportViewer.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Invoice.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Forms\Invoice.cs" />
     <Compile Include="Forms\Invoice.Designer.cs">
       <DependentUpon>Invoice.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\LicenseKeyValidator.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Forms\LicenseKeyValidator.cs" />
     <Compile Include="Forms\LicenseKeyValidator.Designer.cs">
       <DependentUpon>LicenseKeyValidator.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\LoadingScreen.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Forms\LoadingScreen.cs" />
     <Compile Include="Forms\LoadingScreen.Designer.cs">
       <DependentUpon>LoadingScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Login.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Forms\Login.cs" />
     <Compile Include="Forms\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\Main.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Forms\Main.cs" />
     <Compile Include="Forms\Main.Designer.cs">
       <DependentUpon>Main.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\UserAccess.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="Forms\UserAccess.cs" />
     <Compile Include="Forms\UserAccess.Designer.cs">
       <DependentUpon>UserAccess.cs</DependentUpon>
     </Compile>
@@ -432,107 +414,73 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SuperMarketDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\AdminPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UserControls\AdminPanel.cs" />
     <Compile Include="UserControls\AdminPanel.Designer.cs">
       <DependentUpon>AdminPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\AdvancedSearch.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UserControls\AdvancedSearch.cs" />
     <Compile Include="UserControls\AdvancedSearch.Designer.cs">
       <DependentUpon>AdvancedSearch.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Billing.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UserControls\Billing.cs" />
     <Compile Include="UserControls\Billing.Designer.cs">
       <DependentUpon>Billing.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\BillsEdit.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UserControls\BillsEdit.cs" />
     <Compile Include="UserControls\BillsEdit.Designer.cs">
       <DependentUpon>BillsEdit.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Blank.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UserControls\Blank.cs" />
     <Compile Include="UserControls\Blank.Designer.cs">
       <DependentUpon>Blank.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Categories.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UserControls\Categories.cs" />
     <Compile Include="UserControls\Categories.Designer.cs">
       <DependentUpon>Categories.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Customers.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UserControls\Customers.cs" />
     <Compile Include="UserControls\Customers.Designer.cs">
       <DependentUpon>Customers.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Dashboard.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UserControls\Dashboard.cs" />
     <Compile Include="UserControls\Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Orders.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UserControls\Orders.cs" />
     <Compile Include="UserControls\Orders.Designer.cs">
       <DependentUpon>Orders.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Products.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UserControls\Products.cs" />
     <Compile Include="UserControls\Products.Designer.cs">
       <DependentUpon>Products.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Reports.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UserControls\Reports.cs" />
     <Compile Include="UserControls\Reports.Designer.cs">
       <DependentUpon>Reports.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Safe.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UserControls\Safe.cs" />
     <Compile Include="UserControls\Safe.Designer.cs">
       <DependentUpon>Safe.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SupplierInvoicesHistory.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UserControls\SupplierInvoicesHistory.cs" />
     <Compile Include="UserControls\SupplierInvoicesHistory.Designer.cs">
       <DependentUpon>SupplierInvoicesHistory.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Users.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UserControls\Users.cs" />
     <Compile Include="UserControls\Users.Designer.cs">
       <DependentUpon>Users.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserControls\Settings.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UserControls\Settings.cs" />
     <Compile Include="UserControls\Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SupplierInvoices.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UserControls\SupplierInvoices.cs" />
     <Compile Include="UserControls\SupplierInvoices.Designer.cs">
       <DependentUpon>SupplierInvoices.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\Suppliers.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UserControls\Suppliers.cs" />
     <Compile Include="UserControls\Suppliers.Designer.cs">
       <DependentUpon>Suppliers.cs</DependentUpon>
     </Compile>
@@ -715,6 +663,19 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\icons8-business-report-48.png" />
     <None Include="Resources\icons8-customer-48.png" />
     <None Include="Resources\icons8-edit-property-481.png" />
@@ -749,19 +710,6 @@
     <None Include="Resources\loader-cochran-red1.gif" />
     <None Include="Resources\icons8-sand-timer.gif" />
     <None Include="Resources\ezgif.com-gif-maker-48.gif" />
-    <Content Include="SqlServerTypes\readme.htm" />
-    <Content Include="SqlServerTypes\x64\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x86\msvcr120.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.116.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.116.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
