@@ -62,7 +62,7 @@ namespace SuperMarket.Forms
                     {
                         Security.SetupTrialDays();
 
-                        if (Security.GetTrialDays() == -1)
+                        if (Security.GetTrialDays() != -1)
                         {
                             if (await Methods.GetTimeOnline() != DateTime.MinValue)
                             {
