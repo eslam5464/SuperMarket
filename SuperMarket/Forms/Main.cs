@@ -463,20 +463,27 @@ namespace SuperMarket.Forms
             new About().ShowDialog();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.InitialDirectory = @"C:\";
-            saveFileDialog1.Title = "Save text Files";
-            saveFileDialog1.CheckFileExists = true;
-            saveFileDialog1.CheckPathExists = true;
-            saveFileDialog1.DefaultExt = "txt";
-            saveFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
-            saveFileDialog1.FilterIndex = 2;
-            saveFileDialog1.RestoreDirectory = true;
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            string dbName = "TestDB";
+
+            if (!await Classes.DataAccess.DataInit.CheckDatabaseExists(dbName))
             {
-                MessageBox.Show(saveFileDialog1.FileName);
+                if (!await Classes.DataAccess.DataInit.CreateDatabase(dbName))
+                {
+                    MessageBox.Show("حدث خطأ أثناء انشاء قاعده البيانات",
+                        "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("working",
+                        "done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            else
+            {
+                MessageBox.Show("data exists",
+                        "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

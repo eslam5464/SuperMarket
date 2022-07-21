@@ -63,6 +63,16 @@ namespace SuperMarket.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap gif_loading_48 {
+            get {
+                object obj = ResourceManager.GetObject("gif_loading_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_admin_settings_male_48 {
             get {
                 object obj = ResourceManager.GetObject("icons8-admin-settings-male-48", resourceCulture);
@@ -327,6 +337,16 @@ namespace SuperMarket.Properties {
             get {
                 object obj = ResourceManager.GetObject("icons8_warehouse_961", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap loader_cochran_red {
+            get {
+                object obj = ResourceManager.GetObject("loader-cochran-red", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

@@ -54,11 +54,15 @@ namespace SuperMarket.Forms
         private async void btn_checkKey_Click(object sender, EventArgs e)
         {
             btn_checkKey.Enabled = false;
+            pic_loading.Visible = true;
 
             if (!File.Exists(Security.GetSerialKeyFileLocation()))
             {
                 Logger.Log("serial key file doesnt exist",
                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+                btn_checkKey.Enabled = true;
+                pic_loading.Visible = false;
 
                 MessageBox.Show("ملف مفتاح الترخيص غير موجود  برجاء الضغط على زر <عن البرنامج> لمعرفه التفاصيل", "خطأ");
             }
@@ -80,7 +84,15 @@ namespace SuperMarket.Forms
 
                     Properties.Settings.Default.SystemName = await Security.GetSystemName();
 
-                    Security.OpenFormMain = true;
+                    //Security.OpenFormMain = true;
+
+                    if (!await Classes.DataAccess.DataInit.CheckDatabaseExists(Security.GetDBName()))
+                    {
+                        await Classes.DataAccess.DataInit.CreateDatabase(Security.GetDBName());
+                    }
+
+                    btn_checkKey.Enabled = true;
+                    pic_loading.Visible = false;
 
                     MessageBox.Show("مفتاح الترخيص صحيح.. برجاء اعاده فتح البرنامج", "عملية ناجحه",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -91,11 +103,12 @@ namespace SuperMarket.Forms
                 {
                     Logger.Log("serial key is not correct", System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-                    MessageBox.Show("الرقم السري غير صحيح");
+                    btn_checkKey.Enabled = true;
+                    pic_loading.Visible = false;
+
+                    MessageBox.Show("مفتاح الترخيص غير صحيح", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-
-            btn_checkKey.Enabled = true;
         }
     }
 }

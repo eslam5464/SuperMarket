@@ -19,6 +19,7 @@ namespace SuperMarket.Forms
         private bool FoundTimeOnline = false;
         private DateTime OnlineTimeNow;
         private Login login = new Login();
+
         private void LoadingScreen_Load(object sender, EventArgs e)
         {
             timer_loading.Start();

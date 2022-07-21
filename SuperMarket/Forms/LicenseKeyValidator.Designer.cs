@@ -53,9 +53,11 @@ namespace SuperMarket.Forms
             this.btn_checkKey = new System.Windows.Forms.Button();
             this.btn_close = new System.Windows.Forms.Button();
             this.btn_about = new System.Windows.Forms.Button();
+            this.pic_loading = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_loading)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -330,12 +332,24 @@ namespace SuperMarket.Forms
             this.btn_about.UseVisualStyleBackColor = false;
             this.btn_about.Click += new System.EventHandler(this.btn_about_Click);
             // 
+            // pic_loading
+            // 
+            this.pic_loading.Image = global::SuperMarket.Properties.Resources.gif_loading_48;
+            this.pic_loading.Location = new System.Drawing.Point(425, 143);
+            this.pic_loading.Name = "pic_loading";
+            this.pic_loading.Size = new System.Drawing.Size(64, 50);
+            this.pic_loading.TabIndex = 94;
+            this.pic_loading.TabStop = false;
+            this.pic_loading.Visible = false;
+            // 
             // LicenseKeyValidator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(842, 214);
             this.ControlBox = false;
+            this.Controls.Add(this.pic_loading);
             this.Controls.Add(this.btn_about);
             this.Controls.Add(this.btn_close);
             this.Controls.Add(this.btn_checkKey);
@@ -370,6 +384,7 @@ namespace SuperMarket.Forms
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_loading)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -400,5 +415,6 @@ namespace SuperMarket.Forms
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btn_about;
+        private System.Windows.Forms.PictureBox pic_loading;
     }
 }
