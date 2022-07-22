@@ -122,6 +122,7 @@ namespace SuperMarket.UserControls
             this.MinimumSize = new System.Drawing.Size(1038, 660);
             this.Name = "AdminPanel";
             this.Size = new System.Drawing.Size(1038, 660);
+            this.Load += new System.EventHandler(this.AdminPanel_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -52,5 +52,10 @@ namespace SuperMarket.UserControls
                 MessageBox.Show($"Trial Days left: {TrialDaysLeft}");
             }
         }
+
+        private void AdminPanel_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
