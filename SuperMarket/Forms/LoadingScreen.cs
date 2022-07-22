@@ -38,7 +38,7 @@ namespace SuperMarket.Forms
         {
             if (progressBar.Value < 75)
             {
-                progressBar.Value += 25;
+                progressBar.Increment(25);
             }
             else
             {
@@ -56,6 +56,8 @@ namespace SuperMarket.Forms
                                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
                         Security.OpenFormMain = false;
 
+                        progressBar.Increment(25);
+
                         this.Close();
                     }
                     else if (SerialKeyCheckOutput == "200")
@@ -66,19 +68,22 @@ namespace SuperMarket.Forms
                         {
                             if (await Methods.GetTimeOnline() != DateTime.MinValue)
                             {
-                                if (await Security.GetTrialDaysLeft() <= 0)
+                                if (await Security.CalculateTrialDaysLeft() <= 0)
                                 {
-                                    MessageBox.Show("لكن انتهت المده المسموحة لاستخدام البرنامج", "انتبه",
+                                    this.TopMost = false;
+                                    MessageBox.Show("لقد انتهت المده المسموحة لاستخدام البرنامج", "انتبه",
                                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                     Logger.Log("time used to open the application finished",
-                                             System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                                             System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
 
-                                    Close();
+                                    progressBar.Increment(25);
+
+                                    this.Close();
                                 }
                                 else
                                 {
                                     Logger.Log("serial key validated",
-                                             System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                                             System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
 
                                     this.TopMost = false;
                                     this.Hide();
@@ -95,15 +100,22 @@ namespace SuperMarket.Forms
                                         if (Main.LoggedUser.Username == "")
                                             Security.OpenFormMain = false;
 
+                                    progressBar.Increment(25);
+
                                     this.Close();
                                 }
                             }
                             else
                             {
-                                MessageBox.Show("لا يمكن الاتصال بالإنترنت برجاء استخدام البرنامج عندما يكون الجهاز متصل بـال انترنت",
+                                this.TopMost = false;
+                                MessageBox.Show("لا يمكن الاتصال بالإنترنت برجاء استخدام البرنامج عندما يكون الجهاز متصل بال انترنت",
                                     "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 Logger.Log("time used to open the application finished",
                                          System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
+                                progressBar.Increment(25);
+
+                                this.Close();
                             }
                         }
                         else
@@ -126,14 +138,17 @@ namespace SuperMarket.Forms
                                 if (Main.LoggedUser.Username == "")
                                     Security.OpenFormMain = false;
 
+                            progressBar.Increment(25);
+
                             this.Close();
                         }
-                        progressBar.Value += 25;
                     }
                     else if (SerialKeyCheckOutput == "400")
                     {
                         Logger.Log("wrong serial key in the system",
                                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.ERROR);
+
+                        progressBar.Increment(25);
 
                         this.Hide();
 
@@ -165,6 +180,9 @@ namespace SuperMarket.Forms
                         Logger.Log("unknown error",
                                  System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
                         Security.OpenFormMain = false;
+
+                        progressBar.Increment(25);
+
                         this.Close();
                     }
                 }
@@ -198,6 +216,8 @@ namespace SuperMarket.Forms
                         About.AdditionalInfo = "هذا البرنامج غير قابل للعمل على هذا الجهاز";
                         frm_about.TopMost = true;
                         frm_about.ShowDialog();
+
+                        progressBar.Increment(25);
 
                         this.Close();
                     }

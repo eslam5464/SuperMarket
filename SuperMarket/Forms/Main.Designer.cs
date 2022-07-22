@@ -63,13 +63,13 @@ namespace SuperMarket.Forms
             this.panel5 = new System.Windows.Forms.Panel();
             this.lbl_welcome = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             this.pic_help = new System.Windows.Forms.PictureBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.lbl_welcomeName = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.UserSession = new System.Windows.Forms.Timer(this.components);
             this.HourlyChecker = new System.Windows.Forms.Timer(this.components);
-            this.label1 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             this.pan_suppliers.SuspendLayout();
@@ -639,6 +639,20 @@ namespace SuperMarket.Forms
             this.panel2.TabIndex = 24;
             this.panel2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panels_MouseMove);
             // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Goldenrod;
+            this.label1.Location = new System.Drawing.Point(683, 16);
+            this.label1.Name = "label1";
+            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.label1.Size = new System.Drawing.Size(251, 32);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "<= للاستفسارات اضغط هنا";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // pic_help
             // 
             this.pic_help.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -694,19 +708,6 @@ namespace SuperMarket.Forms
             // 
             this.HourlyChecker.Interval = 1000;
             this.HourlyChecker.Tick += new System.EventHandler(this.HourlyChecker_Tick);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(679, 16);
-            this.label1.Name = "label1";
-            this.label1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label1.Size = new System.Drawing.Size(251, 32);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "<= للاستفسارات اضغط هنا";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Main
             // 

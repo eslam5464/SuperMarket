@@ -41,6 +41,11 @@ namespace SuperMarket.Classes
                 }
 
             }
+            catch(WebException weBEx)
+            {
+                Logger.Log($"Error while fetching the online date now & WebException error: {weBEx.Message}",
+                          System.Reflection.MethodInfo.GetCurrentMethod().Name, "Methods", Logger.ERROR);
+            }
             catch (Exception ex)
             {
                 Logger.Log($"Error while fetching the online date now & error: {ex.Message}",

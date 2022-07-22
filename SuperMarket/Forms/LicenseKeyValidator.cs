@@ -94,7 +94,7 @@ namespace SuperMarket.Forms
                     btn_checkKey.Enabled = true;
                     pic_loading.Visible = false;
 
-                    MessageBox.Show("مفتاح الترخيص صحيح.. برجاء اعاده فتح البرنامج", "عملية ناجحه",
+                    MessageBox.Show("مفتاح الترخيص صحيح", "عملية ناجحه",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     Close();

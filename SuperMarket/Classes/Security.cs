@@ -26,6 +26,11 @@ namespace SuperMarket.Classes
 
         private static int TrialDays, TrialDaysLeft;
 
+        public static int GetTrialDaysLeft()
+        {
+            return TrialDaysLeft;
+        }
+
         public static int GetTrialDays()
         {
             return TrialDays;
@@ -51,11 +56,13 @@ namespace SuperMarket.Classes
             return DirectoryLocation;
         }
 
-        public async static Task<int> GetTrialDaysLeft()
+        public async static Task<int> CalculateTrialDaysLeft()
         {
-            DateTime LisenceDateTime = DateTime.Parse(await DecryptAsync(File.ReadAllText(SerialKeyDateTimeFileLocation), CPUID + MOBOID));
+            DateTime LicenseDateTime = DateTime.Parse(await DecryptAsync(File.ReadAllText(SerialKeyDateTimeFileLocation), CPUID + MOBOID));
 
-            int DaysLeft = GetTrialDays() - int.Parse("" + Math.Floor((await Methods.GetTimeOnline() - LisenceDateTime).TotalDays));
+            int OnlineAndLicenseDiff = int.Parse("" + Math.Floor((await Methods.GetTimeOnline() - LicenseDateTime).TotalDays));
+
+            int DaysLeft = GetTrialDays() - OnlineAndLicenseDiff;
 
             TrialDaysLeft = DaysLeft;
 

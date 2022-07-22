@@ -69,6 +69,16 @@ namespace SuperMarket.Forms
 
         private async Task FormInitialSetup()
         {
+            int TrialDays = Security.GetTrialDays();
+            if (TrialDays == -1)
+            {
+                this.Text += " (نسخه كامله)";
+            }
+            else if (TrialDays > 0)
+            {
+                this.Text += $" (نسخه مؤقته لمده {TrialDays} يوم)";
+            }
+
             SetColors(Properties.Settings.Default.AppColor);
 
             this.WindowState = Properties.Settings.Default.WindowState;
@@ -444,16 +454,16 @@ namespace SuperMarket.Forms
 
             if (FourHoursTimer >= 14400)
             {
-                if (Security.GetTrialDays() == -1)
+                if (Security.GetTrialDays() != -1)
                 {
                     if (await Methods.GetTimeOnline() != DateTime.MinValue)
                     {
-                        if (await Security.GetTrialDaysLeft() <= 0)
+                        if (await Security.CalculateTrialDaysLeft() <= 0)
                         {
-                            MessageBox.Show("لكن انتهت المده المسموحة لاستخدام البرنامج", "انتبه",
+                            MessageBox.Show("لقد انتهت المده المسموحة لاستخدام البرنامج", "انتبه",
                                 MessageBoxButtons.OK, MessageBoxIcon.Warning);
                             Logger.Log("time used to open the application finished",
-                                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
 
                             this.Dispose();
                             this.Close();
@@ -464,7 +474,10 @@ namespace SuperMarket.Forms
                         MessageBox.Show("لا يمكن الاتصال بالإنترنت برجاء استخدام البرنامج عندما يكون الجهاز متصل بـال انترنت",
                             "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         Logger.Log("time used to open the application finished",
-                                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
+
+                        this.Dispose();
+                        this.Close();
                     }
                 }
                 FourHoursTimer = 0;

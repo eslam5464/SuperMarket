@@ -47,7 +47,10 @@ namespace SuperMarket.UserControls
                 MessageBox.Show($"This is a full version");
 
             else if (TrialDays >= 0)
-                MessageBox.Show($"Trial Days left: {TrialDays}");
+            {
+                int TrialDaysLeft = Security.GetTrialDaysLeft();
+                MessageBox.Show($"Trial Days left: {TrialDaysLeft}");
+            }
         }
     }
 }
