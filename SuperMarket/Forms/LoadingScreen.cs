@@ -1,6 +1,5 @@
 ﻿using POSWarehouse.Classes;
 using System;
-using System.Diagnostics;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -261,10 +260,10 @@ namespace POSWarehouse.Forms
                         }
                         else
                         {
+                            await IncrementProgressBar(progressBar, 25);
+
                             About frm_about = new About();
                             About.AdditionalInfo = "هذا البرنامج غير قابل للعمل على هذا الجهاز";
-
-                            await IncrementProgressBar(progressBar, 25);
 
                             frm_about.TopMost = true;
                             frm_about.ShowDialog();

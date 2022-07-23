@@ -1,8 +1,8 @@
 ﻿using Microsoft.WindowsAPICodePack.Dialogs;
 using Microsoft.WindowsAPICodePack.Shell;
 using MimeKit;
-using QRCoder;
 using POSWarehouse.Classes.Helpers;
+using QRCoder;
 using System;
 using System.Collections.Generic;
 using System.Data;

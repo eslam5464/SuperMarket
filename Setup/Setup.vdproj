@@ -5938,17 +5938,6 @@
             "Property" = "8:TARGETDIR"
                 "Folders"
                 {
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_4FF92F48E8F545F99298FB6F38CA2A8B"
-                    {
-                    "Name" = "8:Redist"
-                    "AlwaysCreate" = "11:TRUE"
-                    "Condition" = "8:"
-                    "Transitive" = "11:FALSE"
-                    "Property" = "8:_93014043FA6F4C2BAA35B2BA12251F41"
-                        "Folders"
-                        {
-                        }
-                    }
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_53BF99AF44464D5083EB4B7C794005F3"
                     {
                     "Name" = "8:Redist"
@@ -6067,7 +6056,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:POS Warehouse"
         "ProductCode" = "8:{7BF70303-D0DC-4EC0-927A-0948B3756AB7}"
-        "PackageCode" = "8:{F0D4DF0A-5A59-44F7-B22F-8B814859C7D3}"
+        "PackageCode" = "8:{77C3FD41-3D4D-4A47-A2C4-17E5B85D6525}"
         "UpgradeCode" = "8:{E8CECD0B-8C04-4703-B6B4-4330882F1186}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
