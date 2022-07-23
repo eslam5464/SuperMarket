@@ -10,8 +10,7 @@ using System.Threading.Tasks;
 namespace SuperMarket.Classes.DataAccess
 {
     class DataInit
-    {//Task<DateTime>
-     //
+    {
         public static async Task<DateTime> GetDatabaseCreationDate(string DatabaseName)
         {
             try
@@ -106,7 +105,6 @@ namespace SuperMarket.Classes.DataAccess
             }
         }
 
-
         public static async Task<bool> CreateDatabase(string DatabaseName)
         {
             try
@@ -121,7 +119,7 @@ namespace SuperMarket.Classes.DataAccess
 
                     string script = @"USE [master]
 									GO
-									/****** Object:  Database [SuperMarket]    Script Date: 21-Jul-22 09:00:10 AM ******/
+									/****** Object:  Database [SuperMarket]    Script Date: 23-Jul-22 09:55:38 AM ******/
 									CREATE DATABASE [SuperMarket]
 									 CONTAINMENT = NONE
 									 ON  PRIMARY 
@@ -201,7 +199,7 @@ namespace SuperMarket.Classes.DataAccess
 									GO
 									USE [SuperMarket]
 									GO
-									/****** Object:  Table [SuperMarket].[dbo].[Categories]    Script Date: 21-Jul-22 09:00:10 AM ******/
+									/****** Object:  Table [SuperMarket].[dbo].[Categories]    Script Date: 23-Jul-22 09:55:38 AM ******/
 									SET ANSI_NULLS ON
 									GO
 									SET QUOTED_IDENTIFIER ON
@@ -223,7 +221,7 @@ namespace SuperMarket.Classes.DataAccess
 									)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 									) ON [PRIMARY]
 									GO
-									/****** Object:  Table [SuperMarket].[dbo].[Customers]    Script Date: 21-Jul-22 09:00:10 AM ******/
+									/****** Object:  Table [SuperMarket].[dbo].[Customers]    Script Date: 23-Jul-22 09:55:38 AM ******/
 									SET ANSI_NULLS ON
 									GO
 									SET QUOTED_IDENTIFIER ON
@@ -240,7 +238,7 @@ namespace SuperMarket.Classes.DataAccess
 									)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 									) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 									GO
-									/****** Object:  Table [SuperMarket].[dbo].[Invoices]    Script Date: 21-Jul-22 09:00:10 AM ******/
+									/****** Object:  Table [SuperMarket].[dbo].[Invoices]    Script Date: 23-Jul-22 09:55:38 AM ******/
 									SET ANSI_NULLS ON
 									GO
 									SET QUOTED_IDENTIFIER ON
@@ -265,7 +263,7 @@ namespace SuperMarket.Classes.DataAccess
 									)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 									) ON [PRIMARY]
 									GO
-									/****** Object:  Table [SuperMarket].[dbo].[Orders]    Script Date: 21-Jul-22 09:00:10 AM ******/
+									/****** Object:  Table [SuperMarket].[dbo].[Orders]    Script Date: 23-Jul-22 09:55:38 AM ******/
 									SET ANSI_NULLS ON
 									GO
 									SET QUOTED_IDENTIFIER ON
@@ -287,7 +285,7 @@ namespace SuperMarket.Classes.DataAccess
 									)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 									) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 									GO
-									/****** Object:  Table [SuperMarket].[dbo].[ProductPrice]    Script Date: 21-Jul-22 09:00:10 AM ******/
+									/****** Object:  Table [SuperMarket].[dbo].[ProductPrice]    Script Date: 23-Jul-22 09:55:38 AM ******/
 									SET ANSI_NULLS ON
 									GO
 									SET QUOTED_IDENTIFIER ON
@@ -305,7 +303,7 @@ namespace SuperMarket.Classes.DataAccess
 									)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 									) ON [PRIMARY]
 									GO
-									/****** Object:  Table [SuperMarket].[dbo].[Products]    Script Date: 21-Jul-22 09:00:10 AM ******/
+									/****** Object:  Table [SuperMarket].[dbo].[Products]    Script Date: 23-Jul-22 09:55:38 AM ******/
 									SET ANSI_NULLS ON
 									GO
 									SET QUOTED_IDENTIFIER ON
@@ -332,7 +330,7 @@ namespace SuperMarket.Classes.DataAccess
 									)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 									) ON [PRIMARY]
 									GO
-									/****** Object:  Table [SuperMarket].[dbo].[Safe]    Script Date: 21-Jul-22 09:00:10 AM ******/
+									/****** Object:  Table [SuperMarket].[dbo].[Safe]    Script Date: 23-Jul-22 09:55:38 AM ******/
 									SET ANSI_NULLS ON
 									GO
 									SET QUOTED_IDENTIFIER ON
@@ -352,7 +350,7 @@ namespace SuperMarket.Classes.DataAccess
 									)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 									) ON [PRIMARY]
 									GO
-									/****** Object:  Table [SuperMarket].[dbo].[SafeTransaction]    Script Date: 21-Jul-22 09:00:10 AM ******/
+									/****** Object:  Table [SuperMarket].[dbo].[SafeTransaction]    Script Date: 23-Jul-22 09:55:38 AM ******/
 									SET ANSI_NULLS ON
 									GO
 									SET QUOTED_IDENTIFIER ON
@@ -373,7 +371,7 @@ namespace SuperMarket.Classes.DataAccess
 									)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 									) ON [PRIMARY]
 									GO
-									/****** Object:  Table [SuperMarket].[dbo].[Storage]    Script Date: 21-Jul-22 09:00:10 AM ******/
+									/****** Object:  Table [SuperMarket].[dbo].[Storage]    Script Date: 23-Jul-22 09:55:38 AM ******/
 									SET ANSI_NULLS ON
 									GO
 									SET QUOTED_IDENTIFIER ON
@@ -389,7 +387,7 @@ namespace SuperMarket.Classes.DataAccess
 									)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 									) ON [PRIMARY]
 									GO
-									/****** Object:  Table [SuperMarket].[dbo].[SupplierInvoiceProduct]    Script Date: 21-Jul-22 09:00:10 AM ******/
+									/****** Object:  Table [SuperMarket].[dbo].[SupplierInvoiceProduct]    Script Date: 23-Jul-22 09:55:38 AM ******/
 									SET ANSI_NULLS ON
 									GO
 									SET QUOTED_IDENTIFIER ON
@@ -408,7 +406,7 @@ namespace SuperMarket.Classes.DataAccess
 									)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 									) ON [PRIMARY]
 									GO
-									/****** Object:  Table [SuperMarket].[dbo].[SupplierInvoices]    Script Date: 21-Jul-22 09:00:10 AM ******/
+									/****** Object:  Table [SuperMarket].[dbo].[SupplierInvoices]    Script Date: 23-Jul-22 09:55:38 AM ******/
 									SET ANSI_NULLS ON
 									GO
 									SET QUOTED_IDENTIFIER ON
@@ -430,7 +428,7 @@ namespace SuperMarket.Classes.DataAccess
 									)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 									) ON [PRIMARY]
 									GO
-									/****** Object:  Table [SuperMarket].[dbo].[Suppliers]    Script Date: 21-Jul-22 09:00:10 AM ******/
+									/****** Object:  Table [SuperMarket].[dbo].[Suppliers]    Script Date: 23-Jul-22 09:55:38 AM ******/
 									SET ANSI_NULLS ON
 									GO
 									SET QUOTED_IDENTIFIER ON
@@ -452,7 +450,7 @@ namespace SuperMarket.Classes.DataAccess
 									)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 									) ON [PRIMARY]
 									GO
-									/****** Object:  Table [SuperMarket].[dbo].[UserLevelAccess]    Script Date: 21-Jul-22 09:00:10 AM ******/
+									/****** Object:  Table [SuperMarket].[dbo].[UserLevelAccess]    Script Date: 23-Jul-22 09:55:38 AM ******/
 									SET ANSI_NULLS ON
 									GO
 									SET QUOTED_IDENTIFIER ON
@@ -481,7 +479,7 @@ namespace SuperMarket.Classes.DataAccess
 									)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 									) ON [PRIMARY]
 									GO
-									/****** Object:  Table [SuperMarket].[dbo].[Users]    Script Date: 21-Jul-22 09:00:10 AM ******/
+									/****** Object:  Table [SuperMarket].[dbo].[Users]    Script Date: 23-Jul-22 09:55:38 AM ******/
 									SET ANSI_NULLS ON
 									GO
 									SET QUOTED_IDENTIFIER ON
@@ -595,7 +593,7 @@ namespace SuperMarket.Classes.DataAccess
 									GO
 									ALTER TABLE [SuperMarket].[dbo].[UserLevelAccess] CHECK CONSTRAINT [FK_UserLevelAccess_Users]
 									GO
-									/****** Object:  StoredProcedure [SuperMarket].[dbo].[spProducts_GetFullDetails]    Script Date: 21-Jul-22 09:00:10 AM ******/
+									/****** Object:  StoredProcedure [SuperMarket].[dbo].[spProducts_GetFullDetails]    Script Date: 23-Jul-22 09:55:38 AM ******/
 									SET ANSI_NULLS ON
 									GO
 									SET QUOTED_IDENTIFIER ON

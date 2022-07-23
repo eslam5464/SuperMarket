@@ -63,7 +63,7 @@ namespace SuperMarket.Forms
                     {
                         Logger.Log("cant find serial key file",
                                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
-                        Security.OpenFormMain = false;// TODO: finish getting serial key file
+                        Security.OpenFormMain = false;
 
                         await Methods.SendComputerInfo();
 
