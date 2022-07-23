@@ -1,10 +1,10 @@
-﻿using SuperMarket.Classes;
-using SuperMarket.Forms;
+﻿using POSWarehouse.Classes;
+using POSWarehouse.Forms;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace SuperMarket.UserControls
+namespace POSWarehouse.UserControls
 {
     public partial class AdminPanel : UserControl
     {

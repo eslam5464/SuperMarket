@@ -12,7 +12,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
-namespace SuperMarket.Classes.Helpers
+namespace POSWarehouse.Classes.Helpers
 {
     #region Supporting Classes
 

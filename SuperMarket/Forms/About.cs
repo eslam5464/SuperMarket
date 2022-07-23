@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace SuperMarket.Forms
+namespace POSWarehouse.Forms
 {
     public partial class About : Form
     {

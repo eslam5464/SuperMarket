@@ -1,5 +1,5 @@
 ﻿
-namespace SuperMarket.UserControls
+namespace POSWarehouse.UserControls
 {
     partial class Products
     {
@@ -63,7 +63,7 @@ namespace SuperMarket.UserControls
             this.CreationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PriceModificationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.spProductsGetFullDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.superMarketDataSet = new SuperMarket.SuperMarketDataSet();
+            this.superMarketDataSet = new POSWarehouse.SuperMarketDataSet();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -77,8 +77,8 @@ namespace SuperMarket.UserControls
             this.txt_productPriceWholeSale = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.spProducts_GetFullDetailsTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.spProducts_GetFullDetailsTableAdapter();
-            this.tableAdapterManager = new SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager();
+            this.spProducts_GetFullDetailsTableAdapter = new POSWarehouse.SuperMarketDataSetTableAdapters.spProducts_GetFullDetailsTableAdapter();
+            this.tableAdapterManager = new POSWarehouse.SuperMarketDataSetTableAdapters.TableAdapterManager();
             this.chk_generateBarCode = new System.Windows.Forms.CheckBox();
             this.pcb_searchName = new System.Windows.Forms.PictureBox();
             this.pcb_searchBarCode = new System.Windows.Forms.PictureBox();
@@ -650,7 +650,7 @@ namespace SuperMarket.UserControls
             this.tableAdapterManager.SupplierInvoiceProductTableAdapter = null;
             this.tableAdapterManager.SupplierInvoicesTableAdapter = null;
             this.tableAdapterManager.SuppliersTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UpdateOrder = POSWarehouse.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserLevelAccessTableAdapter = null;
             this.tableAdapterManager.UsersTableAdapter = null;
             // 
@@ -668,7 +668,7 @@ namespace SuperMarket.UserControls
             // pcb_searchName
             // 
             this.pcb_searchName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchName.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_searchName.Location = new System.Drawing.Point(775, 120);
             this.pcb_searchName.Name = "pcb_searchName";
             this.pcb_searchName.Size = new System.Drawing.Size(45, 45);
@@ -683,7 +683,7 @@ namespace SuperMarket.UserControls
             // pcb_searchBarCode
             // 
             this.pcb_searchBarCode.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchBarCode.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchBarCode.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_searchBarCode.Location = new System.Drawing.Point(775, 276);
             this.pcb_searchBarCode.Name = "pcb_searchBarCode";
             this.pcb_searchBarCode.Size = new System.Drawing.Size(45, 45);
@@ -698,7 +698,7 @@ namespace SuperMarket.UserControls
             // pcb_searchID
             // 
             this.pcb_searchID.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchID.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchID.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_searchID.Location = new System.Drawing.Point(775, 41);
             this.pcb_searchID.Name = "pcb_searchID";
             this.pcb_searchID.Size = new System.Drawing.Size(45, 45);

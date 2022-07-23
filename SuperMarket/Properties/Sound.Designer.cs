@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SuperMarket.Properties {
+namespace POSWarehouse.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace SuperMarket.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SuperMarket.Properties.Sound", typeof(Sound).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("POSWarehouse.Properties.Sound", typeof(Sound).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace SuperMarket.Classes.Models.Validators
+namespace POSWarehouse.Classes.Models.Validators
 {
     class UserValidator : AbstractValidator<UserModel>
     {

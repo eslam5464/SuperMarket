@@ -1,6 +1,6 @@
 ﻿using Dapper;
-using SuperMarket.Classes.Models;
-using SuperMarket.Forms;
+using POSWarehouse.Classes.Models;
+using POSWarehouse.Forms;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SuperMarket.Classes.DataAccess
+namespace POSWarehouse.Classes.DataAccess
 {
     class UserLevelAccess
     {

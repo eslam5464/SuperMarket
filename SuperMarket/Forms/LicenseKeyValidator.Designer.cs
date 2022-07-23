@@ -1,5 +1,5 @@
 ﻿
-namespace SuperMarket.Forms
+namespace POSWarehouse.Forms
 {
     partial class LicenseKeyValidator
     {
@@ -76,7 +76,7 @@ namespace SuperMarket.Forms
             // pictureBox3
             // 
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox3.Image = global::SuperMarket.Properties.Resources.icons8_warehouse_96;
+            this.pictureBox3.Image = global::POSWarehouse.Properties.Resources.icons8_warehouse_96;
             this.pictureBox3.Location = new System.Drawing.Point(604, 6);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(87, 49);
@@ -87,7 +87,7 @@ namespace SuperMarket.Forms
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox1.Image = global::SuperMarket.Properties.Resources.icons8_warehouse_96;
+            this.pictureBox1.Image = global::POSWarehouse.Properties.Resources.icons8_warehouse_96;
             this.pictureBox1.Location = new System.Drawing.Point(135, 6);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(87, 49);
@@ -320,7 +320,7 @@ namespace SuperMarket.Forms
             this.btn_about.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_about.Font = new System.Drawing.Font("Century Schoolbook", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_about.ForeColor = System.Drawing.Color.White;
-            this.btn_about.Image = global::SuperMarket.Properties.Resources.icons8_help_48;
+            this.btn_about.Image = global::POSWarehouse.Properties.Resources.icons8_help_48;
             this.btn_about.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_about.Location = new System.Drawing.Point(37, 143);
             this.btn_about.Margin = new System.Windows.Forms.Padding(2);
@@ -334,7 +334,7 @@ namespace SuperMarket.Forms
             // 
             // pic_loading
             // 
-            this.pic_loading.Image = global::SuperMarket.Properties.Resources.gif_loading_48;
+            this.pic_loading.Image = global::POSWarehouse.Properties.Resources.gif_loading_48;
             this.pic_loading.Location = new System.Drawing.Point(443, 143);
             this.pic_loading.Name = "pic_loading";
             this.pic_loading.Size = new System.Drawing.Size(64, 50);

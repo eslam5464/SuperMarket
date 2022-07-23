@@ -1,5 +1,5 @@
 ﻿
-namespace SuperMarket.UserControls
+namespace POSWarehouse.UserControls
 {
     partial class Dashboard
     {
@@ -72,8 +72,8 @@ namespace SuperMarket.UserControls
             this.CreationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PriceModificationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.superMarketDataSet = new SuperMarket.SuperMarketDataSet();
-            this.productsTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.ProductsTableAdapter();
+            this.superMarketDataSet = new POSWarehouse.SuperMarketDataSet();
+            this.productsTableAdapter = new POSWarehouse.SuperMarketDataSetTableAdapters.ProductsTableAdapter();
             this.label2 = new System.Windows.Forms.Label();
             this.pan_user_count.SuspendLayout();
             this.panel6.SuspendLayout();

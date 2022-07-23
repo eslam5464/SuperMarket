@@ -1,5 +1,5 @@
 ﻿
-namespace SuperMarket.UserControls
+namespace POSWarehouse.UserControls
 {
     partial class SupplierInvoices
     {
@@ -657,7 +657,7 @@ namespace SuperMarket.UserControls
             // pcb_searchProduct
             // 
             this.pcb_searchProduct.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchProduct.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchProduct.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_searchProduct.Location = new System.Drawing.Point(66, 28);
             this.pcb_searchProduct.Name = "pcb_searchProduct";
             this.pcb_searchProduct.Size = new System.Drawing.Size(45, 45);
@@ -808,7 +808,7 @@ namespace SuperMarket.UserControls
             // pcb_searchSupplier
             // 
             this.pcb_searchSupplier.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchSupplier.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchSupplier.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_searchSupplier.Location = new System.Drawing.Point(587, 17);
             this.pcb_searchSupplier.Name = "pcb_searchSupplier";
             this.pcb_searchSupplier.Size = new System.Drawing.Size(45, 45);

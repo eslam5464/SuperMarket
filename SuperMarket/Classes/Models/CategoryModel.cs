@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SuperMarket.Classes.Models
+namespace POSWarehouse.Classes.Models
 {
     class CategoryModel
     {

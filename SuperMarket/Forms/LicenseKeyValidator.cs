@@ -1,10 +1,10 @@
-﻿using SuperMarket.Classes;
+﻿using POSWarehouse.Classes;
 using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace SuperMarket.Forms
+namespace POSWarehouse.Forms
 {
     public partial class LicenseKeyValidator : Form
     {

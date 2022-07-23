@@ -1,5 +1,5 @@
 ﻿
-namespace SuperMarket.UserControls
+namespace POSWarehouse.UserControls
 {
     partial class SupplierInvoicesHistory
     {
@@ -42,9 +42,9 @@ namespace SuperMarket.UserControls
             this.panel2 = new System.Windows.Forms.Panel();
             this.db_supplierInvoicesDataGridView = new System.Windows.Forms.DataGridView();
             this.supplierInvoicesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.superMarketDataSet = new SuperMarket.SuperMarketDataSet();
+            this.superMarketDataSet = new POSWarehouse.SuperMarketDataSet();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.supplierInvoicesTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.SupplierInvoicesTableAdapter();
+            this.supplierInvoicesTableAdapter = new POSWarehouse.SuperMarketDataSetTableAdapters.SupplierInvoicesTableAdapter();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SupplierId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SupplierName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -105,7 +105,7 @@ namespace SuperMarket.UserControls
             // pcb_search_by_supplier_name
             // 
             this.pcb_search_by_supplier_name.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_search_by_supplier_name.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_search_by_supplier_name.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_search_by_supplier_name.Location = new System.Drawing.Point(270, 42);
             this.pcb_search_by_supplier_name.Name = "pcb_search_by_supplier_name";
             this.pcb_search_by_supplier_name.Size = new System.Drawing.Size(45, 45);

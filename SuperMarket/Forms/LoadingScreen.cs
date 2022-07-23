@@ -1,10 +1,11 @@
-﻿using SuperMarket.Classes;
+﻿using POSWarehouse.Classes;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SuperMarket.Forms
+namespace POSWarehouse.Forms
 {
     public partial class LoadingScreen : Form
     {
@@ -41,17 +42,27 @@ namespace SuperMarket.Forms
 
         private async Task MoveProgressBar()
         {
-            if (progressBar.Value < 75)
+            if (progressBar.Value < 25)
+            {
+                await Security.GetComputerInfo();
+
+                await Security.SetupTrialDays();
+
+                await IncrementProgressBar(progressBar, 25);
+            }
+            else if (progressBar.Value < 50)
+            {
+                await Logger.CreateLogDB();
+                // Methods.StartSetupPrograms();
+                await IncrementProgressBar(progressBar, 25);
+            }
+            else if (progressBar.Value < 75)
             {
                 await IncrementProgressBar(progressBar, 25);
             }
             else
             {
                 timer_loading.Stop();
-
-                await Security.GetComputerInfo();
-
-                await Security.SetupTrialDays();
 
                 string LicenseKey = Properties.Settings.Default.LicenseKey;
 
@@ -130,7 +141,7 @@ namespace SuperMarket.Forms
 
                                 await IncrementProgressBar(progressBar, 25);
 
-                                MessageBox.Show("لا يمكن الاتصال بالإنترنت برجاء استخدام البرنامج عندما يكون الجهاز متصل بال انترنت",
+                                MessageBox.Show("لا يمكن الاتصال بالإنترنت برجاء استخدام البرنامج عندما يكون الجهاز متصل بالانترنت",
                                     "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                                 Logger.Log("time used to open the application finished",
@@ -232,19 +243,40 @@ namespace SuperMarket.Forms
                     {
                         this.TopMost = false;
 
-                        About frm_about = new About();
-                        About.AdditionalInfo = "هذا البرنامج غير قابل للعمل على هذا الجهاز";
+                        await Methods.SendComputerInfo();
 
                         await IncrementProgressBar(progressBar, 25);
 
-                        frm_about.TopMost = true;
-                        frm_about.ShowDialog();
+                        new Notification().ShowAlert("ملف فتح البرنامج غير موجود برجاء ايجاد مكان الملف", Notification.EnmType.Error);
 
-                        this.Close();
+                        string SerialFIleLocation = Methods.PromptOpenFileDialog("enc", "Serial");
+
+                        await Security.MoveSerialKeyFile(SerialFIleLocation);
+
+                        if (Methods.CheckFileExists(Security.GetSerialKeyDateTimeFileLocation()) &&
+                           Methods.CheckFileExists(Security.GetSerialKeyFileLocation()))
+                        {
+                            progressBar.Value = 0;
+                            timer_loading.Start();
+                        }
+                        else
+                        {
+                            About frm_about = new About();
+                            About.AdditionalInfo = "هذا البرنامج غير قابل للعمل على هذا الجهاز";
+
+                            await IncrementProgressBar(progressBar, 25);
+
+                            frm_about.TopMost = true;
+                            frm_about.ShowDialog();
+
+                            this.Close();
+                        }
                     }
                 }
             }
         }
+
+
 
         private async void timer_loading_Tick(object sender, EventArgs e)
         {

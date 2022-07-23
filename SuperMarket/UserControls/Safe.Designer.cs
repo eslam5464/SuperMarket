@@ -1,5 +1,5 @@
 ﻿
-namespace SuperMarket.UserControls
+namespace POSWarehouse.UserControls
 {
     partial class Safe
     {
@@ -45,7 +45,7 @@ namespace SuperMarket.UserControls
             this.CreationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.safeTransactionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.superMarketDataSet = new SuperMarket.SuperMarketDataSet();
+            this.superMarketDataSet = new POSWarehouse.SuperMarketDataSet();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_safeDelete = new System.Windows.Forms.Button();
             this.txt_safeNameEdit = new System.Windows.Forms.ComboBox();
@@ -75,7 +75,7 @@ namespace SuperMarket.UserControls
             this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.safeTransactionTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.SafeTransactionTableAdapter();
+            this.safeTransactionTableAdapter = new POSWarehouse.SuperMarketDataSetTableAdapters.SafeTransactionTableAdapter();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_safeTransactionDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.safeTransactionBindingSource)).BeginInit();
@@ -405,7 +405,7 @@ namespace SuperMarket.UserControls
             // pcb_searchSafeName
             // 
             this.pcb_searchSafeName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchSafeName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchSafeName.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_searchSafeName.Location = new System.Drawing.Point(599, 82);
             this.pcb_searchSafeName.Name = "pcb_searchSafeName";
             this.pcb_searchSafeName.Size = new System.Drawing.Size(45, 45);
@@ -572,7 +572,7 @@ namespace SuperMarket.UserControls
             // pcb_searchID
             // 
             this.pcb_searchID.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchID.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchID.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_searchID.Location = new System.Drawing.Point(599, 10);
             this.pcb_searchID.Name = "pcb_searchID";
             this.pcb_searchID.Size = new System.Drawing.Size(45, 45);

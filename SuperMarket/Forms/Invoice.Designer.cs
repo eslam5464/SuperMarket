@@ -1,5 +1,5 @@
 ﻿
-namespace SuperMarket.Forms
+namespace POSWarehouse.Forms
 {
     partial class Invoice
     {
@@ -33,7 +33,7 @@ namespace SuperMarket.Forms
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Invoice));
             this.invoicesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.superMarketDataSet = new SuperMarket.SuperMarketDataSet();
+            this.superMarketDataSet = new POSWarehouse.SuperMarketDataSet();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txt_invoiceid = new System.Windows.Forms.TextBox();
             this.btn_close = new System.Windows.Forms.Button();
@@ -42,7 +42,7 @@ namespace SuperMarket.Forms
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.invoicesTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.InvoicesTableAdapter();
+            this.invoicesTableAdapter = new POSWarehouse.SuperMarketDataSetTableAdapters.InvoicesTableAdapter();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -209,7 +209,7 @@ namespace SuperMarket.Forms
             // 
             this.pic_help.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pic_help.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pic_help.Image = global::SuperMarket.Properties.Resources.icons8_help_48;
+            this.pic_help.Image = global::POSWarehouse.Properties.Resources.icons8_help_48;
             this.pic_help.Location = new System.Drawing.Point(571, 11);
             this.pic_help.Name = "pic_help";
             this.pic_help.Size = new System.Drawing.Size(50, 41);

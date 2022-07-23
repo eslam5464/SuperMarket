@@ -1,5 +1,5 @@
 ﻿
-namespace SuperMarket.Forms
+namespace POSWarehouse.Forms
 {
     partial class About
     {
@@ -77,7 +77,7 @@ namespace SuperMarket.Forms
             // 
             this.pic_logo.BackColor = System.Drawing.Color.Purple;
             this.pic_logo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pic_logo.Image = global::SuperMarket.Properties.Resources.pic_logo_Image;
+            this.pic_logo.Image = global::POSWarehouse.Properties.Resources.pic_logo_Image;
             this.pic_logo.Location = new System.Drawing.Point(3, 34);
             this.pic_logo.Name = "pic_logo";
             this.tableLayoutPanel.SetRowSpan(this.pic_logo, 6);

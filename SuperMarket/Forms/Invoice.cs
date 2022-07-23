@@ -1,12 +1,12 @@
 ﻿using Microsoft.Reporting.WinForms;
-using SuperMarket.Classes;
+using POSWarehouse.Classes;
 using System;
 using System.Data;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SuperMarket.Forms
+namespace POSWarehouse.Forms
 {
     public partial class Invoice : Form
     {

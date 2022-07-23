@@ -1,5 +1,5 @@
 ﻿
-namespace SuperMarket.Forms
+namespace POSWarehouse.Forms
 {
     partial class ReportViewer
     {

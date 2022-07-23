@@ -1,12 +1,12 @@
-﻿using SuperMarket.Classes;
-using SuperMarket.Classes.Models;
+﻿using POSWarehouse.Classes;
+using POSWarehouse.Classes.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SuperMarket.Forms
+namespace POSWarehouse.Forms
 {
     public partial class Login : Form
     {

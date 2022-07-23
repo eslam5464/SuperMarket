@@ -1,5 +1,5 @@
 ﻿
-namespace SuperMarket.UserControls
+namespace POSWarehouse.UserControls
 {
     partial class Orders
     {
@@ -46,7 +46,7 @@ namespace SuperMarket.UserControls
             this.CreatedByUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CreatedByUserFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ordersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.superMarketDataSet = new SuperMarket.SuperMarketDataSet();
+            this.superMarketDataSet = new POSWarehouse.SuperMarketDataSet();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pcb_search_by_customer_name = new System.Windows.Forms.PictureBox();
@@ -58,8 +58,8 @@ namespace SuperMarket.UserControls
             this.btn_exportPDF = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pcb_search_by_invoiceno = new System.Windows.Forms.PictureBox();
-            this.ordersTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.OrdersTableAdapter();
-            this.tableAdapterManager = new SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager();
+            this.ordersTableAdapter = new POSWarehouse.SuperMarketDataSetTableAdapters.OrdersTableAdapter();
+            this.tableAdapterManager = new POSWarehouse.SuperMarketDataSetTableAdapters.TableAdapterManager();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
@@ -244,7 +244,7 @@ namespace SuperMarket.UserControls
             // pcb_search_by_customer_name
             // 
             this.pcb_search_by_customer_name.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_search_by_customer_name.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_search_by_customer_name.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_search_by_customer_name.Location = new System.Drawing.Point(270, 42);
             this.pcb_search_by_customer_name.Name = "pcb_search_by_customer_name";
             this.pcb_search_by_customer_name.Size = new System.Drawing.Size(45, 45);
@@ -350,7 +350,7 @@ namespace SuperMarket.UserControls
             // pcb_search_by_invoiceno
             // 
             this.pcb_search_by_invoiceno.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_search_by_invoiceno.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_search_by_invoiceno.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_search_by_invoiceno.Location = new System.Drawing.Point(273, 42);
             this.pcb_search_by_invoiceno.Name = "pcb_search_by_invoiceno";
             this.pcb_search_by_invoiceno.Size = new System.Drawing.Size(45, 45);
@@ -381,7 +381,7 @@ namespace SuperMarket.UserControls
             this.tableAdapterManager.SupplierInvoiceProductTableAdapter = null;
             this.tableAdapterManager.SupplierInvoicesTableAdapter = null;
             this.tableAdapterManager.SuppliersTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UpdateOrder = POSWarehouse.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserLevelAccessTableAdapter = null;
             this.tableAdapterManager.UsersTableAdapter = null;
             // 

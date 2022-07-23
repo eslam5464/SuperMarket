@@ -1,9 +1,9 @@
-﻿using SuperMarket.Classes.Models;
+﻿using POSWarehouse.Classes.Models;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace SuperMarket.Forms
+namespace POSWarehouse.Forms
 {
     public partial class UserAccess : Form
     {

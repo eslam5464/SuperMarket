@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SuperMarket.Properties {
+namespace POSWarehouse.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -95,16 +95,6 @@ namespace SuperMarket.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-FV1O7R3;Initial Catalog=SuperMarket;Integrated Security=True")]
-        public string SuperMarketConnectionString {
-            get {
-                return ((string)(this["SuperMarketConnectionString"]));
-            }
-        }
-        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
@@ -138,6 +128,52 @@ namespace SuperMarket.Properties {
             }
             set {
                 this["SystemName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-FV1O7R3;Initial Catalog=SuperMarket;Integrated Security=True")]
+        public string SuperMarketConnectionString {
+            get {
+                return ((string)(this["SuperMarketConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool FirstTimeLaunch {
+            get {
+                return ((bool)(this["FirstTimeLaunch"]));
+            }
+            set {
+                this["FirstTimeLaunch"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SentComputerInformation {
+            get {
+                return ((bool)(this["SentComputerInformation"]));
+            }
+            set {
+                this["SentComputerInformation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SetupLogDB {
+            get {
+                return ((bool)(this["SetupLogDB"]));
+            }
+            set {
+                this["SetupLogDB"] = value;
             }
         }
     }

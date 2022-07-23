@@ -1,5 +1,5 @@
 ﻿
-namespace SuperMarket.UserControls
+namespace POSWarehouse.UserControls
 {
     partial class Users
     {
@@ -57,13 +57,13 @@ namespace SuperMarket.UserControls
             this.ModifyDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ActiveState = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.usersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.superMarketDataSet = new SuperMarket.SuperMarketDataSet();
+            this.superMarketDataSet = new POSWarehouse.SuperMarketDataSet();
             this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txt_userLevel = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.usersTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.UsersTableAdapter();
-            this.tableAdapterManager = new SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager();
+            this.usersTableAdapter = new POSWarehouse.SuperMarketDataSetTableAdapters.UsersTableAdapter();
+            this.tableAdapterManager = new POSWarehouse.SuperMarketDataSetTableAdapters.TableAdapterManager();
             this.btn_exportPDF = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.pcb_serchbyPhone = new System.Windows.Forms.PictureBox();
@@ -444,7 +444,7 @@ namespace SuperMarket.UserControls
             this.tableAdapterManager.SupplierInvoiceProductTableAdapter = null;
             this.tableAdapterManager.SupplierInvoicesTableAdapter = null;
             this.tableAdapterManager.SuppliersTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UpdateOrder = POSWarehouse.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserLevelAccessTableAdapter = null;
             this.tableAdapterManager.UsersTableAdapter = this.usersTableAdapter;
             // 
@@ -478,7 +478,7 @@ namespace SuperMarket.UserControls
             // pcb_serchbyPhone
             // 
             this.pcb_serchbyPhone.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_serchbyPhone.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_serchbyPhone.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_serchbyPhone.Location = new System.Drawing.Point(392, 226);
             this.pcb_serchbyPhone.Name = "pcb_serchbyPhone";
             this.pcb_serchbyPhone.Size = new System.Drawing.Size(45, 45);
@@ -493,7 +493,7 @@ namespace SuperMarket.UserControls
             // pcb_serchbyname
             // 
             this.pcb_serchbyname.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_serchbyname.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_serchbyname.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_serchbyname.Location = new System.Drawing.Point(392, 45);
             this.pcb_serchbyname.Name = "pcb_serchbyname";
             this.pcb_serchbyname.Size = new System.Drawing.Size(45, 45);
@@ -508,7 +508,7 @@ namespace SuperMarket.UserControls
             // pcb_serchbyfullname
             // 
             this.pcb_serchbyfullname.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_serchbyfullname.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_serchbyfullname.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_serchbyfullname.Location = new System.Drawing.Point(392, 138);
             this.pcb_serchbyfullname.Name = "pcb_serchbyfullname";
             this.pcb_serchbyfullname.Size = new System.Drawing.Size(45, 45);

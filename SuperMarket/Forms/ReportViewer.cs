@@ -1,12 +1,12 @@
 ﻿using Microsoft.Reporting.WinForms;
-using SuperMarket.Classes;
+using POSWarehouse.Classes;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SuperMarket.Forms
+namespace POSWarehouse.Forms
 {
     public partial class ReportViewer : Form
     {

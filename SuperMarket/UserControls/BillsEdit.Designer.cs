@@ -1,5 +1,5 @@
 ﻿
-namespace SuperMarket.UserControls
+namespace POSWarehouse.UserControls
 {
     partial class BillsEdit
     {
@@ -38,7 +38,7 @@ namespace SuperMarket.UserControls
             this.panel3 = new System.Windows.Forms.Panel();
             this.db_probillsDataGridView = new System.Windows.Forms.DataGridView();
             this.invoicesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.superMarketDataSet = new SuperMarket.SuperMarketDataSet();
+            this.superMarketDataSet = new POSWarehouse.SuperMarketDataSet();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pcb_searchInvoiceNo = new System.Windows.Forms.PictureBox();
@@ -63,7 +63,7 @@ namespace SuperMarket.UserControls
             this.txt_searchProductType = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.btn_save = new System.Windows.Forms.Button();
-            this.invoicesTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.InvoicesTableAdapter();
+            this.invoicesTableAdapter = new POSWarehouse.SuperMarketDataSetTableAdapters.InvoicesTableAdapter();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.InvoiceNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CreationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -229,7 +229,7 @@ namespace SuperMarket.UserControls
             // 
             this.pcb_searchInvoiceNo.BackColor = System.Drawing.Color.Gainsboro;
             this.pcb_searchInvoiceNo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchInvoiceNo.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchInvoiceNo.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_searchInvoiceNo.Location = new System.Drawing.Point(306, 8);
             this.pcb_searchInvoiceNo.Name = "pcb_searchInvoiceNo";
             this.pcb_searchInvoiceNo.Size = new System.Drawing.Size(45, 45);
@@ -474,7 +474,7 @@ namespace SuperMarket.UserControls
             // pcb_searchProduct
             // 
             this.pcb_searchProduct.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchProduct.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchProduct.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_searchProduct.Location = new System.Drawing.Point(82, 57);
             this.pcb_searchProduct.Name = "pcb_searchProduct";
             this.pcb_searchProduct.Size = new System.Drawing.Size(45, 45);

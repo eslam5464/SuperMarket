@@ -1,10 +1,10 @@
-﻿using SuperMarket.Classes.Models;
+﻿using POSWarehouse.Classes.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace SuperMarket.UserControls
+namespace POSWarehouse.UserControls
 {
     public partial class SupplierInvoicesHistory : UserControl
     {

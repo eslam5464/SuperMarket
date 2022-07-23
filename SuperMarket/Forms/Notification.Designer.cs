@@ -1,5 +1,5 @@
 ﻿
-namespace SuperMarket.Forms
+namespace POSWarehouse.Forms
 {
     partial class Notification
     {
@@ -76,7 +76,7 @@ namespace SuperMarket.Forms
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::SuperMarket.Properties.Resources.icons8_help_48;
+            this.pictureBox1.Image = global::POSWarehouse.Properties.Resources.icons8_help_48;
             this.pictureBox1.Location = new System.Drawing.Point(23, 14);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(50, 50);

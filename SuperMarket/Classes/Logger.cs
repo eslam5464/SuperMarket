@@ -1,12 +1,13 @@
 ﻿using Dapper;
-using SuperMarket.Classes.Models;
-using SuperMarket.Forms;
+using POSWarehouse.Classes.Models;
+using POSWarehouse.Forms;
 using System;
 using System.Data;
 using System.Data.SQLite;
 using System.IO;
+using System.Threading.Tasks;
 
-namespace SuperMarket.Classes
+namespace POSWarehouse.Classes
 {
     class Logger
     {
@@ -19,6 +20,28 @@ namespace SuperMarket.Classes
 
         public static string INFO = "INFO", DEBUG = "DEBUG", ERROR = "ERROR",
             WARNING = "WARNING", CRITICAL = "CRITICAL";
+
+        public async static Task CreateLogDB()
+        {
+            if (!Properties.Settings.Default.SetupLogDB)
+            {
+                using (IDbConnection cnn = new SQLiteConnection(GlobalVars.LoadConnectionString("DefaultLog")))
+                {
+                    await Task.Run(() => cnn.Execute(@"CREATE TABLE IF NOT EXISTS 'Log' (
+                                'Id'    INTEGER NOT NULL,
+                                'Date'  TEXT NOT NULL,
+                                'MethodName'    TEXT NOT NULL,
+                                'ClassName' TEXT NOT NULL,
+                                'LoggedUserId'  INTEGER NOT NULL,
+                                'LoggedUserName'    TEXT NOT NULL,
+                                'LogLevel'  TEXT NOT NULL,
+                                'LogMessage'    TEXT NOT NULL,
+                                PRIMARY KEY('Id' AUTOINCREMENT)); "));
+                    Properties.Settings.Default.SetupLogDB = true;
+                    Properties.Settings.Default.Save();
+                }
+            }
+        }
 
         public static void Log(string Message, string MethodName, string LogLevel, string Location)
         {

@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using System.Drawing;
 
-namespace SuperMarket.Classes
+namespace POSWarehouse.Classes
 {
     class GlobalVars
     {

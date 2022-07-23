@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace SuperMarket.UserControls
+namespace POSWarehouse.UserControls
 {
     public partial class AdvancedSearch : UserControl
     {

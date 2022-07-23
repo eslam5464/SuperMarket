@@ -7,7 +7,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SuperMarket.Classes.DataAccess
+namespace POSWarehouse.Classes.DataAccess
 {
     class DataInit
     {

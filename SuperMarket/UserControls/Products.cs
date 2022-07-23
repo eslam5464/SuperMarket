@@ -1,14 +1,14 @@
-﻿using SuperMarket.Classes;
-using SuperMarket.Classes.Models;
-using SuperMarket.Classes.Models.Joins;
-using SuperMarket.Forms;
+﻿using POSWarehouse.Classes;
+using POSWarehouse.Classes.Models;
+using POSWarehouse.Classes.Models.Joins;
+using POSWarehouse.Forms;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace SuperMarket.UserControls
+namespace POSWarehouse.UserControls
 {
     public partial class Products : UserControl
     {

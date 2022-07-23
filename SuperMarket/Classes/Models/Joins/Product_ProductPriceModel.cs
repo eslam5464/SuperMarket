@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SuperMarket.Classes.Models.Joins
+namespace POSWarehouse.Classes.Models.Joins
 {
     class Product_ProductPriceModel
     {

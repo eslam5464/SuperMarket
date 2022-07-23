@@ -1,5 +1,5 @@
 ﻿
-namespace SuperMarket.Forms
+namespace POSWarehouse.Forms
 {
     partial class UserAccess
     {
@@ -92,7 +92,7 @@ namespace SuperMarket.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_settings.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chk_settings.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_settings.Image = global::SuperMarket.Properties.Resources.icons8_settings_48;
+            this.chk_settings.Image = global::POSWarehouse.Properties.Resources.icons8_settings_48;
             this.chk_settings.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chk_settings.Location = new System.Drawing.Point(3, 195);
             this.chk_settings.Name = "chk_settings";
@@ -112,7 +112,7 @@ namespace SuperMarket.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_users.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chk_users.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_users.Image = global::SuperMarket.Properties.Resources.icons8_user_48;
+            this.chk_users.Image = global::POSWarehouse.Properties.Resources.icons8_user_48;
             this.chk_users.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chk_users.Location = new System.Drawing.Point(217, 195);
             this.chk_users.Name = "chk_users";
@@ -132,7 +132,7 @@ namespace SuperMarket.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_reports.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chk_reports.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_reports.Image = global::SuperMarket.Properties.Resources.icons8_business_report_48;
+            this.chk_reports.Image = global::POSWarehouse.Properties.Resources.icons8_business_report_48;
             this.chk_reports.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chk_reports.Location = new System.Drawing.Point(431, 195);
             this.chk_reports.Name = "chk_reports";
@@ -152,7 +152,7 @@ namespace SuperMarket.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_dashboard.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chk_dashboard.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_dashboard.Image = global::SuperMarket.Properties.Resources.icons8_combo_chart_48;
+            this.chk_dashboard.Image = global::POSWarehouse.Properties.Resources.icons8_combo_chart_48;
             this.chk_dashboard.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chk_dashboard.Location = new System.Drawing.Point(431, 3);
             this.chk_dashboard.Name = "chk_dashboard";
@@ -172,7 +172,7 @@ namespace SuperMarket.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_products.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chk_products.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_products.Image = global::SuperMarket.Properties.Resources.icons8_products_pile_48;
+            this.chk_products.Image = global::POSWarehouse.Properties.Resources.icons8_products_pile_48;
             this.chk_products.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chk_products.Location = new System.Drawing.Point(3, 99);
             this.chk_products.Name = "chk_products";
@@ -192,7 +192,7 @@ namespace SuperMarket.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_billing.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chk_billing.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_billing.Image = global::SuperMarket.Properties.Resources.icons8_receipt_48;
+            this.chk_billing.Image = global::POSWarehouse.Properties.Resources.icons8_receipt_48;
             this.chk_billing.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chk_billing.Location = new System.Drawing.Point(217, 3);
             this.chk_billing.Name = "chk_billing";
@@ -212,7 +212,7 @@ namespace SuperMarket.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_customers.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chk_customers.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_customers.Image = global::SuperMarket.Properties.Resources.icons8_customer_48;
+            this.chk_customers.Image = global::POSWarehouse.Properties.Resources.icons8_customer_48;
             this.chk_customers.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chk_customers.Location = new System.Drawing.Point(217, 99);
             this.chk_customers.Name = "chk_customers";
@@ -232,7 +232,7 @@ namespace SuperMarket.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_billingEdit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chk_billingEdit.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_billingEdit.Image = global::SuperMarket.Properties.Resources.icons8_edit_property_48;
+            this.chk_billingEdit.Image = global::POSWarehouse.Properties.Resources.icons8_edit_property_48;
             this.chk_billingEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chk_billingEdit.Location = new System.Drawing.Point(3, 3);
             this.chk_billingEdit.Name = "chk_billingEdit";
@@ -252,7 +252,7 @@ namespace SuperMarket.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_categories.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chk_categories.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_categories.Image = global::SuperMarket.Properties.Resources.icons8_warehouse_48;
+            this.chk_categories.Image = global::POSWarehouse.Properties.Resources.icons8_warehouse_48;
             this.chk_categories.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chk_categories.Location = new System.Drawing.Point(431, 99);
             this.chk_categories.Name = "chk_categories";
@@ -272,7 +272,7 @@ namespace SuperMarket.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_orders.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chk_orders.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_orders.Image = global::SuperMarket.Properties.Resources.icons8_report_card_48;
+            this.chk_orders.Image = global::POSWarehouse.Properties.Resources.icons8_report_card_48;
             this.chk_orders.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chk_orders.Location = new System.Drawing.Point(645, 3);
             this.chk_orders.Name = "chk_orders";
@@ -292,7 +292,7 @@ namespace SuperMarket.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_safe.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chk_safe.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_safe.Image = global::SuperMarket.Properties.Resources.icons8_safe_48;
+            this.chk_safe.Image = global::POSWarehouse.Properties.Resources.icons8_safe_48;
             this.chk_safe.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chk_safe.Location = new System.Drawing.Point(645, 99);
             this.chk_safe.Name = "chk_safe";
@@ -312,7 +312,7 @@ namespace SuperMarket.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_supplierInvoices.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chk_supplierInvoices.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_supplierInvoices.Image = global::SuperMarket.Properties.Resources.icons8_bill_48;
+            this.chk_supplierInvoices.Image = global::POSWarehouse.Properties.Resources.icons8_bill_48;
             this.chk_supplierInvoices.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chk_supplierInvoices.Location = new System.Drawing.Point(645, 195);
             this.chk_supplierInvoices.Name = "chk_supplierInvoices";
@@ -332,7 +332,7 @@ namespace SuperMarket.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chk_suppliersEdit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chk_suppliersEdit.Font = new System.Drawing.Font("Palatino Linotype", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chk_suppliersEdit.Image = global::SuperMarket.Properties.Resources.icons8_supplier_48;
+            this.chk_suppliersEdit.Image = global::POSWarehouse.Properties.Resources.icons8_supplier_48;
             this.chk_suppliersEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chk_suppliersEdit.Location = new System.Drawing.Point(645, 291);
             this.chk_suppliersEdit.Name = "chk_suppliersEdit";

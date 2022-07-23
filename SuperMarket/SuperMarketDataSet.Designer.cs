@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace SuperMarket {
+namespace POSWarehouse {
     
     
     /// <summary>
@@ -9578,7 +9578,7 @@ namespace SuperMarket {
         }
     }
 }
-namespace SuperMarket.SuperMarketDataSetTableAdapters {
+namespace POSWarehouse.SuperMarketDataSetTableAdapters {
     
     
     /// <summary>
@@ -9751,7 +9751,7 @@ SELECT Id, Name, StorageId, StorageName, CreationDate FROM Categories WHERE (Id 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SuperMarket.Properties.Settings.Default.SuperMarketConnectionString;
+            this._connection.ConnectionString = global::POSWarehouse.Properties.Settings.Default.SuperMarketConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10116,8 +10116,8 @@ SELECT Id, Name, StorageId, StorageName, CreationDate FROM Categories WHERE (Id 
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Customers] ([Name], [ContactNo], [Address], [CreationDate]) VA" +
-                "LUES (@Name, @ContactNo, @Address, @CreationDate);\r\nSELECT Id, Name, ContactNo, " +
-                "Address, CreationDate FROM Customers WHERE (Id = SCOPE_IDENTITY())";
+                "LUES (@Name, @ContactNo, @Address, @CreationDate);\nSELECT Id, Name, ContactNo, A" +
+                "ddress, CreationDate FROM Customers WHERE (Id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ContactNo", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ContactNo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -10145,7 +10145,7 @@ SELECT Id, Name, ContactNo, Address, CreationDate FROM Customers WHERE (Id = @Id
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SuperMarket.Properties.Settings.Default.SuperMarketConnectionString;
+            this._connection.ConnectionString = global::POSWarehouse.Properties.Settings.Default.SuperMarketConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10552,9 +10552,9 @@ SELECT Id, InvoiceNumber, CreationDate, CustomerID, CustomerName, CustomerContac
                 "AND ((@IsNull_ProductName = 1 AND [ProductName] IS NULL) OR ([ProductName] = @Or" +
                 "iginal_ProductName)) AND ([ProductQuantity] = @Original_ProductQuantity) AND ([P" +
                 "roductPrice] = @Original_ProductPrice) AND ([PriceTotal] = @Original_PriceTotal)" +
-                ");\r\nSELECT Id, InvoiceNumber, CreationDate, CustomerID, CustomerName, CustomerCo" +
-                "ntact, CustomerAddress, ProductID, ProductBarCode, ProductName, ProductQuantity," +
-                " ProductPrice, PriceTotal FROM Invoices WHERE (Id = @Id)";
+                ");\nSELECT Id, InvoiceNumber, CreationDate, CustomerID, CustomerName, CustomerCon" +
+                "tact, CustomerAddress, ProductID, ProductBarCode, ProductName, ProductQuantity, " +
+                "ProductPrice, PriceTotal FROM Invoices WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@InvoiceNumber", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "InvoiceNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreationDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreationDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -10594,7 +10594,7 @@ SELECT Id, InvoiceNumber, CreationDate, CustomerID, CustomerName, CustomerContac
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SuperMarket.Properties.Settings.Default.SuperMarketConnectionString;
+            this._connection.ConnectionString = global::POSWarehouse.Properties.Settings.Default.SuperMarketConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11181,7 +11181,7 @@ SELECT Id, InvoiceDate, InvoiceId, CustomerId, CustomerName, ContactNumber, Addr
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SuperMarket.Properties.Settings.Default.SuperMarketConnectionString;
+            this._connection.ConnectionString = global::POSWarehouse.Properties.Settings.Default.SuperMarketConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11723,7 +11723,7 @@ SELECT Id, ProductId, ProductName, PriceWholesale, PriceSell, CreationDate FROM 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SuperMarket.Properties.Settings.Default.SuperMarketConnectionString;
+            this._connection.ConnectionString = global::POSWarehouse.Properties.Settings.Default.SuperMarketConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12132,7 +12132,7 @@ SELECT Id, BarCode, Name, Quantity, QuantityMinimum, Description, CategoryID, Ca
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SuperMarket.Properties.Settings.Default.SuperMarketConnectionString;
+            this._connection.ConnectionString = global::POSWarehouse.Properties.Settings.Default.SuperMarketConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12619,9 +12619,9 @@ SELECT Id, BarCode, Name, Quantity, QuantityMinimum, Description, CategoryID, Ca
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_CreationDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreationDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Safe] ([Name], [CreationDate]) VALUES (@Name, @CreationDate);\r" +
-                "\nSELECT Id, Name, CreationDate FROM Safe WHERE (Id = SCOPE_IDENTITY()) AND (Name" +
-                " = @Name)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Safe] ([Name], [CreationDate]) VALUES (@Name, @CreationDate);\n" +
+                "SELECT Id, Name, CreationDate FROM Safe WHERE (Id = SCOPE_IDENTITY()) AND (Name " +
+                "= @Name)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreationDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreationDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -12629,8 +12629,8 @@ SELECT Id, BarCode, Name, Quantity, QuantityMinimum, Description, CategoryID, Ca
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE [dbo].[Safe] SET [Name] = @Name, [CreationDate] = @CreationDate WHERE (([I" +
                 "d] = @Original_Id) AND ([Name] = @Original_Name) AND ([CreationDate] = @Original" +
-                "_CreationDate));\r\nSELECT Id, Name, CreationDate FROM Safe WHERE (Id = @Id) AND (" +
-                "Name = @Name)";
+                "_CreationDate));\nSELECT Id, Name, CreationDate FROM Safe WHERE (Id = @Id) AND (N" +
+                "ame = @Name)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreationDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreationDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -12644,7 +12644,7 @@ SELECT Id, BarCode, Name, Quantity, QuantityMinimum, Description, CategoryID, Ca
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SuperMarket.Properties.Settings.Default.SuperMarketConnectionString;
+            this._connection.ConnectionString = global::POSWarehouse.Properties.Settings.Default.SuperMarketConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13007,7 +13007,7 @@ SELECT Id, SafeId, SafeName, AmountAdded, AmountTotal, AdjustedByUserId, Adjuste
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SuperMarket.Properties.Settings.Default.SuperMarketConnectionString;
+            this._connection.ConnectionString = global::POSWarehouse.Properties.Settings.Default.SuperMarketConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13468,8 +13468,8 @@ SELECT Id, SafeId, SafeName, AmountAdded, AmountTotal, AdjustedByUserId, Adjuste
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Storage] ([Name], [CreationDate]) VALUES (@Name, @CreationDate" +
-                ");\r\nSELECT Id, Name, CreationDate FROM Storage WHERE (Id = SCOPE_IDENTITY()) AND" +
-                " (Name = @Name)";
+                ");\nSELECT Id, Name, CreationDate FROM Storage WHERE (Id = SCOPE_IDENTITY()) AND " +
+                "(Name = @Name)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@CreationDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "CreationDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -13490,7 +13490,7 @@ SELECT Id, Name, CreationDate FROM Storage WHERE (Id = @Id) AND (Name = @Name)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SuperMarket.Properties.Settings.Default.SuperMarketConnectionString;
+            this._connection.ConnectionString = global::POSWarehouse.Properties.Settings.Default.SuperMarketConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -13839,7 +13839,7 @@ SELECT Id, ProductId, ProductName, Quantity, CreationDate, ProductPriceSell, Pro
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SuperMarket.Properties.Settings.Default.SuperMarketConnectionString;
+            this._connection.ConnectionString = global::POSWarehouse.Properties.Settings.Default.SuperMarketConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -14250,7 +14250,7 @@ SELECT Id, SupplierId, PaymentMethod, AmountPaid, AmountLeft, AmountTotal, Payme
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SuperMarket.Properties.Settings.Default.SuperMarketConnectionString;
+            this._connection.ConnectionString = global::POSWarehouse.Properties.Settings.Default.SuperMarketConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -14681,8 +14681,8 @@ SELECT Id, SupplierId, PaymentMethod, AmountPaid, AmountLeft, AmountTotal, Payme
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Suppliers] ([Name], [Contact], [Address], [CreationDate]) VALU" +
-                "ES (@Name, @Contact, @Address, @CreationDate);\r\nSELECT Id, Name, Contact, Addres" +
-                "s, CreationDate FROM Suppliers WHERE (Id = SCOPE_IDENTITY())";
+                "ES (@Name, @Contact, @Address, @CreationDate);\nSELECT Id, Name, Contact, Address" +
+                ", CreationDate FROM Suppliers WHERE (Id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Contact", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Contact", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -14709,7 +14709,7 @@ SELECT Id, Name, Contact, Address, CreationDate FROM Suppliers WHERE (Id = @Id)"
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SuperMarket.Properties.Settings.Default.SuperMarketConnectionString;
+            this._connection.ConnectionString = global::POSWarehouse.Properties.Settings.Default.SuperMarketConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -15152,7 +15152,7 @@ SELECT Id, UserId, UserFullName, UserLevel, Billing, BillsEdit, Categories, Cust
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SuperMarket.Properties.Settings.Default.SuperMarketConnectionString;
+            this._connection.ConnectionString = global::POSWarehouse.Properties.Settings.Default.SuperMarketConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -15694,7 +15694,7 @@ SELECT Id, Username, Password, FullName, UserLevel, Email, Phone, CreationDate, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SuperMarket.Properties.Settings.Default.SuperMarketConnectionString;
+            this._connection.ConnectionString = global::POSWarehouse.Properties.Settings.Default.SuperMarketConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -16178,7 +16178,7 @@ SELECT Id, Username, Password, FullName, UserLevel, Email, Phone, CreationDate, 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::SuperMarket.Properties.Settings.Default.SuperMarketConnectionString;
+            this._connection.ConnectionString = global::POSWarehouse.Properties.Settings.Default.SuperMarketConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

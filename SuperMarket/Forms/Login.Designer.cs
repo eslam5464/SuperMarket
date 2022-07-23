@@ -1,5 +1,5 @@
 ﻿
-namespace SuperMarket.Forms
+namespace POSWarehouse.Forms
 {
     partial class Login
     {
@@ -216,7 +216,7 @@ namespace SuperMarket.Forms
             this.btn_about.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_about.Font = new System.Drawing.Font("Century Schoolbook", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_about.ForeColor = System.Drawing.Color.White;
-            this.btn_about.Image = global::SuperMarket.Properties.Resources.icons8_help_48;
+            this.btn_about.Image = global::POSWarehouse.Properties.Resources.icons8_help_48;
             this.btn_about.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btn_about.Location = new System.Drawing.Point(9, 246);
             this.btn_about.Margin = new System.Windows.Forms.Padding(2);

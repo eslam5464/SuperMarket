@@ -1,10 +1,10 @@
 ﻿using Dapper;
-using SuperMarket.Forms;
+using POSWarehouse.Forms;
 using System;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-namespace SuperMarket.Classes.DataAccess
+namespace POSWarehouse.Classes.DataAccess
 {
     class DataRestore
     {

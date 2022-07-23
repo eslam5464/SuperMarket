@@ -1,5 +1,5 @@
 ﻿
-namespace SuperMarket.UserControls
+namespace POSWarehouse.UserControls
 {
     partial class Billing
     {
@@ -556,7 +556,7 @@ namespace SuperMarket.UserControls
             // pcb_getInvoiceID
             // 
             this.pcb_getInvoiceID.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_getInvoiceID.Image = global::SuperMarket.Properties.Resources.icons8_synchronize_48;
+            this.pcb_getInvoiceID.Image = global::POSWarehouse.Properties.Resources.icons8_synchronize_48;
             this.pcb_getInvoiceID.Location = new System.Drawing.Point(228, 110);
             this.pcb_getInvoiceID.Name = "pcb_getInvoiceID";
             this.pcb_getInvoiceID.Size = new System.Drawing.Size(45, 45);
@@ -605,7 +605,7 @@ namespace SuperMarket.UserControls
             // 
             this.pcb_searchCstID.BackColor = System.Drawing.Color.Gainsboro;
             this.pcb_searchCstID.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchCstID.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchCstID.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_searchCstID.Location = new System.Drawing.Point(464, 51);
             this.pcb_searchCstID.Name = "pcb_searchCstID";
             this.pcb_searchCstID.Size = new System.Drawing.Size(45, 45);
@@ -620,7 +620,7 @@ namespace SuperMarket.UserControls
             // 
             this.pcb_searchCstName.BackColor = System.Drawing.Color.Gainsboro;
             this.pcb_searchCstName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchCstName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchCstName.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_searchCstName.Location = new System.Drawing.Point(259, 51);
             this.pcb_searchCstName.Name = "pcb_searchCstName";
             this.pcb_searchCstName.Size = new System.Drawing.Size(45, 45);
@@ -751,7 +751,7 @@ namespace SuperMarket.UserControls
             // 
             this.pcb_searchProdName.BackColor = System.Drawing.Color.Gainsboro;
             this.pcb_searchProdName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchProdName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchProdName.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_searchProdName.Location = new System.Drawing.Point(21, 10);
             this.pcb_searchProdName.Name = "pcb_searchProdName";
             this.pcb_searchProdName.Size = new System.Drawing.Size(45, 45);
@@ -779,7 +779,7 @@ namespace SuperMarket.UserControls
             // 
             this.pcb_searchProdBarCode.BackColor = System.Drawing.Color.Gainsboro;
             this.pcb_searchProdBarCode.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchProdBarCode.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchProdBarCode.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_searchProdBarCode.Location = new System.Drawing.Point(21, 71);
             this.pcb_searchProdBarCode.Name = "pcb_searchProdBarCode";
             this.pcb_searchProdBarCode.Size = new System.Drawing.Size(45, 45);
@@ -851,7 +851,7 @@ namespace SuperMarket.UserControls
             this.pcb_calculator.BackColor = System.Drawing.Color.Transparent;
             this.pcb_calculator.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pcb_calculator.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_calculator.Image = global::SuperMarket.Properties.Resources.icons8_calculate_48;
+            this.pcb_calculator.Image = global::POSWarehouse.Properties.Resources.icons8_calculate_48;
             this.pcb_calculator.Location = new System.Drawing.Point(22, 235);
             this.pcb_calculator.Name = "pcb_calculator";
             this.pcb_calculator.Size = new System.Drawing.Size(45, 45);

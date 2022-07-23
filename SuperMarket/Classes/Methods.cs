@@ -2,10 +2,11 @@
 using Microsoft.WindowsAPICodePack.Shell;
 using MimeKit;
 using QRCoder;
-using SuperMarket.Classes.Helpers;
+using POSWarehouse.Classes.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Net;
@@ -14,7 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SuperMarket.Classes
+namespace POSWarehouse.Classes
 {
     public class Methods
     {
@@ -228,67 +229,75 @@ namespace SuperMarket.Classes
             await Task.Run(() => System.Diagnostics.Process.Start("calc.exe"));
         }
 
-        internal static async Task SendComputerInfo()
+        internal async static Task SendComputerInfo()
         {
-            StringBuilder stringBuilder = new StringBuilder();
-
-            try
+            if (Properties.Settings.Default.SentComputerInformation == false)
             {
-                stringBuilder.AppendLine($"<h1>CPU & Motherboard ID Information</h1>");
-                stringBuilder.AppendLine("<table border = '1'>"
-                    + "<tr>"
-                    + " <th>System Name</th>"
-                    + " <th>Processor Id</th>"
-                    + " <th>Processor Name</th>"
-                    + " <th># Cores</th>"
-                    + " <th>Clock Speed</th>"
-                    + " <th>Motherboard Id</th>"
-                    + "</tr>");
+                await Security.GetComputerInfo();
 
-                stringBuilder.AppendLine($"<tr>");
-                stringBuilder.AppendLine($"<td>{Security.SystemName}</td>");
-                stringBuilder.AppendLine($"<td>{Security.CPUID}</td>");
-                stringBuilder.AppendLine($"<td>{Security.CPUName}</td>");
-                stringBuilder.AppendLine($"<td>{Security.CPUCores}</td>");
-                stringBuilder.AppendLine($"<td>{Security.CPUSpeed}</td>");
-                stringBuilder.AppendLine($"<td>{Security.MOBOID}</td>");
-                stringBuilder.AppendLine($"</tr>");
+                StringBuilder stringBuilder = new StringBuilder();
 
-                stringBuilder.AppendLine($"</table>");
-                stringBuilder.AppendLine();
-
-                stringBuilder.AppendLine($"<h1>Drives Information</h1>");
-
-                stringBuilder.AppendLine("<table border = '1'>"
-                    + "<tr>"
-                    + " <th>Partition Name</th>"
-                    + " <th>Partition Label</th>"
-                    + " <th>Free Space</th>"
-                    + " <th>Total Space</th>"
-                    + "</tr>");
-
-                var AllDrives = await Task.Run(() => GetAllDrivesInfo());
-
-                foreach (var drive in AllDrives.Keys)
+                try
                 {
-                    stringBuilder.AppendLine($"<tr>");
-                    stringBuilder.AppendLine($"<td>{AllDrives[drive].Name}</td>");
-                    stringBuilder.AppendLine($"<td>{AllDrives[drive].VolumeLabel}</td>");
-                    stringBuilder.AppendLine($"<td>{Math.Round(double.Parse("" + AllDrives[drive].TotalFreeSpace) / 1024 / 1024 / 1024, 2) } GB</td>");
-                    stringBuilder.AppendLine($"<td>{Math.Round(double.Parse("" + AllDrives[drive].TotalSize) / 1024 / 1024 / 1024, 2) } GB</td>");
-                    stringBuilder.AppendLine($"</tr>");
+                    await Task.Run(() => stringBuilder.AppendLine($"<h1>CPU & Motherboard ID Information</h1>"));
+                    await Task.Run(() => stringBuilder.AppendLine("<table border = '1'>"
+                        + "<tr>"
+                        + " <th>System Name</th>"
+                        + " <th>Processor Id</th>"
+                        + " <th>Processor Name</th>"
+                        + " <th># Cores</th>"
+                        + " <th>Clock Speed</th>"
+                        + " <th>Motherboard Id</th>"
+                        + "</tr>"));
+
+                    await Task.Run(() => stringBuilder.AppendLine($"<tr>"));
+                    await Task.Run(() => stringBuilder.AppendLine($"<td>{Security.SystemName}</td>"));
+                    await Task.Run(() => stringBuilder.AppendLine($"<td>{Security.CPUID}</td>"));
+                    await Task.Run(() => stringBuilder.AppendLine($"<td>{Security.CPUName}</td>"));
+                    await Task.Run(() => stringBuilder.AppendLine($"<td>{Security.CPUCores}</td>"));
+                    await Task.Run(() => stringBuilder.AppendLine($"<td>{Security.CPUSpeed}</td>"));
+                    await Task.Run(() => stringBuilder.AppendLine($"<td>{Security.MOBOID}</td>"));
+                    await Task.Run(() => stringBuilder.AppendLine($"</tr>"));
+
+                    await Task.Run(() => stringBuilder.AppendLine($"</table>"));
+                    await Task.Run(() => stringBuilder.AppendLine());
+
+                    await Task.Run(() => stringBuilder.AppendLine($"<h1>Drives Information</h1>"));
+
+                    await Task.Run(() => stringBuilder.AppendLine("<table border = '1'>"
+                        + "<tr>"
+                        + " <th>Partition Name</th>"
+                        + " <th>Partition Label</th>"
+                        + " <th>Free Space</th>"
+                        + " <th>Total Space</th>"
+                        + "</tr>"));
+
+                    var AllDrives = await Task.Run(() => GetAllDrivesInfo());
+
+                    foreach (var drive in AllDrives.Keys)
+                    {
+                        stringBuilder.AppendLine($"<tr>");
+                        stringBuilder.AppendLine($"<td>{AllDrives[drive].Name}</td>");
+                        stringBuilder.AppendLine($"<td>{AllDrives[drive].VolumeLabel}</td>");
+                        stringBuilder.AppendLine($"<td>{Math.Round(double.Parse("" + AllDrives[drive].TotalFreeSpace) / 1024 / 1024 / 1024, 2) } GB</td>");
+                        stringBuilder.AppendLine($"<td>{Math.Round(double.Parse("" + AllDrives[drive].TotalSize) / 1024 / 1024 / 1024, 2) } GB</td>");
+                        stringBuilder.AppendLine($"</tr>");
+                    }
+
+                    stringBuilder.AppendLine($"</table>");
+                    stringBuilder.AppendLine();
+
+                    await SendEmail(GlobalVars.LoadAppKey("ReceiverEmail"), GlobalVars.LoadAppKey("ReceiverEmailDisplayName"),
+                                            $"PC information for system: {Security.SystemName}", stringBuilder);
+
+                    Properties.Settings.Default.SentComputerInformation = true;
+                    Properties.Settings.Default.Save();
                 }
-
-                stringBuilder.AppendLine($"</table>");
-                stringBuilder.AppendLine();
-
-                await SendEmail(GlobalVars.LoadAppKey("ReceiverEmail"), GlobalVars.LoadAppKey("ReceiverEmailDisplayName"),
-                                        "PC Info", stringBuilder);
-            }
-            catch (Exception ex)
-            {
-                Logger.Log($"While setting up email body & error: {ex.Message}",
-                          System.Reflection.MethodInfo.GetCurrentMethod().Name, "Methods", Logger.ERROR);
+                catch (Exception ex)
+                {
+                    Logger.Log($"While setting up email body & error: {ex.Message}",
+                              System.Reflection.MethodInfo.GetCurrentMethod().Name, "Methods", Logger.ERROR);
+                }
             }
         }
 
@@ -304,7 +313,6 @@ namespace SuperMarket.Classes
                 {
                     Text = Body.ToString(),
                 };
-
                 using (var client = new MailKit.Net.Smtp.SmtpClient())
                 {
                     //993 587
@@ -355,7 +363,6 @@ namespace SuperMarket.Classes
                 ReadOnlyChecked = true,
                 ShowReadOnly = false,
             };
-
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 return openFileDialog.FileName;
@@ -412,6 +419,32 @@ namespace SuperMarket.Classes
                 return saveFileDialog.FileName;
             }
             return "";
+        }
+
+        internal static void StartSetupPrograms()
+        {
+            if (Properties.Settings.Default.FirstTimeLaunch)
+            {
+                string SqlServerLocation = @"Redist\SQLEXPR_x64_ENU.exe", NET472Location = @"Redist\ndp472-kb4054530-x86-x64-allos-enu.exe";
+                if (File.Exists(SqlServerLocation) && File.Exists(NET472Location))
+                {
+                    Logger.Log($"Started first setup for SQL server express",
+                              System.Reflection.MethodInfo.GetCurrentMethod().Name, "Methods", Logger.INFO);
+                    Process.Start(SqlServerLocation).WaitForExit();
+                    Logger.Log($"Finished setup of SQL server express",
+                              System.Reflection.MethodInfo.GetCurrentMethod().Name, "Methods", Logger.INFO);
+
+                    Logger.Log($"Started first setup for net frameworrk 4.7.2",
+                              System.Reflection.MethodInfo.GetCurrentMethod().Name, "Methods", Logger.INFO);
+                    Process.Start(NET472Location).WaitForExit();
+
+                    Logger.Log($"Finished setup of net frameworrk 4.7.2",
+                              System.Reflection.MethodInfo.GetCurrentMethod().Name, "Methods", Logger.INFO);
+
+                    Properties.Settings.Default.FirstTimeLaunch = false;
+                    Properties.Settings.Default.Save();
+                }
+            }
         }
 
         //Array.FindIndex(GlobalVars.PaymentMethod, row => row.Contains("نقدي"))

@@ -1,5 +1,5 @@
 ﻿
-namespace SuperMarket.UserControls
+namespace POSWarehouse.UserControls
 {
     partial class Suppliers
     {
@@ -43,9 +43,9 @@ namespace SuperMarket.UserControls
             this.txt_phone = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txt_fullname = new System.Windows.Forms.TextBox();
-            this.superMarketDataSet = new SuperMarket.SuperMarketDataSet();
-            this.suppliersTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.SuppliersTableAdapter();
-            this.tableAdapterManager = new SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager();
+            this.superMarketDataSet = new POSWarehouse.SuperMarketDataSet();
+            this.suppliersTableAdapter = new POSWarehouse.SuperMarketDataSetTableAdapters.SuppliersTableAdapter();
+            this.tableAdapterManager = new POSWarehouse.SuperMarketDataSetTableAdapters.TableAdapterManager();
             this.panel1 = new System.Windows.Forms.Panel();
             this.suppliersDataGridView = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -228,7 +228,7 @@ namespace SuperMarket.UserControls
             this.tableAdapterManager.SupplierInvoiceProductTableAdapter = null;
             this.tableAdapterManager.SupplierInvoicesTableAdapter = null;
             this.tableAdapterManager.SuppliersTableAdapter = this.suppliersTableAdapter;
-            this.tableAdapterManager.UpdateOrder = SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UpdateOrder = POSWarehouse.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserLevelAccessTableAdapter = null;
             this.tableAdapterManager.UsersTableAdapter = null;
             // 
@@ -361,7 +361,7 @@ namespace SuperMarket.UserControls
             // pcb_serchbyPhone
             // 
             this.pcb_serchbyPhone.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_serchbyPhone.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_serchbyPhone.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_serchbyPhone.Location = new System.Drawing.Point(365, 140);
             this.pcb_serchbyPhone.Name = "pcb_serchbyPhone";
             this.pcb_serchbyPhone.Size = new System.Drawing.Size(45, 45);
@@ -376,7 +376,7 @@ namespace SuperMarket.UserControls
             // pcb_searchName
             // 
             this.pcb_searchName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchName.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_searchName.Location = new System.Drawing.Point(767, 49);
             this.pcb_searchName.Name = "pcb_searchName";
             this.pcb_searchName.Size = new System.Drawing.Size(45, 45);

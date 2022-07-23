@@ -1,4 +1,4 @@
-﻿namespace SuperMarket.Classes.Models
+﻿namespace POSWarehouse.Classes.Models
 {
     class UserLevelAccessModel
     {

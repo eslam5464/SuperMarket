@@ -1,5 +1,5 @@
 ﻿
-namespace SuperMarket.Forms
+namespace POSWarehouse.Forms
 {
     partial class LoadingScreen
     {
@@ -120,7 +120,7 @@ namespace SuperMarket.Forms
             // pic_loading
             // 
             this.pic_loading.BackColor = System.Drawing.Color.Purple;
-            this.pic_loading.Image = global::SuperMarket.Properties.Resources.Spinner_0_4s_391px;
+            this.pic_loading.Image = global::POSWarehouse.Properties.Resources.Spinner_0_4s_391px;
             this.pic_loading.Location = new System.Drawing.Point(375, -19);
             this.pic_loading.Margin = new System.Windows.Forms.Padding(2);
             this.pic_loading.Name = "pic_loading";
@@ -178,6 +178,7 @@ namespace SuperMarket.Forms
             this.Name = "LoadingScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "LoadingScreen";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.LoadingScreen_Load);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();

@@ -1,10 +1,10 @@
-﻿using SuperMarket.Properties;
+﻿using POSWarehouse.Properties;
 using System;
 using System.Drawing;
 using System.Media;
 using System.Windows.Forms;
 
-namespace SuperMarket.Forms
+namespace POSWarehouse.Forms
 {
     public partial class Notification : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace SuperMarket
+﻿namespace POSWarehouse
 {
 
 
@@ -6,7 +6,7 @@
     {
     }
 }
-namespace SuperMarket
+namespace POSWarehouse
 {
 
 

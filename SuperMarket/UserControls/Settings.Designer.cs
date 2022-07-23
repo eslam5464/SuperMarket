@@ -1,5 +1,5 @@
 ﻿
-namespace SuperMarket.UserControls
+namespace POSWarehouse.UserControls
 {
     partial class Settings
     {
@@ -247,7 +247,7 @@ namespace SuperMarket.UserControls
             // 
             // pic_restoreDatabaseLoading
             // 
-            this.pic_restoreDatabaseLoading.Image = global::SuperMarket.Properties.Resources.gif_loading_48;
+            this.pic_restoreDatabaseLoading.Image = global::POSWarehouse.Properties.Resources.gif_loading_48;
             this.pic_restoreDatabaseLoading.Location = new System.Drawing.Point(294, 3);
             this.pic_restoreDatabaseLoading.Name = "pic_restoreDatabaseLoading";
             this.pic_restoreDatabaseLoading.Size = new System.Drawing.Size(51, 42);
@@ -287,7 +287,7 @@ namespace SuperMarket.UserControls
             // 
             // pic_createBackupLoading
             // 
-            this.pic_createBackupLoading.Image = global::SuperMarket.Properties.Resources.gif_loading_48;
+            this.pic_createBackupLoading.Image = global::POSWarehouse.Properties.Resources.gif_loading_48;
             this.pic_createBackupLoading.Location = new System.Drawing.Point(290, 3);
             this.pic_createBackupLoading.Name = "pic_createBackupLoading";
             this.pic_createBackupLoading.Size = new System.Drawing.Size(57, 42);

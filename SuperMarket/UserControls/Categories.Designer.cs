@@ -1,4 +1,4 @@
-﻿namespace SuperMarket.UserControls
+﻿namespace POSWarehouse.UserControls
 {
     partial class Categories
     {
@@ -37,15 +37,15 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.categoriesDataGridView = new System.Windows.Forms.DataGridView();
             this.categoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.superMarketDataSet = new SuperMarket.SuperMarketDataSet();
+            this.superMarketDataSet = new POSWarehouse.SuperMarketDataSet();
             this.btn_saveCategory = new System.Windows.Forms.Button();
             this.txt_categorieid = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txt_categoriename = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.categoriesTableAdapter = new SuperMarket.SuperMarketDataSetTableAdapters.CategoriesTableAdapter();
-            this.tableAdapterManager = new SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager();
+            this.categoriesTableAdapter = new POSWarehouse.SuperMarketDataSetTableAdapters.CategoriesTableAdapter();
+            this.tableAdapterManager = new POSWarehouse.SuperMarketDataSetTableAdapters.TableAdapterManager();
             this.btn_exportPDF = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txt_storageNameSearch = new System.Windows.Forms.ComboBox();
@@ -285,7 +285,7 @@
             this.tableAdapterManager.SupplierInvoiceProductTableAdapter = null;
             this.tableAdapterManager.SupplierInvoicesTableAdapter = null;
             this.tableAdapterManager.SuppliersTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = SuperMarket.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            this.tableAdapterManager.UpdateOrder = POSWarehouse.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserLevelAccessTableAdapter = null;
             this.tableAdapterManager.UsersTableAdapter = null;
             // 
@@ -502,7 +502,7 @@
             // pcb_searchStorage
             // 
             this.pcb_searchStorage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchStorage.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchStorage.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_searchStorage.Location = new System.Drawing.Point(323, 76);
             this.pcb_searchStorage.Name = "pcb_searchStorage";
             this.pcb_searchStorage.Size = new System.Drawing.Size(45, 45);
@@ -529,7 +529,7 @@
             // pcb_searchName
             // 
             this.pcb_searchName.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchName.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchName.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_searchName.Location = new System.Drawing.Point(932, 77);
             this.pcb_searchName.Name = "pcb_searchName";
             this.pcb_searchName.Size = new System.Drawing.Size(45, 45);
@@ -544,7 +544,7 @@
             // pcb_searchID
             // 
             this.pcb_searchID.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pcb_searchID.Image = global::SuperMarket.Properties.Resources.icons8_search_48px_1;
+            this.pcb_searchID.Image = global::POSWarehouse.Properties.Resources.icons8_search_48px_1;
             this.pcb_searchID.Location = new System.Drawing.Point(542, 77);
             this.pcb_searchID.Name = "pcb_searchID";
             this.pcb_searchID.Size = new System.Drawing.Size(45, 45);
