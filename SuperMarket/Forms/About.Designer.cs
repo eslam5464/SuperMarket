@@ -129,6 +129,7 @@ namespace SuperMarket.Forms
             // 
             this.lbl_CompanyName.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbl_CompanyName.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_CompanyName.ForeColor = System.Drawing.Color.Red;
             this.lbl_CompanyName.Location = new System.Drawing.Point(240, 124);
             this.lbl_CompanyName.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.lbl_CompanyName.MaximumSize = new System.Drawing.Size(0, 17);

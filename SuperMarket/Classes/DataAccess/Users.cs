@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using SuperMarket.Classes.Models;
+using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -168,8 +169,7 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء حفظ المستخدم {User.FullName}", "خطأ",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء حفظ المستخدم {User.FullName}", Notification.EnmType.Error);
 
                 Logger.Log($"while saving a user with username = {User.Username} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Users", Logger.ERROR);
@@ -190,8 +190,7 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء تعديل المستخدم {User.FullName}", "خطأ",
-                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء تعديل المستخدم {User.FullName}", Notification.EnmType.Error);
 
                 Logger.Log($"while updating user with id = {User.Id} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Users", Logger.ERROR);
@@ -209,8 +208,7 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء مسح المسخدم", "خطأ",
-                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء مسح المسخدم", Notification.EnmType.Error);
 
                 Logger.Log($"while stopping user with id = {UserID} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Users", Logger.ERROR);

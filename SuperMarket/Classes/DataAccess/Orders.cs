@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using SuperMarket.Classes.Models;
+using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -45,8 +46,7 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء اضافه الطلب {order.InvoiceId}", "خطأ",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء اضافه الطلب {order.InvoiceId}", Notification.EnmType.Error);
 
                 Logger.Log($"while adding order for invoice id = {order.InvoiceId} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Orders", Logger.ERROR);

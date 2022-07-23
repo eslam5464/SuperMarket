@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using SuperMarket.Classes.Models;
+using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -90,8 +91,7 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء تعديل المورد {supplier.Name}", "خطأ",
-                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء تعديل المورد {supplier.Name}", Notification.EnmType.Error);
 
                 Logger.Log($"while updating supplier with id = {supplier.Id} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
@@ -110,8 +110,7 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء حفظ المورد {supplier.Name}", "خطأ",
-                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء حفظ المورد {supplier.Name}", Notification.EnmType.Error);
 
                 Logger.Log($"while saving product with name = {supplier.Name} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Products", Logger.ERROR);
@@ -129,8 +128,7 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء مسح المورد", "خطأ",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء مسح المورد", Notification.EnmType.Error);
 
                 Logger.Log($"while removing a {TableName} with id = {SupplierId} error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);

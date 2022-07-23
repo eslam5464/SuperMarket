@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using SuperMarket.Classes.Models;
+using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -53,8 +54,7 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء حفظ المخزن {Storage.Name}", "خطأ",
-                       MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء حفظ المخزن {Storage.Name}", Notification.EnmType.Error);
 
                 Logger.Log($"while saving storage with name = {Storage.Name} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
@@ -72,8 +72,7 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء مسح المخزن", "خطأ",
-                       MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء مسح المخزن", Notification.EnmType.Error);
 
                 Logger.Log($"while removing a {TableName} with id = {StorageId} error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
@@ -91,8 +90,7 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء تعديل المخزن {Storage.Name}", "خطأ",
-                       MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء تعديل المخزن {Storage.Name}", Notification.EnmType.Error);
 
                 Logger.Log($"while updating storage with id = {Storage.Id} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);

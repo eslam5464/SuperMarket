@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using SuperMarket.Classes.Models;
+using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -25,8 +26,7 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء حفظ منتج لفاتورة المورد {supplierInvoice.ProductName}", "خطأ",
-                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء حفظ منتج لفاتورة المورد {supplierInvoice.ProductName}", Notification.EnmType.Error);
 
                 Logger.Log($"while saving a supplier product with id = {supplierInvoice.ProductId} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);

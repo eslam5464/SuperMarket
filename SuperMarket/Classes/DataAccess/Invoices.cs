@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using SuperMarket.Classes.Models;
+using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -66,8 +67,8 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء اضافه المنتج  للفاتورة {invoice.InvoiceNumber}",
-                    "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء اضافه المنتج  للفاتورة {invoice.InvoiceNumber}", 
+                    Notification.EnmType.Error);
 
                 Logger.Log($"while adding an invoice with id = {invoice.Id} error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
@@ -130,8 +131,8 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء مسح المنتج من الفاتورة {InvoiceNumber}",
-                    "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء مسح المنتج من الفاتورة {InvoiceNumber}",
+                    Notification.EnmType.Error);
 
                 Logger.Log($"while removing product from invoice with Pid = {ProductID} & Iid = {InvoiceNumber} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);

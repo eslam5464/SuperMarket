@@ -62,7 +62,8 @@ namespace SuperMarket.Forms
                 btn_checkKey.Enabled = true;
                 pic_loading.Visible = false;
 
-                MessageBox.Show("ملف مفتاح الترخيص غير موجود  برجاء الضغط على زر <عن البرنامج> لمعرفه التفاصيل", "خطأ");
+                new Notification().ShowAlert("ملف مفتاح الترخيص غير موجود  برجاء الضغط على زر <عن البرنامج> لمعرفه التفاصيل",
+                    Notification.EnmType.Error);
             }
             else
             {
@@ -104,7 +105,7 @@ namespace SuperMarket.Forms
                     btn_checkKey.Enabled = true;
                     pic_loading.Visible = false;
 
-                    MessageBox.Show("مفتاح الترخيص غير صحيح", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    new Notification().ShowAlert("مفتاح الترخيص غير صحيح", Notification.EnmType.Error);
                 }
             }
         }

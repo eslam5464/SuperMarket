@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using SuperMarket.Classes.Models;
+using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -52,7 +53,7 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء حفظ العميل {customer.Name}", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء حفظ العميل {customer.Name}", Notification.EnmType.Error);
 
                 Logger.Log($"while saving a customer with id = {customer.Name} error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Customers", Logger.ERROR);
@@ -71,7 +72,7 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء تعديل العميل {customer.Name}", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء تعديل العميل {customer.Name}", Notification.EnmType.Error);
 
                 Logger.Log($"while updating a customer with id = {customer.Id} error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Customers", Logger.ERROR);
@@ -144,7 +145,7 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء مسح العميل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء مسح العميل", Notification.EnmType.Error);
                 Logger.Log($"while removing a customer with id = {customerID} error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Customers", Logger.ERROR);
             }

@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using SuperMarket.Classes.Models;
+using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -87,7 +88,7 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء حفظ التصنيف {Category.Name}", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء حفظ التصنيف {Category.Name}", Notification.EnmType.Error);
 
                 Logger.Log($"while saving a Category with id = {Category.Name} error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Categories", Logger.ERROR);
@@ -106,7 +107,7 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء تعديل التصنيف {Category.Name}", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء تعديل التصنيف {Category.Name}", Notification.EnmType.Error);
 
                 Logger.Log($"while updating a Category with id = {Category.Id} error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Categories", Logger.ERROR);
@@ -124,7 +125,7 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء مسح التصنيف ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء مسح التصنيف", Notification.EnmType.Error);
 
                 Logger.Log($"while removing a category with id = {categoryID} error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Categories", Logger.ERROR);

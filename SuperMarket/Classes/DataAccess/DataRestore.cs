@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using SuperMarket.Forms;
 using System;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
@@ -40,14 +41,14 @@ namespace SuperMarket.Classes.DataAccess
                 await Task.Run(() => Logger.Log($"restored backup from destination {strDestination}",
                     System.Reflection.MethodInfo.GetCurrentMethod().Name, ClassName, Logger.INFO));
 
-                MessageBox.Show("لقد تم استعاده البيانات من النسخه الاحتياطيه", "عملية ناجحه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                new Notification().ShowAlert($"لقد تم استعاده البيانات من النسخه الاحتياطيه", Notification.EnmType.Success);
             }
             catch (Exception ex)
             {
                 await Task.Run(() => Logger.Log($"while restoring backup from location: <{strDestination}> & error: "
                     + ex.Message, System.Reflection.MethodInfo.GetCurrentMethod().Name, ClassName, Logger.ERROR));
 
-                MessageBox.Show("لم يتم استعاده البيانات", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                new Notification().ShowAlert($"لم يتم استعاده البيانات", Notification.EnmType.Error);
             }
         }
     }

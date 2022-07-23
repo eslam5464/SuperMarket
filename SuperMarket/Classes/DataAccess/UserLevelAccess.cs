@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using SuperMarket.Classes.Models;
+using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -93,12 +94,11 @@ namespace SuperMarket.Classes.DataAccess
                         $"Safe = @Safe, SupplierInvoices = @SupplierInvoices, SuppliersEdit = @SuppliersEdit WHERE UserId = @UserId", user));
                 }
 
-                MessageBox.Show("تم التعديل", "عملية ناجحه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                new Notification().ShowAlert($"تم التعديل", Notification.EnmType.Success);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء تعديل الصلاحيات {user.Id}", "خطأ",
-                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء تعديل الصلاحيات {user.Id}", Notification.EnmType.Error);
 
                 Logger.Log($"while updating {TableName} with id = {user.Id} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
@@ -119,8 +119,7 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء حفظ الصلاحيات {user.Id}", "خطأ",
-                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء حفظ الصلاحيات {user.Id}", Notification.EnmType.Error);
 
                 Logger.Log($"while saving {TableName} with id = {user.Id} & error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
@@ -138,8 +137,7 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"حدث خطأ أثناء مسح صلاحيات المستخدم", "خطأ",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء مسح صلاحيات المستخدم", Notification.EnmType.Error);
 
                 Logger.Log($"while removing a {TableName} with id = {UserId} error: {ex.Message}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);

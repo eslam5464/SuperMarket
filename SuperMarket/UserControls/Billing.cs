@@ -123,15 +123,21 @@ namespace SuperMarket.UserControls
                         txt_prodSearch.Items.Clear();
 
                         List<ProductModel> productSearch =
-                            Classes.DataAccess.Products.GetProductLikeParameter("BarCode", txt_productBarCode.Text);
+                            Classes.DataAccess.Products.GetProductParameter("BarCode", txt_productBarCode.Text);
 
-                        DataTable dataProductSearch = await new Methods().ListToDataTable(productSearch);
+                        if (productSearch.Count > 0)
+                        {
+                            DataTable dataProductSearch = await new Methods().ListToDataTable(productSearch);
 
-                        txt_prodSearch.DataSource = dataProductSearch;
-                        txt_prodSearch.ValueMember = "Id";
-                        txt_prodSearch.DisplayMember = "Name";
-
-                        UsedBarCodeSearch = true;
+                            txt_prodSearch.DataSource = dataProductSearch;
+                            txt_prodSearch.ValueMember = "Id";
+                            txt_prodSearch.DisplayMember = "Name";
+                            UsedBarCodeSearch = true;
+                        }
+                        else
+                        {
+                            new Notification().ShowAlert($"لا يوجد منتج بهذا الباركود", Notification.EnmType.Error);
+                        }
                     }
 
                 }
@@ -280,8 +286,21 @@ namespace SuperMarket.UserControls
             {
                 List<InvoiceModel> datasource = (List<InvoiceModel>)db_procardsDataGridView.DataSource;
                 db_procardsDataGridView.DataSource = null;
-                datasource.Add(invoice);
-                db_procardsDataGridView.DataSource = datasource;
+
+                List<InvoiceModel> DuplicateInvoice = datasource.FindAll(x => x.ProductID == invoice.ProductID);
+
+                if (DuplicateInvoice.Count > 0)
+                {
+                    DuplicateInvoice[0].ProductQuantity += invoice.ProductQuantity;
+                    DuplicateInvoice[0].PriceTotal = ((decimal)DuplicateInvoice[0].ProductQuantity * DuplicateInvoice[0].ProductPrice);
+                    db_procardsDataGridView.DataSource = datasource;
+                }
+                else
+                {
+                    datasource.Add(invoice);
+                    db_procardsDataGridView.DataSource = datasource;
+                }
+
                 ResizeAndRenameCoulmns();
             }
             else
@@ -319,7 +338,7 @@ namespace SuperMarket.UserControls
         private async void pcb_searchProdName_Click(object sender, EventArgs e)
         {
             if (txt_productName.Text.Trim() == "")
-                MessageBox.Show("برجاء كتابه اسم المنتج قبل البحث", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert("برجاء كتابه اسم المنتج قبل البحث", Notification.EnmType.Error);
 
             else
             {
@@ -338,7 +357,7 @@ namespace SuperMarket.UserControls
                 }
                 else
                 {
-                    new Notification().ShowAlert($"لا يوجد منتج بهذه البيانات", Notification.EnmType.Info);
+                    new Notification().ShowAlert($"لا يوجد منتج بهذه البيانات", Notification.EnmType.Error);
                 }
             }
         }
@@ -571,7 +590,7 @@ namespace SuperMarket.UserControls
         private void pcb_searchCstID_Click(object sender, EventArgs e)
         {
             if (txt_cstID.Text.Trim() == "")
-                MessageBox.Show("برجاء كتابه اسم العميل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert("برجاء كتابه اسم العميل", Notification.EnmType.Error);
             else
             {
                 List<CustomerModel> CustomerSearch = Classes.DataAccess.Customers.GetCustomerParameter("Id", txt_cstID.Text);
@@ -714,9 +733,16 @@ namespace SuperMarket.UserControls
 
                 //DataTable dataProductSearch = ToDataTable(productSearch);
 
-                txt_prodSearch.DataSource = productSearch;
-                txt_prodSearch.ValueMember = "Id";
-                txt_prodSearch.DisplayMember = "Name";
+                if (productSearch.Count > 0)
+                {
+                    txt_prodSearch.DataSource = productSearch;
+                    txt_prodSearch.ValueMember = "Id";
+                    txt_prodSearch.DisplayMember = "Name";
+                }
+                else
+                {
+                    new Notification().ShowAlert($"لا يوجد منتج بهذا الباركود", Notification.EnmType.Error);
+                }
             }
         }
 

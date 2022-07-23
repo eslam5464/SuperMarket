@@ -624,8 +624,7 @@ namespace SuperMarket.UserControls
                         $"اقل كميه مسموحة: {ProductData[0].QuantityMinimum}\n",
                         "بيانات المنتج", MessageBoxButtons.OK, MessageBoxIcon.Question);
                 else
-                    MessageBox.Show("لا يوجد بيانات لهذا المنتج", "خطأ",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    new Notification().ShowAlert("لا يوجد بيانات لهذا المنتج", Notification.EnmType.Error);
             }
         }
 
