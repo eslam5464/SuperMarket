@@ -3,7 +3,6 @@ using SuperMarket.Forms;
 using System;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SuperMarket.Classes.DataAccess
 {

@@ -7,7 +7,6 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SuperMarket.Classes.DataAccess
 {
@@ -67,7 +66,7 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                new Notification().ShowAlert($"حدث خطأ أثناء اضافه المنتج  للفاتورة {invoice.InvoiceNumber}", 
+                new Notification().ShowAlert($"حدث خطأ أثناء اضافه المنتج  للفاتورة {invoice.InvoiceNumber}",
                     Notification.EnmType.Error);
 
                 Logger.Log($"while adding an invoice with id = {invoice.Id} error: {ex.Message}",
