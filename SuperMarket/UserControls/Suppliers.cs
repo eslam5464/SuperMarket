@@ -1,5 +1,6 @@
 ﻿using SuperMarket.Classes;
 using SuperMarket.Classes.Models;
+using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -153,7 +154,8 @@ namespace SuperMarket.UserControls
                 }
             }
             else
-                MessageBox.Show("برجاء ادخال بيانات المورد من الاسم والعنوان وبيانات الاتصال", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"برجاء ادخال بيانات المورد من الاسم والعنوان وبيانات الاتصال",
+                    Notification.EnmType.Error);
         }
 
         private void SetEditMode(bool State)
@@ -207,7 +209,7 @@ namespace SuperMarket.UserControls
                 }
                 else
                 {
-                    MessageBox.Show("يجب أن تختار منتج للتعديل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    new Notification().ShowAlert($"يجب أن تختار منتج للتعديل", Notification.EnmType.Error);
                 }
             }
         }

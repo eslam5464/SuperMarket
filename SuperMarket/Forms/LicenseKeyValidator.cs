@@ -19,7 +19,7 @@ namespace SuperMarket.Forms
                 SendKeys.Send("{Tab}");
         }
 
-        private async void LicenseKeyValidator_Load(object sender, EventArgs e)
+        private void LicenseKeyValidator_Load(object sender, EventArgs e)
         {
             this.TopMost = false;
 

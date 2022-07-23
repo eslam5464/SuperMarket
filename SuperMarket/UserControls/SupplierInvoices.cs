@@ -133,53 +133,56 @@ namespace SuperMarket.UserControls
 
         private void pcb_searchProduct_Click(object sender, EventArgs e)
         {
-            if (txt_searchProductType.SelectedIndex != -1)
+            if (txt_searchProduct.Text.Trim() != "")
             {
-                if (txt_searchProductType.Text == ProductSearchType[0].ToString())
+                if (txt_searchProductType.SelectedIndex != -1)
                 {
-                    List<ProductModel> SearchedProducts = Classes.DataAccess.Products.GetProductLikeParameter("Name",
-                        txt_searchProduct.Text);
-
-                    if (SearchedProducts.Count > 0)
+                    if (txt_searchProductType.Text == ProductSearchType[0].ToString())
                     {
-                        FillProductComboBox(txt_searchedProductName, SearchedProducts, "Id", "Name");
+                        List<ProductModel> SearchedProducts = Classes.DataAccess.Products.GetProductLikeParameter("Name",
+                            txt_searchProduct.Text);
+
+                        if (SearchedProducts.Count > 0)
+                        {
+                            FillProductComboBox(txt_searchedProductName, SearchedProducts, "Id", "Name");
+                        }
+                        else
+                            new Notification().ShowAlert($"لا يوجد منتج بهذه البيانات", Notification.EnmType.Error);
                     }
-                    else
-                        MessageBox.Show("لا يوجد منتج بهذه البيانات", "لا يوجد",
-                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
 
-                else if (txt_searchProductType.Text == ProductSearchType[1].ToString())
-                {
-                    List<ProductModel> SearchedProducts = Classes.DataAccess.Products.GetProductParameter("BarCode",
-                        txt_searchProduct.Text);
-
-                    if (SearchedProducts.Count > 0)
+                    else if (txt_searchProductType.Text == ProductSearchType[1].ToString())
                     {
-                        FillProductComboBox(txt_searchedProductName, SearchedProducts, "Id", "Name");
+                        List<ProductModel> SearchedProducts = Classes.DataAccess.Products.GetProductParameter("BarCode",
+                            txt_searchProduct.Text);
+
+                        if (SearchedProducts.Count > 0)
+                        {
+                            FillProductComboBox(txt_searchedProductName, SearchedProducts, "Id", "Name");
+                        }
+                        else
+                            new Notification().ShowAlert($"لا يوجد منتج بهذه البيانات", Notification.EnmType.Error);
                     }
-                    else
-                        MessageBox.Show("لا يوجد منتج بهذه البيانات", "لا يوجد",
-                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
 
-                else if (txt_searchProductType.Text == ProductSearchType[2].ToString())
-                {
-                    List<ProductModel> SearchedProducts = Classes.DataAccess.Products.GetProductParameter("Id",
-                        txt_searchProduct.Text);
-
-                    if (SearchedProducts.Count > 0)
+                    else if (txt_searchProductType.Text == ProductSearchType[2].ToString())
                     {
-                        FillProductComboBox(txt_searchedProductName, SearchedProducts, "Id", "Name");
+                        List<ProductModel> SearchedProducts = Classes.DataAccess.Products.GetProductParameter("Id",
+                            txt_searchProduct.Text);
+
+                        if (SearchedProducts.Count > 0)
+                        {
+                            FillProductComboBox(txt_searchedProductName, SearchedProducts, "Id", "Name");
+                        }
+                        else
+                            new Notification().ShowAlert($"لا يوجد منتج بهذه البيانات", Notification.EnmType.Error);
                     }
-                    else
-                        MessageBox.Show("لا يوجد منتج بهذه البيانات", "لا يوجد",
-                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
+                else
+                    new Notification().ShowAlert($"برجاء اختيار نوع البحث اولا", Notification.EnmType.Error);
             }
             else
-                MessageBox.Show("برجاء اختيار نوع البحث اولا", "خطأ",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                new Notification().ShowAlert($"برجاء كتابه بيانات قبل البحث عن منتج", Notification.EnmType.Error);
+            }
         }
 
         private async void FillProductComboBox(ComboBox comboBox, List<ProductModel> searchedProducts, string Value, string Display)
@@ -251,8 +254,8 @@ namespace SuperMarket.UserControls
 
                             if (supplierProduct.ProductPriceSell < supplierProduct.ProductPriceWholesale)
                             {
-                                MessageBox.Show("لا يمكن اضافه منتج وسعر البيع اصغر من سعر الجملة", "خطأ",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                new Notification().ShowAlert($"لا يمكن اضافه منتج وسعر البيع اصغر من سعر الجملة",
+                                    Notification.EnmType.Error);
                             }
                             else
                             {
@@ -265,21 +268,20 @@ namespace SuperMarket.UserControls
                                 }
                                 else
                                 {
-                                    MessageBox.Show("لا يمكن اضافه هذا المنتج لانه موجود في الفاتورة", "خطأ",
-                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    new Notification().ShowAlert($"لا يمكن اضافه هذا المنتج لانه موجود في الفاتورة",
+                                        Notification.EnmType.Error);
                                 }
                             }
                         }
                         else
                         {
-                            MessageBox.Show("لا يمكن اضافه منتج والكمية تساوي صفر", "خطأ",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            new Notification().ShowAlert($"لا يمكن اضافه منتج والكمية تساوي صفر", Notification.EnmType.Error);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("برجاء ادخال بيانات المنتج كامله من الكمية وسعر البيع وسعر الجملة", "خطأ",
-                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        new Notification().ShowAlert($"برجاء ادخال بيانات المنتج كامله من الكمية وسعر البيع وسعر الجملة",
+                            Notification.EnmType.Error);
                     }
 
                     ////Classes.DataAccess.SupplierInvoice.SaveSupplierInvoice()
@@ -296,14 +298,12 @@ namespace SuperMarket.UserControls
                 }
                 else
                 {
-                    MessageBox.Show("يجب اختيار منتج للاضافه", "خطأ",
-                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    new Notification().ShowAlert($"يجب اختيار منتج للاضافه", Notification.EnmType.Error);
                 }
             }
             else
             {
-                MessageBox.Show("يجب اختيار منتج للاضافه", "خطأ",
-                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                new Notification().ShowAlert($"يجب اختيار منتج للاضافه", Notification.EnmType.Error);
             }
         }
 
@@ -380,49 +380,52 @@ namespace SuperMarket.UserControls
 
         private async void pcb_searchSupplier_Click(object sender, EventArgs e)
         {
-            if (txt_searchSupplierType.SelectedIndex != -1)
+            if (txt_searchSupplier.Text.Trim() != "")
             {
-                if (txt_searchSupplierType.Text == SupplierSearchType[0].ToString())
+                if (txt_searchSupplierType.SelectedIndex != -1)
                 {
-                    List<SupplierModel> SearchecSuppliers = Classes.DataAccess.Suppliers.GetSupplierParameterLike("Name", txt_searchSupplier.Text);
-
-                    if (SearchecSuppliers.Count > 0)
+                    if (txt_searchSupplierType.Text == SupplierSearchType[0].ToString())
                     {
-                        await FillSupplierComboBox(txt_searchedSupplierName, SearchecSuppliers, "Id", "Name");
+                        List<SupplierModel> SearchecSuppliers = Classes.DataAccess.Suppliers.GetSupplierParameterLike("Name", txt_searchSupplier.Text);
+
+                        if (SearchecSuppliers.Count > 0)
+                        {
+                            await FillSupplierComboBox(txt_searchedSupplierName, SearchecSuppliers, "Id", "Name");
+                        }
+                        else
+                            new Notification().ShowAlert($"لا يوجد مورد بهذه البيانات", Notification.EnmType.Error);
                     }
-                    else
-                        MessageBox.Show("لا يوجد مورد بهذه البيانات", "لا يوجد",
-                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
 
-                else if (txt_searchSupplierType.Text == SupplierSearchType[1].ToString())
-                {
-                    List<SupplierModel> SearchecSuppliers = Classes.DataAccess.Suppliers.GetSupplierParameterLike("Contact", txt_searchSupplier.Text);
-
-                    if (SearchecSuppliers.Count > 0)
+                    else if (txt_searchSupplierType.Text == SupplierSearchType[1].ToString())
                     {
-                        await FillSupplierComboBox(txt_searchedSupplierName, SearchecSuppliers, "Id", "Name");
-                    }
-                    else
-                        MessageBox.Show("لا يوجد مورد بهذه البيانات", "لا يوجد",
-                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else if (txt_searchSupplierType.Text == SupplierSearchType[2].ToString())
-                {
-                    List<SupplierModel> SearchecSuppliers = Classes.DataAccess.Suppliers.GetSupplierParameter("Id", txt_searchSupplier.Text);
+                        List<SupplierModel> SearchecSuppliers = Classes.DataAccess.Suppliers.GetSupplierParameterLike("Contact", txt_searchSupplier.Text);
 
-                    if (SearchecSuppliers.Count > 0)
-                    {
-                        await FillSupplierComboBox(txt_searchedSupplierName, SearchecSuppliers, "Id", "Name");
+                        if (SearchecSuppliers.Count > 0)
+                        {
+                            await FillSupplierComboBox(txt_searchedSupplierName, SearchecSuppliers, "Id", "Name");
+                        }
+                        else
+                            new Notification().ShowAlert($"لا يوجد مورد بهذه البيانات", Notification.EnmType.Error);
                     }
-                    else
-                        MessageBox.Show("لا يوجد مورد بهذه البيانات", "لا يوجد",
-                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    else if (txt_searchSupplierType.Text == SupplierSearchType[2].ToString())
+                    {
+                        List<SupplierModel> SearchecSuppliers = Classes.DataAccess.Suppliers.GetSupplierParameter("Id", txt_searchSupplier.Text);
+
+                        if (SearchecSuppliers.Count > 0)
+                        {
+                            await FillSupplierComboBox(txt_searchedSupplierName, SearchecSuppliers, "Id", "Name");
+                        }
+                        else
+                            new Notification().ShowAlert($"لا يوجد مورد بهذه البيانات", Notification.EnmType.Error);
+                    }
                 }
+                else
+                    new Notification().ShowAlert($"برجاء اختيار نوع البحث", Notification.EnmType.Error);
             }
             else
-                MessageBox.Show("برجاء اختيار نوع البحث", "خطأ",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                new Notification().ShowAlert($"برجاء كتابه بيانات قبل البحث عن مورد", Notification.EnmType.Error);
+            }
         }
 
         private async void AddSupplierProduct()
@@ -526,12 +529,11 @@ namespace SuperMarket.UserControls
                             Classes.DataAccess.SafeTransactions.SaveSafeTransaction(safeTransactionModel);
                         }
 
-                        MessageBox.Show("تمت اضافه الفاتورة", "عملية ناجحه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        new Notification().ShowAlert($"تمت اضافه الفاتورة", Notification.EnmType.Success);
                     }
                     else
                     {
-                        MessageBox.Show("برجاء اختيار الخزنة", "خطأ",
-                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        new Notification().ShowAlert($"برجاء اختيار الخزنة", Notification.EnmType.Error);
                     }
                 }
                 else
@@ -541,8 +543,7 @@ namespace SuperMarket.UserControls
             }
             else
             {
-                MessageBox.Show("برجاء اختيار طريقه الدفع", "خطأ",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"برجاء اختيار طريقه الدفع", Notification.EnmType.Error);
             }
         }
 
@@ -576,7 +577,7 @@ namespace SuperMarket.UserControls
                 }
             }
             else
-                MessageBox.Show("رجاء اختيار منتج أولا قبل الحذف", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"رجاء اختيار منتج أولا قبل الحذف", Notification.EnmType.Error);
 
             if (db_productDataGridView.Rows.Count == 0)
             {

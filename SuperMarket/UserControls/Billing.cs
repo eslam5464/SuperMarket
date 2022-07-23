@@ -95,7 +95,7 @@ namespace SuperMarket.UserControls
             }
             else
             {
-                MessageBox.Show("لا يوجد بيانات للطباعه", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"لا يوجد بيانات للطباعه", Notification.EnmType.Error);
             }
         }
 
@@ -178,19 +178,18 @@ namespace SuperMarket.UserControls
             if (txt_invoiceno.Text.Trim() == "" || txt_cstID.Text.Trim() == "" || txt_cstID.Text.Trim() == "" || txt_cstID.Text.Trim() == "" ||
                 txt_cstID.Text.Trim() == "" || txt_cstID.Text.Trim() == "" || txt_cstID.Text.Trim() == "" || txt_cstID.Text.Trim() == "" || txt_cstID.Text.Trim() == "")
             {
-                MessageBox.Show("اكمال البيانات لادخال المنتج إلى السله", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"اكمل البيانات لادخال المنتج إلى السله", Notification.EnmType.Error);
             }
             else
             {
                 List<CustomerModel> CstSearch = Classes.DataAccess.Customers.GetCustomerWithID(int.Parse(txt_cstID.Text));
                 if (CstSearch.Count == 0)
                 {
-                    MessageBox.Show("لا يوجد عميل بهذه البيانات", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    new Notification().ShowAlert($"لا يوجد عميل بهذه البيانات", Notification.EnmType.Error);
                 }
                 else if (txt_prodSearch.SelectedIndex == -1)
                 {
-
-                    MessageBox.Show("برجاء التأكد من بيانات المنتج و اختياره في ناتج البحث", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    new Notification().ShowAlert($"برجاء التأكد من بيانات المنتج و اختياره في ناتج البحث", Notification.EnmType.Error);
                 }
                 else
                 {
@@ -339,7 +338,7 @@ namespace SuperMarket.UserControls
                 }
                 else
                 {
-                    MessageBox.Show("لا يوجد منتج بهذه البيانات", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    new Notification().ShowAlert($"لا يوجد منتج بهذه البيانات", Notification.EnmType.Info);
                 }
             }
         }
@@ -440,7 +439,9 @@ namespace SuperMarket.UserControls
                 }
             }
             else
-                MessageBox.Show("رجاء اختيار منتج أولا قبل الحذف", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                new Notification().ShowAlert($"رجاء اختيار منتج أولا قبل الحذف", Notification.EnmType.Error);
+            }
         }
 
         private void LoadDataGrid(List<InvoiceModel> Invoice)
@@ -522,7 +523,8 @@ namespace SuperMarket.UserControls
         private void pcb_searchCstName_Click(object sender, EventArgs e)
         {
             if (txt_invoiceno.Text.Trim() == "")
-                MessageBox.Show("برجاء كتابه اسم العميل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"برجاء كتابه اسم العميل", Notification.EnmType.Error);
+
             else
             {
                 List<CustomerModel> CustomerSearch = Classes.DataAccess.Customers.GetCustomerParameter("Name", txt_invoiceno.Text);
@@ -628,16 +630,16 @@ namespace SuperMarket.UserControls
                         }
                     }
                     else
-                        MessageBox.Show("لا يوجدأي اشياء في السله", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        new Notification().ShowAlert($"لا يوجدأي اشياء في السله", Notification.EnmType.Error);
                 }
                 else
-                    MessageBox.Show("لا يوجد بيانات للحفظ", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    new Notification().ShowAlert($"لا يوجد بيانات للحفظ", Notification.EnmType.Error);
             }
             catch (Exception ex)
             {
                 Logger.Log("Error when converting datagrid to list of models & error: " + ex.Message,
                                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.ERROR);
-                MessageBox.Show("حدث خطأ أثناء حفظ الطلب", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"حدث خطأ أثناء حفظ الطلب", Notification.EnmType.Error);
             }
         }
 
@@ -701,7 +703,7 @@ namespace SuperMarket.UserControls
         private void pcb_searchProdBarCode_Click(object sender, EventArgs e)
         {
             if (txt_productBarCode.Text.Trim() == "")
-                MessageBox.Show("برجاء كتابه باركود المنتج قبل البحث", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"برجاء كتابه باركود المنتج قبل البحث", Notification.EnmType.Error);
 
             else
             {

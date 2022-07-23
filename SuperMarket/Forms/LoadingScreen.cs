@@ -69,8 +69,7 @@ namespace SuperMarket.Forms
 
                         await IncrementProgressBar(progressBar, 25);
 
-                        MessageBox.Show("ملف فتح البرنامج غير موجود برجاء ايجاد المكان بعد هذا الاشعار", "خطأ",
-                                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        new Notification().ShowAlert("ملف فتح البرنامج غير موجود برجاء ايجاد مكان الملف", Notification.EnmType.Error);
 
                         string SerialFIleLocation = Methods.PromptOpenFileDialog("enc", "Serial");
 
@@ -133,6 +132,7 @@ namespace SuperMarket.Forms
 
                                 MessageBox.Show("لا يمكن الاتصال بالإنترنت برجاء استخدام البرنامج عندما يكون الجهاز متصل بال انترنت",
                                     "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
                                 Logger.Log("time used to open the application finished",
                                          System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
@@ -248,7 +248,7 @@ namespace SuperMarket.Forms
 
         private async void timer_loading_Tick(object sender, EventArgs e)
         {
-            MoveProgressBar();
+            await MoveProgressBar();
         }
 
         private void btn_close_Click(object sender, EventArgs e)

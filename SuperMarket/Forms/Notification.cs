@@ -114,7 +114,6 @@ namespace SuperMarket.Forms
                     this.pictureBox1.Image = Resources.Notification_success;
                     this.BackColor = Color.SeaGreen;
                     NotificationSound = new SoundPlayer(Properties.Sound.notification_sound_success);
-
                     break;
                 case EnmType.Error:
                     this.pictureBox1.Image = Resources.Notification_error;

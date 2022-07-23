@@ -41,11 +41,13 @@ namespace SuperMarket.Forms
                 //    Close();
                 //}
                 if (txt_Username.Text.Trim() == "" || txt_Password.Text.Trim() == "")
-                    MessageBox.Show("برجاء ادخال اسم المستخدم وكلمه السر معا", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                {
+                    new Notification().ShowAlert("برجاء ادخال اسم المستخدم وكلمه السر معا", Notification.EnmType.Error);
+                }
                 else if (user.Count == 0)
                 {
-                    MessageBox.Show("البيانات المدخله غير صحيحة برجاء التأكد من اسم المستخدم و كلمه المرور", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    new Notification().ShowAlert("البيانات المدخله غير صحيحة برجاء التأكد من اسم المستخدم و كلمه المرور",
+                        Notification.EnmType.Error);
                 }
                 else
                 {
@@ -80,12 +82,14 @@ namespace SuperMarket.Forms
                     else
                     {
                         // TODO: change login
-                        MessageBox.Show("اسم المستخدم أو كلمه المرور غير صحيحة", "حاول مره أخرى", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        new Notification().ShowAlert("اسم المستخدم أو كلمه المرور غير صحيحة", Notification.EnmType.Error);
                     }
                 }
             }
             catch (Exception ex)
             {
+                Logger.Log($"While logging & error: {ex.Message}",
+                                   System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
                 MessageBox.Show(ex.Message);
             }
 

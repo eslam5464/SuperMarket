@@ -1,6 +1,7 @@
 ﻿using SuperMarket.Classes;
 using SuperMarket.Classes.Models;
 using SuperMarket.Classes.Models.Joins;
+using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -71,10 +72,9 @@ namespace SuperMarket.UserControls
                     {
                         if (decimal.Parse(txt_productPriceWholeSale.Text) > decimal.Parse(txt_productPriceSell.Text))
                         {
-                            MessageBox.Show("سعر الجملة اكبر أو يساوي سعر البيع برجاء تعديل السعر", "خطأ",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            new Notification().ShowAlert($"سعر الجملة اكبر أو يساوي سعر البيع برجاء تعديل السعر",
+                                Notification.EnmType.Error);
                         }
-
                         else
                         {
                             if (MessageBox.Show($"هل تريد ان تعدل {txt_productname.Text} ", "انتظر",
@@ -127,7 +127,7 @@ namespace SuperMarket.UserControls
                     }
                     else
                     {
-                        MessageBox.Show("يجب أن تختار صنف لهذا المنتج", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        new Notification().ShowAlert($"يجب أن تختار صنف لهذا المنتج", Notification.EnmType.Error);
                     }
 
                 }
@@ -144,8 +144,8 @@ namespace SuperMarket.UserControls
                     {
                         if (decimal.Parse(txt_productPriceWholeSale.Text) >= decimal.Parse(txt_productPriceSell.Text))
                         {
-                            MessageBox.Show("سعر الجملة اكبر أو يساوي سعر البيع برجاء تعديل السعر", "خطأ",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            new Notification().ShowAlert($"سعر الجملة اكبر أو يساوي سعر البيع برجاء تعديل السعر",
+                                Notification.EnmType.Error);
                         }
                         else
                         {
@@ -203,7 +203,8 @@ namespace SuperMarket.UserControls
                                 }
                                 else
                                 {
-                                    MessageBox.Show("لا يوجد تصنيف بهذا الاسم", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    new Notification().ShowAlert($"لا يوجد تصنيف بهذا الاسم", Notification.EnmType.Error);
+
                                     Logger.Log($"while adding product {txt_productname.Text} category is null with id = {categoryId}",
                                         System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.ERROR);
                                 }
@@ -212,12 +213,12 @@ namespace SuperMarket.UserControls
                     }
                     else
                     {
-                        MessageBox.Show("يجب أن تختار صنف لهذا المنتج", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        new Notification().ShowAlert($"يجب أن تختار صنف لهذا المنتج", Notification.EnmType.Error);
                     }
                 }
             }
             else
-                MessageBox.Show("برجاء ادخال بيانات المنتج من الاسم والكمية والسعر والباركود", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"برجاء ادخال بيانات المنتج من الاسم والكمية والسعر والباركود", Notification.EnmType.Error);
         }
 
         private void ResetTextBoxes()
@@ -360,7 +361,7 @@ namespace SuperMarket.UserControls
                 }
                 else
                 {
-                    MessageBox.Show("يجب أن تختار منتج للتعديل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    new Notification().ShowAlert($"يجب أن تختار منتج للتعديل", Notification.EnmType.Error);
                 }
             }
         }

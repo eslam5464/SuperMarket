@@ -25,7 +25,7 @@ namespace SuperMarket.Forms
             }
             else
             {
-                MessageBox.Show("حدث خطأ أثناء تحميل  بيانات المستخدم", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert("حدث خطأ أثناء تحميل  بيانات المستخدم", Notification.EnmType.Error);
             }
         }
 

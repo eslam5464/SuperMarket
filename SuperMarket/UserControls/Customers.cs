@@ -1,5 +1,6 @@
 ﻿using SuperMarket.Classes;
 using SuperMarket.Classes.Models;
+using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -39,8 +40,8 @@ namespace SuperMarket.UserControls
             {
                 if (txt_customername.Text.Trim() == "" && txt_contact.Text.Trim() == "" && txt_address.Text.Trim() == "")
                 {
-                    MessageBox.Show("برجاء ادخال جميع بيانات العميل من الاسم ورقم التواصل والعنوان", "حاو مره أخرى", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                    new Notification().ShowAlert($"برجاء ادخال جميع بيانات العميل من الاسم ورقم التواصل والعنوان",
+                        Notification.EnmType.Error);
                 }
                 else
                 {
@@ -106,6 +107,9 @@ namespace SuperMarket.UserControls
             }
             catch (Exception ex)
             {
+                Logger.Log($"while saving customer & error: {ex.Message}",
+                                System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+
                 MessageBox.Show(ex.Message);
             }
         }

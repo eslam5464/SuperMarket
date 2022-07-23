@@ -1,4 +1,5 @@
 ﻿using SuperMarket.Classes;
+using SuperMarket.Forms;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -45,13 +46,13 @@ namespace SuperMarket.UserControls
             btn_trialDaysLeft.Enabled = false;
             int TrialDays = Security.GetTrialDays();
             if (TrialDays == -1)
-                MessageBox.Show($"This is a full version");
+                new Notification().ShowAlert("This is a full version", Notification.EnmType.Info);
 
             else if (TrialDays >= 0)
             {
                 await Security.CalculateTrialDaysLeft();
                 double TrialDaysLeft = Security.GetTrialDaysLeft();
-                MessageBox.Show($"Trial Time left: {TimeSpan.FromDays(TrialDaysLeft)}");
+                new Notification().ShowAlert($"Trial Time left: {TimeSpan.FromDays(TrialDaysLeft)}", Notification.EnmType.Info);
             }
             btn_trialDaysLeft.Enabled = true;
         }

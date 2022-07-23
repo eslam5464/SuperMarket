@@ -124,7 +124,8 @@ namespace SuperMarket.UserControls
             try
             {
                 if (txt_Username.Text.Trim() == "" || txt_Password.Text.Trim() == "" || txt_fullname.Text.Trim() == "")
-                    MessageBox.Show("برجاء ادخال البيانات من اسم المستخدم وكلمه المروروالاسم بالكامل", "حاول مره أخرى", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    new Notification().ShowAlert($"برجاء ادخال البيانات من اسم المستخدم وكلمه المروروالاسم بالكامل",
+                        Notification.EnmType.Error);
 
                 else
                 {
@@ -218,27 +219,30 @@ namespace SuperMarket.UserControls
 
                                     RefreshDataGrid();
 
-                                    Logger.Log($"user has added seller: {txt_Username.Text} with user level: {user.UserLevel}", System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                                    Logger.Log($"user has added seller: {txt_Username.Text} with user level: {user.UserLevel}",
+                                        System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
                                     ResetTextBoxes();
                                 }
                             }
                             else
                             {
-                                MessageBox.Show("يوجد مستخدم بنفس البيانات برجاء استخدام بيانات أخرى غير اسم المستخدم هذا",
-                                    "حاول مره أخرى", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                new Notification().ShowAlert($"يوجد مستخدم بنفس البيانات برجاء استخدام بيانات أخرى غير اسم المستخدم هذا",
+                                    Notification.EnmType.Error);
                             }
                         }
                         else
                         {
-                            MessageBox.Show("برجاء اختيار مكانه المستخدم",
-                                    "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            new Notification().ShowAlert($"برجاء اختيار مكانه المستخدم", Notification.EnmType.Error);
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
+                Logger.Log($"While saving users & error: {ex.Message}",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.ERROR);
+
                 MessageBox.Show(ex.Message);
             }
         }
@@ -278,7 +282,7 @@ namespace SuperMarket.UserControls
                 }
                 else
                 {
-                    MessageBox.Show("يجب أن تختار مستخدم للتعديل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    new Notification().ShowAlert($"يجب أن تختار مستخدم للتعديل", Notification.EnmType.Error);
                 }
             }
         }

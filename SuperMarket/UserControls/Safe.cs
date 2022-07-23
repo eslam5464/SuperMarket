@@ -139,8 +139,7 @@ namespace SuperMarket.UserControls
             }
             else
             {
-                MessageBox.Show($"لا يمكنك الحفظ لانه يوجد خزنه بهذا الاسم", "خطأ",
-                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"لا يمكنك الحفظ لانه يوجد خزنه بهذا الاسم", Notification.EnmType.Error);
             }
         }
 
@@ -215,14 +214,13 @@ namespace SuperMarket.UserControls
                 }
                 else
                 {
-                    MessageBox.Show($"برجاء اكمل بيانات المعامله من المال الذي لا يساوي صفر والملاحظات", "خطأ",
-                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    new Notification().ShowAlert($"برجاء اكمل بيانات المعامله من المال الذي لا يساوي صفر والملاحظات",
+                        Notification.EnmType.Error);
                 }
             }
             else
             {
-                MessageBox.Show($"برجاء اختيار الخزنة", "خطأ",
-                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"برجاء اختيار الخزنة", Notification.EnmType.Error);
             }
         }
 
@@ -247,14 +245,12 @@ namespace SuperMarket.UserControls
                 }
                 else
                 {
-                    MessageBox.Show($"لا يوجد معاملات لهذه الخزنه", "خطأ",
-                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    new Notification().ShowAlert($"لا يوجد معاملات لهذه الخزنه", Notification.EnmType.Error);
                 }
             }
             else
             {
-                MessageBox.Show($"برجاء اختيار اسم الخزنه قبل البحث", "خطأ",
-                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"برجاء اختيار اسم الخزنه قبل البحث", Notification.EnmType.Error);
             }
         }
 
@@ -271,8 +267,7 @@ namespace SuperMarket.UserControls
                 }
                 else
                 {
-                    MessageBox.Show($"لا يوجد بيانات لرقم التصنيف هذا", "خطأ",
-                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    new Notification().ShowAlert($"لا يوجد بيانات لرقم التصنيف هذا", Notification.EnmType.Error);
                 }
             }
         }
@@ -302,7 +297,7 @@ namespace SuperMarket.UserControls
                 }
             }
             else
-                MessageBox.Show("رجاء اختيار منتج أولا قبل الحذف", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"رجاء اختيار منتج أولا قبل الحذف", Notification.EnmType.Error);
         }
 
         private void btn_exportPDF_Click(object sender, EventArgs e)
@@ -348,7 +343,7 @@ namespace SuperMarket.UserControls
                 }
             }
             else
-                MessageBox.Show("برجاءاختيار خزنه للحذف", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"برجاءاختيار خزنه للحذف", Notification.EnmType.Error);
         }
 
         private async void btn_safeEdit_Click(object sender, EventArgs e)
@@ -368,16 +363,16 @@ namespace SuperMarket.UserControls
                         SafeSearch[0].Name = SafeNameEditResult;
                         await Classes.DataAccess.Safe.UpdateSafe(SafeSearch[0]);
                         RefreshComboBoxes();
-                        MessageBox.Show("تم التعديل", "عمليه ناجحه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        new Notification().ShowAlert($"تم التعديل", Notification.EnmType.Success);
                     }
                     else
                     {
-                        MessageBox.Show("لا يمكن تعديل اسم الخزنة لانه غير موجود", "حدث خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        new Notification().ShowAlert($"لا يمكن تعديل اسم الخزنة لانه غير موجود", Notification.EnmType.Error);
                     }
                 }
             }
             else
-                MessageBox.Show("برجاءاختيار خزنه للتعديل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"برجاءاختيار خزنه للتعديل", Notification.EnmType.Error);
         }
     }
 }

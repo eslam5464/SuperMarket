@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SuperMarket.Forms;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -60,8 +61,7 @@ namespace SuperMarket.UserControls
             }
             else
             {
-                MessageBox.Show("برجاء اختيار للطباعه", "خطأ",
-                               MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                new Notification().ShowAlert($"برجاء اختيار للطباعه", Notification.EnmType.Error);
             }
         }
     }

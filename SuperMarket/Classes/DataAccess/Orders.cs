@@ -12,6 +12,8 @@ namespace SuperMarket.Classes.DataAccess
     internal class Orders
     {
         private static readonly int MaxRows = GlobalVars.MaxQueryRows;
+        private static readonly string TableName = "Orders";
+
         internal static List<OrderModel> GetOrderParameter(string Parameter, string Condition)
         {
             try
@@ -76,6 +78,24 @@ namespace SuperMarket.Classes.DataAccess
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "Orders", Logger.ERROR);
             }
             return new List<OrderModel>();
+        }
+
+        internal static void UpdateOrder(OrderModel order)
+        {
+            try
+            {
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
+                {
+                    cnn.Execute($"UPDATE {TableName} SET InvoiceDate = @InvoiceDate, InvoiceId = @InvoiceId, CustomerId = @CustomerId, " +
+                        $"CustomerName = @CustomerName, ContactNumber = @ContactNumber, Address = @Address, GrandTotal = @GrandTotal, " +
+                        $"CreatedByUserId = @CreatedByUserId, CreatedByUserFullName = @CreatedByUserFullName WHERE Id = @Id", order);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"while updating {TableName} with id = {order.Id} & error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
+            }
         }
     }
 }

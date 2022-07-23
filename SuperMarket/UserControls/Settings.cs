@@ -1,4 +1,5 @@
 ﻿using SuperMarket.Classes;
+using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -56,7 +57,7 @@ namespace SuperMarket.UserControls
             if (tb_backupLocation.Text != "")
                 Properties.Settings.Default.Save();
 
-            MessageBox.Show("تم حفظ جميع الاعدادات", "عملية ناجحه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            new Notification().ShowAlert($"تم حفظ جميع الاعدادات", Notification.EnmType.Success);
         }
 
         private void btn_resetDefault_Click(object sender, EventArgs e)
@@ -64,7 +65,7 @@ namespace SuperMarket.UserControls
             cb_color.SelectedIndex = -1;
             Properties.Settings.Default.AppColor = Color.Purple;
 
-            MessageBox.Show("تم اعاده ضبط الاعدادات", "عملية ناجحه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            new Notification().ShowAlert($"تم اعاده ضبط الاعدادات", Notification.EnmType.Success);
         }
 
         private async void btn_backupLocation_Click(object sender, EventArgs e)
@@ -117,10 +118,10 @@ namespace SuperMarket.UserControls
                     AllOnce(DirectoryName, BackupLocation.Split('\\')[saveFileDialogSplit.Length - 1], true);
 
                 if (output)
-                    MessageBox.Show("تم حفظ النسخة الاحتياطية", "عملية ناجحه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    new Notification().ShowAlert($"تم حفظ النسخة الاحتياطية", Notification.EnmType.Success);
 
                 else
-                    MessageBox.Show("حدث خطأ أثناء حفظ النسخة الاحتياطية", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    new Notification().ShowAlert($"حدث خطأ أثناء حفظ النسخة الاحتياطية", Notification.EnmType.Error);
             }
 
             pic_createBackupLoading.Visible = false;

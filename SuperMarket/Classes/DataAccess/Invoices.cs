@@ -13,6 +13,7 @@ namespace SuperMarket.Classes.DataAccess
     internal class Invoices
     {
         private static readonly int MaxRows = GlobalVars.MaxQueryRows;
+        private static readonly string TableName = "Invoices";
         internal static List<InvoiceModel> GetInvoiceParameter(string Parameter, string Condition)
         {
             try
@@ -25,8 +26,27 @@ namespace SuperMarket.Classes.DataAccess
             }
             catch (Exception ex)
             {
-                Logger.Log($"while getting an invoicewith param = {Parameter} & codition = {Condition} & error: {ex.Message}",
-                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Invoices", Logger.ERROR);
+                Logger.Log($"while getting an {TableName} with param = {Parameter} & codition = {Condition} & error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
+            }
+            return new List<InvoiceModel>();
+        }
+        internal static List<InvoiceModel> GetInvoiceTwoParameter(string Parameter1, string Condition1, string Parameter2, string Condition2)
+        {
+            try
+            {
+                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
+                {
+                    var output = cnn.Query<InvoiceModel>($"SELECT TOP {MaxRows} * FROM Invoices WHERE {Parameter1} = N'{Condition1}' " +
+                        $"AND {Parameter2} = N'{Condition2}'", new DynamicParameters());
+                    return output.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"while getting an {TableName} with param1 = {Parameter1} & codition1 = {Condition1} " +
+                    $"& param1 = {Parameter2} & codition1 = {Condition2}  & error: {ex.Message}",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
             }
             return new List<InvoiceModel>();
         }
@@ -50,7 +70,7 @@ namespace SuperMarket.Classes.DataAccess
                     "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 Logger.Log($"while adding an invoice with id = {invoice.Id} error: {ex.Message}",
-                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Invoices", Logger.ERROR);
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
             }
         }
 
@@ -67,7 +87,7 @@ namespace SuperMarket.Classes.DataAccess
             catch (Exception ex)
             {
                 Logger.Log($"while removing an invoice with id = {InvoiceNumber} error: {ex.Message}",
-                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Invoices", Logger.ERROR);
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
             }
             return new List<InvoiceModel>();
         }
@@ -94,7 +114,7 @@ namespace SuperMarket.Classes.DataAccess
             catch (Exception ex)
             {
                 Logger.Log($"while getting all invoices error: {ex.Message}",
-                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Invoices", Logger.ERROR);
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
             }
             return new List<InvoiceModel>();
         }
@@ -105,7 +125,7 @@ namespace SuperMarket.Classes.DataAccess
             {
                 using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
-                    await Task.Run(() => cnn.Execute($"DELETE FROM Invoices WHERE Id = {InvoiceNumber} AND ProductID = {ProductID}"));
+                    await Task.Run(() => cnn.Execute($"DELETE FROM Invoices WHERE InvoiceNumber = {InvoiceNumber} AND ProductID = {ProductID}"));
                 }
             }
             catch (Exception ex)
@@ -114,7 +134,7 @@ namespace SuperMarket.Classes.DataAccess
                     "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 Logger.Log($"while removing product from invoice with Pid = {ProductID} & Iid = {InvoiceNumber} & error: {ex.Message}",
-                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Invoices", Logger.ERROR);
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
             }
         }
 
@@ -131,7 +151,7 @@ namespace SuperMarket.Classes.DataAccess
             catch (Exception ex)
             {
                 Logger.Log($"while loading invoice with number = {InvoiceNumber} & error: {ex.Message}",
-                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "Invoices", Logger.ERROR);
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, TableName, Logger.ERROR);
             }
             return new List<InvoiceModel>();
         }

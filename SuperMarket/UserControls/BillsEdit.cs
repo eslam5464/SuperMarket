@@ -1,5 +1,6 @@
 ﻿using SuperMarket.Classes;
 using SuperMarket.Classes.Models;
+using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -18,6 +19,8 @@ namespace SuperMarket.UserControls
         private DataGridViewCell ContextMenuSelectedCell;
         private readonly IDictionary<int, string> ProductSearchType = new Dictionary<int, string>();
         private readonly string[] ProductSearchString = { "اسم المنتج", "الباركود", "الرقم التعريفي" };
+        private List<long> DeletedProducts = new List<long>();
+        private long ShownInvoiceNumber;
 
         private void MenuItemCopyOption_Click(Object sender, EventArgs e)
         {
@@ -105,6 +108,8 @@ namespace SuperMarket.UserControls
                            MessageBoxButtons.YesNo,
                            MessageBoxIcon.Information) == DialogResult.Yes)
                 {
+                    DeletedProducts.Add(ProductId);
+
                     List<InvoiceModel> datasource = (List<InvoiceModel>)db_probillsDataGridView.DataSource;
                     db_probillsDataGridView.DataSource = null;
                     datasource.Remove(datasource.Find(invoice => invoice.Id == InvoiceID));
@@ -114,7 +119,7 @@ namespace SuperMarket.UserControls
                 }
             }
             else
-                MessageBox.Show("رجاء اختيار منتج أولا قبل الحذف", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"رجاء اختيار منتج أولا قبل الحذف", Notification.EnmType.Error);
         }
 
         private void btn_addToBill_Click(object sender, EventArgs e)
@@ -181,8 +186,7 @@ namespace SuperMarket.UserControls
                         FillProductComboBox(txt_searchedProductName, SearchedProducts, "Id", "Name");
                     }
                     else
-                        MessageBox.Show("لا يوجد منتج بهذه البيانات", "لا يوجد",
-                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        new Notification().ShowAlert($"لا يوجد منتج بهذه البيانات", Notification.EnmType.Error);
                 }
 
                 else if (txt_searchProductType.Text == ProductSearchType[1].ToString())
@@ -195,8 +199,7 @@ namespace SuperMarket.UserControls
                         FillProductComboBox(txt_searchedProductName, SearchedProducts, "Id", "Name");
                     }
                     else
-                        MessageBox.Show("لا يوجد منتج بهذه البيانات", "لا يوجد",
-                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        new Notification().ShowAlert($"لا يوجد منتج بهذه البيانات", Notification.EnmType.Error);
                 }
 
                 else if (txt_searchProductType.Text == ProductSearchType[2].ToString())
@@ -209,13 +212,11 @@ namespace SuperMarket.UserControls
                         FillProductComboBox(txt_searchedProductName, SearchedProducts, "Id", "Name");
                     }
                     else
-                        MessageBox.Show("لا يوجد منتج بهذه البيانات", "لا يوجد",
-                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        new Notification().ShowAlert($"لا يوجد منتج بهذه البيانات", Notification.EnmType.Error);
                 }
             }
             else
-                MessageBox.Show("برجاء اختيار نوع البحث اولا", "خطأ",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"برجاء اختيار نوع البحث اولا", Notification.EnmType.Error);
         }
 
         private void FillProductComboBox(ComboBox comboBox, List<ProductModel> SearchedProducts, string Value, string Display)
@@ -237,17 +238,17 @@ namespace SuperMarket.UserControls
 
                 if (searchedInvoice.Count > 0)
                 {
+                    ShownInvoiceNumber = searchedInvoice[0].InvoiceNumber;
+
                     db_probillsDataGridView.DataSource = searchedInvoice;
                     ResizeAndRenameCoulmns();
                     CalculateGrandTotal();
                 }
                 else
-                    MessageBox.Show("لا يوجد فاتورة بهذه البيانات", "خطأ",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    new Notification().ShowAlert($"لا يوجد فاتورة بهذه البيانات", Notification.EnmType.Error);
             }
             else
-                MessageBox.Show("برجاء كتبه رقم الفاتورة اولا", "خطأ",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"برجاء كتبه رقم الفاتورة اولا", Notification.EnmType.Error);
         }
 
         private void CalculateGrandTotal()
@@ -323,9 +324,49 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void btn_save_Click(object sender, EventArgs e)
+        private async void btn_save_Click(object sender, EventArgs e)
         {
+            if (db_probillsDataGridView.DataSource != null && db_probillsDataGridView.CurrentCell != null)
+            {
+                foreach (long ProductId in DeletedProducts)
+                {
+                    List<InvoiceModel> DeletedProductFromInvoice = Classes.DataAccess.Invoices.GetInvoiceTwoParameter
+                        ("ProductID", "" + ProductId, "InvoiceNumber", "" + ShownInvoiceNumber);
 
+                    if (DeletedProductFromInvoice.Count > 0)
+                    {
+                        double SearchedInvoiceProductQuantity = DeletedProductFromInvoice[0].ProductQuantity;
+                        long SearchedInvoiceProductId = DeletedProductFromInvoice[0].ProductID;
+
+                        List<ProductModel> SearchedProduct = Classes.DataAccess.Products.GetProductParameter("Id", "" + SearchedInvoiceProductId);
+
+                        if (SearchedProduct.Count > 0)
+                        {
+                            ProductModel UpdatedProduct = new ProductModel()
+                            {
+                                Id = SearchedProduct[0].Id,
+                                BarCode = SearchedProduct[0].BarCode,
+                                CategoryID = SearchedProduct[0].CategoryID,
+                                CategoryName = SearchedProduct[0].CategoryName,
+                                CreationDate = SearchedProduct[0].CreationDate,
+                                Description = SearchedProduct[0].Description,
+                                Name = SearchedProduct[0].Name,
+                                PriceModificationDate = SearchedProduct[0].PriceModificationDate,
+                                Quantity = SearchedProduct[0].Quantity + SearchedInvoiceProductQuantity,
+                                QuantityMinimum = SearchedProduct[0].QuantityMinimum
+                            };
+
+                            await Classes.DataAccess.Products.UpdateProduct(UpdatedProduct);
+
+                            await Classes.DataAccess.Invoices.RemoveProductFromInvoice(ProductId, ShownInvoiceNumber);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                new Notification().ShowAlert($"لا يوجد منتجات للحفظ", Notification.EnmType.Error);
+            }
         }
     }
 }

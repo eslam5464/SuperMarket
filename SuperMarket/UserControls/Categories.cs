@@ -1,5 +1,6 @@
 ﻿using SuperMarket.Classes;
 using SuperMarket.Classes.Models;
+using SuperMarket.Forms;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -90,11 +91,13 @@ namespace SuperMarket.UserControls
                 }
                 else
                 {
-                    MessageBox.Show("برجاء اختيار المخزن", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    new Notification().ShowAlert($"برجاء اختيار المخزن", Notification.EnmType.Error);
                 }
             }
             else
-                MessageBox.Show("برجاء ادخال اسم التصنيف", "حاول مره أخرى", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            {
+                new Notification().ShowAlert($"برجاء ادخال اسم التصنيف", Notification.EnmType.Error);
+            }
         }
 
         private void ResetTextBoxes(bool ResetCategories, bool ResetStorages)
@@ -426,7 +429,7 @@ namespace SuperMarket.UserControls
                         System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
             }
             else
-                MessageBox.Show("برجاء ادخال اسم المخزن", "حاول مره أخرى", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"برجاء ادخال اسم المخزن", Notification.EnmType.Error);
         }
 
         private async void btn_storageDelete_Click(object sender, EventArgs e)
@@ -442,7 +445,7 @@ namespace SuperMarket.UserControls
                 }
             }
             else
-                MessageBox.Show("برجاءاختيار مخزن للحذف", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"برجاء اختيار مخزن للحذف", Notification.EnmType.Error);
         }
 
         private void btn_storageEdit_Click(object sender, EventArgs e)
@@ -462,16 +465,17 @@ namespace SuperMarket.UserControls
                         StorageSearch[0].Name = StorageNameEditResult;
                         Classes.DataAccess.Storages.UpdateStorage(StorageSearch[0]);
                         RefreshComboBoxes();
-                        MessageBox.Show("تم التعديل", "عمليه ناجحه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        new Notification().ShowAlert($"تم التعديل", Notification.EnmType.Success);
                     }
                     else
                     {
-                        MessageBox.Show("لا يمكن تعديل اسم المخزن لانه غير موجود", "حدث خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        new Notification().ShowAlert($"لا يمكن تعديل اسم المخزن لانه غير موجود", Notification.EnmType.Error);
                     }
                 }
             }
             else
-                MessageBox.Show("برجاءاختيار مخزن للتعديل", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"برجاءاختيار مخزن للتعديل", Notification.EnmType.Error);
         }
 
         private void txt_storageNameEdit_SelectedIndexChanged(object sender, EventArgs e)
@@ -492,14 +496,12 @@ namespace SuperMarket.UserControls
                 }
                 else
                 {
-                    MessageBox.Show($"لا يوجد مخزن بهذا الاسم", "خطأ",
-                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    new Notification().ShowAlert($"لا يوجد مخزن بهذا الاسم", Notification.EnmType.Error);
                 }
             }
             else
             {
-                MessageBox.Show($"برجاء اختيار اسم المخزن قبل البحث", "خطأ",
-                         MessageBoxButtons.OK, MessageBoxIcon.Error);
+                new Notification().ShowAlert($"برجاء اختيار اسم المخزن قبل البحث", Notification.EnmType.Error);
             }
         }
     }

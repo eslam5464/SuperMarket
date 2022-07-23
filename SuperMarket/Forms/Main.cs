@@ -461,7 +461,7 @@ namespace SuperMarket.Forms
                         if (await Security.CalculateTrialDaysLeft() <= 0)
                         {
                             MessageBox.Show("لقد انتهت المده المسموحة لاستخدام البرنامج", "انتبه",
-                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
                             Logger.Log("time used to open the application finished",
                                      System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
 
@@ -472,7 +472,7 @@ namespace SuperMarket.Forms
                     else
                     {
                         MessageBox.Show("لا يمكن الاتصال بالإنترنت برجاء استخدام البرنامج عندما يكون الجهاز متصل بـال انترنت",
-                            "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Logger.Log("time used to open the application finished",
                                  System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
 
@@ -497,6 +497,11 @@ namespace SuperMarket.Forms
             new About().ShowDialog();
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new Notification().ShowAlert("البيانات المدخله غير صحيحة برجاء التأكد من اسم المستخدم و كلمه المرور",
+                       Notification.EnmType.Warning);
+        }
 
         private void pic_help_MouseEnter(object sender, EventArgs e)
         {
