@@ -36,21 +36,24 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void btn_trialDaysLeft_Click(object sender, EventArgs e)
+        private async void btn_trialDaysLeft_Click(object sender, EventArgs e)
         {
             //Console.WriteLine(await Classes.DataAccess.DataInit.GetDatabaseCreationDate("SuperMarket"));
             //Console.WriteLine("trial: "+Security.GetTrialDays());
 
             //Console.WriteLine("trial: " + await Security.GetTrialDaysLeft());
+            btn_trialDaysLeft.Enabled = false;
             int TrialDays = Security.GetTrialDays();
             if (TrialDays == -1)
                 MessageBox.Show($"This is a full version");
 
             else if (TrialDays >= 0)
             {
-                int TrialDaysLeft = Security.GetTrialDaysLeft();
-                MessageBox.Show($"Trial Days left: {TrialDaysLeft}");
+                await Security.CalculateTrialDaysLeft();
+                double TrialDaysLeft = Security.GetTrialDaysLeft();
+                MessageBox.Show($"Trial Time left: {TimeSpan.FromDays(TrialDaysLeft)}");
             }
+            btn_trialDaysLeft.Enabled = true;
         }
 
         private void AdminPanel_Load(object sender, EventArgs e)

@@ -26,8 +26,6 @@ namespace SuperMarket.Forms
             SetColors(Properties.Settings.Default.AppColor);
 
             tb_serial1.Focus();
-
-            await Methods.SendComputerInfo();
         }
 
         private void SetColors(Color appColor)

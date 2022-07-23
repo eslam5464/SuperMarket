@@ -20,7 +20,6 @@ namespace SuperMarket.UserControls
         {
             await SetupColorsDict();
             SetupVars();
-            // TODO: finish get backup folder
         }
 
         private void SetupVars()
@@ -82,6 +81,7 @@ namespace SuperMarket.UserControls
         private void btn_restoreDatabase_Click(object sender, EventArgs e)
         {
             btn_restoreDatabase.Enabled = false;
+            pic_restoreDatabaseLoading.Visible = true;
 
             string FileLocation = Methods.PromptOpenFileDialog("bak", "Backup");
 
@@ -90,12 +90,14 @@ namespace SuperMarket.UserControls
                 Classes.DataAccess.DataRestore.All(FileLocation, "Default");
             }
 
+            pic_restoreDatabaseLoading.Visible = false;
             btn_restoreDatabase.Enabled = true;
         }
 
         private async void btn_createBackup_Click(object sender, EventArgs e)
         {
             btn_createBackup.Enabled = false;
+            pic_createBackupLoading.Visible = true;
 
             string Date = DateTime.Now.ToString("yyyy-MM-dd"),
                 FileName = $"LocalBackup {Date}.bak";
@@ -120,6 +122,8 @@ namespace SuperMarket.UserControls
                 else
                     MessageBox.Show("حدث خطأ أثناء حفظ النسخة الاحتياطية", "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            pic_createBackupLoading.Visible = false;
             btn_createBackup.Enabled = true;
         }
     }

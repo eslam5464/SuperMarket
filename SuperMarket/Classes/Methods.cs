@@ -41,7 +41,7 @@ namespace SuperMarket.Classes
                 }
 
             }
-            catch(WebException weBEx)
+            catch (WebException weBEx)
             {
                 Logger.Log($"Error while fetching the online date now & WebException error: {weBEx.Message}",
                           System.Reflection.MethodInfo.GetCurrentMethod().Name, "Methods", Logger.ERROR);
@@ -232,8 +232,6 @@ namespace SuperMarket.Classes
         {
             StringBuilder stringBuilder = new StringBuilder();
 
-            await Security.GetComputerInfo();
-
             try
             {
                 stringBuilder.AppendLine($"<h1>CPU & Motherboard ID Information</h1>");
@@ -349,7 +347,7 @@ namespace SuperMarket.Classes
                 Title = $"Browse {FilterFileName} Files",
                 CheckFileExists = true,
                 CheckPathExists = true,
-                DefaultExt = $"{FilterFileName}",
+                DefaultExt = $"{FilterFilesExtention}",
                 Filter = $"{FilterFileName} files (*.{FilterFilesExtention})| *.{FilterFilesExtention}|All files (*.*)|*.*",
                 FilterIndex = 1,
                 Multiselect = false,
@@ -364,6 +362,11 @@ namespace SuperMarket.Classes
             }
 
             return "";
+        }
+
+        internal static bool CheckFileExists(string FileName)
+        {
+            return (File.Exists(FileName));
         }
 
         internal async static Task<string> PromptFolderBrowserDialog()

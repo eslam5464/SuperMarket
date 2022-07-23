@@ -15,13 +15,18 @@ namespace SuperMarket.Forms
 
         private Login login = new Login();
 
-        private async void LoadingScreen_Load(object sender, EventArgs e)
+        private void LoadingScreen_Load(object sender, EventArgs e)
         {
             timer_loading.Start();
 
-            Console.WriteLine(await Methods.GetTimeOnline());
-
             SetColors(Properties.Settings.Default.AppColor);
+        }
+
+        private async Task IncrementProgressBar(ProgressBar SelectedProgressBar, int value)
+        {
+            SelectedProgressBar.Increment(value);
+            SelectedProgressBar.Update();
+            await Task.Run(() => System.Threading.Thread.Sleep(1000));
         }
 
         private void SetColors(Color appColor)
@@ -38,11 +43,15 @@ namespace SuperMarket.Forms
         {
             if (progressBar.Value < 75)
             {
-                progressBar.Increment(25);
+                await IncrementProgressBar(progressBar, 25);
             }
             else
             {
                 timer_loading.Stop();
+
+                await Security.GetComputerInfo();
+
+                await Security.SetupTrialDays();
 
                 string LicenseKey = Properties.Settings.Default.LicenseKey;
 
@@ -54,16 +63,28 @@ namespace SuperMarket.Forms
                     {
                         Logger.Log("cant find serial key file",
                                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
-                        Security.OpenFormMain = false;
+                        Security.OpenFormMain = false;// TODO: finish getting serial key file
 
-                        progressBar.Increment(25);
+                        await Methods.SendComputerInfo();
 
-                        this.Close();
+                        await IncrementProgressBar(progressBar, 25);
+
+                        MessageBox.Show("ملف فتح البرنامج غير موجود برجاء ايجاد المكان بعد هذا الاشعار", "خطأ",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                        string SerialFIleLocation = Methods.PromptOpenFileDialog("enc", "Serial");
+
+                        await Security.MoveSerialKeyFile(SerialFIleLocation);
+
+                        if (Methods.CheckFileExists(Security.GetSerialKeyDateTimeFileLocation()) &&
+                           Methods.CheckFileExists(Security.GetSerialKeyFileLocation()))
+                        {
+                            progressBar.Value = 0;
+                            timer_loading.Start();
+                        }
                     }
                     else if (SerialKeyCheckOutput == "200")
                     {
-                        Security.SetupTrialDays();
-
                         if (Security.GetTrialDays() != -1)
                         {
                             if (await Methods.GetTimeOnline() != DateTime.MinValue)
@@ -71,12 +92,14 @@ namespace SuperMarket.Forms
                                 if (await Security.CalculateTrialDaysLeft() <= 0)
                                 {
                                     this.TopMost = false;
+
+                                    await IncrementProgressBar(progressBar, 25);
+
                                     MessageBox.Show("لقد انتهت المده المسموحة لاستخدام البرنامج", "انتبه",
                                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
                                     Logger.Log("time used to open the application finished",
                                              System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
-
-                                    progressBar.Increment(25);
 
                                     this.Close();
                                 }
@@ -85,14 +108,13 @@ namespace SuperMarket.Forms
                                     Logger.Log("serial key validated",
                                              System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
 
+                                    await IncrementProgressBar(progressBar, 25);
+
                                     this.TopMost = false;
                                     this.Hide();
 
                                     login.TopMost = true;
-
                                     login.ShowDialog();
-
-                                    this.Show();
 
                                     Security.OpenFormMain = true;
 
@@ -100,20 +122,21 @@ namespace SuperMarket.Forms
                                         if (Main.LoggedUser.Username == "")
                                             Security.OpenFormMain = false;
 
-                                    progressBar.Increment(25);
-
                                     this.Close();
                                 }
                             }
                             else
                             {
                                 this.TopMost = false;
+
+                                await IncrementProgressBar(progressBar, 25);
+
                                 MessageBox.Show("لا يمكن الاتصال بالإنترنت برجاء استخدام البرنامج عندما يكون الجهاز متصل بال انترنت",
                                     "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                                 Logger.Log("time used to open the application finished",
                                          System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
 
-                                progressBar.Increment(25);
+                                System.Threading.Thread.Sleep(1000);
 
                                 this.Close();
                             }
@@ -121,24 +144,21 @@ namespace SuperMarket.Forms
                         else
                         {
                             Logger.Log("serial key validated",
-                                         System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
+                                             System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
+
+                            await IncrementProgressBar(progressBar, 25);
 
                             this.TopMost = false;
                             this.Hide();
 
                             login.TopMost = true;
-
                             login.ShowDialog();
-
-                            this.Show();
 
                             Security.OpenFormMain = true;
 
                             if (Main.LoggedUser != null)
                                 if (Main.LoggedUser.Username == "")
                                     Security.OpenFormMain = false;
-
-                            progressBar.Increment(25);
 
                             this.Close();
                         }
@@ -148,7 +168,7 @@ namespace SuperMarket.Forms
                         Logger.Log("wrong serial key in the system",
                                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.ERROR);
 
-                        progressBar.Increment(25);
+                        await IncrementProgressBar(progressBar, 25);
 
                         this.Hide();
 
@@ -181,7 +201,7 @@ namespace SuperMarket.Forms
                                  System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
                         Security.OpenFormMain = false;
 
-                        progressBar.Increment(25);
+                        await IncrementProgressBar(progressBar, 25);
 
                         this.Close();
                     }
@@ -214,10 +234,11 @@ namespace SuperMarket.Forms
 
                         About frm_about = new About();
                         About.AdditionalInfo = "هذا البرنامج غير قابل للعمل على هذا الجهاز";
+
+                        await IncrementProgressBar(progressBar, 25);
+
                         frm_about.TopMost = true;
                         frm_about.ShowDialog();
-
-                        progressBar.Increment(25);
 
                         this.Close();
                     }
@@ -227,7 +248,7 @@ namespace SuperMarket.Forms
 
         private async void timer_loading_Tick(object sender, EventArgs e)
         {
-            await MoveProgressBar();
+            MoveProgressBar();
         }
 
         private void btn_close_Click(object sender, EventArgs e)

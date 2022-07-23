@@ -24,9 +24,10 @@ namespace SuperMarket.Classes
 
         public static bool OpenFormMain = false;
 
-        private static int TrialDays, TrialDaysLeft;
+        private static int TrialDays;
+        private static double TrialDaysLeft;
 
-        public static int GetTrialDaysLeft()
+        public static double GetTrialDaysLeft()
         {
             return TrialDaysLeft;
         }
@@ -46,6 +47,11 @@ namespace SuperMarket.Classes
             return DriveLetter;
         }
 
+        public static string GetSerialKeyDateTimeFileLocation()
+        {
+            return SerialKeyDateTimeFileLocation;
+        }
+
         public static string GetSerialKeyFileLocation()
         {
             return SerialKeyFileLocation;
@@ -56,39 +62,75 @@ namespace SuperMarket.Classes
             return DirectoryLocation;
         }
 
-        public async static Task<int> CalculateTrialDaysLeft()
+        public async static Task<double> CalculateTrialDaysLeft()
         {
             DateTime LicenseDateTime = DateTime.Parse(await DecryptAsync(File.ReadAllText(SerialKeyDateTimeFileLocation), CPUID + MOBOID));
 
-            int OnlineAndLicenseDiff = int.Parse("" + Math.Floor((await Methods.GetTimeOnline() - LicenseDateTime).TotalDays));
+            double OnlineAndLicenseDiff = (await Methods.GetTimeOnline() - LicenseDateTime).TotalDays;
 
-            int DaysLeft = GetTrialDays() - OnlineAndLicenseDiff;
+            double DaysLeft = GetTrialDays() - OnlineAndLicenseDiff;
 
             TrialDaysLeft = DaysLeft;
 
             return DaysLeft;
         }
 
-        public async static void SetupTrialDays()
+        public async static Task SetupTrialDays()
         {
-            string LisenceKey = await DecryptAsync(File.ReadAllText(SerialKeyFileLocation), CPUID + MOBOID);
+            if (await SerialKeyFileExists())
+            {
+                string LisenceKey = await DecryptAsync(File.ReadAllText(SerialKeyFileLocation), CPUID + MOBOID);
 
-            StringBuilder sb_lisenceKey = new StringBuilder(LisenceKey);
+                StringBuilder sb_lisenceKey = new StringBuilder(LisenceKey);
 
-            if (sb_lisenceKey[3] == 't' || sb_lisenceKey[3] == 'T')
-                TrialDays = int.Parse(sb_lisenceKey[5].ToString() + sb_lisenceKey[6].ToString());
+                if (sb_lisenceKey[3] == 't' || sb_lisenceKey[3] == 'T')
+                    TrialDays = int.Parse(sb_lisenceKey[5].ToString() + sb_lisenceKey[6].ToString());
 
-            else if (sb_lisenceKey[3] == 'f' || sb_lisenceKey[3] == 'F')
-                TrialDays = -1;
+                else if (sb_lisenceKey[3] == 'f' || sb_lisenceKey[3] == 'F')
+                    TrialDays = -1;
 
+                else
+                    TrialDays = 0;
+            }
             else
-                TrialDays = 0;
+            {
+                TrialDays = -2;
+            }
+        }
+
+        internal async static Task MoveSerialKeyFile(string SerialFileLocation)
+        {
+            string FileSerialName = "\\serial.enc";
+            string FileDateTimeName = "\\datetime.enc";
+
+            if (!Directory.Exists(DirectoryLocation))
+                Directory.CreateDirectory(DirectoryLocation);
+
+            if (File.Exists(SerialFileLocation))
+            {
+                if (File.Exists(DirectoryLocation + FileSerialName))
+                    File.Delete(DirectoryLocation + FileSerialName);
+
+                File.Move(SerialFileLocation, DirectoryLocation + FileSerialName);
+
+                if (File.Exists(DirectoryLocation + FileDateTimeName))
+                    File.Delete(DirectoryLocation + FileDateTimeName);
+
+                using (FileStream fs = File.Create(DirectoryLocation + FileDateTimeName))
+                {
+                    string dateTime = DateTime.Now.ToString();
+                    Byte[] title = new UTF8Encoding(true).GetBytes(await EncryptAsync(dateTime, await GetCpuID() + await GetMotherBoardID()));
+                    fs.Write(title, 0, title.Length);
+                    fs.Close();
+                }
+
+
+                //File.Move(FileDateTimeSource, DirectoryLocation + FileDateTimeSource);
+            }
         }
 
         public async static Task<string> CheckLicenseKeyOnAppAsync()
         {
-            await GetComputerInfo();
-
             await SerialKeyFileExists();
 
             if (new FileInfo(SerialKeyFileLocation).Length == 0)
@@ -129,7 +171,7 @@ namespace SuperMarket.Classes
             if (CPUID == "" && MOBOID == "")
             {
                 CPUID = await Task.Run(() => GetCpuID());
-                MOBOID = await Task.Run(() => GetMotherBoardIDAsync());
+                MOBOID = await Task.Run(() => GetMotherBoardID());
                 CPUName = await Task.Run(() => GetCpuInfo("Name"));
                 CPUCores = await Task.Run(() => GetCpuInfo("NumberOfCores"));
                 CPUSpeed = await Task.Run(() => GetCpuInfo("CurrentClockSpeed"));
@@ -139,31 +181,35 @@ namespace SuperMarket.Classes
 
         public async static Task<string> CheckLicenseKeyValidity(string LicenseKey)
         {
-            await GetComputerInfo();
-
-            await SerialKeyFileExists();
-
-            if (new FileInfo(SerialKeyFileLocation).Length == 0)
+            if (await SerialKeyFileExists())
             {
-                Logger.Log("serial file exists with no serial in it",
-                     System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.CRITICAL);
-                return "404";
+                if (new FileInfo(SerialKeyFileLocation).Length == 0)
+                {
+                    Logger.Log("serial file exists with no serial in it",
+                         System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.CRITICAL);
+                    return "404";
+                }
+                string LisenceKeyChecker = await Security.DecryptAsync(File.ReadAllText(SerialKeyFileLocation), CPUID + MOBOID);
+
+                if (LicenseKey == LisenceKeyChecker)
+                {
+                    Logger.Log("serial key matched on system", System.Reflection.MethodInfo.GetCurrentMethod().Name,
+                       "LoginMethods", Logger.INFO);
+                    return "200";
+                }
+
+                else
+                {
+                    Logger.Log("wrong serial on app", System.Reflection.MethodInfo.GetCurrentMethod().Name,
+                       "LoginMethods", Logger.ERROR);
+                    return "400";
+                }
             }
-
-            string LisenceKeyChecker = await Security.DecryptAsync(File.ReadAllText(SerialKeyFileLocation), CPUID + MOBOID);
-
-            if (LicenseKey == LisenceKeyChecker)
-            {
-                Logger.Log("serial key matched on system", System.Reflection.MethodInfo.GetCurrentMethod().Name,
-                   "LoginMethods", Logger.INFO);
-                return "200";
-            }
-
             else
             {
-                Logger.Log("wrong serial on app", System.Reflection.MethodInfo.GetCurrentMethod().Name,
-                   "LoginMethods", Logger.ERROR);
-                return "400";
+                Logger.Log($"serial file isnt found in the location: <{DirectoryLocation}>",
+                            System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.CRITICAL);
+                return "404";
             }
         }
 
@@ -179,7 +225,7 @@ namespace SuperMarket.Classes
 
             if (!File.Exists(DirectoryLocation + SerialKeyFileName + FileExtention))
             {
-                Logger.Log("serial key file doesnt exist & created a new one", System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.CRITICAL);
+                Logger.Log("serial key file doesnt exis", System.Reflection.MethodInfo.GetCurrentMethod().Name, "LoginMethods", Logger.CRITICAL);
                 state = false;
                 //File.Create(DirectoryLocation + SerialKeyFileName + FileExtention).Close();
             }
@@ -189,7 +235,7 @@ namespace SuperMarket.Classes
 
         #region Computer information
 
-        private async static Task<string> GetMotherBoardIDAsync()
+        private async static Task<string> GetMotherBoardID()
         {
             string serial = "";
             try

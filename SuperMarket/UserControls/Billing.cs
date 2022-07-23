@@ -536,24 +536,6 @@ namespace SuperMarket.UserControls
             }
         }
 
-        private void btn_update_Click(object sender, EventArgs e)
-        {
-            //int rowindex = db_procardsDataGridView.CurrentCell.RowIndex;
-            //int InvoiceID = int.Parse(db_procardsDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
-            //int ProductId = int.Parse(db_procardsDataGridView.Rows[rowindex].Cells["ProductId"].Value.ToString());
-            //string ProductName = db_procardsDataGridView.Rows[rowindex].Cells["ProductName"].Value.ToString();
-            //string DateCreated = db_procardsDataGridView.Rows[rowindex].Cells["CreationDate"].Value.ToString();
-            if (db_procardsDataGridView.DataSource != null)
-            {
-                List<InvoiceModel> InvoiceSearch = Classes.DataAccess.Invoices.GetInvoice(int.Parse(txt_invoiceno.Text));
-                if (InvoiceSearch.Count != 0)
-                {//TODO: finish searching for invoice
-                    SetEditMode(true);
-                }
-
-            }
-        }
-
         private void SetEditMode(bool State)
         {
             Button[] buttons = {

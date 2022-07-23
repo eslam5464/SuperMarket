@@ -45,10 +45,18 @@ namespace SuperMarket.UserControls
             this.btn_restoreDatabase = new System.Windows.Forms.Button();
             this.btn_saveSettings = new System.Windows.Forms.Button();
             this.btn_resetDefault = new System.Windows.Forms.Button();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.pic_createBackupLoading = new System.Windows.Forms.PictureBox();
+            this.pic_restoreDatabaseLoading = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_createBackupLoading)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_restoreDatabaseLoading)).BeginInit();
             this.SuspendLayout();
             // 
             // cb_color
@@ -93,7 +101,7 @@ namespace SuperMarket.UserControls
             this.tableLayoutPanel1.RowCount = 6;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
@@ -107,7 +115,7 @@ namespace SuperMarket.UserControls
             this.lbl_restoreDatabase.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
             this.lbl_restoreDatabase.Location = new System.Drawing.Point(6, 129);
             this.lbl_restoreDatabase.Name = "lbl_restoreDatabase";
-            this.lbl_restoreDatabase.Size = new System.Drawing.Size(300, 50);
+            this.lbl_restoreDatabase.Size = new System.Drawing.Size(300, 60);
             this.lbl_restoreDatabase.TabIndex = 221;
             this.lbl_restoreDatabase.Text = "البيانات المخزنه";
             this.lbl_restoreDatabase.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -212,14 +220,14 @@ namespace SuperMarket.UserControls
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Controls.Add(this.btn_createBackup, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.btn_restoreDatabase, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel5, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.tableLayoutPanel6, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(315, 132);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(711, 44);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(711, 54);
             this.tableLayoutPanel4.TabIndex = 222;
             // 
             // btn_createBackup
@@ -229,7 +237,7 @@ namespace SuperMarket.UserControls
             this.btn_createBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_createBackup.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_createBackup.ForeColor = System.Drawing.Color.White;
-            this.btn_createBackup.Location = new System.Drawing.Point(418, 3);
+            this.btn_createBackup.Location = new System.Drawing.Point(29, 5);
             this.btn_createBackup.Name = "btn_createBackup";
             this.btn_createBackup.Size = new System.Drawing.Size(229, 38);
             this.btn_createBackup.TabIndex = 220;
@@ -244,7 +252,7 @@ namespace SuperMarket.UserControls
             this.btn_restoreDatabase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_restoreDatabase.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_restoreDatabase.ForeColor = System.Drawing.Color.White;
-            this.btn_restoreDatabase.Location = new System.Drawing.Point(62, 3);
+            this.btn_restoreDatabase.Location = new System.Drawing.Point(30, 5);
             this.btn_restoreDatabase.Name = "btn_restoreDatabase";
             this.btn_restoreDatabase.Size = new System.Drawing.Size(231, 38);
             this.btn_restoreDatabase.TabIndex = 220;
@@ -282,11 +290,62 @@ namespace SuperMarket.UserControls
             this.btn_resetDefault.UseVisualStyleBackColor = false;
             this.btn_resetDefault.Click += new System.EventHandler(this.btn_resetDefault_Click);
             // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 83.66763F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.33238F));
+            this.tableLayoutPanel5.Controls.Add(this.pic_restoreDatabaseLoading, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btn_restoreDatabase, 0, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(349, 48);
+            this.tableLayoutPanel5.TabIndex = 221;
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 82F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 18F));
+            this.tableLayoutPanel6.Controls.Add(this.pic_createBackupLoading, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.btn_createBackup, 0, 0);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(358, 3);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 1;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(350, 48);
+            this.tableLayoutPanel6.TabIndex = 222;
+            // 
+            // pic_createBackupLoading
+            // 
+            this.pic_createBackupLoading.Image = global::SuperMarket.Properties.Resources.gif_loading_48;
+            this.pic_createBackupLoading.Location = new System.Drawing.Point(290, 3);
+            this.pic_createBackupLoading.Name = "pic_createBackupLoading";
+            this.pic_createBackupLoading.Size = new System.Drawing.Size(57, 42);
+            this.pic_createBackupLoading.TabIndex = 220;
+            this.pic_createBackupLoading.TabStop = false;
+            this.pic_createBackupLoading.Visible = false;
+            // 
+            // pic_restoreDatabaseLoading
+            // 
+            this.pic_restoreDatabaseLoading.Image = global::SuperMarket.Properties.Resources.gif_loading_48;
+            this.pic_restoreDatabaseLoading.Location = new System.Drawing.Point(295, 3);
+            this.pic_restoreDatabaseLoading.Name = "pic_restoreDatabaseLoading";
+            this.pic_restoreDatabaseLoading.Size = new System.Drawing.Size(51, 42);
+            this.pic_restoreDatabaseLoading.TabIndex = 221;
+            this.pic_restoreDatabaseLoading.TabStop = false;
+            this.pic_restoreDatabaseLoading.Visible = false;
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.btn_resetDefault);
             this.Controls.Add(this.btn_saveSettings);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -300,6 +359,10 @@ namespace SuperMarket.UserControls
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pic_createBackupLoading)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_restoreDatabaseLoading)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -321,5 +384,9 @@ namespace SuperMarket.UserControls
         private System.Windows.Forms.Button btn_restoreDatabase;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.Button btn_createBackup;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.PictureBox pic_restoreDatabaseLoading;
+        private System.Windows.Forms.PictureBox pic_createBackupLoading;
     }
 }
