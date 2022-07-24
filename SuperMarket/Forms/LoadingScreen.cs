@@ -52,6 +52,14 @@ namespace POSWarehouse.Forms
             else if (progressBar.Value < 50)
             {
                 await Logger.CreateLogDB();
+
+                bool x = await Classes.DataAccess.DataInit.CheckDatabaseExists(Security.GetDBName());
+
+                if (!x)
+                {
+                    await Classes.DataAccess.DataInit.CreateDatabase(Security.GetDBName());
+                }
+
                 // Methods.StartSetupPrograms();
                 await IncrementProgressBar(progressBar, 25);
             }

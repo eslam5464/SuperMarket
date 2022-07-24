@@ -1,9 +1,13 @@
 ﻿using POSWarehouse.Classes;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Data.SqlClient;
+using Microsoft.SqlServer.Management.Common;
+using Microsoft.SqlServer.Management.Smo;
 
 namespace POSWarehouse.Forms
 {
@@ -499,8 +503,40 @@ namespace POSWarehouse.Forms
 
         private void button1_Click(object sender, EventArgs e)
         {
-            new Notification().ShowAlert("البيانات المدخله غير صحيحة برجاء التأكد من اسم المستخدم و كلمه المرور",
-                       Notification.EnmType.Warning);
+            string connectionstring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='.\Data\Database.mdf';" +
+                @"Integrated Security=True;Connect Timeout=30";
+
+            //string query = @"CREATE DATABASE MyDatabase ON PRIMARY " +
+            //                    "(NAME = MyDatabase_Data, " +
+            //                    "FILENAME = 'C:\\MyDatabaseData.mdf', " +
+            //                    "SIZE = 2MB, MAXSIZE = 10MB, FILEGROWTH = 10%)" +
+            //                    "LOG ON (NAME = MyDatabase_Log, " +
+            //                    "FILENAME = 'C:\\MyDatabaseLog.ldf', " +
+            //                    "SIZE = 1MB, " +
+            //                    "MAXSIZE = 5MB, " +
+            //                    "FILEGROWTH = 10%)";
+
+            //using (var connection = new Microsoft.Data.SqlClient.SqlConnection(connectionstring))
+            //{
+            //    using (var command = new Microsoft.Data.SqlClient.SqlCommand(query, connection))
+            //    {
+            //        connection.Open();
+
+            //        Console.WriteLine("0>: " + (command.ExecuteScalar() != DBNull.Value));
+            //    }
+            //}
+
+            //query = @"CREATE LOGIN AbolrousHazem   
+            //        WITH PASSWORD = '340$Uuxwp7Mcxo7Khy';  
+            //        GO  
+            //        CREATE USER AbolrousHazem FOR LOGIN AbolrousHazem;  
+            //        GO  ";
+
+            //Microsoft.Data.SqlClient.SqlConnection conn = new Microsoft.Data.SqlClient.SqlConnection(connectionstring);
+
+            //Server server = new Server(new ServerConnection(conn));
+
+            //server.ConnectionContext.ExecuteNonQuery(query);
         }
 
         private void pic_help_MouseEnter(object sender, EventArgs e)

@@ -84,6 +84,8 @@ namespace POSWarehouse.Classes.DataAccess
 
 
                 //using (var connection = new SqlConnection("server=(local)\\SQLEXPRESS;Trusted_Connection=yes"))
+
+
                 using (var connection = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     using (var command = new SqlCommand($"SELECT db_id('{databaseName}')", connection))
@@ -630,11 +632,40 @@ namespace POSWarehouse.Classes.DataAccess
 
                     await Task.Run(() => server.ConnectionContext.ExecuteNonQuery(script));
 
-                    Logger.Log($"Created teh database successfully",
+                    Logger.Log($"Created the database successfully",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, "DataInit", Logger.INFO);
+
+                    //--------------
+
+                    //           SqlConnection myConn = await Task.Run(() => new SqlConnection(GlobalVars.LoadConnectionString()));
+
+
+                    //           SqlCommand myCommand = await Task.Run(() => new SqlCommand(script, myConn));
+                    //           try
+                    //           {
+                    //               await Task.Run(() => myConn.Open());
+                    //await Task.Run(() => myCommand.ExecuteNonQuery());
+                    //               Console.WriteLine("DataBase is Created Successfully");
+                    //           }
+                    //           catch (System.Exception ex)
+                    //           {
+                    //               Console.WriteLine("error: "+ex.ToString());
+                    //           }
+                    //           finally
+                    //           {
+                    //               if (myConn.State == ConnectionState.Open)
+                    //               {
+                    //                   myConn.Close();
+                    //               }
+                    //           }
 
                     return true;
                 }
+
+
+                //*----------
+
+
             }
             catch (Exception ex)
             {

@@ -37,7 +37,10 @@ namespace POSWarehouse.Classes
 
         internal static string LoadConnectionString(string id = "Default")
         {
-            return ConfigurationManager.ConnectionStrings[id].ConnectionString;
+            //return ConfigurationManager.ConnectionStrings[id].ConnectionString;
+            //return @"Server=localhost;Integrated security=SSPI;database=master";
+            //return @"Data Source=(LocalDB)\MSSQLLocalDB;Integrated Security=True;Connect Timeout=30";
+            return @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Data\Database.mdf;Integrated Security=True";
         }
 
         internal static string LoadAppKey(string key)

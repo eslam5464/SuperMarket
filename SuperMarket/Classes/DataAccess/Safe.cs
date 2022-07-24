@@ -98,8 +98,7 @@ namespace POSWarehouse.Classes.DataAccess
                     await Task.Run(() => cnn.Execute($"INSERT INTO {TableName} ( Name, CreationDate) VALUES " +
                         $"(@Name, '{DateTime.Now}')", safe));
                 }
-                MessageBox.Show($"تم الحفظ", "عملية ناجحه",
-                         MessageBoxButtons.OK, MessageBoxIcon.Information);
+                new Notification().ShowAlert($"تم الحفظ", Notification.EnmType.Success);
             }
             catch (Exception ex)
             {

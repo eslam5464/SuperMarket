@@ -10,7 +10,7 @@ namespace POSWarehouse.Classes.DataAccess
     {
         private static readonly string ClassName = "DataRestore";
 
-        public async static void All(string strDestination = "", string Id = "Default")
+        public static void All(string strDestination = "", string Id = "Default")
         {
             try
             {
@@ -35,17 +35,17 @@ namespace POSWarehouse.Classes.DataAccess
                         + $@"ALTER DATABASE {DatabaseName} SET MULTI_USER ";
                     //+ $@"GO; ",";
 
-                    await Task.Run(() => location.Execute(query, new DynamicParameters()));
+                    location.Execute(query, new DynamicParameters());
                 }
-                await Task.Run(() => Logger.Log($"restored backup from destination {strDestination}",
-                    System.Reflection.MethodInfo.GetCurrentMethod().Name, ClassName, Logger.INFO));
+                Logger.Log($"restored backup from destination {strDestination}",
+                   System.Reflection.MethodInfo.GetCurrentMethod().Name, ClassName, Logger.INFO);
 
                 new Notification().ShowAlert($"لقد تم استعاده البيانات من النسخه الاحتياطيه", Notification.EnmType.Success);
             }
             catch (Exception ex)
             {
-                await Task.Run(() => Logger.Log($"while restoring backup from location: <{strDestination}> & error: "
-                    + ex.Message, System.Reflection.MethodInfo.GetCurrentMethod().Name, ClassName, Logger.ERROR));
+                Logger.Log($"while restoring backup from location: <{strDestination}> & error: "
+                    + ex.Message, System.Reflection.MethodInfo.GetCurrentMethod().Name, ClassName, Logger.ERROR);
 
                 new Notification().ShowAlert($"لم يتم استعاده البيانات", Notification.EnmType.Error);
             }

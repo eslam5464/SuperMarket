@@ -2,6 +2,7 @@
 using POSWarehouse.Forms;
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace POSWarehouse.UserControls
@@ -27,13 +28,13 @@ namespace POSWarehouse.UserControls
                 Process.Start("explorer.exe", Security.GetDirecotryLocation() + @"\Backup");
         }
 
-        private void btn_restoreDatabase_Click(object sender, EventArgs e)
+        private async void btn_restoreDatabase_Click(object sender, EventArgs e)
         {
             string FileLocation = Methods.PromptOpenFileDialog("bak", "Backup");
 
             if (FileLocation != "")
             {
-                Classes.DataAccess.DataRestore.All(FileLocation, "Default");
+                await Task.Run(() => Classes.DataAccess.DataRestore.All(FileLocation, "Default"));
             }
         }
 
