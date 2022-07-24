@@ -53,12 +53,14 @@ namespace POSWarehouse.Forms
             {
                 await Logger.CreateLogDB();
 
-                bool x = await Classes.DataAccess.DataInit.CheckDatabaseExists(Security.GetDBName());
+                await Classes.DataAccess.DataInit.RenameDatabase(Security.GetDBNameOld(), Security.GetDBName());
 
-                if (!x)
-                {
-                    await Classes.DataAccess.DataInit.CreateDatabase(Security.GetDBName());
-                }
+                //bool x = await Classes.DataAccess.DataInit.CheckDatabaseExists(Security.GetDBName());
+
+                //if (!x)
+                //{
+                //    await Classes.DataAccess.DataInit.CreateDatabase(Security.GetDBName());
+                //}
 
                 // Methods.StartSetupPrograms();
                 await IncrementProgressBar(progressBar, 25);

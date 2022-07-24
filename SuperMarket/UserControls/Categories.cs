@@ -121,15 +121,15 @@ namespace POSWarehouse.UserControls
             categoriesDataGridView.DataSource = null;
             categoriesDataGridView.DataSource = Categories;
 
-            categoriesDataGridView.Columns["Id"].HeaderText = "رقم التصنيف";
-            categoriesDataGridView.Columns["CategoryName"].HeaderText = "اسم التصنيف";
-            categoriesDataGridView.Columns["StorageId"].HeaderText = "الرقم التعريفي للمخزن";
-            categoriesDataGridView.Columns["StorageName"].HeaderText = "اسم المخزن";
-            categoriesDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه التصنيف";
-            categoriesDataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
+            categoriesDataGridView.Columns["IdDataGridViewTextBoxColumn_"].HeaderText = "رقم التصنيف";
+            categoriesDataGridView.Columns["NameDataGridViewTextBoxColumn_"].HeaderText = "اسم التصنيف";
+            categoriesDataGridView.Columns["StorageIdDataGridViewTextBoxColumn_"].HeaderText = "الرقم التعريفي للمخزن";
+            categoriesDataGridView.Columns["StorageNameDataGridViewTextBoxColumn_"].HeaderText = "اسم المخزن";
+            categoriesDataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].HeaderText = "يوم اضافه التصنيف";
+            categoriesDataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
 
             categoriesDataGridView.AutoResizeColumns();
-            categoriesDataGridView.Columns["CreationDate"].Width += 5;
+            categoriesDataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].Width += 5;
         }
 
         private void Categories_Load(object sender, EventArgs e)

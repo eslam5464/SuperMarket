@@ -10,8 +10,9 @@ namespace POSWarehouse.Classes
 {
     class Security
     {
-        private static readonly string ApplicationName = "Super Market System",
-            DatabaseName = "SuperMarket",
+        private static readonly string ApplicationName = "Super Market System",// TODO: change app name
+            DatabaseNameOld = $"[{System.Windows.Forms.Application.StartupPath}\\Data\\POSWarehouseDB.mdf]",
+            DatabaseNameNew = "POSWarehouseDB",
             DriveLetter = Path.GetPathRoot(Environment.GetFolderPath(Environment.SpecialFolder.System)),
             DirectoryLocation = $@"{DriveLetter}Users\{Environment.UserName}\AppData\Local\{ApplicationName}",
             SerialKeyFileName = @"\serial",
@@ -37,9 +38,14 @@ namespace POSWarehouse.Classes
             return TrialDays;
         }
 
+        public static string GetDBNameOld()
+        {
+            return DatabaseNameOld;
+        }
+
         public static string GetDBName()
         {
-            return DatabaseName;
+            return DatabaseNameNew;
         }
 
         public static string GetDriveLetter()

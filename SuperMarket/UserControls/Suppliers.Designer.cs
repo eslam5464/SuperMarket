@@ -43,27 +43,27 @@ namespace POSWarehouse.UserControls
             this.txt_phone = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txt_fullname = new System.Windows.Forms.TextBox();
-            this.superMarketDataSet = new POSWarehouse.SuperMarketDataSet();
-            this.suppliersTableAdapter = new POSWarehouse.SuperMarketDataSetTableAdapters.SuppliersTableAdapter();
             this.tableAdapterManager = new POSWarehouse.SuperMarketDataSetTableAdapters.TableAdapterManager();
             this.panel1 = new System.Windows.Forms.Panel();
             this.suppliersDataGridView = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SupplierName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Contact = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.suppliersBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label9 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pcb_serchbyPhone = new System.Windows.Forms.PictureBox();
             this.pcb_searchName = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).BeginInit();
+            this.pOSWarehouseDataSet = new POSWarehouse.Data.POSWarehouseDataSet();
+            this.suppliersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.suppliersTableAdapter = new POSWarehouse.Data.POSWarehouseDataSetTableAdapters.SuppliersTableAdapter();
+            this.IdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ContactDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AddressDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreationDateDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.suppliersDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.suppliersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_serchbyPhone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.suppliersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_edit
@@ -204,15 +204,6 @@ namespace POSWarehouse.UserControls
             this.txt_fullname.TabIndex = 212;
             this.txt_fullname.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_suppliers_KeyDown);
             // 
-            // superMarketDataSet
-            // 
-            this.superMarketDataSet.DataSetName = "SuperMarketDataSet";
-            this.superMarketDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // suppliersTableAdapter
-            // 
-            this.suppliersTableAdapter.ClearBeforeFill = true;
-            // 
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
@@ -227,7 +218,6 @@ namespace POSWarehouse.UserControls
             this.tableAdapterManager.StorageTableAdapter = null;
             this.tableAdapterManager.SupplierInvoiceProductTableAdapter = null;
             this.tableAdapterManager.SupplierInvoicesTableAdapter = null;
-            this.tableAdapterManager.SuppliersTableAdapter = this.suppliersTableAdapter;
             this.tableAdapterManager.UpdateOrder = POSWarehouse.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserLevelAccessTableAdapter = null;
             this.tableAdapterManager.UsersTableAdapter = null;
@@ -258,11 +248,11 @@ namespace POSWarehouse.UserControls
             this.suppliersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.suppliersDataGridView.ColumnHeadersHeight = 40;
             this.suppliersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.SupplierName,
-            this.Contact,
-            this.Address,
-            this.CreationDate});
+            this.IdDataGridViewTextBoxColumn_,
+            this.NameDataGridViewTextBoxColumn_,
+            this.ContactDataGridViewTextBoxColumn_,
+            this.AddressDataGridViewTextBoxColumn_,
+            this.CreationDateDataGridViewTextBoxColumn_});
             this.suppliersDataGridView.DataSource = this.suppliersBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -293,46 +283,6 @@ namespace POSWarehouse.UserControls
             this.suppliersDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.suppliersDataGridView_CellMouseClick);
             this.suppliersDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.suppliersDataGridView_ColumnHeaderMouseClick);
             this.suppliersDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.suppliersDataGridView_ColumnHeaderMouseDoubleClick);
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            // 
-            // SupplierName
-            // 
-            this.SupplierName.DataPropertyName = "Name";
-            this.SupplierName.HeaderText = "Name";
-            this.SupplierName.Name = "SupplierName";
-            this.SupplierName.ReadOnly = true;
-            // 
-            // Contact
-            // 
-            this.Contact.DataPropertyName = "Contact";
-            this.Contact.HeaderText = "Contact";
-            this.Contact.Name = "Contact";
-            this.Contact.ReadOnly = true;
-            // 
-            // Address
-            // 
-            this.Address.DataPropertyName = "Address";
-            this.Address.HeaderText = "Address";
-            this.Address.Name = "Address";
-            this.Address.ReadOnly = true;
-            // 
-            // CreationDate
-            // 
-            this.CreationDate.DataPropertyName = "CreationDate";
-            this.CreationDate.HeaderText = "CreationDate";
-            this.CreationDate.Name = "CreationDate";
-            this.CreationDate.ReadOnly = true;
-            // 
-            // suppliersBindingSource
-            // 
-            this.suppliersBindingSource.DataMember = "Suppliers";
-            this.suppliersBindingSource.DataSource = this.superMarketDataSet;
             // 
             // label9
             // 
@@ -388,6 +338,55 @@ namespace POSWarehouse.UserControls
             this.pcb_searchName.MouseEnter += new System.EventHandler(this.pcb_suppliers_MouseEnter);
             this.pcb_searchName.MouseLeave += new System.EventHandler(this.pcb_suppliers_MouseLeave);
             // 
+            // pOSWarehouseDataSet
+            // 
+            this.pOSWarehouseDataSet.DataSetName = "POSWarehouseDataSet";
+            this.pOSWarehouseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // suppliersBindingSource
+            // 
+            this.suppliersBindingSource.DataMember = "Suppliers";
+            this.suppliersBindingSource.DataSource = this.pOSWarehouseDataSet;
+            // 
+            // suppliersTableAdapter
+            // 
+            this.suppliersTableAdapter.ClearBeforeFill = true;
+            // 
+            // IdDataGridViewTextBoxColumn_
+            // 
+            this.IdDataGridViewTextBoxColumn_.DataPropertyName = "Id";
+            this.IdDataGridViewTextBoxColumn_.HeaderText = "Id";
+            this.IdDataGridViewTextBoxColumn_.Name = "IdDataGridViewTextBoxColumn_";
+            this.IdDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // NameDataGridViewTextBoxColumn_
+            // 
+            this.NameDataGridViewTextBoxColumn_.DataPropertyName = "Name";
+            this.NameDataGridViewTextBoxColumn_.HeaderText = "Name";
+            this.NameDataGridViewTextBoxColumn_.Name = "NameDataGridViewTextBoxColumn_";
+            this.NameDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // ContactDataGridViewTextBoxColumn_
+            // 
+            this.ContactDataGridViewTextBoxColumn_.DataPropertyName = "Contact";
+            this.ContactDataGridViewTextBoxColumn_.HeaderText = "Contact";
+            this.ContactDataGridViewTextBoxColumn_.Name = "ContactDataGridViewTextBoxColumn_";
+            this.ContactDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // AddressDataGridViewTextBoxColumn_
+            // 
+            this.AddressDataGridViewTextBoxColumn_.DataPropertyName = "Address";
+            this.AddressDataGridViewTextBoxColumn_.HeaderText = "Address";
+            this.AddressDataGridViewTextBoxColumn_.Name = "AddressDataGridViewTextBoxColumn_";
+            this.AddressDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // CreationDateDataGridViewTextBoxColumn_
+            // 
+            this.CreationDateDataGridViewTextBoxColumn_.DataPropertyName = "CreationDate";
+            this.CreationDateDataGridViewTextBoxColumn_.HeaderText = "CreationDate";
+            this.CreationDateDataGridViewTextBoxColumn_.Name = "CreationDateDataGridViewTextBoxColumn_";
+            this.CreationDateDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
             // Suppliers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -412,12 +411,12 @@ namespace POSWarehouse.UserControls
             this.Name = "Suppliers";
             this.Size = new System.Drawing.Size(1038, 660);
             this.Load += new System.EventHandler(this.Suppliers_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.suppliersDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.suppliersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_serchbyPhone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.suppliersBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -435,8 +434,6 @@ namespace POSWarehouse.UserControls
         private System.Windows.Forms.TextBox txt_phone;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txt_fullname;
-        private SuperMarketDataSet superMarketDataSet;
-        private SuperMarketDataSetTableAdapters.SuppliersTableAdapter suppliersTableAdapter;
         private SuperMarketDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView suppliersDataGridView;
@@ -444,11 +441,13 @@ namespace POSWarehouse.UserControls
         private System.Windows.Forms.PictureBox pcb_serchbyPhone;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ContactDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AddressDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CreationDateDataGridViewTextBoxColumn_;
         private System.Windows.Forms.BindingSource suppliersBindingSource;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SupplierName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Contact;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CreationDate;
+        private Data.POSWarehouseDataSet pOSWarehouseDataSet;
+        private Data.POSWarehouseDataSetTableAdapters.SuppliersTableAdapter suppliersTableAdapter;
     }
 }

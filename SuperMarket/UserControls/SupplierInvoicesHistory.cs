@@ -25,21 +25,21 @@ namespace POSWarehouse.UserControls
             db_supplierInvoicesDataGridView.DataSource = null;
             db_supplierInvoicesDataGridView.DataSource = supplierInvoice;
 
-            db_supplierInvoicesDataGridView.Columns["Id"].HeaderText = "رقم التصنيف";
-            db_supplierInvoicesDataGridView.Columns["SupplierId"].HeaderText = "رقم التعريفي للمورد";
-            db_supplierInvoicesDataGridView.Columns["SupplierName"].HeaderText = "اسم المورد";
-            db_supplierInvoicesDataGridView.Columns["PaymentMethod"].HeaderText = "طريقه الدفع";
-            db_supplierInvoicesDataGridView.Columns["AmountPaid"].HeaderText = "المبلغ المدفوع";
-            db_supplierInvoicesDataGridView.Columns["AmountLeft"].HeaderText = "المبلغ المتبقي";
-            db_supplierInvoicesDataGridView.Columns["AmountTotal"].HeaderText = "المبلغ المطلوب";
-            db_supplierInvoicesDataGridView.Columns["PaymentStatus"].HeaderText = "حاله الدفع";
-            db_supplierInvoicesDataGridView.Columns["CreationDate"].HeaderText = "تاريخ الانشاء";
-            db_supplierInvoicesDataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
+            db_supplierInvoicesDataGridView.Columns["IdDataGridViewTextBoxColumn_"].HeaderText = "رقم التصنيف";
+            db_supplierInvoicesDataGridView.Columns["SupplierIdDataGridViewTextBoxColumn_"].HeaderText = "رقم التعريفي للمورد";
+            db_supplierInvoicesDataGridView.Columns["SupplierNameDataGridViewTextBoxColumn_"].HeaderText = "اسم المورد";
+            db_supplierInvoicesDataGridView.Columns["PaymentMethodDataGridViewTextBoxColumn_"].HeaderText = "طريقه الدفع";
+            db_supplierInvoicesDataGridView.Columns["AmountPaidDataGridViewTextBoxColumn_"].HeaderText = "المبلغ المدفوع";
+            db_supplierInvoicesDataGridView.Columns["AmountLeftDataGridViewTextBoxColumn_"].HeaderText = "المبلغ المتبقي";
+            db_supplierInvoicesDataGridView.Columns["AmountTotalDataGridViewTextBoxColumn_"].HeaderText = "المبلغ المطلوب";
+            db_supplierInvoicesDataGridView.Columns["PaymentStatusDataGridViewTextBoxColumn_"].HeaderText = "حاله الدفع";
+            db_supplierInvoicesDataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].HeaderText = "تاريخ الانشاء";
+            db_supplierInvoicesDataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
 
-            db_supplierInvoicesDataGridView.Columns["SupplierInvoiceProductId"].Visible = false;
+            db_supplierInvoicesDataGridView.Columns["SupplierInvoiceProductIdDataGridViewTextBoxColumn_"].Visible = false;
 
             db_supplierInvoicesDataGridView.AutoResizeColumns();
-            db_supplierInvoicesDataGridView.Columns["CreationDate"].Width += 5;
+            db_supplierInvoicesDataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].Width += 5;
         }
 
         private void SetColors(Color appColor)

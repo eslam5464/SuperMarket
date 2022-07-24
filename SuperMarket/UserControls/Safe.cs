@@ -62,20 +62,20 @@ namespace POSWarehouse.UserControls
             db_safeTransactionDataGridView.DataSource = null;
             db_safeTransactionDataGridView.DataSource = safeTransactionModels;
 
-            db_safeTransactionDataGridView.Columns["Id"].HeaderText = "رقم التصنيف";
-            db_safeTransactionDataGridView.Columns["SafeName"].HeaderText = "اسم الخزنة";
-            db_safeTransactionDataGridView.Columns["AmountAdded"].HeaderText = "المبلغ المضاف";
-            db_safeTransactionDataGridView.Columns["AmountTotal"].HeaderText = "المبلغ الكلي بعد الاضافه";
-            db_safeTransactionDataGridView.Columns["AdjustedByUserFullName"].HeaderText = "منفذ المعامله";
-            db_safeTransactionDataGridView.Columns["Notes"].HeaderText = "الملاحظات";
-            db_safeTransactionDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه المعامله";
-            db_safeTransactionDataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
+            db_safeTransactionDataGridView.Columns["IdDataGridViewTextBoxColumn_"].HeaderText = "رقم التصنيف";
+            db_safeTransactionDataGridView.Columns["SafeNameDataGridViewTextBoxColumn_"].HeaderText = "اسم الخزنة";
+            db_safeTransactionDataGridView.Columns["AmountAddedDataGridViewTextBoxColumn_"].HeaderText = "المبلغ المضاف";
+            db_safeTransactionDataGridView.Columns["AmountTotalDataGridViewTextBoxColumn_"].HeaderText = "المبلغ الكلي بعد الاضافه";
+            db_safeTransactionDataGridView.Columns["AdjustedByUserFullNameDataGridViewTextBoxColumn_"].HeaderText = "منفذ المعامله";
+            db_safeTransactionDataGridView.Columns["NotesDataGridViewTextBoxColumn_"].HeaderText = "الملاحظات";
+            db_safeTransactionDataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].HeaderText = "يوم اضافه المعامله";
+            db_safeTransactionDataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
 
-            db_safeTransactionDataGridView.Columns["SafeId"].Visible = false;
-            db_safeTransactionDataGridView.Columns["AdjustedByUserId"].Visible = false;
+            db_safeTransactionDataGridView.Columns["SafeIdDataGridViewTextBoxColumn_"].Visible = false;
+            db_safeTransactionDataGridView.Columns["AdjustedByUserIdDataGridViewTextBoxColumn_"].Visible = false;
 
             db_safeTransactionDataGridView.AutoResizeColumns();
-            db_safeTransactionDataGridView.Columns["CreationDate"].Width += 5;
+            db_safeTransactionDataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].Width += 5;
         }
 
         private void SetColors(Color appColor)
@@ -134,6 +134,8 @@ namespace POSWarehouse.UserControls
             if (SearchedSafe.Count == 0)
             {
                 await Classes.DataAccess.Safe.SaveSafe(safeModel);
+
+                txt_safeName.Text = "";
 
                 RefreshComboBoxes();
             }

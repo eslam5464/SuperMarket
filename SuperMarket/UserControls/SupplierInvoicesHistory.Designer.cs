@@ -41,27 +41,27 @@ namespace POSWarehouse.UserControls
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.db_supplierInvoicesDataGridView = new System.Windows.Forms.DataGridView();
-            this.supplierInvoicesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.superMarketDataSet = new POSWarehouse.SuperMarketDataSet();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.supplierInvoicesTableAdapter = new POSWarehouse.SuperMarketDataSetTableAdapters.SupplierInvoicesTableAdapter();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SupplierId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SupplierName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PaymentMethod = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AmountPaid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AmountLeft = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AmountTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PaymentStatus = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.SupplierInvoiceProductId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pOSWarehouseDataSet = new POSWarehouse.Data.POSWarehouseDataSet();
+            this.supplierInvoicesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.supplierInvoicesTableAdapter = new POSWarehouse.Data.POSWarehouseDataSetTableAdapters.SupplierInvoicesTableAdapter();
+            this.IdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SupplierIdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SupplierNameDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PaymentMethodDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmountPaidDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmountLeftDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmountTotalDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PaymentStatusDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.SupplierInvoiceProductIdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreationDateDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_supplier_name)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_supplierInvoicesDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoicesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoicesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_exportPDF
@@ -170,16 +170,16 @@ namespace POSWarehouse.UserControls
             this.db_supplierInvoicesDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.db_supplierInvoicesDataGridView.ColumnHeadersHeight = 40;
             this.db_supplierInvoicesDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.SupplierId,
-            this.SupplierName,
-            this.PaymentMethod,
-            this.AmountPaid,
-            this.AmountLeft,
-            this.AmountTotal,
-            this.PaymentStatus,
-            this.SupplierInvoiceProductId,
-            this.CreationDate});
+            this.IdDataGridViewTextBoxColumn_,
+            this.SupplierIdDataGridViewTextBoxColumn_,
+            this.SupplierNameDataGridViewTextBoxColumn_,
+            this.PaymentMethodDataGridViewTextBoxColumn_,
+            this.AmountPaidDataGridViewTextBoxColumn_,
+            this.AmountLeftDataGridViewTextBoxColumn_,
+            this.AmountTotalDataGridViewTextBoxColumn_,
+            this.PaymentStatusDataGridViewTextBoxColumn_,
+            this.SupplierInvoiceProductIdDataGridViewTextBoxColumn_,
+            this.CreationDateDataGridViewTextBoxColumn_});
             this.db_supplierInvoicesDataGridView.DataSource = this.supplierInvoicesBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -207,16 +207,6 @@ namespace POSWarehouse.UserControls
             this.db_supplierInvoicesDataGridView.Size = new System.Drawing.Size(1032, 536);
             this.db_supplierInvoicesDataGridView.TabIndex = 1;
             // 
-            // supplierInvoicesBindingSource
-            // 
-            this.supplierInvoicesBindingSource.DataMember = "SupplierInvoices";
-            this.supplierInvoicesBindingSource.DataSource = this.superMarketDataSet;
-            // 
-            // superMarketDataSet
-            // 
-            this.superMarketDataSet.DataSetName = "SuperMarketDataSet";
-            this.superMarketDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Gray;
@@ -226,80 +216,89 @@ namespace POSWarehouse.UserControls
             this.panel3.Size = new System.Drawing.Size(1032, 536);
             this.panel3.TabIndex = 21;
             // 
+            // pOSWarehouseDataSet
+            // 
+            this.pOSWarehouseDataSet.DataSetName = "POSWarehouseDataSet";
+            this.pOSWarehouseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // supplierInvoicesBindingSource
+            // 
+            this.supplierInvoicesBindingSource.DataMember = "SupplierInvoices";
+            this.supplierInvoicesBindingSource.DataSource = this.pOSWarehouseDataSet;
+            // 
             // supplierInvoicesTableAdapter
             // 
             this.supplierInvoicesTableAdapter.ClearBeforeFill = true;
             // 
-            // Id
+            // IdDataGridViewTextBoxColumn_
             // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
+            this.IdDataGridViewTextBoxColumn_.DataPropertyName = "Id";
+            this.IdDataGridViewTextBoxColumn_.HeaderText = "Id";
+            this.IdDataGridViewTextBoxColumn_.Name = "IdDataGridViewTextBoxColumn_";
+            this.IdDataGridViewTextBoxColumn_.ReadOnly = true;
             // 
-            // SupplierId
+            // SupplierIdDataGridViewTextBoxColumn_
             // 
-            this.SupplierId.DataPropertyName = "SupplierId";
-            this.SupplierId.HeaderText = "SupplierId";
-            this.SupplierId.Name = "SupplierId";
-            this.SupplierId.ReadOnly = true;
+            this.SupplierIdDataGridViewTextBoxColumn_.DataPropertyName = "SupplierId";
+            this.SupplierIdDataGridViewTextBoxColumn_.HeaderText = "SupplierId";
+            this.SupplierIdDataGridViewTextBoxColumn_.Name = "SupplierIdDataGridViewTextBoxColumn_";
+            this.SupplierIdDataGridViewTextBoxColumn_.ReadOnly = true;
             // 
-            // SupplierName
+            // SupplierNameDataGridViewTextBoxColumn_
             // 
-            this.SupplierName.DataPropertyName = "SupplierName";
-            this.SupplierName.HeaderText = "SupplierName";
-            this.SupplierName.Name = "SupplierName";
-            this.SupplierName.ReadOnly = true;
+            this.SupplierNameDataGridViewTextBoxColumn_.DataPropertyName = "SupplierName";
+            this.SupplierNameDataGridViewTextBoxColumn_.HeaderText = "SupplierName";
+            this.SupplierNameDataGridViewTextBoxColumn_.Name = "SupplierNameDataGridViewTextBoxColumn_";
+            this.SupplierNameDataGridViewTextBoxColumn_.ReadOnly = true;
             // 
-            // PaymentMethod
+            // PaymentMethodDataGridViewTextBoxColumn_
             // 
-            this.PaymentMethod.DataPropertyName = "PaymentMethod";
-            this.PaymentMethod.HeaderText = "PaymentMethod";
-            this.PaymentMethod.Name = "PaymentMethod";
-            this.PaymentMethod.ReadOnly = true;
+            this.PaymentMethodDataGridViewTextBoxColumn_.DataPropertyName = "PaymentMethod";
+            this.PaymentMethodDataGridViewTextBoxColumn_.HeaderText = "PaymentMethod";
+            this.PaymentMethodDataGridViewTextBoxColumn_.Name = "PaymentMethodDataGridViewTextBoxColumn_";
+            this.PaymentMethodDataGridViewTextBoxColumn_.ReadOnly = true;
             // 
-            // AmountPaid
+            // AmountPaidDataGridViewTextBoxColumn_
             // 
-            this.AmountPaid.DataPropertyName = "AmountPaid";
-            this.AmountPaid.HeaderText = "AmountPaid";
-            this.AmountPaid.Name = "AmountPaid";
-            this.AmountPaid.ReadOnly = true;
+            this.AmountPaidDataGridViewTextBoxColumn_.DataPropertyName = "AmountPaid";
+            this.AmountPaidDataGridViewTextBoxColumn_.HeaderText = "AmountPaid";
+            this.AmountPaidDataGridViewTextBoxColumn_.Name = "AmountPaidDataGridViewTextBoxColumn_";
+            this.AmountPaidDataGridViewTextBoxColumn_.ReadOnly = true;
             // 
-            // AmountLeft
+            // AmountLeftDataGridViewTextBoxColumn_
             // 
-            this.AmountLeft.DataPropertyName = "AmountLeft";
-            this.AmountLeft.HeaderText = "AmountLeft";
-            this.AmountLeft.Name = "AmountLeft";
-            this.AmountLeft.ReadOnly = true;
+            this.AmountLeftDataGridViewTextBoxColumn_.DataPropertyName = "AmountLeft";
+            this.AmountLeftDataGridViewTextBoxColumn_.HeaderText = "AmountLeft";
+            this.AmountLeftDataGridViewTextBoxColumn_.Name = "AmountLeftDataGridViewTextBoxColumn_";
+            this.AmountLeftDataGridViewTextBoxColumn_.ReadOnly = true;
             // 
-            // AmountTotal
+            // AmountTotalDataGridViewTextBoxColumn_
             // 
-            this.AmountTotal.DataPropertyName = "AmountTotal";
-            this.AmountTotal.HeaderText = "AmountTotal";
-            this.AmountTotal.Name = "AmountTotal";
-            this.AmountTotal.ReadOnly = true;
+            this.AmountTotalDataGridViewTextBoxColumn_.DataPropertyName = "AmountTotal";
+            this.AmountTotalDataGridViewTextBoxColumn_.HeaderText = "AmountTotal";
+            this.AmountTotalDataGridViewTextBoxColumn_.Name = "AmountTotalDataGridViewTextBoxColumn_";
+            this.AmountTotalDataGridViewTextBoxColumn_.ReadOnly = true;
             // 
-            // PaymentStatus
+            // PaymentStatusDataGridViewTextBoxColumn_
             // 
-            this.PaymentStatus.DataPropertyName = "PaymentStatus";
-            this.PaymentStatus.HeaderText = "PaymentStatus";
-            this.PaymentStatus.Name = "PaymentStatus";
-            this.PaymentStatus.ReadOnly = true;
-            this.PaymentStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.PaymentStatusDataGridViewTextBoxColumn_.DataPropertyName = "PaymentStatus";
+            this.PaymentStatusDataGridViewTextBoxColumn_.HeaderText = "PaymentStatus";
+            this.PaymentStatusDataGridViewTextBoxColumn_.Name = "PaymentStatusDataGridViewTextBoxColumn_";
+            this.PaymentStatusDataGridViewTextBoxColumn_.ReadOnly = true;
             // 
-            // SupplierInvoiceProductId
+            // SupplierInvoiceProductIdDataGridViewTextBoxColumn_
             // 
-            this.SupplierInvoiceProductId.DataPropertyName = "SupplierInvoiceProductId";
-            this.SupplierInvoiceProductId.HeaderText = "SupplierInvoiceProductId";
-            this.SupplierInvoiceProductId.Name = "SupplierInvoiceProductId";
-            this.SupplierInvoiceProductId.ReadOnly = true;
+            this.SupplierInvoiceProductIdDataGridViewTextBoxColumn_.DataPropertyName = "SupplierInvoiceProductId";
+            this.SupplierInvoiceProductIdDataGridViewTextBoxColumn_.HeaderText = "SupplierInvoiceProductId";
+            this.SupplierInvoiceProductIdDataGridViewTextBoxColumn_.Name = "SupplierInvoiceProductIdDataGridViewTextBoxColumn_";
+            this.SupplierInvoiceProductIdDataGridViewTextBoxColumn_.ReadOnly = true;
             // 
-            // CreationDate
+            // CreationDateDataGridViewTextBoxColumn_
             // 
-            this.CreationDate.DataPropertyName = "CreationDate";
-            this.CreationDate.HeaderText = "CreationDate";
-            this.CreationDate.Name = "CreationDate";
-            this.CreationDate.ReadOnly = true;
+            this.CreationDateDataGridViewTextBoxColumn_.DataPropertyName = "CreationDate";
+            this.CreationDateDataGridViewTextBoxColumn_.HeaderText = "CreationDate";
+            this.CreationDateDataGridViewTextBoxColumn_.Name = "CreationDateDataGridViewTextBoxColumn_";
+            this.CreationDateDataGridViewTextBoxColumn_.ReadOnly = true;
             // 
             // SupplierInvoicesHistory
             // 
@@ -318,9 +317,9 @@ namespace POSWarehouse.UserControls
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_supplierInvoicesDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoicesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).EndInit();
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.supplierInvoicesBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -335,18 +334,18 @@ namespace POSWarehouse.UserControls
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.DataGridView db_supplierInvoicesDataGridView;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SupplierIdDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SupplierNameDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PaymentMethodDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AmountPaidDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AmountLeftDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AmountTotalDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn PaymentStatusDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SupplierInvoiceProductIdDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CreationDateDataGridViewTextBoxColumn_;
         private System.Windows.Forms.BindingSource supplierInvoicesBindingSource;
-        private SuperMarketDataSet superMarketDataSet;
-        private SuperMarketDataSetTableAdapters.SupplierInvoicesTableAdapter supplierInvoicesTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SupplierId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SupplierName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PaymentMethod;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AmountPaid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AmountLeft;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AmountTotal;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn PaymentStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SupplierInvoiceProductId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CreationDate;
+        private Data.POSWarehouseDataSet pOSWarehouseDataSet;
+        private Data.POSWarehouseDataSetTableAdapters.SupplierInvoicesTableAdapter supplierInvoicesTableAdapter;
     }
 }

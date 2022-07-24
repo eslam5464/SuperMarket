@@ -26,24 +26,24 @@ namespace POSWarehouse.UserControls
 
         private void HideAndTranslateColums()
         {
-            usersDataGridView.Columns["FullName"].HeaderText = "الاسم بالكامل";
-            usersDataGridView.Columns["UserName"].HeaderText = "اسم المستخدم";
-            usersDataGridView.Columns["Phone"].HeaderText = "رقم الهاتف";
-            usersDataGridView.Columns["CreationDate"].HeaderText = "يوم الاضافه";
-            usersDataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
-            usersDataGridView.Columns["ModifyDate"].HeaderText = "يوم التعديل";
-            usersDataGridView.Columns["ModifyDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
-            usersDataGridView.Columns["UserLevel"].HeaderText = "مكانه المستخدم";
+            usersDataGridView.Columns["FullNameDataGridViewTextBoxColumn_"].HeaderText = "الاسم بالكامل";
+            usersDataGridView.Columns["UserNameDataGridViewTextBoxColumn_"].HeaderText = "اسم المستخدم";
+            usersDataGridView.Columns["PhoneDataGridViewTextBoxColumn_"].HeaderText = "رقم الهاتف";
+            usersDataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].HeaderText = "يوم الاضافه";
+            usersDataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
+            usersDataGridView.Columns["ModifyDateDataGridViewTextBoxColumn_"].HeaderText = "يوم التعديل";
+            usersDataGridView.Columns["ModifyDateDataGridViewTextBoxColumn_"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
+            usersDataGridView.Columns["UserLevelDataGridViewTextBoxColumn_"].HeaderText = "مكانه المستخدم";
 
-            usersDataGridView.Columns["Id"].Visible = false;
-            usersDataGridView.Columns["Password"].Visible = false;
-            usersDataGridView.Columns["Email"].Visible = false;
-            usersDataGridView.Columns["ActiveState"].Visible = false;
+            usersDataGridView.Columns["IdDataGridViewTextBoxColumn_"].Visible = false;
+            usersDataGridView.Columns["PasswordDataGridViewTextBoxColumn_"].Visible = false;
+            usersDataGridView.Columns["EmailDataGridViewTextBoxColumn_"].Visible = false;
+            usersDataGridView.Columns["ActiveStateDataGridViewTextBoxColumn_"].Visible = false;
 
             usersDataGridView.AutoResizeColumns();
 
-            usersDataGridView.Columns["CreationDate"].Width += 5;
-            usersDataGridView.Columns["ModifyDate"].Width += 5;
+            usersDataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].Width += 5;
+            usersDataGridView.Columns["ModifyDateDataGridViewTextBoxColumn_"].Width += 5;
         }
 
         private void RefreshDataGrid()

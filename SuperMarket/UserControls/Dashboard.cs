@@ -31,7 +31,7 @@ namespace POSWarehouse.UserControls
 
         private void CheckLowStock()
         {
-            if (productsDataGridView.Columns.Count > 0)
+            if (productsDataGridView.Rows.Count > 0)
             {
                 new Notification().ShowAlert("يوجد منتجات قليله الكمية في المخزن", Notification.EnmType.Warning);
             }
@@ -71,22 +71,22 @@ namespace POSWarehouse.UserControls
             productsDataGridView.DataSource = null;
             productsDataGridView.DataSource = products;
 
-            productsDataGridView.Columns["Id"].HeaderText = "رقم المنتج";
-            productsDataGridView.Columns["BarCode"].HeaderText = "باركود";
-            productsDataGridView.Columns["ProductName_"].HeaderText = "اسم المنتج";
-            productsDataGridView.Columns["Description"].HeaderText = "وصف المنتج";
-            productsDataGridView.Columns["Quantity"].HeaderText = "كميه المنتج";
-            productsDataGridView.Columns["QuantityMinimum"].HeaderText = "حد ادنى للمنتج";
-            productsDataGridView.Columns["CategoryID"].HeaderText = "رقم الصنف";
-            productsDataGridView.Columns["CategoryName"].HeaderText = "اسم الصنف";
-            productsDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه المنتج";
-            productsDataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
+            productsDataGridView.Columns["IdDataGridViewTextBoxColumn_"].HeaderText = "رقم المنتج";
+            productsDataGridView.Columns["BarCodeDataGridViewTextBoxColumn_"].HeaderText = "باركود";
+            productsDataGridView.Columns["NameDataGridViewTextBoxColumn_"].HeaderText = "اسم المنتج";
+            productsDataGridView.Columns["DescriptionDataGridViewTextBoxColumn_"].HeaderText = "وصف المنتج";
+            productsDataGridView.Columns["QuantityDataGridViewTextBoxColumn_"].HeaderText = "كميه المنتج";
+            productsDataGridView.Columns["QuantityMinimumDataGridViewTextBoxColumn_"].HeaderText = "حد ادنى للمنتج";
+            productsDataGridView.Columns["CategoryIDDataGridViewTextBoxColumn_"].HeaderText = "رقم الصنف";
+            productsDataGridView.Columns["CategoryNameDataGridViewTextBoxColumn_"].HeaderText = "اسم الصنف";
+            productsDataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].HeaderText = "يوم اضافه المنتج";
+            productsDataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
 
-            productsDataGridView.Columns["PriceModificationDate"].Visible = false;
+            productsDataGridView.Columns["PriceModificationDateDataGridViewTextBoxColumn_"].Visible = false;
 
             productsDataGridView.AutoResizeColumns();
-            productsDataGridView.Columns["CreationDate"].Width += 5;
-            productsDataGridView.Columns["PriceModificationDate"].Width += 5;
+            productsDataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].Width += 5;
+            productsDataGridView.Columns["PriceModificationDateDataGridViewTextBoxColumn_"].Width += 5;
         }
 
         private void CenterLabels()

@@ -61,20 +61,20 @@ namespace POSWarehouse.UserControls
             this.btn_refresh = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.productsDataGridView = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BarCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductName_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.QuantityMinimum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CategoryID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CategoryName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PriceModificationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.superMarketDataSet = new POSWarehouse.SuperMarketDataSet();
-            this.productsTableAdapter = new POSWarehouse.SuperMarketDataSetTableAdapters.ProductsTableAdapter();
             this.label2 = new System.Windows.Forms.Label();
+            this.pOSWarehouseDataSet = new POSWarehouse.Data.POSWarehouseDataSet();
+            this.productsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productsTableAdapter = new POSWarehouse.Data.POSWarehouseDataSetTableAdapters.ProductsTableAdapter();
+            this.IdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BarCodeDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantityDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuantityMinimumDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DescriptionDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CategoryIDDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CategoryNameDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreationDateDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PriceModificationDateDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pan_user_count.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -87,8 +87,8 @@ namespace POSWarehouse.UserControls
             this.pan_orders_count.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productsDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // label9
@@ -397,16 +397,16 @@ namespace POSWarehouse.UserControls
             this.productsDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.productsDataGridView.ColumnHeadersHeight = 40;
             this.productsDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.BarCode,
-            this.ProductName_,
-            this.Quantity,
-            this.QuantityMinimum,
-            this.Description,
-            this.CategoryID,
-            this.CategoryName,
-            this.CreationDate,
-            this.PriceModificationDate});
+            this.IdDataGridViewTextBoxColumn_,
+            this.BarCodeDataGridViewTextBoxColumn_,
+            this.NameDataGridViewTextBoxColumn_,
+            this.QuantityDataGridViewTextBoxColumn_,
+            this.QuantityMinimumDataGridViewTextBoxColumn_,
+            this.DescriptionDataGridViewTextBoxColumn_,
+            this.CategoryIDDataGridViewTextBoxColumn_,
+            this.CategoryNameDataGridViewTextBoxColumn_,
+            this.CreationDateDataGridViewTextBoxColumn_,
+            this.PriceModificationDateDataGridViewTextBoxColumn_});
             this.productsDataGridView.DataSource = this.productsBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -436,90 +436,6 @@ namespace POSWarehouse.UserControls
             this.productsDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.productsDataGridView_ColumnHeaderMouseClick);
             this.productsDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.productsDataGridView_ColumnHeaderMouseDoubleClick);
             // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            // 
-            // BarCode
-            // 
-            this.BarCode.DataPropertyName = "BarCode";
-            this.BarCode.HeaderText = "BarCode";
-            this.BarCode.Name = "BarCode";
-            this.BarCode.ReadOnly = true;
-            // 
-            // ProductName_
-            // 
-            this.ProductName_.DataPropertyName = "Name";
-            this.ProductName_.HeaderText = "Name";
-            this.ProductName_.Name = "ProductName_";
-            this.ProductName_.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.DataPropertyName = "Quantity";
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
-            // 
-            // QuantityMinimum
-            // 
-            this.QuantityMinimum.DataPropertyName = "QuantityMinimum";
-            this.QuantityMinimum.HeaderText = "QuantityMinimum";
-            this.QuantityMinimum.Name = "QuantityMinimum";
-            this.QuantityMinimum.ReadOnly = true;
-            // 
-            // Description
-            // 
-            this.Description.DataPropertyName = "Description";
-            this.Description.HeaderText = "Description";
-            this.Description.Name = "Description";
-            this.Description.ReadOnly = true;
-            // 
-            // CategoryID
-            // 
-            this.CategoryID.DataPropertyName = "CategoryID";
-            this.CategoryID.HeaderText = "CategoryID";
-            this.CategoryID.Name = "CategoryID";
-            this.CategoryID.ReadOnly = true;
-            // 
-            // CategoryName
-            // 
-            this.CategoryName.DataPropertyName = "CategoryName";
-            this.CategoryName.HeaderText = "CategoryName";
-            this.CategoryName.Name = "CategoryName";
-            this.CategoryName.ReadOnly = true;
-            // 
-            // CreationDate
-            // 
-            this.CreationDate.DataPropertyName = "CreationDate";
-            this.CreationDate.HeaderText = "CreationDate";
-            this.CreationDate.Name = "CreationDate";
-            this.CreationDate.ReadOnly = true;
-            // 
-            // PriceModificationDate
-            // 
-            this.PriceModificationDate.DataPropertyName = "PriceModificationDate";
-            this.PriceModificationDate.HeaderText = "PriceModificationDate";
-            this.PriceModificationDate.Name = "PriceModificationDate";
-            this.PriceModificationDate.ReadOnly = true;
-            // 
-            // productsBindingSource
-            // 
-            this.productsBindingSource.DataMember = "Products";
-            this.productsBindingSource.DataSource = this.superMarketDataSet;
-            // 
-            // superMarketDataSet
-            // 
-            this.superMarketDataSet.DataSetName = "SuperMarketDataSet";
-            this.superMarketDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // productsTableAdapter
-            // 
-            this.productsTableAdapter.ClearBeforeFill = true;
-            // 
             // label2
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -531,6 +447,90 @@ namespace POSWarehouse.UserControls
             this.label2.Size = new System.Drawing.Size(272, 28);
             this.label2.TabIndex = 203;
             this.label2.Text = "المنتجات قليله الكمية في المخزن";
+            // 
+            // pOSWarehouseDataSet
+            // 
+            this.pOSWarehouseDataSet.DataSetName = "POSWarehouseDataSet";
+            this.pOSWarehouseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // productsBindingSource
+            // 
+            this.productsBindingSource.DataMember = "Products";
+            this.productsBindingSource.DataSource = this.pOSWarehouseDataSet;
+            // 
+            // productsTableAdapter
+            // 
+            this.productsTableAdapter.ClearBeforeFill = true;
+            // 
+            // IdDataGridViewTextBoxColumn_
+            // 
+            this.IdDataGridViewTextBoxColumn_.DataPropertyName = "Id";
+            this.IdDataGridViewTextBoxColumn_.HeaderText = "Id";
+            this.IdDataGridViewTextBoxColumn_.Name = "IdDataGridViewTextBoxColumn_";
+            this.IdDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // BarCodeDataGridViewTextBoxColumn_
+            // 
+            this.BarCodeDataGridViewTextBoxColumn_.DataPropertyName = "BarCode";
+            this.BarCodeDataGridViewTextBoxColumn_.HeaderText = "BarCode";
+            this.BarCodeDataGridViewTextBoxColumn_.Name = "BarCodeDataGridViewTextBoxColumn_";
+            this.BarCodeDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // NameDataGridViewTextBoxColumn_
+            // 
+            this.NameDataGridViewTextBoxColumn_.DataPropertyName = "Name";
+            this.NameDataGridViewTextBoxColumn_.HeaderText = "Name";
+            this.NameDataGridViewTextBoxColumn_.Name = "NameDataGridViewTextBoxColumn_";
+            this.NameDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // QuantityDataGridViewTextBoxColumn_
+            // 
+            this.QuantityDataGridViewTextBoxColumn_.DataPropertyName = "Quantity";
+            this.QuantityDataGridViewTextBoxColumn_.HeaderText = "Quantity";
+            this.QuantityDataGridViewTextBoxColumn_.Name = "QuantityDataGridViewTextBoxColumn_";
+            this.QuantityDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // QuantityMinimumDataGridViewTextBoxColumn_
+            // 
+            this.QuantityMinimumDataGridViewTextBoxColumn_.DataPropertyName = "QuantityMinimum";
+            this.QuantityMinimumDataGridViewTextBoxColumn_.HeaderText = "QuantityMinimum";
+            this.QuantityMinimumDataGridViewTextBoxColumn_.Name = "QuantityMinimumDataGridViewTextBoxColumn_";
+            this.QuantityMinimumDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // DescriptionDataGridViewTextBoxColumn_
+            // 
+            this.DescriptionDataGridViewTextBoxColumn_.DataPropertyName = "Description";
+            this.DescriptionDataGridViewTextBoxColumn_.HeaderText = "Description";
+            this.DescriptionDataGridViewTextBoxColumn_.Name = "DescriptionDataGridViewTextBoxColumn_";
+            this.DescriptionDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // CategoryIDDataGridViewTextBoxColumn_
+            // 
+            this.CategoryIDDataGridViewTextBoxColumn_.DataPropertyName = "CategoryID";
+            this.CategoryIDDataGridViewTextBoxColumn_.HeaderText = "CategoryID";
+            this.CategoryIDDataGridViewTextBoxColumn_.Name = "CategoryIDDataGridViewTextBoxColumn_";
+            this.CategoryIDDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // CategoryNameDataGridViewTextBoxColumn_
+            // 
+            this.CategoryNameDataGridViewTextBoxColumn_.DataPropertyName = "CategoryName";
+            this.CategoryNameDataGridViewTextBoxColumn_.HeaderText = "CategoryName";
+            this.CategoryNameDataGridViewTextBoxColumn_.Name = "CategoryNameDataGridViewTextBoxColumn_";
+            this.CategoryNameDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // CreationDateDataGridViewTextBoxColumn_
+            // 
+            this.CreationDateDataGridViewTextBoxColumn_.DataPropertyName = "CreationDate";
+            this.CreationDateDataGridViewTextBoxColumn_.HeaderText = "CreationDate";
+            this.CreationDateDataGridViewTextBoxColumn_.Name = "CreationDateDataGridViewTextBoxColumn_";
+            this.CreationDateDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // PriceModificationDateDataGridViewTextBoxColumn_
+            // 
+            this.PriceModificationDateDataGridViewTextBoxColumn_.DataPropertyName = "PriceModificationDate";
+            this.PriceModificationDateDataGridViewTextBoxColumn_.HeaderText = "PriceModificationDate";
+            this.PriceModificationDateDataGridViewTextBoxColumn_.Name = "PriceModificationDateDataGridViewTextBoxColumn_";
+            this.PriceModificationDateDataGridViewTextBoxColumn_.ReadOnly = true;
             // 
             // Dashboard
             // 
@@ -570,8 +570,8 @@ namespace POSWarehouse.UserControls
             this.pan_orders_count.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.productsDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -606,20 +606,20 @@ namespace POSWarehouse.UserControls
         private System.Windows.Forms.Panel pan_orders_count;
         private System.Windows.Forms.Button btn_refresh;
         private System.Windows.Forms.Panel panel1;
-        private SuperMarketDataSet superMarketDataSet;
-        private System.Windows.Forms.BindingSource productsBindingSource;
-        private SuperMarketDataSetTableAdapters.ProductsTableAdapter productsTableAdapter;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView productsDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BarCode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName_;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn QuantityMinimum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CategoryID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CategoryName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CreationDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PriceModificationDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BarCodeDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NameDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuantityDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuantityMinimumDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DescriptionDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CategoryIDDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CategoryNameDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CreationDateDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PriceModificationDateDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.BindingSource productsBindingSource;
+        private Data.POSWarehouseDataSet pOSWarehouseDataSet;
+        private Data.POSWarehouseDataSetTableAdapters.ProductsTableAdapter productsTableAdapter;
     }
 }

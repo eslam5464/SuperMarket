@@ -34,7 +34,7 @@ namespace POSWarehouse.UserControls
 
             if (FileLocation != "")
             {
-                await Task.Run(() => Classes.DataAccess.DataRestore.All(FileLocation, "Default"));
+                await Task.Run(() => Classes.DataAccess.DataRestore.All(FileLocation));
             }
         }
 

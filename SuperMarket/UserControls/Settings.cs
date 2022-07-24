@@ -88,7 +88,7 @@ namespace POSWarehouse.UserControls
 
             if (FileLocation != "")
             {
-                await Task.Run(() => Classes.DataAccess.DataRestore.All(FileLocation, "Default"));
+                await Classes.DataAccess.DataRestore.All(FileLocation, "Default");
             }
 
             pic_restoreDatabaseLoading.Visible = false;

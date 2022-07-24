@@ -62,21 +62,21 @@ namespace POSWarehouse.UserControls
 
         private void HideAndTranslateColums()
         {
-            ordersDataGridView.Columns["InvoiceDate"].HeaderText = "تاريخ الطلب";
-            ordersDataGridView.Columns["InvoiceDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
-            ordersDataGridView.Columns["InvoiceId"].HeaderText = "رقم الفاتورة";
-            ordersDataGridView.Columns["CustomerId"].HeaderText = "الرقم التعريفي للعميل";
-            ordersDataGridView.Columns["CustomerName"].HeaderText = "اسم العميل";
-            ordersDataGridView.Columns["ContactNumber"].HeaderText = "رقم الإتصال";
-            ordersDataGridView.Columns["Address"].HeaderText = "العنوان";
-            ordersDataGridView.Columns["GrandTotal"].HeaderText = "المجموع الكلي للفاتورة";
-            ordersDataGridView.Columns["CreatedByUserFullName"].HeaderText = "اسم الموظف";
+            ordersDataGridView.Columns["InvoiceDateDataGridViewTextBoxColumn_"].HeaderText = "تاريخ الطلب";
+            ordersDataGridView.Columns["InvoiceDateDataGridViewTextBoxColumn_"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
+            ordersDataGridView.Columns["InvoiceIdDataGridViewTextBoxColumn_"].HeaderText = "رقم الفاتورة";
+            ordersDataGridView.Columns["CustomerIdDataGridViewTextBoxColumn_"].HeaderText = "الرقم التعريفي للعميل";
+            ordersDataGridView.Columns["CustomerNameDataGridViewTextBoxColumn_"].HeaderText = "اسم العميل";
+            ordersDataGridView.Columns["ContactNumberDataGridViewTextBoxColumn_"].HeaderText = "رقم الإتصال";
+            ordersDataGridView.Columns["AddressDataGridViewTextBoxColumn_"].HeaderText = "العنوان";
+            ordersDataGridView.Columns["GrandTotalDataGridViewTextBoxColumn_"].HeaderText = "المجموع الكلي للفاتورة";
+            ordersDataGridView.Columns["CreatedByUserFullNameDataGridViewTextBoxColumn_"].HeaderText = "اسم الموظف";
 
-            ordersDataGridView.Columns["Id"].Visible = false;
-            ordersDataGridView.Columns["CreatedByUserId"].Visible = false;
+            ordersDataGridView.Columns["IdDataGridViewTextBoxColumn_"].Visible = false;
+            ordersDataGridView.Columns["CreatedByUserIdDataGridViewTextBoxColumn_"].Visible = false;
 
             ordersDataGridView.AutoResizeColumns();
-            ordersDataGridView.Columns["InvoiceDate"].Width += 5;
+            ordersDataGridView.Columns["InvoiceDateDataGridViewTextBoxColumn_"].Width += 5;
         }
 
         private void SetColors(Color appColor)
@@ -115,9 +115,9 @@ namespace POSWarehouse.UserControls
 
         private void ordersBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            this.ordersBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.superMarketDataSet);
+            //this.Validate();
+            //this.ordersBindingSource.EndEdit();
+            //this.tableAdapterManager.UpdateAll(this.superMarketDataSet);
 
         }
 

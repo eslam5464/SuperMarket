@@ -233,6 +233,8 @@ namespace POSWarehouse.UserControls
             txt_productBarCode.Text = "";
             txt_productquantityMin.Text = "";
 
+            chk_generateBarCode.Checked = false;
+
             txt_categoriename.SelectedIndex = -1;
         }
 
@@ -241,24 +243,24 @@ namespace POSWarehouse.UserControls
             productsDataGridView.DataSource = null;
             productsDataGridView.DataSource = Products;
 
-            productsDataGridView.Columns["Id"].HeaderText = "رقم المنتج";
-            productsDataGridView.Columns["BarCode"].HeaderText = "باركود";
-            productsDataGridView.Columns["ProductName_"].HeaderText = "اسم المنتج";
-            productsDataGridView.Columns["PriceWholesale"].HeaderText = "سعر جمله المنتج";
-            productsDataGridView.Columns["PriceSell"].HeaderText = "سعر بيع المنتج";
-            productsDataGridView.Columns["Description"].HeaderText = "وصف المنتج";
-            productsDataGridView.Columns["Quantity"].HeaderText = "كميه المنتج";
-            productsDataGridView.Columns["QuantityMinimum"].HeaderText = "حد ادنى للمنتج";
-            productsDataGridView.Columns["CategoryID"].HeaderText = "رقم الصنف";
-            productsDataGridView.Columns["CategoryName"].HeaderText = "اسم الصنف";
-            productsDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه المنتج";
-            productsDataGridView.Columns["PriceModificationDate"].HeaderText = "يوم تعديل السعر";
-            productsDataGridView.Columns["PriceModificationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
-            productsDataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
+            productsDataGridView.Columns["IdDataGridViewTextBoxColumn_"].HeaderText = "رقم المنتج";
+            productsDataGridView.Columns["BarCodeDataGridViewTextBoxColumn_"].HeaderText = "باركود";
+            productsDataGridView.Columns["NameDataGridViewTextBoxColumn_"].HeaderText = "اسم المنتج";
+            productsDataGridView.Columns["PriceWholesaleDataGridViewTextBoxColumn_"].HeaderText = "سعر جمله المنتج";
+            productsDataGridView.Columns["PriceSellDataGridViewTextBoxColumn_"].HeaderText = "سعر بيع المنتج";
+            productsDataGridView.Columns["DescriptionDataGridViewTextBoxColumn_"].HeaderText = "وصف المنتج";
+            productsDataGridView.Columns["QuantityDataGridViewTextBoxColumn_"].HeaderText = "كميه المنتج";
+            productsDataGridView.Columns["QuantityMinimumDataGridViewTextBoxColumn_"].HeaderText = "حد ادنى للمنتج";
+            productsDataGridView.Columns["CategoryIDDataGridViewTextBoxColumn_"].HeaderText = "رقم الصنف";
+            productsDataGridView.Columns["CategoryNameDataGridViewTextBoxColumn_"].HeaderText = "اسم الصنف";
+            productsDataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].HeaderText = "يوم اضافه المنتج";
+            productsDataGridView.Columns["PriceModificationDateDataGridViewTextBoxColumn_"].HeaderText = "يوم تعديل السعر";
+            productsDataGridView.Columns["PriceModificationDateDataGridViewTextBoxColumn_"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
+            productsDataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
 
             productsDataGridView.AutoResizeColumns();
-            productsDataGridView.Columns["CreationDate"].Width += 5;
-            productsDataGridView.Columns["PriceModificationDate"].Width += 5;
+            productsDataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].Width += 5;
+            productsDataGridView.Columns["PriceModificationDateDataGridViewTextBoxColumn_"].Width += 5;
         }
 
         private void txt_products_KeyDown(object sender, KeyEventArgs e)

@@ -23,15 +23,15 @@ namespace POSWarehouse.UserControls
             dataGridView.DataSource = null;
             dataGridView.DataSource = Customers;
 
-            dataGridView.Columns["Id"].HeaderText = "الرقم التعريفي للعميل";
-            dataGridView.Columns["CustomerName"].HeaderText = "اسم العميل";
-            dataGridView.Columns["ContactNo"].HeaderText = "رقم الاتصال";
-            dataGridView.Columns["Address"].HeaderText = "العنوان";
-            dataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه العميل";
-            dataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
+            dataGridView.Columns["IdDataGridViewTextBoxColumn_"].HeaderText = "الرقم التعريفي للعميل";
+            dataGridView.Columns["NameDataGridViewTextBoxColumn_"].HeaderText = "اسم العميل";
+            dataGridView.Columns["ContactNoDataGridViewTextBoxColumn_"].HeaderText = "رقم الاتصال";
+            dataGridView.Columns["AddressDataGridViewTextBoxColumn_"].HeaderText = "العنوان";
+            dataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].HeaderText = "يوم اضافه العميل";
+            dataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
 
             dataGridView.AutoResizeColumns();
-            dataGridView.Columns["CreationDate"].Width += 5;
+            dataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].Width += 5;
         }
 
         private async void btn_save_Click(object sender, EventArgs e)
@@ -306,9 +306,9 @@ namespace POSWarehouse.UserControls
 
         private void customersBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            this.customersBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.superMarketDataSet);
+            //this.Validate();
+            //this.customersBindingSource.EndEdit();
+            //this.tableAdapterManager.UpdateAll(this.superMarketDataSet);
 
         }
 

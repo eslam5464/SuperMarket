@@ -78,17 +78,17 @@ namespace POSWarehouse.UserControls
 
         private void suppliersBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            this.suppliersBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.superMarketDataSet);
+            //this.Validate();
+            //this.suppliersBindingSource.EndEdit();
+            //this.tableAdapterManager.UpdateAll(this.superMarketDataSet);
 
         }
 
         private void suppliersBindingNavigatorSaveItem_Click_1(object sender, EventArgs e)
         {
-            this.Validate();
-            this.suppliersBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.superMarketDataSet);
+            //this.Validate();
+            //this.suppliersBindingSource.EndEdit();
+            //this.tableAdapterManager.UpdateAll(this.superMarketDataSet);
 
         }
 

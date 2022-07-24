@@ -16,11 +16,7 @@ namespace POSWarehouse.Classes.DataAccess
 
         public async static Task<bool> AllOnce(string strDestination, string BackupFileName, bool Overwrite, string Id = "Default")
         {
-            Date = DateTime.Now.ToString("yyyy-MM-dd ");
-
-            bool output = await All(strDestination, Id, Overwrite, BackupFileName);
-
-            return output;
+            return await All(strDestination, Id, Overwrite, BackupFileName);
         }
 
         public async static Task AllWeekly(DayOfWeek Day, string strDestination = ".", string Id = "Default")
@@ -85,11 +81,11 @@ namespace POSWarehouse.Classes.DataAccess
                 {
                     using (var location = new SqlConnection(GlobalVars.LoadConnectionString(Id)))
                     {
-                        await Task.Run(() => location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{BackupFileName}' 
+                        await Task.Run(() => location.Execute($@"BACKUP DATABASE {Security.GetDBName()} TO DISK = '{strDestination}\{BackupFileName}' 
                             WITH DIFFERENTIAL", new DynamicParameters()));
                     }
                     await Task.Run(() => Logger.Log($@"created backup and orverwrited the file at location " +
-                        $@"<{strDestination}\{BackupFileName}>", System.Reflection.MethodInfo.GetCurrentMethod().Name,
+                        $@"<{strDestination}{BackupFileName}>", System.Reflection.MethodInfo.GetCurrentMethod().Name,
                         "Backup", Logger.INFO));
 
                     output = true;
@@ -103,11 +99,10 @@ namespace POSWarehouse.Classes.DataAccess
                     {
                         using (var location = new SqlConnection(GlobalVars.LoadConnectionString(Id)))
                         {
-                            await Task.Run(() => location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{BackupFileName}' "
-                                + "WITH DIFFERENTIAL", new DynamicParameters()));
+                            await Task.Run(() => location.Execute($@"BACKUP DATABASE {Security.GetDBName()} TO DISK = '{strDestination}\{BackupFileName}'", new DynamicParameters()));
                         }
                         await Task.Run(() => Logger.Log($@"created backup and orverwrited the file at location " +
-                            $@"<{strDestination}\{BackupFileName}>", System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup",
+                            $@"<{strDestination}{BackupFileName}>", System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup",
                             Logger.WARNING));
 
                         output = true;
@@ -129,7 +124,7 @@ namespace POSWarehouse.Classes.DataAccess
                     using (var location = new SqlConnection(GlobalVars.LoadConnectionString(Id)))
                     //using (var destination = new SqlConnection($@"Data Source={strDestination}\{BackupFileName}; Version=3;"))
                     {
-                        await Task.Run(() => location.Execute($@"BACKUP DATABASE SuperMarket TO DISK = '{strDestination}\{BackupFileName}'",
+                        await Task.Run(() => location.Execute($@"BACKUP DATABASE {Security.GetDBName()} TO DISK = '{strDestination}\{BackupFileName}'",
                             new DynamicParameters()));
                         //location.Open();
                         //destination.Open();

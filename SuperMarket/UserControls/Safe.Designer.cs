@@ -30,22 +30,11 @@ namespace POSWarehouse.UserControls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.db_safeTransactionDataGridView = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SafeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SafeName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AmountAdded = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AmountTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AdjustedByUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AdjustedByUserFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.safeTransactionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.superMarketDataSet = new POSWarehouse.SuperMarketDataSet();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_safeDelete = new System.Windows.Forms.Button();
             this.txt_safeNameEdit = new System.Windows.Forms.ComboBox();
@@ -75,17 +64,28 @@ namespace POSWarehouse.UserControls
             this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.safeTransactionTableAdapter = new POSWarehouse.SuperMarketDataSetTableAdapters.SafeTransactionTableAdapter();
+            this.pOSWarehouseDataSet = new POSWarehouse.Data.POSWarehouseDataSet();
+            this.safeTransactionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.safeTransactionTableAdapter = new POSWarehouse.Data.POSWarehouseDataSetTableAdapters.SafeTransactionTableAdapter();
+            this.IdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SafeIdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SafeNameDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmountAddedDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmountTotalDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AdjustedByUserIdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AdjustedByUserFullNameDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NotesDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreationDateDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_safeTransactionDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.safeTransactionBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchSafeName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_safeTransactionAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.safeTransactionBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
@@ -105,34 +105,34 @@ namespace POSWarehouse.UserControls
             this.db_safeTransactionDataGridView.AllowUserToResizeRows = false;
             this.db_safeTransactionDataGridView.AutoGenerateColumns = false;
             this.db_safeTransactionDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.db_safeTransactionDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.db_safeTransactionDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.db_safeTransactionDataGridView.ColumnHeadersHeight = 40;
             this.db_safeTransactionDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.SafeId,
-            this.SafeName,
-            this.AmountAdded,
-            this.AmountTotal,
-            this.AdjustedByUserId,
-            this.AdjustedByUserFullName,
-            this.CreationDate,
-            this.Notes});
+            this.IdDataGridViewTextBoxColumn_,
+            this.SafeIdDataGridViewTextBoxColumn_,
+            this.SafeNameDataGridViewTextBoxColumn_,
+            this.AmountAddedDataGridViewTextBoxColumn_,
+            this.AmountTotalDataGridViewTextBoxColumn_,
+            this.AdjustedByUserIdDataGridViewTextBoxColumn_,
+            this.AdjustedByUserFullNameDataGridViewTextBoxColumn_,
+            this.NotesDataGridViewTextBoxColumn_,
+            this.CreationDateDataGridViewTextBoxColumn_});
             this.db_safeTransactionDataGridView.DataSource = this.safeTransactionBindingSource;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.db_safeTransactionDataGridView.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.db_safeTransactionDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.db_safeTransactionDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.db_safeTransactionDataGridView.EnableHeadersVisualStyles = false;
             this.db_safeTransactionDataGridView.GridColor = System.Drawing.Color.Silver;
@@ -140,14 +140,14 @@ namespace POSWarehouse.UserControls
             this.db_safeTransactionDataGridView.MultiSelect = false;
             this.db_safeTransactionDataGridView.Name = "db_safeTransactionDataGridView";
             this.db_safeTransactionDataGridView.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.db_safeTransactionDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.db_safeTransactionDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.db_safeTransactionDataGridView.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             this.db_safeTransactionDataGridView.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Palatino Linotype", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.db_safeTransactionDataGridView.RowTemplate.Height = 24;
@@ -156,79 +156,6 @@ namespace POSWarehouse.UserControls
             this.db_safeTransactionDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_safeTransactionDataGridView_CellMouseClick);
             this.db_safeTransactionDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_safeTransactionDataGridView_ColumnHeaderMouseClick);
             this.db_safeTransactionDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_safeTransactionDataGridView_ColumnHeaderMouseDoubleClick);
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            // 
-            // SafeId
-            // 
-            this.SafeId.DataPropertyName = "SafeId";
-            this.SafeId.HeaderText = "SafeId";
-            this.SafeId.Name = "SafeId";
-            this.SafeId.ReadOnly = true;
-            // 
-            // SafeName
-            // 
-            this.SafeName.DataPropertyName = "SafeName";
-            this.SafeName.HeaderText = "SafeName";
-            this.SafeName.Name = "SafeName";
-            this.SafeName.ReadOnly = true;
-            // 
-            // AmountAdded
-            // 
-            this.AmountAdded.DataPropertyName = "AmountAdded";
-            this.AmountAdded.HeaderText = "AmountAdded";
-            this.AmountAdded.Name = "AmountAdded";
-            this.AmountAdded.ReadOnly = true;
-            // 
-            // AmountTotal
-            // 
-            this.AmountTotal.DataPropertyName = "AmountTotal";
-            this.AmountTotal.HeaderText = "AmountTotal";
-            this.AmountTotal.Name = "AmountTotal";
-            this.AmountTotal.ReadOnly = true;
-            // 
-            // AdjustedByUserId
-            // 
-            this.AdjustedByUserId.DataPropertyName = "AdjustedByUserId";
-            this.AdjustedByUserId.HeaderText = "AdjustedByUserId";
-            this.AdjustedByUserId.Name = "AdjustedByUserId";
-            this.AdjustedByUserId.ReadOnly = true;
-            // 
-            // AdjustedByUserFullName
-            // 
-            this.AdjustedByUserFullName.DataPropertyName = "AdjustedByUserFullName";
-            this.AdjustedByUserFullName.HeaderText = "AdjustedByUserFullName";
-            this.AdjustedByUserFullName.Name = "AdjustedByUserFullName";
-            this.AdjustedByUserFullName.ReadOnly = true;
-            // 
-            // CreationDate
-            // 
-            this.CreationDate.DataPropertyName = "CreationDate";
-            this.CreationDate.HeaderText = "CreationDate";
-            this.CreationDate.Name = "CreationDate";
-            this.CreationDate.ReadOnly = true;
-            // 
-            // Notes
-            // 
-            this.Notes.DataPropertyName = "Notes";
-            this.Notes.HeaderText = "Notes";
-            this.Notes.Name = "Notes";
-            this.Notes.ReadOnly = true;
-            // 
-            // safeTransactionBindingSource
-            // 
-            this.safeTransactionBindingSource.DataMember = "SafeTransaction";
-            this.safeTransactionBindingSource.DataSource = this.superMarketDataSet;
-            // 
-            // superMarketDataSet
-            // 
-            this.superMarketDataSet.DataSetName = "SuperMarketDataSet";
-            this.superMarketDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // panel1
             // 
@@ -635,9 +562,82 @@ namespace POSWarehouse.UserControls
             this.label3.TabIndex = 209;
             this.label3.Text = "*";
             // 
+            // pOSWarehouseDataSet
+            // 
+            this.pOSWarehouseDataSet.DataSetName = "POSWarehouseDataSet";
+            this.pOSWarehouseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // safeTransactionBindingSource
+            // 
+            this.safeTransactionBindingSource.DataMember = "SafeTransaction";
+            this.safeTransactionBindingSource.DataSource = this.pOSWarehouseDataSet;
+            // 
             // safeTransactionTableAdapter
             // 
             this.safeTransactionTableAdapter.ClearBeforeFill = true;
+            // 
+            // IdDataGridViewTextBoxColumn_
+            // 
+            this.IdDataGridViewTextBoxColumn_.DataPropertyName = "Id";
+            this.IdDataGridViewTextBoxColumn_.HeaderText = "Id";
+            this.IdDataGridViewTextBoxColumn_.Name = "IdDataGridViewTextBoxColumn_";
+            this.IdDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // SafeIdDataGridViewTextBoxColumn_
+            // 
+            this.SafeIdDataGridViewTextBoxColumn_.DataPropertyName = "SafeId";
+            this.SafeIdDataGridViewTextBoxColumn_.HeaderText = "SafeId";
+            this.SafeIdDataGridViewTextBoxColumn_.Name = "SafeIdDataGridViewTextBoxColumn_";
+            this.SafeIdDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // SafeNameDataGridViewTextBoxColumn_
+            // 
+            this.SafeNameDataGridViewTextBoxColumn_.DataPropertyName = "SafeName";
+            this.SafeNameDataGridViewTextBoxColumn_.HeaderText = "SafeName";
+            this.SafeNameDataGridViewTextBoxColumn_.Name = "SafeNameDataGridViewTextBoxColumn_";
+            this.SafeNameDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // AmountAddedDataGridViewTextBoxColumn_
+            // 
+            this.AmountAddedDataGridViewTextBoxColumn_.DataPropertyName = "AmountAdded";
+            this.AmountAddedDataGridViewTextBoxColumn_.HeaderText = "AmountAdded";
+            this.AmountAddedDataGridViewTextBoxColumn_.Name = "AmountAddedDataGridViewTextBoxColumn_";
+            this.AmountAddedDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // AmountTotalDataGridViewTextBoxColumn_
+            // 
+            this.AmountTotalDataGridViewTextBoxColumn_.DataPropertyName = "AmountTotal";
+            this.AmountTotalDataGridViewTextBoxColumn_.HeaderText = "AmountTotal";
+            this.AmountTotalDataGridViewTextBoxColumn_.Name = "AmountTotalDataGridViewTextBoxColumn_";
+            this.AmountTotalDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // AdjustedByUserIdDataGridViewTextBoxColumn_
+            // 
+            this.AdjustedByUserIdDataGridViewTextBoxColumn_.DataPropertyName = "AdjustedByUserId";
+            this.AdjustedByUserIdDataGridViewTextBoxColumn_.HeaderText = "AdjustedByUserId";
+            this.AdjustedByUserIdDataGridViewTextBoxColumn_.Name = "AdjustedByUserIdDataGridViewTextBoxColumn_";
+            this.AdjustedByUserIdDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // AdjustedByUserFullNameDataGridViewTextBoxColumn_
+            // 
+            this.AdjustedByUserFullNameDataGridViewTextBoxColumn_.DataPropertyName = "AdjustedByUserFullName";
+            this.AdjustedByUserFullNameDataGridViewTextBoxColumn_.HeaderText = "AdjustedByUserFullName";
+            this.AdjustedByUserFullNameDataGridViewTextBoxColumn_.Name = "AdjustedByUserFullNameDataGridViewTextBoxColumn_";
+            this.AdjustedByUserFullNameDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // NotesDataGridViewTextBoxColumn_
+            // 
+            this.NotesDataGridViewTextBoxColumn_.DataPropertyName = "Notes";
+            this.NotesDataGridViewTextBoxColumn_.HeaderText = "Notes";
+            this.NotesDataGridViewTextBoxColumn_.Name = "NotesDataGridViewTextBoxColumn_";
+            this.NotesDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // CreationDateDataGridViewTextBoxColumn_
+            // 
+            this.CreationDateDataGridViewTextBoxColumn_.DataPropertyName = "CreationDate";
+            this.CreationDateDataGridViewTextBoxColumn_.HeaderText = "CreationDate";
+            this.CreationDateDataGridViewTextBoxColumn_.Name = "CreationDateDataGridViewTextBoxColumn_";
+            this.CreationDateDataGridViewTextBoxColumn_.ReadOnly = true;
             // 
             // Safe
             // 
@@ -654,8 +654,6 @@ namespace POSWarehouse.UserControls
             this.Load += new System.EventHandler(this.Safe_Load);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.db_safeTransactionDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.safeTransactionBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -665,6 +663,8 @@ namespace POSWarehouse.UserControls
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchSafeName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_safeTransactionAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.safeTransactionBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -701,18 +701,18 @@ namespace POSWarehouse.UserControls
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown num_safeTransactionAmount;
-        private System.Windows.Forms.BindingSource safeTransactionBindingSource;
-        private SuperMarketDataSet superMarketDataSet;
-        private SuperMarketDataSetTableAdapters.SafeTransactionTableAdapter safeTransactionTableAdapter;
         private System.Windows.Forms.PictureBox pcb_searchSafeName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SafeId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SafeName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AmountAdded;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AmountTotal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AdjustedByUserId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AdjustedByUserFullName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CreationDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Notes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SafeIdDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SafeNameDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AmountAddedDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AmountTotalDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AdjustedByUserIdDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AdjustedByUserFullNameDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NotesDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CreationDateDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.BindingSource safeTransactionBindingSource;
+        private Data.POSWarehouseDataSet pOSWarehouseDataSet;
+        private Data.POSWarehouseDataSetTableAdapters.SafeTransactionTableAdapter safeTransactionTableAdapter;
     }
 }

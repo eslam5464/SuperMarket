@@ -11,6 +11,75 @@ namespace POSWarehouse.Classes.DataAccess
 {
     class DataInit
     {
+        /*
+			USE master
+ 
+			ALTER DATABASE [C:\Users\Eslam\Documents\Visual Studio 2019\Projects\SuperMarket\SuperMarket\bin\Debug\Data\Database.mdf] SET SINGLE_USER WITH ROLLBACK IMMEDIATE 
+
+			ALTER DATABASE [C:\Users\Eslam\Documents\Visual Studio 2019\Projects\SuperMarket\SuperMarket\bin\Debug\Data\Database.mdf] MODIFY NAME = POSWarehouse
+
+			ALTER DATABASE POSWarehouse SET MULTI_USER 
+
+		======
+		SELECT name FROM sys.databases where name = ''
+		 */
+        public static async Task RenameDatabase(string DatabaseNameOriginal, string DatabaseNameNew)
+        {
+
+            string query = $@"SELECT name FROM sys.databases where name = '{DatabaseNameOriginal}'";
+            try
+            {
+                using (IDbConnection cnn = await Task.Run(() => new SqlConnection(GlobalVars.LoadConnectionString())))
+                {
+                    var output = await Task.Run(() => cnn.Query<string>($"SELECT name FROM sys.databases where " +
+                        $"name = '{DatabaseNameOriginal}'", new DynamicParameters()).ToList());
+                    if (output.Count > 0)
+                    {
+                        Console.WriteLine(output.Count);
+                        query = $@"USE master"
+
+                            + $"ALTER DATABASE \"{ DatabaseNameOriginal}\" SET SINGLE_USER WITH ROLLBACK IMMEDIATE "
+
+                            + $"ALTER DATABASE \"{DatabaseNameOriginal}\" MODIFY NAME = {DatabaseNameNew}"
+
+                            + $"ALTER DATABASE {DatabaseNameNew} SET MULTI_USER "
+
+                            + $"ALTER DATABASE \"{DatabaseNameOriginal}\" MODIFY FILE (NAME=N'Database', NEWNAME=N'{DatabaseNameNew}')"
+
+                            + $"ALTER DATABASE \"{DatabaseNameOriginal}\" MODIFY FILE (NAME=N'Database_log', NEWNAME=N'{DatabaseNameNew}_log')"
+                            + "";
+                        try
+                        {
+                            using (var connection = new SqlConnection(GlobalVars.LoadConnectionString()))
+                            {
+                                using (var command = new SqlCommand(query, connection))
+                                {
+                                    await Task.Run(() => connection.Open());
+                                    await Task.Run(() => Logger.Log($"Changed the name of the database <{DatabaseNameOriginal}> -> <{DatabaseNameNew}>",
+                                                System.Reflection.MethodInfo.GetCurrentMethod().Name, "DataInit", Logger.ERROR));
+                                }
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Logger.Log($"While changing the name of the database {DatabaseNameOriginal} & error: {ex.Message}",
+                                        System.Reflection.MethodInfo.GetCurrentMethod().Name, "DataInit", Logger.ERROR);
+                        }
+                    }
+                    else
+                    {
+                        Logger.Log($"There is no database with name: <{DatabaseNameOriginal}>",
+                                        System.Reflection.MethodInfo.GetCurrentMethod().Name, "DataInit", Logger.INFO);
+                    }
+                }
+            }
+            catch (Exception exx)
+            {
+                Logger.Log($"While searching for database with name: <{DatabaseNameOriginal}> & error: {exx.Message}",
+                                        System.Reflection.MethodInfo.GetCurrentMethod().Name, "DataInit", Logger.ERROR);
+            }
+        }
+
         public static async Task<DateTime> GetDatabaseCreationDate(string DatabaseName)
         {
             try

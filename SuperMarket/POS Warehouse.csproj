@@ -381,11 +381,6 @@
     <Compile Include="Classes\Models\UserModel.cs" />
     <Compile Include="Classes\Models\Validators\UserValidator.cs" />
     <Compile Include="Classes\Security.cs" />
-    <Compile Include="Data\DatabaseDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Forms\About.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -439,6 +434,11 @@
     </Compile>
     <Compile Include="Forms\UserAccess.Designer.cs">
       <DependentUpon>UserAccess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Data\POSWarehouseDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>POSWarehouseDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="Properties\Sound.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -587,16 +587,16 @@
     <EmbeddedResource Include="UserControls\Suppliers.resx">
       <DependentUpon>Suppliers.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Data\DatabaseDataSet.xsc">
-      <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
+    <None Include="Data\POSWarehouseDataSet.xsc">
+      <DependentUpon>POSWarehouseDataSet.xsd</DependentUpon>
     </None>
-    <None Include="Data\DatabaseDataSet.xsd">
+    <None Include="Data\POSWarehouseDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DatabaseDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>POSWarehouseDataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Data\DatabaseDataSet.xss">
-      <DependentUpon>DatabaseDataSet.xsd</DependentUpon>
+    <None Include="Data\POSWarehouseDataSet.xss">
+      <DependentUpon>POSWarehouseDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\app.manifest" />
     <None Include="Resources\icons8-edit-property-48.png" />
@@ -740,12 +740,8 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="Resources\notification_sound_success2.wav" />
-    <Content Include="Data\Database.mdf">
+    <Content Include="Data\POSWarehouseDB.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Data\Database_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>Database.mdf</DependentUpon>
     </Content>
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">

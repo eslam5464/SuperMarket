@@ -85,10 +85,10 @@ namespace POSWarehouse.Forms
 
                     //Security.OpenFormMain = true;
 
-                    if (!await Classes.DataAccess.DataInit.CheckDatabaseExists(Security.GetDBName()))
-                    {
-                        await Classes.DataAccess.DataInit.CreateDatabase(Security.GetDBName());
-                    }
+                    //if (!await Classes.DataAccess.DataInit.CheckDatabaseExists(Security.GetDBName()))
+                    //{
+                    //    await Classes.DataAccess.DataInit.CreateDatabase(Security.GetDBName());
+                    //}
 
                     btn_checkKey.Enabled = true;
                     pic_loading.Visible = false;

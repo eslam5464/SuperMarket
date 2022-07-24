@@ -30,23 +30,11 @@ namespace POSWarehouse.UserControls
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.ordersDataGridView = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InvoiceDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.InvoiceId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ContactNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GrandTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreatedByUserId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreatedByUserFullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ordersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.superMarketDataSet = new POSWarehouse.SuperMarketDataSet();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pcb_search_by_customer_name = new System.Windows.Forms.PictureBox();
@@ -58,17 +46,29 @@ namespace POSWarehouse.UserControls
             this.btn_exportPDF = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pcb_search_by_invoiceno = new System.Windows.Forms.PictureBox();
-            this.ordersTableAdapter = new POSWarehouse.SuperMarketDataSetTableAdapters.OrdersTableAdapter();
             this.tableAdapterManager = new POSWarehouse.SuperMarketDataSetTableAdapters.TableAdapterManager();
+            this.pOSWarehouseDataSet = new POSWarehouse.Data.POSWarehouseDataSet();
+            this.ordersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ordersTableAdapter = new POSWarehouse.Data.POSWarehouseDataSetTableAdapters.OrdersTableAdapter();
+            this.IdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvoiceDateDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.InvoiceIdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerIdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerNameDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ContactNumberDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AddressDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GrandTotalDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreatedByUserIdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreatedByUserFullNameDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_customer_name)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_invoiceno)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
@@ -88,35 +88,35 @@ namespace POSWarehouse.UserControls
             this.ordersDataGridView.AllowUserToResizeRows = false;
             this.ordersDataGridView.AutoGenerateColumns = false;
             this.ordersDataGridView.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Purple;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ordersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Purple;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ordersDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.ordersDataGridView.ColumnHeadersHeight = 40;
             this.ordersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.InvoiceDate,
-            this.InvoiceId,
-            this.CustomerId,
-            this.CustomerName,
-            this.ContactNumber,
-            this.Address,
-            this.GrandTotal,
-            this.CreatedByUserId,
-            this.CreatedByUserFullName});
+            this.IdDataGridViewTextBoxColumn_,
+            this.InvoiceDateDataGridViewTextBoxColumn_,
+            this.InvoiceIdDataGridViewTextBoxColumn_,
+            this.CustomerIdDataGridViewTextBoxColumn_,
+            this.CustomerNameDataGridViewTextBoxColumn_,
+            this.ContactNumberDataGridViewTextBoxColumn_,
+            this.AddressDataGridViewTextBoxColumn_,
+            this.GrandTotalDataGridViewTextBoxColumn_,
+            this.CreatedByUserIdDataGridViewTextBoxColumn_,
+            this.CreatedByUserFullNameDataGridViewTextBoxColumn_});
             this.ordersDataGridView.DataSource = this.ordersBindingSource;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ordersDataGridView.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ordersDataGridView.DefaultCellStyle = dataGridViewCellStyle2;
             this.ordersDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ordersDataGridView.EnableHeadersVisualStyles = false;
             this.ordersDataGridView.GridColor = System.Drawing.Color.Silver;
@@ -124,99 +124,19 @@ namespace POSWarehouse.UserControls
             this.ordersDataGridView.MultiSelect = false;
             this.ordersDataGridView.Name = "ordersDataGridView";
             this.ordersDataGridView.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.ordersDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.ordersDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.ordersDataGridView.Size = new System.Drawing.Size(1032, 536);
             this.ordersDataGridView.TabIndex = 1;
             this.ordersDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.ordersDataGridView_CellMouseClick);
             this.ordersDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_ordersDataGridView_ColumnHeaderMouseClick);
             this.ordersDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_ordersDataGridView_ColumnHeaderMouseDoubleClick);
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            // 
-            // InvoiceDate
-            // 
-            this.InvoiceDate.DataPropertyName = "InvoiceDate";
-            this.InvoiceDate.HeaderText = "InvoiceDate";
-            this.InvoiceDate.Name = "InvoiceDate";
-            this.InvoiceDate.ReadOnly = true;
-            // 
-            // InvoiceId
-            // 
-            this.InvoiceId.DataPropertyName = "InvoiceId";
-            this.InvoiceId.HeaderText = "InvoiceId";
-            this.InvoiceId.Name = "InvoiceId";
-            this.InvoiceId.ReadOnly = true;
-            // 
-            // CustomerId
-            // 
-            this.CustomerId.DataPropertyName = "CustomerId";
-            this.CustomerId.HeaderText = "CustomerId";
-            this.CustomerId.Name = "CustomerId";
-            this.CustomerId.ReadOnly = true;
-            // 
-            // CustomerName
-            // 
-            this.CustomerName.DataPropertyName = "CustomerName";
-            this.CustomerName.HeaderText = "CustomerName";
-            this.CustomerName.Name = "CustomerName";
-            this.CustomerName.ReadOnly = true;
-            // 
-            // ContactNumber
-            // 
-            this.ContactNumber.DataPropertyName = "ContactNumber";
-            this.ContactNumber.HeaderText = "ContactNumber";
-            this.ContactNumber.Name = "ContactNumber";
-            this.ContactNumber.ReadOnly = true;
-            // 
-            // Address
-            // 
-            this.Address.DataPropertyName = "Address";
-            this.Address.HeaderText = "Address";
-            this.Address.Name = "Address";
-            this.Address.ReadOnly = true;
-            // 
-            // GrandTotal
-            // 
-            this.GrandTotal.DataPropertyName = "GrandTotal";
-            this.GrandTotal.HeaderText = "GrandTotal";
-            this.GrandTotal.Name = "GrandTotal";
-            this.GrandTotal.ReadOnly = true;
-            // 
-            // CreatedByUserId
-            // 
-            this.CreatedByUserId.DataPropertyName = "CreatedByUserId";
-            this.CreatedByUserId.HeaderText = "CreatedByUserId";
-            this.CreatedByUserId.Name = "CreatedByUserId";
-            this.CreatedByUserId.ReadOnly = true;
-            // 
-            // CreatedByUserFullName
-            // 
-            this.CreatedByUserFullName.DataPropertyName = "CreatedByUserFullName";
-            this.CreatedByUserFullName.HeaderText = "CreatedByUserFullName";
-            this.CreatedByUserFullName.Name = "CreatedByUserFullName";
-            this.CreatedByUserFullName.ReadOnly = true;
-            // 
-            // ordersBindingSource
-            // 
-            this.ordersBindingSource.DataMember = "Orders";
-            this.ordersBindingSource.DataSource = this.superMarketDataSet;
-            // 
-            // superMarketDataSet
-            // 
-            this.superMarketDataSet.DataSetName = "SuperMarketDataSet";
-            this.superMarketDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label2
             // 
@@ -362,17 +282,12 @@ namespace POSWarehouse.UserControls
             this.pcb_search_by_invoiceno.MouseEnter += new System.EventHandler(this.pcb_search_by_MouseEnter);
             this.pcb_search_by_invoiceno.MouseLeave += new System.EventHandler(this.pcb_search_by_MouseLeave);
             // 
-            // ordersTableAdapter
-            // 
-            this.ordersTableAdapter.ClearBeforeFill = true;
-            // 
             // tableAdapterManager
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.CategoriesTableAdapter = null;
             this.tableAdapterManager.CustomersTableAdapter = null;
             this.tableAdapterManager.InvoicesTableAdapter = null;
-            this.tableAdapterManager.OrdersTableAdapter = this.ordersTableAdapter;
             this.tableAdapterManager.ProductPriceTableAdapter = null;
             this.tableAdapterManager.ProductsTableAdapter = null;
             this.tableAdapterManager.SafeTableAdapter = null;
@@ -384,6 +299,90 @@ namespace POSWarehouse.UserControls
             this.tableAdapterManager.UpdateOrder = POSWarehouse.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserLevelAccessTableAdapter = null;
             this.tableAdapterManager.UsersTableAdapter = null;
+            // 
+            // pOSWarehouseDataSet
+            // 
+            this.pOSWarehouseDataSet.DataSetName = "POSWarehouseDataSet";
+            this.pOSWarehouseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // ordersBindingSource
+            // 
+            this.ordersBindingSource.DataMember = "Orders";
+            this.ordersBindingSource.DataSource = this.pOSWarehouseDataSet;
+            // 
+            // ordersTableAdapter
+            // 
+            this.ordersTableAdapter.ClearBeforeFill = true;
+            // 
+            // IdDataGridViewTextBoxColumn_
+            // 
+            this.IdDataGridViewTextBoxColumn_.DataPropertyName = "Id";
+            this.IdDataGridViewTextBoxColumn_.HeaderText = "Id";
+            this.IdDataGridViewTextBoxColumn_.Name = "IdDataGridViewTextBoxColumn_";
+            this.IdDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // InvoiceDateDataGridViewTextBoxColumn_
+            // 
+            this.InvoiceDateDataGridViewTextBoxColumn_.DataPropertyName = "InvoiceDate";
+            this.InvoiceDateDataGridViewTextBoxColumn_.HeaderText = "InvoiceDate";
+            this.InvoiceDateDataGridViewTextBoxColumn_.Name = "InvoiceDateDataGridViewTextBoxColumn_";
+            this.InvoiceDateDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // InvoiceIdDataGridViewTextBoxColumn_
+            // 
+            this.InvoiceIdDataGridViewTextBoxColumn_.DataPropertyName = "InvoiceId";
+            this.InvoiceIdDataGridViewTextBoxColumn_.HeaderText = "InvoiceId";
+            this.InvoiceIdDataGridViewTextBoxColumn_.Name = "InvoiceIdDataGridViewTextBoxColumn_";
+            this.InvoiceIdDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // CustomerIdDataGridViewTextBoxColumn_
+            // 
+            this.CustomerIdDataGridViewTextBoxColumn_.DataPropertyName = "CustomerId";
+            this.CustomerIdDataGridViewTextBoxColumn_.HeaderText = "CustomerId";
+            this.CustomerIdDataGridViewTextBoxColumn_.Name = "CustomerIdDataGridViewTextBoxColumn_";
+            this.CustomerIdDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // CustomerNameDataGridViewTextBoxColumn_
+            // 
+            this.CustomerNameDataGridViewTextBoxColumn_.DataPropertyName = "CustomerName";
+            this.CustomerNameDataGridViewTextBoxColumn_.HeaderText = "CustomerName";
+            this.CustomerNameDataGridViewTextBoxColumn_.Name = "CustomerNameDataGridViewTextBoxColumn_";
+            this.CustomerNameDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // ContactNumberDataGridViewTextBoxColumn_
+            // 
+            this.ContactNumberDataGridViewTextBoxColumn_.DataPropertyName = "ContactNumber";
+            this.ContactNumberDataGridViewTextBoxColumn_.HeaderText = "ContactNumber";
+            this.ContactNumberDataGridViewTextBoxColumn_.Name = "ContactNumberDataGridViewTextBoxColumn_";
+            this.ContactNumberDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // AddressDataGridViewTextBoxColumn_
+            // 
+            this.AddressDataGridViewTextBoxColumn_.DataPropertyName = "Address";
+            this.AddressDataGridViewTextBoxColumn_.HeaderText = "Address";
+            this.AddressDataGridViewTextBoxColumn_.Name = "AddressDataGridViewTextBoxColumn_";
+            this.AddressDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // GrandTotalDataGridViewTextBoxColumn_
+            // 
+            this.GrandTotalDataGridViewTextBoxColumn_.DataPropertyName = "GrandTotal";
+            this.GrandTotalDataGridViewTextBoxColumn_.HeaderText = "GrandTotal";
+            this.GrandTotalDataGridViewTextBoxColumn_.Name = "GrandTotalDataGridViewTextBoxColumn_";
+            this.GrandTotalDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // CreatedByUserIdDataGridViewTextBoxColumn_
+            // 
+            this.CreatedByUserIdDataGridViewTextBoxColumn_.DataPropertyName = "CreatedByUserId";
+            this.CreatedByUserIdDataGridViewTextBoxColumn_.HeaderText = "CreatedByUserId";
+            this.CreatedByUserIdDataGridViewTextBoxColumn_.Name = "CreatedByUserIdDataGridViewTextBoxColumn_";
+            this.CreatedByUserIdDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // CreatedByUserFullNameDataGridViewTextBoxColumn_
+            // 
+            this.CreatedByUserFullNameDataGridViewTextBoxColumn_.DataPropertyName = "CreatedByUserFullName";
+            this.CreatedByUserFullNameDataGridViewTextBoxColumn_.HeaderText = "CreatedByUserFullName";
+            this.CreatedByUserFullNameDataGridViewTextBoxColumn_.Name = "CreatedByUserFullNameDataGridViewTextBoxColumn_";
+            this.CreatedByUserFullNameDataGridViewTextBoxColumn_.ReadOnly = true;
             // 
             // Orders
             // 
@@ -399,8 +398,6 @@ namespace POSWarehouse.UserControls
             this.Load += new System.EventHandler(this.Orders_Load);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_customer_name)).EndInit();
@@ -408,6 +405,8 @@ namespace POSWarehouse.UserControls
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_invoiceno)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -424,21 +423,21 @@ namespace POSWarehouse.UserControls
         private System.Windows.Forms.Button btn_refresh;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel1;
-        private SuperMarketDataSet superMarketDataSet;
-        private System.Windows.Forms.BindingSource ordersBindingSource;
-        private SuperMarketDataSetTableAdapters.OrdersTableAdapter ordersTableAdapter;
         private SuperMarketDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.DataGridView ordersDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ContactNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GrandTotal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CreatedByUserId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CreatedByUserFullName;
         private System.Windows.Forms.Button btn_exportPDF;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceDateDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InvoiceIdDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerIdDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerNameDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ContactNumberDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AddressDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GrandTotalDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CreatedByUserIdDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CreatedByUserFullNameDataGridViewTextBoxColumn_;
+        private System.Windows.Forms.BindingSource ordersBindingSource;
+        private Data.POSWarehouseDataSet pOSWarehouseDataSet;
+        private Data.POSWarehouseDataSetTableAdapters.OrdersTableAdapter ordersTableAdapter;
     }
 }
