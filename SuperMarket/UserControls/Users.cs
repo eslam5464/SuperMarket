@@ -264,13 +264,13 @@ namespace POSWarehouse.UserControls
                 {
                     int RowIndex = usersDataGridView.CurrentCell.RowIndex;
 
-                    string UserName = usersDataGridView.Rows[RowIndex].Cells["UserName"].Value.ToString(),
-                        Password = usersDataGridView.Rows[RowIndex].Cells["Password"].Value.ToString(),
-                        FullName = usersDataGridView.Rows[RowIndex].Cells["FullName"].Value.ToString(),
-                        UserLevel = usersDataGridView.Rows[RowIndex].Cells["UserLevel"].Value.ToString(),
-                        Phone = usersDataGridView.Rows[RowIndex].Cells["Phone"].Value.ToString();
+                    string UserName = usersDataGridView.Rows[RowIndex].Cells["UserNameDataGridViewTextBoxColumn_"].Value.ToString(),
+                        Password = usersDataGridView.Rows[RowIndex].Cells["PasswordDataGridViewTextBoxColumn_"].Value.ToString(),
+                        FullName = usersDataGridView.Rows[RowIndex].Cells["FullNameDataGridViewTextBoxColumn_"].Value.ToString(),
+                        UserLevel = usersDataGridView.Rows[RowIndex].Cells["UserLevelDataGridViewTextBoxColumn_"].Value.ToString(),
+                        Phone = usersDataGridView.Rows[RowIndex].Cells["PhoneDataGridViewTextBoxColumn_"].Value.ToString();
 
-                    EditedUserId = long.Parse(usersDataGridView.Rows[RowIndex].Cells["Id"].Value.ToString());
+                    EditedUserId = long.Parse(usersDataGridView.Rows[RowIndex].Cells["IdDataGridViewTextBoxColumn_"].Value.ToString());
 
                     txt_userLevel.Text = UserLevel;
                     txt_Username.Text = UserName;
@@ -354,8 +354,8 @@ namespace POSWarehouse.UserControls
                 if (usersDataGridView.CurrentCell != null)
                 {
                     int rowindex = usersDataGridView.CurrentCell.RowIndex;
-                    long UserId = long.Parse(usersDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
-                    string UserName = usersDataGridView.Rows[rowindex].Cells["UserName"].Value.ToString();
+                    long UserId = long.Parse(usersDataGridView.Rows[rowindex].Cells["IdDataGridViewTextBoxColumn_"].Value.ToString());
+                    string UserName = usersDataGridView.Rows[rowindex].Cells["UserNameDataGridViewTextBoxColumn_"].Value.ToString();
 
                     Logger.Log($"user is trying to remove seller: {UserName}",
                              System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
@@ -492,7 +492,7 @@ namespace POSWarehouse.UserControls
                 if (usersDataGridView.CurrentCell != null)
                 {
                     int rowindex = usersDataGridView.CurrentCell.RowIndex;
-                    long UserId = long.Parse(usersDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
+                    long UserId = long.Parse(usersDataGridView.Rows[rowindex].Cells["IdDataGridViewTextBoxColumn_"].Value.ToString());
 
                     List<UserLevelAccessModel> SearchedUser =
                        await Task.Run(() => Classes.DataAccess.UserLevelAccess.GetUserLevelAccessParameter("UserId", $"{UserId}"));

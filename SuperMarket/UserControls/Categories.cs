@@ -46,7 +46,7 @@ namespace POSWarehouse.UserControls
                             await Classes.DataAccess.Categories.UpdateCategory(category);
 
 
-                            LoadDataGrid(Classes.DataAccess.Categories.GetCategoryParameter("Id", "" + category.Id));
+                            LoadDataGrid(Classes.DataAccess.Categories.GetCategoryParameter("IdDataGridViewTextBoxColumn_", "" + category.Id));
                         }
 
                         ResetTextBoxes(true, false);
@@ -212,7 +212,7 @@ namespace POSWarehouse.UserControls
             {
                 Logger.Log($"user is searching for category id: {txt_categorieid.Text}",
                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
-                List<CategoryModel> categorySearch = Classes.DataAccess.Categories.GetCategoryParameter("Id", txt_categorieid.Text);
+                List<CategoryModel> categorySearch = Classes.DataAccess.Categories.GetCategoryParameter("IdDataGridViewTextBoxColumn_", txt_categorieid.Text);
                 LoadDataGrid(categorySearch);
             }
         }
@@ -239,8 +239,8 @@ namespace POSWarehouse.UserControls
                 {
                     int rowindex = categoriesDataGridView.CurrentCell.RowIndex;
 
-                    long CategoryID = long.Parse(categoriesDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
-                    string CategoryName = categoriesDataGridView.Rows[rowindex].Cells["CategoryName"].Value.ToString();
+                    long CategoryID = long.Parse(categoriesDataGridView.Rows[rowindex].Cells["IdDataGridViewTextBoxColumn_"].Value.ToString());
+                    string CategoryName = categoriesDataGridView.Rows[rowindex].Cells["NameDataGridViewTextBoxColumn_"].Value.ToString();
 
                     Logger.Log($"user is trying to remove {CategoryName}",
                         System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
@@ -269,8 +269,8 @@ namespace POSWarehouse.UserControls
 
             int rowindex = categoriesDataGridView.CurrentCell.RowIndex;
 
-            long CategoryID = long.Parse(categoriesDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
-            string CategoryName = categoriesDataGridView.Rows[rowindex].Cells["CategoryName"].Value.ToString();
+            long CategoryID = long.Parse(categoriesDataGridView.Rows[rowindex].Cells["IdDataGridViewTextBoxColumn_"].Value.ToString());
+            string CategoryName = categoriesDataGridView.Rows[rowindex].Cells["NameDataGridViewTextBoxColumn_"].Value.ToString();
 
             txt_categorieid.Text = "" + CategoryID;
             txt_categoriename.Text = CategoryName;
@@ -458,7 +458,7 @@ namespace POSWarehouse.UserControls
                 if (StorageNameEditResult != "")
                 {
                     List<StorageModel> StorageSearch =
-                        Classes.DataAccess.Storages.GetStorageParameter("Id", txt_storageNameEdit.SelectedValue.ToString());
+                        Classes.DataAccess.Storages.GetStorageParameter("IdDataGridViewTextBoxColumn_", txt_storageNameEdit.SelectedValue.ToString());
 
                     if (StorageSearch.Count > 0)
                     {

@@ -83,6 +83,8 @@ namespace POSWarehouse.Classes.DataAccess
                 {
                     await Task.Run(() => cnn.Execute($"INSERT INTO Categories (Name,StorageId, StorageName, CreationDate) " +
                         $"VALUES (@Name, @StorageId, @StorageName, '{DateTime.Now}')", Category));
+
+                    new Notification().ShowAlert($"تم حفظ التصنيف", Notification.EnmType.Success);
                 }
             }
             catch (Exception ex)

@@ -97,7 +97,7 @@ namespace POSWarehouse.Classes.DataAccess
                     await Task.Run(() => cnn.Execute($"INSERT INTO {TableName} ( Name, CreationDate) VALUES " +
                         $"(@Name, '{DateTime.Now}')", safe));
                 }
-                new Notification().ShowAlert($"تم الحفظ", Notification.EnmType.Success);
+                new Notification().ShowAlert($"تم حفظ الخزنة", Notification.EnmType.Success);
             }
             catch (Exception ex)
             {

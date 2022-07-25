@@ -30,6 +30,7 @@ namespace POSWarehouse.Forms
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Notification));
             this.lbl_message = new System.Windows.Forms.Label();
             this.btn_close = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -150,6 +151,7 @@ namespace POSWarehouse.Forms
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Bold);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Notification";
             this.Text = "Notification";
             this.Load += new System.EventHandler(this.Notification_Load);

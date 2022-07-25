@@ -53,7 +53,9 @@ namespace POSWarehouse.Forms
             {
                 await Logger.CreateLogDB();
 
-                await Classes.DataAccess.DataInit.RenameDatabase(Security.GetDBNameOld(), Security.GetDBName());
+
+                await Classes.DataAccess.DataInit.CreateDatabase(Security.GetDBName());
+                //await Classes.DataAccess.DataInit.RenameDatabase(Security.GetDBNameOld(), Security.GetDBName());
 
                 //bool x = await Classes.DataAccess.DataInit.CheckDatabaseExists(Security.GetDBName());
 
@@ -75,6 +77,8 @@ namespace POSWarehouse.Forms
 
                 string LicenseKey = Properties.Settings.Default.LicenseKey;
 
+                bool IncrementBar = false;
+
                 if (LicenseKey != "")
                 {
                     string SerialKeyCheckOutput = await Security.CheckLicenseKeyValidity(LicenseKey);
@@ -87,7 +91,7 @@ namespace POSWarehouse.Forms
 
                         await Methods.SendComputerInfo();
 
-                        await IncrementProgressBar(progressBar, 25);
+                        IncrementBar = true;
 
                         new Notification().ShowAlert("ملف فتح البرنامج غير موجود برجاء ايجاد مكان الملف", Notification.EnmType.Error);
 
@@ -112,7 +116,7 @@ namespace POSWarehouse.Forms
                                 {
                                     this.TopMost = false;
 
-                                    await IncrementProgressBar(progressBar, 25);
+                                    IncrementBar = true;
 
                                     MessageBox.Show("لقد انتهت المده المسموحة لاستخدام البرنامج", "انتبه",
                                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -127,7 +131,7 @@ namespace POSWarehouse.Forms
                                     Logger.Log("serial key validated",
                                              System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
 
-                                    await IncrementProgressBar(progressBar, 25);
+                                    IncrementBar = true;
 
                                     this.TopMost = false;
                                     this.Hide();
@@ -148,7 +152,7 @@ namespace POSWarehouse.Forms
                             {
                                 this.TopMost = false;
 
-                                await IncrementProgressBar(progressBar, 25);
+                                IncrementBar = true;
 
                                 MessageBox.Show("لا يمكن الاتصال بالإنترنت برجاء استخدام البرنامج عندما يكون الجهاز متصل بالانترنت",
                                     "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -166,7 +170,7 @@ namespace POSWarehouse.Forms
                             Logger.Log("serial key validated",
                                              System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
 
-                            await IncrementProgressBar(progressBar, 25);
+                            IncrementBar = true;
 
                             this.TopMost = false;
                             this.Hide();
@@ -188,7 +192,7 @@ namespace POSWarehouse.Forms
                         Logger.Log("wrong serial key in the system",
                                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.ERROR);
 
-                        await IncrementProgressBar(progressBar, 25);
+                        IncrementBar = true;
 
                         this.Hide();
 
@@ -221,7 +225,7 @@ namespace POSWarehouse.Forms
                                  System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
                         Security.OpenFormMain = false;
 
-                        await IncrementProgressBar(progressBar, 25);
+                        IncrementBar = true;
 
                         this.Close();
                     }
@@ -254,7 +258,7 @@ namespace POSWarehouse.Forms
 
                         await Methods.SendComputerInfo();
 
-                        await IncrementProgressBar(progressBar, 25);
+                        IncrementBar = true;
 
                         new Notification().ShowAlert("ملف فتح البرنامج غير موجود برجاء ايجاد مكان الملف", Notification.EnmType.Error);
 
@@ -270,7 +274,7 @@ namespace POSWarehouse.Forms
                         }
                         else
                         {
-                            await IncrementProgressBar(progressBar, 25);
+                            IncrementBar = true;
 
                             About frm_about = new About();
                             About.AdditionalInfo = "هذا البرنامج غير قابل للعمل على هذا الجهاز";
@@ -282,6 +286,8 @@ namespace POSWarehouse.Forms
                         }
                     }
                 }
+                if (IncrementBar)
+                    await IncrementProgressBar(progressBar, 25);
             }
         }
 

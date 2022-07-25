@@ -244,7 +244,6 @@ namespace POSWarehouse.Forms
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(423, 318);
             this.panel3.TabIndex = 93;
-            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // Login
             // 
@@ -262,6 +261,7 @@ namespace POSWarehouse.Forms
             this.MinimumSize = new System.Drawing.Size(659, 357);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.Login_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pic_logo)).EndInit();
             this.panel2.ResumeLayout(false);

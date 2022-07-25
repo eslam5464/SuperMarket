@@ -435,11 +435,6 @@
     <Compile Include="Forms\UserAccess.Designer.cs">
       <DependentUpon>UserAccess.cs</DependentUpon>
     </Compile>
-    <Compile Include="Data\POSWarehouseDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>POSWarehouseDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Sound.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -587,17 +582,6 @@
     <EmbeddedResource Include="UserControls\Suppliers.resx">
       <DependentUpon>Suppliers.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Data\POSWarehouseDataSet.xsc">
-      <DependentUpon>POSWarehouseDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="Data\POSWarehouseDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>POSWarehouseDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Data\POSWarehouseDataSet.xss">
-      <DependentUpon>POSWarehouseDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Properties\app.manifest" />
     <None Include="Resources\icons8-edit-property-48.png" />
     <EmbeddedResource Include="Forms\ReportViewer.resx">
@@ -740,9 +724,6 @@
   <ItemGroup />
   <ItemGroup>
     <None Include="Resources\notification_sound_success2.wav" />
-    <Content Include="Data\POSWarehouseDB.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

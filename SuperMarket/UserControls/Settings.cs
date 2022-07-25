@@ -79,7 +79,7 @@ namespace POSWarehouse.UserControls
             }
         }
 
-        private async void btn_restoreDatabase_Click(object sender, EventArgs e)
+        private void btn_restoreDatabase_Click(object sender, EventArgs e)
         {
             btn_restoreDatabase.Enabled = false;
             pic_restoreDatabaseLoading.Visible = true;
@@ -88,7 +88,7 @@ namespace POSWarehouse.UserControls
 
             if (FileLocation != "")
             {
-                await Classes.DataAccess.DataRestore.All(FileLocation, "Default");
+                Classes.DataAccess.DataRestore.All(FileLocation, "Default");
             }
 
             pic_restoreDatabaseLoading.Visible = false;

@@ -65,15 +65,15 @@ namespace POSWarehouse.UserControls
             suppliersDataGridView.DataSource = null;
             suppliersDataGridView.DataSource = supplierModels;
 
-            suppliersDataGridView.Columns["Id"].HeaderText = "رقم التعريفي للمورد";
-            suppliersDataGridView.Columns["SupplierName"].HeaderText = "اسم المورد";
-            suppliersDataGridView.Columns["Contact"].HeaderText = "الاتصال";
-            suppliersDataGridView.Columns["CreationDate"].HeaderText = "يوم اضافه المورد";
-            suppliersDataGridView.Columns["Address"].HeaderText = "العنوان";
-            suppliersDataGridView.Columns["CreationDate"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
+            suppliersDataGridView.Columns["IdDataGridViewTextBoxColumn_"].HeaderText = "رقم التعريفي للمورد";
+            suppliersDataGridView.Columns["NameDataGridViewTextBoxColumn_"].HeaderText = "اسم المورد";
+            suppliersDataGridView.Columns["ContactDataGridViewTextBoxColumn_"].HeaderText = "الاتصال";
+            suppliersDataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].HeaderText = "يوم اضافه المورد";
+            suppliersDataGridView.Columns["AddressDataGridViewTextBoxColumn_"].HeaderText = "العنوان";
+            suppliersDataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].DefaultCellStyle.Format = "yyyy/MM/dd tt HH:mm:ss";
 
             suppliersDataGridView.AutoResizeColumns();
-            suppliersDataGridView.Columns["CreationDate"].Width += 5;
+            suppliersDataGridView.Columns["CreationDateDataGridViewTextBoxColumn_"].Width += 5;
         }
 
         private void suppliersBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -192,11 +192,11 @@ namespace POSWarehouse.UserControls
                 {
                     int RowIndex = suppliersDataGridView.CurrentCell.RowIndex;
 
-                    EditedSupplierId = int.Parse(suppliersDataGridView.Rows[RowIndex].Cells["Id"].Value.ToString());
+                    EditedSupplierId = int.Parse(suppliersDataGridView.Rows[RowIndex].Cells["IdDataGridViewTextBoxColumn_"].Value.ToString());
 
-                    string SupplierName = suppliersDataGridView.Rows[RowIndex].Cells["SupplierName"].Value.ToString(),
-                        SupplierAddress = suppliersDataGridView.Rows[RowIndex].Cells["Address"].Value.ToString(),
-                        SupplierContact = suppliersDataGridView.Rows[RowIndex].Cells["Contact"].Value.ToString();
+                    string SupplierName = suppliersDataGridView.Rows[RowIndex].Cells["NameDataGridViewTextBoxColumn_"].Value.ToString(),
+                        SupplierAddress = suppliersDataGridView.Rows[RowIndex].Cells["AddressDataGridViewTextBoxColumn_"].Value.ToString(),
+                        SupplierContact = suppliersDataGridView.Rows[RowIndex].Cells["ContactDataGridViewTextBoxColumn_"].Value.ToString();
 
                     Logger.Log($"user is editing supplier: {SupplierName} with id: {EditedSupplierId}",
                         System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
@@ -221,8 +221,8 @@ namespace POSWarehouse.UserControls
                 if (suppliersDataGridView.CurrentCell != null)
                 {
                     int rowindex = suppliersDataGridView.CurrentCell.RowIndex;
-                    int SupplierId = int.Parse(suppliersDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
-                    string SupplierName = suppliersDataGridView.Rows[rowindex].Cells["SupplierName"].Value.ToString();
+                    int SupplierId = int.Parse(suppliersDataGridView.Rows[rowindex].Cells["IdDataGridViewTextBoxColumn_"].Value.ToString());
+                    string SupplierName = suppliersDataGridView.Rows[rowindex].Cells["NameDataGridViewTextBoxColumn_"].Value.ToString();
 
                     Logger.Log($"user is trying to remove supplier: {SupplierName}",
                             System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);

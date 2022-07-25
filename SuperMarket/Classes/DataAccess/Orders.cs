@@ -41,6 +41,9 @@ namespace POSWarehouse.Classes.DataAccess
                     cnn.Execute($"INSERT INTO Orders (InvoiceDate, InvoiceId, CustomerId, CustomerName, " +
                         $"ContactNumber, Address, GrandTotal, CreatedByUserId, CreatedByUserFullName) VALUES (@InvoiceDate, @InvoiceId, @CustomerId, @CustomerName, " +
                         $"@ContactNumber, @Address, @GrandTotal, @CreatedByUserId, @CreatedByUserFullName)", order);
+
+
+                    new Notification().ShowAlert($"تم حفظ الطلب", Notification.EnmType.Success);
                 }
             }
             catch (Exception ex)

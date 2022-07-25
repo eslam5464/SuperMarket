@@ -35,6 +35,17 @@ namespace POSWarehouse.UserControls
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel3 = new System.Windows.Forms.Panel();
             this.db_safeTransactionDataGridView = new System.Windows.Forms.DataGridView();
+            this.IdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SafeIdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SafeNameDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmountAddedDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AmountTotalDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AdjustedByUserIdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AdjustedByUserFullNameDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NotesDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreationDateDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.safeTransactionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pOSWarehouseDataSet = new POSWarehouse.Data.POSWarehouseDataSet();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_safeDelete = new System.Windows.Forms.Button();
             this.txt_safeNameEdit = new System.Windows.Forms.ComboBox();
@@ -64,28 +75,16 @@ namespace POSWarehouse.UserControls
             this.label1 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.pOSWarehouseDataSet = new POSWarehouse.Data.POSWarehouseDataSet();
-            this.safeTransactionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.safeTransactionTableAdapter = new POSWarehouse.Data.POSWarehouseDataSetTableAdapters.SafeTransactionTableAdapter();
-            this.IdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SafeIdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SafeNameDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AmountAddedDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AmountTotalDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AdjustedByUserIdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AdjustedByUserFullNameDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NotesDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreationDateDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_safeTransactionDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.safeTransactionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchSafeName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_safeTransactionAmount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.safeTransactionBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel3
@@ -156,6 +155,79 @@ namespace POSWarehouse.UserControls
             this.db_safeTransactionDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_safeTransactionDataGridView_CellMouseClick);
             this.db_safeTransactionDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_safeTransactionDataGridView_ColumnHeaderMouseClick);
             this.db_safeTransactionDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_safeTransactionDataGridView_ColumnHeaderMouseDoubleClick);
+            // 
+            // IdDataGridViewTextBoxColumn_
+            // 
+            this.IdDataGridViewTextBoxColumn_.DataPropertyName = "Id";
+            this.IdDataGridViewTextBoxColumn_.HeaderText = "Id";
+            this.IdDataGridViewTextBoxColumn_.Name = "IdDataGridViewTextBoxColumn_";
+            this.IdDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // SafeIdDataGridViewTextBoxColumn_
+            // 
+            this.SafeIdDataGridViewTextBoxColumn_.DataPropertyName = "SafeId";
+            this.SafeIdDataGridViewTextBoxColumn_.HeaderText = "SafeId";
+            this.SafeIdDataGridViewTextBoxColumn_.Name = "SafeIdDataGridViewTextBoxColumn_";
+            this.SafeIdDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // SafeNameDataGridViewTextBoxColumn_
+            // 
+            this.SafeNameDataGridViewTextBoxColumn_.DataPropertyName = "SafeName";
+            this.SafeNameDataGridViewTextBoxColumn_.HeaderText = "SafeName";
+            this.SafeNameDataGridViewTextBoxColumn_.Name = "SafeNameDataGridViewTextBoxColumn_";
+            this.SafeNameDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // AmountAddedDataGridViewTextBoxColumn_
+            // 
+            this.AmountAddedDataGridViewTextBoxColumn_.DataPropertyName = "AmountAdded";
+            this.AmountAddedDataGridViewTextBoxColumn_.HeaderText = "AmountAdded";
+            this.AmountAddedDataGridViewTextBoxColumn_.Name = "AmountAddedDataGridViewTextBoxColumn_";
+            this.AmountAddedDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // AmountTotalDataGridViewTextBoxColumn_
+            // 
+            this.AmountTotalDataGridViewTextBoxColumn_.DataPropertyName = "AmountTotal";
+            this.AmountTotalDataGridViewTextBoxColumn_.HeaderText = "AmountTotal";
+            this.AmountTotalDataGridViewTextBoxColumn_.Name = "AmountTotalDataGridViewTextBoxColumn_";
+            this.AmountTotalDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // AdjustedByUserIdDataGridViewTextBoxColumn_
+            // 
+            this.AdjustedByUserIdDataGridViewTextBoxColumn_.DataPropertyName = "AdjustedByUserId";
+            this.AdjustedByUserIdDataGridViewTextBoxColumn_.HeaderText = "AdjustedByUserId";
+            this.AdjustedByUserIdDataGridViewTextBoxColumn_.Name = "AdjustedByUserIdDataGridViewTextBoxColumn_";
+            this.AdjustedByUserIdDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // AdjustedByUserFullNameDataGridViewTextBoxColumn_
+            // 
+            this.AdjustedByUserFullNameDataGridViewTextBoxColumn_.DataPropertyName = "AdjustedByUserFullName";
+            this.AdjustedByUserFullNameDataGridViewTextBoxColumn_.HeaderText = "AdjustedByUserFullName";
+            this.AdjustedByUserFullNameDataGridViewTextBoxColumn_.Name = "AdjustedByUserFullNameDataGridViewTextBoxColumn_";
+            this.AdjustedByUserFullNameDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // NotesDataGridViewTextBoxColumn_
+            // 
+            this.NotesDataGridViewTextBoxColumn_.DataPropertyName = "Notes";
+            this.NotesDataGridViewTextBoxColumn_.HeaderText = "Notes";
+            this.NotesDataGridViewTextBoxColumn_.Name = "NotesDataGridViewTextBoxColumn_";
+            this.NotesDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // CreationDateDataGridViewTextBoxColumn_
+            // 
+            this.CreationDateDataGridViewTextBoxColumn_.DataPropertyName = "CreationDate";
+            this.CreationDateDataGridViewTextBoxColumn_.HeaderText = "CreationDate";
+            this.CreationDateDataGridViewTextBoxColumn_.Name = "CreationDateDataGridViewTextBoxColumn_";
+            this.CreationDateDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // safeTransactionBindingSource
+            // 
+            this.safeTransactionBindingSource.DataMember = "SafeTransaction";
+            this.safeTransactionBindingSource.DataSource = this.pOSWarehouseDataSet;
+            // 
+            // pOSWarehouseDataSet
+            // 
+            this.pOSWarehouseDataSet.DataSetName = "POSWarehouseDataSet";
+            this.pOSWarehouseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // panel1
             // 
@@ -562,83 +634,6 @@ namespace POSWarehouse.UserControls
             this.label3.TabIndex = 209;
             this.label3.Text = "*";
             // 
-            // pOSWarehouseDataSet
-            // 
-            this.pOSWarehouseDataSet.DataSetName = "POSWarehouseDataSet";
-            this.pOSWarehouseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // safeTransactionBindingSource
-            // 
-            this.safeTransactionBindingSource.DataMember = "SafeTransaction";
-            this.safeTransactionBindingSource.DataSource = this.pOSWarehouseDataSet;
-            // 
-            // safeTransactionTableAdapter
-            // 
-            this.safeTransactionTableAdapter.ClearBeforeFill = true;
-            // 
-            // IdDataGridViewTextBoxColumn_
-            // 
-            this.IdDataGridViewTextBoxColumn_.DataPropertyName = "Id";
-            this.IdDataGridViewTextBoxColumn_.HeaderText = "Id";
-            this.IdDataGridViewTextBoxColumn_.Name = "IdDataGridViewTextBoxColumn_";
-            this.IdDataGridViewTextBoxColumn_.ReadOnly = true;
-            // 
-            // SafeIdDataGridViewTextBoxColumn_
-            // 
-            this.SafeIdDataGridViewTextBoxColumn_.DataPropertyName = "SafeId";
-            this.SafeIdDataGridViewTextBoxColumn_.HeaderText = "SafeId";
-            this.SafeIdDataGridViewTextBoxColumn_.Name = "SafeIdDataGridViewTextBoxColumn_";
-            this.SafeIdDataGridViewTextBoxColumn_.ReadOnly = true;
-            // 
-            // SafeNameDataGridViewTextBoxColumn_
-            // 
-            this.SafeNameDataGridViewTextBoxColumn_.DataPropertyName = "SafeName";
-            this.SafeNameDataGridViewTextBoxColumn_.HeaderText = "SafeName";
-            this.SafeNameDataGridViewTextBoxColumn_.Name = "SafeNameDataGridViewTextBoxColumn_";
-            this.SafeNameDataGridViewTextBoxColumn_.ReadOnly = true;
-            // 
-            // AmountAddedDataGridViewTextBoxColumn_
-            // 
-            this.AmountAddedDataGridViewTextBoxColumn_.DataPropertyName = "AmountAdded";
-            this.AmountAddedDataGridViewTextBoxColumn_.HeaderText = "AmountAdded";
-            this.AmountAddedDataGridViewTextBoxColumn_.Name = "AmountAddedDataGridViewTextBoxColumn_";
-            this.AmountAddedDataGridViewTextBoxColumn_.ReadOnly = true;
-            // 
-            // AmountTotalDataGridViewTextBoxColumn_
-            // 
-            this.AmountTotalDataGridViewTextBoxColumn_.DataPropertyName = "AmountTotal";
-            this.AmountTotalDataGridViewTextBoxColumn_.HeaderText = "AmountTotal";
-            this.AmountTotalDataGridViewTextBoxColumn_.Name = "AmountTotalDataGridViewTextBoxColumn_";
-            this.AmountTotalDataGridViewTextBoxColumn_.ReadOnly = true;
-            // 
-            // AdjustedByUserIdDataGridViewTextBoxColumn_
-            // 
-            this.AdjustedByUserIdDataGridViewTextBoxColumn_.DataPropertyName = "AdjustedByUserId";
-            this.AdjustedByUserIdDataGridViewTextBoxColumn_.HeaderText = "AdjustedByUserId";
-            this.AdjustedByUserIdDataGridViewTextBoxColumn_.Name = "AdjustedByUserIdDataGridViewTextBoxColumn_";
-            this.AdjustedByUserIdDataGridViewTextBoxColumn_.ReadOnly = true;
-            // 
-            // AdjustedByUserFullNameDataGridViewTextBoxColumn_
-            // 
-            this.AdjustedByUserFullNameDataGridViewTextBoxColumn_.DataPropertyName = "AdjustedByUserFullName";
-            this.AdjustedByUserFullNameDataGridViewTextBoxColumn_.HeaderText = "AdjustedByUserFullName";
-            this.AdjustedByUserFullNameDataGridViewTextBoxColumn_.Name = "AdjustedByUserFullNameDataGridViewTextBoxColumn_";
-            this.AdjustedByUserFullNameDataGridViewTextBoxColumn_.ReadOnly = true;
-            // 
-            // NotesDataGridViewTextBoxColumn_
-            // 
-            this.NotesDataGridViewTextBoxColumn_.DataPropertyName = "Notes";
-            this.NotesDataGridViewTextBoxColumn_.HeaderText = "Notes";
-            this.NotesDataGridViewTextBoxColumn_.Name = "NotesDataGridViewTextBoxColumn_";
-            this.NotesDataGridViewTextBoxColumn_.ReadOnly = true;
-            // 
-            // CreationDateDataGridViewTextBoxColumn_
-            // 
-            this.CreationDateDataGridViewTextBoxColumn_.DataPropertyName = "CreationDate";
-            this.CreationDateDataGridViewTextBoxColumn_.HeaderText = "CreationDate";
-            this.CreationDateDataGridViewTextBoxColumn_.Name = "CreationDateDataGridViewTextBoxColumn_";
-            this.CreationDateDataGridViewTextBoxColumn_.ReadOnly = true;
-            // 
             // Safe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -654,6 +649,8 @@ namespace POSWarehouse.UserControls
             this.Load += new System.EventHandler(this.Safe_Load);
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.db_safeTransactionDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.safeTransactionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -663,8 +660,6 @@ namespace POSWarehouse.UserControls
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchSafeName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_safeTransactionAmount)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.safeTransactionBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -713,6 +708,5 @@ namespace POSWarehouse.UserControls
         private System.Windows.Forms.DataGridViewTextBoxColumn CreationDateDataGridViewTextBoxColumn_;
         private System.Windows.Forms.BindingSource safeTransactionBindingSource;
         private Data.POSWarehouseDataSet pOSWarehouseDataSet;
-        private Data.POSWarehouseDataSetTableAdapters.SafeTransactionTableAdapter safeTransactionTableAdapter;
     }
 }

@@ -1557,12 +1557,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_DDE5407DFFE94771A8446DF3620F244B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_DED04C7A37B64BDF30DA65ECB16D0D2D"
         "OwnerKey" = "8:_E945363962BAE14D6E50D7955ACF3179"
         "MsmSig" = "8:_UNDEFINED"
@@ -1925,12 +1919,6 @@
         {
         "MsmKey" = "8:_FA9D2051A7FC5C216C8CA522AAC7326F"
         "OwnerKey" = "8:_C6A100500F83D565E4D2A8948F511117"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_FB342F26175041FB9B3E50A80A22B974"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -5335,26 +5323,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_DDE5407DFFE94771A8446DF3620F244B"
-            {
-            "SourcePath" = "8:..\\SuperMarket\\Data\\Database.mdf"
-            "TargetName" = "8:Database.mdf"
-            "Tag" = "8:"
-            "Folder" = "8:_5BF65D0E1EA44E77B3E824A13C878067"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DED04C7A37B64BDF30DA65ECB16D0D2D"
             {
             "AssemblyRegister" = "3:1"
@@ -5851,26 +5819,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FB342F26175041FB9B3E50A80A22B974"
-            {
-            "SourcePath" = "8:..\\SuperMarket\\Data\\Database_log.ldf"
-            "TargetName" = "8:Database_log.ldf"
-            "Tag" = "8:"
-            "Folder" = "8:_5BF65D0E1EA44E77B3E824A13C878067"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FB5AFACB7D1A9B2F2CC8EC81A6FA48C2"
             {
             "AssemblyRegister" = "3:1"
@@ -5987,17 +5935,6 @@
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
                     "Property" = "8:_D368936EA27B42739FE871632B3E6FC5"
-                        "Folders"
-                        {
-                        }
-                    }
-                    "{9EF0B969-E518-4E46-987F-47570745A589}:_5BF65D0E1EA44E77B3E824A13C878067"
-                    {
-                    "Name" = "8:Data"
-                    "AlwaysCreate" = "11:FALSE"
-                    "Condition" = "8:"
-                    "Transitive" = "11:FALSE"
-                    "Property" = "8:_EAD083F925D2474A96454D1289F388B6"
                         "Folders"
                         {
                         }
@@ -6700,7 +6637,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_FC2EE140A3DD4127A334E77875BCF9CF"
             {
-            "SourcePath" = "8:..\\SuperMarket\\obj\\Release\\POSWarehouse.exe"
+            "SourcePath" = "8:..\\SuperMarket\\obj\\Debug\\POSWarehouse.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_023BBC95A5444E03BBA4E148CCBEE6A9"

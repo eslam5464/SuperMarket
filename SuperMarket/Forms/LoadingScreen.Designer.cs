@@ -67,7 +67,7 @@ namespace POSWarehouse.Forms
             // 
             // timer_loading
             // 
-            this.timer_loading.Interval = 1000;
+            this.timer_loading.Interval = 2000;
             this.timer_loading.Tick += new System.EventHandler(this.timer_loading_Tick);
             // 
             // panel1

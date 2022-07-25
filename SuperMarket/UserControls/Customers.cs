@@ -64,7 +64,7 @@ namespace POSWarehouse.UserControls
                             };
                             await Classes.DataAccess.Customers.UpdateCustomer(customer);
 
-                            LoadDataGrid(Classes.DataAccess.Customers.GetCustomerParameter("Id", "" + customer.Id), customersDataGridView);
+                            LoadDataGrid(Classes.DataAccess.Customers.GetCustomerParameter("IdDataGridViewTextBoxColumn_", "" + customer.Id), customersDataGridView);
 
                             Logger.Log($"user has edited customer with id: {customer.Id}",
                                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
@@ -187,10 +187,10 @@ namespace POSWarehouse.UserControls
                 {
                     int rowindex = customersDataGridView.CurrentCell.RowIndex;
 
-                    long CustomerID = long.Parse(customersDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
-                    string CustomerName = customersDataGridView.Rows[rowindex].Cells["CustomerName"].Value.ToString(),
-                     CustomerAddress = customersDataGridView.Rows[rowindex].Cells["Address"].Value.ToString(),
-                     CustomerContactNo = customersDataGridView.Rows[rowindex].Cells["ContactNo"].Value.ToString();
+                    long CustomerID = long.Parse(customersDataGridView.Rows[rowindex].Cells["IdDataGridViewTextBoxColumn_"].Value.ToString());
+                    string CustomerName = customersDataGridView.Rows[rowindex].Cells["NameDataGridViewTextBoxColumn_"].Value.ToString(),
+                     CustomerAddress = customersDataGridView.Rows[rowindex].Cells["AddressDataGridViewTextBoxColumn_"].Value.ToString(),
+                     CustomerContactNo = customersDataGridView.Rows[rowindex].Cells["ContactNoDataGridViewTextBoxColumn_"].Value.ToString();
 
                     txt_customerid.Text = "" + CustomerID;
                     txt_customername.Text = CustomerName;
@@ -228,8 +228,8 @@ namespace POSWarehouse.UserControls
                 if (customersDataGridView.CurrentCell != null)
                 {
                     int rowindex = customersDataGridView.CurrentCell.RowIndex;
-                    long CustomerID = long.Parse(customersDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
-                    string CustomerName = customersDataGridView.Rows[rowindex].Cells["CustomerName"].Value.ToString();
+                    long CustomerID = long.Parse(customersDataGridView.Rows[rowindex].Cells["IdDataGridViewTextBoxColumn_"].Value.ToString());
+                    string CustomerName = customersDataGridView.Rows[rowindex].Cells["NameDataGridViewTextBoxColumn_"].Value.ToString();
 
                     Logger.Log($"user is trying to remove {CustomerName}",
                         System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);

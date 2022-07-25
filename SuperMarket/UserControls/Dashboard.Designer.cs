@@ -61,10 +61,6 @@ namespace POSWarehouse.UserControls
             this.btn_refresh = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.productsDataGridView = new System.Windows.Forms.DataGridView();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pOSWarehouseDataSet = new POSWarehouse.Data.POSWarehouseDataSet();
-            this.productsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productsTableAdapter = new POSWarehouse.Data.POSWarehouseDataSetTableAdapters.ProductsTableAdapter();
             this.IdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BarCodeDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NameDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,6 +71,9 @@ namespace POSWarehouse.UserControls
             this.CategoryNameDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CreationDateDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PriceModificationDateDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pOSWarehouseDataSet = new POSWarehouse.Data.POSWarehouseDataSet();
+            this.label2 = new System.Windows.Forms.Label();
             this.pan_user_count.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel8.SuspendLayout();
@@ -87,8 +86,8 @@ namespace POSWarehouse.UserControls
             this.pan_orders_count.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productsDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // label9
@@ -436,32 +435,6 @@ namespace POSWarehouse.UserControls
             this.productsDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.productsDataGridView_ColumnHeaderMouseClick);
             this.productsDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.productsDataGridView_ColumnHeaderMouseDoubleClick);
             // 
-            // label2
-            // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Purple;
-            this.label2.Location = new System.Drawing.Point(383, 242);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(272, 28);
-            this.label2.TabIndex = 203;
-            this.label2.Text = "المنتجات قليله الكمية في المخزن";
-            // 
-            // pOSWarehouseDataSet
-            // 
-            this.pOSWarehouseDataSet.DataSetName = "POSWarehouseDataSet";
-            this.pOSWarehouseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // productsBindingSource
-            // 
-            this.productsBindingSource.DataMember = "Products";
-            this.productsBindingSource.DataSource = this.pOSWarehouseDataSet;
-            // 
-            // productsTableAdapter
-            // 
-            this.productsTableAdapter.ClearBeforeFill = true;
-            // 
             // IdDataGridViewTextBoxColumn_
             // 
             this.IdDataGridViewTextBoxColumn_.DataPropertyName = "Id";
@@ -532,6 +505,28 @@ namespace POSWarehouse.UserControls
             this.PriceModificationDateDataGridViewTextBoxColumn_.Name = "PriceModificationDateDataGridViewTextBoxColumn_";
             this.PriceModificationDateDataGridViewTextBoxColumn_.ReadOnly = true;
             // 
+            // productsBindingSource
+            // 
+            this.productsBindingSource.DataMember = "Products";
+            this.productsBindingSource.DataSource = this.pOSWarehouseDataSet;
+            // 
+            // pOSWarehouseDataSet
+            // 
+            this.pOSWarehouseDataSet.DataSetName = "POSWarehouseDataSet";
+            this.pOSWarehouseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Purple;
+            this.label2.Location = new System.Drawing.Point(383, 242);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(272, 28);
+            this.label2.TabIndex = 203;
+            this.label2.Text = "المنتجات قليله الكمية في المخزن";
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -570,8 +565,8 @@ namespace POSWarehouse.UserControls
             this.pan_orders_count.PerformLayout();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.productsDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -620,6 +615,5 @@ namespace POSWarehouse.UserControls
         private System.Windows.Forms.DataGridViewTextBoxColumn PriceModificationDateDataGridViewTextBoxColumn_;
         private System.Windows.Forms.BindingSource productsBindingSource;
         private Data.POSWarehouseDataSet pOSWarehouseDataSet;
-        private Data.POSWarehouseDataSetTableAdapters.ProductsTableAdapter productsTableAdapter;
     }
 }

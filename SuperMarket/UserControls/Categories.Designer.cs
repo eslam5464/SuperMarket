@@ -36,6 +36,13 @@
             this.btn_categoryEdit = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.categoriesDataGridView = new System.Windows.Forms.DataGridView();
+            this.IdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NameDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StorageIdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StorageNameDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CreationDateDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pOSWarehouseDataSet = new POSWarehouse.Data.POSWarehouseDataSet();
             this.btn_saveCategory = new System.Windows.Forms.Button();
             this.txt_categorieid = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -62,24 +69,16 @@
             this.pcb_searchName = new System.Windows.Forms.PictureBox();
             this.pcb_searchID = new System.Windows.Forms.PictureBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.pOSWarehouseDataSet = new POSWarehouse.Data.POSWarehouseDataSet();
-            this.categoriesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.categoriesTableAdapter = new POSWarehouse.Data.POSWarehouseDataSetTableAdapters.CategoriesTableAdapter();
-            this.IdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NameDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StorageIdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StorageNameDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CreationDateDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.categoriesDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchStorage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_CategoryRemove
@@ -174,6 +173,51 @@
             this.categoriesDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.categoriesDataGridView_CellMouseClick);
             this.categoriesDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_categoriesDataGridView_ColumnHeaderMouseClick);
             this.categoriesDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.db_categoriesDataGridView_ColumnHeaderMouseDoubleClick);
+            // 
+            // IdDataGridViewTextBoxColumn_
+            // 
+            this.IdDataGridViewTextBoxColumn_.DataPropertyName = "Id";
+            this.IdDataGridViewTextBoxColumn_.HeaderText = "Id";
+            this.IdDataGridViewTextBoxColumn_.Name = "IdDataGridViewTextBoxColumn_";
+            this.IdDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // NameDataGridViewTextBoxColumn_
+            // 
+            this.NameDataGridViewTextBoxColumn_.DataPropertyName = "Name";
+            this.NameDataGridViewTextBoxColumn_.HeaderText = "Name";
+            this.NameDataGridViewTextBoxColumn_.Name = "NameDataGridViewTextBoxColumn_";
+            this.NameDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // StorageIdDataGridViewTextBoxColumn_
+            // 
+            this.StorageIdDataGridViewTextBoxColumn_.DataPropertyName = "StorageId";
+            this.StorageIdDataGridViewTextBoxColumn_.HeaderText = "StorageId";
+            this.StorageIdDataGridViewTextBoxColumn_.Name = "StorageIdDataGridViewTextBoxColumn_";
+            this.StorageIdDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // StorageNameDataGridViewTextBoxColumn_
+            // 
+            this.StorageNameDataGridViewTextBoxColumn_.DataPropertyName = "StorageName";
+            this.StorageNameDataGridViewTextBoxColumn_.HeaderText = "StorageName";
+            this.StorageNameDataGridViewTextBoxColumn_.Name = "StorageNameDataGridViewTextBoxColumn_";
+            this.StorageNameDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // CreationDateDataGridViewTextBoxColumn_
+            // 
+            this.CreationDateDataGridViewTextBoxColumn_.DataPropertyName = "CreationDate";
+            this.CreationDateDataGridViewTextBoxColumn_.HeaderText = "CreationDate";
+            this.CreationDateDataGridViewTextBoxColumn_.Name = "CreationDateDataGridViewTextBoxColumn_";
+            this.CreationDateDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // categoriesBindingSource
+            // 
+            this.categoriesBindingSource.DataMember = "Categories";
+            this.categoriesBindingSource.DataSource = this.pOSWarehouseDataSet;
+            // 
+            // pOSWarehouseDataSet
+            // 
+            this.pOSWarehouseDataSet.DataSetName = "POSWarehouseDataSet";
+            this.pOSWarehouseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btn_saveCategory
             // 
@@ -534,55 +578,6 @@
             this.label10.TabIndex = 204;
             this.label10.Text = "*";
             // 
-            // pOSWarehouseDataSet
-            // 
-            this.pOSWarehouseDataSet.DataSetName = "POSWarehouseDataSet";
-            this.pOSWarehouseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // categoriesBindingSource
-            // 
-            this.categoriesBindingSource.DataMember = "Categories";
-            this.categoriesBindingSource.DataSource = this.pOSWarehouseDataSet;
-            // 
-            // categoriesTableAdapter
-            // 
-            this.categoriesTableAdapter.ClearBeforeFill = true;
-            // 
-            // IdDataGridViewTextBoxColumn_
-            // 
-            this.IdDataGridViewTextBoxColumn_.DataPropertyName = "Id";
-            this.IdDataGridViewTextBoxColumn_.HeaderText = "Id";
-            this.IdDataGridViewTextBoxColumn_.Name = "IdDataGridViewTextBoxColumn_";
-            this.IdDataGridViewTextBoxColumn_.ReadOnly = true;
-            // 
-            // NameDataGridViewTextBoxColumn_
-            // 
-            this.NameDataGridViewTextBoxColumn_.DataPropertyName = "Name";
-            this.NameDataGridViewTextBoxColumn_.HeaderText = "Name";
-            this.NameDataGridViewTextBoxColumn_.Name = "NameDataGridViewTextBoxColumn_";
-            this.NameDataGridViewTextBoxColumn_.ReadOnly = true;
-            // 
-            // StorageIdDataGridViewTextBoxColumn_
-            // 
-            this.StorageIdDataGridViewTextBoxColumn_.DataPropertyName = "StorageId";
-            this.StorageIdDataGridViewTextBoxColumn_.HeaderText = "StorageId";
-            this.StorageIdDataGridViewTextBoxColumn_.Name = "StorageIdDataGridViewTextBoxColumn_";
-            this.StorageIdDataGridViewTextBoxColumn_.ReadOnly = true;
-            // 
-            // StorageNameDataGridViewTextBoxColumn_
-            // 
-            this.StorageNameDataGridViewTextBoxColumn_.DataPropertyName = "StorageName";
-            this.StorageNameDataGridViewTextBoxColumn_.HeaderText = "StorageName";
-            this.StorageNameDataGridViewTextBoxColumn_.Name = "StorageNameDataGridViewTextBoxColumn_";
-            this.StorageNameDataGridViewTextBoxColumn_.ReadOnly = true;
-            // 
-            // CreationDateDataGridViewTextBoxColumn_
-            // 
-            this.CreationDateDataGridViewTextBoxColumn_.DataPropertyName = "CreationDate";
-            this.CreationDateDataGridViewTextBoxColumn_.HeaderText = "CreationDate";
-            this.CreationDateDataGridViewTextBoxColumn_.Name = "CreationDateDataGridViewTextBoxColumn_";
-            this.CreationDateDataGridViewTextBoxColumn_.ReadOnly = true;
-            // 
             // Categories
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -597,6 +592,8 @@
             this.Load += new System.EventHandler(this.Categories_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.categoriesDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -606,8 +603,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchStorage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.categoriesBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -646,7 +641,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.BindingSource categoriesBindingSource;
         private Data.POSWarehouseDataSet pOSWarehouseDataSet;
-        private Data.POSWarehouseDataSetTableAdapters.CategoriesTableAdapter categoriesTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdDataGridViewTextBoxColumn_;
         private System.Windows.Forms.DataGridViewTextBoxColumn NameDataGridViewTextBoxColumn_;
         private System.Windows.Forms.DataGridViewTextBoxColumn StorageIdDataGridViewTextBoxColumn_;

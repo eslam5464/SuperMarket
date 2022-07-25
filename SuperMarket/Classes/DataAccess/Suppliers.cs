@@ -105,6 +105,7 @@ namespace POSWarehouse.Classes.DataAccess
                 {
                     cnn.Execute($"INSERT INTO {TableName} ( Name, Contact, Address, CreationDate) VALUES " +
                         $"(@Name, @Contact, @Address, '{DateTime.Now}')", supplier);
+                    new Notification().ShowAlert($"تم حفظ المورد", Notification.EnmType.Success);
                 }
             }
             catch (Exception ex)

@@ -35,7 +35,6 @@ namespace POSWarehouse.Classes.DataAccess
                         $"name = '{DatabaseNameOriginal}'", new DynamicParameters()).ToList());
                     if (output.Count > 0)
                     {
-                        Console.WriteLine(output.Count);
                         query = $@"USE master"
 
                             + $"ALTER DATABASE \"{ DatabaseNameOriginal}\" SET SINGLE_USER WITH ROLLBACK IMMEDIATE "
@@ -160,7 +159,7 @@ namespace POSWarehouse.Classes.DataAccess
                     using (var command = new SqlCommand($"SELECT db_id('{databaseName}')", connection))
                     {
                         await Task.Run(() => connection.Open());
-                        Logger.Log($"->: {(command.ExecuteScalar() != DBNull.Value)}",
+                        Logger.Log($"db types ->: {(command.ExecuteScalar() != DBNull.Value)}",
                                     System.Reflection.MethodInfo.GetCurrentMethod().Name, "DataInit", Logger.ERROR);
 
                         return (command.ExecuteScalar() != DBNull.Value);
@@ -176,18 +175,16 @@ namespace POSWarehouse.Classes.DataAccess
             }
         }
 
-        public static async Task<bool> CreateDatabase(string DatabaseName)
+        public async static Task<bool> CreateDatabase(string DatabaseName)
         {
             try
             {
                 //string sqlconn = "server=(local)\\SQLEXPRESS;Trusted_Connection=yes";
-                string sqlconn = GlobalVars.LoadConnectionString();
 
-                using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
+                using (SqlConnection conn = new SqlConnection(GlobalVars.LoadConnectionString("DefaultDatabaseInit")))
                 {
                     //string script = File.ReadAllText(@"C:\Users\Eslam\Documents\Visual Studio 2019" +
                     //    @"\Projects\SuperMarket\SuperMarket\Classes\DataAccess\FullDatabase.sql");
-
                     string script = @"USE [master]
 									GO
 									/****** Object:  Database [SuperMarket]    Script Date: 23-Jul-22 09:55:38 AM ******/
@@ -694,8 +691,6 @@ namespace POSWarehouse.Classes.DataAccess
 									GO";
 
                     script = script.Replace("SuperMarket", DatabaseName);
-
-                    SqlConnection conn = new SqlConnection(sqlconn);
 
                     Server server = new Server(new ServerConnection(conn));
 

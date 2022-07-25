@@ -46,24 +46,23 @@ namespace POSWarehouse.UserControls
             this.tableAdapterManager = new POSWarehouse.SuperMarketDataSetTableAdapters.TableAdapterManager();
             this.panel1 = new System.Windows.Forms.Panel();
             this.suppliersDataGridView = new System.Windows.Forms.DataGridView();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pcb_serchbyPhone = new System.Windows.Forms.PictureBox();
-            this.pcb_searchName = new System.Windows.Forms.PictureBox();
-            this.pOSWarehouseDataSet = new POSWarehouse.Data.POSWarehouseDataSet();
-            this.suppliersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.suppliersTableAdapter = new POSWarehouse.Data.POSWarehouseDataSetTableAdapters.SuppliersTableAdapter();
             this.IdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NameDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ContactDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AddressDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CreationDateDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.suppliersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pOSWarehouseDataSet = new POSWarehouse.Data.POSWarehouseDataSet();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pcb_serchbyPhone = new System.Windows.Forms.PictureBox();
+            this.pcb_searchName = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.suppliersDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.suppliersBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_serchbyPhone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.suppliersBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_edit
@@ -208,6 +207,7 @@ namespace POSWarehouse.UserControls
             // 
             this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
             this.tableAdapterManager.CategoriesTableAdapter = null;
+            this.tableAdapterManager.Connection = null;
             this.tableAdapterManager.CustomersTableAdapter = null;
             this.tableAdapterManager.InvoicesTableAdapter = null;
             this.tableAdapterManager.OrdersTableAdapter = null;
@@ -218,6 +218,7 @@ namespace POSWarehouse.UserControls
             this.tableAdapterManager.StorageTableAdapter = null;
             this.tableAdapterManager.SupplierInvoiceProductTableAdapter = null;
             this.tableAdapterManager.SupplierInvoicesTableAdapter = null;
+            this.tableAdapterManager.SuppliersTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = POSWarehouse.SuperMarketDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             this.tableAdapterManager.UserLevelAccessTableAdapter = null;
             this.tableAdapterManager.UsersTableAdapter = null;
@@ -284,6 +285,51 @@ namespace POSWarehouse.UserControls
             this.suppliersDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.suppliersDataGridView_ColumnHeaderMouseClick);
             this.suppliersDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.suppliersDataGridView_ColumnHeaderMouseDoubleClick);
             // 
+            // IdDataGridViewTextBoxColumn_
+            // 
+            this.IdDataGridViewTextBoxColumn_.DataPropertyName = "Id";
+            this.IdDataGridViewTextBoxColumn_.HeaderText = "Id";
+            this.IdDataGridViewTextBoxColumn_.Name = "IdDataGridViewTextBoxColumn_";
+            this.IdDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // NameDataGridViewTextBoxColumn_
+            // 
+            this.NameDataGridViewTextBoxColumn_.DataPropertyName = "Name";
+            this.NameDataGridViewTextBoxColumn_.HeaderText = "Name";
+            this.NameDataGridViewTextBoxColumn_.Name = "NameDataGridViewTextBoxColumn_";
+            this.NameDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // ContactDataGridViewTextBoxColumn_
+            // 
+            this.ContactDataGridViewTextBoxColumn_.DataPropertyName = "Contact";
+            this.ContactDataGridViewTextBoxColumn_.HeaderText = "Contact";
+            this.ContactDataGridViewTextBoxColumn_.Name = "ContactDataGridViewTextBoxColumn_";
+            this.ContactDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // AddressDataGridViewTextBoxColumn_
+            // 
+            this.AddressDataGridViewTextBoxColumn_.DataPropertyName = "Address";
+            this.AddressDataGridViewTextBoxColumn_.HeaderText = "Address";
+            this.AddressDataGridViewTextBoxColumn_.Name = "AddressDataGridViewTextBoxColumn_";
+            this.AddressDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // CreationDateDataGridViewTextBoxColumn_
+            // 
+            this.CreationDateDataGridViewTextBoxColumn_.DataPropertyName = "CreationDate";
+            this.CreationDateDataGridViewTextBoxColumn_.HeaderText = "CreationDate";
+            this.CreationDateDataGridViewTextBoxColumn_.Name = "CreationDateDataGridViewTextBoxColumn_";
+            this.CreationDateDataGridViewTextBoxColumn_.ReadOnly = true;
+            // 
+            // suppliersBindingSource
+            // 
+            this.suppliersBindingSource.DataMember = "Suppliers";
+            this.suppliersBindingSource.DataSource = this.pOSWarehouseDataSet;
+            // 
+            // pOSWarehouseDataSet
+            // 
+            this.pOSWarehouseDataSet.DataSetName = "POSWarehouseDataSet";
+            this.pOSWarehouseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -338,55 +384,6 @@ namespace POSWarehouse.UserControls
             this.pcb_searchName.MouseEnter += new System.EventHandler(this.pcb_suppliers_MouseEnter);
             this.pcb_searchName.MouseLeave += new System.EventHandler(this.pcb_suppliers_MouseLeave);
             // 
-            // pOSWarehouseDataSet
-            // 
-            this.pOSWarehouseDataSet.DataSetName = "POSWarehouseDataSet";
-            this.pOSWarehouseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // suppliersBindingSource
-            // 
-            this.suppliersBindingSource.DataMember = "Suppliers";
-            this.suppliersBindingSource.DataSource = this.pOSWarehouseDataSet;
-            // 
-            // suppliersTableAdapter
-            // 
-            this.suppliersTableAdapter.ClearBeforeFill = true;
-            // 
-            // IdDataGridViewTextBoxColumn_
-            // 
-            this.IdDataGridViewTextBoxColumn_.DataPropertyName = "Id";
-            this.IdDataGridViewTextBoxColumn_.HeaderText = "Id";
-            this.IdDataGridViewTextBoxColumn_.Name = "IdDataGridViewTextBoxColumn_";
-            this.IdDataGridViewTextBoxColumn_.ReadOnly = true;
-            // 
-            // NameDataGridViewTextBoxColumn_
-            // 
-            this.NameDataGridViewTextBoxColumn_.DataPropertyName = "Name";
-            this.NameDataGridViewTextBoxColumn_.HeaderText = "Name";
-            this.NameDataGridViewTextBoxColumn_.Name = "NameDataGridViewTextBoxColumn_";
-            this.NameDataGridViewTextBoxColumn_.ReadOnly = true;
-            // 
-            // ContactDataGridViewTextBoxColumn_
-            // 
-            this.ContactDataGridViewTextBoxColumn_.DataPropertyName = "Contact";
-            this.ContactDataGridViewTextBoxColumn_.HeaderText = "Contact";
-            this.ContactDataGridViewTextBoxColumn_.Name = "ContactDataGridViewTextBoxColumn_";
-            this.ContactDataGridViewTextBoxColumn_.ReadOnly = true;
-            // 
-            // AddressDataGridViewTextBoxColumn_
-            // 
-            this.AddressDataGridViewTextBoxColumn_.DataPropertyName = "Address";
-            this.AddressDataGridViewTextBoxColumn_.HeaderText = "Address";
-            this.AddressDataGridViewTextBoxColumn_.Name = "AddressDataGridViewTextBoxColumn_";
-            this.AddressDataGridViewTextBoxColumn_.ReadOnly = true;
-            // 
-            // CreationDateDataGridViewTextBoxColumn_
-            // 
-            this.CreationDateDataGridViewTextBoxColumn_.DataPropertyName = "CreationDate";
-            this.CreationDateDataGridViewTextBoxColumn_.HeaderText = "CreationDate";
-            this.CreationDateDataGridViewTextBoxColumn_.Name = "CreationDateDataGridViewTextBoxColumn_";
-            this.CreationDateDataGridViewTextBoxColumn_.ReadOnly = true;
-            // 
             // Suppliers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -413,10 +410,10 @@ namespace POSWarehouse.UserControls
             this.Load += new System.EventHandler(this.Suppliers_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.suppliersDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.suppliersBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_serchbyPhone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.suppliersBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -448,6 +445,5 @@ namespace POSWarehouse.UserControls
         private System.Windows.Forms.DataGridViewTextBoxColumn CreationDateDataGridViewTextBoxColumn_;
         private System.Windows.Forms.BindingSource suppliersBindingSource;
         private Data.POSWarehouseDataSet pOSWarehouseDataSet;
-        private Data.POSWarehouseDataSetTableAdapters.SuppliersTableAdapter suppliersTableAdapter;
     }
 }

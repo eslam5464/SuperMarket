@@ -261,7 +261,7 @@ namespace POSWarehouse.UserControls
             if (txt_safeTransactionId.Text.Trim() != "")
             {
                 List<SafeTransactionModel> SearchedSafe =
-                    Classes.DataAccess.SafeTransactions.GetSafeTransactionParameter("Id", txt_safeTransactionId.Text, "DESC");
+                    Classes.DataAccess.SafeTransactions.GetSafeTransactionParameter("IdDataGridViewTextBoxColumn_", txt_safeTransactionId.Text, "DESC");
 
                 if (SearchedSafe.Count != 0)
                 {
@@ -284,7 +284,7 @@ namespace POSWarehouse.UserControls
             if (db_safeTransactionDataGridView.DataSource != null && db_safeTransactionDataGridView.CurrentCell != null)
             {
                 int rowindex = db_safeTransactionDataGridView.CurrentCell.RowIndex;
-                int SafeTransactionId = int.Parse(db_safeTransactionDataGridView.Rows[rowindex].Cells["Id"].Value.ToString());
+                int SafeTransactionId = int.Parse(db_safeTransactionDataGridView.Rows[rowindex].Cells["IdDataGridViewTextBoxColumn_"].Value.ToString());
 
                 if (MessageBox.Show($"هل تريد ان تحذف المعامله رقم {SafeTransactionId}", "انتظر",
                            MessageBoxButtons.YesNo,
