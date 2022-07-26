@@ -359,6 +359,7 @@ namespace POSWarehouse.UserControls
                             await Classes.DataAccess.Products.UpdateProduct(UpdatedProduct);
 
                             await Classes.DataAccess.Invoices.RemoveProductFromInvoice(ProductId, ShownInvoiceNumber);
+
                         }
                     }
                 }

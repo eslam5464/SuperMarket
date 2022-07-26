@@ -221,6 +221,14 @@ namespace POSWarehouse.UserControls
                 new Notification().ShowAlert($"برجاء ادخال بيانات المنتج من الاسم والكمية والسعر والباركود", Notification.EnmType.Error);
         }
 
+        internal void CheckUserAccess()
+        {
+            if (!Main.LoggedUserAccess.Reports)
+            {
+                btn_exportPDF.Enabled = false;
+            }
+        }
+
         private void ResetTextBoxes()
         {
             txt_categoriename.Text = "";

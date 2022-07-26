@@ -1,5 +1,6 @@
 ﻿using POSWarehouse.Classes;
 using POSWarehouse.Classes.Models;
+using POSWarehouse.Forms;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -166,6 +167,14 @@ namespace POSWarehouse.UserControls
                 LoadDataGrid(productSearch);
 
                 HideAndTranslateColums();
+            }
+        }
+
+        internal void CheckUserAccess()
+        {
+            if (!Main.LoggedUserAccess.Reports)
+            {
+                btn_exportPDF.Enabled = false;
             }
         }
 

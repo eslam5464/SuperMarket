@@ -39,7 +39,7 @@ namespace POSWarehouse.UserControls
                             CategoryModel category = new CategoryModel
                             {
                                 Id = long.Parse(txt_categorieid.Text),
-                                Name = txt_categoriename.Text,
+                                Name = txt_categoriename.Text.Trim(),
                                 StorageId = int.Parse(txt_storageNameSearch.SelectedValue.ToString()),
                                 StorageName = txt_storageNameSearch.Text
                             };
@@ -143,6 +143,14 @@ namespace POSWarehouse.UserControls
             contextMenu = Methods.SetupContextMenuCopy(contextMenu, MenuItemCopyOption_Click);
         }
 
+        public void CheckUserAccess()
+        {
+            if (!Main.LoggedUserAccess.Reports)
+            {
+                btn_exportPDF.Enabled = false;
+            }
+        }
+
         internal void RefreshComboBoxes()
         {
             ComboBox[] AllComboBoxes =
@@ -212,7 +220,7 @@ namespace POSWarehouse.UserControls
             {
                 Logger.Log($"user is searching for category id: {txt_categorieid.Text}",
                     System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
-                List<CategoryModel> categorySearch = Classes.DataAccess.Categories.GetCategoryParameter("IdDataGridViewTextBoxColumn_", txt_categorieid.Text);
+                List<CategoryModel> categorySearch = Classes.DataAccess.Categories.GetCategoryParameter("Id", txt_categorieid.Text);
                 LoadDataGrid(categorySearch);
             }
         }
@@ -379,15 +387,21 @@ namespace POSWarehouse.UserControls
 
         private void btn_exportPDF_Click(object sender, EventArgs e)
         {
-            //await Methods.ExportDGVtoPDF(categoriesDataGridView, "الاصناف");
-            Forms.ReportViewer.SelectedReport = Forms.ReportViewer.AvailableReports.Categories;
-            Forms.ReportViewer.DGVtoPrint = categoriesDataGridView;
-
-            using (Forms.ReportViewer reportViewer = new Forms.ReportViewer())
+            if (categoriesDataGridView.RowCount != 0)
             {
-                reportViewer.ShowDialog();
-                reportViewer.Dispose();
-                reportViewer.Close();
+                //await Methods.ExportDGVtoPDF(categoriesDataGridView, "الاصناف");
+                Forms.ReportViewer.SelectedReport = Forms.ReportViewer.AvailableReports.Categories;
+                Forms.ReportViewer.DGVtoPrint = categoriesDataGridView;
+                using (Forms.ReportViewer reportViewer = new Forms.ReportViewer())
+                {
+                    reportViewer.ShowDialog();
+                    reportViewer.Dispose();
+                    reportViewer.Close();
+                }
+            }
+            else
+            {
+                new Notification().ShowAlert($"لا يوجد بيانات للطباعه", Notification.EnmType.Error);
             }
         }
 
@@ -413,7 +427,7 @@ namespace POSWarehouse.UserControls
                 {
                     StorageModel storage = new StorageModel
                     {
-                        Name = txt_storageName.Text,
+                        Name = txt_storageName.Text.Trim(),
                     };
                     await Classes.DataAccess.Storages.SaveStorage(storage);
 
@@ -458,7 +472,7 @@ namespace POSWarehouse.UserControls
                 if (StorageNameEditResult != "")
                 {
                     List<StorageModel> StorageSearch =
-                        Classes.DataAccess.Storages.GetStorageParameter("IdDataGridViewTextBoxColumn_", txt_storageNameEdit.SelectedValue.ToString());
+                        Classes.DataAccess.Storages.GetStorageParameter("Id", txt_storageNameEdit.SelectedValue.ToString());
 
                     if (StorageSearch.Count > 0)
                     {

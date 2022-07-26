@@ -226,6 +226,14 @@ namespace POSWarehouse.UserControls
             }
         }
 
+        internal void CheckUserAccess()
+        {
+            if (!Main.LoggedUserAccess.Reports)
+            {
+                btn_exportPDF.Enabled = false;
+            }
+        }
+
         private void ResetTransactionTextBoxes()
         {
             txt_safeTransactionId.Text = "";
@@ -261,7 +269,7 @@ namespace POSWarehouse.UserControls
             if (txt_safeTransactionId.Text.Trim() != "")
             {
                 List<SafeTransactionModel> SearchedSafe =
-                    Classes.DataAccess.SafeTransactions.GetSafeTransactionParameter("IdDataGridViewTextBoxColumn_", txt_safeTransactionId.Text, "DESC");
+                    Classes.DataAccess.SafeTransactions.GetSafeTransactionParameter("Id", txt_safeTransactionId.Text, "DESC");
 
                 if (SearchedSafe.Count != 0)
                 {

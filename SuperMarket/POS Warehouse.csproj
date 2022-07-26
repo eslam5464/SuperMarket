@@ -345,7 +345,7 @@
     <Compile Include="Classes\DataAccess\DataBackup.cs" />
     <Compile Include="Classes\DataAccess\Categories.cs" />
     <Compile Include="Classes\DataAccess\Customers.cs" />
-    <Compile Include="Classes\DataAccess\DataInit.cs" />
+    <Compile Include="Classes\DataAccess\DataMethods.cs" />
     <Compile Include="Classes\DataAccess\DataRestore.cs" />
     <Compile Include="Classes\DataAccess\Invoices.cs" />
     <Compile Include="Classes\DataAccess\Orders.cs" />

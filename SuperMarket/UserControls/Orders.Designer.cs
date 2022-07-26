@@ -46,7 +46,6 @@ namespace POSWarehouse.UserControls
             this.CreatedByUserIdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CreatedByUserFullNameDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ordersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pOSWarehouseDataSet = new POSWarehouse.Data.POSWarehouseDataSet();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pcb_search_by_customer_name = new System.Windows.Forms.PictureBox();
@@ -62,7 +61,6 @@ namespace POSWarehouse.UserControls
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_customer_name)).BeginInit();
             this.panel4.SuspendLayout();
@@ -206,16 +204,6 @@ namespace POSWarehouse.UserControls
             this.CreatedByUserFullNameDataGridViewTextBoxColumn_.HeaderText = "CreatedByUserFullName";
             this.CreatedByUserFullNameDataGridViewTextBoxColumn_.Name = "CreatedByUserFullNameDataGridViewTextBoxColumn_";
             this.CreatedByUserFullNameDataGridViewTextBoxColumn_.ReadOnly = true;
-            // 
-            // ordersBindingSource
-            // 
-            this.ordersBindingSource.DataMember = "Orders";
-            this.ordersBindingSource.DataSource = this.pOSWarehouseDataSet;
-            // 
-            // pOSWarehouseDataSet
-            // 
-            this.pOSWarehouseDataSet.DataSetName = "POSWarehouseDataSet";
-            this.pOSWarehouseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label2
             // 
@@ -396,7 +384,6 @@ namespace POSWarehouse.UserControls
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ordersDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ordersBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_customer_name)).EndInit();
@@ -434,6 +421,5 @@ namespace POSWarehouse.UserControls
         private System.Windows.Forms.DataGridViewTextBoxColumn CreatedByUserIdDataGridViewTextBoxColumn_;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreatedByUserFullNameDataGridViewTextBoxColumn_;
         private System.Windows.Forms.BindingSource ordersBindingSource;
-        private Data.POSWarehouseDataSet pOSWarehouseDataSet;
     }
 }

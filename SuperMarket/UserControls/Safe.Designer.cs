@@ -45,7 +45,6 @@ namespace POSWarehouse.UserControls
             this.NotesDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CreationDateDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.safeTransactionBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pOSWarehouseDataSet = new POSWarehouse.Data.POSWarehouseDataSet();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_safeDelete = new System.Windows.Forms.Button();
             this.txt_safeNameEdit = new System.Windows.Forms.ComboBox();
@@ -78,7 +77,6 @@ namespace POSWarehouse.UserControls
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_safeTransactionDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.safeTransactionBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -218,16 +216,6 @@ namespace POSWarehouse.UserControls
             this.CreationDateDataGridViewTextBoxColumn_.HeaderText = "CreationDate";
             this.CreationDateDataGridViewTextBoxColumn_.Name = "CreationDateDataGridViewTextBoxColumn_";
             this.CreationDateDataGridViewTextBoxColumn_.ReadOnly = true;
-            // 
-            // safeTransactionBindingSource
-            // 
-            this.safeTransactionBindingSource.DataMember = "SafeTransaction";
-            this.safeTransactionBindingSource.DataSource = this.pOSWarehouseDataSet;
-            // 
-            // pOSWarehouseDataSet
-            // 
-            this.pOSWarehouseDataSet.DataSetName = "POSWarehouseDataSet";
-            this.pOSWarehouseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // panel1
             // 
@@ -650,7 +638,6 @@ namespace POSWarehouse.UserControls
             this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.db_safeTransactionDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.safeTransactionBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -707,6 +694,5 @@ namespace POSWarehouse.UserControls
         private System.Windows.Forms.DataGridViewTextBoxColumn NotesDataGridViewTextBoxColumn_;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreationDateDataGridViewTextBoxColumn_;
         private System.Windows.Forms.BindingSource safeTransactionBindingSource;
-        private Data.POSWarehouseDataSet pOSWarehouseDataSet;
     }
 }

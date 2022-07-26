@@ -62,7 +62,7 @@ namespace POSWarehouse.Forms
                     timer1.Interval = 1;
                     this.Opacity -= 0.1;
 
-                    this.Left -= 3;
+                    this.Left += 3;
                     if (base.Opacity == 0.0)
                     {
                         base.Close();

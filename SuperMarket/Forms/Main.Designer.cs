@@ -269,7 +269,7 @@ namespace POSWarehouse.Forms
             this.btn_supplierInvoicesHistory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btn_supplierInvoicesHistory.Size = new System.Drawing.Size(228, 45);
             this.btn_supplierInvoicesHistory.TabIndex = 31;
-            this.btn_supplierInvoicesHistory.Text = "جميع الفواتير";
+            this.btn_supplierInvoicesHistory.Text = "سجل الفواتير";
             this.btn_supplierInvoicesHistory.UseVisualStyleBackColor = false;
             this.btn_supplierInvoicesHistory.Click += new System.EventHandler(this.btn_supplierInvoicesHistory_Click);
             // 
@@ -671,11 +671,11 @@ namespace POSWarehouse.Forms
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel6.Controls.Add(this.lbl_welcome);
             this.panel6.Controls.Add(this.lbl_welcomeName);
+            this.panel6.Controls.Add(this.lbl_welcome);
             this.panel6.Location = new System.Drawing.Point(299, 10);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(285, 44);
+            this.panel6.Size = new System.Drawing.Size(322, 44);
             this.panel6.TabIndex = 13;
             // 
             // lbl_welcomeName
@@ -683,12 +683,13 @@ namespace POSWarehouse.Forms
             this.lbl_welcomeName.AutoSize = true;
             this.lbl_welcomeName.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_welcomeName.ForeColor = System.Drawing.Color.White;
-            this.lbl_welcomeName.Location = new System.Drawing.Point(113, 4);
+            this.lbl_welcomeName.Location = new System.Drawing.Point(152, 4);
             this.lbl_welcomeName.Name = "lbl_welcomeName";
             this.lbl_welcomeName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.lbl_welcomeName.Size = new System.Drawing.Size(77, 32);
             this.lbl_welcomeName.TabIndex = 12;
             this.lbl_welcomeName.Text = "لا يوجد";
+            this.lbl_welcomeName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panel4
             // 

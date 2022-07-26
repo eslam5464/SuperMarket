@@ -147,6 +147,7 @@ namespace POSWarehouse.Forms
             this.txt_Username.Name = "txt_Username";
             this.txt_Username.Size = new System.Drawing.Size(297, 37);
             this.txt_Username.TabIndex = 75;
+            this.txt_Username.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_login_KeyDown);
             // 
             // lbl_password
             // 
@@ -187,6 +188,7 @@ namespace POSWarehouse.Forms
             this.txt_Password.PasswordChar = '✪';
             this.txt_Password.Size = new System.Drawing.Size(297, 37);
             this.txt_Password.TabIndex = 79;
+            this.txt_Password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txt_login_KeyDown);
             // 
             // panel1
             // 

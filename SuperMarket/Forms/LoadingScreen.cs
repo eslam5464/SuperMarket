@@ -54,7 +54,7 @@ namespace POSWarehouse.Forms
                 await Logger.CreateLogDB();
 
 
-                await Classes.DataAccess.DataInit.CreateDatabase(Security.GetDBName());
+                await Classes.DataAccess.DataMethods.CreateDatabase(Security.GetDBName());
                 //await Classes.DataAccess.DataInit.RenameDatabase(Security.GetDBNameOld(), Security.GetDBName());
 
                 //bool x = await Classes.DataAccess.DataInit.CheckDatabaseExists(Security.GetDBName());

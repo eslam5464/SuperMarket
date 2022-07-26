@@ -33,7 +33,7 @@ namespace POSWarehouse.Forms
         }
 
         internal static Classes.Models.UserModel LoggedUser, LoggedUserEnc;
-        private static Classes.Models.UserLevelAccessModel LoggedUserAccess;
+        internal static Classes.Models.UserLevelAccessModel LoggedUserAccess;
         private int SessionTimer = 0, HourlyTimer = 0, FourHoursTimer = 0;
         private bool SessionState = true;
 
@@ -159,6 +159,7 @@ namespace POSWarehouse.Forms
         private void btn_Categories_Click(object sender, EventArgs e)
         {
             SelectButton(btn_Categories, true);
+            uc_categories.CheckUserAccess();
             uc_categories.BringToFront();
             uc_categories.RefreshComboBoxes();
         }
@@ -166,6 +167,7 @@ namespace POSWarehouse.Forms
         private void btn_Products_Click(object sender, EventArgs e)
         {
             SelectButton(btn_Products, true);
+            uc_products.CheckUserAccess();
             uc_products.BringToFront();
             uc_products.LoadCategories();
         }
@@ -173,12 +175,14 @@ namespace POSWarehouse.Forms
         private void btn_Customers_Click(object sender, EventArgs e)
         {
             SelectButton(btn_Customers, true);
+            uc_customers.CheckUserAccess();
             uc_customers.BringToFront();
         }
 
         private void btn_Orders_Click(object sender, EventArgs e)
         {
             SelectButton(btn_Orders, true);
+            uc_orders.CheckUserAccess();
             uc_orders.BringToFront();
         }
 
@@ -206,13 +210,13 @@ namespace POSWarehouse.Forms
         private void btn_sellers_Click(object sender, EventArgs e)
         {
             SelectButton(btn_users, true);
+            uc_sellers.CheckUserAccess();
             uc_sellers.BringToFront();
         }
 
         private void btn_settings_Click(object sender, EventArgs e)
         {
             SelectButton(btn_settings, true);
-
             uc_settings.BringToFront();
         }
 
@@ -250,18 +254,21 @@ namespace POSWarehouse.Forms
         private void btn_suppliersEdit_Click(object sender, EventArgs e)
         {
             SelectSideMenuButton(btn_suppliers, btn_suppliers, false, 2);
+            uc_suppliers.CheckUserAccess();
             uc_suppliers.BringToFront();
         }
 
         private void btn_supplierInvoicesHistory_Click(object sender, EventArgs e)
         {
             SelectSideMenuButton(btn_supplierInvoicesHistory, btn_suppliers, false, 3);
+            uc_suppliers.CheckUserAccess();
             uc_supplierInvoicesHistory.BringToFront();
         }
 
         private void btn_safe_Click(object sender, EventArgs e)
         {
-            SelectButton(btn_safe, false);
+            SelectButton(btn_safe, true);
+            uc_safe.CheckUserAccess();
             uc_safe.BringToFront();
         }
 
@@ -276,7 +283,7 @@ namespace POSWarehouse.Forms
             uc_blank.BringToFront();
         }
 
-        private void CheckUserLevelAccess()
+        public void CheckUserLevelAccess()
         {
             List<Classes.Models.UserLevelAccessModel> SearchedUserAccess =
                 Classes.DataAccess.UserLevelAccess.GetUserLevelAccessParameter("UserId", "" + LoggedUser.Id);
@@ -305,7 +312,7 @@ namespace POSWarehouse.Forms
                 btn_dashborad.Visible = LoggedUserAccess.Dashboard;
                 btn_Orders.Visible = LoggedUserAccess.Orders;
                 btn_Products.Visible = LoggedUserAccess.Products;
-                btn_reports.Visible = LoggedUserAccess.Reports;
+                //btn_reports.Visible = LoggedUserAccess.Reports;
                 btn_safe.Visible = LoggedUserAccess.Safe;
                 btn_settings.Visible = LoggedUserAccess.Settings;
                 btn_supplierInvoices.Visible = LoggedUserAccess.SupplierInvoices;
@@ -473,7 +480,7 @@ namespace POSWarehouse.Forms
                     {
                         MessageBox.Show("لا يمكن الاتصال بالإنترنت برجاء استخدام البرنامج عندما يكون الجهاز متصل بـال انترنت",
                             "خطأ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        Logger.Log("time used to open the application finished",
+                        Logger.Log("couldnt conect to internet while checking license closed the application",
                                  System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.CRITICAL);
 
                         this.Dispose();
@@ -500,7 +507,7 @@ namespace POSWarehouse.Forms
         private async void button1_Click(object sender, EventArgs e)
         {
 
-            await Classes.DataAccess.DataInit.
+            await Classes.DataAccess.DataMethods.
                 RenameDatabase($"C:\\USERS\\ESLAM\\DOCUMENTS\\VISUAL STUDIO 2019\\PROJECTS\\SUPERMARKET\\SUPERMARKET\\BIN\\DEBUG\\DATA\\POSWAREHOUSEDB.MDF", Security.GetDBName());
         }
 

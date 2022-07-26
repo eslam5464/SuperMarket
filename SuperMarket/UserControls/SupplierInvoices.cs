@@ -351,12 +351,12 @@ namespace POSWarehouse.UserControls
                 if (txt_paymentMethod.SelectedIndex == Methods.FindIndexFromArray(GlobalVars.PaymentMethod, "نقدي"))
                 {
                     num_paymentAmoutPaid.Value = num_paymentAmoutRequired.Value;
-
                     num_paymentAmoutLeft.Value = 0;
                 }
                 else if (txt_paymentMethod.SelectedIndex == Methods.FindIndexFromArray(GlobalVars.PaymentMethod, "آجل"))
                 {
                     num_paymentAmoutLeft.Value = num_paymentAmoutRequired.Value;
+                    num_paymentAmoutPaid.Value = 0;
                 }
             }
             else

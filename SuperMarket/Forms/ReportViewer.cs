@@ -24,6 +24,7 @@ namespace POSWarehouse.Forms
         {
             await CheckReport(SelectedReport);
             //this.rv_categories.RefreshReport();
+            this.rv_categories.RefreshReport();
         }
 
         private async Task CheckReport(AvailableReports selectedReport)

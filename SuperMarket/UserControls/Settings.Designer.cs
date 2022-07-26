@@ -32,6 +32,12 @@ namespace POSWarehouse.UserControls
             this.cb_color = new System.Windows.Forms.ComboBox();
             this.pan_color_sample = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
+            this.pic_deleteAllDatabase = new System.Windows.Forms.PictureBox();
+            this.btn_deleteAllDatabase = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.lbl_restoreDatabase = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,6 +56,9 @@ namespace POSWarehouse.UserControls
             this.btn_saveSettings = new System.Windows.Forms.Button();
             this.btn_resetDefault = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableLayoutPanel7.SuspendLayout();
+            this.tableLayoutPanel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_deleteAllDatabase)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
@@ -90,23 +99,106 @@ namespace POSWarehouse.UserControls
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel7, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.lbl_restoreDatabase, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.lbl_backupLocation, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.lbl_appColor, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel4, 1, 2);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 100);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1032, 324);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1032, 263);
             this.tableLayoutPanel1.TabIndex = 200;
+            // 
+            // tableLayoutPanel7
+            // 
+            this.tableLayoutPanel7.ColumnCount = 2;
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Controls.Add(this.label3, 1, 0);
+            this.tableLayoutPanel7.Controls.Add(this.tableLayoutPanel8, 0, 0);
+            this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel7.Location = new System.Drawing.Point(315, 195);
+            this.tableLayoutPanel7.Name = "tableLayoutPanel7";
+            this.tableLayoutPanel7.RowCount = 1;
+            this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(711, 62);
+            this.tableLayoutPanel7.TabIndex = 223;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.Location = new System.Drawing.Point(358, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(350, 62);
+            this.label3.TabIndex = 223;
+            this.label3.Text = "سوف يتم مسح جميع البيانات ماعدا المستخدمين";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tableLayoutPanel8
+            // 
+            this.tableLayoutPanel8.ColumnCount = 2;
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 83.66763F));
+            this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.33238F));
+            this.tableLayoutPanel8.Controls.Add(this.pic_deleteAllDatabase, 1, 0);
+            this.tableLayoutPanel8.Controls.Add(this.btn_deleteAllDatabase, 0, 0);
+            this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel8.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel8.Name = "tableLayoutPanel8";
+            this.tableLayoutPanel8.RowCount = 1;
+            this.tableLayoutPanel8.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel8.Size = new System.Drawing.Size(349, 56);
+            this.tableLayoutPanel8.TabIndex = 221;
+            // 
+            // pic_deleteAllDatabase
+            // 
+            this.pic_deleteAllDatabase.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pic_deleteAllDatabase.Image = global::POSWarehouse.Properties.Resources.gif_loading_48;
+            this.pic_deleteAllDatabase.Location = new System.Drawing.Point(294, 3);
+            this.pic_deleteAllDatabase.Name = "pic_deleteAllDatabase";
+            this.pic_deleteAllDatabase.Size = new System.Drawing.Size(52, 50);
+            this.pic_deleteAllDatabase.TabIndex = 221;
+            this.pic_deleteAllDatabase.TabStop = false;
+            this.pic_deleteAllDatabase.Visible = false;
+            // 
+            // btn_deleteAllDatabase
+            // 
+            this.btn_deleteAllDatabase.BackColor = System.Drawing.Color.Purple;
+            this.btn_deleteAllDatabase.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btn_deleteAllDatabase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_deleteAllDatabase.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_deleteAllDatabase.ForeColor = System.Drawing.Color.White;
+            this.btn_deleteAllDatabase.Location = new System.Drawing.Point(3, 3);
+            this.btn_deleteAllDatabase.Name = "btn_deleteAllDatabase";
+            this.btn_deleteAllDatabase.Size = new System.Drawing.Size(285, 50);
+            this.btn_deleteAllDatabase.TabIndex = 220;
+            this.btn_deleteAllDatabase.Text = "مسح جميع البيانات";
+            this.btn_deleteAllDatabase.UseVisualStyleBackColor = false;
+            this.btn_deleteAllDatabase.Click += new System.EventHandler(this.btn_deleteAllDatabase_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold);
+            this.label2.Location = new System.Drawing.Point(6, 192);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(300, 68);
+            this.label2.TabIndex = 222;
+            this.label2.Text = "مسح جميع البيانات";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbl_restoreDatabase
             // 
@@ -257,14 +349,14 @@ namespace POSWarehouse.UserControls
             // 
             // btn_restoreDatabase
             // 
-            this.btn_restoreDatabase.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_restoreDatabase.BackColor = System.Drawing.Color.Purple;
+            this.btn_restoreDatabase.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_restoreDatabase.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_restoreDatabase.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_restoreDatabase.ForeColor = System.Drawing.Color.White;
-            this.btn_restoreDatabase.Location = new System.Drawing.Point(30, 5);
+            this.btn_restoreDatabase.Location = new System.Drawing.Point(3, 3);
             this.btn_restoreDatabase.Name = "btn_restoreDatabase";
-            this.btn_restoreDatabase.Size = new System.Drawing.Size(231, 38);
+            this.btn_restoreDatabase.Size = new System.Drawing.Size(285, 42);
             this.btn_restoreDatabase.TabIndex = 220;
             this.btn_restoreDatabase.Text = "استرجاع نسخه احتياطية";
             this.btn_restoreDatabase.UseVisualStyleBackColor = false;
@@ -297,14 +389,14 @@ namespace POSWarehouse.UserControls
             // 
             // btn_createBackup
             // 
-            this.btn_createBackup.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btn_createBackup.BackColor = System.Drawing.Color.Purple;
+            this.btn_createBackup.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btn_createBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_createBackup.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_createBackup.ForeColor = System.Drawing.Color.White;
-            this.btn_createBackup.Location = new System.Drawing.Point(29, 5);
+            this.btn_createBackup.Location = new System.Drawing.Point(3, 3);
             this.btn_createBackup.Name = "btn_createBackup";
-            this.btn_createBackup.Size = new System.Drawing.Size(229, 38);
+            this.btn_createBackup.Size = new System.Drawing.Size(281, 42);
             this.btn_createBackup.TabIndex = 220;
             this.btn_createBackup.Text = "عمل نسخه احتياطية";
             this.btn_createBackup.UseVisualStyleBackColor = false;
@@ -355,6 +447,10 @@ namespace POSWarehouse.UserControls
             this.Load += new System.EventHandler(this.Settings_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            this.tableLayoutPanel7.ResumeLayout(false);
+            this.tableLayoutPanel7.PerformLayout();
+            this.tableLayoutPanel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pic_deleteAllDatabase)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
@@ -388,5 +484,11 @@ namespace POSWarehouse.UserControls
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.PictureBox pic_restoreDatabaseLoading;
         private System.Windows.Forms.PictureBox pic_createBackupLoading;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
+        private System.Windows.Forms.PictureBox pic_deleteAllDatabase;
+        private System.Windows.Forms.Button btn_deleteAllDatabase;
     }
 }

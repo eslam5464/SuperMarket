@@ -23,8 +23,8 @@ namespace POSWarehouse.Forms
         private async void btn_login_Click(object sender, EventArgs e)
         {
             btn_login.Enabled = false;
-            txt_Username.Text = "admin";
-            txt_Password.Text = "passnot100%Safe";
+            //txt_Username.Text = "admin";
+            //txt_Password.Text = "passnot100%Safe";
 
             Logger.Log("user clicked on login button",
                         System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
@@ -157,7 +157,7 @@ namespace POSWarehouse.Forms
                 {
                     Username = await Security.EncryptAsync("modeer", CPUID + MOBOID),
                     Password = await Security.EncryptAsync("modeer", CPUID + MOBOID),
-                    FullName = "modeer",
+                    FullName = "modeer name",
                     Phone = "0",
                     Email = "NA",
                     UserLevel = "0",
@@ -209,6 +209,15 @@ namespace POSWarehouse.Forms
         private void btn_close_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void txt_login_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Return)
+            {
+                e.SuppressKeyPress = true;
+                btn_login.PerformClick();
+            }
         }
     }
 }

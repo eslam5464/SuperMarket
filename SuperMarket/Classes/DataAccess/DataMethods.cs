@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace POSWarehouse.Classes.DataAccess
 {
-    class DataInit
+    class DataMethods
     {
         /*
 			USE master
@@ -23,6 +23,38 @@ namespace POSWarehouse.Classes.DataAccess
 		======
 		SELECT name FROM sys.databases where name = ''
 		 */
+        public static async Task<bool> DeleteAllData()
+        {
+            try
+            {
+                using (IDbConnection cnnn = new SqlConnection(GlobalVars.LoadConnectionString()))
+                {
+                    string query = $@"DELETE FROM  [dbo].[Categories]
+										DELETE FROM  [dbo].[Customers]
+										DELETE FROM  [dbo].[Invoices]
+										DELETE FROM  [dbo].[Orders]
+										DELETE FROM  [dbo].[ProductPrice]
+										DELETE FROM  [dbo].[Products]
+										DELETE FROM  [dbo].[Safe]
+										DELETE FROM  [dbo].[SafeTransaction]
+										DELETE FROM  [dbo].[Storage]
+										DELETE FROM  [dbo].[SupplierInvoiceProduct]
+										DELETE FROM  [dbo].[SupplierInvoices]
+										DELETE FROM  [dbo].[Suppliers]";
+                    await Task.Run(() => cnnn.Query(query, new DynamicParameters()).ToList());
+                }
+                Logger.Log($"Deleted all rows in the database as user requested",
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, "DataMethods", Logger.INFO);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.Log($"Couldnt delete all rows from the database & error: " + ex.Message,
+                    System.Reflection.MethodInfo.GetCurrentMethod().Name, "DataMethods", Logger.ERROR);
+                return false;
+            }
+        }
+
         public static async Task RenameDatabase(string DatabaseNameOriginal, string DatabaseNameNew)
         {
 

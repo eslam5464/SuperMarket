@@ -52,14 +52,12 @@ namespace POSWarehouse.UserControls
             this.SupplierInvoiceProductIdDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CreationDateDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.supplierInvoicesBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pOSWarehouseDataSet = new POSWarehouse.Data.POSWarehouseDataSet();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_search_by_supplier_name)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_supplierInvoicesDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplierInvoicesBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).BeginInit();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -276,16 +274,6 @@ namespace POSWarehouse.UserControls
             this.CreationDateDataGridViewTextBoxColumn_.Name = "CreationDateDataGridViewTextBoxColumn_";
             this.CreationDateDataGridViewTextBoxColumn_.ReadOnly = true;
             // 
-            // supplierInvoicesBindingSource
-            // 
-            this.supplierInvoicesBindingSource.DataMember = "SupplierInvoices";
-            this.supplierInvoicesBindingSource.DataSource = this.pOSWarehouseDataSet;
-            // 
-            // pOSWarehouseDataSet
-            // 
-            this.pOSWarehouseDataSet.DataSetName = "POSWarehouseDataSet";
-            this.pOSWarehouseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.Gray;
@@ -313,7 +301,6 @@ namespace POSWarehouse.UserControls
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db_supplierInvoicesDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.supplierInvoicesBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).EndInit();
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -340,6 +327,5 @@ namespace POSWarehouse.UserControls
         private System.Windows.Forms.DataGridViewTextBoxColumn SupplierInvoiceProductIdDataGridViewTextBoxColumn_;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreationDateDataGridViewTextBoxColumn_;
         private System.Windows.Forms.BindingSource supplierInvoicesBindingSource;
-        private Data.POSWarehouseDataSet pOSWarehouseDataSet;
     }
 }

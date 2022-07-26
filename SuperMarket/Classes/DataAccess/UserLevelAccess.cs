@@ -93,7 +93,7 @@ namespace POSWarehouse.Classes.DataAccess
                         $"Safe = @Safe, SupplierInvoices = @SupplierInvoices, SuppliersEdit = @SuppliersEdit WHERE UserId = @UserId", user));
                 }
 
-                new Notification().ShowAlert($"تم التعديل", Notification.EnmType.Success);
+                new Notification().ShowAlert($"تم تعديل صلاحيات المستخدم {user.UserFullName}", Notification.EnmType.Success);
             }
             catch (Exception ex)
             {

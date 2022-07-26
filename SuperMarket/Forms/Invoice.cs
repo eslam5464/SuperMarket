@@ -19,11 +19,15 @@ namespace POSWarehouse.Forms
 
         private void Invoice_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'superMarketDataSet.Invoices' table. You can move, or remove it, as needed.
+            this.invoicesTableAdapter.Fill(this.superMarketDataSet.Invoices);
             //this.invoicesTableAdapter.Fill(this.superMarketDataSet.Invoices);
-            SetColor(Properties.Settings.Default.AppColor);
+            //SetColor(Properties.Settings.Default.AppColor);
+            SetColor(Color.DarkViolet);
 
             txt_invoiceid.Text = invoiceID;
             //this.reportViewer1.RefreshReport();
+            this.reportViewer1.RefreshReport();
         }
 
         private void SetColor(Color appColor)

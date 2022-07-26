@@ -64,7 +64,7 @@ namespace POSWarehouse.UserControls
                             };
                             await Classes.DataAccess.Customers.UpdateCustomer(customer);
 
-                            LoadDataGrid(Classes.DataAccess.Customers.GetCustomerParameter("IdDataGridViewTextBoxColumn_", "" + customer.Id), customersDataGridView);
+                            LoadDataGrid(Classes.DataAccess.Customers.GetCustomerParameter("Id", "" + customer.Id), customersDataGridView);
 
                             Logger.Log($"user has edited customer with id: {customer.Id}",
                                 System.Reflection.MethodInfo.GetCurrentMethod().Name, this.Name, Logger.INFO);
@@ -148,6 +148,14 @@ namespace POSWarehouse.UserControls
 
                 List<CustomerModel> customerSearch = Classes.DataAccess.Customers.GetCustomerParameterLike("ContactNo", txt_contact.Text);
                 LoadDataGrid(customerSearch, customersDataGridView);
+            }
+        }
+
+        internal void CheckUserAccess()
+        {
+            if (!Main.LoggedUserAccess.Reports)
+            {
+                btn_exportPDF.Enabled = false;
             }
         }
 

@@ -47,7 +47,6 @@ namespace POSWarehouse.UserControls
             this.panel1 = new System.Windows.Forms.Panel();
             this.customersDataGridView = new System.Windows.Forms.DataGridView();
             this.customersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pOSWarehouseDataSet = new POSWarehouse.Data.POSWarehouseDataSet();
             this.pcb_searchPhone = new System.Windows.Forms.PictureBox();
             this.pcb_searchName = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -63,7 +62,6 @@ namespace POSWarehouse.UserControls
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customersDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchPhone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).BeginInit();
             this.SuspendLayout();
@@ -280,16 +278,6 @@ namespace POSWarehouse.UserControls
             this.customersDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.customersDataGridView_ColumnHeaderMouseClick);
             this.customersDataGridView.ColumnHeaderMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.customersDataGridView_ColumnHeaderMouseDoubleClick);
             // 
-            // customersBindingSource
-            // 
-            this.customersBindingSource.DataMember = "Customers";
-            this.customersBindingSource.DataSource = this.pOSWarehouseDataSet;
-            // 
-            // pOSWarehouseDataSet
-            // 
-            this.pOSWarehouseDataSet.DataSetName = "POSWarehouseDataSet";
-            this.pOSWarehouseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // pcb_searchPhone
             // 
             this.pcb_searchPhone.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -455,7 +443,6 @@ namespace POSWarehouse.UserControls
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.customersDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.customersBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchPhone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).EndInit();
             this.ResumeLayout(false);
@@ -486,7 +473,6 @@ namespace POSWarehouse.UserControls
         private System.Windows.Forms.DataGridView customersDataGridView;
         private System.Windows.Forms.Button btn_exportPDF;
         private System.Windows.Forms.BindingSource customersBindingSource;
-        private Data.POSWarehouseDataSet pOSWarehouseDataSet;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn_;
         private System.Windows.Forms.DataGridViewTextBoxColumn NameDataGridViewTextBoxColumn_;
         private System.Windows.Forms.DataGridViewTextBoxColumn ContactNoDataGridViewTextBoxColumn_;

@@ -242,6 +242,14 @@ namespace POSWarehouse.UserControls
             }
         }
 
+        internal void CheckUserAccess()
+        {
+            if (!Main.LoggedUserAccess.Reports)
+            {
+                btn_exportPDF.Enabled = false;
+            }
+        }
+
         private void btn_exportPDF_Click(object sender, EventArgs e)
         {
             Forms.ReportViewer.SelectedReport = Forms.ReportViewer.AvailableReports.Suppliers;

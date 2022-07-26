@@ -126,6 +126,7 @@ namespace POSWarehouse.Classes.DataAccess
                 using (IDbConnection cnn = new SqlConnection(GlobalVars.LoadConnectionString()))
                 {
                     await Task.Run(() => cnn.Execute($"DELETE FROM Invoices WHERE InvoiceNumber = {InvoiceNumber} AND ProductID = {ProductID}"));
+                    new Notification().ShowAlert($"لقد تم حفظ التعديلات", Notification.EnmType.Success);
                 }
             }
             catch (Exception ex)

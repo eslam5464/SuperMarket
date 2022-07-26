@@ -247,6 +247,14 @@ namespace POSWarehouse.UserControls
             }
         }
 
+        internal void CheckUserAccess()
+        {
+            if (!Main.LoggedUserAccess.Reports)
+            {
+                btn_exportPDF.Enabled = false;
+            }
+        }
+
         private void ResetTextBoxes()
         {
             txt_Username.Text = "";

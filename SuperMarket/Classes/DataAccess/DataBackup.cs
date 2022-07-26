@@ -81,8 +81,8 @@ namespace POSWarehouse.Classes.DataAccess
                 {
                     using (var location = new SqlConnection(GlobalVars.LoadConnectionString(Id)))
                     {
-                        await Task.Run(() => location.Execute($@"BACKUP DATABASE {Security.GetDBName()} TO DISK = '{strDestination}\{BackupFileName}' 
-                            WITH DIFFERENTIAL", new DynamicParameters()));
+                        await Task.Run(() => location.Execute($@"BACKUP DATABASE {Security.GetDBName()} TO 
+                                        DISK = '{strDestination}\{BackupFileName}'", new DynamicParameters()));
                     }
                     await Task.Run(() => Logger.Log($@"created backup and orverwrited the file at location " +
                         $@"<{strDestination}{BackupFileName}>", System.Reflection.MethodInfo.GetCurrentMethod().Name,
@@ -92,14 +92,15 @@ namespace POSWarehouse.Classes.DataAccess
                 }
                 catch (Exception ex)
                 {
-                    await Task.Run(() => Logger.Log("Error when creating backup with diferential trying without it & error: "
+                    await Task.Run(() => Logger.Log("Error when creating backup without diferential trying with it & error: "
                         + ex.Message, System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.ERROR));
 
                     try
                     {
                         using (var location = new SqlConnection(GlobalVars.LoadConnectionString(Id)))
                         {
-                            await Task.Run(() => location.Execute($@"BACKUP DATABASE {Security.GetDBName()} TO DISK = '{strDestination}\{BackupFileName}'", new DynamicParameters()));
+                            await Task.Run(() => location.Execute($@"BACKUP DATABASE {Security.GetDBName()} 
+                                        TO DISK = '{strDestination}\{BackupFileName}' WITH DIFFERENTIAL", new DynamicParameters()));
                         }
                         await Task.Run(() => Logger.Log($@"created backup and orverwrited the file at location " +
                             $@"<{strDestination}{BackupFileName}>", System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup",
@@ -124,23 +125,48 @@ namespace POSWarehouse.Classes.DataAccess
                     using (var location = new SqlConnection(GlobalVars.LoadConnectionString(Id)))
                     //using (var destination = new SqlConnection($@"Data Source={strDestination}\{BackupFileName}; Version=3;"))
                     {
-                        await Task.Run(() => location.Execute($@"BACKUP DATABASE {Security.GetDBName()} TO DISK = '{strDestination}\{BackupFileName}'",
+                        await Task.Run(() => location.Execute($@"BACKUP DATABASE {Security.GetDBName()} 
+                                            TO DISK = '{strDestination}\{BackupFileName}'",
                             new DynamicParameters()));
                         //location.Open();
                         //destination.Open();
                         //location.BackupDatabase(destination, "main", "main", -1, null, 0);
                     }
 
-                    await Task.Run(() => Logger.Log($@"created backup without overwriting the file at location <{strDestination}\{BackupFileName}>",
+                    await Task.Run(() => Logger.Log($@"created backup without diffrential and without overwriting the file at location <{strDestination}\{BackupFileName}>",
                         System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.INFO));
 
                     output = true;
                 }
                 catch (Exception ex)
                 {
-                    await Task.Run(() => Logger.Log("Error when creating backup: " + ex.Message,
-                        System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.ERROR));
-                    output = false;
+                    await Task.Run(() => Logger.Log("Error when creating backup without differential trying with it & error: " +
+                        ex.Message, System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.ERROR));
+
+                    try
+                    {
+                        using (var location = new SqlConnection(GlobalVars.LoadConnectionString(Id)))
+                        //using (var destination = new SqlConnection($@"Data Source={strDestination}\{BackupFileName}; Version=3;"))
+                        {
+                            await Task.Run(() => location.Execute($@"BACKUP DATABASE {Security.GetDBName()} 
+                                            TO DISK = '{strDestination}\{BackupFileName}' WITH DIFFERENTIAL",
+                                new DynamicParameters()));
+                            //location.Open();
+                            //destination.Open();
+                            //location.BackupDatabase(destination, "main", "main", -1, null, 0);
+                        }
+
+                        await Task.Run(() => Logger.Log($@"created backup with diffrential and without overwriting the file at location 
+                        <{strDestination}\{BackupFileName}>", System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.INFO));
+
+                        output = true;
+                    }
+                    catch (Exception exx)
+                    {
+                        await Task.Run(() => Logger.Log("Error when creating backup without differential & error: " +
+                        exx.Message, System.Reflection.MethodInfo.GetCurrentMethod().Name, "Backup", Logger.CRITICAL));
+                        output = false;
+                    }
                 }
             }
             if (!Overwrite && File.Exists(strDestination + BackupFileName))

@@ -127,5 +127,31 @@ namespace POSWarehouse.UserControls
             pic_createBackupLoading.Visible = false;
             btn_createBackup.Enabled = true;
         }
+
+        private async void btn_deleteAllDatabase_Click(object sender, EventArgs e)
+        {
+            pic_deleteAllDatabase.Visible = true;
+            btn_deleteAllDatabase.Enabled = false;
+
+            if (MessageBox.Show("هل انت متأكد من مسح جميع البيانات؟", "انتظر",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Information) == DialogResult.Yes)
+            {
+                if (MessageBox.Show("هل مسح البيانات أكيد لانه" +
+                    " لن يكون في امكانك استرجاع البيانات إلى في حاله وجود نسخه احتياطيه؟", "احذر",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    if (await Classes.DataAccess.DataMethods.DeleteAllData())
+                        new Notification().ShowAlert($"لقد تم مسح جميع البيانات", Notification.EnmType.Success);
+
+                    else
+                        new Notification().ShowAlert($"حدث خطأ أثناء مسح البيانات", Notification.EnmType.Error);
+                }
+            }
+
+            pic_deleteAllDatabase.Visible = false;
+            btn_deleteAllDatabase.Enabled = true;
+        }
     }
 }

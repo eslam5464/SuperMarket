@@ -1,6 +1,7 @@
 ﻿using POSWarehouse.Classes.Models;
 using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace POSWarehouse.Forms
@@ -90,6 +91,8 @@ namespace POSWarehouse.Forms
                 Safe = chk_safe.Checked,
             };
             await Classes.DataAccess.UserLevelAccess.UpdateUserLevelAccess(AdjustedUserAccess);
+
+            await Task.Run(() => new Main().CheckUserLevelAccess());
         }
 
         private void chk_userAccess_MouseLeave(object sender, EventArgs e)

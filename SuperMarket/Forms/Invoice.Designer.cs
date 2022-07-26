@@ -35,19 +35,19 @@ namespace POSWarehouse.Forms
             this.invoicesBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.superMarketDataSet = new POSWarehouse.SuperMarketDataSet();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pic_help = new System.Windows.Forms.PictureBox();
             this.txt_invoiceid = new System.Windows.Forms.TextBox();
             this.btn_close = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.invoicesTableAdapter = new POSWarehouse.SuperMarketDataSetTableAdapters.InvoicesTableAdapter();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.pic_help = new System.Windows.Forms.PictureBox();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             ((System.ComponentModel.ISupportInitialize)(this.invoicesBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.superMarketDataSet)).BeginInit();
             this.panel1.SuspendLayout();
@@ -77,6 +77,21 @@ namespace POSWarehouse.Forms
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(690, 58);
             this.panel1.TabIndex = 8;
+            // 
+            // pic_help
+            // 
+            this.pic_help.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pic_help.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pic_help.Image = global::POSWarehouse.Properties.Resources.icons8_help_48;
+            this.pic_help.Location = new System.Drawing.Point(571, 11);
+            this.pic_help.Name = "pic_help";
+            this.pic_help.Size = new System.Drawing.Size(50, 41);
+            this.pic_help.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pic_help.TabIndex = 131;
+            this.pic_help.TabStop = false;
+            this.pic_help.Click += new System.EventHandler(this.pic_help_Click);
+            this.pic_help.MouseEnter += new System.EventHandler(this.pic_help_MouseEnter);
+            this.pic_help.MouseLeave += new System.EventHandler(this.pic_help_MouseLeave);
             // 
             // txt_invoiceid
             // 
@@ -148,19 +163,6 @@ namespace POSWarehouse.Forms
             this.panel2.Size = new System.Drawing.Size(706, 8);
             this.panel2.TabIndex = 9;
             // 
-            // reportViewer1
-            // 
-            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource1.Name = "Invoice";
-            reportDataSource1.Value = this.invoicesBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "SuperMarket.Reports.Invoice.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(16, 66);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.ServerReport.BearerToken = null;
-            this.reportViewer1.Size = new System.Drawing.Size(674, 514);
-            this.reportViewer1.TabIndex = 12;
-            // 
             // invoicesTableAdapter
             // 
             this.invoicesTableAdapter.ClearBeforeFill = true;
@@ -205,20 +207,18 @@ namespace POSWarehouse.Forms
             this.panel8.Size = new System.Drawing.Size(674, 8);
             this.panel8.TabIndex = 14;
             // 
-            // pic_help
+            // reportViewer1
             // 
-            this.pic_help.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pic_help.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pic_help.Image = global::POSWarehouse.Properties.Resources.icons8_help_48;
-            this.pic_help.Location = new System.Drawing.Point(571, 11);
-            this.pic_help.Name = "pic_help";
-            this.pic_help.Size = new System.Drawing.Size(50, 41);
-            this.pic_help.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pic_help.TabIndex = 131;
-            this.pic_help.TabStop = false;
-            this.pic_help.Click += new System.EventHandler(this.pic_help_Click);
-            this.pic_help.MouseEnter += new System.EventHandler(this.pic_help_MouseEnter);
-            this.pic_help.MouseLeave += new System.EventHandler(this.pic_help_MouseLeave);
+            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            reportDataSource1.Name = "Invoice";
+            reportDataSource1.Value = this.invoicesBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "POSWarehouse.Reports.Invoice.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(16, 66);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.ServerReport.BearerToken = null;
+            this.reportViewer1.Size = new System.Drawing.Size(674, 514);
+            this.reportViewer1.TabIndex = 15;
             // 
             // Invoice
             // 
@@ -264,7 +264,6 @@ namespace POSWarehouse.Forms
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel2;
-        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
         private SuperMarketDataSet superMarketDataSet;
         private System.Windows.Forms.BindingSource invoicesBindingSource;
         private SuperMarketDataSetTableAdapters.InvoicesTableAdapter invoicesTableAdapter;
@@ -273,5 +272,6 @@ namespace POSWarehouse.Forms
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.PictureBox pic_help;
+        private Microsoft.Reporting.WinForms.ReportViewer reportViewer1;
     }
 }

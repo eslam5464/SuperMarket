@@ -79,12 +79,12 @@ namespace POSWarehouse.Forms
             // 
             // rv_categories
             // 
-            this.rv_categories.LocalReport.ReportEmbeddedResource = "SuperMarket.Reports.Categories.rdlc";
+            this.rv_categories.LocalReport.ReportEmbeddedResource = "POSWarehouse.Reports.Categories.rdlc";
             this.rv_categories.Location = new System.Drawing.Point(536, 12);
             this.rv_categories.Name = "rv_categories";
             this.rv_categories.ServerReport.BearerToken = null;
             this.rv_categories.Size = new System.Drawing.Size(125, 174);
-            this.rv_categories.TabIndex = 4;
+            this.rv_categories.TabIndex = 5;
             this.rv_categories.Visible = false;
             // 
             // ReportViewer

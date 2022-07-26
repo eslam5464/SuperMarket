@@ -63,7 +63,6 @@ namespace POSWarehouse.UserControls
             this.CreationDateDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PriceModificationDateDataGridViewTextBoxColumn_ = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.spProductsGetFullDetailsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pOSWarehouseDataSet = new POSWarehouse.Data.POSWarehouseDataSet();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -85,7 +84,6 @@ namespace POSWarehouse.UserControls
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productsDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spProductsGetFullDetailsBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchBarCode)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).BeginInit();
@@ -449,16 +447,6 @@ namespace POSWarehouse.UserControls
             this.PriceModificationDateDataGridViewTextBoxColumn_.Name = "PriceModificationDateDataGridViewTextBoxColumn_";
             this.PriceModificationDateDataGridViewTextBoxColumn_.ReadOnly = true;
             // 
-            // spProductsGetFullDetailsBindingSource
-            // 
-            this.spProductsGetFullDetailsBindingSource.DataMember = "spProducts_GetFullDetails";
-            this.spProductsGetFullDetailsBindingSource.DataSource = this.pOSWarehouseDataSet;
-            // 
-            // pOSWarehouseDataSet
-            // 
-            this.pOSWarehouseDataSet.DataSetName = "POSWarehouseDataSet";
-            this.pOSWarehouseDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -749,7 +737,6 @@ namespace POSWarehouse.UserControls
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.productsDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.spProductsGetFullDetailsBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pOSWarehouseDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchBarCode)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcb_searchID)).EndInit();
@@ -796,7 +783,6 @@ namespace POSWarehouse.UserControls
         private System.Windows.Forms.CheckBox chk_generateBarCode;
         private System.Windows.Forms.DataGridView productsDataGridView;
         private System.Windows.Forms.BindingSource spProductsGetFullDetailsBindingSource;
-        private Data.POSWarehouseDataSet pOSWarehouseDataSet;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdDataGridViewTextBoxColumn_;
         private System.Windows.Forms.DataGridViewTextBoxColumn BarCodeDataGridViewTextBoxColumn_;
         private System.Windows.Forms.DataGridViewTextBoxColumn NameDataGridViewTextBoxColumn_;

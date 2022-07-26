@@ -87,7 +87,7 @@ namespace POSWarehouse.Forms
             // 
             // panel8
             // 
-            this.panel8.BackColor = System.Drawing.Color.Purple;
+            this.panel8.BackColor = System.Drawing.Color.DarkViolet;
             this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel8.Location = new System.Drawing.Point(0, 5);
             this.panel8.Name = "panel8";
@@ -96,7 +96,7 @@ namespace POSWarehouse.Forms
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.Purple;
+            this.panel1.BackColor = System.Drawing.Color.DarkViolet;
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -105,7 +105,7 @@ namespace POSWarehouse.Forms
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.Purple;
+            this.panel2.BackColor = System.Drawing.Color.DarkViolet;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(5, 74);
             this.panel2.Name = "panel2";
@@ -114,7 +114,7 @@ namespace POSWarehouse.Forms
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.Purple;
+            this.panel3.BackColor = System.Drawing.Color.DarkViolet;
             this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel3.Location = new System.Drawing.Point(407, 5);
             this.panel3.Name = "panel3";
